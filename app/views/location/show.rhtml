@@ -1,0 +1,28 @@
+<div id="photos">
+	<% @location.find_all_photos.each do | photoSighting | %>
+		<%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %>
+	<% end %>
+</div>
+
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem">County: <%= link_to @location.county, :controller => "counties", :action => 'show', :id => @location.county %></div>
+		<div class="pageheaderitem">State: <%= @location.state %></div>
+		<div class="pageheaderitem"><%= @location.notes %></div>
+		<div class="pageheaderitem"><a href="<%= @location.referenceurl %>">See also...</a></div>
+	</div>
+	<div id="pagecontent">
+		<h2><%= @location.species.size %> species</h2>
+
+		<% @location.species.each do | species | %>
+			<div><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
+		<% end %>
+
+		<h2><%= @location.trips.size %> trips</h2>
+
+		<% @location.trips.each do | trip | %>
+			<div><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+		<% end %>
+	</div>
+</div>

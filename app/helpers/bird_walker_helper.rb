@@ -1,0 +1,2 @@
+module BirdWalkerHelper
+end

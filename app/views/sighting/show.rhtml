@@ -1,0 +1,16 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %>
+	</div>
+	
+	<div id="pagecontent">	
+		<p>Date: <%= @sighting.date %></p>
+		<p>Location: <%= link_to @sighting.location.name, :controller => 'location', :action => 'show', :id => @sighting.location.id %></p>
+		<p>Species: <%= link_to @sighting.species.commonname, :controller => 'species', :action => 'show', :id => @sighting.species.id %></p>
+		<p>Notes: <%= @sighting.notes %></p>
+		<p>Exclude: <%= @sighting.exclude %></p>
+		<p>Photo: <%= @sighting.photo %></p>
+
+		<img src="<%= @sighting.thumbURL %>"/>
+	</div>
+</div>

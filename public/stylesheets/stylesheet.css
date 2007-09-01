@@ -1,0 +1,61 @@
+body
+{
+	font: 10pt Gill Sans;
+}
+
+#menu
+{
+	position: fixed; top: 0px; left: 0px; width: 100px;
+	z-index: 2;
+	background-color: white;
+/*	border: solid 1px red; */
+}
+
+#menu .menuitem
+{
+	font: 12pt Gill Sans;
+	padding-left: 10px;
+	margin-top: 10px;
+	background-color: #000099;
+	color: white;
+}
+
+#menu .menuitem a
+{
+	color: white;
+	text-decoration: none;
+}
+
+#pagetitle
+{
+	font: 32pt Gill Sans;
+	/* border: solid 1px blue; */
+}
+
+#pageheader
+{
+	/* border: solid 1px green; */
+}
+
+#pageheader .pageheaderitem
+{
+	margin-left: 10px; margin-bottom: 10px;
+}
+
+#photos
+{
+	position: absolute; top: 200px; left: 0px; width: 100px;
+	text-align: center;
+}
+
+#pagebody
+{
+	/* border: solid 2px yellow; */
+	position: absolute; top: 50px; left: 110px; width: 80%;	
+	padding-bottom: 50px;
+}
+
+#pagecontent
+{
+	/* border: solid 1px gray; */
+}

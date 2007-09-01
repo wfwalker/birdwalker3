@@ -1,0 +1,14 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %>
+	</div>
+	
+	<div id="pagecontent">
+		<% @species.each do | species | %>
+			<div>
+				<%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a>
+				<% if species.abacountable == 0 %>NOT ABA COUNTABLE <% end %>
+			</div>
+		<% end %>
+	</div>
+</div>
