@@ -1,0 +1,13 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %></div>
+	</div>
+
+	<div id="pagecontent">
+		<h2><%= @county.locations.size %> locations</h2>
+
+		<% @county.locations.each do | location | %>
+			<div><%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+		<% end %>
+	</div>
+</div>
