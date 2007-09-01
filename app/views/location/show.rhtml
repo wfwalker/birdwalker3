@@ -7,7 +7,7 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem">County: <%= link_to @location.county, :controller => "counties", :action => 'show', :id => @location.county %></div>
+		<div class="pageheaderitem">County: <%= link_to @location.county, :controller => "county", :action => 'show', :id => @location.county %></div>
 		<div class="pageheaderitem">State: <%= @location.state %></div>
 		<div class="pageheaderitem"><%= @location.notes %></div>
 		<div class="pageheaderitem"><a href="<%= @location.referenceurl %>">See also...</a></div>
