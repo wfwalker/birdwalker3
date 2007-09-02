@@ -1,29 +1,49 @@
 <div id="photos">
 	<% @species.find_all_photos.each do | photoSighting | %>
-		<%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %>
+		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %></div>
 	<% end %>
 </div>
 
 <div id="pagebody">	
 	<div id="pageheader">
 	    <div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem"><%= @species.latinname %></div>
-		<div class="pageheaderitem"><%= @species.notes %></div>
+		<div class="pageheaderitem">Latin name: <%= @species.latinname %></div>
+		<% if (@species.locations.size == 1) %>
+			<% location = @species.locations[0] %>
+			<div class="pageheaderitem">Seen only at <%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+		<% end %>
+		<% if (@species.trips.size == 1) %>
+			<% trip = @species.trips[0] %>
+			<div class="pageheaderitem">Seen once on <%= link_to trip.ignored.to_s, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+		<% end %>
+		<div class="pageheaderitem">Notes: <%= @species.notes %></div>
 		<% if @species.abacountable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
-		<div class="pageheaderitem"><a href="<%= @species.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem">Reference: <a href="<%= @species.referenceurl %>">See also...</a></div>
 	</div>
 
 	<div id="pagecontent">
-		<h2><%= @species.trips.size %> trips</h2>
+		<% if (@species.trips.size > 1) %>
+			<h2><%= @species.trips.size %> Trips</h2>
 
-		<% @species.trips.each do | trip | %>
-			<div><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+			<% @species.trips.each do | trip | %>
+				<div class="pagecontentitem"><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+			<% end %>
 		<% end %>
 
-		<h2><%= @species.locations.size %> locations</h2>
+		<% if (@species.locations.size > 1) %>
+			<h2><%= @species.locations.size %> Locations</h2>
 
-		<% @species.locations.each do | location | %>
-			<div><%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+			<% @species.locations.each do | location | %>
+				<div class="pagecontentitem"><%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+			<% end %>
+		<% end %>
+		
+		<% if (@species.trips.size == 1 and @species.trips.size == 1) %>
+			<h2>One Sighting Only</h2>
+			
+			<div class="pagecontentitem">
+				We've only seen this bird at <%= @species.locations[0].name %> on <%= @species.trips[0].ignored %>.
+			</div>
 		<% end %>
 	</div>
 </div>
