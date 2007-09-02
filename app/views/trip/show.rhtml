@@ -1,29 +1,36 @@
-
 <div id="photos">
 	<% @trip.find_all_photos.each do | photoSighting | %>
-		<%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %>
+		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %></div>
 	<% end %>
 </div>
 
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
-		<div class="pageheaderitem"><%= @trip.notes %></div>
-		<div class="pageheaderitem"><a href="<%= @trip.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem">Date: <%= @trip.ignored.to_s %></div>
+		<div class="pageheaderitem">Leader: <%= @trip.leader %></div>
+		<% if (@trip.locations.size == 1) %>
+			<% location = @trip.locations[0]%>
+			<div class="pageheaderitem">Location visited: <%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+		<% end %>
+		<div class="pageheaderitem">Notes: <%= @trip.notes %></div>
+		<div class="pageheaderitem">Reference: <a href="<%= @trip.referenceurl %>">See also...</a></div>
 	</div>
 	
 	<div id="pagecontent">
-		<h2><%= @trip.locations.size %> locations</h2>
 
-		<% @trip.locations.each do | location | %>
-			<div><%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+		<% if (@trip.locations.size > 1) %>
+			<h2><%= @trip.locations.size %> Locations</h2>
+			
+			<% @trip.locations.each do | location | %>
+				<div class="pagecontentitem"><%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+			<% end %>
 		<% end %>
 
-		<h2><%= @trip.species.size %> species</h2>
+		<h2><%= @trip.species.size %> Species</h2>
 
 		<% @trip.species.each do | species | %>
-			<div><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
+			<div class="pagecontentitem"><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
 		<% end %>
 	</div>
 </div>
