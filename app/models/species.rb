@@ -1,7 +1,7 @@
 class Species < ActiveRecord::Base
   has_many :sightings
-  has_many :trips, :through => :sightings, :uniq => true
-  has_many :locations, :through => :sightings, :uniq => true
+  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.ignored DESC"
+  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name"
   
   # TODO: some cleaner way to do this!
   def Species.find_all_seen
@@ -9,6 +9,6 @@ class Species < ActiveRecord::Base
   end
   
   def find_all_photos
-    Sighting.find(:all, :conditions => ["species_id = " + self.id.to_s + " AND photo = 1"])
+    Sighting.find(:all, :conditions => ["species_id = " + self.id.to_s + " AND photo = 1"], :order => "date DESC")
   end
 end
