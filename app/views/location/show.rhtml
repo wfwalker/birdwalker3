@@ -1,28 +1,36 @@
 <div id="photos">
 	<% @location.find_all_photos.each do | photoSighting | %>
-		<%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %>
+		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %></div>
 	<% end %>
 </div>
 
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem">County: <%= link_to @location.county, :controller => "county", :action => 'show', :id => @location.county %></div>
-		<div class="pageheaderitem">State: <%= @location.state %></div>
-		<div class="pageheaderitem"><%= @location.notes %></div>
-		<div class="pageheaderitem"><a href="<%= @location.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem">
+			<%= link_to @location.county + " County", :controller => "county", :action => 'show', :id => @location.county %>, 
+			<%= link_to @location.find_state.name, :controller => "state", :action => 'show', :id => @location.find_state.id %>
+		</div>
+		<% if (@location.trips.size == 1) %>
+			<% trip = @location.trips[0] %>
+			<div class="pageheaderitem">Visited once on: <%= link_to trip.ignored.to_s, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+		<% end %>
+		<div class="pageheaderitem">Notes: <%= @location.notes %></div>
+		<div class="pageheaderitem">Reference: <a href="<%= @location.referenceurl %>">See also...</a></div>
 	</div>
 	<div id="pagecontent">
-		<h2><%= @location.species.size %> species</h2>
+		<h2><%= @location.species.size %> Species</h2>
 
 		<% @location.species.each do | species | %>
-			<div><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
+			<div class="pagecontentitem"><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
 		<% end %>
+		
+		<% if (@location.trips.size > 1) %>
+			<h2><%= @location.trips.size %> Trips</h2>
 
-		<h2><%= @location.trips.size %> trips</h2>
-
-		<% @location.trips.each do | trip | %>
-			<div><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+			<% @location.trips.each do | trip | %>
+				<div class="pagecontentitem"><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+			<% end %>
 		<% end %>
 	</div>
 </div>
