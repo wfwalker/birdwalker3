@@ -4,9 +4,9 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% @trips.each do | trip | %>
+		<% @states.each do | state | %>
 			<div class="pagecontentitem">
-				<%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %>
+				<%= link_to state.name, :controller => 'state', :action => 'show', :id => state.id %>
 			</div>
 		<% end %>
 	</div>
