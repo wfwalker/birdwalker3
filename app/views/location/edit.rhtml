@@ -1,0 +1,15 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %></div>
+	</div>
+	
+	<div id="pagecontent">
+		<% form_tag :action => 'update', :id => @location do %>
+		  <%= render :partial => 'form' %>
+		  <%= submit_tag 'Edit' %>
+		<% end %>
+
+		<%= link_to 'Show', :action => 'show', :id => @location %> |
+		<%= link_to 'Back', :action => 'list' %>
+	</div>
+</div>
