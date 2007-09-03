@@ -23,4 +23,47 @@ class TripController < ApplicationController
     @trip = Trip.find(params["id"])
     @page_title = @trip.name
   end
+  
+  def index
+    list
+    render :action => 'list'
+  end
+
+  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+  verify :method => :post, :only => [ :destroy, :create, :update ],
+         :redirect_to => { :action => :list }
+
+  def new
+    @trip = Trip.new
+  end
+
+  def create
+    @trip = Trip.new(params[:trip])
+    if @trip.save
+      flash[:notice] = 'Trip was successfully created.'
+      redirect_to :action => 'list'
+    else
+      render :action => 'new'
+    end
+  end
+
+  def edit
+    @trip = Trip.find(params[:id])
+    @page_title = @trip.name
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    if @trip.update_attributes(params[:trip])
+      flash[:notice] = 'Trip was successfully updated.'
+      redirect_to :action => 'show', :id => @trip
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    Trip.find(params[:id]).destroy
+    redirect_to :action => 'list'
+  end
 end
