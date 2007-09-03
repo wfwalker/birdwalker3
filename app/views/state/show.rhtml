@@ -1,0 +1,25 @@
+<div id="photos">
+	<% @state.find_all_photos.each do | photoSighting | %>
+		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %></div>
+	<% end %>
+</div>
+
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %></div>
+	</div>
+
+	<div id="pagecontent">
+		<h2><%= @state.find_all_locations.size %> Locations</h2>
+
+		<% @state.find_all_locations.each do | location | %>
+			<div class="pagecontentitem"><%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+		<% end %>
+		
+		<h2><%= @state.find_all_species.size %> Species</h2>
+
+		<% @state.find_all_species.each do | species | %>
+			<div class="pagecontentitem"><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
+		<% end %>		
+	</div>
+</div>
