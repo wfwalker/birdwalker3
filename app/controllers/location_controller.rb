@@ -24,7 +24,7 @@ class LocationController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @locations = Location.find_all
+    @locations = Location.find(:all, :order => "name")
     @page_title = "Locations"
   end
 
@@ -49,6 +49,7 @@ class LocationController < ApplicationController
 
   def edit
     @location = Location.find(params[:id])
+    @page_title = @location.name
   end
 
   def update
