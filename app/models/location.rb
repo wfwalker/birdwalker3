@@ -3,6 +3,8 @@ class Location < ActiveRecord::Base
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id"
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.ignored DESC"
   
+  validates_presence_of :name, :county, :state
+  
   def find_state
     State.find(:first, :conditions => ["abbreviation='" + self.state + "'"])
   end
