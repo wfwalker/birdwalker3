@@ -15,6 +15,7 @@
 		<% end %>
 		<div class="pageheaderitem">Notes: <%= @trip.notes %></div>
 		<div class="pageheaderitem">Reference: <a href="<%= @trip.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @trip.id %></div>
 	</div>
 	
 	<div id="pagecontent">
