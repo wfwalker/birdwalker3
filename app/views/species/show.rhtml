@@ -19,6 +19,7 @@
 		<div class="pageheaderitem">Notes: <%= @species.notes %></div>
 		<% if @species.abacountable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
 		<div class="pageheaderitem">Reference: <a href="<%= @species.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @species.id %></div>
 	</div>
 
 	<div id="pagecontent">

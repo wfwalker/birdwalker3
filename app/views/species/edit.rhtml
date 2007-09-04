@@ -1,6 +1,7 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<h1><%= @page_title %></h1>
+		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem"><%= link_to 'Show', :action => 'show', :id => @species.id %></div>
 	</div>
 
 	<div id="pagecontent">
@@ -8,8 +9,5 @@
 		  <%= render :partial => 'form' %>
 		  <%= submit_tag 'Edit' %>
 		<% end %>
-
-		<%= link_to 'Show', :action => 'show', :id => @species %> |
-		<%= link_to 'Back', :action => 'list' %>
 	</div>
 </div>
