@@ -1,16 +1,16 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem"><%= link_to 'Show', :action => 'show', :id => @sighting.id %></div>
 	</div>
 	
 	<div id="paegbody">
 		<form action="../update/<%= @sighting.id %>" method="POST"">
 	
-		  <input id="sighting_id" name="sighting[id]" size="30" type="hidden" value="<%= @sighting.id %>" />
+		 <p>Date:<br/>
+		 <%= date_select 'sighting', 'date'  %></p>
 
-		  <p>Date: <input id="sighting_date" name="sighting[date]" size="30" type="text" value="<%= @sighting.date %>" /></p>
-
-		  <p>Location:
+		  <p>Location:<br/>
 		  <select name="sighting[location_id]">
 		   <% @locations.each do |location| %>
 		       <option value="<%= location.id %>" 
@@ -20,7 +20,7 @@
 		   <% end %>
 		  </select></p>
 
-		  <p>Species:
+		  <p>Species:<br/>
 		  <select name="sighting[species_id]">
 		   <% @species.each do |aSpecies| %>
 		       <option value="<%= aSpecies.id %>" 
@@ -29,6 +29,10 @@
 		       </option>
 		   <% end %>
 		  </select></p>
+		
+		  <p>Notes:<br/>
+		  <%= text_area 'sighting', 'notes'  %></p>
+		
 
 		  <input type="submit" value="Update" />
 

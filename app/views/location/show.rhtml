@@ -17,6 +17,7 @@
 		<% end %>
 		<div class="pageheaderitem">Notes: <%= @location.notes %></div>
 		<div class="pageheaderitem">Reference: <a href="<%= @location.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @location.id %></div>
 	</div>
 	<div id="pagecontent">
 		<h2><%= @location.species.size %> Species</h2>
