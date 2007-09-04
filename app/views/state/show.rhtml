@@ -21,5 +21,11 @@
 		<% @state.find_all_species.each do | species | %>
 			<div class="pagecontentitem"><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
 		<% end %>		
+
+		<h2><%= @state.find_all_trips.size %> Trips</h2>
+
+		<% @state.find_all_trips.each do | trip | %>
+			<div class="pagecontentitem"><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+		<% end %>		
 	</div>
 </div>
