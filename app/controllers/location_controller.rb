@@ -35,6 +35,7 @@ class LocationController < ApplicationController
 
   def new
     @location = Location.new
+    @page_title = "New Trip"
   end
 
   def create

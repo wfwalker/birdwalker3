@@ -35,6 +35,7 @@ class TripController < ApplicationController
 
   def new
     @trip = Trip.new
+    @page_title = "New Trip"
   end
 
   def create
