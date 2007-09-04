@@ -1,13 +1,14 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem"><%= link_to 'Show', :action => 'show', :id => @sighting.id %></div>
 	</div>
 	
 	<div id="pagecontent">
-		<% form_tag :action => 'update', :id => @sighting do %>
+		<% form_tag :action => 'create' do %>
 		  <%= render :partial => 'form' %>
-		  <%= submit_tag 'Edit' %>
+		  <%= submit_tag "Create" %>
 		<% end %>
+
+		<%= link_to 'Back', :action => 'list' %>
 	</div>
 </div>

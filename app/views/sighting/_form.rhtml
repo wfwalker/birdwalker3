@@ -1,0 +1,31 @@
+<%= error_messages_for 'sighting' %>
+
+<!--[form:sighting]-->
+<p><label for="sighting_oldspeciesabbrev">oldSpeciesAbbrev</label><br/>
+<%= text_field 'sighting', 'oldspeciesabbrev'  %></p>
+
+<p><label for="sighting_oldlocationname">oldLocationName</label><br/>
+<%= text_field 'sighting', 'oldlocationname'  %></p>
+
+<p><label for="sighting_notes">Notes</label><br/>
+<%= text_area 'sighting', 'notes'  %></p>
+
+<p><label for="sighting_exclude">Exclude</label><br/>
+<%= check_box 'sighting', 'exclude'  %></p>
+
+<p><label for="sighting_photo">Photo</label><br/>
+<%= check_box 'sighting', 'photo'  %></p>
+
+<p><label for="sighting_date">Date</label><br/>
+<%= date_select 'sighting', 'date'  %></p>
+
+<p><label for="sighting_location">Location</label><br/>
+<%= collection_select("sighting", "location_id", Location.find_all, :id, :name) %>
+</p>
+
+<p><label for="sighting_species">Species</label><br/>
+<%= collection_select("sighting", "species_id", Species.find_all_seen, :id, :commonname) %>
+</p>
+
+<!--[eoform:sighting]-->
+
