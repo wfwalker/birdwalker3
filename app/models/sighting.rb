@@ -3,6 +3,8 @@ class Sighting < ActiveRecord::Base
   belongs_to :species
   belongs_to :trip
   
+  validates_presence_of :species_id, :location_id, :trip_id, :oldspeciesabbrev
+  
   def photoURL
     "http://sven.spflrc.org/~walker/images/photo/" + self.date.to_s + "-" + self.species.abbreviation + ".jpg"
   end
