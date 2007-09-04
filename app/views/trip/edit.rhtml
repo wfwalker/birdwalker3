@@ -8,9 +8,5 @@
   			<%= render :partial => 'form' %>
   			<%= submit_tag 'Edit' %>
 		<% end %>
-		
-		<% @trip.sightings.each do | sighting | %>
-			<div><%= link_to sighting.species.commonname, :controller => 'sighting', :action => "edit", :id => sighting.id %></div>
-		<% end %>
 	</div>
 </div>
