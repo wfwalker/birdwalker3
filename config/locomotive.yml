@@ -1,6 +1,11 @@
 ---
 mode: development
+<<<<<<< locomotive.yml
+runs_at_launch: 0
+identifier: birdwalker3
+=======
 runs_at_launch: 1
 identifier: birdwalker3
+>>>>>>> 1.2
 port: 3000
 bundle: /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle
