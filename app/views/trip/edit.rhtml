@@ -1,15 +1,16 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div id="pagetitle">
-
+		<div class="pageheaderitem"><%= link_to 'Show', :action => 'show', :id => @trip.id %></div>
 	</div>
 	<div id="pagecontent">
 		<% form_tag :action => 'update', :id => @trip do %>
   			<%= render :partial => 'form' %>
   			<%= submit_tag 'Edit' %>
 		<% end %>
-
-		<%= link_to 'Show', :action => 'show', :id => @trip %> |
-		<%= link_to 'Back', :action => 'list' %>
+		
+		<% @trip.sightings.each do | sighting | %>
+			<div><%= link_to sighting.species.commonname, :controller => 'sighting', :action => "edit", :id => sighting.id %></div>
+		<% end %>
 	</div>
 </div>
