@@ -7,8 +7,8 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem">Date: <%= @trip.ignored.to_s %></div>
-		<div class="pageheaderitem">Leader: <%= @trip.leader %></div>
+		<div class="pageheaderitem"><%= nice_date(@trip.ignored) %></div>
+		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
 		<% if (@trip.locations.size == 1) %>
 			<% location = @trip.locations[0]%>
 			<div class="pageheaderitem">Location visited: <%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
