@@ -54,6 +54,7 @@ class TripController < ApplicationController
   end
 
   def update
+    # TODO -- update the sightings, too!!
     @trip = Trip.find(params[:id])
     if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'
