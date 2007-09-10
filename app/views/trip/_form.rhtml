@@ -16,15 +16,5 @@
 <p><label for="trip_ignored">Ignored</label><br/>
 <%= date_select 'trip', 'ignored'  %></p>
 
-<% @allLocations = Location.find_all %>
-<% for @sighting in @trip.sightings %>
-	<div>
-		<%= text_field("sighting", "oldspeciesabbrev") %>
-		<%= collection_select("sighting", "location_id", @allLocations, :id, :name) %>
-		<%= date_select("sighting", "date") %>
-		<%= link_to "Edit", :controller => "sighting", :action => "edit", :id => @sighting.id %>
-	</div>
-<% end %>
-		
 <!--[eoform:trip]-->
 

@@ -9,5 +9,16 @@
   			<%= render :partial => 'form' %>
   			<%= submit_tag 'Edit' %>
 		<% end %>
+		
+		<hr/>
+		
+		<%= link_to "New Sighting", :controller => "sighting", :action => "new" %>		
+		
+		<% for @sighting in @trip.sightings %>
+			<div>
+				<%= @sighting.species.commonname %>
+				<%= link_to "Edit", :controller => "sighting", :action => "edit", :id => @sighting.id %>
+			</div>
+		<% end %>
 	</div>
 </div>
