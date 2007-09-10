@@ -5,12 +5,23 @@
 	</div>
 	
 	<div id="pagecontent">	
-		<div class="pagecontentitem">Date: <%= @sighting.date %></div>
-		<div class="pagecontentitem">Location: <%= link_to @sighting.location.name, :controller => 'location', :action => 'show', :id => @sighting.location.id %></div>
-		<div class="pagecontentitem">Species: <%= link_to @sighting.species.commonname, :controller => 'species', :action => 'show', :id => @sighting.species.id %></div>
-		<div class="pagecontentitem">Notes: <%= @sighting.notes %></div>
-		<div class="pagecontentitem">Exclude: <%= @sighting.exclude %></div>
-		<div class="pagecontentitem">Photo: <%= @sighting.photo %></div>
+		<h2>Date</h2>
+		<div class="pagecontentitem"><%= link_to nice_date(@sighting.date), :controller => 'trip', :action => 'show', :id => @sighting.trip.id %></div>
+		
+		<h2>Location</h2>
+		<div class="pagecontentitem"><%= link_to @sighting.location.name, :controller => 'location', :action => 'show', :id => @sighting.location.id %></div>
+
+		<h2>Species</h2>
+		<div class="pagecontentitem"><%= link_to @sighting.species.commonname, :controller => 'species', :action => 'show', :id => @sighting.species.id %></div>
+
+		<h2>Notes</h2>
+		<div class="pagecontentitem"><%= @sighting.notes %></div>
+		
+		<h2>Exclude</h2>
+		<div class="pagecontentitem"><%= @sighting.exclude %></div>
+
+		<h2>Photo</h2>
+		<div class="pagecontentitem"><%= @sighting.photo %></div>
 
 		<img src="<%= @sighting.thumbURL %>"/>
 	</div>
