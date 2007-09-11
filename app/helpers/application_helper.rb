@@ -3,4 +3,8 @@ module ApplicationHelper
   def nice_date(date)
     h date.strftime("%A, %B %d, %Y")
   end
+  
+  def month_day(date)
+    h date.strftime("%B %d")
+  end
 end
