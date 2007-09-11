@@ -15,8 +15,8 @@
 			<% trip = @location.trips[0] %>
 			<div class="pageheaderitem">Visited once on: <%= link_to nice_date(trip.ignored), :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
 		<% end %>
-		<div class="pageheaderitem">Notes: <%= @location.notes %></div>
-		<div class="pageheaderitem">Reference: <a href="<%= @location.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem"><%= @location.notes %></div>
+		<div class="pageheaderitem"><a href="<%= @location.referenceurl %>">See also...</a></div>
 		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @location.id %></div>
 	</div>
 	<div id="pagecontent">

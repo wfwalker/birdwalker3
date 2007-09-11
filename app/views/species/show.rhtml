@@ -7,7 +7,7 @@
 <div id="pagebody">	
 	<div id="pageheader">
 	    <div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem">Latin name: <%= @species.latinname %></div>
+		<div class="pageheaderitem"><%= @species.latinname %></div>
 		<% if (@species.locations.size == 1) %>
 			<% location = @species.locations[0] %>
 			<div class="pageheaderitem">Seen only at <%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
@@ -16,9 +16,9 @@
 			<% trip = @species.trips[0] %>
 			<div class="pageheaderitem">Seen once on <%= link_to trip.ignored.to_s, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
 		<% end %>
-		<div class="pageheaderitem">Notes: <%= @species.notes %></div>
+		<div class="pageheaderitem"><%= @species.notes %></div>
 		<% if @species.abacountable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
-		<div class="pageheaderitem">Reference: <a href="<%= @species.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem"><a href="<%= @species.referenceurl %>">See also...</a></div>
 		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @species.id %></div>
 	</div>
 
