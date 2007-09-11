@@ -5,10 +5,11 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% @trips.each do | trip | %>
-			<div class="pagecontentitem">
-				<%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %>
-			</div>
+		<% Trip.map_by_year(@trips).each do | year, trips | %>
+			<h2><%= year %></h2>
+			<% trips.each do | trip | %>
+				<div class="pagecontentitem"><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %>, <%= month_day(trip.ignored) %></div>
+			<% end %>
 		<% end %>
 	</div>
 </div>
