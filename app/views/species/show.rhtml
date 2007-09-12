@@ -26,8 +26,8 @@
 		<% if (@species.trips.size > 1) %>
 			<h2><%= @species.trips.size %> Trips</h2>
 
-			<% @species.trips.each do | trip | %>
-				<div class="pagecontentitem"><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %></a>, <%= short_nice_date(trip.ignored) %></div>
+			<% for @trip in @species.trips %>
+			  <%= render_partial 'trip/onelinelink', @trip %>
 			<% end %>
 		<% end %>
 
