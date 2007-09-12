@@ -23,9 +23,9 @@
 		<% end %>
 
 		<h2><%= @county.find_all_trips.size %> Trips</h2>
-
-		<% @county.find_all_trips.each do | trip | %>
-			<div class="pagecontentitem"><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
-		<% end %>		
+		
+		<% for @trip in @county.find_all_trips %>
+		  <%= render_partial 'trip/onelinelink', @trip %>
+		<% end %>
 	</div>
 </div>
