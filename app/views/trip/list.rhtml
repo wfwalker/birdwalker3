@@ -5,7 +5,7 @@
 	</div>
 
 	<div id="pagecontent">
-		<% sighting_year_range.each do | year |%>
+		<% sighting_year_range.to_a.reverse.each do | year |%>
 			<h2><%= year %></h2>
 			<% @trips_by_year[year].each do | trip | %>
 				<div class="pagecontentitem">
