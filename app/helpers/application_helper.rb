@@ -7,4 +7,8 @@ module ApplicationHelper
   def month_day(date)
     h date.strftime("%B %d")
   end
+  
+  def sighting_year_range()
+    (1996..2007)
+  end
 end

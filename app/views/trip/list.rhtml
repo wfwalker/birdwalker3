@@ -3,12 +3,15 @@
 		<div id="pagetitle"><%= @page_title %></div>
 		<div class="pageheaderitem"><%= link_to 'New', :action => 'new' %></div>
 	</div>
-	
+
 	<div id="pagecontent">
-		<% Trip.map_by_year(@trips).each do | year, trips | %>
+		<% sighting_year_range.each do | year |%>
 			<h2><%= year %></h2>
-			<% trips.each do | trip | %>
-				<div class="pagecontentitem"><%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %>, <%= month_day(trip.ignored) %></div>
+			<% @trips_by_year[year].each do | trip | %>
+				<div class="pagecontentitem">
+					<%= link_to trip.name, :controller => 'trip', :action => 'show', :id => trip.id %>,
+					<%= month_day(trip.ignored) %>
+				</div>
 			<% end %>
 		<% end %>
 	</div>

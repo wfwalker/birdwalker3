@@ -11,14 +11,8 @@ class Trip < ActiveRecord::Base
   
   def Trip.map_by_year(tripList)
     map = Hash.new
-    tripList.each do | trip |
-        if map.key? trip.ignored.year
-          map[trip.ignored.year] << trip
-        else
-          map[trip.ignored.year] = Array.new
-          map[trip.ignored.year] << trip
-        end
-    end
-    return map
+    
+    tripList.inject({}) { | map, trip |
+       map[trip.ignored.year] ? map[trip.ignored.year] << trip : map[trip.ignored.year] = [trip] ; map }
   end
 end
