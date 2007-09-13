@@ -4,10 +4,8 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% @states.each do | state | %>
-			<div class="pagecontentitem">
-				<%= link_to state.name, :controller => 'state', :action => 'show', :id => state.id %>
-			</div>
+		<% for @state in @states %>
+			<%= render_partial 'state/onelinelink' %>
 		<% end %>
 	</div>
 </div>

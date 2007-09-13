@@ -18,9 +18,9 @@
 
 		<h2><%= @state.find_all_species.size %> Species</h2>
 
-		<% @state.find_all_species.each do | species | %>
-			<div class="pagecontentitem"><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
-		<% end %>		
+		<% for @species in @state.find_all_species %>
+		  <%= render_partial 'species/onelinelink', @trip %>
+		<% end %>
 
 		<h2><%= @state.find_all_trips.size %> Trips</h2>
 
