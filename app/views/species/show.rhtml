@@ -43,7 +43,7 @@
 			<h2>One Sighting Only</h2>
 			
 			<div class="pagecontentitem">
-				We've only seen this bird at <%= @species.locations[0].name %> on <%= @species.trips[0].ignored %>.
+				We've only seen this bird at <%= @species.locations[0].name %> on <%= nice_date(@species.trips[0].ignored) %>.
 			</div>
 		<% end %>
 	</div>
