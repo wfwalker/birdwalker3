@@ -22,9 +22,9 @@
 	<div id="pagecontent">
 		<h2><%= @location.species.size %> Species</h2>
 
-		<% @location.species.each do | species | %>
-			<div class="pagecontentitem"><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
-		<% end %>
+		<% for @species in @location.species %>
+			<%= render_partial 'species/onelinelink', @species %>
+		<% end %>			
 		
 		<% if (@location.trips.size > 1) %>
 			<h2><%= @location.trips.size %> Trips</h2>

@@ -5,8 +5,8 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% @locations.each do | location | %>
-			<div class="pagecontentitem"><%= link_to location.name, :action => 'show', :id => location.id %></a></div>
+		<% for @location in @locations %>
+			<%= render_partial 'location/onelinelink', @location %>
 		<% end %>
 	</div>
 </div>

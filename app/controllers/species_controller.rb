@@ -23,7 +23,7 @@ class SpeciesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @species = Species.find_all_seen
+    @allspecies = Species.find_all_seen
     @page_title = "Species"
   end
 

@@ -12,9 +12,9 @@
 	<div id="pagecontent">
 		<h2><%= @county.locations.size %> locations</h2>
 
-		<% @county.locations.each do | location | %>
-			<div class="pagecontentitem"><%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
-		<% end %>
+		<% for @location in @county.locations %>
+			<%= render_partial 'location/onelinelink', @location %>
+		<% end %>			
 	
 		<h2><%= @county.find_all_species.size %> Species</h2>
 

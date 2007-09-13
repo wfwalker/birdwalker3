@@ -4,11 +4,8 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% @species.each do | species | %>
-			<div class="pagecontentitem">
-				<%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a>
-				<% if species.abacountable == 0 %>NOT ABA COUNTABLE <% end %>
-			</div>
-		<% end %>
+		<% for @species in @allspecies %>
+			<%= render_partial 'species/onelinelink', @species %>
+		<% end %>			
 	</div>
 </div>

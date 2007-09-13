@@ -22,10 +22,10 @@
 
 		<% if (@trip.locations.size > 1) %>
 			<h2><%= @trip.locations.size %> Locations</h2>
-			
-			<% @trip.locations.each do | location | %>
-				<div class="pagecontentitem"><%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
-			<% end %>
+
+			<% for @location in @trip.locations %>
+				<%= render_partial 'location/onelinelink', @location %>
+			<% end %>			
 		<% end %>
 
 		<h2><%= @trip.species.size %> Species</h2>
