@@ -24,14 +24,14 @@
 			<h2><%= @trip.locations.size %> Locations</h2>
 
 			<% for @location in @trip.locations %>
-				<%= render_partial 'location/onelinelink', @location %>
+				<%= render_partial 'location/onelinelink' %>
 			<% end %>			
 		<% end %>
 
 		<h2><%= @trip.species.size %> Species</h2>
 
-		<% @trip.species.each do | species | %>
-			<div class="pagecontentitem"><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
+		<% for @species in @trip.species %>
+			<%= render_partial 'species/onelinelink' %>
 		<% end %>
 	</div>
 </div>
