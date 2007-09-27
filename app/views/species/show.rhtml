@@ -23,7 +23,15 @@
 	</div>
 
 	<div id="pagecontent">
-		<% if (@species.trips.size > 1) %>
+		<% if (@species.trips.size > 30) %>
+			<h2><%= @species.trips.size %> Trips</h2>
+		
+			<div class="pagecontentitem">
+				Seen frequently between
+				<%= link_to short_nice_date(@species.first_sighting.date), :controller => 'trip', :action => 'show', :id => @species.first_sighting.trip_id %> and
+				<%= link_to short_nice_date(@species.last_sighting.date), :controller => 'trip', :action => 'show', :id => @species.last_sighting.trip_id %>
+			</div>
+		<% elsif (@species.trips.size > 1) %>
 			<h2><%= @species.trips.size %> Trips</h2>
 
 			<% for @trip in @species.trips %>
