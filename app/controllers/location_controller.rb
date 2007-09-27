@@ -25,6 +25,7 @@ class LocationController < ApplicationController
 
   def list
     @locations = Location.find(:all, :order => "name")
+    @locations_by_state = Location.map_by_state(@locations)
     @page_title = "Locations"
   end
 
