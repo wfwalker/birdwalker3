@@ -26,7 +26,15 @@
 			<%= render_partial 'species/onelinelink', @species %>
 		<% end %>			
 		
-		<% if (@location.trips.size > 1) %>
+		<% if (@location.trips.size > 30) %>
+			<h2><%= @location.trips.size %> Trips</h2>
+		
+			<div class="pagecontentitem">
+				Seen frequently between
+				<%= link_to short_nice_date(@location.first_sighting.date), :controller => 'trip', :action => 'show', :id => @location.first_sighting.trip_id %> and
+				<%= link_to short_nice_date(@location.last_sighting.date), :controller => 'trip', :action => 'show', :id => @location.last_sighting.trip_id %>
+			</div>
+		<% elsif (@location.trips.size > 1) %>
 			<h2><%= @location.trips.size %> Trips</h2>
 
 			<% for @trip in @location.trips %>
