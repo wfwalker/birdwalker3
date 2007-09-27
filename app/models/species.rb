@@ -1,5 +1,8 @@
 class Species < ActiveRecord::Base
   has_many :sightings
+  has_one :first_sighting, :class_name => 'Sighting', :order => 'date'
+  has_one :last_sighting, :class_name => 'Sighting', :order => 'date DESC'
+  
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.ignored DESC"
   has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name"
   
