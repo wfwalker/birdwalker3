@@ -13,7 +13,7 @@
 		<h2><%= @state.find_all_locations.size %> Locations</h2>
 
 		<% for @location in @state.find_all_locations %>
-			<%= render_partial 'location/onelinelink', @location %>
+			<%= render_partial 'locations/onelinelink', @location %>
 		<% end %>			
 
 		<h2><%= @state.find_all_species.size %> Species</h2>
@@ -25,7 +25,7 @@
 		<h2><%= @state.find_all_trips.size %> Trips</h2>
 
 		<% for @trip in @state.find_all_trips %>
-		  <%= render_partial 'trip/onelinelink', @trip %>
+		  <%= render_partial 'trips/onelinelink', @trip %>
 		<% end %>
 	</div>
 </div>
