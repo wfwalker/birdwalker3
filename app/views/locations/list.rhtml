@@ -8,7 +8,7 @@
 		<% for @state in @locations_by_state.keys %>
 		    <h2><%= @state %></h2>
 			<% for @location in @locations_by_state[@state] %>
-			 <%= render_partial 'location/onelinelink', @location %>
+			 <%= render_partial 'locations/onelinelink', @location %>
 			<% end %>
 		<% end %>
 	</div>
