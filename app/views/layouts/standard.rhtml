@@ -8,13 +8,13 @@
         <div id="menu">
 			<img src="http://www.spflrc.org/~walker/images/topleft1.jpg" width="100" />
 			<div class="<%= @controller.isLocation ? 'locationmenuitem' : 'menuitem' %>">
-				<%= link_to "locations", :controller => 'location', :action => '' %>
+				<%= link_to "locations", locations_url %>
 			</div>
 			<div class="<%= @controller.isSpecies ? 'speciesmenuitem' : 'menuitem' %>">
-				<%= link_to "locations", :controller => 'species', :action => '' %>
+				<%= link_to "species", :controller => 'species' %>
 			</div>
 			<div class="<%= @controller.isTrip ? 'tripmenuitem' : 'menuitem' %>">
-				<%= link_to "trips", :controller => 'trip', :action => 'list' %>
+				<%= link_to "trips", trips_url %>
 			</div>
 		</div>
 

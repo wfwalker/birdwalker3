@@ -1,6 +1,6 @@
 <div id="photos">
 	<% @species.find_all_photos.each do | photoSighting | %>
-		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %></div>
+		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sightings', :action => 'show', :id => photoSighting.id %></div>
 	<% end %>
 </div>
 
@@ -10,11 +10,11 @@
 		<div class="pageheaderitem"><%= @species.latinname %></div>
 		<% if (@species.locations.size == 1) %>
 			<% location = @species.locations[0] %>
-			<div class="pageheaderitem">Seen only at <%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+			<div class="pageheaderitem">Seen only at <%= link_to location.name, :controller => 'locations', :action => 'show', :id => location.id %></a></div>
 		<% end %>
 		<% if (@species.trips.size == 1) %>
 			<% trip = @species.trips[0] %>
-			<div class="pageheaderitem">Seen once on <%= link_to trip.ignored.to_s, :controller => 'trip', :action => 'show', :id => trip.id %></a></div>
+			<div class="pageheaderitem">Seen once on <%= link_to trip.ignored.to_s, :controller => 'trips', :action => 'show', :id => trip.id %></a></div>
 		<% end %>
 		<div class="pageheaderitem"><%= @species.notes %></div>
 		<% if @species.abacountable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
@@ -28,14 +28,14 @@
 		
 			<div class="pagecontentitem">
 				Seen frequently between
-				<%= link_to short_nice_date(@species.first_sighting.date), :controller => 'trip', :action => 'show', :id => @species.first_sighting.trip_id %> and
-				<%= link_to short_nice_date(@species.last_sighting.date), :controller => 'trip', :action => 'show', :id => @species.last_sighting.trip_id %>
+				<%= link_to short_nice_date(@species.first_sighting.date), trip_url(@species.first_sighting.trip_id) %> and
+				<%= link_to short_nice_date(@species.last_sighting.date), trip_url(@species.last_sighting.trip_id) %>
 			</div>
 		<% elsif (@species.trips.size > 1) %>
 			<h2><%= @species.trips.size %> Trips</h2>
 
 			<% for @trip in @species.trips %>
-			  <%= render_partial 'trip/onelinelink', @trip %>
+			  <%= render_partial 'trips/onelinelink', @trip %>
 			<% end %>
 		<% end %>
 
@@ -43,7 +43,7 @@
 			<h2><%= @species.locations.size %> Locations</h2>
 
 			<% for @location in @species.locations %>
-				<%= render_partial 'location/onelinelink', @location %>
+				<%= render_partial 'locations/onelinelink', @location %>
 			<% end %>			
 		<% end %>
 		
