@@ -1,4 +1,4 @@
-class SightingController < ApplicationController
+class SightingsController < ApplicationController
   layout "standard"
 
   def isLocation

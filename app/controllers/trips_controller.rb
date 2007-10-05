@@ -1,4 +1,4 @@
-class TripController < ApplicationController
+class TripsController < ApplicationController
   scaffold :trip
   layout "standard"
 

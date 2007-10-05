@@ -1,4 +1,4 @@
-class CountyController < ApplicationController
+class CountiesController < ApplicationController
   layout "standard"
 
   def show

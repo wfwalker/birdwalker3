@@ -1,4 +1,4 @@
-class StateController < ApplicationController
+class StatesController < ApplicationController
   scaffold :state
   layout "standard"
   

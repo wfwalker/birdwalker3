@@ -1,8 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :county
-  map.resources :sighting
-  map.resources :trip
-  map.resources :location
+  map.resources :counties
+  map.resources :sightings
+  map.resources :trips
+  map.resources :states
+  map.resources :locations
 
   # The priority is based upon order of creation: first created -> highest priority.
   
