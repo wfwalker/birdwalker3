@@ -13,19 +13,19 @@
 		<h2><%= @county.locations.size %> locations</h2>
 
 		<% for @location in @county.locations %>
-			<%= render_partial 'location/onelinelink', @location %>
+			<%= render_partial 'locations/onelinelink', @location %>
 		<% end %>			
 	
 		<h2><%= @county.find_all_species.size %> Species</h2>
 
-		<% @county.find_all_species.each do | species | %>
-			<div class="pagecontentitem"><%= link_to species.commonname, :controller => 'species', :action => 'show', :id => species.id %></a></div>
+		<% for @species in @county.find_all_species %>
+		  <%= render_partial 'species/onelinelink', @species %>
 		<% end %>
 
 		<h2><%= @county.find_all_trips.size %> Trips</h2>
 		
 		<% for @trip in @county.find_all_trips %>
-		  <%= render_partial 'trip/onelinelink', @trip %>
+		  <%= render_partial 'trips/onelinelink', @trip %>
 		<% end %>
 	</div>
 </div>
