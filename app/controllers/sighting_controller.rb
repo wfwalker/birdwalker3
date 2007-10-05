@@ -33,6 +33,10 @@ class SightingController < ApplicationController
 
   def new
     @sighting = Sighting.new
+    if (params[:trip_id] != "")
+      @sighting.trip_id = params[:trip_id]
+    end
+    @page_title = "New Sighting"
   end
 
   def create

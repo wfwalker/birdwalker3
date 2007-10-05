@@ -7,9 +7,15 @@
     <body>
         <div id="menu">
 			<img src="http://www.spflrc.org/~walker/images/topleft1.jpg" width="100" />
-			<div class="<%= @controller.isLocation ? 'locationmenuitem' : 'menuitem' %>"><a href="/location/list">locations</a></div>
-			<div class="<%= @controller.isSpecies ? 'speciesmenuitem' : 'menuitem' %>"><a href="/species/list">species</a></div>
-			<div class="<%= @controller.isTrip ? 'tripmenuitem' : 'menuitem' %>"><a href="/trip/list">trips</a></div>
+			<div class="<%= @controller.isLocation ? 'locationmenuitem' : 'menuitem' %>">
+				<%= link_to "locations", :controller => 'location', :action => '' %>
+			</div>
+			<div class="<%= @controller.isSpecies ? 'speciesmenuitem' : 'menuitem' %>">
+				<%= link_to "locations", :controller => 'species', :action => '' %>
+			</div>
+			<div class="<%= @controller.isTrip ? 'tripmenuitem' : 'menuitem' %>">
+				<%= link_to "trips", :controller => 'trip', :action => 'list' %>
+			</div>
 		</div>
 
         <%= yield %>

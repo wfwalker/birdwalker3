@@ -1,11 +1,6 @@
 <%= error_messages_for 'sighting' %>
 
 <!--[form:sighting]-->
-<p><label for="sighting_oldspeciesabbrev">oldSpeciesAbbrev</label><br/>
-<%= text_field 'sighting', 'oldspeciesabbrev'  %></p>
-
-<p><label for="sighting_oldlocationname">oldLocationName</label><br/>
-<%= text_field 'sighting', 'oldlocationname'  %></p>
 
 <p><label for="sighting_notes">Notes</label><br/>
 <%= text_area 'sighting', 'notes'  %></p>
@@ -14,8 +9,9 @@
 
 <p><%= check_box 'sighting', 'photo'  %><label for="sighting_photo">Photo</label></p>
 
-<p><label for="sighting_date">Date</label><br/>
-<%= date_select 'sighting', 'date'  %></p>
+<p><label for="sighting_trip">Trip</label><br/>
+<%= collection_select("sighting", "trip_id", Trip.find_all, :id, :ignored) %>
+</p>
 
 <p><label for="sighting_location">Location</label><br/>
 <%= collection_select("sighting", "location_id", Location.find_all, :id, :name) %>

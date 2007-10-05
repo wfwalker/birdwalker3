@@ -11,11 +11,12 @@
 		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
 		<% if (@trip.locations.size == 1) %>
 			<% location = @trip.locations[0]%>
-			<div class="pageheaderitem">Visited <%= link_to location.name, :controller => 'location', :action => 'show', :id => location.id %></a></div>
+			<div class="pageheaderitem">Visited <%= link_to location.name, location_url(location) %></a></div>
 		<% end %>
 		<div class="pageheaderitem"><%= @trip.notes %></div>
 		<div class="pageheaderitem"><a href="<%= @trip.referenceurl %>">See also...</a></div>
-		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @trip.id %></div>
+		<div class="pageheaderitem"><%= link_to 'Edit', edit_trip_url(@trip) %></div>
+		<div class="pageheaderitem"><%= link_to 'Add Sighting', new_sighting_url(:trip_id => @trip) %></div>
 	</div>
 	
 	<div id="pagecontent">
