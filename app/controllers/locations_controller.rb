@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   scaffold :location
+  helper :trips
   layout "standard"
   
   def isLocation
