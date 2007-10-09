@@ -1,5 +1,6 @@
 class SightingsController < ApplicationController
   layout "standard"
+  auto_complete_for :species, :commonname
 
   def isLocation
     false
@@ -69,5 +70,9 @@ class SightingsController < ApplicationController
   def destroy
     Sighting.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+  
+  def autocomplete_species
+      @species_list = Species.find(:all, :conditions => ["commonname like ?", "%#{params[:sighting][:species]}%"])
   end
 end
