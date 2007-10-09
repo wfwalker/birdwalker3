@@ -7,10 +7,12 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem">
-			<%= link_to @location.county + " County", county_url(@location.county) %>, 
-			<%= link_to @location.find_state.name, state_url(@location.find_state) %>
-		</div>
+		<% has_only_one_trip?(@location) do %>
+			<div class="pageheaderitem">
+				<%= link_to @location.county + " County", county_url(@location.county) %>, 
+				<%= link_to @location.find_state.name, state_url(@location.find_state) %>
+			</div>
+		<% end %>
 		<% if (@location.trips.size == 1) %>
 			<% trip = @location.trips[0] %>
 			<div class="pageheaderitem">Visited once on: <%= link_to nice_date(trip.ignored), trip_url(trip.id) %></a></div>
@@ -26,20 +28,6 @@
 			<%= render_partial 'species/onelinelink', @species %>
 		<% end %>			
 		
-		<% if (@location.trips.size > 30) %>
-			<h2><%= @location.trips.size %> Trips</h2>
-		
-			<div class="pagecontentitem">
-				Visited frequently between
-				<%= link_to short_nice_date(@location.first_sighting.date), location_url(@location.first_sighting.trip_id) %> and
-				<%= link_to short_nice_date(@location.last_sighting.date), location_url(@location.last_sighting.trip_id) %>
-			</div>
-		<% elsif (@location.trips.size > 1) %>
-			<h2><%= @location.trips.size %> Trips</h2>
-
-			<% for @trip in @location.trips %>
-			  <%= render_partial 'trips/onelinelink', @trip %>
-			<% end %>
-		<% end %>
+		<%= show_trip_list(@location) %>
 	</div>
 </div>

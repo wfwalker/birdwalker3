@@ -1,4 +1,6 @@
+<% trip = onelinelink %>
+
 <div class="pagecontentitem">
-	<%= link_to @trip.name, trip_url(@trip.id) %></a>,
-	<%= short_nice_date(@trip.ignored) %>
+	<%= link_to trip.name, trip_url(trip) %></a>,
+	<%= short_nice_date(trip.ignored) %>
 </div>

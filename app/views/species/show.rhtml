@@ -12,33 +12,21 @@
 			<% location = @species.locations[0] %>
 			<div class="pageheaderitem">Seen only at <%= link_to location.name, :controller => 'locations', :action => 'show', :id => location.id %></a></div>
 		<% end %>
-		<% if (@species.trips.size == 1) %>
+		
+		<% has_only_one_trip?(@species) do %>
 			<% trip = @species.trips[0] %>
 			<div class="pageheaderitem">Seen once on <%= link_to trip.ignored.to_s, :controller => 'trips', :action => 'show', :id => trip.id %></a></div>
 		<% end %>
+		
 		<div class="pageheaderitem"><%= @species.notes %></div>
 		<% if @species.abacountable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
 		<div class="pageheaderitem"><a href="<%= @species.referenceurl %>">See also...</a></div>
 		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @species.id %></div>
 	</div>
 
-	<div id="pagecontent">
-		<% if (@species.trips.size > 30) %>
-			<h2><%= @species.trips.size %> Trips</h2>
+	<div id="pagecontent">		
+		<%= show_trip_list(@species) %>
 		
-			<div class="pagecontentitem">
-				Seen frequently between
-				<%= link_to short_nice_date(@species.first_sighting.date), trip_url(@species.first_sighting.trip_id) %> and
-				<%= link_to short_nice_date(@species.last_sighting.date), trip_url(@species.last_sighting.trip_id) %>
-			</div>
-		<% elsif (@species.trips.size > 1) %>
-			<h2><%= @species.trips.size %> Trips</h2>
-
-			<% for @trip in @species.trips %>
-			  <%= render_partial 'trips/onelinelink', @trip %>
-			<% end %>
-		<% end %>
-
 		<% if (@species.locations.size > 1) %>
 			<h2><%= @species.locations.size %> Locations</h2>
 

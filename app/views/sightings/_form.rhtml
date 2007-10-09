@@ -21,5 +21,9 @@
 <%= collection_select("sighting", "species_id", Species.find_all_seen, :id, :commonname) %>
 </p>
 
+<p>
+<%= text_field_with_auto_complete :species, :commonname %>
+</p>
+
 <!--[eoform:sighting]-->
 

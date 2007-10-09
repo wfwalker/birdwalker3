@@ -12,7 +12,7 @@
 		
 		<hr/>
 		
-		<%= link_to "New Sighting", :controller => "sighting", :action => "new" %>		
+		<%= link_to "New Sighting", new_sighting_url %>		
 		
 		<% for @sighting in @trip.sightings %>
 			<div>
