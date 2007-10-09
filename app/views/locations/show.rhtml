@@ -1,6 +1,6 @@
 <div id="photos">
 	<% @location.find_all_photos.each do | photoSighting | %>
-		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %></div>
+		<div class="photo"><%= link_to photoSighting.thumb, sighting_url(photoSighting) %></div>
 	<% end %>
 </div>
 
@@ -17,7 +17,7 @@
 		<% end %>
 		<div class="pageheaderitem"><%= @location.notes %></div>
 		<div class="pageheaderitem"><a href="<%= @location.referenceurl %>">See also...</a></div>
-		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @location.id %></div>
+		<div class="pageheaderitem"><%= link_to 'Edit', edit_location_url(@location) %></div>
 	</div>
 	<div id="pagecontent">
 		<h2><%= @location.species.size %> Species</h2>

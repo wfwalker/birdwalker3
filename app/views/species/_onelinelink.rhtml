@@ -1,4 +1,4 @@
 <div class="pagecontentitem">
-	<%= link_to @species.commonname, :controller => 'species', :action => 'show', :id => @species.id %>
+	<%= link_to @species.commonname, species_instance_url(@species) %>
 	<% if @species.abacountable == 0 %>NOT ABA COUNTABLE <% end %>
 </div>

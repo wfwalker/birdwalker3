@@ -1,6 +1,6 @@
 <div class="pagecontentitem">
 	<% if @state.find_all_locations.size > 0 %>
-		<%= link_to @state.name, :controller => 'state', :action => 'show', :id => @state.id %>
+		<%= link_to @state.name, state_url(@state) %>
 	<% else %>
 		<%= @state.name %>
 	<% end %>

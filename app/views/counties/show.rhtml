@@ -1,6 +1,6 @@
 <div id="photos">
 	<% @county.find_all_photos.each do | photoSighting | %>
-		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sighting', :action => 'show', :id => photoSighting.id %></div>
+		<div class="photo"><%= link_to photoSighting.thumb, sighting_url(photoSighting) %></div>
 	<% end %>
 </div>
 
