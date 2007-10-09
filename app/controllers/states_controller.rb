@@ -18,6 +18,11 @@ class StatesController < ApplicationController
     @state = State.find(params["id"])
     @page_title = @state.name
   end
+
+  def index
+    list
+    render :action => 'list'
+  end
   
   def list
     @states = State.find_all
