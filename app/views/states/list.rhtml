@@ -4,8 +4,6 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% for @state in @states %>
-			<%= render_partial 'states/onelinelink' %>
-		<% end %>
+		<%= render :partial => 'states/onelinelink', :collection => @states %>
 	</div>
 </div>

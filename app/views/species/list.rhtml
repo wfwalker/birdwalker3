@@ -4,8 +4,6 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% for @species in @allspecies %>
-			<%= render_partial 'species/onelinelink', @species %>
-		<% end %>			
+		<%= render :partial => 'species/onelinelink', :collection => @allspecies %>
 	</div>
 </div>

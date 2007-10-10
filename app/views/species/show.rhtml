@@ -1,6 +1,6 @@
 <div id="photos">
 	<% @species.find_all_photos.each do | photoSighting | %>
-		<div class="photo"><%= link_to photoSighting.thumb, :controller => 'sightings', :action => 'show', :id => photoSighting.id %></div>
+		<div class="photo"><%= link_to photoSighting.thumb, sighting_url(photoSighting) %></div>
 	<% end %>
 </div>
 
@@ -10,18 +10,18 @@
 		<div class="pageheaderitem"><%= @species.latinname %></div>
 		<% if (@species.locations.size == 1) %>
 			<% location = @species.locations[0] %>
-			<div class="pageheaderitem">Seen only at <%= link_to location.name, :controller => 'locations', :action => 'show', :id => location.id %></a></div>
+			<div class="pageheaderitem">Seen only at <%= link_to location.name, location_url(location) %></a></div>
 		<% end %>
 		
 		<% has_only_one_trip?(@species) do %>
 			<% trip = @species.trips[0] %>
-			<div class="pageheaderitem">Seen once on <%= link_to trip.ignored.to_s, :controller => 'trips', :action => 'show', :id => trip.id %></a></div>
+			<div class="pageheaderitem">Seen once on <%= link_to nice_date(trip.ignored), trip_url(trip) %></a></div>
 		<% end %>
 		
 		<div class="pageheaderitem"><%= @species.notes %></div>
 		<% if @species.abacountable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
 		<div class="pageheaderitem"><a href="<%= @species.referenceurl %>">See also...</a></div>
-		<div class="pageheaderitem"><%= link_to 'Edit', :action => 'edit', :id => @species.id %></div>
+		<div class="pageheaderitem"><%= link_to 'Edit', edit_species_instance_url(@species) %></div>
 	</div>
 
 	<div id="pagecontent">		
@@ -29,10 +29,7 @@
 		
 		<% if (@species.locations.size > 1) %>
 			<h2><%= @species.locations.size %> Locations</h2>
-
-			<% for @location in @species.locations %>
-				<%= render_partial 'locations/onelinelink', @location %>
-			<% end %>			
+			<%= render :partial => 'locations/onelinelink', :collection => @species.locations %>
 		<% end %>
 		
 		<% if (@species.trips.size == 1 and @species.trips.size == 1) %>

@@ -7,9 +7,7 @@
 	<div id="pagecontent">
 		<% for @state in @locations_by_state.keys %>
 		    <h2><%= @state %></h2>
-			<% for @location in @locations_by_state[@state] %>
-			 <%= render_partial 'locations/onelinelink', @location %>
-			<% end %>
+			<%= render :partial => 'locations/onelinelink', :collection => @locations_by_state[@state] %>
 		<% end %>
 	</div>
 </div>

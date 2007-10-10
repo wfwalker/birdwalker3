@@ -23,16 +23,10 @@
 
 		<% if (@trip.locations.size > 1) %>
 			<h2><%= @trip.locations.size %> Locations</h2>
-
-			<% for @location in @trip.locations %>
-				<%= render_partial 'locations/onelinelink' %>
-			<% end %>			
+			<%= render :partial => 'locations/onelinelink', :collection => @trip.locations %>
 		<% end %>
 
 		<h2><%= @trip.species.size %> Species</h2>
-
-		<% for @species in @trip.species %>
-			<%= render_partial 'species/onelinelink' %>
-		<% end %>
+		<%= render :partial => 'species/onelinelink', :collection => @trip.species %>
 	</div>
 </div>

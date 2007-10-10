@@ -11,21 +11,12 @@
 
 	<div id="pagecontent">
 		<h2><%= @county.locations.size %> locations</h2>
-
-		<% for @location in @county.locations %>
-			<%= render_partial 'locations/onelinelink', @location %>
-		<% end %>			
+		<%= render :partial => 'locations/onelinelink', :collection => @county.locations %>
 	
 		<h2><%= @county.find_all_species.size %> Species</h2>
-
-		<% for @species in @county.find_all_species %>
-		  <%= render_partial 'species/onelinelink', @species %>
-		<% end %>
+	  	<%= render :partial => 'species/onelinelink', :collection => @county.find_all_species %>
 
 		<h2><%= @county.find_all_trips.size %> Trips</h2>
-		
-		<% for @trip in @county.find_all_trips %>
-		  <%= render_partial 'trips/onelinelink', @trip %>
-		<% end %>
+		<%= render :partial => 'trips/onelinelink', :collection => @county.find_all_trips %>
 	</div>
 </div>

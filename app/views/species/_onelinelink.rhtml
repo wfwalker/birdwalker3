@@ -1,4 +1,6 @@
+<% species = onelinelink %>
+
 <div class="pagecontentitem">
-	<%= link_to @species.commonname, species_instance_url(@species) %>
-	<% if @species.abacountable == 0 %>NOT ABA COUNTABLE <% end %>
+	<%= link_to species.commonname, species_instance_url(species) %>
+	<% if species.abacountable == 0 %>NOT ABA COUNTABLE <% end %>
 </div>
