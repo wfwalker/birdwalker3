@@ -1,5 +1,4 @@
 module TripsHelper
-  
   def has_only_one_trip?(tripcontainer, &block)
     yield if tripcontainer.trips.size == 1
   end
