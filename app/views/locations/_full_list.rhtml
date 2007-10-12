@@ -1,0 +1,4 @@
+<% sighting_container = full_list %>
+
+<h2><%= sighting_container.locations.size %> Locations</h2>
+<%= render :partial => 'locations/onelinelink' , :collection => sighting_container.locations %>

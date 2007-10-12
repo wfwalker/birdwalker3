@@ -1,0 +1,7 @@
+<% sighting_container = condensed_list %>
+
+<h2><%= sighting_container.locations.size %> Locations in <%= sighting_container.locations.map_by_state.size %> States</h2>
+
+<% for state_id in sighting_container.locations.map_by_state.keys %>
+      <div class="pagecontentitem"><%= State.find_by_abbreviation(state_id).name %></div>
+<% end %>

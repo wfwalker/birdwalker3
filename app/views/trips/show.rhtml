@@ -9,7 +9,7 @@
 		<div id="pagetitle"><%= @page_title %></div>
 		<div class="pageheaderitem"><%= nice_date(@trip.ignored) %></div>
 		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
-		<% if (@trip.locations.size == 1) %>
+		<% has_only_one_location?(@trip) do %>
 			<% location = @trip.locations[0]%>
 			<div class="pageheaderitem">Visited <%= link_to location.name, location_url(location) %></a></div>
 		<% end %>
@@ -20,6 +20,8 @@
 	</div>
 	
 	<div id="pagecontent">
+		
+		<% show_location_list(@trip)%>
 
 		<% if (@trip.locations.size > 1) %>
 			<h2><%= @trip.locations.size %> Locations</h2>

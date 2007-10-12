@@ -27,10 +27,7 @@
 	<div id="pagecontent">		
 		<%= show_trip_list(@species) %>
 		
-		<% if (@species.locations.size > 1) %>
-			<h2><%= @species.locations.size %> Locations</h2>
-			<%= render :partial => 'locations/onelinelink', :collection => @species.locations %>
-		<% end %>
+		<%= show_location_list(@species) %>
 		
 		<% if (@species.trips.size == 1 and @species.trips.size == 1) %>
 			<h2>One Sighting Only</h2>
