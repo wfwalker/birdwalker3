@@ -1,7 +1,13 @@
 class Trip < ActiveRecord::Base
   has_many :sightings
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id"
-  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name"
+  
+  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name" do
+    def map_by_state
+      proxy_target.inject({}) { | map, location |
+         map[location.state] ? map[location.state] << location : map[location.state] = [location] ; map }
+    end  
+  end
   
   validates_presence_of :name
   
@@ -10,8 +16,6 @@ class Trip < ActiveRecord::Base
   end
   
   def Trip.map_by_year(tripList)
-    map = Hash.new
-    
     tripList.inject({}) { | map, trip |
        map[trip.ignored.year] ? map[trip.ignored.year] << trip : map[trip.ignored.year] = [trip] ; map }
   end

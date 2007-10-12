@@ -15,10 +15,8 @@ class Location < ActiveRecord::Base
   def find_all_photos
     Sighting.find(:all, :conditions => ["location_id = " + self.id.to_s + " AND photo = 1"], :order => "date DESC" )
   end
-
+  
   def Location.map_by_state(locationList)
-    map = Hash.new
-    
     locationList.inject({}) { | map, location |
        map[location.state] ? map[location.state] << location : map[location.state] = [location] ; map }
   end  
