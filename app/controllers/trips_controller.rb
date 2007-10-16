@@ -16,7 +16,7 @@ class TripsController < ApplicationController
   end
   
   def list
-    @trips = Trip.find(:all, :order => "ignored DESC")
+    @trips = Trip.find(:all, :order => "date DESC")
     @trips_by_year = Trip.map_by_year(@trips)
     @page_title = "Trips"
   end

@@ -4,6 +4,6 @@
 
 <div class="pagecontentitem">
 	Seen frequently between
-	<%= link_to short_nice_date(sighting_container.first_sighting.date), trip_url(sighting_container.first_sighting.trip_id) %> and
-	<%= link_to short_nice_date(sighting_container.last_sighting.date), trip_url(sighting_container.last_sighting.trip_id) %>
+	<%= link_to short_nice_date(sighting_container.first_sighting.trip.date), trip_url(sighting_container.first_sighting.trip_id) %> and
+	<%= link_to short_nice_date(sighting_container.last_sighting.trip.date), trip_url(sighting_container.last_sighting.trip_id) %>
 </div>

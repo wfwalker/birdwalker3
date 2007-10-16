@@ -8,10 +8,10 @@ class State < ActiveRecord::Base
   end
   
   def find_all_trips
-    Trip.find_by_sql("SELECT DISTINCT trips.* FROM trips, sightings, locations WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.state='" + self.abbreviation + "' ORDER BY trips.ignored DESC")
+    Trip.find_by_sql("SELECT DISTINCT trips.* FROM trips, sightings, locations WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.state='" + self.abbreviation + "' ORDER BY trips.date DESC")
   end
   
   def find_all_photos
-    Sighting.find_by_sql("SELECT sightings.* FROM sightings, locations WHERE sightings.photo='1' AND sightings.location_id=locations.id AND locations.state='" + self.abbreviation + "' ORDER BY sightings.date DESC LIMIT 50")
+    Sighting.find_by_sql("SELECT sightings.* FROM sightings, locations WHERE sightings.photo='1' AND sightings.location_id=locations.id AND locations.state='" + self.abbreviation + "' ORDER BY sightings.trip_id DESC LIMIT 50")
   end
 end

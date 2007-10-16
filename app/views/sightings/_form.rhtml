@@ -10,7 +10,7 @@
 <p><%= check_box 'sighting', 'photo'  %><label for="sighting_photo">Photo</label></p>
 
 <p><label for="sighting_trip">Trip</label><br/>
-<%= collection_select("sighting", "trip_id", Trip.find_all, :id, :ignored) %>
+<%= collection_select("sighting", "trip_id", Trip.find_all, :id, :date) %>
 </p>
 
 <p><label for="sighting_location">Location</label><br/>

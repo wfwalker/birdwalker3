@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
   has_one :last_sighting, :class_name => 'Sighting', :order => 'date DESC'
   
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id"
-  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.ignored DESC"
+  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC"
   
   validates_presence_of :name, :county, :state
   
@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
   end
   
   def find_all_photos
-    Sighting.find(:all, :conditions => ["location_id = " + self.id.to_s + " AND photo = 1"], :order => "date DESC" )
+    Sighting.find(:all, :conditions => ["location_id = " + self.id.to_s + " AND photo = 1"], :order => "trip_id DESC" )
   end
   
   def Location.map_by_state(locationList)

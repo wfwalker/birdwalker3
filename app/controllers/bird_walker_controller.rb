@@ -2,7 +2,7 @@ class BirdWalkerController < ApplicationController
   layout "standard"
   
   def index
-    @recent_trips = Trip.find(:all, :limit => 20, :order => 'ignored DESC')
+    @recent_trips = Trip.find(:all, :limit => 20, :order => 'date DESC')
     @page_title = 'Index'
   end
   

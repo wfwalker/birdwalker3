@@ -1,9 +1,9 @@
 class Species < ActiveRecord::Base
   has_many :sightings
-  has_one :first_sighting, :class_name => 'Sighting', :order => 'date'
-  has_one :last_sighting, :class_name => 'Sighting', :order => 'date DESC'
+  has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
+  has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
   
-  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.ignored DESC" do
+  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
     def map_by_year
       Trips.map_by_year(proxy_target)
     end
@@ -18,7 +18,7 @@ class Species < ActiveRecord::Base
   validates_presence_of :commonname, :latinname, :abbreviation
 
   def find_all_photos
-    Sighting.find(:all, :conditions => ["species_id = " + self.id.to_s + " AND photo = 1"], :order => "date DESC")
+    Sighting.find(:all, :conditions => ["species_id = " + self.id.to_s + " AND photo = 1"], :order => "trip_id DESC")
   end
   
   # TODO: some cleaner way to do this!

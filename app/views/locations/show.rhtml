@@ -1,7 +1,5 @@
 <div id="photos">
-	<% @location.find_all_photos.each do | photoSighting | %>
-		<div class="photo"><%= link_to photoSighting.thumb, sighting_url(photoSighting) %></div>
-	<% end %>
+	<%= render :partial => 'sightings/thumbnail', :collection => @location.find_all_photos %>
 </div>
 
 <div id="pagebody">
@@ -13,7 +11,7 @@
 		</div>
 		<% has_only_one_trip?(@location) do %>
 			<% trip = @location.trips[0] %>
-			<div class="pageheaderitem">Visited once on: <%= link_to nice_date(trip.ignored), trip_url(trip.id) %></a></div>
+			<div class="pageheaderitem">Visited once on: <%= link_to nice_date(trip.date), trip_url(trip.id) %></a></div>
 		<% end %>
 		<div class="pageheaderitem"><%= @location.notes %></div>
 		<div class="pageheaderitem"><a href="<%= @location.referenceurl %>">See also...</a></div>

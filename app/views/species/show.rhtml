@@ -15,7 +15,7 @@
 		
 		<% has_only_one_trip?(@species) do %>
 			<% trip = @species.trips[0] %>
-			<div class="pageheaderitem">Seen once on <%= link_to nice_date(trip.ignored), trip_url(trip) %></a></div>
+			<div class="pageheaderitem">Seen once on <%= link_to nice_date(trip.date), trip_url(trip) %></a></div>
 		<% end %>
 		
 		<div class="pageheaderitem"><%= @species.notes %></div>
@@ -33,7 +33,7 @@
 			<h2>One Sighting Only</h2>
 			
 			<div class="pagecontentitem">
-				We've only seen this bird at <%= @species.locations[0].name %> on <%= nice_date(@species.trips[0].ignored) %>.
+				We've only seen this bird at <%= @species.locations[0].name %> on <%= nice_date(@species.trips[0].date) %>.
 			</div>
 		<% end %>
 	</div>

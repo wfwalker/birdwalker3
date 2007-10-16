@@ -8,7 +8,7 @@
 		<img src="<%= @sighting.photoURL %>" align="right"/>
 
 		<h2>Date</h2>
-		<div class="pagecontentitem"><%= link_to nice_date(@sighting.date), trip_url(@sighting.trip) %></div>
+		<div class="pagecontentitem"><%= link_to nice_date(@sighting.trip.date), trip_url(@sighting.trip) %></div>
 		
 		<h2>Location</h2>
 		<div class="pagecontentitem"><%= link_to @sighting.location.name, location_url(@sighting.location) %></div>

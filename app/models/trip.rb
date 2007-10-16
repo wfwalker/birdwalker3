@@ -11,11 +11,11 @@ class Trip < ActiveRecord::Base
   validates_presence_of :name
   
   def find_all_photos
-    Sighting.find(:all, :conditions => ["trip_id = " + self.id.to_s + " AND photo = 1"], :order => "date DESC")
+    Sighting.find(:all, :conditions => ["trip_id = " + self.id.to_s + " AND photo = 1"], :order => "species_id")
   end
   
   def Trip.map_by_year(tripList)
     tripList.inject({}) { | map, trip |
-       map[trip.ignored.year] ? map[trip.ignored.year] << trip : map[trip.ignored.year] = [trip] ; map }
+       map[trip.date.year] ? map[trip.date.year] << trip : map[trip.date.year] = [trip] ; map }
   end
 end
