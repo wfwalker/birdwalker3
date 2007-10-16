@@ -4,8 +4,7 @@ class Trip < ActiveRecord::Base
   
   has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name" do
     def map_by_state
-      proxy_target.inject({}) { | map, location |
-         map[location.state] ? map[location.state] << location : map[location.state] = [location] ; map }
+      Location.map_by_state(proxy_target)
     end  
   end
   

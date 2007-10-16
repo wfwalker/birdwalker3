@@ -1,7 +1,5 @@
 <div id="photos">
-	<% @trip.find_all_photos.each do | photoSighting | %>
-		<div class="photo"><%= link_to photoSighting.thumb, sighting_url(photoSighting) %></div>
-	<% end %>
+	<%= render :partial => 'sightings/thumbnail', :collection => @trip.find_all_photos %>
 </div>
 
 <div id="pagebody">

@@ -4,8 +4,7 @@
 	</div>
 	<div id="pagecontent">
 		<p>Hi this is the index page.</p>
-		<ul>
-			<li>search?</li>
-		</ul>
+
+		<%= render :partial => 'trips/summary', :collection => @recent_trips %>
 	</div>
 </div>
