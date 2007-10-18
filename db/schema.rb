@@ -6,7 +6,7 @@ ActiveRecord::Schema.define() do
 
   create_table "locations", :force => true do |t|
     t.column "name",          :string
-    t.column "referenceurl",  :string
+    t.column "reference_url",  :string
     t.column "city",          :string
     t.column "county",        :string
     t.column "state",         :string
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define() do
 
   create_table "species", :force => true do |t|
     t.column "abbreviation", :string
-    t.column "latinname",    :string
-    t.column "commonname",   :string
+    t.column "latin_name",    :string
+    t.column "common_name",   :string
     t.column "notes",        :text
-    t.column "referenceurl", :string
-    t.column "abacountable", :integer, :limit => 2
+    t.column "reference_url", :string
+    t.column "aba_countable", :integer, :limit => 2
   end
 
   create_table "states", :force => true do |t|
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define() do
 
   create_table "trips", :force => true do |t|
     t.column "leader",       :string
-    t.column "referenceurl", :string
+    t.column "reference_url", :string
     t.column "name",         :string
     t.column "notes",        :text
     t.column "ignored",      :date

@@ -14,7 +14,7 @@
 			<div class="pageheaderitem">Visited once on: <%= link_to nice_date(trip.date), trip_url(trip.id) %></a></div>
 		<% end %>
 		<div class="pageheaderitem"><%= @location.notes %></div>
-		<div class="pageheaderitem"><a href="<%= @location.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem"><a href="<%= @location.reference_url %>">See also...</a></div>
 		<div class="pageheaderitem"><%= link_to 'Edit', edit_location_url(@location) %></div>
 	</div>
 	

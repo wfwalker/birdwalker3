@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   has_many :sightings
-  has_one :first_sighting, :class_name => 'Sighting', :order => 'date'
-  has_one :last_sighting, :class_name => 'Sighting', :order => 'date DESC'
+  has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
+  has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
   
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id"
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC"

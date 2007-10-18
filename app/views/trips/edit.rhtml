@@ -16,7 +16,7 @@
 		
 		<% for @sighting in @trip.sightings %>
 			<div>
-				<%= @sighting.species.commonname %>
+				<%= @sighting.species.common_name %>
 				<%= link_to "Edit", edit_sighting_url(@sighting) %>
 			</div>
 		<% end %>

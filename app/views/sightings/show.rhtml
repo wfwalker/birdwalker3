@@ -14,7 +14,7 @@
 		<div class="pagecontentitem"><%= link_to @sighting.location.name, location_url(@sighting.location) %></div>
 
 		<h2>Species</h2>
-		<div class="pagecontentitem"><%= link_to @sighting.species.commonname, species_instance_url(@sighting.species) %></div>
+		<div class="pagecontentitem"><%= link_to @sighting.species.common_name, species_instance_url(@sighting.species) %></div>
 
 		<h2>Notes</h2>
 		<div class="pagecontentitem"><%= @sighting.notes %></div>

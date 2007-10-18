@@ -18,11 +18,11 @@
 </p>
 
 <p><label for="sighting_species">Species</label><br/>
-<%= collection_select("sighting", "species_id", Species.find_all_seen, :id, :commonname) %>
+<%= collection_select("sighting", "species_id", Species.find_all_seen, :id, :common_name) %>
 </p>
 
 <p>
-<%= text_field_with_auto_complete :species, :commonname %>
+<%= text_field_with_auto_complete :species, :common_name %>
 </p>
 
 <!--[eoform:sighting]-->

@@ -1,6 +1,6 @@
 class SightingsController < ApplicationController
   layout "standard"
-  auto_complete_for :species, :commonname
+  auto_complete_for :species, :common_name
 
   def isLocation
     false
@@ -29,7 +29,7 @@ class SightingsController < ApplicationController
 
   def show
     @sighting = Sighting.find(params[:id])
-    @page_title = @sighting.species.commonname
+    @page_title = @sighting.species.common_name
   end
 
   def new
@@ -54,7 +54,7 @@ class SightingsController < ApplicationController
     @sighting = Sighting.find(params[:id])
     @locations = Location.find_all
     @species = Species.find_all
-    @page_title = @sighting.species.commonname
+    @page_title = @sighting.species.common_name
   end
 
   def update
@@ -73,6 +73,6 @@ class SightingsController < ApplicationController
   end
   
   def autocomplete_species
-      @species_list = Species.find(:all, :conditions => ["commonname like ?", "%#{params[:sighting][:species]}%"])
+      @species_list = Species.find(:all, :conditions => ["common_name like ?", "%#{params[:sighting][:species]}%"])
   end
 end

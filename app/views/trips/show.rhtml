@@ -12,7 +12,7 @@
 			<div class="pageheaderitem">Visited <%= link_to location.name, location_url(location) %></a></div>
 		<% end %>
 		<div class="pageheaderitem"><%= @trip.notes %></div>
-		<div class="pageheaderitem"><a href="<%= @trip.referenceurl %>">See also...</a></div>
+		<div class="pageheaderitem"><a href="<%= @trip.reference_url %>">See also...</a></div>
 		<div class="pageheaderitem"><%= link_to 'Edit', edit_trip_url(@trip) %></div>
 		<div class="pageheaderitem"><%= link_to 'Add Sighting', new_sighting_url(:trip_id => @trip) %></div>
 	</div>

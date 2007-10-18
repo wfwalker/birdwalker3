@@ -7,7 +7,7 @@
 <div id="pagebody">	
 	<div id="pageheader">
 	    <div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem"><%= @species.latinname %></div>
+		<div class="pageheaderitem"><%= @species.latin_name %></div>
 		<% if (@species.locations.size == 1) %>
 			<% location = @species.locations[0] %>
 			<div class="pageheaderitem">Seen only at <%= link_to location.name, location_url(location) %></a></div>
@@ -19,8 +19,8 @@
 		<% end %>
 		
 		<div class="pageheaderitem"><%= @species.notes %></div>
-		<% if @species.abacountable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
-		<div class="pageheaderitem"><a href="<%= @species.referenceurl %>">See also...</a></div>
+		<% if @species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
+		<div class="pageheaderitem"><a href="<%= @species.reference_url %>">See also...</a></div>
 		<div class="pageheaderitem"><%= link_to 'Edit', edit_species_instance_url(@species) %></div>
 	</div>
 

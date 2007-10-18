@@ -31,7 +31,7 @@ class SpeciesController < ApplicationController
 
   def show
     @species = Species.find(params[:id])
-    @page_title = @species.commonname
+    @page_title = @species.common_name
   end
 
   def new
@@ -51,7 +51,7 @@ class SpeciesController < ApplicationController
 
   def edit
     @species = Species.find(params[:id])
-    @page_title = @species.commonname
+    @page_title = @species.common_name
   end
 
   def update

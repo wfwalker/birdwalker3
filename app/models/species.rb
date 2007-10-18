@@ -15,7 +15,7 @@ class Species < ActiveRecord::Base
     end  
   end
   
-  validates_presence_of :commonname, :latinname, :abbreviation
+  validates_presence_of :common_name, :latin_name, :abbreviation
 
   def find_all_photos
     Sighting.find(:all, :conditions => ["species_id = " + self.id.to_s + " AND photo = 1"], :order => "trip_id DESC")

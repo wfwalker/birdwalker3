@@ -1,14 +1,14 @@
 <% trip = summary %>
 
 <p>
-	<div class="pagecontentitem">
-		<%= short_nice_date(trip.date) %>
-		<br/>
+	<h2>
 		<%= link_to trip.name, trip_url(trip) %></a>,
 		<%= trip.species.size %> species
-		
-		<%= render :partial => 'sightings/thumbnail', :collection => trip.find_all_photos %>
-	</div>
+		<br/>
+		<%= short_nice_date(trip.date) %>
+	</h2>
+	
+	<%= render :partial => 'sightings/thumbnail', :collection => trip.find_all_photos %>
 
 	<div class="pagecontentitem">
 		<%= trip.notes %>
