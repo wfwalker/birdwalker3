@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'county_controller'
+require 'sightings_controller'
 
 # Re-raise errors caught by the controller.
-class CountyController; def rescue_action(e) raise e end; end
+class SightingsController; def rescue_action(e) raise e end; end
 
-class CountyControllerTest < Test::Unit::TestCase
+class SightingsControllerTest < Test::Unit::TestCase
   def setup
-    @controller = CountyController.new
+    @controller = SightingsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end

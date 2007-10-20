@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'sighting_controller'
+require 'states_controller'
 
 # Re-raise errors caught by the controller.
-class SightingController; def rescue_action(e) raise e end; end
+class StatesController; def rescue_action(e) raise e end; end
 
-class SightingControllerTest < Test::Unit::TestCase
+class StatesControllerTest < Test::Unit::TestCase
   def setup
-    @controller = SightingController.new
+    @controller = StateController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end

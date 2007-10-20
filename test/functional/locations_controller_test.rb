@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'trip_controller'
+require 'locations_controller'
 
 # Re-raise errors caught by the controller.
-class TripController; def rescue_action(e) raise e end; end
+class LocationsController; def rescue_action(e) raise e end; end
 
-class TripControllerTest < Test::Unit::TestCase
+class LocationsControllerTest < Test::Unit::TestCase
   def setup
-    @controller = TripController.new
+    @controller = LocationsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
