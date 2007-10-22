@@ -2,28 +2,24 @@
 
 <!--[form:sighting]-->
 
-<p><label for="sighting_notes">Notes</label><br/>
-<%= text_area 'sighting', 'notes'  %></p>
+<p><label for="sighting_trip">Trip</label><br/>
+<%= collection_select("sighting", "trip_id", Trip.find(:all), :id, :date) %>
+</p>
+
+<p><label for="sighting_location">Location</label><br/>
+<%= collection_select("sighting", "location_id", Location.find(:all), :id, :name) %>
+</p>
+
+<p><label for="sighting_species">Species</label><br/>
+<%= collection_select("sighting", "species_id", Species.find_all_seen_by_common_name, :id, :common_name) %>
+</p>
 
 <p><%= check_box 'sighting', 'exclude'  %><label for="sighting_exclude">Exclude</label></p>
 
 <p><%= check_box 'sighting', 'photo'  %><label for="sighting_photo">Photo</label></p>
 
-<p><label for="sighting_trip">Trip</label><br/>
-<%= collection_select("sighting", "trip_id", Trip.find_all, :id, :date) %>
-</p>
-
-<p><label for="sighting_location">Location</label><br/>
-<%= collection_select("sighting", "location_id", Location.find_all, :id, :name) %>
-</p>
-
-<p><label for="sighting_species">Species</label><br/>
-<%= collection_select("sighting", "species_id", Species.find_all_seen, :id, :common_name) %>
-</p>
-
-<p>
-<%= text_field_with_auto_complete :species, :common_name %>
-</p>
+<p><label for="sighting_notes">Notes</label><br/>
+<%= text_area 'sighting', 'notes'  %></p>
 
 <!--[eoform:sighting]-->
 

@@ -25,4 +25,8 @@ class Species < ActiveRecord::Base
   def Species.find_all_seen
     Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.id=sightings.species_id ORDER BY species.id"
   end  
+
+  def Species.find_all_seen_by_common_name
+    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.id=sightings.species_id ORDER BY species.common_name"
+  end  
 end

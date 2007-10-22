@@ -1,5 +1,4 @@
 class LocationsController < ApplicationController
-  scaffold :location
   helper :trips
   layout "standard"
   
@@ -20,9 +19,9 @@ class LocationsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
+# GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+#  verify :method => :post, :only => [ :destroy, :create, :update ],
+#         :redirect_to => { :action => :list }
 
   def list
     @locations = Location.find(:all, :order => "name")
@@ -59,7 +58,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
       flash[:notice] = 'Location was successfully updated.'
-      redirect_to :action => 'show', :id => @location
+      redirect_to location_url(@location)
     else
       render :action => 'edit'
     end

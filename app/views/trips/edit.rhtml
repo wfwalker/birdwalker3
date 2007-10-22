@@ -5,7 +5,7 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% form_tag :action => 'update', :id => @trip do %>
+		<% form_for :trip, @trip, :url => trip_path(@trip), :html => { :method => 'put' } do |form| %>
   			<%= render :partial => 'form' %>
   			<%= submit_tag 'Edit' %>
 		<% end %>
@@ -16,7 +16,7 @@
 		
 		<% for @sighting in @trip.sightings %>
 			<div>
-				<%= @sighting.species.common_name %>
+				<%= @sighting.species.common_name %>, <%= @sighting.location.name %>
 				<%= link_to "Edit", edit_sighting_url(@sighting) %>
 			</div>
 		<% end %>

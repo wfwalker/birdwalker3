@@ -1,5 +1,4 @@
 class TripsController < ApplicationController
-  scaffold :trip
   helper :locations
   layout "standard"
 
@@ -31,9 +30,10 @@ class TripsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
+# WFW -- THIS BREAKS EVERYTHING!!!!
+# GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+# verify :method => :post, :only => [ :destroy, :create, :update ],
+#         :redirect_to => { :action => :list }
 
   def new
     @trip = Trip.new
@@ -51,16 +51,19 @@ class TripsController < ApplicationController
   end
 
   def edit
+    logger.error("*************** START EDIT TRIP");
     @trip = Trip.find(params[:id])
     @page_title = @trip.name
   end
 
   def update
+    logger.error("*************** START UPDATE TRIP");
     # TODO -- update the sightings, too!!
     @trip = Trip.find(params[:id])
     if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'
-      redirect_to :action => 'show', :id => @trip
+      logger.error("UPDATED TRIP");
+      redirect_to trip_url(@trip)
     else
       render :action => 'edit'
     end

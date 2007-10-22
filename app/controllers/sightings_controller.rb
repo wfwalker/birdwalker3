@@ -1,6 +1,11 @@
 class SightingsController < ApplicationController
   layout "standard"
   auto_complete_for :species, :common_name
+ 
+# here's the autocomplete voodoo, put this in someplace, some time 
+#  <p>
+# <%= text_field_with_auto_complete :species, :common_name %>
+#  </p>  
 
   def isLocation
     false
@@ -19,9 +24,9 @@ class SightingsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
+# GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+#  verify :method => :post, :only => [ :destroy, :create, :update ],
+#         :redirect_to => { :action => :list }
 
   def list
     @sighting_pages, @sightings = paginate :sightings, :per_page => 10
@@ -44,25 +49,26 @@ class SightingsController < ApplicationController
     @sighting = Sighting.new(params[:sighting])
     if @sighting.save
       flash[:notice] = 'Sighting was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to trip_url(@sighting.trip_id)
     else
       render :action => 'new'
     end
   end
 
   def edit
+    logger.error("START edit");
     @sighting = Sighting.find(params[:id])
-    @locations = Location.find_all
-    @species = Species.find_all
     @page_title = @sighting.species.common_name
   end
 
   def update
     @sighting = Sighting.find(params[:id])
     if @sighting.update_attributes(params[:sighting])
+      logger.error("did successful update of sighting");
       flash[:notice] = 'Sighting was successfully updated.'
-      redirect_to :action => 'show', :id => @sighting
+      redirect_to trip_url(@sighting.trip_id)
     else
+      logger.error("did NOT successful update of sighting");
       render :action => 'edit'
     end
   end

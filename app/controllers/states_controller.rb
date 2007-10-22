@@ -1,5 +1,4 @@
 class StatesController < ApplicationController
-  scaffold :state
   layout "standard"
   
   def isLocation
@@ -25,7 +24,7 @@ class StatesController < ApplicationController
   end
   
   def list
-    @states = State.find_all
+    @states = State.find(:all)
     @page_title = "States"
   end
 end
