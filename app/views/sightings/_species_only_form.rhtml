@@ -1,0 +1,13 @@
+<%= error_messages_for 'sighting' %>
+
+<!--[form:sighting]-->
+
+<%= hidden_field("sighting", "trip_id", :value => @sighting.trip_id) %>
+<%= hidden_field("sighting", "location_id", :value => @sighting.location_id) %>
+
+<p><label for="sighting_species">Species</label><br/>
+<%= collection_select("sighting", "species_id", Species.find_all_seen_by_common_name, :id, :common_name) %>
+</p>
+
+<!--[eoform:sighting]-->
+
