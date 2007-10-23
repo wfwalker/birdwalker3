@@ -42,6 +42,9 @@ class SightingsController < ApplicationController
     if (params[:trip_id] != "")
       @sighting.trip_id = params[:trip_id]
     end
+    if (params[:location_id] != "")
+      @sighting.location_id = params[:location_id]
+    end
     @page_title = "New Sighting"
   end
 
@@ -49,7 +52,7 @@ class SightingsController < ApplicationController
     @sighting = Sighting.new(params[:sighting])
     if @sighting.save
       flash[:notice] = 'Sighting was successfully created.'
-      redirect_to trip_url(@sighting.trip_id)
+      redirect_to edit_trip_url(@sighting.trip_id)
     else
       render :action => 'new'
     end
@@ -64,11 +67,9 @@ class SightingsController < ApplicationController
   def update
     @sighting = Sighting.find(params[:id])
     if @sighting.update_attributes(params[:sighting])
-      logger.error("did successful update of sighting");
       flash[:notice] = 'Sighting was successfully updated.'
-      redirect_to trip_url(@sighting.trip_id)
+      redirect_to edit_trip_url(@sighting.trip_id)
     else
-      logger.error("did NOT successful update of sighting");
       render :action => 'edit'
     end
   end

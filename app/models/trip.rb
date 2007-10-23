@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  has_many :sightings
+  has_many :sightings, :order => "species_id"
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id"
   
   has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name" do

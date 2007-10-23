@@ -1,21 +1,31 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div id="pagetitle">
+		<% form_for :trip, @trip, :url => trip_path(@trip), :html => { :method => 'put' } do |form| %>
+			<div class="pageheaderitem"><%= text_field 'trip', 'name'  %></div>
+		
+			<div class="pageheaderitem"><%= date_select 'trip', 'date'  %></div>
+
+			<div class="pageheaderitem"><label for="trip_leader">Led by </label><%= text_field 'trip', 'leader'  %></div>
+
+			<div class="pageheaderitem"><label for="trip_reference_url">See also </label><%= text_field 'trip', 'reference_url'  %></div>
+
+			<div class="pageheaderitem"><%= text_area 'trip', 'notes', :rows => 4, :cols => 80 %></div>
+			
+  			<div class="pageheaderitem"><%= submit_tag 'Edit' %></div>
+		<% end %>
+		
 		<div class="pageheaderitem"><%= link_to 'Show', trip_url(@trip) %></div>
 	</div>
 	
 	<div id="pagecontent">
-		<% form_for :trip, @trip, :url => trip_path(@trip), :html => { :method => 'put' } do |form| %>
-  			<%= render :partial => 'form' %>
-  			<%= submit_tag 'Edit' %>
-		<% end %>
-		
-		<hr/>
-		
-		<%= link_to "New Sighting", new_sighting_url %>		
-		
+		<h2><%= @trip.species.size %> Species</h2>
+
+		<div class="pagecontentitem">
+			<%= link_to 'Add Sighting', new_sighting_url(:location_id => @trip.locations[0], :trip_id => @trip) %>	
+		</div>
+				
 		<% for @sighting in @trip.sightings %>
-			<div>
+			<div class="pagecontentitem">
 				<%= @sighting.species.common_name %>, <%= @sighting.location.name %>
 				<%= link_to "Edit", edit_sighting_url(@sighting) %>
 			</div>

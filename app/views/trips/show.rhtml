@@ -14,7 +14,6 @@
 		<div class="pageheaderitem"><%= @trip.notes %></div>
 		<div class="pageheaderitem"><a href="<%= @trip.reference_url %>">See also...</a></div>
 		<div class="pageheaderitem"><%= link_to 'Edit', edit_trip_url(@trip) %></div>
-		<div class="pageheaderitem"><%= link_to 'Add Sighting', new_sighting_url(:location_id => @trip.locations[0], :trip_id => @trip) %></div>
 	</div>
 	
 	<div id="pagecontent">

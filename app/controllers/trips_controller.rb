@@ -44,20 +44,18 @@ class TripsController < ApplicationController
     @trip = Trip.new(params[:trip])
     if @trip.save
       flash[:notice] = 'Trip was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to trip_url(@trip)
     else
       render :action => 'new'
     end
   end
 
   def edit
-    logger.error("*************** START EDIT TRIP");
     @trip = Trip.find(params[:id])
     @page_title = @trip.name
   end
 
   def update
-    logger.error("*************** START UPDATE TRIP");
     # TODO -- update the sightings, too!!
     @trip = Trip.find(params[:id])
     if @trip.update_attributes(params[:trip])
