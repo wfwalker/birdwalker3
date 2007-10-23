@@ -28,13 +28,14 @@ class SightingsController < ApplicationController
 #  verify :method => :post, :only => [ :destroy, :create, :update ],
 #         :redirect_to => { :action => :list }
 
-  def list
-    @sighting_pages, @sightings = paginate :sightings, :per_page => 10
-  end
-
   def show
     @sighting = Sighting.find(params[:id])
-    @page_title = @sighting.species.common_name
+    
+    if (@sighting.species != nil) then
+      @page_title = @sighting.species.common_name
+    else
+      @page_title = "Unknown Species"
+    end
   end
 
   def new

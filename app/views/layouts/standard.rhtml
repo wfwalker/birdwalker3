@@ -18,6 +18,11 @@
 				<%= link_to "trips", trips_url %>
 			</div>
 		</div>
+		
+		<div id="browse">
+			<%= link_to "&lt;&lt;", @previous_item %>
+			<%= link_to "&gt;&gt;", @next_item %>
+		</div>
 
         <%= yield %>
      </body>

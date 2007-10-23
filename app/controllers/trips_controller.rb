@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   helper :locations
+  helper :sightings
   layout "standard"
 
   def isLocation
@@ -23,6 +24,8 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params["id"])
     @page_title = @trip.name
+    @previous_item = trip_url(@trip.id - 1)
+    @next_item = trip_url(@trip.id + 1)
   end
   
   def index

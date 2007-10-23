@@ -5,17 +5,25 @@
 	</div>
 	
 	<div id="pagecontent">	
-		<img src="<%= @sighting.photoURL %>" align="right"/>
+		<% if (@sighting.photo) then %>
+			<img src="<%= @sighting.photoURL %>" align="right"/>
+		<% end %>
 
 		<h2>Date</h2>
-		<div class="pagecontentitem"><%= link_to nice_date(@sighting.trip.date), trip_url(@sighting.trip) %></div>
+		<div class="pagecontentitem">
+			<%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip_id) %>
+		</div>
 		
 		<h2>Location</h2>
-		<div class="pagecontentitem"><%= link_to @sighting.location.name, location_url(@sighting.location) %></div>
-
+		<div class="pagecontentitem">
+			<%= link_to safe_location_name(@sighting), location_url(@sighting.location_id) %>
+		</div>
+		
 		<h2>Species</h2>
-		<div class="pagecontentitem"><%= link_to @sighting.species.common_name, species_instance_url(@sighting.species) %></div>
-
+		<div class="pagecontentitem">
+			<%= link_to safe_species_common_name(@sighting), species_instance_url(@sighting.species_id) %>
+		</div>
+		
 		<h2>Notes</h2>
 		<div class="pagecontentitem"><%= @sighting.notes %></div>
 		

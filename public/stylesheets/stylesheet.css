@@ -8,6 +8,14 @@ h2
 	font-weight: normal;
 }
 
+#browse
+{
+	position: fixed; bottom: 0px; left: 0px; width: 100px; height: 20px;
+	z-index: 2;
+	background-color: #EEEEEE;
+	text-align: center;
+}
+
 #menu
 {
 	position: fixed; top: 0px; left: 0px; width: 100px;
@@ -102,4 +110,9 @@ h2
 #pagecontent .pagecontentitem
 {
 	margin-left: 10px; margin-bottom: 1px;
+}
+
+#pagecontent .pagecontentitem .notes
+{
+	margin-left: 10px; margin-bottom: 1px; margin-top: 5px; margin-right: 10px;
 }
