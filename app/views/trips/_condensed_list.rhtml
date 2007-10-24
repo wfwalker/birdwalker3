@@ -1,9 +1,7 @@
 <% sighting_container = condensed_list %>
 
-<h2><%= sighting_container.trips.size %> Trips</h2>
+<h2><%= sighting_container.trips.size %> Trips over <%= sighting_container.trips.map_by_year.keys.size %> Years</h2>
 
-<div class="pagecontentitem">
-	Seen frequently between
-	<%= link_to short_nice_date(sighting_container.first_sighting.trip.date), trip_url(sighting_container.first_sighting.trip_id) %> and
-	<%= link_to short_nice_date(sighting_container.last_sighting.trip.date), trip_url(sighting_container.last_sighting.trip_id) %>
-</div>
+<% for year in sighting_container.trips.map_by_year.keys.sort.reverse %>
+      <div class="pagecontentitem"><%= year %></div>
+<% end %>
