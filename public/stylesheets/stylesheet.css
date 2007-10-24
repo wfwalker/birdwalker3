@@ -25,7 +25,6 @@ h2
 
 #menu .menuitem
 {
-	font: 12pt Gill Sans;
 	padding-left: 10px;
 	margin-top: 5px;
 	background-color: #888888;
@@ -34,7 +33,6 @@ h2
 
 #menu .tripmenuitem
 {
-	font: 12pt Gill Sans;
 	padding-left: 10px;
 	margin-top: 5px;
 	background-color: #0000DD;
@@ -43,7 +41,6 @@ h2
 
 #menu .locationmenuitem
 {
-	font: 12pt Gill Sans;
 	padding-left: 10px;
 	margin-top: 5px;
 	background-color: #00DD00;
@@ -52,7 +49,6 @@ h2
 
 #menu .speciesmenuitem
 {
-	font: 12pt Gill Sans;
 	padding-left: 10px;
 	margin-top: 5px;
 	background-color: #DD0000;

@@ -15,4 +15,12 @@ module ApplicationHelper
   def sighting_year_range()
     (1996..2007)
   end
+  
+  def has_reference_url?(subject, &block)
+    yield if subject.reference_url && subject.reference_url.length > 1
+  end
+  
+  def has_notes?(subject, &block)
+    yield if subject.notes && subject.notes.length > 1
+  end
 end

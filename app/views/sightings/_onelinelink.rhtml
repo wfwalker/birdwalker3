@@ -3,7 +3,7 @@
 <div class="pagecontentitem">
 	<%= link_to safe_species_common_name(sighting), species_instance_url(sighting.species_id) %></a>
 
-	<% if (sighting.notes.length > 1) then %>
+	<% if (sighting.notes && sighting.notes.length > 1) then %>
 		<div class="notes"><%= sighting.notes %></div>
 	<% end%>
 </div>

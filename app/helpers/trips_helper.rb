@@ -2,7 +2,7 @@ module TripsHelper
   def has_only_one_trip?(tripcontainer, &block)
     yield if tripcontainer.trips.size == 1
   end
-  
+    
   def show_trip_list(tripcontainer)
     return unless tripcontainer.trips.size > 1
     
