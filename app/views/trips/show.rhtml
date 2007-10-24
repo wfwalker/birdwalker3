@@ -12,18 +12,16 @@
 			<div class="pageheaderitem">Visited <%= link_to location.name, location_url(location) %></a></div>
 		<% end %>
 		<div class="pageheaderitem"><%= @trip.notes %></div>
-		<div class="pageheaderitem"><a href="<%= @trip.reference_url %>">See also...</a></div>
+		<% has_reference_url?(@trip) do %>
+			<div class="pageheaderitem"><a href="<%= @trip.reference_url %>">See also...</a></div>
+		<% end %>
 		<div class="pageheaderitem"><%= link_to 'Edit', edit_trip_url(@trip) %></div>
 	</div>
 	
 	<div id="pagecontent">
-		
-		<% show_location_list(@trip)%>
+		<%= show_location_list(@trip) %>
 
-		<% if (@trip.locations.size > 1) %>
-			<h2><%= @trip.locations.size %> Locations</h2>
-			<%= render :partial => 'locations/onelinelink', :collection => @trip.locations %>
-		<% end %>
+		hello: <%= @trip.sightings.map_by_location.keys %>
 
 		<h2><%= @trip.species.size %> Species</h2>
 		<%= render :partial => 'sightings/onelinelink', :collection => @trip.sightings %>
