@@ -5,7 +5,7 @@ class Species < ActiveRecord::Base
   
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
     def map_by_year
-      Trips.map_by_year(proxy_target)
+      Trip.map_by_year(proxy_target)
     end
   end
 

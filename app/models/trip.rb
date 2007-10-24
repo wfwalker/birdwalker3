@@ -1,18 +1,13 @@
 class Trip < ActiveRecord::Base
   has_many :sightings, :order => "species_id" do
-    def map_by_location
-      Sighting.map_by_location(proxy_target)
-    end
+      def map_by_location
+        Sighting.map_by_location(proxy_target)
+      end  
   end
-  
+
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id"
-  
-  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name" do
-    def map_by_state
-      Location.map_by_state(proxy_target)
-    end  
-  end
-  
+  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name"
+    
   validates_presence_of :name, :date, :leader
   
   def find_all_photos
