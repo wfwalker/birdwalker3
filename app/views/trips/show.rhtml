@@ -17,8 +17,7 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% mapped_unsuccessfully = @trip.sightings.map_by_location %>
-		<% mapped = Sighting.map_by_location(@trip.sightings) %>
+		<% mapped = @trip.sightings.map_by_location %>
 		
 		<h2><%= mapped.keys.size %> Locations</h2>
 		

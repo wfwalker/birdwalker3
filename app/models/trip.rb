@@ -1,7 +1,7 @@
 class Trip < ActiveRecord::Base
   has_many :sightings, :order => "species_id" do
       def map_by_location
-        Sighting.map_by_location(proxy_target)
+        Sighting.map_by_location(proxy_owner.sightings)
       end  
   end
 
