@@ -3,9 +3,12 @@ body
 	font: 10pt Gill Sans;
 }
 
+a       { text-decoration: none; }
+a:hover { color: red; text-decoration: underline; }
+
 h2
 {
-	font-weight: normal;
+	font-weight: normal; font-size: 14pt;
 }
 
 #browse
@@ -83,7 +86,7 @@ h2
 
 #photos
 {
-	position: absolute; top: 160px; left: 0px; width: 100px;
+	position: absolute; top: 150px; left: 0px; width: 100px;
 	text-align: center;
 }
 
