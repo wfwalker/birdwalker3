@@ -14,6 +14,14 @@ class Trip < ActiveRecord::Base
     Sighting.find(:all, :conditions => ["trip_id = " + self.id.to_s + " AND photo = 1"], :order => "species_id")
   end
   
+  def next
+    Trip.find(:first, :conditions => ["date > (?)", self.date.to_s], :order => 'date')
+  end
+
+  def previous
+    Trip.find(:first, :conditions => ["date < (?)", self.date.to_s], :order => 'date DESC')
+  end
+  
   def Trip.map_by_year(tripList)
     tripList.inject({}) { | map, trip |
        map[trip.date.year] ? map[trip.date.year] << trip : map[trip.date.year] = [trip] ; map }

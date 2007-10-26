@@ -5,12 +5,20 @@ class Sighting < ActiveRecord::Base
   
   validates_presence_of :species_id, :location_id, :trip_id
   
+  def next
+    Sighting.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
+  end
+
+  def previous
+    Sighting.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
+  end
+  
   def photoURL
-    "http://sven.spflrc.org/~walker/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    "http://www.spflrc.org/~walker/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
   end
   
   def thumbURL
-    "http://sven.spflrc.org/~walker/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    "http://www.spflrc.org/~walker/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
   end
   
   def thumb

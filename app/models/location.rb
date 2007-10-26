@@ -8,12 +8,20 @@ class Location < ActiveRecord::Base
   
   validates_presence_of :name, :county, :state
   
+  def next
+    Location.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'county, state')
+  end
+
+  def previous
+    Location.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'county, state DESC')
+  end
+  
   def find_state
-    State.find(:first, :conditions => ["abbreviation='" + self.state + "'"])
+    State.find(:first, :conditions => ["abbreviation = (?)", self.state])
   end
   
   def find_all_photos
-    Sighting.find(:all, :conditions => ["location_id = " + self.id.to_s + " AND photo = 1"], :order => "trip_id DESC" )
+    Sighting.find(:all, :conditions => ["location_id = (?) AND photo = 1", self.id], :order => "trip_id DESC" )
   end
   
   def Location.map_by_state(locationList)

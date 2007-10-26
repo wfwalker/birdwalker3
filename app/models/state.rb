@@ -1,4 +1,13 @@
 class State < ActiveRecord::Base
+  
+  def next
+    State.find(:first, :conditions => ["name > (?)", self.name.to_s], :order => 'name')
+  end
+
+  def previous
+    State.find(:first, :conditions => ["name < (?)", self.name.to_s], :order => 'name DESC')
+  end
+  
   def find_all_locations
     @locations = Location.find(:all, :conditions => ["State = ?", self.abbreviation], :order => "locations.state, locations.county")
   end
