@@ -1,0 +1,18 @@
+<div id="photos">
+	<% @family.find_all_photos.each do | photoSighting | %>
+		<div class="photo"><%= link_to photoSighting.thumb, sighting_url(photoSighting) %></div>
+	<% end %>
+</div>
+
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem"><%= @family.latin_name %></div>
+	</div>
+	
+	<h2><%= @family.find_all_species_seen.size %> Species</h2>
+	
+	<div id="pagecontent">
+		<%= render :partial => 'species/onelinelink', :collection => @family.find_all_species_seen %>
+	</div>
+</div>

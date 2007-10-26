@@ -1,0 +1,9 @@
+<h1>Editing family</h1>
+
+<% form_tag :action => 'update', :id => @family do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @family %> |
+<%= link_to 'Back', :action => 'list' %>
