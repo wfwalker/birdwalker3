@@ -6,7 +6,7 @@
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
 		<div class="pageheaderitem">
-			<%= link_to @location.county + " County", county_url(@location.county) %>, 
+			<%= link_to safe_county_name(@location) + " County", county_url(@location.county) %>,
 			<%= link_to @location.find_state.name, state_url(@location.find_state) %>
 		</div>
 		<% has_only_one_trip?(@location) do %>
