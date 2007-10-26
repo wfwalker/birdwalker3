@@ -2,8 +2,11 @@
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
 	</div>
-	
+ 	
 	<div id="pagecontent">
-		<%= render :partial => 'species/onelinelink', :collection => @allspecies %>
+		<% for family in @all_families_seen %>
+			<%= render :partial => 'families/onelinelink', :object => family %>
+			<%= render :partial => 'species/onelinelink', :collection => @all_species_seen_by_family[family] %>
+		<% end %>
 	</div>
 </div>

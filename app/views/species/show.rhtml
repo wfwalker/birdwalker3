@@ -8,6 +8,7 @@
 	<div id="pageheader">
 	    <div id="pagetitle"><%= @page_title %></div>
 		<div class="pageheaderitem"><%= @species.latin_name %></div>
+		<div class="pageheaderitem"><%= link_to @species.family.latin_name, family_url(@species.family) %></div>
 		<% if (@species.locations.size == 1) %>
 			<% location = @species.locations[0] %>
 			<div class="pageheaderitem">Seen only at <%= link_to location.name, location_url(location) %></a></div>
