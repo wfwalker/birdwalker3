@@ -24,8 +24,9 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params["id"])
     @page_title = @trip.name
-    @previous_item = trip_url(@trip.id - 1)
-    @next_item = trip_url(@trip.id + 1)
+    
+    @trip.previous && @previous_url = trip_url(@trip.previous)
+    @trip.next && @next_url = trip_url(@trip.next)
   end
   
   def index

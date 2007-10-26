@@ -16,6 +16,9 @@ class StatesController < ApplicationController
   def show
     @state = State.find(params["id"])
     @page_title = @state.name
+    
+    @state.previous && @previous_url = state_url(@state.previous.id)
+    @state.next && @next_url = state_url(@state.next.id)
   end
 
   def index

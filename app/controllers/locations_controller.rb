@@ -32,6 +32,9 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @page_title = @location.name
+    
+    @location.previous && @previous_url = location_url(@location.previous)
+    @location.next && @next_url = location_url(@location.next)
   end
 
   def new

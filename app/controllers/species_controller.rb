@@ -25,13 +25,17 @@ class SpeciesController < ApplicationController
 #         :redirect_to => { :action => :list }
 
   def list
-    @allspecies = Species.find_all_seen
+    @all_species_seen_by_family = Species.map_by_family(Species.find_all_seen)
+    @all_families_seen = Family.find_all_seen
     @page_title = "Species"
   end
 
   def show
     @species = Species.find(params[:id])
     @page_title = @species.common_name
+    
+    @species.previous && @previous_url = species_instance_url(@species.previous)
+    @species.next && @next_url = species_instance_url(@species.next)
   end
 
   def new

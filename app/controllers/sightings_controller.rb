@@ -31,6 +31,9 @@ class SightingsController < ApplicationController
     else
       @page_title = "Unknown Species"
     end
+    
+    @sighting.previous && @previous_url = sighting_url(@sighting.previous)
+    @sighting.next && @next_url = sighting_url(@sighting.next)
   end
 
   def new
