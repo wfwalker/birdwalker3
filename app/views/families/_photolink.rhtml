@@ -1,0 +1,13 @@
+<% family = photolink %>
+
+<h2>
+	<%= link_to family.common_name, family_url(family) %>
+</h2>
+
+<div class="pagecontentitem">
+	<% if (family.find_photo.size == 1) %>
+		<%= link_to family.find_photo[0].thumb, family_url(family) %>
+	<% else %>
+		<img src="images/blank.gif" border="1" width="100px" height="100px" />
+	<% end %>
+</div>
