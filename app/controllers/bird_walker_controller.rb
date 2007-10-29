@@ -1,4 +1,5 @@
 class BirdWalkerController < ApplicationController
+  helper :trips
   layout "standard"
   
   def index
