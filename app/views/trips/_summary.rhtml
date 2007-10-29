@@ -1,6 +1,8 @@
 <% trip = summary %>
 
 <p>
+	<hr/>
+	
 	<h2>
 		<%= link_to trip.name, trip_url(trip) %></a>,
 		<%= trip.species.size %> species
@@ -8,8 +10,12 @@
 		<%= short_nice_date(trip.date) %>
 	</h2>
 	
-	<%= render :partial => 'sightings/thumbnail', :collection => trip.find_all_photos %>
-
+	<% has_photo?(trip) do %>
+	<div class="pagecontentitem">	
+		<%= render :partial => 'sightings/thumbnail', :object => trip.find_photo %>
+	</div>
+	<% end %>
+	
 	<div class="pagecontentitem">
 		<%= trip.notes %>
 	</div>
