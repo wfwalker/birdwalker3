@@ -3,8 +3,17 @@ class Location < ActiveRecord::Base
   has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
   
-  has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id"
-  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC"
+  has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id" do
+    def map_by_family
+      Species.map_by_family(proxy_target)
+    end  
+  end
+  
+  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
+    def map_by_year
+      Trip.map_by_year(proxy_target)
+    end
+  end
   
   validates_presence_of :name, :county, :state
   

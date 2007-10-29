@@ -5,7 +5,12 @@ class Trip < ActiveRecord::Base
       end  
   end
 
-  has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id"
+  has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id" do
+    def map_by_family
+      Species.map_by_family(proxy_target)
+    end  
+  end
+  
   has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name"
     
   validates_presence_of :name, :date, :leader
