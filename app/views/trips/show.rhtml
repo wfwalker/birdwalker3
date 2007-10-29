@@ -19,7 +19,9 @@
 	<div id="pagecontent">
 		<% mapped = @trip.sightings.map_by_location %>
 		
-		<h2><%= mapped.keys.size %> Locations</h2>
+		<% has_multiple_locations?(@trip) do %>
+			<h2><%= mapped.keys.size %> Locations</h2>
+		<% end %>
 		
 		<% mapped.keys.each do | a_location |%>
 			<h2><%= link_to a_location.name, location_url(a_location) %>, <%= mapped[a_location].size %> Species</h2>
