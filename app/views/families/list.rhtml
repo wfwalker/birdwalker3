@@ -4,12 +4,6 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% for @family in @families do %>
-			<%= render :partial => 'families/onelinelink', :object => @family %>
-			
-			<% if (@family.find_photo.size == 1) %>
-				<%= link_to @family.find_photo[0].thumb, family_url(@family) %>
-			<% end %>
-		<% end %>
+		<%= render :partial => 'families/photolink', :collection => @families %>
 	</div>
 </div>
