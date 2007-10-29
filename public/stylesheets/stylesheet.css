@@ -8,7 +8,7 @@ a:hover { color: red; text-decoration: underline; }
 
 h2
 {
-	font-weight: normal; font-size: 14pt;
+	font-weight: normal; font-size: 14pt; margin-left: 10px;
 }
 
 #browse
@@ -108,7 +108,7 @@ h2
 
 #pagecontent .pagecontentitem
 {
-	margin-left: 10px; margin-bottom: 1px;
+	margin-left: 15px; margin-bottom: 1px;
 }
 
 #pagecontent .pagecontentitem .notes
