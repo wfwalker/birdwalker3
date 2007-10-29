@@ -15,6 +15,10 @@ class Trip < ActiveRecord::Base
     
   validates_presence_of :name, :date, :leader
   
+  def find_photo
+    Sighting.find(:first, :conditions => ["trip_id = " + self.id.to_s + " AND photo = 1"], :order => "species_id")
+  end  
+  
   def find_all_photos
     Sighting.find(:all, :conditions => ["trip_id = " + self.id.to_s + " AND photo = 1"], :order => "species_id")
   end
