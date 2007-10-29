@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   helper :trips
+  helper :species
   layout "standard"
   
   def isLocation
