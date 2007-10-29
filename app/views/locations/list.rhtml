@@ -5,8 +5,8 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% for @state in @locations_by_state.keys %>
-		    <h2><%= @state %></h2>
+		<% for @state in @locations_by_state.keys.sort %>
+		    <h2><%= link_to State.find_by_abbreviation(@state).name, state_url(State.find_by_abbreviation(@state)) %></h2>
 			<%= render :partial => 'locations/onelinelink', :collection => @locations_by_state[@state] %>
 		<% end %>
 	</div>
