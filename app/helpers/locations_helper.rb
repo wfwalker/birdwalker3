@@ -2,6 +2,14 @@ module LocationsHelper
   def has_only_one_location?(locationcontainer, &block)
     yield if locationcontainer.locations.size == 1
   end
+
+  def has_multiple_locations?(locationcontainer, &block)
+    yield if locationcontainer.locations.size > 1
+  end
+
+  def has_county?(location, &block)
+    yield if location.county && location.county.size > 1
+  end
   
   def safe_county_name(location)
 	  if (location.county && location.county.size > 0) then
