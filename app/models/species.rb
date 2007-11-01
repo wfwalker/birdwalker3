@@ -2,6 +2,7 @@ class Species < ActiveRecord::Base
   has_many :sightings
   has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
+  has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
   belongs_to :family
   
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
@@ -10,7 +11,7 @@ class Species < ActiveRecord::Base
     end
   end
 
-  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name" do
+  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id  , locations.name" do
     def map_by_state
       Location.map_by_state(proxy_target)
     end  
@@ -24,10 +25,6 @@ class Species < ActiveRecord::Base
 
   def previous
     Species.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
-  end
-
-  def find_all_photos
-    Sighting.find(:all, :conditions => ["species_id = (?) AND photo = 1", self.id.to_s], :order => "trip_id DESC")
   end
   
   # TODO: some cleaner way to do this!
