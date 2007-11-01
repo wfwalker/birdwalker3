@@ -4,6 +4,7 @@ class Trip < ActiveRecord::Base
         Sighting.map_by_location(proxy_owner.sightings)
       end  
   end
+  has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
 
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id" do
     def map_by_family
@@ -11,17 +12,9 @@ class Trip < ActiveRecord::Base
     end  
   end
   
-  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.state, locations.county, locations.name"
+  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name"
     
   validates_presence_of :name, :date, :leader
-  
-  def find_photo
-    Sighting.find(:first, :conditions => ["trip_id = " + self.id.to_s + " AND photo = 1"], :order => "species_id")
-  end  
-  
-  def find_all_photos
-    Sighting.find(:all, :conditions => ["trip_id = " + self.id.to_s + " AND photo = 1"], :order => "species_id")
-  end
   
   def next
     Trip.find(:first, :conditions => ["date > (?)", self.date.to_s], :order => 'date')
