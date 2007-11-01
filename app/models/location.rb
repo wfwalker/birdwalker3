@@ -1,7 +1,9 @@
 class Location < ActiveRecord::Base
   has_many :sightings
+  has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
   has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
+  belongs_to :county
   
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id" do
     def map_by_family
@@ -18,24 +20,20 @@ class Location < ActiveRecord::Base
   validates_presence_of :name, :county, :state
   
   def next
-    Location.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'county, state')
+    Location.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'county_id')
   end
 
   def previous
-    Location.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'county, state DESC')
+    Location.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'county_id DESC')
   end
   
   def find_state
     State.find(:first, :conditions => ["abbreviation = (?)", self.state])
   end
-  
-  def find_all_photos
-    Sighting.find(:all, :conditions => ["location_id = (?) AND photo = 1", self.id], :order => "trip_id DESC" )
-  end
-  
+    
   def Location.map_by_state(locationList)
     locationList.inject({}) { | map, location |
-       map[location.state] ? map[location.state] << location : map[location.state] = [location] ; map }
+       map[location.county.state] ? map[location.county.state] << location : map[location.county.state] = [location] ; map }
   end  
 end
 
