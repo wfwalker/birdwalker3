@@ -1,7 +1,7 @@
+<% @page_title = @species.common_name %>
+
 <div id="photos">
-	<% @species.find_all_photos.each do | photoSighting | %>
-		<div class="photo"><%= link_to photoSighting.thumb, sighting_url(photoSighting) %></div>
-	<% end %>
+	<%= render :partial => 'sightings/thumbnail', :collection => @species.sightings_with_photos %>
 </div>
 
 <div id="pagebody">	

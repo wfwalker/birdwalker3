@@ -1,7 +1,7 @@
+<% @page_title = @state.name %>
+
 <div id="photos">
-	<% @state.find_all_photos.each do | photoSighting | %>
-		<div class="photo"><%= link_to photoSighting.thumb, sighting_url(photoSighting) %></div>
-	<% end %>
+	<%= render :partial => 'sightings/thumbnail', :collection => @state.find_all_photos %>
 </div>
 
 <div id="pagebody">
@@ -10,8 +10,8 @@
 	</div>
 
 	<div id="pagecontent">
-		<h2><%= @state.find_all_locations.size %> Locations</h2>
-		<%= render :partial => 'locations/onelinelink', :collection => @state.find_all_locations %>
+		<h2><%= @state.locations.size %> Locations</h2>
+		<%= render :partial => 'locations/onelinelink', :collection => @state.locations %>
 
 		<h2><%= @state.find_all_species.size %> Species</h2>
 	  	<%= render :partial => 'species/onelinelink', :collection => @state.find_all_species %>

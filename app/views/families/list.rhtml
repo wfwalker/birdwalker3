@@ -1,9 +1,17 @@
+<% @page_title = 'Families' %>
+
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
 	</div>
 	
 	<div id="pagecontent">
-		<%= render :partial => 'families/photolink', :collection => @families %>
+		<table width="100%">
+			<% for row in @families/4 %>
+				<tr>
+					<%= render :partial => 'families/phototablecell', :collection => row %>
+				</tr>
+			<% end %>
+		</table>
 	</div>
 </div>

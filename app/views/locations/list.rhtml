@@ -1,3 +1,5 @@
+<% @page_title = "Locations" %>
+
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
@@ -5,8 +7,10 @@
 	</div>
 	
 	<div id="pagecontent">
-		<% for @state in @locations_by_state.keys.sort %>
-		    <h2><%= link_to State.find_by_abbreviation(@state).name, state_url(State.find_by_abbreviation(@state)) %></h2>
+		<% @ordered_states = @locations_by_state.keys.sort_by { |s| s.name } %>
+		
+		<% for @state in @ordered_states %>
+		    <h2><%= link_to @state.name, state_url(@state) %></h2>
 			<%= render :partial => 'locations/onelinelink', :collection => @locations_by_state[@state] %>
 		<% end %>
 	</div>

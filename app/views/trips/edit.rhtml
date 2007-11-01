@@ -1,3 +1,5 @@
+<% @page_title = @trip.name %>
+
 <div id="pagebody">
 	<div id="pageheader">
 		<% form_for :trip, @trip, :url => trip_path(@trip), :html => { :method => 'put' } do |form| %>
@@ -21,13 +23,23 @@
 		<h2><%= @trip.species.size %> Species</h2>
 
 		<div class="pagecontentitem">
-			<%= link_to 'Add Sighting', new_sighting_url(:location_id => @trip.locations[0], :trip_id => @trip) %>	
+			<% form_tag :controller => 'sightings', :action => 'create' do %>
+				<%= error_messages_for 'sighting' %>
+
+				<!--[form:sighting]-->
+				
+				<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
+				<%= hidden_field("sighting", "location_id", :value => @trip.locations[0].id) %>
+
+				<p><label for="sighting_species">Add </label>
+				<%= collection_select("sighting", "species_id", Species.find_all_seen_by_common_name, :id, :common_name) %>
+			  	<%= submit_tag "Create" %></p>
+			<% end %>
 		</div>
 				
 		<% for @sighting in @trip.sightings %>
 			<div class="pagecontentitem">
-				<%= @sighting.species.common_name %>, <%= @sighting.location.name %>
-				<%= link_to "Edit", edit_sighting_url(@sighting) %>
+				<%= link_to @sighting.species.common_name, edit_sighting_url(@sighting) %>, <%= @sighting.location.name %>
 			</div>
 		<% end %>
 	</div>

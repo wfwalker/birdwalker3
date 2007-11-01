@@ -11,10 +11,7 @@
 <%= text_field 'location', 'city'  %></p>
 
 <p><label for="location_county">County</label><br/>
-<%= text_field 'location', 'county'  %></p>
-
-<p><label for="location_state">State</label><br/>
-<%= text_field 'location', 'state'  %></p>
+<%= collection_select("location", "county_id", County.find(:all, :order => 'name'), :id, :name) %></p>
 
 <p><label for="location_notes">Notes</label><br/>
 <%= text_area 'location', 'notes'  %></p>

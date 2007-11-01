@@ -11,9 +11,9 @@
 	</h2>
 	
 	<% has_photo?(trip) do %>
-	<div class="pagecontentitem">	
-		<%= render :partial => 'sightings/thumbnail', :object => trip.find_photo %>
-	</div>
+		<div class="pagecontentitem">	
+			<%= render :partial => 'sightings/thumbnail', :object => trip.sightings_with_photos.first %>
+		</div>
 	<% end %>
 	
 	<div class="pagecontentitem">

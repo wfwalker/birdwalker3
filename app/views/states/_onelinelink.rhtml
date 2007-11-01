@@ -1,7 +1,7 @@
 <% state = onelinelink %>
 
 <div class="pagecontentitem">
-	<% if state.find_all_locations.size > 0 %>
+	<% if state.locations.size > 0 %>
 		<%= link_to state.name, state_url(state) %>
 	<% else %>
 		<%= state.name %>

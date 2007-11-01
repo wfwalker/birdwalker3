@@ -1,15 +1,15 @@
+<% @page_title = @location.name %>
+
 <div id="photos">
-	<%= render :partial => 'sightings/thumbnail', :collection => @location.find_all_photos %>
+	<%= render :partial => 'sightings/thumbnail', :collection => @location.sightings_with_photos %>
 </div>
 
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
 		<div class="pageheaderitem">
-			<% has_county?(@location) do %>
-				<%= link_to @location.county + " County", county_url(@location.county) %>,
-			<% end %>
-			<%= link_to @location.find_state.name, state_url(@location.find_state) %>
+			<%= link_to @location.county.name + " County", county_url(@location.county) %>,
+			<%= link_to @location.county.state.name, state_url(@location.county.state) %>
 		</div>
 		<% has_only_one_trip?(@location) do %>
 			<% trip = @location.trips[0] %>

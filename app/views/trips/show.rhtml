@@ -1,5 +1,7 @@
+<% @page_title = @trip.name %>
+
 <div id="photos">
-	<%= render :partial => 'sightings/thumbnail', :collection => @trip.find_all_photos %>
+	<%= render :partial => 'sightings/thumbnail', :collection => @trip.sightings_with_photos %>
 </div>
 
 <div id="pagebody">
