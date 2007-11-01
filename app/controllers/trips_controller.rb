@@ -18,12 +18,10 @@ class TripsController < ApplicationController
   def list
     @trips = Trip.find(:all, :order => "date DESC")
     @trips_by_year = Trip.map_by_year(@trips)
-    @page_title = "Trips"
   end
   
   def show
     @trip = Trip.find(params["id"])
-    @page_title = @trip.name
     
     @trip.previous && @previous_url = trip_url(@trip.previous)
     @trip.next && @next_url = trip_url(@trip.next)
@@ -41,7 +39,6 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
-    @page_title = "New Trip"
   end
 
   def create
@@ -56,7 +53,6 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find(params[:id])
-    @page_title = @trip.name
   end
 
   def update

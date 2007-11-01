@@ -27,12 +27,10 @@ class LocationsController < ApplicationController
   def list
     @locations = Location.find(:all, :order => "name")
     @locations_by_state = Location.map_by_state(@locations)
-    @page_title = "Locations"
   end
 
   def show
     @location = Location.find(params[:id])
-    @page_title = @location.name
     
     @location.previous && @previous_url = location_url(@location.previous)
     @location.next && @next_url = location_url(@location.next)
@@ -40,7 +38,6 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
-    @page_title = "New Location"
   end
 
   def create
@@ -55,7 +52,6 @@ class LocationsController < ApplicationController
 
   def edit
     @location = Location.find(params[:id])
-    @page_title = @location.name
   end
 
   def update

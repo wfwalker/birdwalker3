@@ -1,9 +1,12 @@
 class CountiesController < ApplicationController
+  helper :trips
   layout "standard"
 
   def show
-    @county = County.new(params["id"])
-    @page_title = @county.name + " County"
+    @county = County.find(params["id"])
+    
+    @county.previous && @previous_url = county_url(@county.previous)
+    @county.next && @next_url = county_url(@county.next)
   end
   
   def isLocation
@@ -16,5 +19,14 @@ class CountiesController < ApplicationController
   
   def isSpecies
     false
+  end
+  
+  def index
+    list
+    render :action => 'list'
+  end
+  
+  def list
+    @counties = County.find(:all, :order => 'state_id, name')
   end
 end

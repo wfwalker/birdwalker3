@@ -24,12 +24,10 @@ class FamiliesController < ApplicationController
 
   def list
     @families = Family.find_all_seen
-    @page_title = "Families"
   end
 
   def show
     @family = Family.find(params[:id])
-    @page_title = @family.common_name
     
     @family.previous && @previous_url = family_url(@family.previous)
     @family.next && @next_url = family_url(@family.next)

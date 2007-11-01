@@ -26,12 +26,6 @@ class SightingsController < ApplicationController
   def show
     @sighting = Sighting.find(params[:id])
     
-    if (@sighting.species != nil) then
-      @page_title = @sighting.species.common_name
-    else
-      @page_title = "Unknown Species"
-    end
-    
     @sighting.previous && @previous_url = sighting_url(@sighting.previous)
     @sighting.next && @next_url = sighting_url(@sighting.next)
   end
@@ -44,9 +38,8 @@ class SightingsController < ApplicationController
     if (params[:location_id] != "")
       @sighting.location_id = params[:location_id]
     end
-    @page_title = "New Sighting"
   end
-
+  
   def create
     @sighting = Sighting.new(params[:sighting])
     if @sighting.save
@@ -59,7 +52,6 @@ class SightingsController < ApplicationController
 
   def edit
     @sighting = Sighting.find(params[:id])
-    @page_title = @sighting.species.common_name
   end
 
   def update
