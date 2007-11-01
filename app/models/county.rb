@@ -1,21 +1,31 @@
 class County < ActiveRecord::Base
-  attr_accessor :name
-  attr_accessor :locations
+  belongs_to :state
+  has_many :locations
+  has_many :sightings, :through => :locations
+  has_many :sightings_with_photos, :through => :locations, :conditions => 'sightings.photo = 1'
   
-  def initialize(name)
-    @name = name
-    @locations = Location.find(:all, :conditions => ["County = ?", @name])
-  end
+ # do something like county.sightings.map(&:species).flatten.uniq
+ # (Grab all of the sightings for the county, create a new array made up of all 
+ #of the arrays of species associated with each sighting, flatten it into a 1-d array and remove dupes)
+ # Which I would build into the sightings association using a block.
   
-  def find_all_species
-    @species = Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, locations WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND locations.county='" + self.name + "' ORDER BY species.id")
+  def next
+    County.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
   end
 
-  def find_all_trips
-    Trip.find_by_sql("SELECT DISTINCT trips.* FROM trips, sightings, locations WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county='" + self.name + "'ORDER BY trips.date DESC")
+  def previous
+    County.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
+  end
+  
+  def species
+    @species = Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, locations WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "' ORDER BY species.id")
   end
 
-  def find_all_photos
-    Sighting.find_by_sql("SELECT sightings.* FROM sightings, locations WHERE sightings.photo='1' AND sightings.location_id=locations.id AND locations.county='" + self.name + "' ORDER BY sightings.trip_id DESC LIMIT 50")
+  def trips
+    Trip.find_by_sql("SELECT DISTINCT trips.* FROM trips, sightings, locations WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "'ORDER BY trips.date DESC")
+  end
+  
+  def photos
+    Sighting.find_by_sql("SELECT sightings.* FROM sightings, locations WHERE sightings.photo='1' AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "' ORDER BY sightings.trip_id DESC LIMIT 50")
   end
 end
