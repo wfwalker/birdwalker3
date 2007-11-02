@@ -18,10 +18,13 @@
 			<% trip = @species.trips[0] %>
 			<div class="pageheaderitem">Seen once on <%= link_to nice_date(trip.date), trip_url(trip) %></a></div>
 		<% end %>
-		
-		<div class="pageheaderitem"><%= @species.notes %></div>
+		<% has_notes?(@species) do %>
+			<div class="pageheaderitem"><%= @species.notes %></div>
+		<% end %>
 		<% if @species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
-		<div class="pageheaderitem"><a href="<%= @species.reference_url %>">See also...</a></div>
+		<% has_reference_url?(@species) do %>
+			<div class="pageheaderitem"><a href="<%= @species.reference_url %>">See also...</a></div>
+		<% end %>
 		<div class="pageheaderitem"><%= link_to 'Edit', edit_species_instance_url(@species) %></div>
 	</div>
 
