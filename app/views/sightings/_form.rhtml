@@ -3,11 +3,11 @@
 <!--[form:sighting]-->
 
 <p><label for="sighting_trip">Trip</label><br/>
-<%= collection_select("sighting", "trip_id", Trip.find(:all), :id, :date) %>
+<%= collection_select("sighting", "trip_id", Trip.find(:all, :order => 'date DESC'), :id, :date) %>
 </p>
 
 <p><label for="sighting_location">Location</label><br/>
-<%= collection_select("sighting", "location_id", Location.find(:all), :id, :name) %>
+<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name) %>
 </p>
 
 <p><label for="sighting_species">Species</label><br/>
