@@ -42,6 +42,13 @@ class SightingsController < ApplicationController
   
   def create
     @sighting = Sighting.new(params[:sighting])
+
+    if (params[:abbreviation])
+      temp = Species.find_by_abbreviation(params[:abbreviation])
+      # TODO need to barf here if no species found
+      @sighting.species_id = temp.id  
+    end
+
     if @sighting.save
       flash[:notice] = 'Sighting was successfully created.'
       redirect_to edit_trip_url(@sighting.trip_id)
