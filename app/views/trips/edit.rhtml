@@ -32,7 +32,7 @@
 				<%= hidden_field("sighting", "location_id", :value => @trip.locations[0].id) %>
 
 				<p><label for="sighting_species">Add </label>
-				<%= collection_select("sighting", "species_id", Species.find_all_seen_by_common_name, :id, :common_name) %>
+				<%= text_field_tag 'abbreviation' %>
 			  	<%= submit_tag "Create" %></p>
 			<% end %>
 		</div>
