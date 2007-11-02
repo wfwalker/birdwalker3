@@ -15,8 +15,12 @@
 			<% trip = @location.trips[0] %>
 			<div class="pageheaderitem">Visited once on: <%= link_to nice_date(trip.date), trip_url(trip.id) %></a></div>
 		<% end %>
-		<div class="pageheaderitem"><%= @location.notes %></div>
-		<div class="pageheaderitem"><a href="<%= @location.reference_url %>">See also...</a></div>
+		<% has_notes?(@location) do %>
+			<div class="pageheaderitem"><%= @location.notes %></div>
+		<% end %>
+		<% has_reference_url?(@location) do %>
+			<div class="pageheaderitem"><a href="<%= @location.reference_url %>">See also...</a></div>
+		<% end%>
 		<div class="pageheaderitem"><%= link_to 'Edit', edit_location_url(@location) %></div>
 	</div>
 	
