@@ -1,7 +1,0 @@
-<% sighting_container = condensed_list %>
-
-<h2><%= sighting_container.locations.size %> Locations in <%= sighting_container.locations.map_by_state.size %> States</h2>
-
-<% for state in sighting_container.locations.map_by_state.keys %>
-      <div class="pagecontentitem"><%= State.find(state.id).name %></div>
-<% end %>
