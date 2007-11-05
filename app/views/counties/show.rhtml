@@ -10,13 +10,26 @@
 	</div>
 
 	<div id="pagecontent">
-		<h2><%= @county.locations.size %> Locations</h2>
-		<%= render :partial => 'locations/onelinelink', :collection => @county.locations %>
-	
-		<h2><%= @county.species.size %> Species</h2>
-		<%= render :partial => 'species/onelinelink', :collection => @county.species %>
+		<table width="100%" cellpadding="0px" cellspacing="0px">
+			<tr valign="top">
+				<td width="50%">
+					<div class="pagecontentmodule">
+						<div class="moduletitle"><%= @county.locations.size %> Locations</div>
+						<%= render :partial => 'locations/onelinelink', :collection => @county.locations %>
+					</div>
 
-		<h2><%= @county.trips.size %> Trips</h2>
-		<%= render :partial => 'trips/onelinelink', :collection => @county.trips %>
+					<div class="pagecontentmodule">
+						<div class="moduletitle"><%= @county.trips.size %> Trips</div>
+						<%= render :partial => 'trips/onelinelink', :collection => @county.trips %>
+					</div>
+				</td>
+				<td width="50%">
+					<div class="pagecontentmodule">
+						<div class="moduletitle"><%= @county.species.size %> Species</div>
+						<%= render :partial => 'species/onelinelink', :collection => @county.species %>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>

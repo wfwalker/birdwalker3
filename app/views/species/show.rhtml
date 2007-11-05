@@ -28,17 +28,21 @@
 		<div class="pageheaderitem"><%= link_to 'Edit', edit_species_instance_url(@species) %></div>
 	</div>
 
-	<div id="pagecontent">		
-		<%= show_trip_list(@species) %>
+	<div id="pagecontent">
+		<table width="100%" cellpadding="0px" cellspacing="0px">
+			<tr valign="top">
+				<td valign="top" width="50%">
+					<div class="pagecontentmodule">
+						<div class="moduletitle">First sighting</div>	
+						<%= render :partial => 'sightings/full_details', :object => @species.first_sighting %>	
+					</div>
 		
-		<%= show_location_list(@species) %>
-		
-		<% if (@species.trips.size == 1 and @species.trips.size == 1) %>
-			<h2>One Sighting Only</h2>
-			
-			<div class="pagecontentitem">
-				We've only seen this bird at <%= @species.locations[0].name %> on <%= nice_date(@species.trips[0].date) %>.
-			</div>
-		<% end %>
+					<%= show_trip_list(@species) %>
+				</td>
+				<td valign="top" width="50%">
+					<%= show_location_list(@species) %>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>

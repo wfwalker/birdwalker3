@@ -25,8 +25,15 @@
 	</div>
 	
 	<div id="pagecontent">
-		<%= show_species_list(@location) %>
-		
-		<%= show_trip_list(@location) %>
+		<table width="100%" cellpadding="0px" cellspacing="0px">
+			<tr valign="top">
+				<td valign="top" width="50%">
+					<%= show_species_list(@location) %>
+				</td>
+				<td valign="top" width="50%">
+					<%= show_trip_list(@location) %>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>

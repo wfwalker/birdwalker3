@@ -1,9 +1,9 @@
 <% family = phototablecell %>
 
 <td width="25%">
-	<h2>
+	<div class="modulesubtitle">
 		<%= link_to family.common_name, family_url(family) %>
-	</h2>
+	</div>
 
 	<div class="pagecontentitem">
 		<% if (family.sightings_with_photos.size > 0) %>

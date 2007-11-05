@@ -1,0 +1,6 @@
+<% sighting_container = undivided_list %>
+
+<div class="pagecontentmodule">
+	<div class="moduletitle"><%= sighting_container.trips.size %> Trips</div>
+	<%= render :partial => 'trips/onelinelink' , :collection => sighting_container.trips %>
+</div>

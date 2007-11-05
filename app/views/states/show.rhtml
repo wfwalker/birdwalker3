@@ -10,13 +10,13 @@
 	</div>
 
 	<div id="pagecontent">
-		<h2><%= @state.locations.size %> Locations</h2>
+		<div class="moduletitle"><%= @state.locations.size %> Locations</div>
 		<%= render :partial => 'locations/onelinelink', :collection => @state.locations %>
 
-		<h2><%= @state.find_all_species.size %> Species</h2>
+		<div class="moduletitle"><%= @state.find_all_species.size %> Species</div>
 	  	<%= render :partial => 'species/onelinelink', :collection => @state.find_all_species %>
 
-		<h2><%= @state.find_all_trips.size %> Trips</h2>
+		<div class="moduletitle"><%= @state.find_all_trips.size %> Trips</div>
 	  	<%= render :partial => 'trips/onelinelink', :collection => @state.find_all_trips %>
 	</div>
 </div>

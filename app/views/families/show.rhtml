@@ -10,9 +10,21 @@
 		<div class="pageheaderitem"><%= @family.latin_name %></div>
 	</div>
 	
-	<h2><%= @family.find_all_species_seen.size %> Species</h2>
-	
 	<div id="pagecontent">
-		<%= render :partial => 'species/onelinelink', :collection => @family.find_all_species_seen %>
+		<div class="pagecontentmodule">
+			<div class="modulesubtitle"><%= @family.find_all_species_seen.size %> Species</div>
+
+			<div id="pagecontent">
+				<%= render :partial => 'species/onelinelink', :collection => @family.find_all_species_seen %>
+			</div>
+		</div>
+
+		<div class="pagecontentmodule">
+			<div class="modulesubtitle"><%= @family.locations.size %> Locations</div>
+
+			<div id="pagecontent">
+				<%= render :partial => 'locations/onelinelink', :collection => @family.locations %>
+			</div>
+		</div>
 	</div>
 </div>

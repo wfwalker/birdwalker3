@@ -10,10 +10,10 @@ module TripsHelper
   def show_trip_list(tripcontainer)
     return unless tripcontainer.trips.size > 1
     
-	  if tripcontainer.trips.size > 30
-			render :partial => 'trips/condensed_list', :object => tripcontainer
+	  if tripcontainer.trips.size > 50
+			render :partial => 'trips/divided_list', :object => tripcontainer
 		else
-		  render :partial => 'trips/full_list', :object => tripcontainer
+		  render :partial => 'trips/undivided_list', :object => tripcontainer
 		end
 	end
 end

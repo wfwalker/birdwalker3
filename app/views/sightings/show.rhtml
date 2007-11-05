@@ -16,28 +16,28 @@
 			<img src="<%= @sighting.photoURL %>" align="right"/>
 		<% end %>
 
-		<h2>Date</h2>
+		<div class="modulesubtitle">Date</div>
 		<div class="pagecontentitem">
 			<%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip_id) %>
 		</div>
 		
-		<h2>Location</h2>
+		<div class="modulesubtitle">Location</div>
 		<div class="pagecontentitem">
 			<%= link_to safe_location_name(@sighting), location_url(@sighting.location_id) %>
 		</div>
 		
-		<h2>Species</h2>
+		<div class="modulesubtitle">Species</div>
 		<div class="pagecontentitem">
 			<%= link_to safe_species_common_name(@sighting), species_instance_url(@sighting.species_id) %>
 		</div>
 		
-		<h2>Notes</h2>
+		<div class="modulesubtitle">Notes</div>
 		<div class="pagecontentitem"><%= @sighting.notes %></div>
 		
-		<h2>Exclude</h2>
+		<div class="modulesubtitle">Exclude</div>
 		<div class="pagecontentitem"><%= @sighting.exclude %></div>
 
-		<h2>Photo</h2>
+		<div class="modulesubtitle">Photo</div>
 		<div class="pagecontentitem"><%= @sighting.photo %></div>
 	</div>
 </div>

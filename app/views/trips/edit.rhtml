@@ -20,7 +20,7 @@
 	</div>
 	
 	<div id="pagecontent">
-		<h2><%= @trip.species.size %> Species</h2>
+		<div class="moduletitle"><%= @trip.species.size %> Species</div>
 
 		<div class="pagecontentitem">
 			<% form_tag :controller => 'sightings', :action => 'create' do %>

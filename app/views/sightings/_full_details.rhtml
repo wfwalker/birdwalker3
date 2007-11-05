@@ -1,0 +1,11 @@
+<% sighting = full_details %>
+
+<div class="pagecontentitem">
+	<%= link_to safe_species_common_name(sighting), species_instance_url(sighting.species_id) %>
+	at <%= link_to safe_location_name(sighting), location_url(sighting.location_id) %>
+	on <%= link_to safe_nice_trip_date(sighting), trip_url(sighting.trip_id) %>
+
+	<% if (sighting.notes && sighting.notes.length > 1) then %>
+		<div class="notes"><%= sighting.notes %></div>
+	<% end%>
+</div>

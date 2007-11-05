@@ -1,5 +1,6 @@
 class CountiesController < ApplicationController
   helper :trips
+  helper :species
   layout "standard"
 
   def show

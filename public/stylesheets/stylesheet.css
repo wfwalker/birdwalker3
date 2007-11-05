@@ -6,9 +6,16 @@ body
 a       { text-decoration: none; }
 a:hover { color: red; text-decoration: underline; }
 
-h2
+.moduletitle
 {
-	font-weight: normal; font-size: 14pt; margin-left: 10px;
+	font-weight: normal; font-size: 14pt;
+	margin-left: 10px; margin-top: 10px; margin-bottom: 10px
+}
+
+.modulesubtitle
+{
+	font-weight: normal; font-size: 12pt;
+	margin-left: 12px; margin-top: 10px; margin-bottom: 10px
 }
 
 #browse
@@ -104,6 +111,15 @@ h2
 #pagecontent
 {
 	background-color: white;
+}
+
+#pagecontent .pagecontentmodule
+{
+	border-left: solid 5px #AAAAAA;
+	border-top: solid 1px #AAAAAA;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
 #pagecontent .pagecontentitem

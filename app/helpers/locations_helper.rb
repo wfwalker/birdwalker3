@@ -11,9 +11,9 @@ module LocationsHelper
     return unless locationcontainer.locations.size > 1
     
 	  if locationcontainer.locations.size > 30
-			render :partial => 'locations/condensed_list', :object => locationcontainer
+			render :partial => 'locations/divided_list', :object => locationcontainer
 		else
-		  render :partial => 'locations/full_list', :object => locationcontainer
+		  render :partial => 'locations/undivided_list', :object => locationcontainer
 		end
 	end
 end

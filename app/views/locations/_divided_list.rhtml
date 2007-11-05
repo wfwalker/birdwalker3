@@ -1,0 +1,16 @@
+<% sighting_container = divided_list %>
+
+<% locations_by_state = sighting_container.locations.map_by_state %>
+
+<% ordered_states = locations_by_state.keys.sort_by { |s| s.name } %>
+
+<div class="pagecontentmodule">
+	<div class="moduletitle">
+		<%= sighting_container.locations.size %> Locations in <%= locations_by_state.size %> States
+	</div>
+
+	<% for state in ordered_states %>
+		<div class="modulesubtitle"><%= state.name %></div>
+		<%= render :partial => 'locations/onelinelink' , :collection => locations_by_state[state] %>
+	<% end %>
+</div>
