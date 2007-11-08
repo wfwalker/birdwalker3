@@ -9,9 +9,6 @@
 		<div id="pagetitle"><%= @page_title %></div>
 		<div class="pageheaderitem"><%= nice_date(@trip.date) %></div>
 		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
-		<% has_notes?(@trip) do %>
-			<div class="pageheaderitem"><%= @trip.notes %></div>
-		<% end %>
 		<% has_reference_url?(@trip) do %>
 			<div class="pageheaderitem"><a href="<%= @trip.reference_url %>">See also...</a></div>
 		<% end %>
@@ -21,14 +18,28 @@
 	<div id="pagecontent">
 		<% mapped = @trip.sightings.map_by_location %>
 		
-		<% for a_location in mapped.keys %>
-			<div class="pagecontentmodule">
-			    <div class="moduletitle">
-					<%= link_to a_location.name, location_url(a_location) %>, <%= mapped[a_location].size %> Species
-				</div>
+		<table width="100%" cellpadding="0px" cellspacing="0px">
+			<tr valign="top">
+				<td width="50%" valign="top">
+					<% for a_location in mapped.keys %>
+						<div class="pagecontentmodule">
+						    <div class="moduletitle">
+								<%= link_to a_location.name, location_url(a_location) %>, <%= mapped[a_location].size %> Species
+							</div>
 				
-				<%= render :partial => 'sightings/onelinelink' , :collection => mapped[a_location] %>
-			</div>
-		<% end %>
+							<%= render :partial => 'sightings/onelinelink' , :collection => mapped[a_location] %>
+						</div>
+					<% end %>
+				</td>
+				<td width="50%" valign="top">
+					<% has_notes?(@trip) do %>
+						<div class="pagecontentmodule">
+							<div class="moduletitle">Notes</div>
+							<div class="pagecontentitem"><%= @trip.notes %></div>
+						</div>
+					<% end %>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>
