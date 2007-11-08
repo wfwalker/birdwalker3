@@ -10,8 +10,10 @@
 		<% @ordered_states = @locations_by_state.keys.sort_by { |s| s.name } %>
 		
 		<% for @state in @ordered_states %>
-		    <div class="modulesubtitle"><%= link_to @state.name, state_url(@state) %></div>
-			<%= render :partial => 'locations/onelinelink', :collection => @locations_by_state[@state] %>
+			<div class="pagecontentmodule">
+			    <div class="moduletitle"><%= link_to @state.name, state_url(@state) %></div>
+				<%= render :partial => 'locations/onelinelink', :collection => @locations_by_state[@state] %>
+			</div>
 		<% end %>
 	</div>
 </div>
