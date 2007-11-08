@@ -9,15 +9,6 @@
 	    <div id="pagetitle"><%= @page_title %></div>
 		<div class="pageheaderitem"><%= @species.latin_name %></div>
 		<div class="pageheaderitem"><%= link_to @species.family.latin_name, family_url(@species.family) %></div>
-		<% if (@species.locations.size == 1) %>
-			<% location = @species.locations[0] %>
-			<div class="pageheaderitem">Seen only at <%= link_to location.name, location_url(location) %></a></div>
-		<% end %>
-		
-		<% has_only_one_trip?(@species) do %>
-			<% trip = @species.trips[0] %>
-			<div class="pageheaderitem">Seen once on <%= link_to nice_date(trip.date), trip_url(trip) %></a></div>
-		<% end %>
 		<% has_notes?(@species) do %>
 			<div class="pageheaderitem"><%= @species.notes %></div>
 		<% end %>
@@ -40,6 +31,11 @@
 					<%= show_trip_list(@species) %>
 				</td>
 				<td valign="top" width="50%">
+					<div class="pagecontentmodule">
+						<div class="moduletitle">Latest sighting</div>	
+						<%= render :partial => 'sightings/full_details', :object => @species.last_sighting %>	
+					</div>
+
 					<%= show_location_list(@species) %>
 				</td>
 			</tr>
