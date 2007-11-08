@@ -11,13 +11,6 @@
 			<%= link_to @location.county.name + " County", county_url(@location.county) %>,
 			<%= link_to @location.county.state.name, state_url(@location.county.state) %>
 		</div>
-		<% has_only_one_trip?(@location) do %>
-			<% trip = @location.trips[0] %>
-			<div class="pageheaderitem">Visited once on: <%= link_to nice_date(trip.date), trip_url(trip.id) %></a></div>
-		<% end %>
-		<% has_notes?(@location) do %>
-			<div class="pageheaderitem"><%= @location.notes %></div>
-		<% end %>
 		<% has_reference_url?(@location) do %>
 			<div class="pageheaderitem"><a href="<%= @location.reference_url %>">See also...</a></div>
 		<% end%>
@@ -31,6 +24,13 @@
 					<%= show_species_list(@location) %>
 				</td>
 				<td valign="top" width="50%">
+					<% has_notes?(@location) do %>
+						<div class="pagecontentmodule">
+							<div class="moduletitle">Notes</div>
+							<div class="pagecontentitem"><%= @location.notes %></div>
+						</div>
+					<% end %>
+					
 					<%= show_trip_list(@location) %>
 				</td>
 			</tr>
