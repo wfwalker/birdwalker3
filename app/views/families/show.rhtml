@@ -11,20 +11,27 @@
 	</div>
 	
 	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<div class="modulesubtitle"><%= @family.find_all_species_seen.size %> Species</div>
+		<table width="100%" cellpadding="0px" cellspacing="0px">
+			<tr valign="top">
+				<td width="50%" valign="top">
+					<div class="pagecontentmodule">
+						<div class="modulesubtitle"><%= @family.find_all_species_seen.size %> Species</div>
 
-			<div id="pagecontent">
-				<%= render :partial => 'species/onelinelink', :collection => @family.find_all_species_seen %>
-			</div>
-		</div>
+						<div id="pagecontent">
+							<%= render :partial => 'species/onelinelink', :collection => @family.find_all_species_seen %>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="pagecontentmodule">
+						<div class="modulesubtitle"><%= @family.locations.size %> Locations</div>
 
-		<div class="pagecontentmodule">
-			<div class="modulesubtitle"><%= @family.locations.size %> Locations</div>
-
-			<div id="pagecontent">
-				<%= render :partial => 'locations/onelinelink', :collection => @family.locations %>
-			</div>
-		</div>
+						<div id="pagecontent">
+							<%= render :partial => 'locations/onelinelink', :collection => @family.locations %>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>
