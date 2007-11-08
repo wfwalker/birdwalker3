@@ -8,8 +8,6 @@ module TripsHelper
   end
     
   def show_trip_list(tripcontainer)
-    return unless tripcontainer.trips.size > 1
-    
 	  if tripcontainer.trips.size > 50
 			render :partial => 'trips/divided_list', :object => tripcontainer
 		else

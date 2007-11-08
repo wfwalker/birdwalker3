@@ -8,8 +8,6 @@ module LocationsHelper
   end
 
   def show_location_list(locationcontainer)
-    return unless locationcontainer.locations.size > 1
-    
 	  if locationcontainer.locations.size > 30
 			render :partial => 'locations/divided_list', :object => locationcontainer
 		else
