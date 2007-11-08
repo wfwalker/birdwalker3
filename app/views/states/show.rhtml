@@ -10,13 +10,19 @@
 	</div>
 
 	<div id="pagecontent">
-		<div class="moduletitle"><%= @state.locations.size %> Locations</div>
-		<%= render :partial => 'locations/onelinelink', :collection => @state.locations %>
+		<div class="pagecontentmodule">
+			<div class="moduletitle"><%= @state.locations.size %> Locations</div>
+			<%= render :partial => 'locations/onelinelink', :collection => @state.locations %>
+		</div>
+	
+		<div class="pagecontentmodule">
+			<div class="moduletitle"><%= @state.find_all_species.size %> Species</div>
+	  		<%= render :partial => 'species/onelinelink', :collection => @state.find_all_species %>
+		</div>
 
-		<div class="moduletitle"><%= @state.find_all_species.size %> Species</div>
-	  	<%= render :partial => 'species/onelinelink', :collection => @state.find_all_species %>
-
-		<div class="moduletitle"><%= @state.find_all_trips.size %> Trips</div>
-	  	<%= render :partial => 'trips/onelinelink', :collection => @state.find_all_trips %>
+		<div class="pagecontentmodule">
+			<div class="moduletitle"><%= @state.find_all_trips.size %> Trips</div>
+	  		<%= render :partial => 'trips/onelinelink', :collection => @state.find_all_trips %>
+		</div>
 	</div>
 </div>
