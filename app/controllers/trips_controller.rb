@@ -1,7 +1,6 @@
 class TripsController < ApplicationController
   helper :locations
   helper :sightings
-  layout "standard"
 
   def isLocation
     false

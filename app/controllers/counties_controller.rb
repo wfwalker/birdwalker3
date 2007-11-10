@@ -1,7 +1,6 @@
 class CountiesController < ApplicationController
   helper :trips
   helper :species
-  layout "standard"
 
   def show
     @county = County.find(params["id"])

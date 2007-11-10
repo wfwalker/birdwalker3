@@ -1,6 +1,4 @@
 class StatesController < ApplicationController
-  layout "standard"
-  
   def isLocation
     true
   end

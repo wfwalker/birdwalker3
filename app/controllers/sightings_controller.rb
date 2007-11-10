@@ -1,5 +1,4 @@
 class SightingsController < ApplicationController
-  layout "standard"
   auto_complete_for :species, :common_name
  
 # here's the autocomplete voodoo, put this in someplace, some time 

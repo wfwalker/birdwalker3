@@ -1,6 +1,4 @@
 class FamiliesController < ApplicationController
-  layout "standard"
-
   def isLocation
     false
   end
