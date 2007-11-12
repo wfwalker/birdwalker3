@@ -4,4 +4,20 @@
 class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_HelloWorld_session_id'
+  
+  layout :choose_layout
+  
+  protected
+  def iphone?  
+    request.user_agent.include?('iPhone')  
+    #true
+  end  
+  
+  def choose_layout  
+    if iphone?  
+        "iphone"  
+      else
+        "standard"
+    end  
+  end
 end
