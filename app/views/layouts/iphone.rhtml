@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+		<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+		<%= stylesheet_link_tag 'iphone_stylesheet'%>
+		<%= javascript_include_tag :defaults %>
+        <title>IPHONE birdWalker | <%= @page_title %></title>
+    </head>
+    <body>
+        <div id="menu">
+			<span style="display: inline-block; background-color: darkblue"><%= link_to "&lt;&lt;", @previous_url %></span>
+			<div class="<%= @controller.isLocation ? 'locationmenuitem' : 'menuitem' %>">
+				<%= link_to "locations", locations_url %>
+			</div>
+			<div class="<%= @controller.isSpecies ? 'speciesmenuitem' : 'menuitem' %>">
+				<%= link_to "species", species_url %>
+			</div>
+			<div class="<%= @controller.isTrip ? 'tripmenuitem' : 'menuitem' %>">
+				<%= link_to "trips", trips_url %>
+			</div>
+			<span style="display: inline-block; background-color: darkblue"><%= link_to "&gt;&gt;", @next_url %></span>
+		</div>
+
+        <%= yield %>
+     </body>
+</html>
