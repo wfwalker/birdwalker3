@@ -1,9 +1,5 @@
 <% @page_title = @location.name %>
 
-<div id="photos">
-	<%= render :partial => 'sightings/thumbnail', :collection => @location.sightings_with_photos %>
-</div>
-
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
@@ -36,4 +32,8 @@
 			</tr>
 		</table>
 	</div>
+</div>
+
+<div id="photos">
+	<%= render :partial => 'sightings/thumbnail', :collection => @location.sightings_with_photos %>
 </div>
