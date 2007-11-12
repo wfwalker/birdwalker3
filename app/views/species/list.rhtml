@@ -7,8 +7,10 @@
  	
 	<div id="pagecontent">
 		<% for family in @all_families_seen %>
+			<div class="pagecontentmodule">
 			<%= render :partial => 'families/onelinelink', :object => family %>
 			<%= render :partial => 'species/onelinelink', :collection => @all_species_seen_by_family[family] %>
+			</div>
 		<% end %>
 	</div>
 </div>
