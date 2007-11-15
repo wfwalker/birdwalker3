@@ -9,27 +9,16 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td width="50%">
-					<div class="pagecontentmodule">
-						<div class="moduletitle"><%= @county.locations.size %> Locations</div>
-						<%= render :partial => 'locations/onelinelink', :collection => @county.locations %>
-					</div>
+					<%= show_species_list(@county.species) %>
 
-					<div class="pagecontentmodule">
-						<div class="moduletitle"><%= @county.trips.size %> Trips</div>
-						<%= render :partial => 'trips/onelinelink', :collection => @county.trips %>
-					</div>
+					<%= show_trip_list(@county.trips) %>
 				</td>
 				<td width="50%">
-					<div class="pagecontentmodule">
-						<div class="moduletitle"><%= @county.species.size %> Species</div>
-						<%= render :partial => 'species/onelinelink', :collection => @county.species %>
-					</div>
+					<%= show_thumbnail_list(@county.sightings_with_photos) %>
+					
+					<%= show_location_list(@county.locations) %>
 				</td>
 			</tr>
 		</table>
 	</div>
-</div>
-
-<div id="photos">
-	<%= render :partial => 'sightings/thumbnail', :collection => @county.sightings_with_photos %>
 </div>

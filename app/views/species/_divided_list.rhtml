@@ -1,13 +1,14 @@
-<% sighting_container = divided_list %>
+<% species_list = divided_list %>
 
-<% sorted_families = sighting_container.species.map_by_family.keys.sort_by {|f| f.taxonomic_sort_id}%>
+<% species_by_family = Species.map_by_family(species_list) %>
+
+<% sorted_families = species_by_family.keys.sort_by { |f| f.taxonomic_sort_id } %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle"><%= sighting_container.species.size %> Species</div>
+	<div class="moduletitle"><%= species_list.size %> Species</div>
 
 	<% for family in sorted_families %>
 		<%= render :partial => 'families/onelinelink', :object => family %>
-		<%= render :partial => 'species/onelinelink', :collection => sighting_container.species.map_by_family[family] %>
-				
+		<%= render :partial => 'species/onelinelink', :collection => species_by_family[family] %>
 	<% end %>
 </div>

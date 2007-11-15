@@ -12,7 +12,9 @@
 		<% has_reference_url?(@species) do %>
 			<div class="pageheaderitem"><a href="<%= @species.reference_url %>">See also...</a></div>
 		<% end %>
-		<div class="pageheaderitem"><%= link_to 'Edit', edit_species_instance_url(@species) %></div>
+		<% editing_is_allowed?() do %>
+			<div class="pageheaderitem"><%= link_to 'Edit', edit_species_instance_url(@species) %></div>
+		<% end %>
 	</div>
 
 	<div id="pagecontent">
@@ -24,7 +26,7 @@
 						<%= render :partial => 'sightings/full_details', :object => @species.first_sighting %>	
 					</div>
 		
-					<%= show_trip_list(@species) %>
+					<%= show_trip_list(@species.trips) %>
 				</td>
 				<td valign="top" width="50%">
 					<div class="pagecontentmodule">
@@ -32,13 +34,11 @@
 						<%= render :partial => 'sightings/full_details', :object => @species.last_sighting %>	
 					</div>
 
-					<%= show_location_list(@species) %>
+					<%= show_thumbnail_list(@species.sightings_with_photos) %>
+
+					<%= show_location_list(@species.locations) %>
 				</td>
 			</tr>
 		</table>
 	</div>
-</div>
-
-<div id="photos">
-	<%= render :partial => 'sightings/thumbnail', :collection => @species.sightings_with_photos %>
 </div>

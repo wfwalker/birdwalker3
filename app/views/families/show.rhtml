@@ -1,9 +1,5 @@
 <% @page_title = @family.common_name %>
 
-<div id="photos">
-	<%= render :partial => 'sightings/thumbnail', :collection => @family.sightings_with_photos %>
-</div>
-
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
@@ -14,22 +10,14 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td width="50%" valign="top">
-					<div class="pagecontentmodule">
-						<div class="modulesubtitle"><%= @family.find_all_species_seen.size %> Species</div>
-
-						<div id="pagecontent">
-							<%= render :partial => 'species/onelinelink', :collection => @family.find_all_species_seen %>
-						</div>
-					</div>
+					<%= show_species_list(@family.species_seen) %>
+					
+					<%= show_trip_list(@family.trips) %>
 				</td>
 				<td>
-					<div class="pagecontentmodule">
-						<div class="modulesubtitle"><%= @family.locations.size %> Locations</div>
-
-						<div id="pagecontent">
-							<%= render :partial => 'locations/onelinelink', :collection => @family.locations %>
-						</div>
-					</div>
+					<%= show_thumbnail_list(@family.sightings_with_photos) %>
+					
+					<%= show_location_list(@family.locations) %>
 				</td>
 			</tr>
 		</table>

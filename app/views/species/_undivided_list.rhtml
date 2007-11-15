@@ -1,6 +1,6 @@
-<% sighting_container = undivided_list %>
+<% species_list = undivided_list %>
 
 <div class="pagecontentmodule">
-	<div class="modulesubtitle"><%= sighting_container.species.size %> Species</div>
-	<%= render :partial => 'species/onelinelink' , :collection => sighting_container.species %>
+	<div class="modulesubtitle"><%= species_list.size %> Species</div>
+	<%= render :partial => 'species/onelinelink' , :collection => species_list %>
 </div>

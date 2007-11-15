@@ -1,8 +1,5 @@
 <% @page_title = @trip.name %>
 
-<div id="photos">
-	<%= render :partial => 'sightings/thumbnail', :collection => @trip.sightings_with_photos %>
-</div>
 
 <div id="pagebody">
 	<div id="pageheader">
@@ -12,7 +9,9 @@
 		<% has_reference_url?(@trip) do %>
 			<div class="pageheaderitem"><a href="<%= @trip.reference_url %>">See also...</a></div>
 		<% end %>
-		<div class="pageheaderitem"><%= link_to 'Edit', edit_trip_url(@trip) %></div>
+		<% editing_is_allowed?() do %>
+			<div class="pageheaderitem"><%= link_to 'Edit', edit_trip_url(@trip) %></div>
+		<% end %>
 	</div>
 	
 	<div id="pagecontent">
@@ -38,6 +37,8 @@
 							<div class="pagecontentitem"><%= @trip.notes %></div>
 						</div>
 					<% end %>
+					
+					<%= show_thumbnail_list(@trip.sightings_with_photos) %>
 				</td>
 			</tr>
 		</table>

@@ -1,28 +1,22 @@
 <% @page_title = @state.name %>
 
-<div id="photos">
-	<%= render :partial => 'sightings/thumbnail', :collection => @state.find_all_photos %>
-</div>
-
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle"><%= @page_title %></div>
 	</div>
 
 	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<div class="moduletitle"><%= @state.locations.size %> Locations</div>
-			<%= render :partial => 'locations/onelinelink', :collection => @state.locations %>
-		</div>
+		<%= show_location_list(@state.locations) %>
 	
-		<div class="pagecontentmodule">
-			<div class="moduletitle"><%= @state.find_all_species.size %> Species</div>
-	  		<%= render :partial => 'species/onelinelink', :collection => @state.find_all_species %>
-		</div>
+		<%= show_species_list(@state.find_all_species) %>
+
+		<%= show_trip_list(@state.find_all_trips) %>
 
 		<div class="pagecontentmodule">
-			<div class="moduletitle"><%= @state.find_all_trips.size %> Trips</div>
-	  		<%= render :partial => 'trips/onelinelink', :collection => @state.find_all_trips %>
+			<div class="moduletitle">Photos</div>
+			<div class="pagecontentitem">
+				<%= render :partial => 'sightings/thumbnail', :collection => @state.find_all_photos %>
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,14 +1,12 @@
-<% sighting_container = divided_list %>
+<% trip_list = divided_list %>
 
-<% sightings_by_year = sighting_container.trips.map_by_year %>
+<% sightings_by_year = Trip.map_by_year(trip_list) %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle"><%= sighting_container.trips.size %> Sightings over <%= sightings_by_year.keys.size %> Years</div>
-
+	<div class="moduletitle"><%= trip_list.size %> Trips over <%= sightings_by_year.keys.size %> Years</div>
 	<% for year in sightings_by_year.keys.sort.reverse %>
 		<div class='modulesubtitle'><%= year %></div>
 		<%= render :partial => 'trips/onelinelink', :collection => sightings_by_year[year] %>
 	<% end %>
 </div>
-
 

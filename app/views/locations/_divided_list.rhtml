@@ -1,12 +1,12 @@
-<% sighting_container = divided_list %>
+<% location_list = divided_list %>
 
-<% locations_by_state = sighting_container.locations.map_by_state %>
+<% locations_by_state = Location.map_by_state(location_list) %>
 
 <% ordered_states = locations_by_state.keys.sort_by { |s| s.name } %>
 
 <div class="pagecontentmodule">
 	<div class="moduletitle">
-		<%= sighting_container.locations.size %> Locations in <%= locations_by_state.size %> States
+		<%= location_list.size %> Locations in <%= locations_by_state.size %> States
 	</div>
 
 	<% for state in ordered_states %>

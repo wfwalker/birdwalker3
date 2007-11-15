@@ -1,14 +1,13 @@
 <% trip = summary %>
 
-<p>
-	<hr/>
+<div class="pagecontentmodule">
 	
-	<h2>
+	<div class="moduletitle">
 		<%= link_to trip.name, trip_url(trip) %></a>,
 		<%= trip.species.size %> species
 		<br/>
 		<%= short_nice_date(trip.date) %>
-	</h2>
+	</div>
 	
 	<% has_photo?(trip) do %>
 		<div class="pagecontentitem">	
@@ -19,4 +18,4 @@
 	<div class="pagecontentitem">
 		<%= trip.notes %>
 	</div>
-</p>
+</div>

@@ -7,12 +7,6 @@
 	</div>
 
 	<div id="pagecontent">
-		<% sighting_year_range.to_a.reverse.each do | year |%>
-			<div class="pagecontentmodule">
-				<div class="moduletitle"><%= year %></div>
-				
-				<%= render :partial => 'trips/onelinelink' , :collection => @trips_by_year[year] %>
-			</div>
-		<% end %>
+		<%= show_trip_list(@trips)%>
 	</div>
 </div>
