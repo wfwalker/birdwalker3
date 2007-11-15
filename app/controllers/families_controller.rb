@@ -1,4 +1,9 @@
 class FamiliesController < ApplicationController
+  helper :species
+  helper :trips
+  helper :locations
+  helper :sightings
+  
   def isLocation
     false
   end

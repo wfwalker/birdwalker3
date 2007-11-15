@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   helper :trips
   helper :species
+  helper :sightings
   
   def isLocation
     true
@@ -25,7 +26,6 @@ class LocationsController < ApplicationController
 
   def list
     @locations = Location.find(:all, :order => "name")
-    @locations_by_state = Location.map_by_state(@locations)
   end
 
   def show

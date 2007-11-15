@@ -25,8 +25,7 @@ class SpeciesController < ApplicationController
 #         :redirect_to => { :action => :list }
 
   def list
-    @all_species_seen_by_family = Species.map_by_family(Species.find_all_seen)
-    @all_families_seen = Family.find_all_seen
+    @all_species_seen = Species.find_all_seen
   end
 
   def show

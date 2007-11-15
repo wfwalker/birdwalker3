@@ -1,4 +1,8 @@
 class StatesController < ApplicationController
+  helper :trips
+  helper :species
+  helper :locations
+
   def isLocation
     true
   end

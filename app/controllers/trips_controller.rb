@@ -16,7 +16,6 @@ class TripsController < ApplicationController
   
   def list
     @trips = Trip.find(:all, :order => "date DESC")
-    @trips_by_year = Trip.map_by_year(@trips)
   end
   
   def show
