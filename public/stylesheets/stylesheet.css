@@ -28,7 +28,7 @@ a:hover { color: red; text-decoration: underline; }
 
 #menu
 {
-	position: fixed; top: 0px; left: 0px; width: 100px;
+	position: fixed; top: 0px; left: 0px; width: 120px;
 	z-index: 2;
 	background-color: white;
 }
@@ -36,7 +36,7 @@ a:hover { color: red; text-decoration: underline; }
 #menu .menuitem
 {
 	padding-left: 10px;
-	margin-top: 5px;
+	padding-top: 5px; padding-bottom: 5px;
 	background-color: #888888;
 	color: white;
 }
@@ -44,7 +44,7 @@ a:hover { color: red; text-decoration: underline; }
 #menu .tripmenuitem
 {
 	padding-left: 10px;
-	margin-top: 5px;
+	padding-top: 5px; padding-bottom: 5px;
 	background-color: #0000DD;
 	color: white;
 }
@@ -52,7 +52,7 @@ a:hover { color: red; text-decoration: underline; }
 #menu .locationmenuitem
 {
 	padding-left: 10px;
-	margin-top: 5px;
+	padding-top: 5px; padding-bottom: 5px;
 	background-color: #00DD00;
 	color: white;
 }
@@ -60,7 +60,7 @@ a:hover { color: red; text-decoration: underline; }
 #menu .speciesmenuitem
 {
 	padding-left: 10px;
-	margin-top: 5px;
+	padding-top: 5px; padding-bottom: 5px;
 	background-color: #DD0000;
 	color: white;
 }
@@ -73,7 +73,7 @@ a:hover { color: red; text-decoration: underline; }
 
 #pagetitle
 {
-	font: 30pt Gill Sans;
+	font: 24pt Gill Sans;
 	padding-left: 10px;
 	padding-bottom: 5px;
 }
@@ -83,7 +83,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-top: 20px;
 	padding-bottom: 5px;
 	background-color: #EEEEEE;
-	border-left: solid 5px #AAAAAA;
+	border-left: solid 3px #CCCCCC;
 }
 
 #pageheader .pageheaderitem
@@ -93,18 +93,24 @@ a:hover { color: red; text-decoration: underline; }
 
 #photos
 {
-	position: absolute; top: 150px; left: 0px; width: 100px;
+	position: absolute; top: 200px; left: 0px; width: 120px;
 	text-align: center;
 }
 
 #photos .photo
 {
-	padding-bottom: 5px;
+	padding-bottom: 5px; text-align: center;
 }
+
+.pagecontentmodule .photo
+{
+	text-align: center; display: inline;
+}
+
 
 #pagebody
 {
-	position: absolute; top: 0px; left: 110px; width: 80%;	
+	position: absolute; top: 0px; left: 130px; width: 80%;	
 	padding-bottom: 50px;
 }
 
@@ -115,8 +121,8 @@ a:hover { color: red; text-decoration: underline; }
 
 #pagecontent .pagecontentmodule
 {
-	border-left: solid 5px #AAAAAA;
-	border-top: solid 1px #AAAAAA;
+	border-left: solid 3px #CCCCCC;
+	border-top: solid 1px #CCCCCC;
 	margin-top: 5px;
 	margin-bottom: 10px;
 	margin-right: 10px;
