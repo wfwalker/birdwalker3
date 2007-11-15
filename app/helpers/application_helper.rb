@@ -23,4 +23,8 @@ module ApplicationHelper
   def has_notes?(subject, &block)
     yield if subject.notes && subject.notes.length > 1
   end
+  
+  def editing_is_allowed?(&block)
+    yield if true
+  end
 end

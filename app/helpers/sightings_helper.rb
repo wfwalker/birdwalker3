@@ -30,4 +30,10 @@ module SightingsHelper
 			"unknown"
 	  end
   end
+  
+  def show_thumbnail_list(sighting_list)
+	  if sighting_list.size > 0
+			render :partial => 'sightings/thumbnail_list', :object => sighting_list
+		end
+	end
 end

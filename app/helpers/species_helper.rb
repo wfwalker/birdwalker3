@@ -1,9 +1,9 @@
 module SpeciesHelper
-  def show_species_list(speciescontainer)
-	  if speciescontainer.species.size > 50
-			render :partial => 'species/divided_list', :object => speciescontainer
+  def show_species_list(species_list)
+	  if species_list.size > 50
+			render :partial => 'species/divided_list', :object => species_list
 		else
-		  render :partial => 'species/undivided_list', :object => speciescontainer
+		  render :partial => 'species/undivided_list', :object => species_list
 		end
 	end
 end

@@ -7,11 +7,11 @@ module LocationsHelper
     yield if locationcontainer.locations.size > 1
   end
 
-  def show_location_list(locationcontainer)
-	  if locationcontainer.locations.size > 30
-			render :partial => 'locations/divided_list', :object => locationcontainer
+  def show_location_list(location_list)
+	  if location_list.size > 30
+			render :partial => 'locations/divided_list', :object => location_list
 		else
-		  render :partial => 'locations/undivided_list', :object => locationcontainer
+		  render :partial => 'locations/undivided_list', :object => location_list
 		end
 	end
 end
