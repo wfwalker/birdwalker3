@@ -26,6 +26,26 @@ a:hover { color: red; text-decoration: underline; }
 	text-align: center;
 }
 
+#notice
+{
+	position: absolute;
+	background-color: #AAFFAA;
+	z-index: 3;
+	left: 50%; top: 10px;
+	padding: 5px;
+	border: solid 1px green;
+}
+
+#errorExplanation
+{
+	position: absolute;
+	background-color: #FFAAAA;
+	z-index: 3;
+	left: 50%; top: 10px;
+	padding: 5px;
+	border: solid 1px red;
+}
+
 #menu
 {
 	position: fixed; top: 0px; left: 0px; width: 120px;
@@ -73,14 +93,14 @@ a:hover { color: red; text-decoration: underline; }
 
 #pagetitle
 {
-	font: 24pt Gill Sans;
+	font: 20pt Gill Sans;
 	padding-left: 10px;
 	padding-bottom: 5px;
 }
 
 #pageheader
 {
-	padding-top: 20px;
+	padding-top: 10px;
 	padding-bottom: 5px;
 	background-color: #EEEEEE;
 	border-left: solid 3px #CCCCCC;
