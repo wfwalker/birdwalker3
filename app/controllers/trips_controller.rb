@@ -58,7 +58,6 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'
-      logger.error("UPDATED TRIP");
       redirect_to trip_url(@trip)
     else
       render :action => 'edit'
