@@ -23,6 +23,10 @@
 			<%= link_to "&lt;&lt;", @previous_url %>
 			<%= link_to "&gt;&gt;", @next_url %>
 		</div>
+		
+		<% if flash[:notice] %>
+			<div id="notice"><%= flash[:notice] %></div>
+		<% end %>
 
         <%= yield %>
      </body>

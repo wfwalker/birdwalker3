@@ -1,20 +1,20 @@
 <%= error_messages_for 'trip' %>
 
 <!--[form:trip]-->
+<p><label for="trip_name">Name</label><br/>
+<%= text_field 'trip', 'name'  %></p>
+
+<p><label for="trip_date">Date</label><br/>
+<%= date_select 'trip', 'date'  %></p>
+
 <p><label for="trip_leader">Leader</label><br/>
 <%= text_field 'trip', 'leader'  %></p>
 
 <p><label for="trip_reference_url">Reference URL</label><br/>
 <%= text_field 'trip', 'reference_url'  %></p>
 
-<p><label for="trip_name">Name</label><br/>
-<%= text_field 'trip', 'name'  %></p>
-
 <p><label for="trip_notes">Notes</label><br/>
 <%= text_area 'trip', 'notes'  %></p>
-
-<p><label for="trip_date">Date</label><br/>
-<%= date_select 'trip', 'date'  %></p>
 
 <!--[eoform:trip]-->
 
