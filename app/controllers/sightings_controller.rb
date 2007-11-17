@@ -71,8 +71,9 @@ class SightingsController < ApplicationController
   end
 
   def destroy
-    Sighting.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    @sighting = Sighting.find(params[:id])
+    @sighting.destroy
+    redirect_to edit_trip_url(@sighting.trip_id)
   end
   
   def autocomplete_species

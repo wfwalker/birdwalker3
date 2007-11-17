@@ -46,7 +46,9 @@
 				
 						<% for @sighting in @trip.sightings %>
 							<div class="pagecontentitem">
-								<%= link_to safe_species_common_name(@sighting), edit_sighting_url(@sighting) %>, <%= @sighting.location.name %>
+								<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
+								<%= link_to 'edit', edit_sighting_url(@sighting) %>
+								<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Are you sure?', :method => 'delete' %>
 							</div>
 						<% end %>
 					<div>
