@@ -5,6 +5,7 @@ class Location < ActiveRecord::Base
   has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
   belongs_to :county
   
+  # TODO -- should be order by species.taxo_sort_order or whtaever i called that thing
   has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id" do
     def map_by_family
       Species.map_by_family(proxy_target)
@@ -17,7 +18,7 @@ class Location < ActiveRecord::Base
     end
   end
   
-  validates_presence_of :name, :county, :state
+  validates_presence_of :name, :county
   
   def next
     Location.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'county_id')
