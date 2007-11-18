@@ -7,7 +7,9 @@
     </head>
     <body>
         <div id="menu">
-			<img src="http://www.spflrc.org/~walker/images/topleft1.jpg" width="120" height="100" />
+			<div class='menuitem'>
+				<birdWalker><%= link_to "birdWalker", '/bird_walker/index' %>
+			</div>
 			<div class="<%= @controller.isLocation ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "locations", locations_url %>
 			</div>
@@ -19,10 +21,12 @@
 			</div>
 		</div>
 		
-		<div id="browse">
-			<%= link_to "&lt;&lt;", @previous_url %>
-			<%= link_to "&gt;&gt;", @next_url %>
-		</div>
+		<% if params[:action] != 'index' %>
+			<div id="browse">
+				<%= link_to "&lt;&lt;", @previous_url %>
+				<%= link_to "&gt;&gt;", @next_url %>
+			</div>
+		<% end %>
 		
 		<% if flash[:notice] %>
 			<div id="notice"><%= flash[:notice] %></div>
