@@ -22,8 +22,8 @@ class FamiliesController < ApplicationController
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
+  #verify :method => :post, :only => [ :destroy, :create, :update ],
+  #       :redirect_to => { :action => :list }
 
   def list
     @families = Family.find_all_seen
@@ -52,13 +52,16 @@ class FamiliesController < ApplicationController
 
   def edit
     @family = Family.find(params[:id])
+    
+    @family.previous && @previous_url = edit_family_url(@family.previous)
+    @family.next && @next_url = edit_family_url(@family.next)
   end
 
   def update
     @family = Family.find(params[:id])
     if @family.update_attributes(params[:family])
       flash[:notice] = 'Family was successfully updated.'
-      redirect_to :action => 'show', :id => @family
+      redirect_to family_url(@family)
     else
       render :action => 'edit'
     end
