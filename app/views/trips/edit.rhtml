@@ -48,7 +48,7 @@
 							<% end %>
 						</div>
 				
-						<% for @sighting in @trip.sightings %>
+						<% for @sighting in Sighting.sort_taxonomic(@trip.sightings) %>
 							<div class="pagecontentitem">
 								<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
 								<%= link_to 'edit', edit_sighting_url(@sighting) %>

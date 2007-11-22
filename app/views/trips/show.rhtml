@@ -21,8 +21,7 @@
 			<tr valign="top">
 				<td width="50%" valign="top">
 					<% for a_location in mapped.keys %>
-						<% sighting_list = mapped[a_location] %>
-						<% sorted_sighting_list = sighting_list.sort_by { |s| s.species.family.taxonomic_sort_id * 100000000000 + s.species_id } %>
+						<% sorted_sighting_list = Sighting.sort_taxonomic(mapped[a_location]) %>
 						<div class="pagecontentmodule">
 						    <div class="moduletitle">
 								<%= link_to a_location.name, location_url(a_location) %>, <%= sorted_sighting_list.size %> Species
