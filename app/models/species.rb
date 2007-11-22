@@ -11,7 +11,7 @@ class Species < ActiveRecord::Base
     end
   end
 
-  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id  , locations.name" do
+  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name" do
     def map_by_state
       Location.map_by_state(proxy_target)
     end  
@@ -29,7 +29,7 @@ class Species < ActiveRecord::Base
   
   # TODO: some cleaner way to do this!
   def Species.find_all_seen
-    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.id=sightings.species_id ORDER BY species.id"
+    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.id=sightings.species_id"
   end  
 
   def Species.find_all_seen_by_common_name
