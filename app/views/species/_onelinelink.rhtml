@@ -2,5 +2,5 @@
 
 <div class="pagecontentitem">
 	<%= link_to species.common_name, species_instance_url(species) %>
-	<% if species.aba_countable == 0 %>NOT ABA COUNTABLE <% end %>
+	<% if ! species.aba_countable %>NOT ABA COUNTABLE <% end %>
 </div>
