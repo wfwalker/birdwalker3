@@ -6,9 +6,13 @@
 	</div>
 
 	<div id="pagecontent">
-		<% form_tag :action => 'create' do %>
-  			<%= render :partial => 'form' %>
-  			<%= submit_tag "Create" %>
-		<% end %>
+		<div class="pagecontentmodule">
+			<div class="pagecontentitem">
+				<% form_tag :action => 'create' do %>
+		  			<%= render :partial => 'form' %>
+		  			<%= submit_tag "Create" %>
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>

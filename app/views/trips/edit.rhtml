@@ -29,17 +29,21 @@
 						<div class="moduletitle"><%= @trip.species.size %> Species</div>
 
 						<div class="pagecontentitem">
-							<% form_tag :controller => 'sightings', :action => 'create' do %>
-								<%= link_to 'Add Sighting', new_sighting_url(:trip_id => @trip.id, :location_id => @trip.locations[0].id) %>
-				
+							<% if (@trip.locations.size == 0)%>
+								<%= link_to 'Full Add Sighting', new_sighting_url(:trip_id => @trip.id) %>
+							<% else %>
+								<%= link_to 'Full Add Sighting', new_sighting_url(:trip_id => @trip.id, :location_id => @trip.locations[0].id) %>
+							<% end %>
+
+							<% form_tag :controller => 'sightings', :action => 'create_list' do %>
 								<%= error_messages_for 'sighting' %>
 
 								<!--[form:sighting]-->
 								<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
-								<%= hidden_field("sighting", "location_id", :value => @trip.locations[0].id) %>
+								<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name) %>
 
-								<p><label for="sighting_species">Quick Add </label>
-								<%= text_field_tag 'abbreviation' %>
+								<p><label for="sighting_species">Quick Add </label><br/>
+								<%= text_area_tag 'abbreviation_list', nil, :size => "25x10" %><br/>
 							  	<%= submit_tag "Create" %></p>
 							<% end %>
 						</div>
@@ -48,7 +52,7 @@
 							<div class="pagecontentitem">
 								<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
 								<%= link_to 'edit', edit_sighting_url(@sighting) %>
-								<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Are you sure?', :method => 'delete' %>
+								<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete ' + @sighting.species.common_name + ' Are you sure?', :method => 'delete' %>
 							</div>
 						<% end %>
 					<div>

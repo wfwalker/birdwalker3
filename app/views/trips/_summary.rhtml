@@ -16,6 +16,10 @@
 	<% end %>
 	
 	<div class="pagecontentitem">
-		<%= trip.notes %>
+		<% if (trip.notes.size > 500) %>
+			<%= trip.notes[0,500] %>...
+		<% else %>
+			<%= trip.notes %>
+		<% end %>
 	</div>
 </div>
