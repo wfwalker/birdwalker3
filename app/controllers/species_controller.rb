@@ -27,6 +27,11 @@ class SpeciesController < ApplicationController
   def list
     @all_species_seen = Species.find_all_seen
   end
+  
+  def life_list
+    list
+    render :action => 'life_list'
+  end
 
   def show
     @species = Species.find(params[:id])

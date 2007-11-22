@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :states
   map.resources :locations
   map.resources :families
-  map.resources :species, :singular => :species_instance
+  map.resources :species, :singular => :species_instance, :collection => { :life_list => :get }
   
   # map.resources :fish, :singular => :fish_instance, :new => {:preview => :post}, :member => {:fillet => :post}
 
