@@ -21,12 +21,14 @@
 			<tr valign="top">
 				<td width="50%" valign="top">
 					<% for a_location in mapped.keys %>
+						<% sighting_list = mapped[a_location] %>
+						<% sorted_sighting_list = sighting_list.sort_by { |s| s.species.family.taxonomic_sort_id * 100000000000 + s.species_id } %>
 						<div class="pagecontentmodule">
 						    <div class="moduletitle">
-								<%= link_to a_location.name, location_url(a_location) %>, <%= mapped[a_location].size %> Species
+								<%= link_to a_location.name, location_url(a_location) %>, <%= sorted_sighting_list.size %> Species
 							</div>
 				
-							<%= render :partial => 'sightings/onelinelink' , :collection => mapped[a_location] %>
+							<%= render :partial => 'sightings/onelinelink' , :collection => sorted_sighting_list %>
 						</div>
 					<% end %>
 				</td>
