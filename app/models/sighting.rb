@@ -25,8 +25,12 @@ class Sighting < ActiveRecord::Base
     "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumbURL + "\"/>"
   end
   
-  def Sighting.map_by_location(sightingList)
-    sightingList.inject({}) { | map, sighting |
+  def Sighting.map_by_location(sighting_list)
+    sighting_list.inject({}) { | map, sighting |
        map[sighting.location] ? map[sighting.location] << sighting : map[sighting.location] = [sighting] ; map }
+  end
+  
+  def Sighting.sort_taxonomic(sighting_list)
+    sighting_list.sort_by { |s| s.species.family.taxonomic_sort_id * 100000000000 + s.species_id }
   end
 end

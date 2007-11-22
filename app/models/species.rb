@@ -36,8 +36,12 @@ class Species < ActiveRecord::Base
     Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.id=sightings.species_id ORDER BY species.common_name"
   end  
   
-  def Species.map_by_family(speciesList)
-    speciesList.inject({}) { | map, species |
+  def Species.map_by_family(species_list)
+    species_list.inject({}) { | map, species |
        map[species.family] ? map[species.family] << species : map[species.family] = [species] ; map }
+  end
+  
+  def Species.sort_taxonomic(species_list)
+    species_list.sort_by { |s| s.family.taxonomic_sort_id * 100000000000 + s.id }
   end
 end
