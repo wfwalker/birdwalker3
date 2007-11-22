@@ -55,6 +55,20 @@ class SightingsController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  def create_list
+    if (params[:abbreviation_list])
+      for an_abbrev in params[:abbreviation_list].scan(/\w+/) do
+        @sighting = Sighting.new(params[:sighting])
+        temp = Species.find_by_abbreviation(an_abbrev)
+        @sighting.species_id = temp.id  
+        @sighting.save
+      end
+    end
+
+    flash[:notice] = 'Sightings were successfully created.'
+    redirect_to edit_trip_url(@sighting.trip_id)
+  end
 
   def edit
     @sighting = Sighting.find(params[:id])
