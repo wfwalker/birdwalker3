@@ -33,4 +33,8 @@ class Sighting < ActiveRecord::Base
   def Sighting.sort_taxonomic(sighting_list)
     sighting_list.sort_by { |s| s.species.family.taxonomic_sort_id * 100000000000 + s.species_id }
   end
+  
+  def Sighting.sort_alphabetic(sighting_list)
+    sighting_list.sort_by { |s| s.species.common_name }
+  end
 end
