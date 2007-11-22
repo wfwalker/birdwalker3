@@ -1,12 +1,12 @@
 class Trip < ActiveRecord::Base
-  has_many :sightings, :order => "species_id" do
+  has_many :sightings do
       def map_by_location
         Sighting.map_by_location(proxy_owner.sightings)
       end  
   end
   has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
 
-  has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id" do
+  has_many :species, :through => :sightings, :select => "DISTINCT species.*" do
     def map_by_family
       Species.map_by_family(proxy_target)
     end  
