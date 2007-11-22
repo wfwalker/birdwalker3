@@ -5,8 +5,7 @@ class Location < ActiveRecord::Base
   has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
   belongs_to :county
   
-  # TODO -- should be order by species.taxo_sort_order or whtaever i called that thing
-  has_many :species, :through => :sightings, :select => "DISTINCT species.*", :order => "species.id" do
+  has_many :species, :through => :sightings, :select => "DISTINCT species.*" do
     def map_by_family
       Species.map_by_family(proxy_target)
     end  
@@ -27,11 +26,7 @@ class Location < ActiveRecord::Base
   def previous
     Location.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'county_id DESC')
   end
-  
-  def find_state
-    State.find(:first, :conditions => ["abbreviation = (?)", self.state])
-  end
-    
+      
   def Location.map_by_state(locationList)
     locationList.inject({}) { | map, location |
        map[location.county.state] ? map[location.county.state] << location : map[location.county.state] = [location] ; map }
