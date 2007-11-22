@@ -8,7 +8,11 @@
 	<div class="moduletitle"><%= species_list.size %> Species</div>
 
 	<% for family in sorted_families %>
-		<%= render :partial => 'families/onelinelink', :object => family %>
+		<% if species_list.size > 100 %>
+			<%= render :partial => 'families/onelinelink', :object => family %>
+		<% else %>
+			<div style="height: 8px"></div>
+		<% end %>
 		<%= render :partial => 'species/onelinelink', :collection => species_by_family[family] %>
 	<% end %>
 </div>

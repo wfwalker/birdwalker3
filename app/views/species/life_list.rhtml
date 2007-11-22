@@ -1,0 +1,13 @@
+<% @page_title = "Life List" %>
+
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %></div>
+	</div>
+ 	
+	<div id="pagecontent">
+		<% chrono_species = @all_species_seen.sort_by { |s| s.first_sighting.trip.date } %>
+		
+		<%= render :partial => 'species/onelinelink' , :collection => chrono_species.reverse %>
+	</div>
+</div>
