@@ -18,10 +18,10 @@ class County < ActiveRecord::Base
   end
   
   def species
-    @species = Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, locations WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "' ORDER BY species.id")
+    @species = Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, locations WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "'")
   end
 
   def trips
-    Trip.find_by_sql("SELECT DISTINCT trips.* FROM trips, sightings, locations WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "'ORDER BY trips.date DESC")
+    Trip.find_by_sql("SELECT DISTINCT trips.* FROM trips, sightings, locations WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "'")
   end
 end
