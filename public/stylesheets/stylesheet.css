@@ -59,6 +59,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-top: 5px; padding-bottom: 5px;
 	background-color: #888888;
 	color: white;
+	border-bottom: solid 1px white;
 }
 
 #menu .tripmenuitem
@@ -67,6 +68,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-top: 5px; padding-bottom: 5px;
 	background-color: #0000DD;
 	color: white;
+	border-bottom: solid 1px white;
 }
 
 #menu .locationmenuitem
@@ -75,6 +77,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-top: 5px; padding-bottom: 5px;
 	background-color: #00DD00;
 	color: white;
+	border-bottom: solid 1px white;
 }
 
 #menu .speciesmenuitem
@@ -83,6 +86,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-top: 5px; padding-bottom: 5px;
 	background-color: #DD0000;
 	color: white;
+	border-bottom: solid 1px white;
 }
 
 #menu a
