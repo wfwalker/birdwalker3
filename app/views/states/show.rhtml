@@ -8,14 +8,14 @@
 	<div id="pagecontent">
 		<%= show_location_list(@state.locations) %>
 	
-		<%= show_species_list(@state.find_all_species) %>
+		<%= show_species_list(@state.species) %>
 
-		<%= show_trip_list(@state.find_all_trips) %>
+		<%= show_trip_list(@state.trips) %>
 
 		<div class="pagecontentmodule">
 			<div class="moduletitle">Photos</div>
 			<div class="pagecontentitem">
-				<%= render :partial => 'sightings/thumbnail', :collection => @state.find_all_photos %>
+				<%= render :partial => 'sightings/thumbnail', :collection => @state.sightings_with_photos %>
 			</div>
 		</div>
 	</div>
