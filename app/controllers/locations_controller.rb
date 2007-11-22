@@ -19,6 +19,9 @@ class LocationsController < ApplicationController
     list
     render :action => 'list'
   end
+  
+  # for 'http://localhost:3000/', use google maps key
+  # ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw
 
 # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
 #  verify :method => :post, :only => [ :destroy, :create, :update ],
@@ -28,6 +31,11 @@ class LocationsController < ApplicationController
     @locations = Location.find(:all, :order => "name")
   end
 
+  def google
+    @location = Location.find(params[:id])
+    logger.error("LOCATION GOOGLE " + @location.latitude.to_s + " "  + @location.longitude.to_s)
+  end
+  
   def show
     @location = Location.find(params[:id])
     
