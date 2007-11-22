@@ -31,7 +31,9 @@
 					
 					<%= show_thumbnail_list(@location.sightings_with_photos) %>
 					
-					<%= show_trip_list(@location.trips) %>
+					<%= render :partial => 'locations/google', :object => @location %>
+
+					<%= show_trip_list(@location.trips) %>					
 				</td>
 			</tr>
 		</table>

@@ -1,0 +1,31 @@
+ <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw"  type="text/javascript"></script>
+
+  <script type="text/javascript">
+      // helper function to create markers
+      function createMarker(point,html) {
+          var marker = new GMarker(point);
+          GEvent.addListener(marker, "click", function() {
+           marker.openInfoWindowHtml(html);
+           });
+          return marker;
+      }
+      
+      // this is called when the page loads. 
+      // it initializes the map, and creates each marker
+      function initialize() {
+          var map = new GMap(document.getElementById("map"));
+          map.addControl(new GSmallMapControl());
+          map.centerAndZoom(new GPoint(<%=@location.longitude.to_s%>,<%= @location.latitude.to_s%>), 5);
+          
+          var point = new GPoint(<%=@location.longitude.to_s%>,<%= @location.latitude.to_s%>);
+          var marker = createMarker(point,'<div><%=@location.name %></div>')
+          map.addOverlay(marker);
+      }    
+  </script>
+
+<div class="pagecontentmodule">
+	<div class="moduletitle">Map</div>
+	<div class="pagecontentitem">
+		<div id="map" style="width: 450px; height: 350px"></div>
+	</div>
+</div>
