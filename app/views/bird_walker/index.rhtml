@@ -5,8 +5,15 @@
 		<div id="pagetitle">BirdWalker 3</div>
 	</div>
 	<div id="pagecontent">
-		<p>Hi this is the index page.</p>
-
-		<%= render :partial => 'trips/summary', :collection => @recent_trips %>
+		<table width="100%" cellpadding="0px" cellspacing="0px">
+			<tr valign="top">
+				<td valign="top" width="50%">
+					other stuff
+				</td>
+				<td valign="top" width="50%">
+					<%= render :partial => 'trips/summary', :collection => @recent_trips %>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>
