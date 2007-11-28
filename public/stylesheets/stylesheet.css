@@ -1,6 +1,6 @@
 body
 {
-	font: 10pt Gill Sans;
+	font: 10pt Gill Sans, Sans-Serif;
 }
 
 a       { text-decoration: none; }
@@ -97,7 +97,7 @@ a:hover { color: red; text-decoration: underline; }
 
 #pagetitle
 {
-	font: 20pt Gill Sans;
+	font: 20pt Gill Sans, Sans-Serif;
 	padding-left: 10px;
 	padding-bottom: 5px;
 }
