@@ -31,8 +31,10 @@
 					
 					<%= show_thumbnail_list(@location.sightings_with_photos) %>
 					
-					<%= render :partial => 'locations/google', :object => @location %>
-
+					<% if (@location.latitude != 0) %>
+						<%= render :partial => 'locations/google', :object => @location %>
+					<% end %>
+					
 					<%= show_trip_list(@location.trips) %>					
 				</td>
 			</tr>
