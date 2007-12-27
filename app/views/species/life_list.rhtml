@@ -6,8 +6,10 @@
 	</div>
  	
 	<div id="pagecontent">
-		<% chrono_species = @all_species_seen.sort_by { |s| s.first_sighting.trip.date } %>
-		
-		<%= render :partial => 'species/onelinelink' , :collection => chrono_species.reverse %>
+		<div class="pagecontentmodule">
+			<div class="moduletitle"><%= @all_species_seen.size %> Species</div>
+			<% chrono_species = @all_species_seen.sort_by { |s| s.first_sighting.trip.date } %>
+			<%= render :partial => 'species/onelinelink' , :collection => chrono_species.reverse %>
+		</div>
 	</div>
 </div>
