@@ -8,7 +8,7 @@
     <body onload="initialize()">
         <div id="menu">
 			<div class='menuitem'>
-				<birdWalker><%= link_to "birdWalker", '/bird_walker/index' %>
+				<%= link_to "birdWalker", '/bird_walker/index' %>
 			</div>
 			<div class="<%= @controller.isLocation ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "locations", locations_url %>
@@ -18,6 +18,9 @@
 			</div>
 			<div class="<%= @controller.isTrip ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
+			</div>
+			<div class="menuitem">
+				<%= link_to "about", '/	bird_walker/about' %>
 			</div>
 		</div>
 		
