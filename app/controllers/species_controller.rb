@@ -29,7 +29,7 @@ class SpeciesController < ApplicationController
   end
   
   def life_list
-    list
+    @all_species_seen = Species.find_all_seen_not_excluded
     render :action => 'life_list'
   end
 

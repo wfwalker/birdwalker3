@@ -4,6 +4,9 @@ class BirdWalkerController < ApplicationController
   def index
     @recent_trips = Trip.find(:all, :limit => 20, :order => 'date DESC')
   end
+
+  def about
+  end
   
   def isLocation
     false
