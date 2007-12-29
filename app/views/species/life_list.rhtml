@@ -13,7 +13,16 @@
 		<% for clump in clumps.reverse %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle"><number><%= index %> to <%= index  + 1 - clump.size %></div>
-				<%= render :partial => 'species/onelinelink' , :collection => clump.reverse %>
+					
+				<table>
+				<% for species in clump.reverse %>
+					<tr>
+						<td class="pagecontentitem"><%= short_nice_date(species.first_sighting.trip.date) %></td>
+						<td><%= species.first_sighting.location.name %></td>
+						<td><%= link_to species.common_name, species_instance_url(species) %></td>
+					</tr>
+				<% end %>
+				</table>
 			</div>
 			<% index = index - clump.size %>
 		<% end %>
