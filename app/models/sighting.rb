@@ -33,8 +33,17 @@ class Sighting < ActiveRecord::Base
   def Sighting.sort_taxonomic(sighting_list)
     sighting_list.sort_by { |s| s.species.family.taxonomic_sort_id * 100000000000 + s.species_id }
   end
+
+  def Sighting.sort_chronological(sighting_list)
+    sighting_list.sort_by { |s| s.trip.date }
+  end
   
   def Sighting.sort_alphabetic(sighting_list)
     sighting_list.sort_by { |s| s.species.common_name }
+  end
+  
+  def Sighting.map_by_family(sighting_list)
+    sighting_list.inject({}) { | map, sighting |
+       map[sighting.species.family] ? map[sighting.species.family] << sighting : map[sighting.species.family] = [sighting] ; map }
   end
 end

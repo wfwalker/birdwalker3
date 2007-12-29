@@ -27,4 +27,8 @@ class Family < ActiveRecord::Base
   def trips
     Trip.find_by_sql "SELECT DISTINCT trips.* from trips, species, sightings WHERE trips.id=sightings.trip_id AND sightings.species_id=species.id AND species.family_id='" + self.id.to_s + "' ORDER BY trips.date"
   end    
+  
+  def Family.sort_taxonomic(family_list)
+    family_list.sort_by { |f| f.taxonomic_sort_id }
+  end
 end

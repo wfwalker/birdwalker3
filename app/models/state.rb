@@ -27,4 +27,8 @@ class State < ActiveRecord::Base
       WHERE sightings.photo='1' AND sightings.location_id=locations.id AND
       locations.county_id=counties.id AND counties.state_id='" + self.id.to_s + "' ORDER BY sightings.id")
   end
+  
+  def State.sort_alphabetic(state_list)
+    state_list.sort_by { |s| s.name }
+  end
 end
