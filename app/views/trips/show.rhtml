@@ -21,14 +21,9 @@
 			<tr valign="top">
 				<td width="50%" valign="top">
 					<% for a_location in mapped.keys %>
-						<% sorted_sighting_list = Sighting.sort_taxonomic(mapped[a_location]) %>
-						<div class="pagecontentmodule">
-						    <div class="moduletitle">
-								<%= link_to a_location.name, location_url(a_location) %>, <%= sorted_sighting_list.size %> Species
-							</div>
-				
-							<%= render :partial => 'sightings/onelinelink' , :collection => sorted_sighting_list %>
-						</div>
+						<% sighting_list = mapped[a_location] %>
+						<% @module_title = link_to a_location.name, location_url(a_location) %>
+						<%= show_taxonomic_sighting_list(sighting_list) %>
 					<% end %>
 				</td>
 				<td width="50%" valign="top">
