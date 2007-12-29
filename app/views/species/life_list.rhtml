@@ -6,10 +6,16 @@
 	</div>
  	
 	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<div class="moduletitle"><%= @all_species_seen.size %> Species</div>
-			<% chrono_species = @all_species_seen.sort_by { |s| s.first_sighting.trip.date } %>
-			<%= render :partial => 'species/onelinelink' , :collection => chrono_species.reverse %>
-		</div>
+		<% chrono_species = @all_species_seen.sort_by { |s| s.first_sighting.trip.date } %>
+		<% clumps = chrono_species/100 %>
+
+		<% index = chrono_species.size %>
+		<% for clump in clumps.reverse %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle"><number><%= index %> to <%= index  + 1 - clump.size %></div>
+				<%= render :partial => 'species/onelinelink' , :collection => clump.reverse %>
+			</div>
+			<% index = index - clump.size %>
+		<% end %>
 	</div>
 </div>
