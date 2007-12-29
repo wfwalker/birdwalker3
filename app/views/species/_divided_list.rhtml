@@ -2,7 +2,7 @@
 
 <% species_by_family = Species.map_by_family(species_list) %>
 
-<% sorted_families = species_by_family.keys.sort_by { |f| f.taxonomic_sort_id } %>
+<% sorted_families = Family.sort_taxonomic(species_by_family.keys) %>
 
 <div class="pagecontentmodule">
 	<div class="moduletitle"><%= species_list.size %> Species</div>

@@ -2,7 +2,7 @@
 
 <% locations_by_state = Location.map_by_state(location_list) %>
 
-<% ordered_states = locations_by_state.keys.sort_by { |s| s.name } %>
+<% ordered_states = State.sort_alphabetic(locations_by_state.keys) %>
 
 <div class="pagecontentmodule">
 	<div class="moduletitle">
