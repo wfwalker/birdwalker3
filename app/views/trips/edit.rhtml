@@ -19,7 +19,7 @@
 						<div class="pagecontentitem">
 							<% form_for :trip, @trip, :url => trip_path(@trip), :html => { :method => 'put' } do |form| %>
 							  <%= render :partial => 'form' %>
-							  <%= submit_tag 'Edit' %>
+							  <%= submit_tag 'Save' %>
 							<% end %>
 						</div>
 					</div>
@@ -44,7 +44,7 @@
 
 								<!--[form:sighting]-->
 								<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
-								<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name) %>
+								<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %>
 
 								<p><label for="sighting_species">Abbreviations</label><br/>
 								<%= text_area_tag 'abbreviation_list', nil, :size => "25x10" %><br/>
