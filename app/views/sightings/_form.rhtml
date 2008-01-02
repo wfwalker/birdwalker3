@@ -11,7 +11,7 @@
 </p>
 
 <p><label for="sighting_species">Species</label><br/>
-<%= collection_select("sighting", "species_id", Species.find_all_seen_by_common_name, :id, :common_name) %>
+<%= collection_select("sighting", "species_id", Species.find_all_seen_by_common_name, :id, :common_name, {:prompt => true}) %>
 </p>
 
 <p><%= check_box 'sighting', 'exclude'  %><label for="sighting_exclude">Exclude</label></p>
