@@ -29,7 +29,8 @@ class SpeciesController < ApplicationController
   end
   
   def life_list
-    @all_species_seen = Species.find_all_seen_not_excluded
+    all_species_seen = Species.find_all_seen_not_excluded
+    @life_sightings = all_species_seen.map(&:first_sighting).flatten.uniq    
     render :action => 'life_list'
   end
 
