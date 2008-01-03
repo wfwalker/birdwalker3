@@ -7,6 +7,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :families
   map.resources :species, :singular => :species_instance, :collection => { :life_list => :get }
   
+  # wfw
+  map.connect 'species/year/:year', :controller => 'species', :action => 'year'
+  
   # map.resources :fish, :singular => :fish_instance, :new => {:preview => :post}, :member => {:fillet => :post}
 
   # The priority is based upon order of creation: first created -> highest priority.
