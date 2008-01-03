@@ -8,7 +8,7 @@ module SightingsHelper
   end
 
   def safe_location_name(sighting)
-	  if (sighting.location) then
+	  if (sighting && sighting.location) then
 		  sighting.location.name
 	  else
 			"unknown"
@@ -16,7 +16,7 @@ module SightingsHelper
   end
 
   def safe_trip_name(sighting)
-	  if (sighting.trip) then
+	  if (sighting && sighting.trip) then
 		  sighting.trip.name
 	  else
 			"unknown"
@@ -24,7 +24,7 @@ module SightingsHelper
   end
 
   def safe_species_common_name(sighting)
-	  if (sighting.species) then
+	  if (sighting && sighting.species) then
 		  sighting.species.common_name
 	  else
 			"unknown"
@@ -50,6 +50,6 @@ module SightingsHelper
 	def show_chronological_sighting_list(sighting_list)
 	  sorted_sighting_list = Sighting.sort_chronological(sighting_list);
 	      
-	  render :partial => 'sightings/undivided_list', :object => sorted_sighting_list
+	  render :partial => 'sightings/chronological_list', :object => sorted_sighting_list
 	end
 end
