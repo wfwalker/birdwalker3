@@ -21,18 +21,22 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td valign="top" width="50%">
-					<div class="pagecontentmodule">
-						<div class="moduletitle">First sighting</div>	
-						<%= render :partial => 'sightings/full_details', :object => @species.first_sighting %>	
-					</div>
+					<% has_sightings?(@species) do %>
+						<div class="pagecontentmodule">
+							<div class="moduletitle">First sighting</div>	
+							<%= render :partial => 'sightings/full_details', :object => @species.first_sighting %>	
+						</div>
+					<% end %>
 		
 					<%= show_trip_list(@species.trips) %>
 				</td>
 				<td valign="top" width="50%">
-					<div class="pagecontentmodule">
-						<div class="moduletitle">Latest sighting</div>	
-						<%= render :partial => 'sightings/full_details', :object => @species.last_sighting %>	
-					</div>
+					<% has_sightings?(@species) do %>
+						<div class="pagecontentmodule">
+							<div class="moduletitle">Latest sighting</div>	
+							<%= render :partial => 'sightings/full_details', :object => @species.last_sighting %>	
+						</div>
+					<% end %>
 
 					<%= show_thumbnail_list(@species.sightings_with_photos) %>
 
