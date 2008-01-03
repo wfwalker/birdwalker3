@@ -1,0 +1,16 @@
+<% sighting_list = chronological_list %>
+
+<div class="pagecontentmodule">
+	<div class="modulesubtitle"><%= @module_title %>, <%= sighting_list.size %> Sightings</div>
+	<table>
+		<% previous_sighting = nil %>
+		<% for sighting in sighting_list do %>
+		<tr>
+			<td><% if ! previous_sighting || previous_sighting.trip_id != sighting.trip_id %>**<% end %><%= sighting.trip.date %></td>
+			<td><% if ! previous_sighting || previous_sighting.location_id != sighting.location_id %>**<% end %><%= sighting.location.name %></td>
+			<td><%= sighting.species.common_name %></td>
+			<% previous_sighting = sighting %>
+		</tr>
+		<% end %>
+	</table>
+</div>
