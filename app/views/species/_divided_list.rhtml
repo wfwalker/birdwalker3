@@ -9,7 +9,7 @@
 
 	<% for family in sorted_families %>
 		<% if species_list.size > 100 %>
-			<%= render :partial => 'families/onelinelink', :object => family %>
+			<div class="modulesubtitle"><%= family.common_name %></div>
 		<% else %>
 			<div style="height: 8px"></div>
 		<% end %>
