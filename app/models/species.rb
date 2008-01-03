@@ -1,7 +1,7 @@
 class Species < ActiveRecord::Base
   has_many :sightings
-  has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
-  has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
+  has_one :first_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id'
+  has_one :last_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id DESC'
   has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
   belongs_to :family
   
