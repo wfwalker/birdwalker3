@@ -33,6 +33,16 @@ class SpeciesController < ApplicationController
     @life_sightings = all_species_seen.map(&:first_sighting).flatten.uniq    
     render :action => 'life_list'
   end
+  
+  def year
+    @all_species_seen = Species.find_by_sql("SELECT DISTINCT(species.id), species.* FROM species, sightings, trips WHERE sightings.trip_id=trips.id AND sightings.species_id=species.id AND year(trips.date)=" + params[:year])
+
+    # TODO this can't be the idiomatic way
+    @previous_url = '/species/year/' + (params[:year].to_i - 1).to_s
+    @next_url = '/species/year/' + (params[:year].to_i + 1).to_s
+
+    render :action => 'list'
+  end
 
   def show
     @species = Species.find(params[:id])
