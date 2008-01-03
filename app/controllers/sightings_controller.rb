@@ -44,7 +44,7 @@ class SightingsController < ApplicationController
 
     if (params[:abbreviation])
       temp = Species.find_by_abbreviation(params[:abbreviation])
-      # TODO need to barf here if no species found
+      raise "Bogus abbreviation" if temp == nil
       @sighting.species_id = temp.id  
     end
 
@@ -58,7 +58,21 @@ class SightingsController < ApplicationController
   
   def create_list
     if (params[:abbreviation_list])
-      for an_abbrev in params[:abbreviation_list].scan(/\w+/) do
+      @sighting = Sighting.new(params[:sighting])
+      raise "Missing location" if @sighting.location_id == nil
+      
+      abbreviations = params[:abbreviation_list].scan(/\w+/)
+      raise "Missing abbreviations" if abbreviations.size == 0
+
+      bogus_abbreviations = []
+      for an_abbrev in abbreviations do
+        temp = Species.find_by_abbreviation(an_abbrev)
+        bogus_abbreviations << an_abbrev if ! temp
+      end
+      
+      raise "Bogus abbreviations: " + bogus_abbreviations.join(", ") if bogus_abbreviations.size > 0
+      
+      for an_abbrev in abbreviations do
         @sighting = Sighting.new(params[:sighting])
         temp = Species.find_by_abbreviation(an_abbrev)
         @sighting.species_id = temp.id  
