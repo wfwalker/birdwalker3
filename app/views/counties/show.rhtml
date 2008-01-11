@@ -17,6 +17,8 @@
 				<td width="50%">
 					<%= show_thumbnail_list(@county.sightings_with_photos) %>
 					
+					<%= render :partial => 'locations/google', :object => @county.locations %>
+					
 					<%= show_location_list(@county.locations) %>
 				</td>
 			</tr>

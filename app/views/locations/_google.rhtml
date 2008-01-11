@@ -1,3 +1,5 @@
+<% locations = google %>
+
  <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw"  type="text/javascript"></script>
 
   <script type="text/javascript">
@@ -15,11 +17,28 @@
       function initialize() {
           var map = new GMap(document.getElementById("map"));
           map.addControl(new GSmallMapControl());
-          map.centerAndZoom(new GPoint(<%=@location.longitude.to_s%>,<%= @location.latitude.to_s%>), 5);
+
+		  <% center_latitude = 0 %>
+		  <% center_longitude = 0 %>
+		  <% count = 0 %>
+		
+		  <% for location in locations %>
+			<% if (location.longitude != nil && location.longitude != 0) %>
+				<% center_latitude = center_latitude + location.latitude %>
+				<% center_longitude = center_longitude + location.longitude %>
+				<% count = count + 1 %>
+			<% end %>
+		  <% end %>
+
+		  <% if (count > 0) %>
+   		  map.centerAndZoom(new GPoint(<%= (center_longitude / count).to_s %>,<%= (center_latitude / count).to_s %>), 5);
           
-          var point = new GPoint(<%=@location.longitude.to_s%>,<%= @location.latitude.to_s%>);
-          var marker = createMarker(point,'<div><%=@location.name %></div>')
-          map.addOverlay(marker);
+		  <% for location in locations %>
+			<% if (location.longitude != 0) %>
+          		map.addOverlay(createMarker(new GPoint(<%=location.longitude.to_s%>,<%= location.latitude.to_s%>),'<div><%= location.name %></div>'));
+			<% end %>
+		  <% end %>
+		  <% end %>
       }    
   </script>
 

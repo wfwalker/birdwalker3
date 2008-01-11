@@ -39,6 +39,8 @@
 					<% end %>
 
 					<%= show_thumbnail_list(@species.sightings_with_photos) %>
+					
+					<%= render :partial => 'locations/google', :object => @species.locations %>
 
 					<%= show_location_list(@species.locations) %>
 				</td>
