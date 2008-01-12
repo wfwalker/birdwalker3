@@ -18,20 +18,18 @@
           var map = new GMap(document.getElementById("map"));
           map.addControl(new GSmallMapControl());
 
-		  <% center_latitude = 0 %>
-		  <% center_longitude = 0 %>
-		  <% count = 0 %>
+		  <% valid_locations = locations.select { | a_location | a_location.longitude != 0 } %>
+		  <% min_longitude = valid_locations.collect { | a_location | a_location.longitude }.min %>
+		  <% max_longitude = valid_locations.collect { | a_location | a_location.longitude }.max %>
+		  <% min_latitude = valid_locations.collect { | a_location | a_location.latitude }.min %>
+		  <% max_latitude = valid_locations.collect { | a_location | a_location.latitude }.max %>
+		  <% count = valid_locations.size %>
 		
-		  <% for location in locations %>
-			<% if (location.longitude != nil && location.longitude != 0) %>
-				<% center_latitude = center_latitude + location.latitude %>
-				<% center_longitude = center_longitude + location.longitude %>
-				<% count = count + 1 %>
-			<% end %>
-		  <% end %>
+		  <% center_longitude = (min_longitude + max_longitude) / 2 %>
+		  <% center_latitude = (min_latitude + max_latitude) / 2 %>
 
 		  <% if (count > 0) %>
-   		  map.centerAndZoom(new GPoint(<%= (center_longitude / count).to_s %>,<%= (center_latitude / count).to_s %>), 5);
+   		  map.centerAndZoom(new GPoint(<%= center_longitude %>, <%= center_latitude %>), 5);
           
 		  <% for location in locations %>
 			<% if (location.longitude != 0) %>
