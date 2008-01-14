@@ -28,7 +28,7 @@ class CountiesController < ApplicationController
           end
           
           if (@map[sighting.species][sighting.trip.date.year] != '1') then
-            @map[sighting.species][sighting.trip.date.year] = '1'
+            @map[sighting.species][sighting.trip.date.year] = 'X'
             @totals[sighting.trip.date.year] = @totals[sighting.trip.date.year] + 1
           end
         end
