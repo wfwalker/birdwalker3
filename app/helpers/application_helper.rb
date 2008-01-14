@@ -31,4 +31,8 @@ module ApplicationHelper
   def editing_is_allowed?(&block)
     yield if true
   end
+  
+  def is_laptop
+    `hostname`.strip == "vermillion.local"
+  end
 end
