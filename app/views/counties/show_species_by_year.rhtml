@@ -11,21 +11,33 @@
 			<tr>
 				<td>Species</td>
 				<% for year in (1996..2008) do %>
-					<td><%= year %></td>
+					<td align="right"><%= year %></td>
 				<% end %>
 			</tr>
-			<% for key in @map.keys %>
+			<tr>
+				<td>Total</td>
+				<% for year in (1996..2008) do %>
+					<td align="right"><%= @totals[year] %></td>
+				<% end %>
+			</tr>
+			<% for key in Species.sort_taxonomic(@map.keys) %>
 				<tr valign="top">
 					<td><%= key.common_name %></td>
 					<% for year in (1996..2008) do %>
-						<td><%= @map[key][year] %></td>
+						<td align="center"><%= @map[key][year] %></td>
 					<% end %>
 				</tr>
 			<% end %>
 			<tr>
 				<td>Total</td>
 				<% for year in (1996..2008) do %>
-					<td><%= @totals[year] %></td>
+					<td align="right"><%= @totals[year] %></td>
+				<% end %>
+			</tr>
+			<tr>
+				<td>Species</td>
+				<% for year in (1996..2008) do %>
+					<td align="right"><%= year %></td>
 				<% end %>
 			</tr>
 		</table>
