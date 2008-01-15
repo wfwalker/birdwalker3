@@ -1,6 +1,10 @@
 class County < ActiveRecord::Base
   belongs_to :state
-  has_many :locations
+  has_many :locations do
+    def with_lat_long
+      Location.find(:all, :conditions => ["county_id = (?) AND latitude != 0 AND longitude != 0", proxy_owner.id.to_s])
+    end
+  end
   has_many :sightings, :through => :locations
   has_many :sightings_with_photos, :through => :locations, :conditions => 'sightings.photo = 1'
   
@@ -8,7 +12,7 @@ class County < ActiveRecord::Base
  # (Grab all of the sightings for the county, create a new array made up of all 
  #of the arrays of species associated with each sighting, flatten it into a 1-d array and remove dupes)
  # Which I would build into the sightings association using a block.
-  
+   
   def next
     County.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
   end
