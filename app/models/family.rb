@@ -4,11 +4,11 @@ class Family < ActiveRecord::Base
   has_many :sightings_with_photos, :through =>:species, :conditions => 'photo = 1'
   
   def next
-    Location.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
+    Family.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
   end
 
   def previous
-    Location.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
+    Family.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
   end
   
   def species_seen
