@@ -40,7 +40,9 @@
 
 					<%= show_thumbnail_list(@species.sightings_with_photos) %>
 					
-					<%= render :partial => 'locations/google', :object => @species.locations %>
+					<% if (@species.locations.with_lat_long.size > 0) %>
+						<%= render :partial => 'locations/google', :object => @species.locations.with_lat_long %>
+					<% end %>
 
 					<%= show_location_list(@species.locations) %>
 				</td>

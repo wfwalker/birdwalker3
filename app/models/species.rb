@@ -15,6 +15,9 @@ class Species < ActiveRecord::Base
     def map_by_state
       Location.map_by_state(proxy_target)
     end  
+    def with_lat_long
+      Location.find_by_sql("SELECT locations.* from locations, sightings WHERE sightings.location_id=locations.id AND species_id=(" + proxy_owner.id.to_s + ") AND latitude != 0 AND longitude != 0")
+    end
   end
   
   validates_presence_of :common_name, :latin_name, :abbreviation
