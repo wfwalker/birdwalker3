@@ -28,11 +28,11 @@
 		  <% center_longitude = (min_longitude + max_longitude) / 2 %>
 		  <% center_latitude = (min_latitude + max_latitude) / 2 %>
 
-   		  map.centerAndZoom(new GPoint(<%= center_longitude %>, <%= center_latitude %>), 5);
+   		  map.centerAndZoom(new GPoint(<%= center_longitude %>, <%= center_latitude %>), 13);
           
 		  <% for location in locations %>
 			<% if (location.longitude != 0) %>
-          		map.addOverlay(createMarker(new GPoint(<%=location.longitude.to_s%>,<%= location.latitude.to_s%>),'<div><%= location.name %></div>'));
+          		map.addOverlay(createMarker(new GPoint(<%=location.longitude.to_s%>,<%= location.latitude.to_s%>),'<div><%= escape_javascript(location.name) %></div>'));
 			<% end %>
 		  <% end %>
       }    
