@@ -62,6 +62,15 @@ a:hover { color: red; text-decoration: underline; }
 	border-bottom: solid 1px white;
 }
 
+#menu .homemenuitem
+{
+	padding-left: 10px;
+	padding-top: 5px; padding-bottom: 5px;
+	background-color: #DD00DD;
+	color: white;
+	border-bottom: solid 1px white;
+}
+
 #menu .tripmenuitem
 {
 	padding-left: 10px;

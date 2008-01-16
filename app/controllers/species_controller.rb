@@ -3,16 +3,8 @@ class SpeciesController < ApplicationController
   helper :locations
   helper :sightings
 
-  def isLocation
-    false
-  end
-  
-  def isTrip
-    false
-  end
-  
-  def isSpecies
-    true
+  def page_kind
+    "species"
   end
 
   def index

@@ -2,16 +2,8 @@ class TripsController < ApplicationController
   helper :locations
   helper :sightings
 
-  def isLocation
-    false
-  end
-  
-  def isTrip
-    true
-  end
-  
-  def isSpecies
-    false
+  def page_kind
+    "trip"
   end
   
   def list

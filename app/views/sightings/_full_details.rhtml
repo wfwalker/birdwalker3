@@ -1,7 +1,7 @@
 <% sighting = full_details %>
 
 <div class="pagecontentitem">
-	<% if @controller.isTrip %>
+	<% if @controller.page_kind == 'trip' %>
 		<%= link_to safe_species_common_name(sighting), species_instance_url(sighting.species_id) %> at
 	<% end %>
 	<%= link_to safe_location_name(sighting), location_url(sighting.location_id) %>

@@ -38,16 +38,8 @@ class CountiesController < ApplicationController
     @county.next && @next_url = county_url(@county.next)
   end
   
-  def isLocation
-    true
-  end
-  
-  def isTrip
-    false
-  end
-  
-  def isSpecies
-    false
+  def page_kind
+    "location"
   end
   
   def index

@@ -4,18 +4,10 @@ class FamiliesController < ApplicationController
   helper :locations
   helper :sightings
   
-  def isLocation
-    false
+  def page_kind
+    "species"
   end
-  
-  def isTrip
-    false
-  end
-  
-  def isSpecies
-    true
-  end
-  
+
   def index
     list
     render :action => 'list'

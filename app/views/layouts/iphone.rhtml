@@ -9,13 +9,13 @@
     <body>
         <div id="menu">
 			<span style="display: inline-block; background-color: darkblue"><%= link_to "&lt;&lt;", @previous_url %></span>
-			<div class="<%= @controller.isLocation ? 'locationmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'location' ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "locations", locations_url %>
 			</div>
-			<div class="<%= @controller.isSpecies ? 'speciesmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'species' ? 'speciesmenuitem' : 'menuitem' %>">
 				<%= link_to "species", species_url %>
 			</div>
-			<div class="<%= @controller.isTrip ? 'tripmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'trip' ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
 			</div>
 			<span style="display: inline-block; background-color: darkblue"><%= link_to "&gt;&gt;", @next_url %></span>

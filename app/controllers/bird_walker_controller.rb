@@ -8,15 +8,7 @@ class BirdWalkerController < ApplicationController
   def about
   end
   
-  def isLocation
-    false
-  end
-  
-  def isTrip
-    false
-  end
-  
-  def isSpecies
-    false
+  def page_kind
+    "home"
   end
 end

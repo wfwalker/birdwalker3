@@ -6,16 +6,8 @@ class SightingsController < ApplicationController
 # <%= text_field_with_auto_complete :species, :common_name %>
 #  </p>  
 
-  def isLocation
-    false
-  end
-  
-  def isTrip
-    false
-  end
-  
-  def isSpecies
-    false
+  def page_kind
+    "trip"
   end
   
 # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
