@@ -12,7 +12,11 @@ class Trip < ActiveRecord::Base
     end  
   end
   
-  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name"
+  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name" do
+    def with_lat_long
+      Location.find_by_sql("SELECT locations.* from locations, sightings WHERE sightings.location_id=locations.id AND trip_id=(" + proxy_owner.id.to_s + ") AND latitude != 0 AND longitude != 0")
+    end
+  end
     
   validates_presence_of :name, :date, :leader
   

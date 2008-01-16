@@ -32,7 +32,7 @@
           
 		  <% for location in locations %>
 			<% if (location.longitude != 0) %>
-          		map.addOverlay(createMarker(new GPoint(<%=location.longitude.to_s%>,<%= location.latitude.to_s%>),'<div><%= escape_javascript(location.name) %></div>'));
+          		map.addOverlay(createMarker(new GPoint(<%=location.longitude.to_s%>,<%= location.latitude.to_s%>),'<div><%= link_to escape_javascript(location.name), location_url(location) %></div>'));
 			<% end %>
 		  <% end %>
       }    
