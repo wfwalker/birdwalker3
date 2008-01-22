@@ -14,7 +14,7 @@ class Trip < ActiveRecord::Base
   
   has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name" do
     def with_lat_long
-      Location.find_by_sql("SELECT locations.* from locations, sightings WHERE sightings.location_id=locations.id AND trip_id=(" + proxy_owner.id.to_s + ") AND latitude != 0 AND longitude != 0")
+      Location.with_lat_long(self)
     end
   end
     

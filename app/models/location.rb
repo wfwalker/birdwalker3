@@ -31,5 +31,10 @@ class Location < ActiveRecord::Base
     locationList.inject({}) { | map, location |
        map[location.county.state] ? map[location.county.state] << location : map[location.county.state] = [location] ; map }
   end  
+  
+  def Location.with_lat_long(locationList)
+    locationList.select { | location |
+      location.latitude != 0 && location.longitude != 0 }
+  end
 end
 

@@ -6,17 +6,11 @@ class Species < ActiveRecord::Base
   belongs_to :family
   
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
-    def map_by_year
-      Trip.map_by_year(proxy_target)
-    end
   end
 
   has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name" do
-    def map_by_state
-      Location.map_by_state(proxy_target)
-    end  
     def with_lat_long
-      Location.find_by_sql("SELECT locations.* from locations, sightings WHERE sightings.location_id=locations.id AND species_id=(" + proxy_owner.id.to_s + ") AND latitude != 0 AND longitude != 0")
+      Location.with_lat_long(self)
     end
   end
   

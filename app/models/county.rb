@@ -2,7 +2,7 @@ class County < ActiveRecord::Base
   belongs_to :state
   has_many :locations do
     def with_lat_long
-      Location.find(:all, :conditions => ["county_id = (?) AND latitude != 0 AND longitude != 0", proxy_owner.id.to_s])
+      Location.with_lat_long(self)
     end
   end
   has_many :sightings, :through => :locations

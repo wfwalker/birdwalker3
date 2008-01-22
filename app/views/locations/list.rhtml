@@ -8,5 +8,7 @@
 	
 	<div id="pagecontent">
 		<%= show_location_list(@locations) %>
+		
+		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations) %>
 	</div>
 </div>
