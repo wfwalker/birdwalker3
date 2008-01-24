@@ -70,9 +70,10 @@ class SightingsController < ApplicationController
         @sighting.species_id = temp.id  
         @sighting.save
       end
+
+      flash[:notice] = 'Added ' + abbreviations.size.to_s + ' species.'
     end
 
-    flash[:notice] = 'Sightings were successfully created.'
     redirect_to edit_trip_url(@sighting.trip_id)
   end
 
