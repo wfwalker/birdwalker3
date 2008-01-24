@@ -26,17 +26,7 @@
 				</td>
 				<td width="50%" valign="top">
 					<div class="pagecontentmodule">
-						<div class="moduletitle">
-						<% if (@trip.locations.size == 0)%>
-							<%= link_to 'Full Add Sighting', new_sighting_url(:trip_id => @trip.id) %>
-						<% else %>
-							<%= link_to 'Full Add Sighting', new_sighting_url(:trip_id => @trip.id, :location_id => @trip.locations[0].id) %>
-						<% end %>
-						</div>
-					</div>
-
-					<div class="pagecontentmodule">
-						<div class="moduletitle">Quick Add</div>
+						<div class="moduletitle">Add Species</div>
 						<div class="pagecontentitem">
 
 							<% form_tag :controller => 'sightings', :action => 'create_list' do %>
@@ -44,11 +34,11 @@
 
 								<!--[form:sighting]-->
 								<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
-								<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %>
+								<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => "Choose location"}) %>
 
 								<p><label for="sighting_species">Abbreviations</label><br/>
 								<%= text_area_tag 'abbreviation_list', nil, :size => "25x10" %><br/>
-							  	<%= submit_tag "Create" %></p>
+							  	<%= submit_tag "Add" %></p>
 							<% end %>
 						</div>
 					</div>
