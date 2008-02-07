@@ -12,6 +12,12 @@
 						<div class="moduletitle">Bird of the Day</div>
 						<div class="pagecontentitem">Lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum</div>
 					</div>
+					<div class="pagecontentmodule">
+						<div class="moduletitle">This year so far</div>
+						<div class="pagecontentitem">
+							So far in <%= link_to Date.today.year.to_s, :controller => 'species', :action => 'year', :id => Date.today.year %> we have seen some birds
+						</div>
+					</div>
 				</td>
 				<td valign="top" width="50%">
 					<%= render :partial => 'trips/summary', :collection => @recent_trips %>
