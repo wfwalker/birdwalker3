@@ -43,7 +43,7 @@ class LocationsController < ApplicationController
     @location = Location.new(params[:location])
     if @location.save
       flash[:notice] = 'Location was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to location_url(@location)
     else
       render :action => 'new'
     end
