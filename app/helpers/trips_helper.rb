@@ -4,7 +4,7 @@ module TripsHelper
   end
 
   def has_photo?(trip, &block)
-    yield if trip.sightings_with_photos.size > 1
+    yield if trip.sightings_with_photos.size >= 1
   end
     
   def show_trip_list(triplist)
