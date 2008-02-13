@@ -1,19 +1,18 @@
 <% trip = summary %>
 
 <div class="pagecontentmodule">
-	
+	<% has_photo?(trip) do %>
+		<div style="float: right; padding: 10px">	
+			<%= render :partial => 'sightings/thumbnail', :object => trip.sightings_with_photos.first %>
+		</div>
+	<% end %>
+
 	<div class="modulesubtitle">
 		<%= link_to trip.name, trip_url(trip) %></a>,
 		<%= trip.species.size %> species
 		<br/>
 		<%= short_nice_date(trip.date) %>
 	</div>
-	
-	<% has_photo?(trip) do %>
-		<div class="pagecontentitem">	
-			<%= render :partial => 'sightings/thumbnail', :object => trip.sightings_with_photos.first %>
-		</div>
-	<% end %>
 	
 	<div class="pagecontentitem">
 		<% if (trip.notes.size > 500) %>
@@ -22,4 +21,6 @@
 			<%= trip.notes %>
 		<% end %>
 	</div>
+	
+	<br clear="all"/>
 </div>
