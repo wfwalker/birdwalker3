@@ -1,6 +1,17 @@
 <% locations = google %>
 
- <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw"  type="text/javascript"></script>
+<%
+# for spflrc port 3000 use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohQ3sUasK0Xp4JNHAphqfqhi7UexehQ0DASKsdtZI7ZiC_qc1MWcWRc9pw
+# for localhost use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw
+      
+if (is_laptop)
+	the_key="ABQIAAAAHB2OV0S5_ezvt-IsSEgTohQ3sUasK0Xp4JNHAphqfqhi7UexehQ0DASKsdtZI7ZiC_qc1MWcWRc9pw"
+else
+	the_key="ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw"
+end 
+%>
+
+ <script src="http://maps.google.com/maps?file=api&v=2&key=<%= the_key %>"  type="text/javascript"></script>
 
   <script type="text/javascript">
       // helper function to create markers
@@ -11,7 +22,7 @@
            });
           return marker;
       }
-      
+
       // this is called when the page loads. 
       // it initializes the map, and creates each marker
       function initialize() {
