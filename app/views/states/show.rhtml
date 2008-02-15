@@ -1,22 +1,29 @@
 <% @page_title = @state.name %>
 
 <div id="pagebody">
-	<div id="pageheader">
+	<div id="pageheader-location">
 		<div id="pagetitle"><%= @page_title %></div>
 	</div>
 
 	<div id="pagecontent">
-		<%= show_location_list(@state.locations) %>
-	
-		<%= show_species_list(@state.species) %>
+		<table width="100%" cellpadding="0px" cellspacing="0px">
+			<tr valign="top">
+				<td valign="top" width="50%">
+					<%= show_species_list(@state.species) %>
+				</td>
+				<td valign="top" width="50%">
+					<%= show_location_list(@state.locations) %>
 
-		<%= show_trip_list(@state.trips) %>
+					<%= show_trip_list(@state.trips) %>
 
-		<div class="pagecontentmodule">
-			<div class="moduletitle">Photos</div>
-			<div class="pagecontentitem">
-				<%= render :partial => 'sightings/thumbnail', :collection => @state.sightings_with_photos %>
-			</div>
-		</div>
+					<div class="pagecontentmodule">
+						<div class="moduletitle">Photos</div>
+						<div class="pagecontentitem">
+							<%= render :partial => 'sightings/thumbnail', :collection => @state.sightings_with_photos %>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>
