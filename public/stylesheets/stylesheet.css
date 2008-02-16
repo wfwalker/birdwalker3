@@ -148,11 +148,11 @@ a:hover { color: red; text-decoration: underline; }
 
 #pageheader-home1
 {
-	height: 60px;
+	height: 70px;
 	padding-top: 10px;
 	padding-bottom: 5px;
 	background-image: url(http://sven.spflrc.org/~walker/images/banner1.jpg);
-	background-position: 50%;
+	background-position: 60%;
 	border-left: solid 3px #CCCCCC;
 }
 
