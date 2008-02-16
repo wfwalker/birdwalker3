@@ -1,9 +1,10 @@
 class Species < ActiveRecord::Base
+  belongs_to :family
+  
   has_many :sightings
   has_one :first_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id DESC'
   has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
-  belongs_to :family
   
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
   end
@@ -22,6 +23,10 @@ class Species < ActiveRecord::Base
 
   def previous
     Species.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
+  end
+
+  def photo_of_the_week
+    Sighting.find_by_sql("SELECT sightings.* FROM sightings, trips WHERE sightings.trip_id=trips.id AND sightings.photo='1' AND sightings.species_id=" + self.id.to_s + " AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
   end
   
   # TODO: some cleaner way to do this!
@@ -44,5 +49,9 @@ class Species < ActiveRecord::Base
   
   def Species.sort_taxonomic(species_list)
     species_list.sort_by { |s| s.family.taxonomic_sort_id * 100000000000 + s.id }
+  end
+  
+  def Species.bird_of_the_week
+    Species.find_by_sql("SELECT species.* FROM species, sightings, trips WHERE sightings.photo='1' AND sightings.species_id=species.id AND sightings.trip_id=trips.id AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
   end
 end
