@@ -13,7 +13,7 @@
 						<div class="pagecontentitem">
 							<img src="<%= @bird_of_the_week.photo_of_the_week.photoURL %>" width="100%"/>
 							<p>
-								The Bird of the Week is the  <%= link_to @bird_of_the_week.common_name, :controller => 'species', :action => 'show', :id => @bird_of_the_week %><br/>
+								The Bird of the Week is the <%= link_to @bird_of_the_week.common_name, :controller => 'species', :action => 'show', :id => @bird_of_the_week %><br/>
 								Photographed <%= link_to nice_date(@photo_of_the_week.trip.date), :controller => 'trips', :action => 'show', :id => @photo_of_the_week.trip %> at 
 								<%= link_to @photo_of_the_week.location.name, :controller => 'locations', :action => 'show', :id => @photo_of_the_week.location %>
 							</p>
@@ -22,7 +22,9 @@
 					<div class="pagecontentmodule">
 						<div class="moduletitle">This year so far</div>
 						<div class="pagecontentitem">
-							So far in <%= link_to Date.today.year.to_s, :controller => 'species', :action => 'year', :id => Date.today.year %> we have seen some birds
+							So far in week <%= Date.today.cweek.to_s %> of <%= Date.today.year %> we have seen
+							<%= @this_year_species.size.to_s %> species.
+							Last year at this time we had seen <%= @last_year_species.size.to_s %>
 						</div>
 					</div>
 				</td>
