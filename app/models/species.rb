@@ -31,7 +31,7 @@ class Species < ActiveRecord::Base
   
   # TODO: some cleaner way to do this!
   def Species.find_all_seen
-    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.id=sightings.species_id"
+    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings, families WHERE species.id=sightings.species_id AND species.family_id=families.id ORDER BY families.taxonomic_sort_id"
   end  
 
   def Species.find_all_seen_not_excluded
@@ -52,6 +52,10 @@ class Species < ActiveRecord::Base
   end
   
   def Species.bird_of_the_week
-    Species.find_by_sql("SELECT species.* FROM species, sightings, trips WHERE sightings.photo='1' AND sightings.species_id=species.id AND sightings.trip_id=trips.id AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
+    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, trips WHERE sightings.photo='1' AND sightings.species_id=species.id AND sightings.trip_id=trips.id AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
+  end
+
+  def Species.year_to_date(year)
+    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, trips WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "' AND WeekOfYear(trips.date)<='" + Date.today.cweek.to_s + "'")
   end
 end

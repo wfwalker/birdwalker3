@@ -14,7 +14,11 @@ class Sighting < ActiveRecord::Base
   end
   
   def photoURL
-    "http://www.spflrc.org/~walker/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+#    if (`hostname`.strip == "vermillion.local")
+#      "file:///Users/walker/Sites/birdwalker2/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+#    else
+      "http://www.spflrc.org/~walker/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+#    end
   end
   
   def thumbURL
@@ -45,5 +49,28 @@ class Sighting < ActiveRecord::Base
   def Sighting.map_by_family(sighting_list)
     sighting_list.inject({}) { | map, sighting |
        map[sighting.species.family] ? map[sighting.species.family] << sighting : map[sighting.species.family] = [sighting] ; map }
+  end
+  
+  def Sighting.map_by_year_and_species(sighting_list)
+    map = {}
+    totals = (1996.2008).to_a
+    for year in (1996..2008) do
+      totals[year] = 0
+    end
+	
+    for sighting in sighting_list do
+        if (sighting.species) then
+          if (!map[sighting.species]) then
+            map[sighting.species] = (1996..2008).to_a
+          end
+        
+          if (map[sighting.species][sighting.trip.date.year] != 'X') then
+            map[sighting.species][sighting.trip.date.year] = 'X'
+            totals[sighting.trip.date.year] = totals[sighting.trip.date.year] + 1
+          end
+        end
+    end
+
+    return map, totals
   end
 end
