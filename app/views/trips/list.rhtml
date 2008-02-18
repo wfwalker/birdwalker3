@@ -6,7 +6,17 @@
 		<div class="pageheaderitem"><%= link_to 'New', :action => 'new' %></div>
 	</div>
 
+	<% trip_lists = @trips/(@trips.size / 3 + 3)%>
+
 	<div id="pagecontent">
-		<%= show_trip_list(@trips)%>
+		<table width="100%">
+			<tr>
+				<% for trip_list in trip_lists do %>
+				<td valign="top">
+					<%= show_trip_list(trip_list) %>
+				</td>
+				<% end %>
+			</tr>
+		</table>
 	</div>
 </div>

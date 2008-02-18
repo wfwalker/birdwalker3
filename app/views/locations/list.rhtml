@@ -6,8 +6,18 @@
 		<div class="pageheaderitem"><%= link_to 'New', new_location_url %></div>
 	</div>
 	
+	<% location_lists = @locations/(@locations.size / 3 + 3)%>
+	
 	<div id="pagecontent">
-		<%= show_location_list(@locations) %>
+		<table width="100%">
+			<tr>
+				<% for location_list in location_lists do %>
+				<td valign="top">
+					<%= show_location_list(location_list) %>
+				</td>
+				<% end %>
+			</tr>
+		</table>
 		
 		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations) %>
 	</div>
