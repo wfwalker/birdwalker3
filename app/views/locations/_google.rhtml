@@ -28,6 +28,7 @@ end
       function initialize() {
           var map = new GMap(document.getElementById("map"));
           map.addControl(new GSmallMapControl());
+          map.addControl(new GMapTypeControl());
 
 		  <% longitudes = locations.collect { | a_location | a_location.longitude } %>
 		  <% min_longitude = longitudes.min %>
