@@ -1,6 +1,6 @@
 <% location_list = undivided_list %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle"><%= location_list.size %> Locations</div>
+	<div class="moduletitle"><%= location_list.size %> Location<%= location_list.size > 1? 's' : '' %></div>
 	<%= render :partial => 'locations/onelinelink' , :collection => location_list %>
 </div>
