@@ -28,6 +28,15 @@ class FamiliesController < ApplicationController
     @family.next && @next_url = family_url(@family.next)
   end
 
+  def show_species_by_year
+    @family = Family.find(params[:id])
+    
+    @map, @totals = Sighting.map_by_year_and_species(@family.sightings)
+    
+    @family.previous && @previous_url = family_url(@family.previous)
+    @family.next && @next_url = family_url(@family.next)
+  end
+
   def new
     @family = Family.new
   end

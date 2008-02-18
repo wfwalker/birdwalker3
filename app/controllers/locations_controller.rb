@@ -20,7 +20,7 @@ class LocationsController < ApplicationController
 #         :redirect_to => { :action => :list }
 
   def list
-    @locations = Location.find(:all, :order => "name")
+    @locations = Location.find_by_sql("SELECT DISTINCT locations.* from locations, counties, states where locations.county_id=counties.id AND counties.state_id = states.id ORDER BY states.name, locations.name")
   end
 
   def google
@@ -30,6 +30,15 @@ class LocationsController < ApplicationController
   
   def show
     @location = Location.find(params[:id])
+    
+    @location.previous && @previous_url = location_url(@location.previous)
+    @location.next && @next_url = location_url(@location.next)
+  end
+
+  def show_species_by_year
+    @location = Location.find(params[:id])
+    
+    @map, @totals = Sighting.map_by_year_and_species(@location.sightings)
     
     @location.previous && @previous_url = location_url(@location.previous)
     @location.next && @next_url = location_url(@location.next)
