@@ -6,7 +6,7 @@
 	<div class="moduletitle"><%= trip_list.size %> Trips over <%= sightings_by_year.keys.size %> Years</div>
 	<% for year in sightings_by_year.keys.sort.reverse %>
 		<div class='modulesubtitle'><%= year %></div>
-		<%= render :partial => 'trips/onelinelink', :collection => sightings_by_year[year] %>
+		<%= render :partial => 'trips/onelinelink', :collection => sightings_by_year[year], :locals => { :date_format => "%B %d" }  %>
 	<% end %>
 </div>
 
