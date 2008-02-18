@@ -15,9 +15,11 @@
 		<% has_reference_url?(@location) do %>
 			<div class="pageheaderitem"><a href="<%= @location.reference_url %>">See also...</a></div>
 		<% end%>
-		<div class="pageheaderitem">
-			<%= link_to 'normal view', :id => @location, :action => 'show' %> | <%= link_to 'by year view', :id => @location, :action => 'show_species_by_year' %>
-		</div>
+		<% if (@location.trips.size > 1) then %>
+			<div class="pageheaderitem">
+				<%= link_to 'normal view', :id => @location, :action => 'show' %> | <%= link_to 'by year view', :id => @location, :action => 'show_species_by_year' %>
+			</div>
+		<% end %>
 	</div>
 	
 	<div id="pagecontent">
