@@ -2,5 +2,5 @@
 
 <div class="pagecontentitem">
 	<%= link_to trip.name, trip_url(trip) %></a>,
-	<%= short_nice_date(trip.date) %>
+	<%= trip.date.strftime(date_format) %>
 </div>
