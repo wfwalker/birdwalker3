@@ -1,6 +1,10 @@
 class State < ActiveRecord::Base
   has_many :counties
-  has_many :locations, :through => :counties
+  has_many :locations, :through => :counties do
+    def with_lat_long
+      Location.with_lat_long(self)
+    end
+  end
   
   def next
     State.find(:first, :conditions => ["name > (?)", self.name.to_s], :order => 'name')

@@ -25,6 +25,10 @@
 							<%= render :partial => 'sightings/thumbnail', :collection => @state.sightings_with_photos %>
 						</div>
 					</div>
+					
+					<% if (@state.locations.with_lat_long.size > 0) %>
+						<%= render :partial => 'locations/google', :object => @state.locations.with_lat_long %>
+					<% end %>
 				</td>
 			</tr>
 		</table>
