@@ -10,6 +10,9 @@
 			<div class="<%= @controller.page_kind == 'home' ? 'homemenuitem' : 'menuitem' %>">
 				<%= link_to "birdWalker", '/bird_walker/index' %>
 			</div>
+			<div class="<%= @controller.page_kind == 'home' ? 'homemenuitem' : 'menuitem' %>">
+				<%= link_to "about", '/bird_walker/about' %>
+			</div>
 			<div class="<%= @controller.page_kind == 'location' ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "locations", locations_url %>
 			</div>
@@ -27,9 +30,6 @@
 			</div>
 			<div class="<%= @controller.page_kind == 'trip' ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
-			</div>
-			<div class="<%= @controller.page_kind == 'about' ? 'homemenuitem' : 'menuitem' %>">
-				<%= link_to "about", '/bird_walker/about' %>
 			</div>
 		</div>
 		
