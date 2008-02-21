@@ -191,7 +191,7 @@ a:hover { color: red; text-decoration: underline; }
 
 #pagecontent .pagecontentmodule
 {
-	border-left: solid 3px #CCCCCC;
+	/* border-left: solid 3px #CCCCCC; */
 	border-top: solid 1px #CCCCCC;
 	margin-top: 5px;
 	margin-bottom: 10px;
