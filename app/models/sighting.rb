@@ -39,7 +39,7 @@ class Sighting < ActiveRecord::Base
   end
 
   def Sighting.sort_chronological(sighting_list)
-    sighting_list.sort_by { |s| s.trip.date }.reverse
+    sighting_list.sort { |a, b| a.trip.date == b.trip.date ? a.location_id == b.location_id ? a.species_id <=> b.species_id : a.location_id <=> b.location_id : a.trip.date <=> b.trip.date }.reverse
   end
   
   def Sighting.sort_alphabetic(sighting_list)
