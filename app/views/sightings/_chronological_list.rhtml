@@ -8,15 +8,16 @@
 		<% for sighting in sighting_list do %>
 		<tr>
 			<% changes = ! previous_sighting || previous_sighting.trip_id != sighting.trip_id || ! previous_sighting || previous_sighting.location_id != sighting.location_id %>
-			<td align="right">
+			<td valign="top" align="right" style="white-space: nowrap">
 				<% if changes %>
 					<%= link_to short_nice_date(sighting.trip.date), :controller => 'trips', :id => sighting.trip, :action => 'show'  %>
 				<% end %>
 			</td>
-			<td>
+			<td valign="top">
 				<%= link_to sighting.species.common_name, :controller => 'species', :id => sighting.species, :action => 'show' %>
+				<div><%= sighting.notes%></div>
 			</td>
-			<td style="color: gray">
+			<td valign="top" style="color: gray; white-space: nowrap">
 				<% if changes %>
 					<%= sighting.location.name %>
 				<% end %>
