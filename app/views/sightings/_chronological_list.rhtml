@@ -2,15 +2,28 @@
 
 <div class="pagecontentmodule">
 	<div class="modulesubtitle"><%= @module_title %>, <%= sighting_list.size %> Sightings</div>
+	<div class="pagecontentitem">
 	<table>
 		<% previous_sighting = nil %>
 		<% for sighting in sighting_list do %>
 		<tr>
-			<td><% if ! previous_sighting || previous_sighting.trip_id != sighting.trip_id %>**<% end %><%= sighting.trip.date %></td>
-			<td><% if ! previous_sighting || previous_sighting.location_id != sighting.location_id %>**<% end %><%= sighting.location.name %></td>
-			<td><%= sighting.species.common_name %></td>
+			<% changes = ! previous_sighting || previous_sighting.trip_id != sighting.trip_id || ! previous_sighting || previous_sighting.location_id != sighting.location_id %>
+			<td align="right">
+				<% if changes %>
+					<%= link_to short_nice_date(sighting.trip.date), :controller => 'trips', :id => sighting.trip, :action => 'show'  %>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to sighting.species.common_name, :controller => 'species', :id => sighting.species, :action => 'show' %>
+			</td>
+			<td style="color: gray">
+				<% if changes %>
+					<%= sighting.location.name %>
+				<% end %>
+			</td>
 			<% previous_sighting = sighting %>
 		</tr>
 		<% end %>
 	</table>
+	</div>
 </div>
