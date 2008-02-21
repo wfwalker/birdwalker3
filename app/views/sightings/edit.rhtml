@@ -7,8 +7,10 @@
 
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem"><%= link_to 'Show', trip_url(@sighting.trip_id) %></div>
+		<div id="pagetitle">
+			<%= @page_title %>
+			<span style="font-size: 9pt"><%= link_to 'show', sighting_url(@sighting) %></span>
+		</div>
 		<div class="pageheaderitem"><%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
 	</div>
 	

@@ -7,10 +7,12 @@
 
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-		<% editing_is_allowed?() do %>
-			<div class="pageheaderitem"><%= link_to 'Edit', edit_sighting_url(@sighting) %></div>
-		<% end %>
+		<div id="pagetitle">
+			<%= @page_title %>
+			<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to 'edit', edit_sighting_url(@sighting) %></span>
+			<% end %>
+		</div>
 	</div>
 	
 	<div id="pagecontent">	
