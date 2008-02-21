@@ -4,7 +4,7 @@ class SpeciesTest < Test::Unit::TestCase
   fixtures :species
 
   # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_fixtures
+    assert Species.count == 2
   end
 end
