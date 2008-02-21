@@ -3,6 +3,9 @@
 <div id="pagebody">
 	<div id="pageheader-species">
 		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem">
+			<%= link_to 'by species', species_url %> | <%= link_to 'by date', :controller => 'species', :action => 'life_list'%>
+		</div>
 	</div>
  	
 	<div id="pagecontent">
