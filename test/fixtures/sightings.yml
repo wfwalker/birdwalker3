@@ -1,5 +1,24 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+sighting_one:
   id: 1
-two:
+  trip_id: 1
+  location_id: 1
+  species_id: 2
+
+sighting_two:
   id: 2
+  trip_id: 1
+  location_id: 2
+  species_id: 1
+
+sighting_three:
+  id: 3
+  trip_id: 2
+  location_id: 1
+  species_id: 2
+
+sighting_four:
+  id: 4
+  trip_id: 2
+  location_id: 2
+  species_id: 1

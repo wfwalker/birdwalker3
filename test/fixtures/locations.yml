@@ -1,5 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+location_one:
   id: 1
-two:
+  name: First Place
+  county_id: 1
+location_two:
   id: 2
+  name: Second Place
+  county_id: 2

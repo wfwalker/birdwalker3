@@ -1,5 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+county_one:
   id: 1
-two:
+  name: First County
+  state_id: 1
+  
+county_two:
   id: 2
+  name: Second County
+  state_id: 2
