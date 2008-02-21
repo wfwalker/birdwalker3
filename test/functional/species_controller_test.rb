@@ -12,7 +12,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = species(:first).id
+    @first_id = species(:species_one).id
   end
 
   def test_index
