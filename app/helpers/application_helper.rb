@@ -29,7 +29,7 @@ module ApplicationHelper
   end
   
   def editing_is_allowed?(&block)
-    yield if true
+    yield if is_laptop
   end
   
   def is_laptop
