@@ -20,7 +20,7 @@ a:hover { color: red; text-decoration: underline; }
 
 #browse
 {
-	position: fixed; bottom: 0px; left: 0px; width: 100px; height: 20px;
+	position: fixed; bottom: 0px; left: 0px; width: 120px; height: 20px;
 	z-index: 2;
 	background-color: #EEEEEE;
 	text-align: center;
@@ -116,7 +116,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-top: 10px;
 	padding-bottom: 5px;
 	background-color: #EEEEEE;
-	border-left: solid 3px #CCCCCC;
+/*	border-left: solid 3px #CCCCCC; */
 }
 
 #pageheader-species
@@ -125,7 +125,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-bottom: 5px;
 	background-image: url(http://sven.spflrc.org/~walker/images/species-banner.jpg);
 	background-position: 50%;
-	border-left: solid 3px #CCCCCC;
+/*	border-left: solid 3px #CCCCCC; */
 }
 
 #pageheader-location
@@ -134,7 +134,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-bottom: 5px;
 	background-image: url(http://sven.spflrc.org/~walker/images/location-banner.jpg);
 	background-position: 50%;
-	border-left: solid 3px #CCCCCC;
+/*	border-left: solid 3px #CCCCCC; */
 }
 
 #pageheader-trip
@@ -143,7 +143,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-bottom: 5px;
 	background-image: url(http://sven.spflrc.org/~walker/images/trip-banner.jpg);
 	background-position: 50%;
-	border-left: solid 3px #CCCCCC;
+/* 	border-left: solid 3px #CCCCCC; */
 }
 
 #pageheader-home1
@@ -153,7 +153,7 @@ a:hover { color: red; text-decoration: underline; }
 	padding-bottom: 5px;
 	background-image: url(http://sven.spflrc.org/~walker/images/banner1.jpg);
 	background-position: 60%;
-	border-left: solid 3px #CCCCCC;
+/*	border-left: solid 3px #CCCCCC; */
 }
 
 .pageheaderitem
