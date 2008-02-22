@@ -1,6 +1,5 @@
 <% location = onelinelink %>
 
 <div class="pagecontentitem">
-	<%= link_to location.name, location_url(location) %>
-	<% if (show_extras) %>, <%= location.county.name%> County, <%= location.county.state.name %><% end %>
+	<%= link_to location.name, location_url(location) %><% if (show_extras) %>, <%= location.county.name%> County, <%= location.county.state.name %><% end %>
 </div>
