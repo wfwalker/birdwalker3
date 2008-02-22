@@ -7,6 +7,9 @@
     </head>
     <body onload="initialize()">
         <div id="menu">
+			<div>
+				<img src="http://www.spflrc.org/~walker/images/topleft1.jpg" width="120" height="100"/>
+			</div>
 			<div class="<%= @controller.page_kind == 'home' ? 'homemenuitem' : 'menuitem' %>">
 				<%= link_to "birdWalker", '/bird_walker/index' %>
 			</div>
