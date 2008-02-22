@@ -2,5 +2,5 @@
 
 <div class="pagecontentmodule">
 	<div class="moduletitle"><%= trip_list.size %> Trip<%= trip_list.size > 1? 's' : '' %></div>
-	<%= render :partial => 'trips/onelinelink' , :collection => trip_list, :locals => { :date_format => "%B %d, %Y" } %>
+	<%= render :partial => 'trips/onelinelink' , :collection => trip_list, :locals => { :date_format => "%b %d, %Y" } %>
 </div>
