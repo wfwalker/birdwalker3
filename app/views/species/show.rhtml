@@ -30,7 +30,7 @@
 						</div>
 					<% end %>
 		
-					<%= show_trip_list(@species.trips) %>
+					<%= show_trip_list(@species.trips, true) %>
 				</td>
 				<td valign="top" width="50%">
 					<% has_sightings?(@species) do %>

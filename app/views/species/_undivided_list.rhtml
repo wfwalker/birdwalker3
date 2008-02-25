@@ -1,6 +1,9 @@
 <% species_list = undivided_list %>
 
 <div class="pagecontentmodule">
-	<div class="modulesubtitle"><%= species_list.size %> Species</div>
+	<% if (show_headings) %>
+		<div class="modulesubtitle"><%= species_list.size %> Species</div>
+	<% end %>
+	
 	<%= render :partial => 'species/onelinelink' , :collection => species_list %>
 </div>

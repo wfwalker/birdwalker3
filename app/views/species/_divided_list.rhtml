@@ -5,8 +5,10 @@
 <% sorted_families = Family.sort_taxonomic(species_by_family.keys) %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle"><%= species_list.size %> Species</div>
-
+	<% if (show_headings) %>
+		<div class="moduletitle"><%= species_list.size %> Species</div>
+	<% end %>
+	
 	<% for family in sorted_families %>
 		<% if species_list.size > 100 %>
 			<div class="modulesubtitle"><%= family.common_name %></div>

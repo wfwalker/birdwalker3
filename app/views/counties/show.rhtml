@@ -13,9 +13,9 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td width="50%">
-					<%= show_species_list(@county.species) %>
+					<%= show_species_list(@county.species, true) %>
 
-					<%= show_trip_list(@county.trips) %>
+					<%= show_trip_list(@county.trips, true) %>
 				</td>
 				<td width="50%">
 					<%= show_thumbnail_list(@county.sightings_with_photos) %>

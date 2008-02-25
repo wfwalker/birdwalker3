@@ -26,7 +26,7 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td valign="top" width="50%">
-					<%= show_species_list(@location.species) %>
+					<%= show_species_list(@location.species, true) %>
 				</td>
 				<td valign="top" width="50%">
 					<% has_notes?(@location) do %>
@@ -45,7 +45,7 @@
 						<%= render :partial => 'locations/google', :object => [ @location ] %>
 					<% end %>
 					
-					<%= show_trip_list(@location.trips) %>					
+					<%= show_trip_list(@location.trips, true) %>					
 				</td>
 			</tr>
 		</table>
