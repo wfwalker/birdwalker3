@@ -5,9 +5,11 @@
 <% ordered_states = State.sort_alphabetic(locations_by_state.keys) %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle">
-		<%= location_list.size %> Locations in <%= locations_by_state.size %> States
-	</div>
+	<% if (show_headings) %>
+		<div class="moduletitle">
+			<%= location_list.size %> Locations in <%= locations_by_state.size %> States
+		</div>
+	<% end %>
 
 	<% for state in ordered_states %>
 		<div class="modulesubtitle"><%= state.name %></div>

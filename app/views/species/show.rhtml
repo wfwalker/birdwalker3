@@ -46,7 +46,7 @@
 						<%= render :partial => 'locations/google', :object => @species.locations.with_lat_long %>
 					<% end %>
 
-					<%= show_location_list(@species.locations) %>
+					<%= show_location_list(@species.locations, true) %>
 				</td>
 			</tr>
 		</table>
