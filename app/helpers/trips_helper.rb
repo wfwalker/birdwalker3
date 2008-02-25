@@ -7,11 +7,11 @@ module TripsHelper
     yield if trip.sightings_with_photos.size >= 1
   end
     
-  def show_trip_list(triplist)
+  def show_trip_list(triplist, headings_flag)
 	  if triplist.size > 50
-			render :partial => 'trips/divided_list', :object => triplist
+			render :partial => 'trips/divided_list', :object => triplist, :locals => { :show_headings => headings_flag }
 		else
-		  render :partial => 'trips/undivided_list', :object => triplist
+		  render :partial => 'trips/undivided_list', :object => triplist, :locals => { :show_headings => headings_flag }
 		end
 	end
 end
