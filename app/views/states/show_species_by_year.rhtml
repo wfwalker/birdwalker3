@@ -1,0 +1,53 @@
+<% @page_title = @state.name %>
+
+<div id="pagebody">
+	<div id="pageheader-location">
+		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem">
+			<%= link_to 'normal view', :id => @state, :action => 'show' %> | <%= link_to 'by year view', :id => @state, :action => 'show_species_by_year' %>
+		</div>
+	</div>
+
+	<div id="pagecontent">
+		<div class="pagecontentmodule">
+			<div class="moduletitle"><%= @state.species.size %> Species
+			</div>
+			<div class="pagecontentitem">
+				<table>
+					<tr>
+						<td></td>
+						<% for year in (1996..2008) do %>
+							<td align="right"><%= year %></td>
+						<% end %>
+					</tr>
+					<tr>
+						<td>Total</td>
+						<% for year in (1996..2008) do %>
+							<td align="right"><%= @totals[year] %></td>
+						<% end %>
+					</tr>
+					<% for key in Species.sort_taxonomic(@map.keys) %>
+						<tr valign="top">
+							<td><%= key.common_name %></td>
+							<% for year in (1996..2008) do %>
+								<td align="right"><%= @map[key][year] %></td>
+							<% end %>
+						</tr>
+					<% end %>
+					<tr>
+						<td>Total</td>
+						<% for year in (1996..2008) do %>
+							<td align="right"><%= @totals[year] %></td>
+						<% end %>
+					</tr>
+					<tr>
+						<td>Species</td>
+						<% for year in (1996..2008) do %>
+							<td align="right"><%= year %></td>
+						<% end %>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
