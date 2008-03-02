@@ -1,0 +1,18 @@
+<% @page_title = @family.common_name %>
+
+<div id="pagebody">
+	<div id="pageheader-species">
+		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem"><%= @family.latin_name %></div>
+		<%= render :partial => 'families/view_links', :object => @family %>
+	</div>
+
+	<div id="pagecontent">
+		<div class="pagecontentmodule">
+			<div class="moduletitle">
+				<%= @family.species.size %> Species
+			</div>
+			<%= render :partial => 'sightings/species_by_month_table', :object => @map, :locals => { :totals => @totals }%>
+		</div>
+	</div>
+</div>

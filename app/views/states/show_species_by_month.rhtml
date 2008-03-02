@@ -1,0 +1,16 @@
+<% @page_title = @state.name %>
+
+<div id="pagebody">
+	<div id="pageheader-location">
+		<div id="pagetitle"><%= @page_title %></div>
+		<%= render :partial => 'states/view_links', :object => @state %>
+	</div>
+
+	<div id="pagecontent">
+		<div class="pagecontentmodule">
+			<div class="moduletitle"><%= @state.species.size %> Species
+			</div>
+			<%= render :partial => 'sightings/species_by_month_table', :object => @map, :locals => { :totals => @totals } %>
+		</div>
+	</div>
+</div>
