@@ -73,4 +73,30 @@ class Sighting < ActiveRecord::Base
 
     return map, totals
   end
+
+  def Sighting.map_by_month_and_species(sighting_list)
+    map = {}
+    totals = (1..12).to_a
+    for month in (1..12) do
+      totals[month] = 0
+    end
+	
+    for sighting in sighting_list do
+        if (sighting.species) then
+          if (!map[sighting.species]) then
+            map[sighting.species] = (1..12).to_a
+            for month in (1..12) do
+              map[sighting.species][month] = ''
+            end
+          end
+        
+          if (map[sighting.species][sighting.trip.date.month] != 'X') then
+            map[sighting.species][sighting.trip.date.month] = 'X'
+            totals[sighting.trip.date.month] = totals[sighting.trip.date.month] + 1
+          end
+        end
+    end
+
+    return map, totals
+  end
 end
