@@ -4,20 +4,28 @@ class CountiesController < ApplicationController
   helper :locations
   helper :sightings
 
+  def next_and_previous(in_county)
+    in_county.previous && @previous_url = county_url(in_county.previous)
+    in_county.next && @next_url = county_url(in_county.next)    
+  end
+  
   def show
     @county = County.find(params["id"])
-    
-    @county.previous && @previous_url = county_url(@county.previous)
-    @county.next && @next_url = county_url(@county.next)
+    next_and_previous(@county)
   end
 
   def show_species_by_year
     @county = County.find(params["id"])
-    
     @map, @totals = Sighting.map_by_year_and_species(@county.sightings)
     
-    @county.previous && @previous_url = county_url(@county.previous)
-    @county.next && @next_url = county_url(@county.next)
+    next_and_previous(@county)
+  end
+
+  def show_species_by_month
+    @county = County.find(params["id"])
+    @map, @totals = Sighting.map_by_month_and_species(@county.sightings)
+    
+    next_and_previous(@county)
   end
   
   def page_kind
