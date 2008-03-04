@@ -1,0 +1,24 @@
+<% location = page_header %>
+
+<div id="pageheader-location">
+	<div id="pagetitle">
+		<%= @page_title %>
+		<% editing_is_allowed?() do %>
+			<span style="font-size: 9pt"><%= link_to 'edit', edit_location_url(location) %></span>
+		<% end %>
+	</div>
+	<div class="pageheaderitem">
+		<%= link_to location.county.name + " County", county_url(location.county) %>,
+		<%= link_to location.county.state.name, state_url(location.county.state) %>
+	</div>
+	<% has_reference_url?(location) do %>
+		<div class="pageheaderitem"><a href="<%= location.reference_url %>">See also...</a></div>
+	<% end%>
+	<% if (location.trips.size > 1) then %>
+		<div class="pageheaderitem">
+			<%= link_to 'normal view', :id => location, :action => 'show' %> |
+			<%= link_to 'by year view', :id => location, :action => 'show_species_by_year' %> |
+			<%= link_to 'by month view', :id => location, :action => 'show_species_by_month' %>
+		</div>
+	<% end %>
+</div>
