@@ -1,0 +1,24 @@
+<% species = page_header %>
+
+<div id="pageheader-species">
+    <div id="pagetitle">
+		<%= @page_title %>
+		<% editing_is_allowed?() do %>
+			<span style="font-size: 9pt"><%= link_to 'edit', edit_species_instance_url(species) %></span>
+		<% end %>
+	</div>
+	<div class="pageheaderitem"><%= species.latin_name %></div>
+	<div class="pageheaderitem"><%= link_to species.family.latin_name, family_url(species.family) %></div>
+	<% has_notes?(species) do %>
+		<div class="pageheaderitem"><%= species.notes %></div>
+	<% end %>
+	<% if species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
+	<% has_reference_url?(species) do %>
+		<div class="pageheaderitem"><a href="<%= species.reference_url %>">See also...</a></div>
+	<% end %>
+	<div class="pageheaderitem">
+		<%= link_to 'normal view', :id => species, :action => 'show' %> | 
+		<%= link_to 'by year view', :id => species, :action => 'show_locations_by_year' %> |
+		<%= link_to 'by month view', :id => species, :action => 'show_locations_by_month' %>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+<% @page_title = @species.common_name %>
+
+<div id="pagebody">
+	<%= render :partial => 'page_header', :object => @species %>
+
+	<div id="pagecontent">
+		<div class="pagecontentmodule">
+			<div class="moduletitle">
+				<%= @species.locations.size %> Locations
+			</div>
+			<%= render :partial => 'sightings/locations_by_year_table', :object => @map, :locals => { :totals => @totals }%>
+		</div>
+	</div>
+</div>

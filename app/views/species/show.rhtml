@@ -1,23 +1,7 @@
 <% @page_title = @species.common_name %>
 
 <div id="pagebody">	
-	<div id="pageheader-species">
-	    <div id="pagetitle">
-			<%= @page_title %>
-			<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to 'edit', edit_species_instance_url(@species) %></span>
-			<% end %>
-		</div>
-		<div class="pageheaderitem"><%= @species.latin_name %></div>
-		<div class="pageheaderitem"><%= link_to @species.family.latin_name, family_url(@species.family) %></div>
-		<% has_notes?(@species) do %>
-			<div class="pageheaderitem"><%= @species.notes %></div>
-		<% end %>
-		<% if @species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
-		<% has_reference_url?(@species) do %>
-			<div class="pageheaderitem"><a href="<%= @species.reference_url %>">See also...</a></div>
-		<% end %>
-	</div>
+	<%= render :partial => 'page_header', :object => @species %>
 
 	<div id="pagecontent">
 		<table width="100%" cellpadding="0px" cellspacing="0px">
