@@ -1,0 +1,36 @@
+<div class="pagecontentitem">
+	<table>
+		<tr>
+			<td></td>
+			<% for month in (1..12) do %>
+				<td align="right"><%= Date::ABBR_MONTHNAMES[month] %></td>
+			<% end %>
+		</tr>
+		<tr>
+			<td>Total</td>
+			<% for month in (1..12) do %>
+				<td align="right"><%= @totals[month] %></td>
+			<% end %>
+		</tr>
+		<% for key in (@map.keys) %>
+			<tr valign="top">
+				<td><%= key.name %></td>
+				<% for month in (1..12) do %>
+					<td align="right"><%= @map[key][month] %></td>
+				<% end %>
+			</tr>
+		<% end %>
+		<tr>
+			<td>Total</td>
+			<% for month in (1..12) do %>
+				<td align="right"><%= @totals[month] %></td>
+			<% end %>
+		</tr>
+		<tr>
+			<td>Species</td>
+			<% for month in (1..12) do %>
+				<td align="right"><%= month %></td>
+			<% end %>
+		</tr>
+	</table>
+</div>

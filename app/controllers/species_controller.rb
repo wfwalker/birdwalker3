@@ -43,6 +43,24 @@ class SpeciesController < ApplicationController
     @species.next && @next_url = species_instance_url(@species.next)
   end
 
+  def show_locations_by_year
+    @species = Species.find(params[:id])
+    
+    @map, @totals = Sighting.map_by_year_and_location(@species.sightings)
+    
+    @species.previous && @previous_url = species_instance_url(@species.previous)
+    @species.next && @next_url = species_instance_url(@species.next)
+  end
+
+  def show_locations_by_month
+    @species = Species.find(params[:id])
+    
+    @map, @totals = Sighting.map_by_month_and_location(@species.sightings)
+    
+    @species.previous && @previous_url = species_instance_url(@species.previous)
+    @species.next && @next_url = species_instance_url(@species.next)
+  end
+
   def new
     @species = Species.new
   end
