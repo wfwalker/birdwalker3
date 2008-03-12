@@ -14,15 +14,19 @@ class Sighting < ActiveRecord::Base
   end
   
   def photoURL
-#    if (`hostname`.strip == "vermillion.local")
-#      "file:///Users/walker/Sites/birdwalker2/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-#    else
+    if (`hostname`.strip == "vermillion.local")
+      "http://localhost/~walker/birdwalker2/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    else
       "http://www.spflrc.org/~walker/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-#    end
+    end
   end
   
   def thumbURL
-    "http://www.spflrc.org/~walker/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    if (`hostname`.strip == "vermillion.local")
+      "http://localhost/~walker/birdwalker2/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    else
+      "http://www.spflrc.org/~walker/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    end
   end
   
   def thumb
