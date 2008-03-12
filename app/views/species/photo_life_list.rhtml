@@ -1,15 +1,17 @@
-<% @page_title = "Our Life List" %>
+<% @page_title = "Photo Life List" %>
 
 <div id="pagebody">
 	<div id="pageheader-species">
 		<div id="pagetitle"><%= @page_title %></div>
 		<%= render :partial => 'list_page_header' %>
 	</div>
+
 	
-	<% species_lists = @all_species_seen/(@all_species_seen.size / 3 + 3)%>
+	<% species_lists = @all_species_photographed/(@all_species_photographed.size / 3 + 3)%>
+
+	<div class="moduletitle"><%= @all_species_photographed.size %> ABA Species Photographed</div>
  	
-	<div id="pagecontent">          
-		<div class="moduletitle"><%= @all_species_seen.size %> Species</div>
+	<div id="pagecontent">
 		<table width="100%">
 			<tr>
 				<% for species_list in species_lists do %>
