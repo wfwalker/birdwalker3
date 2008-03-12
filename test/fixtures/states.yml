@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+state_one:
+  id: 1
+  name: First State
+  
+state_two:
+  id: 2
+  name: Second State
