@@ -3,9 +3,19 @@
 <div id="pagebody">
 	<div id="pageheader-location">
 		<div id="pagetitle"><%= @page_title %></div>
-	</div>
+	</div>         
 	
+   	<% county_lists = @counties/(@counties.size / 3 + 3)%>
+
 	<div id="pagecontent">
-		<%= render :partial => 'counties/onelinelink', :collection => @counties %>
+		<table width="100%">
+			<tr>
+				<% for county_list in county_lists do %>
+				<td valign="top">
+					<%= render :partial => 'counties/onelinelink', :collection => county_list %>
+				</td>
+				<% end %>
+			</tr>
+		</table>
 	</div>
 </div>

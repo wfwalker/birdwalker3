@@ -4,10 +4,18 @@
 	<div id="pageheader-location">
 		<div id="pagetitle"><%= @page_title %></div>
 	</div>
-	
+	                          
+   	<% state_lists = @states/(@states.size / 3 + 3)%>
+
 	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<%= render :partial => 'states/onelinelink', :collection => @states %>
-		</div>
+		<table width="100%">
+			<tr>
+				<% for state_list in state_lists do %>
+				<td valign="top">
+					<%= render :partial => 'states/onelinelink', :collection => state_list %>
+				</td>
+				<% end %>
+			</tr>
+		</table>
 	</div>
 </div>
