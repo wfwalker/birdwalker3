@@ -10,7 +10,7 @@
 	<div id="pagecontent">
 		<div class="pagecontentmodule">
 			<div class="moduletitle">
-				<%= @family.species.size %> Species
+				<%= @family.species_seen.size %> Species
 			</div>
 			<%= render :partial => 'sightings/species_by_year_table', :object => @map, :locals => { :totals => @totals }%>
 		</div>
