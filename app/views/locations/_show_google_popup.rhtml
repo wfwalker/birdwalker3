@@ -1,0 +1,7 @@
+<% location = show_google_popup %>
+
+<div><%= link_to location.name, location_url(location) %></div>  
+
+<div style="margin: 5px; font-size: 10px; width: 200px"><%= location.county.name %> County, <%= location.county.state.name %></div>
+
+<div style="margin: 5px; font-size: 10px; width: 200px"><%= location.notes %></div>
