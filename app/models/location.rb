@@ -15,7 +15,7 @@ class Location < ActiveRecord::Base
     def map_by_year
       Trip.map_by_year(proxy_target)
     end
-  end
+  end      
   
   validates_presence_of :name, :county
   

@@ -5,6 +5,16 @@ module LocationsHelper
 
   def has_multiple_locations?(locationcontainer, &block)
     yield if locationcontainer.locations.size > 1
+  end    
+            
+  def has_multiple_years?(location, &block)
+    #select distinct(month(trips.date)) from sightings,trips where sightings.trip_id=trips.id AND location_id=3;
+    yield if location.trips.map(&:date).map(&:year).flatten.uniq.size > 1
+  end
+
+  def has_multiple_months?(location, &block)
+    #select distinct(month(trips.date)) from sightings,trips where sightings.trip_id=trips.id AND location_id=3;
+    yield if location.trips.map(&:date).map(&:month).flatten.uniq.size > 1 
   end
 
   def show_location_list(location_list, headings_flag)
