@@ -15,10 +15,15 @@
 					
 					<%= show_trip_list(@family.trips, true) %>
 				</td>
+
 				<td>
 					<%= show_thumbnail_list(@family.sightings_with_photos) %>
 					
-					<%= show_location_list(@family.locations, true) %>
+ 					<% if (Location.with_lat_long(@family.locations).size > 0) %>
+						<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations) %>
+					<% end %>
+
+   					<%= show_location_list(@family.locations, true) %>
 				</td>
 			</tr>
 		</table>
