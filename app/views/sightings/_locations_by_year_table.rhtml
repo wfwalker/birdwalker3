@@ -6,31 +6,32 @@
 				<td align="right"><%= year %></td>
 			<% end %>
 		</tr>
-		<tr>
-			<td>Total</td>
-			<% for year in (1996..2008) do %>
-				<td align="right"><%= @totals[year] %></td>
-			<% end %>
-		</tr>
+		
 		<% for key in (@map.keys) %>
 			<tr valign="top">
 				<td><%= key.name %></td>
 				<% for year in (1996..2008) do %>
-					<td align="right"><%= @map[key][year] %></td>
+					<td class="tablecell" align="right"><%= @map[key][year] %></td>
 				<% end %>
 			</tr>
 		<% end %>
-		<tr>
-			<td>Total</td>
-			<% for year in (1996..2008) do %>
-				<td align="right"><%= @totals[year] %></td>
-			<% end %>
-		</tr>
-		<tr>
-			<td>Locations</td>
-			<% for year in (1996..2008) do %>
-				<td align="right"><%= year %></td>
-			<% end %>
-		</tr>
+		
+		<% if (@map.keys.size > 20) then %>
+			<tr>
+				<td>Total</td>
+				<% for year in (1996..2008) do %>
+					<td align="right"><%= @totals[year] %></td>
+				<% end %>
+			</tr>
+		<% end %>
+		
+		<% if (@map.keys.size > 30) then %>
+			<tr>
+				<td></td>
+				<% for year in (1996..2008) do %>
+					<td align="right"><%= year %></td>
+				<% end %>
+			</tr>
+		<% end %>
 	</table>
 </div>
