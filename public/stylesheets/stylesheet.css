@@ -6,6 +6,11 @@ body
 a       { text-decoration: none; }
 a:hover { color: red; text-decoration: underline; }
 
+.tablecell
+{
+	width: 40px;
+}
+
 .moduletitle
 {
 	font-weight: normal; font-size: 14pt;
