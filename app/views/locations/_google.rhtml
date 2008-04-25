@@ -26,7 +26,7 @@ end
 
       // this is called when the page loads. 
       // it initializes the map, and creates each marker
-      function initialize() {
+      function google_initialize() {
           var map = new GMap(document.getElementById("map"));
           map.addControl(new GSmallMapControl());
           map.addControl(new GMapTypeControl());
@@ -51,7 +51,7 @@ end
 			<% end %>
 		  <% end %>
       }    
-  </script>
+  </script>                   
 
 <div class="pagecontentmodule">
 	<div class="moduletitle">Map</div>

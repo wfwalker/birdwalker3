@@ -3,9 +3,12 @@
     <head>
 		<%= stylesheet_link_tag 'stylesheet'%>
 		<%= javascript_include_tag :defaults %>
+		<%= javascript_include_tag 'lib/yui-utilities.js', 'adapter/shadowbox-yui.js', 'shadowbox'  %>  
+		<%= javascript_tag "window.onload = function(){ Shadowbox.init(); };" %>
+		
         <title>birdWalker | <%= @page_title %></title>
     </head>
-    <body onload="initialize()">
+    <body onload="google_initialize()">
         <div id="menu">
 			<div>
 				<img src="/images/topleft1.jpg" width="120" height="100"/>
