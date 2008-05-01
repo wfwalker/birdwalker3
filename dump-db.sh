@@ -7,4 +7,4 @@ EXECUTABLE=/usr/local/mysql/bin/mysqldump
 AUTHFLAGS="-u root HelloWorld_development"
 OTHERFLAGS="--extended-insert=FALSE --quote-names=TRUE --complete-insert=TRUE --comments=FALSE --add-locks=FALSE"
 
-$EXECUTABLE $OTHERFLAGS $AUTHFLAGS > test.sql
+$EXECUTABLE $OTHERFLAGS $AUTHFLAGS > birdwalker_dump.sql
