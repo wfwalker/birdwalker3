@@ -37,6 +37,19 @@
 			<div class="<%= @controller.page_kind == 'trip' ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
 			</div>
+			
+			<% if (session[:username] != nil) then %>
+				<div class="menuitem">
+					logged in as  <%= session[:username] %>
+				</div>
+				<div class="menuitem">
+					<%= link_to 'logout', :controller => 'bird_walker', :action => 'logout'%>
+				</div>
+			<% else %>
+				<div class="menuitem">
+					<%= link_to 'login', :controller => 'bird_walker', :action => 'login'%>
+				</div>
+			<% end %>
 		</div>
 		
 		<% if params[:action] != 'index' %>

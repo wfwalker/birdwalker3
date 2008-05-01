@@ -3,7 +3,10 @@
 <div id="pagebody">
 	<div id="pageheader-trip">
 		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem"><%= link_to 'New', :action => 'new' %></div>
+		
+		<% editing_is_allowed?() do %>
+			<div class="pageheaderitem"><%= link_to 'New', :action => 'new' %></div>
+		<% end %>
 	</div>
 
 	<% trip_lists = @trips/(@trips.size / 3 + 3)%>

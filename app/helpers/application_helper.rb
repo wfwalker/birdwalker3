@@ -29,7 +29,7 @@ module ApplicationHelper
   end
   
   def editing_is_allowed?(&block)
-    yield if is_laptop
+    yield if session[:username] != nil
   end
   
   def is_laptop
