@@ -36,6 +36,7 @@ class SpeciesController < ApplicationController
     @previous_url = '/species/year/' + (params[:year].to_i - 1).to_s
     @next_url = '/species/year/' + (params[:year].to_i + 1).to_s
 
+    @page_title = params[:year].to_s
     render :action => 'list'
   end
 
