@@ -6,4 +6,8 @@
 	<% if (sighting.notes && sighting.notes.length > 1) then %>
 		<div class="notes"><%= sighting.notes %></div>
 	<% end%>
+	
+	<% if (sighting.heard_only) then %>
+		(h)
+	<% end %>
 </div>
