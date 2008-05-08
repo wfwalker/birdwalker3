@@ -3,9 +3,16 @@ require File.dirname(__FILE__) + '/../test_helper'
 class SightingTest < Test::Unit::TestCase
   fixtures :sightings, :trips, :locations, :species, :counties, :states, :families
 
-  def test_direct_associations
+  def test_properties
     assert_equal 4, Sighting.count
+    
+    assert_equal true, Sighting.find_by_id(1).heard_only
+    assert_equal false, Sighting.find_by_id(2).heard_only
+    assert_equal false, Sighting.find_by_id(3).heard_only
+    assert_equal false, Sighting.find_by_id(4).heard_only
+  end
 
+  def test_direct_associations
     assert_equal 2, Location.find(1).sightings.count
     assert_equal 2, Location.find(2).sightings.count
 
