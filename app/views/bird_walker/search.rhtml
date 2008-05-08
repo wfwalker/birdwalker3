@@ -1,0 +1,27 @@
+<% @page_title = 'Search Results' %>
+
+<div id="pagebody">
+	<div id="pageheader-home1">
+		<div id="pagetitle"></div>
+	</div>
+	<div id="pagecontent">
+		<div class="pagecontentmodule">
+		<div class="moduletitle">Search Results for '<%= @terms %>'</div>
+			<% if (@found_species != nil && @found_species.size > 0) then %>
+				<%= show_species_list(@found_species, true) %>
+			<% end %>
+
+			<% if (@found_trips != nil && @found_trips.size > 0) then %>
+				<%= show_trip_list(@found_trips, true) %>
+			<% end %>
+			
+			<% if (@found_locations != nil && @found_locations.size > 0) then %>
+				<%= show_location_list(@found_locations, true) %>
+			<% end %>
+			
+			<% if (@found_sightings != nil && @found_sightings.size > 0) then %>
+				<%= show_chronological_sighting_list(@found_sightings) %>
+			<% end %>
+		</div>
+	</div>
+</div>
