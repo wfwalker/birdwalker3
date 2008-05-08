@@ -1,7 +1,12 @@
 <% sighting_list = chronological_list %>
 
 <div class="pagecontentmodule">
-	<div class="modulesubtitle"><%= @module_title %>, <%= sighting_list.size %> Sightings</div>
+	<div class="modulesubtitle">
+		<% if (@module_title != nil && @module_title != "") then %>
+			<%= @module_title %>, 
+		<% end %>
+		<%= sighting_list.size %> Sightings
+	</div>
 	<div class="pagecontentitem">
 	<table>
 		<% previous_sighting = nil %>
