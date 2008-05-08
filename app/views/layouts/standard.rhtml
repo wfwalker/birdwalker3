@@ -13,6 +13,13 @@
 			<div>
 				<img src="/images/topleft1.jpg" width="120" height="100"/>
 			</div>
+			<div class="menuitem">
+				<form action="/bird_walker/search" method="post">
+					<% if (@terms == nil) then @terms = "search" end %>
+					<input size="10" onclick="select()" type="text" name="terms" value="<%= @terms %>"></input>
+					<input type="submit" value="Go"></input>
+				</form>
+			</div>
 			<div class="<%= @controller.page_kind == 'home' ? 'homemenuitem' : 'menuitem' %>">
 				<%= link_to "birdWalker", '/bird_walker/index' %>
 			</div>
