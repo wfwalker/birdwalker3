@@ -29,7 +29,7 @@ class CountiesController < ApplicationController
   end
   
   def page_kind
-    "location"
+    "counties"
   end
   
   def index

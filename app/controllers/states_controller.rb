@@ -4,7 +4,7 @@ class StatesController < ApplicationController
   helper :locations
 
   def page_kind
-    "location"
+    "states"
   end
   
   def show

@@ -7,7 +7,7 @@ class SightingsController < ApplicationController
 #  </p>  
 
   def page_kind
-    "trip"
+    "trips"
   end
   
 # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)

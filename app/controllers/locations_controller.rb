@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   helper :sightings
   
   def page_kind
-    "location"
+    "locations"
   end
   
   def index

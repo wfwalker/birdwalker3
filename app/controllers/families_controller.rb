@@ -5,7 +5,7 @@ class FamiliesController < ApplicationController
   helper :sightings
   
   def page_kind
-    "species"
+    "families"
   end
 
   def index

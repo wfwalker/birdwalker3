@@ -10,38 +10,35 @@
     </head>
     <body onload="google_initialize()">
         <div id="menu">
-			<div>
-				<img src="/images/topleft1.jpg" width="120" height="100"/>
+			<div class="homemenuitem">
+				<%= link_to "<p><b>birdWalker</b></p>birding field notes and photographs from Bill Walker and Mary Wisnewski", '/bird_walker/index' %>
 			</div>
-			<div class="menuitem">
+			<div class="homemenuitem">
+				<%= link_to "about this site", '/bird_walker/about' %>
+			</div>
+			<div class="homemenuitem">
 				<form action="/bird_walker/search" method="post">
 					<% if (@terms == nil) then @terms = "search" end %>
 					<input size="10" onclick="select()" type="text" name="terms" value="<%= @terms %>"></input>
 					<input type="submit" value="Go"></input>
 				</form>
 			</div>
-			<div class="<%= @controller.page_kind == 'home' ? 'homemenuitem' : 'menuitem' %>">
-				<%= link_to "birdWalker", '/bird_walker/index' %>
-			</div>
-			<div class="<%= @controller.page_kind == 'home' ? 'homemenuitem' : 'menuitem' %>">
-				<%= link_to "about", '/bird_walker/about' %>
-			</div>
-			<div class="<%= @controller.page_kind == 'location' ? 'locationmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'locations' ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "locations", locations_url %>
 			</div>
-			<div class="<%= @controller.page_kind == 'location' ? 'locationmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'counties' ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "counties", counties_url %>
 			</div>
-			<div class="<%= @controller.page_kind == 'location' ? 'locationmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'states' ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "states", states_url %>
 			</div>
 			<div class="<%= @controller.page_kind == 'species' ? 'speciesmenuitem' : 'menuitem' %>">
 				<%= link_to "species", species_url %>
 			</div>
-			<div class="<%= @controller.page_kind == 'species' ? 'speciesmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'families' ? 'speciesmenuitem' : 'menuitem' %>">
 				<%= link_to "families", families_url %>
 			</div>
-			<div class="<%= @controller.page_kind == 'trip' ? 'tripmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'trips' ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
 			</div>
 			

@@ -3,7 +3,7 @@ class TripsController < ApplicationController
   helper :sightings
 
   def page_kind
-    "trip"
+    "trips"
   end
   
   def list
