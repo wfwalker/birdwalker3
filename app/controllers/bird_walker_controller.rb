@@ -1,5 +1,8 @@
 class BirdWalkerController < ApplicationController
   helper :trips
+  helper :species
+  helper :locations
+  helper :sightings
   
   def index
     @recent_trips = Trip.find(:all, :limit => 10, :order => 'date DESC')
@@ -24,6 +27,20 @@ class BirdWalkerController < ApplicationController
           flash[:notice] = 'Incorrect login or password; please try again'
           session[:username] = nil    
         end
+    end
+  end
+  
+  def search
+    if (params[:terms] != nil) then
+      logger.error("searching for  " + params[:terms])
+      
+      @found_species = Species.find(:all, :conditions => ["common_name like ?", "%#{params[:terms]}%"], :order => "id")
+      @found_trips = Trip.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
+      @found_locations = Location.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
+      @found_sightings = Sighting.find(:all, :conditions => ["notes like ?", "%#{params[:terms]}%"], :order => "id")
+      @terms = params[:terms]
+    else
+      @terms = "terms"
     end
   end
   
