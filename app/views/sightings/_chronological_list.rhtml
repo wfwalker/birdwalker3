@@ -20,6 +20,7 @@
 			</td>
 			<td valign="top">
 				<%= link_to sighting.species.common_name, :controller => 'species', :id => sighting.species, :action => 'show' %>
+				<% if (sighting.heard_only) then %>(h)<% end %>
 				<div><%= sighting.notes%></div>
 			</td>
 			<td valign="top" style="color: gray; white-space: nowrap">
