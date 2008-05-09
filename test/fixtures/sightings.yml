@@ -4,21 +4,25 @@ sighting_one:
   trip_id: 1
   location_id: 1
   species_id: 2
+  heard_only: true
 
 sighting_two:
   id: 2
   trip_id: 1
   location_id: 2
   species_id: 1
+  heard_only: false
 
 sighting_three:
   id: 3
   trip_id: 2
   location_id: 1
   species_id: 2
+  heard_only: false
 
 sighting_four:
   id: 4
   trip_id: 2
   location_id: 2
   species_id: 1
+  heard_only: false
