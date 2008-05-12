@@ -1,0 +1,30 @@
+xml.instruct!
+
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+   xml.channel do
+     xml.title "birdWalker"    
+     xml.link url_for :only_path => false, :controller => 'bird_walker', :action => 'index'
+     xml.description "Mary and Bill's birding field notes and photos"
+
+     xml.language "en-US"
+     xml.generator "birdWalker"
+      
+      xml.item do
+        xml.title       "Bird of the Week (week " + Date.today.cweek.to_s + ")"
+        xml.pubDate     Date.today
+        xml.link        url_for :only_path => false, :controller => 'species', :action => 'show', :id => @bird_of_the_week
+        xml.description "This week's Bird of the Week is the " + @bird_of_the_week.common_name + ". Photographed " + nice_date(@photo_of_the_week.trip.date)
+        xml.guid        'bird_of_the_week_' + Date.today.year.to_s + '_' + Date.today.cweek.to_s
+      end               
+     
+      @recent_trips.each do |trip|
+        xml.item do
+          xml.title       trip.name
+          xml.pubDate     trip.date
+          xml.link        url_for :only_path => false, :controller => 'trips', :action => 'show', :id => trip.id
+          xml.description trip.notes
+          xml.guid        url_for :only_path => false, :controller => 'articles', :action => 'show', :id => trip.id
+        end
+      end 
+   end
+ end
