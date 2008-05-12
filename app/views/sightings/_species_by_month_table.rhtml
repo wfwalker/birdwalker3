@@ -1,34 +1,41 @@
 <div class="pagecontentitem">
-	<table>
+	<table spacing="0" cellspacing="0" padding="0" cellpadding="0">
 		<tr>
 			<td></td>
 			<% for month in (1..12) do %>
-				<td align="right"><%= Date::ABBR_MONTHNAMES[month] %></td>
+				<td class="<%= month % 2 == 1 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= Date::ABBR_MONTHNAMES[month] %></td>
 			<% end %>
 		</tr>
+
+  		<tr><td class="tabledivider" colspan="13"> </td></tr>       
+
 		<% for key in Species.sort_taxonomic(@map.keys) %>
 			<tr valign="top">
 				<td><%= key.common_name %></td>
 				<% for month in (1..12) do %>
-					<td  class="tablecell" align="right"><%= @map[key][month] %></td>
+					<td class="<%= month % 2 == 1 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= @map[key][month] %></td>
 				<% end %>
 			</tr>
+
+	  		<tr><td class="tabledivider" colspan="13"> </td></tr>       
 		<% end %>
 		
 		<% if (@map.keys.size > 20) then %>
 			<tr>
-				<td>Total</td>
+				<td>Total Species</td>
 				<% for month in (1..12) do %>
-					<td align="right"><%= @totals[month] %></td>
+					<td class="<%= month % 2 == 1 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= @totals[month] %></td>
 				<% end %>
 			</tr>
 		<% end %>
 		
 		<% if (@map.keys.size > 30) then %>
+  			<tr><td class="tabledivider" colspan="13"> </td></tr>       
+			
 			<tr>
 				<td></td>
 				<% for month in (1..12) do %>
-					<td align="right"><%= Date::ABBR_MONTHNAMES[month] %></td>
+					<td class="<%= month % 2 == 1 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= Date::ABBR_MONTHNAMES[month] %></td>
 				<% end %>
 			</tr>
 		<% end %>

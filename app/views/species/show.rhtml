@@ -22,8 +22,8 @@
 							<div class="moduletitle">Latest sighting</div>	
 							<%= render :partial => 'sightings/full_details', :object => @species.last_sighting %>	
 						</div>
-					<% end %>
-
+					<% end %>        
+   
 					<%= show_thumbnail_list(@species.sightings_with_photos) %>
 					
 					<% if (@species.locations.with_lat_long.size > 0) %>

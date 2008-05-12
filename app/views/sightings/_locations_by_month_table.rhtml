@@ -1,25 +1,29 @@
 <div class="pagecontentitem">
-	<table>
+	<table spacing="0" cellspacing="0" padding="0" cellpadding="0">
 		<tr>
 			<td></td>
 			<% for month in (1..12) do %>
-				<td align="right"><%= Date::ABBR_MONTHNAMES[month] %></td>
+				<td class="<%= month % 2 == 1 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= Date::ABBR_MONTHNAMES[month] %></td>
 			<% end %>
-		</tr>
+		</tr>  
+		
+		<tr><td class="tabledivider" colspan="13"> </td></tr>       
+		                        
 		<% for key in (@map.keys) %>
 			<tr valign="top">
 				<td><%= key.name %></td>
 				<% for month in (1..12) do %>
-					<td align="right"><%= @map[key][month] %></td>
+					<td class="<%= month % 2 == 1 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= @map[key][month] %></td>
 				<% end %>
-			</tr>
-		<% end %>
-		
+			</tr> 
+			<tr><td class="tabledivider" colspan="13"> </td></tr>
+		<% end %>        
+				
 		<% if (@map.keys.size > 20) then %>
 			<tr>
-				<td>Total</td>
+				<td>Total Locations</td>
 				<% for month in (1..12) do %>
-					<td class="tablecell" align="right"><%= @totals[month] %></td>
+					<td class="<%= month % 2 == 1 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= @totals[month] %></td>
 				<% end %>
 			</tr>
 		<% end %>
@@ -28,7 +32,7 @@
 			<tr>
 				<td></td>
 				<% for month in (1..12) do %>
-					<td align="right"><%= month %></td>
+					<td class="<%= month % 2 == 1 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= Date::ABBR_MONTHNAMES[month] %></td>
 				<% end %>
 			</tr>
 		<% end %>
