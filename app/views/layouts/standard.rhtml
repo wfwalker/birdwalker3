@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
 		<%= stylesheet_link_tag 'stylesheet'%>
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= url_for :path_only => false, :controller => 'bird_walker', :action => 'index_rss' %>" />
+
 		<%= javascript_include_tag :defaults %>
 		<%= javascript_include_tag 'lib/yui-utilities.js', 'adapter/shadowbox-yui.js', 'shadowbox'  %>  
 		<%= javascript_tag "window.onload = function(){ Shadowbox.init(); };" %>
