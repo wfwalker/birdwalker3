@@ -35,7 +35,7 @@ class Species < ActiveRecord::Base
   end  
 
   def Species.find_all_seen_not_excluded
-    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.aba_countable='1' AND sightings.exclude!='1' AND species.id=sightings.species_id"
+    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.aba_countable='1' AND sightings.exclude!='1' AND species.id=sightings.species_id ORDER BY sightings.species_id"
   end  
 
   def Species.find_all_photographed_not_excluded
