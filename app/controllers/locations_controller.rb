@@ -6,6 +6,10 @@ class LocationsController < ApplicationController
   def page_kind
     "locations"
   end
+
+  def list
+    @locations = Location.find_by_county_and_state
+  end
   
   def index
     list
@@ -19,13 +23,8 @@ class LocationsController < ApplicationController
 #  verify :method => :post, :only => [ :destroy, :create, :update ],
 #         :redirect_to => { :action => :list }
 
-  def list
-    @locations = Location.find_by_sql("SELECT DISTINCT locations.* from locations, counties, states where locations.county_id=counties.id AND counties.state_id = states.id ORDER BY states.name, locations.name")
-  end
-
   def google
     @location = Location.find(params[:id])
-    logger.error("LOCATION GOOGLE " + @location.latitude.to_s + " "  + @location.longitude.to_s)
   end
   
   def show

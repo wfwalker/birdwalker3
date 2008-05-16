@@ -32,6 +32,7 @@ class Species < ActiveRecord::Base
   # TODO: some cleaner way to do this!
   def Species.find_all_seen
     Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings, families WHERE species.id=sightings.species_id AND species.family_id=families.id ORDER BY families.taxonomic_sort_id"
+    #Sighting.species.find(:all, :include => :family, :order => 'families.taxonomic_id') 
   end  
 
   def Species.find_all_seen_not_excluded
