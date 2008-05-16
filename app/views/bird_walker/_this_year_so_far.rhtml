@@ -1,0 +1,8 @@
+<div class="pagecontentmodule">
+	<div class="moduletitle">This year so far</div>
+	<div class="pagecontentitem">
+		So far in week <%= Date.today.cweek.to_s %> of <%= link_to Date.today.year, :controller => 'species', :action => 'year', :id => Date.today.year %> we have seen
+		<%= @this_year_species.size.to_s %> species.
+		Last year at this time we had seen <%= @last_year_species.size.to_s %>
+	</div>
+</div>

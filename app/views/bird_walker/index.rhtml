@@ -8,31 +8,23 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td valign="top" width="50%">
+					<%= render :partial => 'bird_walker/see_it_this_week' %>   
+					
 					<div class="pagecontentmodule">
-						<div class="moduletitle">See it this week!</div>
-						<div class="pagecontentitem">
-							<img width="100%" src="<%= @bird_of_the_week.photo_of_the_week.photoURL %>"/>
-							<p>
-								The Bird of the Week is the <%= link_to @bird_of_the_week.common_name, :controller => 'species', :action => 'show', :id => @bird_of_the_week %><br/>
-								Photographed <%= link_to nice_date(@photo_of_the_week.trip.date), :controller => 'trips', :action => 'show', :id => @photo_of_the_week.trip %> at 
-								<%= link_to @photo_of_the_week.location.name, :controller => 'locations', :action => 'show', :id => @photo_of_the_week.location %>
-							</p>
-						</div>
+						<div class="moduletitle">Visited Recently</div>
 					</div>
-					<div class="pagecontentmodule">
-						<div class="moduletitle">This year so far</div>
-						<div class="pagecontentitem">
-							So far in week <%= Date.today.cweek.to_s %> of <%= link_to Date.today.year, :controller => 'species', :action => 'year', :id => Date.today.year %> we have seen
-							<%= @this_year_species.size.to_s %> species.
-							Last year at this time we had seen <%= @last_year_species.size.to_s %>
-						</div>
-					</div>
+					<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  
+
+					<%= render :partial => 'bird_walker/this_year_so_far' %>
+										
 				</td>
-				<td valign="top" width="50%">
+				<td valign="top" width="50%">   
+					
 					<div class="pagecontentmodule">
 						<div class="moduletitle">Recent Trips</div>
 					</div>
 					<%= render :partial => 'trips/summary', :collection => @recent_trips %>
+
 				</td>
 			</tr>
 		</table>
