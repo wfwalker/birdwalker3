@@ -1,0 +1,24 @@
+<% location = summary %>
+
+<div class="pagecontentmodule">
+	<% has_photo?(location) do %>
+		<div style="float: right; padding: 10px">	
+			<%= render :partial => 'sightings/thumbnail', :object => location.sightings_with_photos.first %>
+		</div>
+	<% end %>
+
+	<div class="modulesubtitle">
+		<%= link_to location.name, location_url(location) %></a>,
+		<%= location.species.size %> species
+	</div>
+	
+	<div class="pagecontentitem">
+		<% if (location.notes.size > 500) %>
+			<%= location.notes[0,500] %>...
+		<% else %>
+			<%= location.notes %>
+		<% end %>
+	</div>
+	
+	<br clear="all"/>
+</div>
