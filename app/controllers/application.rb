@@ -8,12 +8,13 @@ class ApplicationController < ActionController::Base
   layout :choose_layout
   
   protected
-  def iphone?
-    request.respond_to?("user_agent") && request.user_agent.include?('iPhone')  
+  def iphone?    
+    request.user_agent.include?('iPhone')  
     #true
   end  
   
   def choose_layout  
+    logger.error("CHOOSE LAYOUT")
     if iphone?  
         "iphone"  
       else
