@@ -45,7 +45,7 @@ class Location < ActiveRecord::Base
     Location.find_by_sql("select locations.*, count(distinct trips.id) as trip_count from locations,sightings,trips where locations.id=sightings.location_id and sightings.trip_id=trips.id and datediff(now(), trips.date) < 40 group by locations.id order by trip_count desc limit 5");
   end
   
-  def find_by_county_and_state
+  def Location.find_by_county_and_state
     Location.find_by_sql("SELECT DISTINCT locations.* from locations, counties, states where locations.county_id=counties.id AND counties.state_id = states.id ORDER BY states.name, locations.name")
   end     
 end

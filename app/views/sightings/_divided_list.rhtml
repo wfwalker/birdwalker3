@@ -5,7 +5,7 @@
 <% sorted_families = Family.sort_taxonomic(sightings_by_family.keys) %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle"><%= @module_title %>, <%= sighting_list.size %> Sightings</div>
+	<div class="modulesubtitle"><%= @module_title %>, <%= sighting_list.size %> Sightings</div>
 
 	<% for family in sorted_families %>
 		<% if sighting_list.size > 100 %>

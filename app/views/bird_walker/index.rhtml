@@ -8,14 +8,14 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td valign="top" width="50%">
+					<%= render :partial => 'bird_walker/this_year_so_far' %>
+
 					<%= render :partial => 'bird_walker/see_it_this_week' %>   
 					
 					<div class="pagecontentmodule">
 						<div class="moduletitle">Visited Recently</div>
 					</div>
 					<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  
-
-					<%= render :partial => 'bird_walker/this_year_so_far' %>
 										
 				</td>
 				<td valign="top" width="50%">   

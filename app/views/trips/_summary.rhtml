@@ -9,17 +9,21 @@
 
 	<div class="modulesubtitle">
 		<%= link_to trip.name, trip_url(trip) %></a>,
-		<%= trip.species.size %> species
-		<br/><%= short_nice_date(trip.date) %>
+		<%= trip.species.size %> species,
+		<%= distance_of_time_in_words_to_now(trip.date) %> ago
 	</div>
 	
-	<div class="pagecontentitem">
-		<% if (trip.notes.size > 500) %>
-			<%= trip.notes[0,500] %>...
-		<% else %>
-			<%= trip.notes %>
-		<% end %>
-	</div>
+	<% has_notes?(trip) do %>
+		<div class="pagecontentitem">
+			<% if (trip.notes.size > 500) %>
+				<%= trip.notes[0,500] %>...
+			<% else %>
+				<%= trip.notes %>
+			<% end %>
+		</div>
+	<% end %>
 	
-	<br clear="all"/>
+	<% has_photo?(trip) do %>
+		<br clear="all"/>
+	<% end %>
 </div>

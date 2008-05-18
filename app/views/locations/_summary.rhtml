@@ -12,13 +12,17 @@
 		<%= location.species.size %> species
 	</div>
 	
-	<div class="pagecontentitem">
-		<% if (location.notes.size > 500) %>
-			<%= location.notes[0,500] %>...
-		<% else %>
-			<%= location.notes %>
-		<% end %>
-	</div>
+	<% has_notes?(location) do %>
+		<div class="pagecontentitem">
+			<% if (location.notes.size > 500) %>
+				<%= location.notes[0,500] %>...
+			<% else %>
+				<%= location.notes %>
+			<% end %>
+		</div>
+	<% end %>
 	
-	<br clear="all"/>
+	<% has_photo?(location) do %>
+		<br clear="all"/>
+	<% end %>
 </div>
