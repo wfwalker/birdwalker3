@@ -4,7 +4,8 @@ body
 }
 
 a       { text-decoration: none; }
-a:hover { color: red; text-decoration: underline; }
+.pagecontentitem p a { text-decoration: underline; }
+a:hover { color: red; text-decoration: none; }
 
 .tablecell
 {
@@ -23,6 +24,7 @@ a:hover { color: red; text-decoration: underline; }
 
 .moduletitle
 {
+	border-bottom: solid 1px #CCCCCC;
 	font-weight: normal; font-size: 14pt;
 	margin-left: 10px; margin-top: 10px; margin-bottom: 10px
 }
@@ -32,6 +34,9 @@ a:hover { color: red; text-decoration: underline; }
 	font-weight: normal; font-size: 12pt;
 	margin-left: 12px; margin-top: 10px; margin-bottom: 10px
 }
+
+.modulesubtitle a { text-decoration: none; }
+
 
 #browse
 {
@@ -207,15 +212,15 @@ a:hover { color: red; text-decoration: underline; }
 #pagecontent .pagecontentmodule
 {
 	/* border-left: solid 3px #CCCCCC; */
-	border-top: solid 1px #CCCCCC;
-	margin-top: 5px;
-	margin-bottom: 10px;
+	/* border-top: solid 1px #CCCCCC; */
+	margin-top: 10px;
+	margin-bottom: 15px;
 	margin-right: 10px;
 }
 
 #pagecontent .pagecontentitem
 {
-	margin-left: 15px; margin-bottom: 1px;
+	margin-left: 30px; margin-bottom: 1px;
 }
 
 #pagecontent .pagecontentitem .notes
