@@ -6,7 +6,7 @@
 			<%= link_to safe_species_common_name(sighting), species_instance_url(sighting.species_id) %> at
 		<% end %>
 		<%= link_to safe_location_name(sighting), location_url(sighting.location_id) %>
-		on <%= link_to safe_nice_trip_date(sighting), trip_url(sighting.trip_id) %>
+	 	<%= link_to distance_of_time_in_words_to_now(sighting.trip.date) + " ago", trip_url(sighting.trip_id) %>
 	</p>
 
 	<% if (sighting.notes && sighting.notes.length > 1) then %>
