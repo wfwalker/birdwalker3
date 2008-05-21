@@ -2,26 +2,35 @@
 
 <div class="pagecontentmodule">
 	<div class="modulesubtitle">
-		<%= link_to location.name, location_url(location) %></a>,
-		<%= location.species.size %> species
+		<%= link_to location.name, location_url(location) %></a>
 	</div>
 	
-	<% has_notes?(location) do %>
-		<% has_photo?(location) do %>
-			<div style="float: right; padding: 10px">	
-				<%= render :partial => 'sightings/thumbnail', :object => location.sightings_with_photos.last %>
-			</div>
+	<% has_photo?(location) do %>
+		<div style="float: right; padding-left: 10px">	
+			<%= render :partial => 'sightings/thumbnail', :object => location.sightings_with_photos.last %>
+		</div>
+	<% end %>
+	
+	<div class="pagecontentitem">
+		<% has_no_notes?(location) do %>
+			<p>
+				Located near <%= location.city %> in <%= location.county.name %> County, <%= location.county.state.name %>.
+				We have recorded <%= location.species.size %> species during <%= location.trips.size %> trips.
+				The first trip was <%= distance_of_time_in_words_to_now(location.trips.last.date) %> ago, 
+				the latest trip was <%= distance_of_time_in_words_to_now(location.trips.first.date) %> ago.
+			</p>
 		<% end %>
-		<div class="pagecontentitem">
+		
+		<% has_notes?(location) do %>
 			<% if (location.notes.size > 500) %>
 				<%= location.notes[0,500] %>...
 			<% else %>
 				<%= location.notes %>
 			<% end %>
-		</div>
-
-		<% has_photo?(location) do %>
-			<br clear="all"/>
 		<% end %>
-	<% end %>	
+	</div>
+
+	<% has_photo?(location) do %>
+		<br clear="all"/>
+	<% end %>
 </div>

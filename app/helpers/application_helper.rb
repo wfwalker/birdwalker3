@@ -24,6 +24,10 @@ module ApplicationHelper
     yield if subject.notes && subject.notes.length > 1
   end
 
+  def has_no_notes?(subject, &block)
+    yield if ! subject.notes || subject.notes.length == 0
+  end
+
   def has_sightings?(subject, &block)
     yield if subject.sightings && subject.sightings.length > 1
   end

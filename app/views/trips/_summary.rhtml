@@ -2,26 +2,40 @@
 
 <div class="pagecontentmodule">
 	<div class="modulesubtitle">
-		<%= link_to trip.name, trip_url(trip) %></a>,
-		<%= trip.species.size %> species,
-		<%= distance_of_time_in_words_to_now(trip.date) %> ago
+		<%= link_to trip.name, trip_url(trip) %></a>
 	</div>
 
-	<% has_notes?(trip) do %>
-		<% has_photo?(trip) do %>
-			<div style="float: right; padding: 10px">	
-				<%= render :partial => 'sightings/thumbnail', :object => trip.sightings_with_photos.first %>
-			</div>
-		<% end %>
-		<div class="pagecontentitem">
-			<% if (trip.notes.size > 500) %>
-				<%= trip.notes[0,500] %>...
-			<% else %>
-				<%= trip.notes %>
-			<% end %>
+	<% has_photo?(trip) do %>
+		<div style="float: right; padding-left: 10px">	
+			<%= render :partial => 'sightings/thumbnail', :object => trip.sightings_with_photos.first %>
 		</div>
-		<% has_photo?(trip) do %>
-			<br clear="all"/>
+	<% end %>
+
+	<div class="pagecontentitem">
+		<% has_no_notes?(trip) do %>
+			<p>
+				We observed <%= trip.species.size %> species
+				<%= distance_of_time_in_words_to_now(trip.date) %> ago
+				at
+				<% if (trip.locations.size > 1) then %>
+					<%= trip.locations.size %> locations
+				<% else %>
+					<%= trip.locations[0].name %>
+				<% end %>
+				in <%= trip.locations[0].county.name %> County, <%= trip.locations[0].county.state.name %>.
+			</p>
 		<% end %>
+	
+		<% has_notes?(trip) do %>
+				<% if (trip.notes.size > 500) %>
+					<%= trip.notes[0,500] %>...
+				<% else %>
+					<%= trip.notes %>
+				<% end %>
+		<% end %>
+	</div>
+
+	<% has_photo?(trip) do %>
+		<br clear="all"/>
 	<% end %>
 </div>
