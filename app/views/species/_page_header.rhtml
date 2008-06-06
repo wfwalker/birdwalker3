@@ -9,9 +9,6 @@
 	</div>
 	<div class="pageheaderitem"><%= species.latin_name %></div>
 	<div class="pageheaderitem"><%= link_to species.family.latin_name, family_url(species.family) %></div>
-	<% has_notes?(species) do %>
-		<div class="pageheaderitem"><%= species.notes %></div>
-	<% end %>
 	<% if species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
 	<% has_reference_url?(species) do %>
 		<div class="pageheaderitem"><a href="<%= species.reference_url %>">See also...</a></div>

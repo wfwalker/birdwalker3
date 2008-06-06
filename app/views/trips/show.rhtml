@@ -39,7 +39,7 @@
 				<td width="50%" valign="top">
 					<% has_notes?(@trip) do %>
 						<div class="pagecontentmodule">
-							<div class="moduletitle">Notes</div>
+							<div class="moduletitle">Trip Notes</div>
 							<div class="pagecontentitem"><%= @trip.notes %></div>
 						</div>
 					<% end %>
@@ -47,6 +47,7 @@
 					<%= show_thumbnail_list(@trip.sightings_with_photos) %>
 					
 					<% if (@trip.locations.with_lat_long.size > 0) %>
+						<% @map_module_title = 'Trip Map' %>                       
 						<%= render :partial => 'locations/google', :object => @trip.locations.with_lat_long %>
 					<% end %>
 				</td>

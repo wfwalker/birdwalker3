@@ -20,7 +20,8 @@
 					<%= show_thumbnail_list(@family.sightings_with_photos) %>
 					
  					<% if (Location.with_lat_long(@family.locations).size > 0) %>
-						<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations) %>
+ 						<% @map_module_title = 'Family Map' %>                       
+   						<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations) %>
 					<% end %>
 
    					<%= show_location_list(@family.locations, true) %>

@@ -22,6 +22,7 @@
 					</div>
 					
 					<% if (@state.locations.with_lat_long.size > 0) %>
+						<% @map_module_title = 'State Map' %>                       
 						<%= render :partial => 'locations/google', :object => @state.locations.with_lat_long %>
 					<% end %>
 				</td>

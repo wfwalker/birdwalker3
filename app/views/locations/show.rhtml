@@ -12,7 +12,7 @@
 				<td valign="top" width="50%">
 					<% has_notes?(@location) do %>
 						<div class="pagecontentmodule">
-							<div class="moduletitle">Notes</div>
+							<div class="moduletitle">Location Notes</div>
 							<div class="pagecontentitem"><%= @location.notes %></div>
 						</div>
 					<% end %>
@@ -23,7 +23,8 @@
 						<% @center_latitude = @location.latitude %>
 						<% @center_longitude = @location.longitude %>
 						<% @locations = [ @location ] %>
-						<%= render :partial => 'locations/google', :object => [ @location ] %>
+ 						<% @map_module_title = 'Location Map' %>
+   						<%= render :partial => 'locations/google', :object => [ @location ] %>
 					<% end %>
 					
 					<%= show_trip_list(@location.trips, true) %>					

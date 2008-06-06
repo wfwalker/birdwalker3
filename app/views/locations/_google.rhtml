@@ -41,22 +41,29 @@ end
 		  <% center_longitude = (min_longitude + max_longitude) / 2 %>
 		  <% center_latitude = (min_latitude + max_latitude) / 2 %>
                                                                                           
-		  // '7' is nice for single point maps, 13 was the old default for 'whole US'
-		  <%= zoom = locations.size > 1 ? 13 : 7 %>
-   		  map.centerAndZoom(new GPoint(<%= center_longitude %>, <%= center_latitude %>), <%= zoom %>);     
+		  // V1: '7' is nice for single point maps, 13 was the old default for 'whole US'
+		  // V2: '10' is nice for single point maps, 4 is the default for 'whole US'
+		  <%= zoom = locations.size > 1 ? 4 : 10 %>
+   		  map.setCenter(new GLatLng(<%= center_latitude %>, <%= center_longitude %>), <%= zoom %>, G_PHYSICAL_MAP);     
           
 		  <% for location in locations %> 
 			<% contents = render :partial => 'locations/show_google_popup', :object => location %>
 		
 			<% if (location.longitude != 0) %>
-          		map.addOverlay(createMarker(new GPoint(<%=location.longitude.to_s%>,<%= location.latitude.to_s%>),'<div><%= escape_javascript(contents) %></div>'));
+          		map.addOverlay(createMarker(new GLatLng(<%=location.latitude.to_s%>,<%= location.longitude.to_s%>),'<div><%= escape_javascript(contents) %></div>'));
 			<% end %>
 		  <% end %>
       }    
   </script>                   
 
 <div class="pagecontentmodule">
-	<div class="moduletitle">Map</div>
+	<div class="moduletitle">
+		<% if (@map_module_title != nil && @map_module_title != "") then %>
+			<%= @map_module_title %>   
+		<% else %>
+		    Map
+		<% end %>
+	</div>
 	<div class="pagecontentitem">
 		<div id="map" style="width: 450px; height: 450px; background-color: lightgray"></div>
 	</div>

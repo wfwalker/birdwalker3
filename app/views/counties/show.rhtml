@@ -19,6 +19,7 @@
 					<%= show_thumbnail_list(@county.sightings_with_photos) %>
 					
 					<% if (@county.locations.with_lat_long.size > 0) %>
+						<% @map_module_title = 'County Map' %>                       
 						<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long %>
 					<% end %>
 					
