@@ -5,28 +5,35 @@
 		<div id="pagetitle"></div>
 	</div>
 	<div id="pagecontent">
-		<table width="100%" cellpadding="0px" cellspacing="0px">
+		<% has_columns? do %>
+			<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
-				<td valign="top" width="50%">
-					<%= render :partial => 'bird_walker/this_year_so_far' %>
+			<td valign="top" width="50%">
+		<% end %>
 
-					<%= render :partial => 'bird_walker/see_it_this_week' %>   
-					
-					<div class="pagecontentmodule">
-						<div class="moduletitle">Visited Recently</div>
-					</div>
-					<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  
+				<%= render :partial => 'bird_walker/this_year_so_far' %>
+
+				<%= render :partial => 'bird_walker/see_it_this_week' %>   
+		
+				<div class="pagecontentmodule">
+					<div class="moduletitle">Visited Recently</div>
+				</div>
+				<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  
 										
-				</td>
-				<td valign="top" width="50%">   
+		<% has_columns? do %>
+			</td>
+			<td valign="top" width="50%">   
+		<% end %>
 					
-					<div class="pagecontentmodule">
-						<div class="moduletitle">Recent Trips</div>
-					</div>
-					<%= render :partial => 'trips/summary', :collection => @recent_trips %>
+				<div class="pagecontentmodule">
+					<div class="moduletitle">Recent Trips</div>
+				</div>
+				<%= render :partial => 'trips/summary', :collection => @recent_trips %>
 
-				</td>
+		<% has_columns? do %>
+			</td>
 			</tr>
-		</table>
+			</table>
+		<% end %>
 	</div>
 </div>

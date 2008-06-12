@@ -32,6 +32,10 @@ module ApplicationHelper
     yield if subject.sightings && subject.sightings.length > 1
   end
   
+  def has_columns?(&block)
+    yield if not request.user_agent.include?('iPhone')
+  end
+  
   def editing_is_allowed?(&block)
     yield if session[:username] != nil
   end
