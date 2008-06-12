@@ -68,8 +68,8 @@
 		
 		<% if params[:action] != 'index' %>
 			<div id="browse">
-				<%= link_to "&lt;&lt;", @previous_url %>
-				<%= link_to "&gt;&gt;", @next_url %>
+				<%= link_to "prev", @previous_url %>
+				<%= link_to "next", @next_url %>
 			</div>
 		<% end %>
 		

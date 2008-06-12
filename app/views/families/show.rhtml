@@ -17,6 +17,7 @@
 				</td>
 
 				<td>
+					<% @photos_module_title = 'Family Photos' %>
 					<%= show_thumbnail_list(@family.sightings_with_photos) %>
 					
  					<% if (Location.with_lat_long(@family.locations).size > 0) %>

@@ -51,6 +51,7 @@
 					</div>
 				<% end %>
 			
+				<% @photos_module_title = 'Trip Photos' %>                       
 				<%= show_thumbnail_list(@trip.sightings_with_photos) %>
 			
 				<% if (@trip.locations.with_lat_long.size > 0) %>

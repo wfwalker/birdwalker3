@@ -17,6 +17,7 @@
 						</div>
 					<% end %>
 					
+					<% @photos_module_title = 'Location Photos' %>
 					<%= show_thumbnail_list(@location.sightings_with_photos) %>
 					
 					<% if (@location.latitude != 0) %>
