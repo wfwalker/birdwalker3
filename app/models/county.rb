@@ -6,7 +6,9 @@ class County < ActiveRecord::Base
     end
   end
   has_many :sightings, :through => :locations
-  has_many :sightings_with_photos, :through => :locations, :conditions => 'sightings.photo = 1'
+  has_many :sightings_with_photos, :through => :locations, :conditions => 'sightings.photo = 1'     
+  
+  validates_presence_of :name, :state
   
  # do something like county.sightings.map(&:species).flatten.uniq
  # (Grab all of the sightings for the county, create a new array made up of all 
