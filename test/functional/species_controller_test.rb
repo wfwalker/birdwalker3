@@ -5,7 +5,7 @@ require 'species_controller'
 class SpeciesController; def rescue_action(e) raise e end; end
 
 class SpeciesControllerTest < Test::Unit::TestCase
-  fixtures :species
+  fixtures :species, :families
 
   def setup
     @controller = SpeciesController.new
@@ -27,7 +27,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:species)
+    assert_not_nil assigns(:all_species_seen)
   end
 
   def test_show
@@ -52,7 +52,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
   def test_create
     num_species = Species.count
 
-    post :create, :species => {}
+    post :create, :species => {:abbreviation => 'abcdef', :latin_name => 'Latinus', :common_name => 'Common'}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
