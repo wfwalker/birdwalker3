@@ -5,53 +5,88 @@ require 'counties_controller'
 class CountiesController; def rescue_action(e) raise e end; end
 
 class CountiesControllerTest < Test::Unit::TestCase
-  fixtures :counties
+  fixtures :counties, :states
 
   def setup
     @controller = CountiesController.new
     @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
-  def test_should_get_index
+    @response   = ActionController::TestResponse.new     
+    
+    @first_id = counties(:county_one).id
+  end            
+  
+  def test_index
     get :index
     assert_response :success
-    assert assigns(:counties)
+    assert_template 'list'
   end
 
-  def test_should_get_new
+  def test_list
+    get :list
+
+    assert_response :success
+    assert_template 'list'
+
+    assert_not_nil assigns(:counties)
+  end  
+  
+  def test_show
+    get :show, :id => @first_id
+
+    assert_response :success
+    assert_template 'show'
+
+    assert_not_nil assigns(:county)
+    assert assigns(:county).valid?
+  end
+
+  def test_new
     get :new
+
     assert_response :success
-  end
-  
-  def test_should_create_county
-    old_count = County.count
-    post :create, :county => { }
-    assert_equal old_count+1, County.count
-    
-    assert_redirected_to county_path(assigns(:county))
+    assert_template 'new'
+
+    assert_not_nil assigns(:county)
   end
 
-  def test_should_show_county
-    get :show, :id => 1
-    assert_response :success
+  def test_create
+    num_counties = County.count
+
+    post :create, :county => {:name => 'newname', :state_id => 1}
+
+    assert_response :redirect
+    assert_redirected_to :action => 'show'
+
+    assert_equal num_counties + 1, County.count
   end
 
-  def test_should_get_edit
-    get :edit, :id => 1
+  def test_edit
+    get :edit, :id => @first_id
+
     assert_response :success
+    assert_template 'edit'
+
+    assert_not_nil assigns(:county)
+    assert assigns(:county).valid?
   end
-  
-  def test_should_update_county
-    put :update, :id => 1, :county => { }
-    assert_redirected_to county_path(assigns(:county))
+
+  def test_update
+    post :update, :id => @first_id
+    assert_response :redirect
+    assert_redirected_to :action => 'show', :id => @first_id
   end
-  
-  def test_should_destroy_county
-    old_count = County.count
-    delete :destroy, :id => 1
-    assert_equal old_count-1, County.count
-    
-    assert_redirected_to counties_path
+
+  def test_destroy
+    assert_nothing_raised {
+      County.find(@first_id)
+    }
+
+    post :destroy, :id => @first_id
+    assert_response :redirect
+    assert_redirected_to :action => 'list'
+
+    assert_raise(ActiveRecord::RecordNotFound) {
+      County.find(@first_id)
+    }
   end
 end
