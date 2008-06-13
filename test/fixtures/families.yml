@@ -1,5 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-two:
+family_one:
+  id: 1   
+  latin_name: 'familius 1'   
+  common_name: 'Common 1'
+family_two:
   id: 2
+  latin_name: 'familius 2'
+  common_name: 'Common 2'

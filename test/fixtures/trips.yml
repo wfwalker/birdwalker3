@@ -1,7 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 trip_one:
   name: 'First Trip'
+  date: '2007-01-01'     
+  leader: 'One Guy'
   id: 1
 trip_two:
-  name: 'Second Trip'
+  name: 'Second Trip'  
+  date: '2008-01-01'
+  leader: 'One Gal'
   id: 2
