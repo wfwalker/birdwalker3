@@ -84,7 +84,7 @@ class BirdWalkerController < ApplicationController
     if (params[:terms] != nil) then
       logger.error("searching for  " + params[:terms])
       
-      @found_species = Species.find(:all, :conditions => ["common_name like ?", "%#{params[:terms]}%"], :order => "id")
+      @found_species = Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND species.common_name LIKE '%#{params[:terms]}%' ORDER BY species.id")
       @found_trips = Trip.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
       @found_locations = Location.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
       @found_sightings = Sighting.find(:all, :conditions => ["notes like ?", "%#{params[:terms]}%"], :order => "id")
