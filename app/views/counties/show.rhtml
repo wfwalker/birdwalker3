@@ -2,9 +2,14 @@
 
 <div id="pagebody">
 	<div id="pageheader-location">
-		<div id="pagetitle"><%= @page_title %></div>
+		<div id="pagetitle">
+			<%= @page_title %>
+	 		<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
+			<% end %>       
+		</div> 
 		<div class="pageheaderitem"><%= link_to @county.state.name, state_url(@county.state) %></div>
-		<%= render :partial => 'counties/view_links', :object => @county %>
+   	<%= render :partial => 'counties/view_links', :object => @county %>
 	</div>
 
 	<div id="pagecontent">

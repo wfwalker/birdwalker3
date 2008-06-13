@@ -3,6 +3,9 @@
 <div id="pagebody">
 	<div id="pageheader-location">
 		<div id="pagetitle"><%= @page_title %></div>
+		<% editing_is_allowed?() do %>
+			<div class="pageheaderitem"><%= link_to 'New', new_county_url %></div>
+		<% end %>
 	</div>         
 	
    	<% county_lists = @counties/(@counties.size / 3 + 3)%>
