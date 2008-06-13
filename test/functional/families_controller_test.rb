@@ -12,7 +12,7 @@ class FamiliesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = families(:first).id
+    @first_id = families(:family_one).id
   end
 
   def test_index
