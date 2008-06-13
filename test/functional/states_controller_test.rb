@@ -6,7 +6,7 @@ class StatesController; def rescue_action(e) raise e end; end
 
 class StatesControllerTest < Test::Unit::TestCase
   def setup
-    @controller = StateController.new
+    @controller = StatesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
