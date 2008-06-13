@@ -87,7 +87,7 @@ class SpeciesController < ApplicationController
     @species = Species.find(params[:id])
     if @species.update_attributes(params[:species])
       flash[:notice] = 'Species was successfully updated.'
-      redirect_to species_url(@species)
+      redirect_to species_instance_url(@species)
     else
       render :action => 'edit'
     end
