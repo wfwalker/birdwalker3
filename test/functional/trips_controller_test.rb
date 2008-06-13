@@ -12,7 +12,7 @@ class TripsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = trips(:first).id
+    @first_id = trips(:trip_one).id
   end
 
   def test_index
@@ -52,10 +52,10 @@ class TripsControllerTest < Test::Unit::TestCase
   def test_create
     num_trips = Trip.count
 
-    post :create, :trip => {}
+    post :create, :trip => {:name => 'new trip', :date => '2007-01-01', :leader => 'new guy'}
 
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'show'
 
     assert_equal num_trips + 1, Trip.count
   end
