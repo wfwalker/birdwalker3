@@ -30,8 +30,41 @@ class CountiesController < ApplicationController
   
   def page_kind
     "counties"
+  end              
+
+  def new
+    @county = County.new
   end
+
+  def create
+    @county = County.new(params[:county])
+    if @county.save
+      flash[:notice] = 'County was successfully created.'
+      redirect_to county_url(@county)
+    else
+      render :action => 'new'
+    end
+  end        
   
+  def edit
+    @county = County.find(params[:id])
+  end
+
+  def update
+    @county = County.find(params[:id])
+    if @county.update_attributes(params[:location])
+      flash[:notice] = 'County was successfully updated.'
+      redirect_to county_url(@county)
+    else
+      render :action => 'edit'
+    end
+  end    
+
+  def destroy
+    County.find(params[:id]).destroy
+    redirect_to :action => 'list'
+  end
+    
   def index
     list
     render :action => 'list'
