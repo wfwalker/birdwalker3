@@ -11,7 +11,7 @@ class TripsControllerTest < Test::Unit::TestCase
     @controller = TripsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-
+                                                       
     @first_id = trips(:trip_one).id
   end
 
@@ -41,7 +41,7 @@ class TripsControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    get :new
+    get :new, {}, {:username => 'testuser'} 
 
     assert_response :success
     assert_template 'new'
@@ -61,7 +61,7 @@ class TripsControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => @first_id
+    get :edit, {:id => @first_id}, {:username => 'testuser'}
 
     assert_response :success
     assert_template 'edit'
@@ -71,7 +71,7 @@ class TripsControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, :id => @first_id
+    post :update, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => @first_id
   end
