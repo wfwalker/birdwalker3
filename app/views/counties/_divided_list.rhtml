@@ -1,0 +1,18 @@
+<% county_list = divided_list %>
+
+<% counties_by_state = County.map_by_state(county_list) %>
+
+<% ordered_states = State.sort_alphabetic(counties_by_state.keys) %>
+
+<div class="pagecontentmodule">
+	<% if (show_headings) %>
+		<div class="moduletitle">
+			<%= county_list.size %> Locations in <%= counties_by_state.size %> States
+		</div>
+	<% end %>
+
+	<% for state in ordered_states %>
+		<div class="modulesubtitle"><%= state.name %></div>
+		<%= render :partial => 'counties/onelinelink' , :collection => counties_by_state[state], :locals => { :show_extras => false } %>
+	<% end %>
+</div>
