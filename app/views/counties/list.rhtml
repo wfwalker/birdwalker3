@@ -15,7 +15,7 @@
 			<tr>
 				<% for county_list in county_lists do %>
 				<td valign="top">
-					<%= render :partial => 'counties/onelinelink', :collection => county_list %>
+					<%= show_county_list(county_list, false) %>
 				</td>
 				<% end %>
 			</tr>
