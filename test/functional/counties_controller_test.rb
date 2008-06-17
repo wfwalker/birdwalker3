@@ -41,7 +41,7 @@ class CountiesControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    get :new
+    get :new, {}, {:username => 'testuser'}
 
     assert_response :success
     assert_template 'new'
@@ -52,7 +52,7 @@ class CountiesControllerTest < Test::Unit::TestCase
   def test_create
     num_counties = County.count
 
-    post :create, :county => {:name => 'newname', :state_id => 1}
+    post :create, {:county => {:name => 'newname', :state_id => 1}}, {:username => 'testuser'}
 
     assert_response :redirect
     assert_redirected_to :action => 'show'
@@ -61,7 +61,7 @@ class CountiesControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => @first_id
+    get :edit, {:id => @first_id}, {:username => 'testuser'}
 
     assert_response :success
     assert_template 'edit'
@@ -71,7 +71,7 @@ class CountiesControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, :id => @first_id
+    post :update, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => @first_id
   end

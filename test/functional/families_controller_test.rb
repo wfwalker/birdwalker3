@@ -41,7 +41,7 @@ class FamiliesControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    get :new
+    get :new, {}, {:username => 'testuser'} 
 
     assert_response :success
     assert_template 'new'
@@ -52,7 +52,7 @@ class FamiliesControllerTest < Test::Unit::TestCase
   def test_create
     num_families = Family.count
 
-    post :create, :family => {}
+    post :create, {:family => {}}, {:username => 'testuser'}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -61,7 +61,7 @@ class FamiliesControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => @first_id
+    get :edit, {:id => @first_id}, {:username => 'testuser'} 
 
     assert_response :success
     assert_template 'edit'

@@ -61,7 +61,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => @first_id
+    get :edit, {:id => @first_id}, {:username => 'testuser'}
 
     assert_response :success
     assert_template 'edit'

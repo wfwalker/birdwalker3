@@ -52,7 +52,7 @@ class TripsControllerTest < Test::Unit::TestCase
   def test_create
     num_trips = Trip.count
 
-    post :create, :trip => {:name => 'new trip', :date => '2007-01-01', :leader => 'new guy'}
+    post :create, {:trip => {:name => 'new trip', :date => '2007-01-01', :leader => 'new guy'}}, {:username => 'testuser'} 
 
     assert_response :redirect
     assert_redirected_to :action => 'show'
