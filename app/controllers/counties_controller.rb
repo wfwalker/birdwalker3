@@ -38,7 +38,11 @@ class CountiesController < ApplicationController
 
   def create
     @county = County.new(params[:county])
-    if @county.save
+
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    elsif @county.save
       flash[:notice] = 'County was successfully created.'
       redirect_to county_url(@county)
     else
@@ -48,11 +52,20 @@ class CountiesController < ApplicationController
   
   def edit
     @county = County.find(params[:id])
+
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    end
   end
 
   def update
     @county = County.find(params[:id])
-    if @county.update_attributes(params[:location])
+
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    elsif @county.update_attributes(params[:location])
       flash[:notice] = 'County was successfully updated.'
       redirect_to county_url(@county)
     else

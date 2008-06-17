@@ -63,13 +63,20 @@ class FamiliesController < ApplicationController
   def edit
     @family = Family.find(params[:id])
     
+    if (! is_editing_allowed?) then
+      redirect_to family_url(@family)
+    end
+
     @family.previous && @previous_url = edit_family_url(@family.previous)
     @family.next && @next_url = edit_family_url(@family.next)
   end
 
   def update
     @family = Family.find(params[:id])
-    if @family.update_attributes(params[:family])
+
+    if (! is_editing_allowed?) then
+      redirect_to family_url(@family)
+    elsif @family.update_attributes(params[:family])
       flash[:notice] = 'Family was successfully updated.'
       redirect_to family_url(@family)
     else

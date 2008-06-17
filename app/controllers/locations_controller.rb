@@ -53,11 +53,17 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @location = Location.new
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    else
+      @location = Location.new
+    end
   end
 
   def create
     @location = Location.new(params[:location])
+
     if @location.save
       flash[:notice] = 'Location was successfully created.'
       redirect_to location_url(@location)
@@ -68,11 +74,20 @@ class LocationsController < ApplicationController
 
   def edit
     @location = Location.find(params[:id])
+                                            
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    end
   end
 
   def update
     @location = Location.find(params[:id])
-    if @location.update_attributes(params[:location])
+
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    elsif @location.update_attributes(params[:location])
       flash[:notice] = 'Location was successfully updated.'
       redirect_to location_url(@location)
     else

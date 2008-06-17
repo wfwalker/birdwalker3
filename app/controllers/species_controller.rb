@@ -27,6 +27,10 @@ class SpeciesController < ApplicationController
 
   def photo_life_list
     @all_species_photographed = Species.find_all_photographed_not_excluded
+  end                        
+  
+  def photo_to_do_list
+    @all_species_not_photographed = Species.find_all_not_photographed
   end
   
   def year
@@ -79,13 +83,20 @@ class SpeciesController < ApplicationController
     end
   end
 
-  def edit
+  def edit    
     @species = Species.find(params[:id])
+
+    if (! is_editing_allowed?) then
+      redirect_to species_instance_url(@species)
+    end
   end
 
   def update
     @species = Species.find(params[:id])
-    if @species.update_attributes(params[:species])
+
+    if (! is_editing_allowed?) then
+      redirect_to species_instance_url(@species)
+    elsif @species.update_attributes(params[:species])
       flash[:notice] = 'Species was successfully updated.'
       redirect_to species_instance_url(@species)
     else

@@ -22,7 +22,13 @@ class SightingsController < ApplicationController
   end
 
   def new
-    @sighting = Sighting.new
+    @sighting = Sighting.new  
+    
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    end
+  
     if (params[:trip_id] != "")
       @sighting.trip_id = params[:trip_id]
     end
@@ -79,11 +85,20 @@ class SightingsController < ApplicationController
 
   def edit
     @sighting = Sighting.find(params[:id])
+
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    end
   end
 
   def update
     @sighting = Sighting.find(params[:id])
-    if @sighting.update_attributes(params[:sighting])
+
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    elsif @sighting.update_attributes(params[:sighting])
       flash[:notice] = 'Sighting was successfully updated.'
       redirect_to edit_trip_url(@sighting.trip_id)
     else
