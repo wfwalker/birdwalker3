@@ -33,7 +33,7 @@ module ApplicationHelper
   end
   
   def has_columns?(&block)
-    yield if not request.user_agent.include?('iPhone')
+    yield if not (request.class.to_s.include?("CgiRequest") && request.user_agent.include?('iPhone'))
   end
   
   def editing_is_allowed?(&block)
