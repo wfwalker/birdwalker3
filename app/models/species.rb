@@ -26,25 +26,43 @@ class Species < ActiveRecord::Base
   end
 
   def photo_of_the_week
-    Sighting.find_by_sql("SELECT sightings.* FROM sightings, trips WHERE sightings.trip_id=trips.id AND sightings.photo='1' AND sightings.species_id=" + self.id.to_s + " AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
+    Sighting.find_by_sql(
+      "SELECT sightings.* FROM sightings, trips
+         WHERE sightings.trip_id=trips.id AND sightings.photo='1' AND sightings.species_id=" + self.id.to_s + "
+         AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
   end
   
   # TODO: some cleaner way to do this!
   def Species.find_all_seen
-    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings, families WHERE species.id=sightings.species_id AND species.family_id=families.id ORDER BY families.taxonomic_sort_id"
-    #Sighting.species.find(:all, :include => :family, :order => 'families.taxonomic_id') 
+    Species.find_by_sql( 
+      "SELECT DISTINCT(species.id), species.* from species, sightings, families 
+         WHERE species.id=sightings.species_id AND species.family_id=families.id
+         ORDER BY families.taxonomic_sort_id")
   end  
 
   def Species.find_all_seen_not_excluded
-    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.aba_countable='1' AND sightings.exclude!='1' AND species.id=sightings.species_id ORDER BY sightings.species_id"
+    Species.find_by_sql(
+      "SELECT DISTINCT(species.id), species.* from species, sightings
+         WHERE species.aba_countable='1' AND sightings.exclude!='1' AND species.id=sightings.species_id
+         ORDER BY sightings.species_id")
   end  
 
   def Species.find_all_photographed_not_excluded
-    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.aba_countable='1' AND sightings.photo='1' AND sightings.exclude!='1' AND species.id=sightings.species_id ORDER BY sightings.species_id"
+    Species.find_by_sql(
+      "SELECT DISTINCT(species.id), species.* FROM species, sightings
+         WHERE species.aba_countable='1' AND sightings.photo='1' AND sightings.exclude!='1' AND species.id=sightings.species_id
+         ORDER BY sightings.species_id")
+  end  
+
+  def Species.find_all_not_photographed
+    Species.find_by_sql(
+      "SELECT * FROM species
+         WHERE aba_countable=1 AND id=ANY
+           (SELECT distinct species_id FROM (select distinct species_id, max(photo) AS count FROM sightings as t1 GROUP BY species_id) AS t2 WHERE count=0)")
   end  
 
   def Species.find_all_seen_by_common_name
-    Species.find_by_sql "SELECT DISTINCT(species.id), species.* from species, sightings WHERE species.id=sightings.species_id ORDER BY species.common_name"
+    Species.find_by_sql("SELECT DISTINCT(species.id), species.* FROM species, sightings WHERE species.id=sightings.species_id ORDER BY species.common_name")
   end  
   
   def Species.map_by_family(species_list)
@@ -53,14 +71,17 @@ class Species < ActiveRecord::Base
   end
   
   def Species.sort_taxonomic(species_list)
-    species_list.sort_by { |s| s.family.taxonomic_sort_id * 100000000000 + s.id }
+    species_list.sort_by { |s| logger.debug("moo " + s.id.to_s) && s.family.taxonomic_sort_id * 100000000000 + s.id }
   end
   
   def Species.bird_of_the_week
-    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, trips WHERE sightings.photo='1' AND sightings.species_id=species.id AND sightings.trip_id=trips.id AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
+    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, trips WHERE sightings.photo='1' AND sightings.species_id=species.id AND sightings.trip_id=trips.id AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' ORDER BY trips.date DESC LIMIT 1")[0]
   end
 
-  def Species.year_to_date(year)
-    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, trips WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "' AND WeekOfYear(trips.date)<='" + Date.today.cweek.to_s + "'")
+  def Species.year_to_date(year)  
+    Species.find_by_sql(
+      "SELECT DISTINCT species.* FROM species, sightings, trips
+         WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "' 
+         AND WeekOfYear(trips.date)<='" + Date.today.cweek.to_s + "'")
   end
 end
