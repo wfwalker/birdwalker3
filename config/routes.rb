@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :states
   map.resources :locations
   map.resources :families
-  map.resources :species, :singular => :species_instance, :collection => { :life_list => :get, :photo_life_list => :get }
+  map.resources :species, :singular => :species_instance, :collection => { :life_list => :get, :photo_life_list => :get, :photo_to_do_list => :get }
   
   # wfw
   map.connect 'species/year/:year', :controller => 'species', :action => 'year'
