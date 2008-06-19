@@ -32,8 +32,13 @@ class LocationsController < ApplicationController
     
     @location.previous && @previous_url = location_url(@location.previous)
     @location.next && @next_url = location_url(@location.next)
+  end          
+  
+  def gallery
+    show
+    render :action => 'gallery', :layout => 'gallery'
   end
-
+  
   def show_species_by_year
     @location = Location.find(params[:id])
     

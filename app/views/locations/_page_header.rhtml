@@ -22,5 +22,8 @@
 		<% has_multiple_months?(location) do %>
 			| <%= link_to 'by month view', :id => location, :action => 'show_species_by_month' %>
 		<% end %>
+		<% has_gallery?(location) do %>
+			| <%= link_to 'gallery', :id => location, :action => 'gallery' %>
+		<% end %>
 	</div>
 </div>
