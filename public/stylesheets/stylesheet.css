@@ -133,52 +133,51 @@ a:hover { color: red; text-decoration: none; }
 
 #pageheader
 {
-	padding-top: 10px;
-	padding-bottom: 5px;
-	background-color: #EEEEEE;
-/*	border-left: solid 3px #CCCCCC; */
+	height: 70px;
+	padding-top: 8px;
+	padding-bottom: 4px;
+	background-color: white;
 }
 
 #pageheader-species
 {
-	padding-top: 10px;
-	padding-bottom: 5px;
+	height: 70px;
+	padding-top: 8px;
+	padding-bottom: 4px;
 	background-image: url(/images/species-banner.jpg);
 	background-position: 50%;
-/*	border-left: solid 3px #CCCCCC; */
 }
 
 #pageheader-location
 {
-	padding-top: 10px;
-	padding-bottom: 5px;
+	height: 70px;
+	padding-top: 8px;
+	padding-bottom: 4px;
 	background-image: url(/images/location-banner.jpg);
 	background-position: 50%;
-/*	border-left: solid 3px #CCCCCC; */
 }
 
 #pageheader-trip
 {
-	padding-top: 10px;
-	padding-bottom: 5px;
+	height: 70px;
+	padding-top: 8px;
+	padding-bottom: 4px;
 	background-image: url(/images/trip-banner.jpg);
 	background-position: 50%;
-/* 	border-left: solid 3px #CCCCCC; */
 }
 
 #pageheader-home1
 {
 	height: 70px;
-	padding-top: 10px;
-	padding-bottom: 5px;
+	padding-top: 8px;
+	padding-bottom: 4px;
 	background-image: url(/images/banner1.jpg);
 	background-position: 60%;
-/*	border-left: solid 3px #CCCCCC; */
 }
 
 .pageheaderitem
 {
-	margin-left: 15px; margin-right: 15px; margin-bottom: 5px;
+	margin-left: 15px; margin-right: 15px; margin-bottom: 3px;
 }
 
 #photos
