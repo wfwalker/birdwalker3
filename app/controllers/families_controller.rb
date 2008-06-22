@@ -3,6 +3,7 @@ class FamiliesController < ApplicationController
   helper :trips
   helper :locations
   helper :sightings
+  helper :photos
   
   def page_kind
     "families"

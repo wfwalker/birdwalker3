@@ -1,0 +1,34 @@
+<%= error_messages_for 'photo' %>
+
+<!--[form:photo]-->
+
+<p><label for="photo_trip">Photo URL</label><br/>
+<%= @photo.photoURL %>
+</p>
+
+<p><label for="photo_trip">Thumb URL</label><br/>
+<%= @photo.thumbURL %>
+</p>
+
+<p><label for="photo_trip">Trip</label><br/>
+<%= collection_select("photo", "trip_id", Trip.find(:all, :order => 'date DESC'), :id, :date) %>
+</p>
+
+<p><label for="photo_location">Location</label><br/>
+<%= collection_select("photo", "location_id", Location.find(:all, :order => 'name'), :id, :name) %>
+</p>
+
+<p><label for="photo_species">Species</label><br/>
+<%= collection_select("photo", "species_id", Species.find_all_seen_by_common_name, :id, :common_name, {:prompt => true}) %>
+</p>
+
+<p><label for="photo_rating">Rating</label><br/>
+<select id="photo_rating" name="photo[rating]">
+	<%= options_for_select([1, 2, 3, 4, 5], @photo.rating)%>
+</select>
+
+<p><label for="photo_notes">Notes</label><br/>
+<%= text_area 'photo', 'notes'  %></p>
+
+<!--[eoform:photo]-->
+

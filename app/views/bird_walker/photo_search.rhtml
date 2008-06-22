@@ -9,11 +9,11 @@
 			<form action="/bird_walker/photo_search" method="post">
 				<p>
 					<label for="sighting_location">Location</label><br/>
-					<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %>
+					<%= collection_select("photo", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %>
 				</p>
 				<p>
 					<label for="location_county">County</label><br/>
-					<%= collection_select("location", "county_id", County.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %>
+					<%= collection_select("photo", "county_id", County.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %>
 				</p>
 				<p>
 					<label for="county_state">State</label><br/>
@@ -21,7 +21,7 @@
 				</p>
 				<p>
 					<label for="sighting_species">Species</label><br/>
-					<%= collection_select("sighting", "species_id", Species.find_all_seen, :id, :common_name, {:prompt => true}) %>
+					<%= collection_select("photo", "species_id", Species.find_all_seen, :id, :common_name, {:prompt => true}) %>
 				</p>
 				<p>
 					<label for="sighting_species">Family</label><br/>
@@ -65,13 +65,19 @@
 					</select>
 				</p>
 				<p>
+					<label for="rating">Rating</label><br/>
+					<select id="photo_rating" name="photo[rating]">
+						<%= options_for_select([1, 2, 3, 4, 5])%>
+					</select>
+				</p>
+				<p>
 					<input type="submit" value="Go"></input>
 				</p>
 			</form>
-
-			<% if (@found_sightings != nil && @found_sightings.size > 0) then %>
-				<%= show_thumbnail_list(@found_sightings) %>
-			<% end %>
+			
+			<% if (@found_photos != nil && @found_photos.size > 0) then %>
+				<%= show_thumbnail_list(@found_photos) %>
+			<% end %>			
 		</div>
 	</div>
 </div>

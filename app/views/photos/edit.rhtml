@@ -1,0 +1,30 @@
+<% if (@photo.species != nil) then
+  		@page_title = @photo.species.common_name
+   	else	
+  		@page_title = "Unknown Species"
+   end 
+%>
+
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @page_title %>
+			<span style="font-size: 9pt"><%= link_to 'show', photo_url(@photo) %></span>
+		</div>
+		<div class="pageheaderitem"><%= link_to 'delete', photo_url(@photo), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
+	</div>
+	
+	<div id="pagecontent">
+		<div class="pagecontentmodule">
+			<div class="pagecontentitem">
+				<%= @photo.thumb %>
+			</div>
+			<div class="pagecontentitem">
+				<% form_for :photo, @photo, :url => photo_path(@photo), :html => { :method => 'put' } do |form|%>
+		  			<%= render :partial => 'form' %>
+		  			<%= submit_tag 'Save' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

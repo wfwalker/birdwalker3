@@ -1,0 +1,25 @@
+<%
+	@page_title = @photo.species.common_name
+%>
+
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @page_title %>
+			<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to 'edit', edit_photo_url(@photo) %></span>
+			<% end %>
+		</div>
+	</div>
+	
+	<div id="pagecontent">	
+		<div class="pagecontentitem">
+				<img src="<%= @photo.photoURL %>"/><br/>
+ 		        <%= link_to safe_species_common_name(@photo), species_instance_url(@photo.species_id) %> |
+   				<%= link_to safe_nice_trip_date(@photo), trip_url(@photo.trip_id) %> | 
+				<%= link_to safe_location_name(@photo), location_url(@photo.location_id) %> |     
+				<%= @photo.rating %>    
+				<p>All photos on Birdwalker are Copyright William F Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com</p>
+		</div>
+	</div>
+</div>

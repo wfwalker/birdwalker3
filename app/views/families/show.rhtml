@@ -18,7 +18,7 @@
 
 				<td>
 					<% @photos_module_title = 'Family Photos' %>
-					<%= show_thumbnail_list(@family.sightings_with_photos) %>
+					<%= show_thumbnail_list(@family.photos) %>
 					
  					<% if (Location.with_lat_long(@family.locations).size > 0) %>
  						<% @map_module_title = 'Family Map' %>                       

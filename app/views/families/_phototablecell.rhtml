@@ -6,8 +6,8 @@
 	</div>
 
 	<div class="pagecontentitem">
-		<% if (family.sightings_with_photos.size > 0) %>
-			<%= link_to family.sightings_with_photos.last.thumb, family_url(family) %>
+		<% if (family.photos.size > 0) %>
+			<%= link_to family.photos.last.thumb, family_url(family) %>
 		<% else %>
 			<img src="images/blank.gif" border="1" width="100px" height="100px" />
 		<% end %>

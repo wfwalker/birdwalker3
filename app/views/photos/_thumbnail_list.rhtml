@@ -1,0 +1,15 @@
+<% photo_list = thumbnail_list %>
+
+<div class="pagecontentmodule">
+	<div class="moduletitle">
+		<% if (@photos_module_title != nil && @photos_module_title != "") then %>
+			<%= @photos_module_title %>   
+		<% else %>
+		    Photos
+		<% end %>
+	</div>
+
+	<div class="pagecontentitem">
+		<%= render :partial => 'photos/thumbnail', :collection => photo_list %>
+	</div>
+</div>

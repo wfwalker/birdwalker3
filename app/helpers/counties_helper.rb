@@ -6,4 +6,8 @@ module CountiesHelper
 		  render :partial => 'counties/undivided_list', :object => county_list, :locals => { :show_headings => headings_flag }
 		end
 	end
+	
+	def has_gallery?(county, &block)
+    yield if county.gallery_photos.size > 1 
+  end
 end

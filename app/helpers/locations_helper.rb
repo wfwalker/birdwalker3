@@ -16,7 +16,7 @@ module LocationsHelper
   end
 
   def has_gallery?(location, &block)
-    yield if true 
+    yield if location.gallery_photos.size > 1 
   end
 
   def show_location_list(location_list, headings_flag)

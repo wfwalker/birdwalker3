@@ -22,7 +22,7 @@
 				</td>
 				<td width="50%">
 					<% @photos_module_title = 'County Photos' %>
-					<%= show_thumbnail_list(@county.sightings_with_photos) %>
+					<%= show_thumbnail_list(@county.photos) %>
 					
 					<% if (@county.locations.with_lat_long.size > 0) %>
 						<% @map_module_title = 'County Map' %>                       

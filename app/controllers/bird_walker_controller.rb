@@ -4,6 +4,7 @@ class BirdWalkerController < ApplicationController
   helper :locations
   helper :counties
   helper :sightings
+  helper :photos
   
   def index
     @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
@@ -44,15 +45,15 @@ class BirdWalkerController < ApplicationController
   end
   
   def photo_search
-    where_clause = "SELECT sightings.* from sightings, species, trips, locations, counties WHERE sightings.trip_id=trips.id AND sightings.location_id=locations.id AND sightings.species_id=species.id AND locations.county_id=counties.id AND sightings.photo='1' "
+    where_clause = "SELECT photos.* from photos, species, trips, locations, counties WHERE photos.trip_id=trips.id AND photos.location_id=locations.id AND photos.species_id=species.id AND locations.county_id=counties.id "
     do_search = false
     
-    if (params[:sighting] != nil && params[:sighting][:species_id] != "") then
-      where_clause = where_clause + " AND sightings.species_id='" + params[:sighting][:species_id].to_s + "'"
+    if (params[:photo] != nil && params[:photo][:species_id] != "") then
+      where_clause = where_clause + " AND photos.species_id='" + params[:sighting][:species_id].to_s + "'"
       do_search = true
     end
-    if (params[:sighting] != nil && params[:sighting][:location_id] != "") then
-      where_clause = where_clause + " AND sightings.location_id='" + params[:sighting][:location_id].to_s + "'"
+    if (params[:photo] != nil && params[:photo][:location_id] != "") then
+      where_clause = where_clause + " AND photos.location_id='" + params[:sighting][:location_id].to_s + "'"
       do_search = true
     end
     if (params[:species] != nil && params[:species][:family_id] != "") then
@@ -75,9 +76,13 @@ class BirdWalkerController < ApplicationController
       where_clause = where_clause + " AND YEAR(trips.date)='" + params[:date][:year].to_s + "'"
       do_search = true
     end
+    if (params[:photo] != nil && params[:photo][:rating] != "") then
+      where_clause = where_clause + " AND photos.rating='" + params[:photo][:rating].to_s + "'"
+      do_search = true
+    end
     
     if (do_search) then
-      @found_sightings = Sighting.find_by_sql(where_clause);
+      @found_photos = Photo.find_by_sql(where_clause);
     end
   end
   

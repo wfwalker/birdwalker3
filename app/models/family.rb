@@ -1,7 +1,7 @@
 class Family < ActiveRecord::Base
   has_many :species
   has_many :sightings, :through => :species
-  has_many :sightings_with_photos, :through =>:species, :conditions => 'photo = 1'
+  has_many :photos, :through =>:species
   
   def next
     Family.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')

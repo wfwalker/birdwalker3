@@ -4,8 +4,9 @@ class Trip < ActiveRecord::Base
         Sighting.map_by_location(proxy_owner.sightings)
       end  
   end
-  has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
-
+  
+  has_many :photos
+  
   has_many :species, :through => :sightings, :select => "DISTINCT species.*" do
     def map_by_family
       Species.map_by_family(proxy_target)

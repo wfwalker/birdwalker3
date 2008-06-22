@@ -2,9 +2,9 @@ class Species < ActiveRecord::Base
   belongs_to :family
   
   has_many :sightings
+  has_many :photos
   has_one :first_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id DESC'
-  has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
   
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
   end
@@ -26,9 +26,9 @@ class Species < ActiveRecord::Base
   end
 
   def photo_of_the_week
-    Sighting.find_by_sql(
-      "SELECT sightings.* FROM sightings, trips
-         WHERE sightings.trip_id=trips.id AND sightings.photo='1' AND sightings.species_id=" + self.id.to_s + "
+    Photo.find_by_sql(
+      "SELECT photos.* FROM photos, trips
+         WHERE photos.trip_id=trips.id AND photos.species_id=" + self.id.to_s + "
          AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
   end
   
@@ -49,8 +49,8 @@ class Species < ActiveRecord::Base
 
   def Species.find_all_photographed_not_excluded
     Species.find_by_sql(
-      "SELECT DISTINCT(species.id), species.* FROM species, sightings
-         WHERE species.aba_countable='1' AND sightings.photo='1' AND sightings.exclude!='1' AND species.id=sightings.species_id
+      "SELECT DISTINCT(species.id), species.* FROM species, photos
+         WHERE species.aba_countable='1' AND sightings.exclude!='1' AND species.id=photos.species_id
          ORDER BY sightings.species_id")
   end  
 
@@ -75,7 +75,7 @@ class Species < ActiveRecord::Base
   end
   
   def Species.bird_of_the_week
-    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, trips WHERE sightings.photo='1' AND sightings.species_id=species.id AND sightings.trip_id=trips.id AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' ORDER BY trips.date DESC LIMIT 1")[0]
+    Species.find_by_sql("SELECT DISTINCT species.* FROM species, photos, trips WHERE photos.species_id=species.id AND photos.trip_id=trips.id AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' ORDER BY trips.date DESC LIMIT 1")[0]
   end
 
   def Species.year_to_date(year)  

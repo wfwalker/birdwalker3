@@ -1,6 +1,7 @@
 class Location < ActiveRecord::Base
   has_many :sightings
-  has_many :sightings_with_photos, :class_name => 'Sighting', :conditions => 'photo = 1'
+  has_many :photos
+  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
   belongs_to :county

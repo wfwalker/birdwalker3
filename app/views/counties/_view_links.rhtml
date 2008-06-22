@@ -2,4 +2,7 @@
 	<%= link_to 'normal view', :id => @county, :action => 'show' %> |
 	<%= link_to 'by year view', :id => @county, :action => 'show_species_by_year' %> |
 	<%= link_to 'by month view', :id => @county, :action => 'show_species_by_month' %>
+	<% has_gallery?(@county) do %>
+		| <%= link_to 'gallery', :id => @county, :action => 'gallery' %>
+	<% end %>
 </div>

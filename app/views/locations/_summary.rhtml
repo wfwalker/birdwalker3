@@ -7,7 +7,7 @@
 	
 	<% has_photo?(location) do %>
 		<div style="float: right; padding-left: 10px">	
-			<%= render :partial => 'sightings/thumbnail', :object => location.sightings_with_photos.last %>
+			<%= render :partial => 'photos/thumbnail', :object => location.photos.last %>
 		</div>
 	<% end %>
 	

@@ -18,7 +18,7 @@
 					<% end %>
 					
 					<% @photos_module_title = 'Location Photos' %>
-					<%= show_thumbnail_list(@location.sightings_with_photos) %>
+					<%= show_thumbnail_list(@location.photos) %>
 					
 					<% if (@location.latitude != 0) %>
 						<% @center_latitude = @location.latitude %>

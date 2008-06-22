@@ -3,6 +3,7 @@ class CountiesController < ApplicationController
   helper :species
   helper :locations
   helper :sightings
+  helper :photos
 
   def next_and_previous(in_county)
     in_county.previous && @previous_url = county_url(in_county.previous)
@@ -12,6 +13,11 @@ class CountiesController < ApplicationController
   def show
     @county = County.find(params["id"])
     next_and_previous(@county)
+  end
+
+  def gallery
+    show
+    render :action => 'gallery', :layout => 'gallery'
   end
 
   def show_species_by_year

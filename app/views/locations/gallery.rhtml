@@ -9,7 +9,7 @@
 	
 	<div id="pagecontent">
 		<% @photos_module_title = ' ' %>
-		<%= show_thumbnail_list(@location.sightings_with_photos) %>
+		<%= show_thumbnail_list(@location.gallery_photos) %>
 
 		<div class="pagecontentitem">
 			Back to <%= link_to @location.county.name + " County Gallery", county_url(@location.county) %><br/>

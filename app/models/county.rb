@@ -6,7 +6,8 @@ class County < ActiveRecord::Base
     end
   end
   has_many :sightings, :through => :locations
-  has_many :sightings_with_photos, :through => :locations, :conditions => 'sightings.photo = 1'     
+  has_many :photos, :through => :locations
+  has_many :gallery_photos, :through => :locations, :conditions => { :rating => [4,5] }
   
   validates_presence_of :name, :state
   

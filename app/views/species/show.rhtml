@@ -39,7 +39,7 @@
 				<% end %>
 
 				<% @photos_module_title = 'Species Photos' %>
-				<%= show_thumbnail_list(@species.sightings_with_photos) %>
+				<%= show_thumbnail_list(@species.photos) %>
 		
 				<% if (@species.locations.with_lat_long.size > 0) %>  
 					<% @map_module_title = 'Species Map' %>

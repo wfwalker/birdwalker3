@@ -7,12 +7,14 @@
 			<span style="font-size: 9pt"><%= link_to 'edit', edit_species_instance_url(species) %></span>
 		<% end %>
 	</div>
-	<div class="pageheaderitem"><%= species.latin_name %></div>
-	<div class="pageheaderitem"><%= link_to species.family.latin_name, family_url(species.family) %></div>
+	<div class="pageheaderitem">
+		<%= species.latin_name %>, 
+		<%= link_to 'Family ' + species.family.latin_name, family_url(species.family) %>
+		<% has_reference_url?(species) do %>
+			(<a href="<%= species.reference_url %>">See also...</a>)
+		<% end %>
+	</div>
 	<% if species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
-	<% has_reference_url?(species) do %>
-		<div class="pageheaderitem"><a href="<%= species.reference_url %>">See also...</a></div>
-	<% end %>
 	<div class="pageheaderitem">
 		<%= link_to 'normal view', :id => species, :action => 'show' %> | 
 		<%= link_to 'by year view', :id => species, :action => 'show_locations_by_year' %> |

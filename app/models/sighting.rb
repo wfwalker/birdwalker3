@@ -12,27 +12,7 @@ class Sighting < ActiveRecord::Base
   def previous
     Sighting.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
   end
-  
-  def photoURL
-    if (`hostname`.strip == "vermillion.local")
-      "http://localhost/~walker/birdwalker2/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-    else
-      "http://www.spflrc.org/~walker/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-    end
-  end
-  
-  def thumbURL
-    if (`hostname`.strip == "vermillion.local")
-      "http://localhost/~walker/birdwalker2/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-    else
-      "http://www.spflrc.org/~walker/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-    end
-  end
-  
-  def thumb
-    "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumbURL + "\"/>"
-  end
-  
+    
   def Sighting.map_by_location(sighting_list)
     sighting_list.inject({}) { | map, sighting |
        map[sighting.location] ? map[sighting.location] << sighting : map[sighting.location] = [sighting] ; map }

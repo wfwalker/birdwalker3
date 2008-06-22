@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   helper :locations
   helper :sightings
+  helper :photos
 
   def page_kind
     "trips"

@@ -1,58 +1,42 @@
-<% if (@sighting.photo) then
-  		@page_title = @sighting.species.common_name + " Photo"
-   	else	
-  		@page_title = @sighting.species.common_name + " Sighting"
-   end 
-%>
+<% @page_title = @sighting.species.common_name + " Sighting" %>
 
 <div id="pagebody">
-	<div id="pageheader">
+	<div id="pageheader-trip">
 		<div id="pagetitle">
 			<%= @page_title %>
 			<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to 'edit', edit_sighting_url(@sighting) %></span>
+				<span style="font-size: 9pt"><%= link_to 'edit', edit_photo_url(@sighting) %></span>
 			<% end %>
 		</div>
 	</div>
 	
 	<div id="pagecontent">	
 		<div class="pagecontentmodule">
-			<% if (@sighting.photo) then %>
-				<img src="<%= @sighting.photoURL %>"/><br/>
- 		        <%= link_to safe_species_common_name(@sighting), species_instance_url(@sighting.species_id) %> |
-   				<%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip_id) %> | 
-				<%= link_to safe_location_name(@sighting), location_url(@sighting.location_id) %>    
-				<p>All photos on Birdwalker are Copyright William F Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com</p>
-	   	    <% else %>
-				<div class="modulesubtitle">Date</div>
-				<div class="pagecontentitem">
-				        <%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip_id) %>
-				</div>
+			<div class="modulesubtitle">Date</div>
+			<div class="pagecontentitem">
+			        <%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip_id) %>
+			</div>
 
-				<div class="modulesubtitle">Location</div>
-				<div class="pagecontentitem">
-				        <%= link_to safe_location_name(@sighting), location_url(@sighting.location_id) %>
-				</div>
+			<div class="modulesubtitle">Location</div>
+			<div class="pagecontentitem">
+			        <%= link_to safe_location_name(@sighting), location_url(@sighting.location_id) %>
+			</div>
 
-				<div class="modulesubtitle">Species</div>
-				<div class="pagecontentitem">
-				        <%= link_to safe_species_common_name(@sighting), species_instance_url(@sighting.species_id) %>
-				</div>
+			<div class="modulesubtitle">Species</div>
+			<div class="pagecontentitem">
+			        <%= link_to safe_species_common_name(@sighting), species_instance_url(@sighting.species_id) %>
+			</div>
 
-				<% has_notes?(@sighting) do %>
-					<div class="modulesubtitle">Notes</div>  
-					<div class="pagecontentitem"><%= @sighting.notes %></div>
-				<% end %>
+			<% has_notes?(@sighting) do %>
+				<div class="modulesubtitle">Notes</div>  
+				<div class="pagecontentitem"><%= @sighting.notes %></div>
+			<% end %>
 
-				<div class="modulesubtitle">Exclude</div>
-				<div class="pagecontentitem"><%= @sighting.exclude %></div>
+			<div class="modulesubtitle">Exclude</div>
+			<div class="pagecontentitem"><%= @sighting.exclude %></div>
 
-				<div class="modulesubtitle">Heard only</div>
-				<div class="pagecontentitem"><%= @sighting.heard_only %></div>
-
-				<div class="modulesubtitle">Photo</div>
-				<div class="pagecontentitem"><%= @sighting.photo %></div>
-			<% end %>		
+			<div class="modulesubtitle">Heard only</div>
+			<div class="pagecontentitem"><%= @sighting.heard_only %></div>
 		</div>
 	</div>
 </div>

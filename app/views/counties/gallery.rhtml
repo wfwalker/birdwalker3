@@ -1,0 +1,21 @@
+<% @page_title = @county.name + " Gallery" %>
+
+<div id="pagebody">
+	<div id="pageheader-location">
+		<div id="pagetitle">
+			<%= @page_title %>
+		</div>
+	</div>
+	
+	<div id="pagecontent">
+		<% @photos_module_title = ' ' %>
+		<%= show_thumbnail_list(@county.gallery_photos) %>
+
+		<div class="pagecontentitem">
+			Back to <%= link_to @county.state.name + " Gallery", state_url(@county.state) %>
+		</div>
+	</div>        
+	
+	
+</div>
+
