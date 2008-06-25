@@ -7,7 +7,10 @@
 		</div>
 	</div>
 	
-	<div id="pagecontent">
+	<div id="pagecontent"> 
+		<% if params[:index] != nil then %>
+			<img src="<%= @location.gallery_photos[params[:index].to_i].photoURL %>"/>
+		<% end %>
 		<% @photos_module_title = ' ' %>
 		<%= show_thumbnail_list(@location.gallery_photos) %>
 
