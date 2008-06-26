@@ -3,7 +3,7 @@ class Location < ActiveRecord::Base
   has_many :photos
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
-  has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'
+  has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'   # MOOO THIS IS WRONG
   belongs_to :county
   
   has_many :species, :through => :sightings, :select => "DISTINCT species.*" do
