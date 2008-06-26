@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+photo_one:
+  id: 1
+  trip_id: 1
+  location_id: 1
+  species_id: 2
+
+photo_two:
+  id: 2
+  trip_id: 1
+  location_id: 2
+  species_id: 1
+  
