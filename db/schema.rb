@@ -4,56 +4,107 @@
 
 ActiveRecord::Schema.define() do
 
+  create_table "counties", :force => true do |t|
+    t.column "name",     :text
+    t.column "state_id", :integer
+  end
+
+  create_table "countyfrequency", :id => false, :force => true do |t|
+    t.column "common_name", :string
+    t.column "frequency",   :integer, :limit => 2
+    t.column "species_id",  :integer, :limit => 20
+  end
+
+  create_table "families", :force => true do |t|
+    t.column "latin_name",        :text
+    t.column "common_name",       :text
+    t.column "taxonomic_sort_id", :integer
+  end
+
   create_table "locations", :force => true do |t|
     t.column "name",          :string
-    t.column "reference_url",  :string
-    t.column "city",          :string
-    t.column "county",        :string
-    t.column "state",         :string
+    t.column "reference_url", :text
+    t.column "city",          :text
+    t.column "county_id",     :integer
     t.column "notes",         :text
-    t.column "latlongsystem", :string
-    t.column "latitude",      :float
-    t.column "longitude",     :float
-    t.column "photo",         :integer, :limit => 2
+    t.column "latitude",      :float,   :limit => 15, :default => 0.0
+    t.column "longitude",     :float,   :limit => 15, :default => 0.0
+    t.column "photo",         :boolean,               :default => false
   end
+
+  add_index "locations", ["name"], :name => "NameIndex"
+
+  create_table "photos", :force => true do |t|
+    t.column "notes",       :text
+    t.column "location_id", :integer, :limit => 9
+    t.column "species_id",  :integer, :limit => 9
+    t.column "trip_id",     :integer, :limit => 9
+    t.column "rating",      :integer, :limit => 3
+  end
+
+  add_index "photos", ["location_id"], :name => "LocationIndex"
+  add_index "photos", ["species_id"], :name => "SpeciesIndex"
+  add_index "photos", ["trip_id"], :name => "TripIndex"
 
   create_table "sightings", :force => true do |t|
-    t.column "oldspeciesabbrev", :string
-    t.column "oldlocationname",  :string
-    t.column "notes",            :text
-    t.column "exclude",          :integer, :limit => 2
-    t.column "photo",            :integer, :limit => 2
-    t.column "date",             :date
-    t.column "trip_id",          :integer
-    t.column "species_id",       :integer, :limit => 20
-    t.column "location_id",      :integer
+    t.column "notes",       :text
+    t.column "exclude",     :boolean,              :default => false, :null => false
+    t.column "heard_only",  :boolean,              :default => false, :null => false
+    t.column "location_id", :integer, :limit => 9
+    t.column "species_id",  :integer, :limit => 9
+    t.column "trip_id",     :integer, :limit => 9
   end
 
-  add_index "sightings", ["trip_id"], :name => "trip_id_index"
-  add_index "sightings", ["species_id"], :name => "species_id_index"
-  add_index "sightings", ["location_id"], :name => "location_id_index"
+  add_index "sightings", ["exclude"], :name => "ExcludeIndex"
+  add_index "sightings", ["location_id"], :name => "LocationIndex"
+  add_index "sightings", ["species_id"], :name => "SpeciesIndex"
+  add_index "sightings", ["trip_id"], :name => "TripIndex"
 
   create_table "species", :force => true do |t|
-    t.column "abbreviation", :string
-    t.column "latin_name",    :string
-    t.column "common_name",   :string
-    t.column "notes",        :text
-    t.column "reference_url", :string
-    t.column "aba_countable", :integer, :limit => 2
+    t.column "abbreviation",  :string,  :limit => 6
+    t.column "latin_name",    :text
+    t.column "common_name",   :text
+    t.column "notes",         :text
+    t.column "reference_url", :text
+    t.column "aba_countable", :boolean,              :default => true, :null => false
+    t.column "family_id",     :integer
   end
 
+  add_index "species", ["abbreviation"], :name => "AbbreviationIndex"
+  add_index "species", ["aba_countable"], :name => "aba_countableIndex"
+
   create_table "states", :force => true do |t|
-    t.column "name",         :string
+    t.column "name",         :string, :limit => 16
     t.column "abbreviation", :string, :limit => 2
     t.column "notes",        :text
   end
 
+  add_index "states", ["abbreviation"], :name => "AbbreviationIndex"
+
+  create_table "taxonomy", :force => true do |t|
+    t.column "hierarchy_level", :string, :limit => 16
+    t.column "latin_name",      :text
+    t.column "common_name",     :text
+    t.column "notes",           :text
+    t.column "reference_url",   :text
+  end
+
+  add_index "taxonomy", ["id"], :name => "idIndex"
+  add_index "taxonomy", ["hierarchy_level"], :name => "hierarchyLevelIndex"
+
   create_table "trips", :force => true do |t|
-    t.column "leader",       :string
-    t.column "reference_url", :string
-    t.column "name",         :string
-    t.column "notes",        :text
-    t.column "ignored",      :date
+    t.column "leader",        :text
+    t.column "reference_url", :text
+    t.column "name",          :text
+    t.column "notes",         :text
+    t.column "date",          :date
+  end
+
+  add_index "trips", ["date"], :name => "dateIndex"
+
+  create_table "users", :force => true do |t|
+    t.column "name",     :text
+    t.column "password", :text
   end
 
 end
