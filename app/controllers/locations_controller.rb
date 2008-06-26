@@ -36,7 +36,12 @@ class LocationsController < ApplicationController
   end          
   
   def gallery
-    show
+    show       
+    
+    if params[:featured_photo_id] != nil then
+      @featured_photo = Photo.find(params[:featured_photo_id])
+    end
+    
     render :action => 'gallery', :layout => 'gallery'
   end
   
