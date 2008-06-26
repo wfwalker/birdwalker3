@@ -42,16 +42,16 @@ class Species < ActiveRecord::Base
 
   def Species.find_all_seen_not_excluded
     Species.find_by_sql(
-      "SELECT DISTINCT(species.id), species.* from species, sightings
-         WHERE species.aba_countable='1' AND sightings.exclude!='1' AND species.id=sightings.species_id
-         ORDER BY sightings.species_id")
+      "SELECT DISTINCT(species.id), species.* from species, families, sightings
+         WHERE species.aba_countable='1' AND sightings.exclude!='1' AND species.id=sightings.species_id AND species.family_id=families.id
+         ORDER BY families.taxonomic_sort_id, species.id")
   end  
 
   def Species.find_all_photographed_not_excluded
     Species.find_by_sql(
-      "SELECT DISTINCT(species.id), species.* FROM species, photos
-         WHERE species.aba_countable='1' AND sightings.exclude!='1' AND species.id=photos.species_id
-         ORDER BY sightings.species_id")
+      "SELECT DISTINCT(species.id), species.* FROM species, families, photos
+         WHERE species.aba_countable='1' AND species.id=photos.species_id AND species.family_id=families.id
+         ORDER BY families.taxonomic_sort_id, photos.species_id")
   end  
 
   def Species.find_all_not_photographed
