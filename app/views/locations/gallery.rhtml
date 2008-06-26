@@ -8,11 +8,17 @@
 	</div>
 	
 	<div id="pagecontent"> 
-		<% if params[:index] != nil then %>
-			<img src="<%= @location.gallery_photos[params[:index].to_i].photoURL %>"/>
-		<% end %>
-		<% @photos_module_title = ' ' %>
-		<%= show_thumbnail_list(@location.gallery_photos) %>
+		<div>
+			<% for gallery_thumb in @location.gallery_photos do %>
+				<%= link_to gallery_thumb.tiny_thumb, {:controller => 'locations', :action => 'gallery', :id => @location, :featured_photo_id => gallery_thumb.id} %>
+			<% end %>
+       	</div>
+
+		<div>
+			<% if @featured_photo != nil then %>
+				<img src="<%= @featured_photo.photoURL %>"/>
+			<% end %>                                               
+        </div>
 
 		<div class="pagecontentitem">
 			Back to <%= link_to @location.county.name + " County Gallery", county_url(@location.county) %><br/>
