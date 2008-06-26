@@ -5,7 +5,7 @@ require 'species_controller'
 class SpeciesController; def rescue_action(e) raise e end; end
 
 class SpeciesControllerTest < Test::Unit::TestCase
-  fixtures :species, :families
+  fixtures :species, :families, :photos
 
   def setup
     @controller = SpeciesController.new
