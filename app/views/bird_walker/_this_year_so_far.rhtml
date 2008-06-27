@@ -1,22 +1,6 @@
 <div class="pagecontentmodule">
 	<div class="moduletitle">This year so far</div>
 	<div class="pagecontentitem">
-		<p>Welcome to birdWalker,
-			a website of <%= link_to "birding photos", :controller =>'species', :action => 'photo_life_list' %> and 
-			<%= link_to "trip reports", trips_url %>
-			by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County.
-			We've been collecting our trip reports since 1996,
-			we have now recorded <%= Trip.find_all.size %> trips and
-			<%= Species.find_all_seen.size %> species.</p>
-			
-		<p>Some of our favorite places to go birding include
-			<%= link_to 'Charleston Slough', location_url(19) %> and  
-			<%= link_to 'the Duck Pond', location_url(68) %> in Palo Alto,    
-			<%= link_to 'Sacramento National Wildlife Refuge', location_url(91) %>, and    
-			<%= link_to 'the Rio Grande Valley', county_url(46) %> in Texas.
-			
-		</p>
-		
 		<p>So far in
 		<%= link_to 'week ' + Date.today.cweek.to_s + ' of ' + Date.today.year.to_s + ' we have seen ' + @this_year_species.size.to_s + ' species', :controller => 'species', :action => 'year', :id => Date.today.year %>.
 		Last year at this time we had seen <%= @last_year_species.size.to_s %>.</p>
