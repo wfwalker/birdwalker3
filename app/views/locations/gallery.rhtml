@@ -11,7 +11,7 @@
 		<div class="pagecontentmodule">  
 			<table>
 				<tr valign="top">
-					<td width="20%">
+					<td width="100px">
 						<% for gallery_thumb in @location.gallery_photos do %>
 							<%= link_to gallery_thumb.tiny_thumb, {:controller => 'locations', :action => 'gallery', :id => @location, :featured_photo_id => gallery_thumb.id} %>
 						<% end %>
