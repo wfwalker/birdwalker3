@@ -66,13 +66,6 @@
 			<% end %>
 		</div>
 		
-		<% if params[:action] != 'index' %>
-			<div id="browse">
-				<%= link_to "prev", @previous_url %>
-				<%= link_to "next", @next_url %>
-			</div>
-		<% end %>
-		
 		<% if flash[:notice] %>
 			<div id="notice"><%= flash[:notice] %></div>
 		<% end %>
