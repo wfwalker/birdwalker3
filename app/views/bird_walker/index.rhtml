@@ -17,7 +17,7 @@
 				<%= render :partial => 'bird_walker/see_it_this_week' %>   
 		
 				<div class="pagecontentmodule">
-					<div class="moduletitle">Visited Recently</div>
+					<div class="moduletitle">Locations Visited Recently</div>
 				</div>
 				<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  
 										
@@ -27,7 +27,7 @@
 		<% end %>
 					
 				<div class="pagecontentmodule">
-					<div class="moduletitle">Recent Trips</div>
+					<div class="moduletitle">Recent Trip Reports</div>
 				</div>
 				<%= render :partial => 'trips/summary', :collection => @recent_trips %>
 
