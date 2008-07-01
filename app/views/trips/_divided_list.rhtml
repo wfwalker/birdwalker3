@@ -5,13 +5,13 @@
 <div class="pagecontentmodule">
 	<% if (show_headings) %>
 		<div class="moduletitle">
-			<%= trip_list.size %> sightings spanning <%= sightings_by_year.keys.size %> Years
+			<%= trip_list.size %> sightings from <%= sightings_by_year.keys.sort.first %> to <%= sightings_by_year.keys.sort.last %>
 		</div>
 	<% end %>
 		
 	<% for year in sightings_by_year.keys.sort.reverse %>
 		<div class='modulesubtitle'><%= year %></div>
-		<%= render :partial => 'trips/onelinelink', :collection => sightings_by_year[year], :locals => { :date_format => "%B %d" }  %>
+		<%= render :partial => 'trips/onelinelink', :collection => sightings_by_year[year], :locals => { :date_format => "%b %d" }  %>
 	<% end %>
 </div>
 

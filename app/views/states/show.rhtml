@@ -1,4 +1,4 @@
-<% @page_title = @state.name %>
+<% @page_title = 'State Report: ' + @state.name %>
 
 <div id="pagebody">
 	<%= render :partial => 'page_header', :object => @state %>
@@ -14,12 +14,8 @@
 
 					<%= show_trip_list(@state.trips, true) %>
 
-					<div class="pagecontentmodule">
-						<div class="moduletitle">State Photos</div>
-						<div class="pagecontentitem">
-							<%= render :partial => 'photos/thumbnail', :collection => @state.photos %>
-						</div>
-					</div>
+					<% @photos_module_title = 'State Photos' %>
+					<%= show_thumbnail_list(@state.photos) %>
 					
 					<% if (@state.locations.with_lat_long.size > 0) %>
 						<% @map_module_title = 'State Map' %>                       

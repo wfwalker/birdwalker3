@@ -1,5 +1,5 @@
 <% trip = onelinelink %>
 
 <div class="pagecontentitem">
-	<%= link_to trip.name, trip_url(trip) %>, <%= trip.date.strftime(date_format) %>
+	<%= trip.date.strftime(date_format) %>, <%= link_to trip.name, trip_url(trip) %>
 </div>
