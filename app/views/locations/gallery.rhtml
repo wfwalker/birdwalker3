@@ -1,26 +1,28 @@
 <% @page_title = @location.name + " Gallery" %>
 
 <div id="pagebody">
-	<%= render :partial => 'page_header', :object => @location %>
-	
-	<div id="pagecontent"> 
+		<div id="pagecontent"> 
 		<div class="pagecontentmodule">  
 			<table>
-				<tr valign="top">
-					<td width="100px">
+				<tr>
+					<td valign="top" width="170px" rowspan=2>
 						<% for gallery_thumb in @location.gallery_photos do %>
 							<%= link_to gallery_thumb.tiny_thumb, {:controller => 'locations', :action => 'gallery', :id => @location, :featured_photo_id => gallery_thumb.id} %>
 						<% end %>
 					</td>
-
+					<td>
+						<% if @featured_photo != nil then %>
+		 		        <div style="font-size: 20px"><%= @location.name %> photos by Bill Walker</div>
+		 		        <div style="font-size: 24px"><%= safe_species_common_name(@featured_photo) %></div>
+							<div><%= short_nice_date(@featured_photo.trip.date) %> at <%= safe_location_name(@featured_photo) %></div>
+						<% end %>						
+					</td>
+				</tr>
+				<tr valign="top">
 					<td>
 						<% if @featured_photo != nil then %>
 							<img src="<%= @featured_photo.photoURL %>"/><br/>
-			 		        <%= link_to safe_species_common_name(@featured_photo), species_instance_url(@featured_photo.species_id) %> |
-			   				<%= link_to safe_nice_trip_date(@featured_photo), trip_url(@featured_photo.trip_id) %> | 
-							<%= safe_location_name(@featured_photo) %> |     
-							<%= @featured_photo.rating %>    
-							<p>All photos on Birdwalker are Copyright William F Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com</p>
+							<p>All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com</p>
 						<% end %>                                               
 			        </td>    
 				</tr>
@@ -28,8 +30,8 @@
 		</div>
 
 		<div class="pagecontentmodule">
-			Back to <%= link_to @location.county.name + " County Gallery", county_url(@location.county) %><br/>
-			Back to <%= link_to @location.county.state.name + " Gallery", state_url(@location.county.state) %>
+			To <%= link_to @location.county.name + " County Gallery", county_url(@location.county) %><br/>
+			To <%= link_to @location.county.state.name + " Gallery", state_url(@location.county.state) %>
 		</div>
 	</div>        
 </div>
