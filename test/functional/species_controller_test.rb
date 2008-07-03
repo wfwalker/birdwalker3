@@ -34,7 +34,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
     get :show, :id => @first_id
 
     assert_response :success
-    assert_template 'show'
+    assert_template 'show_rare'
 
     assert_not_nil assigns(:species)
     assert assigns(:species).valid?
