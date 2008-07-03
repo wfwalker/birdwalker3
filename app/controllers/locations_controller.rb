@@ -30,9 +30,6 @@ class LocationsController < ApplicationController
   
   def show
     @location = Location.find(params[:id])
-    
-    @location.previous && @previous_url = location_url(@location.previous)
-    @location.next && @next_url = location_url(@location.next)
   end          
   
   def gallery
@@ -43,6 +40,14 @@ class LocationsController < ApplicationController
     else
       @featured_photo = @location.gallery_photos[0]
     end
+    
+    if params[:start_index] != nil then
+      @start_index = params[:start_index].to_i
+    else
+      @start_index = 0
+    end
+
+    @end_index = @start_index + 5
     
     render :action => 'gallery', :layout => 'gallery'
   end

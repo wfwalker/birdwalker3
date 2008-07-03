@@ -47,9 +47,12 @@ class SpeciesController < ApplicationController
 
   def show
     @species = Species.find(params[:id])
-    
-    @species.previous && @previous_url = species_instance_url(@species.previous)
-    @species.next && @next_url = species_instance_url(@species.next)
+
+    if (@species.sightings.size > 40)
+        render :action => 'show_common'
+    else
+      render :action => 'show_rare'
+    end
   end
 
   def show_locations_by_year

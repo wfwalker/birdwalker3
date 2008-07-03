@@ -2,6 +2,7 @@ class StatesController < ApplicationController
   helper :trips
   helper :species
   helper :locations
+  helper :photos
 
   def page_kind
     "states"

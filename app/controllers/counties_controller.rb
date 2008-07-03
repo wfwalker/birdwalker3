@@ -16,7 +16,22 @@ class CountiesController < ApplicationController
   end
 
   def gallery
-    show
+    show       
+    
+    if params[:featured_photo_id] != nil then
+      @featured_photo = Photo.find(params[:featured_photo_id])
+    else
+      @featured_photo = @county.gallery_photos[0]
+    end
+    
+    if params[:start_index] != nil then
+      @start_index = params[:start_index].to_i
+    else
+      @start_index = 0
+    end
+
+    @end_index = @start_index + 5
+    
     render :action => 'gallery', :layout => 'gallery'
   end
 
