@@ -1,0 +1,44 @@
+<% @page_title = 'Species Report: ' + @species.common_name %>
+
+<div id="pagebody">	
+	<%= render :partial => 'page_header', :object => @species %>
+
+	<div id="pagecontent">
+		<% has_columns? do %>
+			<table width="100%" cellpadding="0px" cellspacing="0px">
+			<tr valign="top">
+			<td valign="top" width="50%">
+		<% end %>
+
+			<div class="pagecontentmodule">
+				<div class="moduletitle"><%= @species.sightings.size %> Sightings</div>	
+				<%= render :partial => 'sightings/date_and_location_link', :collection => Sighting.sort_chronological(@species.sightings) %>
+			</div>
+				
+		<% has_columns? do %>
+			</td>
+			<td valign="top" width="50%">
+		<% end %>
+
+			<% has_notes?(@species) do %>
+				<div class="pagecontentmodule">
+					<div class="moduletitle">Species Notes</div>
+					<div class="pagecontentitem"><%= @species.notes %></div>
+				</div>
+			<% end %>
+
+			<% @photos_module_title = 'Species Photos' %>
+			<%= show_thumbnail_list(@species.photos) %>
+
+			<% if (@species.locations.with_lat_long.size > 0) %>  
+				<% @map_module_title = 'Species Map' %>
+				<%= render :partial => 'locations/google', :object => @species.locations.with_lat_long %>
+			<% end %>
+
+		<% has_columns? do %>
+			</td>
+			</tr>
+			</table>
+		<% end %>
+	</div>
+</div>

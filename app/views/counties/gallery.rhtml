@@ -1,21 +1,30 @@
 <% @page_title = @county.name + " Gallery" %>
 
-<div id="pagebody">
-	<div id="pageheader-location">
-		<div id="pagetitle">
-			<%= @page_title %>
-		</div>
-	</div>
-	
-	<div id="pagecontent">
-		<% @photos_module_title = ' ' %>
-		<%= show_thumbnail_list(@county.gallery_photos) %>
+<div id="gallerythumbs">
+	<div><%= link_to 'prev', {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %></div>
+	<% for gallery_thumb in @county.gallery_photos[@start_index..@end_index] do %>
+		<div class="photo"><%= link_to gallery_thumb.tiny_thumb, {:action => 'gallery', :start_index => @start_index, :id => @county, :featured_photo_id => gallery_thumb.id} %></div>
+	<% end %>
+	<div><%= link_to 'next', {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %></div>
+</div>
 
-		<div class="pagecontentitem">
-			Back to <%= link_to @county.state.name + " Gallery", state_url(@county.state) %>
+<div id="pagebody">
+	<div id="pagecontent"> 
+		<div class="pagecontentmodule">  
+			<div class="pagecontentitem">
+				<% if @featured_photo != nil then %>
+					<div style="font-size: 20px"><%= @county.name %> County photos by Bill Walker</div>
+					<div style="font-size: 24px"><%= safe_species_common_name(@featured_photo) %></div>
+					<div style="margin-bottom: 20px"><%= short_nice_date(@featured_photo.trip.date) %> at <%= safe_location_name(@featured_photo) %></div>
+					<img src="<%= @featured_photo.photoURL %>"/><br/>
+					<p>All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com</p>
+				<% end %>                  
+			</div>                             
+		</div>
+
+		<div class="pagecontentmodule">
+			To <%= link_to @county.state.name + " Gallery", state_url(@county.state) %>
 		</div>
 	</div>        
-	
-	
 </div>
 
