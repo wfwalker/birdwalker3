@@ -31,6 +31,7 @@ module SightingsHelper
 	  end
   end
   
+  # used only by Trip.show
 	def show_taxonomic_sighting_list(sighting_list)
 	  sorted_sighting_list = Sighting.sort_taxonomic(sighting_list)
 	      
@@ -41,6 +42,7 @@ module SightingsHelper
 		end
 	end
 
+  # used only by Species.life_list
 	def show_chronological_sighting_list(sighting_list)
 	  sorted_sighting_list = Sighting.sort_chronological(sighting_list);
 	      

@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def short_nice_date(date)
-    h date.strftime("%B %d, %Y")
+    h date.strftime("%b %d, %Y")
   end
   
   def month_day(date)
