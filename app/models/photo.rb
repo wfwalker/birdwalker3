@@ -34,7 +34,7 @@ class Photo < ActiveRecord::Base
   end
 
   def tiny_thumb
-    "<img border=\"0\" width=\"40\" height=\"40\" src=\"" + thumbURL + "\"/>"
+    "<img border=\"0\" width=\"75\" height=\"75\" src=\"" + thumbURL + "\"/>"
   end
   
   def Photo.map_by_location(photo_list)
