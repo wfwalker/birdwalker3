@@ -50,4 +50,8 @@ class Photo < ActiveRecord::Base
     photo_list.inject({}) { | map, photo |
        map[photo.species.family] ? map[photo.species.family] << Photo : map[photo.species.family] = [Photo] ; map }
   end
+  
+  def Photo.find_recent_gallery
+    Photo.find_by_sql("select photos.* from photos, trips where photos.rating >=4 AND photos.trip_id=trips.id ORDER BY trips.date DESC LIMIT 10")
+  end
 end
