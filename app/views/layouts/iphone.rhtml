@@ -8,7 +8,6 @@
     </head>
     <body>
         <div id="menu">
-			<span style="display: inline-block; background-color: darkblue"><%= link_to "&lt;&lt;", @previous_url %></span>
 			<div class="<%= @controller.page_kind == 'location' ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "locations", locations_url %>
 			</div>
@@ -18,7 +17,6 @@
 			<div class="<%= @controller.page_kind == 'trip' ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
 			</div>
-			<span style="display: inline-block; background-color: darkblue"><%= link_to "&gt;&gt;", @next_url %></span>
 		</div>
 
         <%= yield %>
