@@ -4,14 +4,6 @@ class Sighting < ActiveRecord::Base
   belongs_to :trip
   
   validates_presence_of :species_id, :location_id, :trip_id
-  
-  def next
-    Sighting.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
-  end
-
-  def previous
-    Sighting.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
-  end
     
   def Sighting.map_by_location(sighting_list)
     sighting_list.inject({}) { | map, sighting |

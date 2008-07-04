@@ -17,14 +17,6 @@ class Species < ActiveRecord::Base
   
   validates_presence_of :common_name, :latin_name, :abbreviation
 
-  def next
-    Species.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
-  end
-
-  def previous
-    Species.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
-  end
-
   def photo_of_the_week
     Photo.find_by_sql(
       "SELECT photos.* FROM photos, trips

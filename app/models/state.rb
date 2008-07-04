@@ -5,15 +5,7 @@ class State < ActiveRecord::Base
       Location.with_lat_long(self)
     end
   end
-  
-  def next
-    State.find(:first, :conditions => ["name > (?)", self.name.to_s], :order => 'name')
-  end
 
-  def previous
-    State.find(:first, :conditions => ["name < (?)", self.name.to_s], :order => 'name DESC')
-  end
-  
   def species
     Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, locations, counties 
       WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND

@@ -4,15 +4,7 @@ class Photo < ActiveRecord::Base
   belongs_to :trip
   
   validates_presence_of :species_id, :location_id, :trip_id
-  
-  def next
-    Photo.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
-  end
-
-  def previous
-    Photo.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
-  end
-  
+    
   def photoURL
     if (`hostname`.strip == "vermillion.local")
       "http://localhost/~walker/birdwalker2/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"

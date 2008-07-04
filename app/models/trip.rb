@@ -20,15 +20,7 @@ class Trip < ActiveRecord::Base
   end
     
   validates_presence_of :name, :date, :leader
-  
-  def next
-    Trip.find(:first, :conditions => ["date > (?)", self.date.to_s], :order => 'date')
-  end
 
-  def previous
-    Trip.find(:first, :conditions => ["date < (?)", self.date.to_s], :order => 'date DESC')
-  end
-  
   def Trip.map_by_year(tripList)
     tripList.inject({}) { | map, trip |
        map[trip.date.year] ? map[trip.date.year] << trip : map[trip.date.year] = [trip] ; map }

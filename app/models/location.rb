@@ -19,15 +19,7 @@ class Location < ActiveRecord::Base
   end      
   
   validates_presence_of :name, :county
-  
-  def next
-    Location.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'county_id')
-  end
 
-  def previous
-    Location.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'county_id DESC')
-  end
-      
   def Location.map_by_state(locationList)
     locationList.inject({}) { | map, location |
        map[location.county.state] ? map[location.county.state] << location : map[location.county.state] = [location] ; map }

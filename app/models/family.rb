@@ -3,14 +3,6 @@ class Family < ActiveRecord::Base
   has_many :sightings, :through => :species
   has_many :photos, :through =>:species
   
-  def next
-    Family.find(:first, :conditions => ["id > (?)", self.id.to_s], :order => 'id')
-  end
-
-  def previous
-    Family.find(:first, :conditions => ["id < (?)", self.id.to_s], :order => 'id DESC')
-  end
-  
   def species_seen
     Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND species.family_id='" + self.id.to_s + "'")
   end
