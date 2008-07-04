@@ -16,9 +16,6 @@ class SightingsController < ApplicationController
 
   def show
     @sighting = Sighting.find(params[:id])
-    
-    @sighting.previous && @previous_url = sighting_url(@sighting.previous)
-    @sighting.next && @next_url = sighting_url(@sighting.next)
   end
 
   def new

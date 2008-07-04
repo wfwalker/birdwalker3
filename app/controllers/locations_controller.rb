@@ -56,18 +56,12 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     
     @map, @totals = Sighting.map_by_year_and_species(@location.sightings)
-    
-    @location.previous && @previous_url = location_url(@location.previous)
-    @location.next && @next_url = location_url(@location.next)
   end
 
   def show_species_by_month
     @location = Location.find(params[:id])
     
     @map, @totals = Sighting.map_by_month_and_species(@location.sightings)
-    
-    @location.previous && @previous_url = location_url(@location.previous)
-    @location.next && @next_url = location_url(@location.next)
   end
 
   def new

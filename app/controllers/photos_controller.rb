@@ -17,9 +17,6 @@ class PhotosController < ApplicationController
   def show
     @photo = Photo.find(params[:id])
     
-    @photo.previous && @previous_url = photo_url(@photo.previous)
-    @photo.next && @next_url = photo_url(@photo.next)
-    
     render :action => 'show', :layout => 'gallery'
   end
 

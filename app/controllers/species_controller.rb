@@ -36,11 +36,6 @@ class SpeciesController < ApplicationController
   
   def year
     @all_species_seen = Species.find_by_sql("SELECT DISTINCT(species.id), species.* FROM species, sightings, trips WHERE sightings.trip_id=trips.id AND sightings.species_id=species.id AND year(trips.date)=" + params[:year])
-
-    # TODO this can't be the idiomatic way
-    @previous_url = '/species/year/' + (params[:year].to_i - 1).to_s
-    @next_url = '/species/year/' + (params[:year].to_i + 1).to_s
-
     @page_title = params[:year].to_s
     render :action => 'list'
   end
@@ -59,18 +54,12 @@ class SpeciesController < ApplicationController
     @species = Species.find(params[:id])
     
     @map, @totals = Sighting.map_by_year_and_location(@species.sightings)
-    
-    @species.previous && @previous_url = species_instance_url(@species.previous)
-    @species.next && @next_url = species_instance_url(@species.next)
   end
 
   def show_locations_by_month
     @species = Species.find(params[:id])
     
     @map, @totals = Sighting.map_by_month_and_location(@species.sightings)
-    
-    @species.previous && @previous_url = species_instance_url(@species.previous)
-    @species.next && @next_url = species_instance_url(@species.next)
   end
 
   def new

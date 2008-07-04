@@ -24,27 +24,18 @@ class FamiliesController < ApplicationController
 
   def show
     @family = Family.find(params[:id])
-    
-    @family.previous && @previous_url = family_url(@family.previous)
-    @family.next && @next_url = family_url(@family.next)
   end
 
   def show_species_by_year
     @family = Family.find(params[:id])
     
     @map, @totals = Sighting.map_by_year_and_species(@family.sightings)
-    
-    @family.previous && @previous_url = family_url(@family.previous)
-    @family.next && @next_url = family_url(@family.next)
   end
 
   def show_species_by_month
     @family = Family.find(params[:id])
     
     @map, @totals = Sighting.map_by_month_and_species(@family.sightings)
-    
-    @family.previous && @previous_url = family_url(@family.previous)
-    @family.next && @next_url = family_url(@family.next)
   end
 
   def new
@@ -67,9 +58,6 @@ class FamiliesController < ApplicationController
     if (! is_editing_allowed?) then
       redirect_to family_url(@family)
     end
-
-    @family.previous && @previous_url = edit_family_url(@family.previous)
-    @family.next && @next_url = edit_family_url(@family.next)
   end
 
   def update
