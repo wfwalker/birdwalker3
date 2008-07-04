@@ -49,11 +49,11 @@ class BirdWalkerController < ApplicationController
     do_search = false
     
     if (params[:photo] != nil && params[:photo][:species_id] != "") then
-      where_clause = where_clause + " AND photos.species_id='" + params[:sighting][:species_id].to_s + "'"
+      where_clause = where_clause + " AND photos.species_id='" + params[:photo][:species_id].to_s + "'"
       do_search = true
     end
     if (params[:photo] != nil && params[:photo][:location_id] != "") then
-      where_clause = where_clause + " AND photos.location_id='" + params[:sighting][:location_id].to_s + "'"
+      where_clause = where_clause + " AND photos.location_id='" + params[:photo][:location_id].to_s + "'"
       do_search = true
     end
     if (params[:species] != nil && params[:species][:family_id] != "") then
