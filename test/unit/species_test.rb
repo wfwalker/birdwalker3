@@ -8,7 +8,11 @@ class SpeciesTest < Test::Unit::TestCase
     assert Species.count == 2
   end                 
   
-  def test_find_all_photographed_not_excluded
-    assert Species.find_all_photographed_not_excluded.size == 2
+  def test_find_all_countable_photographed
+    assert Species.find_all_countable_photographed.size == 2
+  end
+
+  def test_find_all_photographed
+    assert Species.find_all_photographed.size == 2
   end
 end
