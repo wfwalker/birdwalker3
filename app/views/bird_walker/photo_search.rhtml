@@ -21,11 +21,11 @@
 				</p>
 				<p>
 					<label for="sighting_species">Species</label><br/>
-					<%= collection_select("photo", "species_id", Species.find_all_seen, :id, :common_name, {:prompt => true}) %>
+					<%= collection_select("photo", "species_id", Species.find_all_photographed, :id, :common_name, {:prompt => true}) %>
 				</p>
 				<p>
 					<label for="sighting_species">Family</label><br/>
-					<%= collection_select("species", "family_id", Family.find_all_seen, :id, :common_name, {:prompt => true}) %>
+					<%= collection_select("species", "family_id", Family.find_all_photographed, :id, :common_name, {:prompt => true}) %>
 				</p>
 				<p>
 					<label for="trip_month">Month</label><br/>
@@ -67,6 +67,7 @@
 				<p>
 					<label for="rating">Rating</label><br/>
 					<select id="photo_rating" name="photo[rating]">
+						<option value="">Please select</option>
 						<%= options_for_select([1, 2, 3, 4, 5])%>
 					</select>
 				</p>
