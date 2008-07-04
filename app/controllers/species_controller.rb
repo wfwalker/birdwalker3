@@ -27,7 +27,7 @@ class SpeciesController < ApplicationController
   end
 
   def photo_life_list
-    @all_species_photographed = Species.find_all_photographed_not_excluded
+    @all_species_photographed = Species.find_all_countable_photographed
   end                        
   
   def photo_to_do_list
