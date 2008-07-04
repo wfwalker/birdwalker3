@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :counties
   map.resources :sightings
-  map.resources :photos
+  map.resources :photos, :collection => { :recent_gallery => :get }
   map.resources :trips
   map.resources :states
   map.resources :locations
