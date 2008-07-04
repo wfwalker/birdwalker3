@@ -11,6 +11,17 @@
 		<% end %>
 
 			<div class="pagecontentmodule">
+				<div class="moduletitle">Notes</div>	
+				<div class="pagecontentitem">
+					We have only seen this bird <%= @species.sightings.size %> times since we started birding,
+					so we think of it as rare.
+				</div>	
+				<% has_notes?(@species) do %>
+					<div class="pagecontentitem"><%= @species.notes %></div>
+				<% end %>
+			</div>
+
+			<div class="pagecontentmodule">
 				<div class="moduletitle"><%= @species.sightings.size %> Sightings</div>	
 				<%= render :partial => 'sightings/date_and_location_link', :collection => Sighting.sort_chronological(@species.sightings) %>
 			</div>
@@ -19,13 +30,6 @@
 			</td>
 			<td valign="top" width="50%">
 		<% end %>
-
-			<% has_notes?(@species) do %>
-				<div class="pagecontentmodule">
-					<div class="moduletitle">Species Notes</div>
-					<div class="pagecontentitem"><%= @species.notes %></div>
-				</div>
-			<% end %>
 
 			<% @photos_module_title = 'Species Photos' %>
 			<%= show_thumbnail_list(@species.photos) %>
