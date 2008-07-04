@@ -47,10 +47,17 @@ class Species < ActiveRecord::Base
          ORDER BY families.taxonomic_sort_id, species.id")
   end  
 
-  def Species.find_all_photographed_not_excluded
+  def Species.find_all_countable_photographed
     Species.find_by_sql(
       "SELECT DISTINCT(species.id), species.* FROM species, families, photos
          WHERE species.aba_countable='1' AND species.id=photos.species_id AND species.family_id=families.id
+         ORDER BY families.taxonomic_sort_id, photos.species_id")
+  end  
+
+  def Species.find_all_photographed
+    Species.find_by_sql(
+      "SELECT DISTINCT(species.id), species.* FROM species, families, photos
+         WHERE species.id=photos.species_id AND species.family_id=families.id
          ORDER BY families.taxonomic_sort_id, photos.species_id")
   end  
 

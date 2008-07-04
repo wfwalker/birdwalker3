@@ -19,6 +19,13 @@ class Family < ActiveRecord::Base
   def Family.find_all_seen
     Family.find_by_sql "SELECT DISTINCT(families.id), families.* from families, species, sightings WHERE species.id=sightings.species_id AND species.family_id=families.id ORDER BY families.taxonomic_sort_id"
   end  
+  
+  def Family.find_all_photographed
+    Family.find_by_sql(
+      "SELECT DISTINCT(families.id), families.* FROM species, families, photos
+         WHERE species.id=photos.species_id AND species.family_id=families.id
+         ORDER BY families.taxonomic_sort_id, photos.species_id")
+  end  
 
   def locations
     Location.find_by_sql "SELECT DISTINCT locations.* from species, locations, sightings WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND species.family_id='" + self.id.to_s + "' ORDER BY locations.name"
