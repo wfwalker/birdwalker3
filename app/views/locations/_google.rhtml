@@ -27,7 +27,7 @@ end
       // this is called when the page loads. 
       // it initializes the map, and creates each marker
       function google_initialize() {
-          var map = new GMap(document.getElementById("map"));
+          var map = new GMap2(document.getElementById("map"));
           map.addControl(new GSmallMapControl());
 
 		  <% longitudes = locations.collect { | a_location | a_location.longitude } %>
@@ -36,14 +36,20 @@ end
 		  <% latitudes = locations.collect { | a_location | a_location.latitude } %>
 		  <% min_latitude = latitudes.min %>
 		  <% max_latitude = latitudes.max %>
+
+          var sw = new GLatLng(<%= min_latitude %>, <%= min_longitude %>);
+          var ne = new GLatLng(<%= max_latitude %>, <%= max_longitude %>);
+          var bounds = new GLatLngBounds(sw, ne);
+		  <% if (locations.size > 1) %>
+          	var zoom = map.getBoundsZoomLevel(bounds, 450);
+		  <% else %>
+		    var zoom = 10;
+		  <% end %>
 		
 		  <% center_longitude = (min_longitude + max_longitude) / 2 %>
 		  <% center_latitude = (min_latitude + max_latitude) / 2 %>
                                                                                           
-		  // V1: '7' is nice for single point maps, 13 was the old default for 'whole US'
-		  // V2: '10' is nice for single point maps, 4 is the default for 'whole US'
-		  <%= zoom = locations.size > 1 ? 4 : 10 %>
-   		  map.setCenter(new GLatLng(<%= center_latitude %>, <%= center_longitude %>), <%= zoom %>, G_PHYSICAL_MAP);     
+   		  map.setCenter(new GLatLng(<%= center_latitude %>, <%= center_longitude %>), zoom, G_PHYSICAL_MAP);     
           
 		  <% for location in locations %> 
 			<% contents = render :partial => 'locations/show_google_popup', :object => location %>
