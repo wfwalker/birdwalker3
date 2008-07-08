@@ -23,7 +23,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
           xml.pubDate     trip.date
           xml.link        url_for :only_path => false, :controller => 'trips', :action => 'show', :id => trip.id
           xml.description trip.notes
-          xml.guid        url_for :only_path => false, :controller => 'articles', :action => 'show', :id => trip.id
+          xml.guid        url_for :only_path => false, :controller => 'trips', :action => 'show', :id => trip.id
         end
       end 
    end
