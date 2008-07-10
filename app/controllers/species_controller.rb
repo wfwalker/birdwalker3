@@ -43,7 +43,7 @@ class SpeciesController < ApplicationController
   def show
     @species = Species.find(params[:id])
 
-    if (@species.sightings.size > 40)
+    if (@species.sightings.size > 30)
         render :action => 'show_common'
     else
       render :action => 'show_rare'
