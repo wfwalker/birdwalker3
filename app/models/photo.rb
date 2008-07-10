@@ -6,19 +6,11 @@ class Photo < ActiveRecord::Base
   validates_presence_of :species_id, :location_id, :trip_id
     
   def photoURL
-    if (`hostname`.strip == "vermillion.local")
-      "http://localhost/~walker/birdwalker2/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-    else
-      "http://www.spflrc.org/~walker/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-    end
+    "/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
   end
   
   def thumbURL
-    if (`hostname`.strip == "vermillion.local")
-      "http://localhost/~walker/birdwalker2/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-    else
-      "http://www.spflrc.org/~walker/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
-    end
+    "/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
   end
   
   def thumb      
