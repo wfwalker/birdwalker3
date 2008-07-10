@@ -19,7 +19,15 @@
 			<div class="pagecontentitem">
 				<%= @photo.thumb %>
 			</div>
-			<div class="pagecontentitem">
+			<div class="pagecontentitem">     
+				<p><label for="photo_trip">Photo URL</label><br/>
+				<%= @photo.photoURL %>
+				</p>
+
+				<p><label for="photo_trip">Thumb URL</label><br/>
+				<%= @photo.thumbURL %>
+				</p>  
+				
 				<% form_for :photo, @photo, :url => photo_path(@photo), :html => { :method => 'put' } do |form|%>
 		  			<%= render :partial => 'form' %>
 		  			<%= submit_tag 'Save' %>

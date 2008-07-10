@@ -2,16 +2,6 @@
 
 <!--[form:photo]-->
  
-<% if @photo.trip_id != nil then %>
-	<p><label for="photo_trip">Photo URL</label><br/>
-	<%= @photo.photoURL %>
-	</p>
-
-	<p><label for="photo_trip">Thumb URL</label><br/>
-	<%= @photo.thumbURL %>
-	</p>  
-<% end %>
-
 <p><label for="photo_trip">Trip</label><br/>
 <%= collection_select("photo", "trip_id", Trip.find(:all, :order => 'date DESC'), :id, :date) %>
 </p>
