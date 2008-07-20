@@ -15,7 +15,11 @@ class Species < ActiveRecord::Base
     end
   end
   
-  validates_presence_of :common_name, :latin_name, :abbreviation
+  validates_presence_of :common_name, :latin_name, :abbreviation    
+  
+  def common?
+    self.sightings.size > 30
+  end
 
   def photo_of_the_week
     Photo.find_by_sql(
@@ -74,7 +78,10 @@ class Species < ActiveRecord::Base
   end
   
   def Species.bird_of_the_week
-    Species.find_by_sql("SELECT DISTINCT species.* FROM species, photos, trips WHERE photos.species_id=species.id AND photos.trip_id=trips.id AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' ORDER BY trips.date DESC LIMIT 1")[0]
+    Species.find_by_sql("SELECT DISTINCT species.* FROM species, photos, trips
+      WHERE photos.species_id=species.id AND photos.trip_id=trips.id
+      AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "'
+      ORDER BY trips.date DESC LIMIT 1")[0]
   end
 
   def Species.year_to_date(year)  

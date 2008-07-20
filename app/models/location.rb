@@ -18,7 +18,11 @@ class Location < ActiveRecord::Base
     end
   end      
   
-  validates_presence_of :name, :county
+  validates_presence_of :name, :county  
+  
+  def common?
+    self.trips.size > 8
+  end
 
   def Location.map_by_state(locationList)
     locationList.inject({}) { | map, location |
