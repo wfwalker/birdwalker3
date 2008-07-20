@@ -6,16 +6,22 @@
 	<div id="pagecontent">
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
-				<td valign="top" width="50%">
-					<%= show_species_list(@location.species, true) %>
+				<td valign="top" width="50%">     
+					
+ 					<div class="pagecontentmodule">
+						<div class="moduletitle">Location Notes</div>	
+						<div class="pagecontentitem">
+							We have only visited <%= @location.name %> <%= @location.trips.size %> times. 
+						</div>	
+
+						<% has_notes?(@location) do %>
+							<div class="pagecontentitem"><%= @location.notes %></div>
+						<% end %>
+					</div>                               
+
+					<%= render :partial => 'species/divided_list', :object => @location.species, :locals => { :show_headings => true } %>
 				</td>
 				<td valign="top" width="50%">
-					<% has_notes?(@location) do %>
-						<div class="pagecontentmodule">
-							<div class="moduletitle">Location Notes</div>
-							<div class="pagecontentitem"><%= @location.notes %></div>
-						</div>
-					<% end %>
 					
 					<% @photos_module_title = 'Location Photos' %>
 					<%= show_thumbnail_list(@location.photos) %>
