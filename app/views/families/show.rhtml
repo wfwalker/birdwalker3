@@ -11,7 +11,7 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td width="50%" valign="top">
-					<%= show_species_list(@family.species_seen, true) %>
+					<%= render :partial => 'species/divided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
 					
 					<%= show_trip_list(@family.trips, true) %>
 				</td>
