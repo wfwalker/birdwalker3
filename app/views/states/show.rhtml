@@ -7,7 +7,7 @@
 		<table width="100%" cellpadding="0px" cellspacing="0px">
 			<tr valign="top">
 				<td valign="top" width="50%">
-					<%= show_species_list(@state.species, true) %>
+					<%= render :partial => 'species/divided_list', :object => @state.species, :locals => { :show_headings => true } %>
 				</td>
 				<td valign="top" width="50%">
 					<%= show_location_list(@state.locations, true) %>
