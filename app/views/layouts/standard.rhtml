@@ -51,6 +51,9 @@
 			<div class="<%= @controller.page_kind == 'trips' ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
 			</div>
+			<div class="<%= @controller.page_kind == 'photos' ? 'photomenuitem' : 'menuitem' %>">
+				<%= link_to "photos", photos_url %>
+			</div>
 			
 			<% if (session[:username] != nil) then %>
 				<div class="menuitem">
