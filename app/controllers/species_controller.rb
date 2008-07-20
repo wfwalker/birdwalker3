@@ -38,12 +38,12 @@ class SpeciesController < ApplicationController
     @all_species_seen = Species.find_by_sql("SELECT DISTINCT(species.id), species.* FROM species, sightings, trips WHERE sightings.trip_id=trips.id AND sightings.species_id=species.id AND year(trips.date)=" + params[:year])
     @page_title = params[:year].to_s
     render :action => 'list'
-  end
-
+  end      
+  
   def show
     @species = Species.find(params[:id])
 
-    if (@species.sightings.size > 30)
+    if (@species.common?)
         render :action => 'show_common'
     else
       render :action => 'show_rare'

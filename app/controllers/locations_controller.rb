@@ -30,10 +30,15 @@ class LocationsController < ApplicationController
   
   def show
     @location = Location.find(params[:id])
+    if @location.common?
+        render :action => 'show_common'
+      else
+        render :action => 'show_rare'
+    end
   end          
   
   def gallery
-    show       
+    @location = Location.find(params[:id])
     
     if params[:featured_photo_id] != nil then
       @featured_photo = Photo.find(params[:featured_photo_id])
@@ -49,7 +54,7 @@ class LocationsController < ApplicationController
 
     @end_index = @start_index + 5
     
-    render :action => 'gallery', :layout => 'gallery'
+    render :action => 'gallery'
   end
   
   def show_species_by_year

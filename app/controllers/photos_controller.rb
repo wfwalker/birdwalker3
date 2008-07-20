@@ -7,16 +7,24 @@ class PhotosController < ApplicationController
 #  </p>  
 
   def page_kind
-    "trips"
+    "photos"
   end
   
 # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
 #  verify :method => :post, :only => [ :destroy, :create, :update ],
 #         :redirect_to => { :action => :list }
-
+ 
+  def index       
+    @location_galleries = Location.find_by_sql("
+      SELECT locations.*, count(DISTINCT photos.id) as photo_count
+        FROM locations, photos
+        WHERE photos.location_id=locations.id AND photos.rating > 3
+        GROUP BY locations.id ORDER BY photo_count DESC LIMIT 20");
+  end
+          
   def show
     @photo = Photo.find(params[:id])
-    render :action => 'show', :layout => 'gallery'
+    render :action => 'show'
   end
 
   def recent_gallery
@@ -36,7 +44,7 @@ class PhotosController < ApplicationController
 
     @end_index = @start_index + 5
     
-    render :action => 'recent_gallery', :layout => 'gallery', :collection => @recent_gallery_photos
+    render :action => 'recent_gallery', :collection => @recent_gallery_photos
   end
 
   def new

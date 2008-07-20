@@ -26,7 +26,7 @@ class CountiesController < ApplicationController
 
     @end_index = @start_index + 5
     
-    render :action => 'gallery', :layout => 'gallery'
+    render :action => 'gallery'
   end
 
   def show_species_by_year
