@@ -14,10 +14,13 @@
 			(<a href="<%= species.reference_url %>">See also...</a>)
 		<% end %>
 	</div>
-	<% if species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>
-	<div class="pageheaderitem">
-		<%= link_to 'normal view', :id => species, :action => 'show' %> | 
-		<%= link_to 'by year view', :id => species, :action => 'show_locations_by_year' %> |
-		<%= link_to 'by month view', :id => species, :action => 'show_locations_by_month' %>
-	</div>
+	<% if species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>     
+	
+	<% if species.common? %>
+		<div class="pageheaderitem">
+			<%= link_to 'normal view', :id => species, :action => 'show' %> | 
+			<%= link_to 'by year view', :id => species, :action => 'show_locations_by_year' %> |
+			<%= link_to 'by month view', :id => species, :action => 'show_locations_by_month' %>
+		</div>               
+	<% end %>
 </div>
