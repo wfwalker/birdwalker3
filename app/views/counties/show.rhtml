@@ -9,29 +9,30 @@
 			<% end %>       
 		</div> 
 		<div class="pageheaderitem"><%= link_to @county.state.name, state_url(@county.state) %></div>
-   	<%= render :partial => 'counties/view_links', :object => @county %>
+   		<%= render :partial => 'counties/view_links', :object => @county %>
 	</div>
 
 	<div id="pagecontent">
-		<table width="100%" cellpadding="0px" cellspacing="0px">
-			<tr valign="top">
-				<td width="50%">
-					<%= show_species_list(@county.species, true) %>
 
-					<%= show_trip_list(@county.trips, true) %>
-				</td>
-				<td width="50%">
-					<% @photos_module_title = 'County Photos' %>
-					<%= show_thumbnail_list(@county.photos) %>
+		<%= open_first_column %>
+
+			<%= show_species_list(@county.species, true) %>
+
+			<%= show_trip_list(@county.trips, true) %>
+
+		<%= between_columns %>
+
+			<% @photos_module_title = 'County Photos' %>
+			<%= show_thumbnail_list(@county.photos) %>
+		
+			<% if ((@county.locations.with_lat_long.size > 0) && (! iphone?)) %>
+				<% @map_module_title = 'County Map' %>                       
+				<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long %>
+			<% end %>
+		
+			<%= show_location_list(@county.locations, true) %>     
 					
-					<% if (@county.locations.with_lat_long.size > 0) %>
-						<% @map_module_title = 'County Map' %>                       
-						<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long %>
-					<% end %>
-					
-					<%= show_location_list(@county.locations, true) %>
-				</td>
-			</tr>
-		</table>
+ 		<%= close_second_column %>      
+
 	</div>
 </div>

@@ -5,36 +5,28 @@
 		<div id="pagetitle"></div>
 	</div>
 	<div id="pagecontent">
-		<% has_columns? do %>
-			<table width="100%" cellpadding="0px" cellspacing="0px">
-			<tr valign="top">
-			<td valign="top" width="50%">
-		<% end %>
-				<%= render :partial => 'bird_walker/welcome' %>
 
-				<%= render :partial => 'bird_walker/this_year_so_far' %>
+		<%= open_first_column %>
 
-				<%= render :partial => 'bird_walker/see_it_this_week' %>   
-		
-				<div class="pagecontentmodule">
-					<div class="moduletitle">Locations Visited Recently</div>
-				</div>
-				<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  
-										
-		<% has_columns? do %>
-			</td>
-			<td valign="top" width="50%">   
-		<% end %>
-					
-				<div class="pagecontentmodule">
-					<div class="moduletitle">Recent Trip Reports</div>
-				</div>
-				<%= render :partial => 'trips/summary', :collection => @recent_trips %>
+			<%= render :partial => 'bird_walker/welcome' %>
 
-		<% has_columns? do %>
-			</td>
-			</tr>
-			</table>
-		<% end %>
+			<%= render :partial => 'bird_walker/this_year_so_far' %>
+
+			<%= render :partial => 'bird_walker/see_it_this_week' %>   
+
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Locations Visited Recently</div>
+			</div>
+			<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  
+								
+		<%= between_columns %>
+
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Recent Trip Reports</div>
+			</div>
+			<%= render :partial => 'trips/summary', :collection => @recent_trips %>
+
+   		<%= close_second_column %>
+
 	</div>
 </div>

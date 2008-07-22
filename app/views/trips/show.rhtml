@@ -20,50 +20,40 @@
 	<div id="pagecontent">
 		<% mapped = @trip.sightings.map_by_location %>
 		
-		<% has_columns? do %>
-			<table width="100%" cellpadding="0px" cellspacing="0px">
-			<tr valign="top">
-			<td width="50%" valign="top">
-		<% end %>
+		<%= open_first_column %>
 		
-				<% if @trip.locations.size > 1 %>
-					<div class="pagecontentmodule">
-						<div class="moduletitle">
-							<%= @trip.species.size %> Species at <%= @trip.locations.size %> Locations
-						</div>
+			<% if @trip.locations.size > 1 %>
+				<div class="pagecontentmodule">
+					<div class="moduletitle">
+						<%= @trip.species.size %> Species at <%= @trip.locations.size %> Locations
 					</div>
-				<% end %>
+				</div>
+			<% end %>
+	
+			<% for a_location in mapped.keys %>
+				<% sighting_list = mapped[a_location] %>
+				<% @module_title = link_to a_location.name, location_url(a_location) %>
+				<%= show_taxonomic_sighting_list(sighting_list) %>
+			<% end %>
 			
-				<% for a_location in mapped.keys %>
-					<% sighting_list = mapped[a_location] %>
-					<% @module_title = link_to a_location.name, location_url(a_location) %>
-					<%= show_taxonomic_sighting_list(sighting_list) %>
-				<% end %>
-					
-		<% has_columns? do %>
-			</td>
-			<td width="50%" valign="top">
-		<% end %>
+		<%= between_columns %>
 		
-				<% has_notes?(@trip) do %>
-					<div class="pagecontentmodule">
-						<div class="moduletitle">Trip Notes</div>
-						<div class="pagecontentitem"><%= @trip.notes %></div>
-					</div>
-				<% end %>
-			
-				<% @photos_module_title = 'Trip Photos' %>                       
-				<%= show_thumbnail_list(@trip.photos) %>
-			
-				<% if (@trip.locations.with_lat_long.size > 0) %>
-					<% @map_module_title = 'Trip Map' %>                       
-					<%= render :partial => 'locations/google', :object => @trip.locations.with_lat_long %>
-				<% end %>
+			<% has_notes?(@trip) do %>
+				<div class="pagecontentmodule">
+					<div class="moduletitle">Trip Notes</div>
+					<div class="pagecontentitem"><%= @trip.notes %></div>
+				</div>
+			<% end %>
+	
+			<% @photos_module_title = 'Trip Photos' %>                       
+			<%= show_thumbnail_list(@trip.photos) %>
+	
+			<% if ((@trip.locations.with_lat_long.size > 0) && (! iphone?)) %>
+				<% @map_module_title = 'Trip Map' %>                       
+				<%= render :partial => 'locations/google', :object => @trip.locations.with_lat_long %>
+			<% end %>
 
-		<% has_columns? do %>
-			</td>
-			</tr>
-			</table>
-		<% end %>
+ 		<%= close_second_column %>
+
 	</div>
 </div>
