@@ -1,0 +1,26 @@
+<% @page_title = "Photo Galleries" %>
+
+<div id="pagebody">
+	<div id="pageheader-photo">
+		<div id="pagetitle"><%= @page_title %></div>
+	</div>
+	
+	<div id="pagecontent">   
+		<div class="pagecontentmodule">  
+			<div class="moduletitle">Location Galleries</div>
+			<% for location in @location_galleries %>
+				<div class="pagecontentitem">
+				<%= link_to location.name, :action => 'gallery', :controller => 'locations', :id => location %>,
+				<%= location.county.state.name%>
+				</div>
+			<% end %>
+	    </div>               
+	
+		<div class="pagecontentmodule">  
+			<div class="moduletitle">Other</div>
+			<div class="pagecontentitem"><%= link_to "Search", :action => 'photo_search', :controller => 'bird_walker' %></div>
+			<div class="pagecontentitem"><%= link_to "Recent", :action => 'recent_gallery', :controller => 'photos' %></div>
+	    </div>
+	
+	</div>
+</div>
