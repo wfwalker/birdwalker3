@@ -3,41 +3,40 @@
 <div id="pagebody">
 	<%= render :partial => 'page_header', :object => @location %>
 	
-	<div id="pagecontent">
-		<table width="100%" cellpadding="0px" cellspacing="0px">
-			<tr valign="top">
-				<td valign="top" width="50%">     
-					
- 					<div class="pagecontentmodule">
-						<div class="moduletitle">Location Notes</div>	
-						<div class="pagecontentitem">
-							We have only visited <%= @location.name %> <%= @location.trips.size %> times. 
-						</div>	
+	<div id="pagecontent">     
 
-						<% has_notes?(@location) do %>
-							<div class="pagecontentitem"><%= @location.notes %></div>
-						<% end %>
-					</div>                               
+		<%= open_first_column %>
 
-					<%= render :partial => 'species/divided_list', :object => @location.species, :locals => { :show_headings => true } %>
-				</td>
-				<td valign="top" width="50%">
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Location Notes</div>	
+				<div class="pagecontentitem">
+					We have only visited <%= @location.name %> <%= @location.trips.size %> times. 
+				</div>	
+
+				<% has_notes?(@location) do %>
+					<div class="pagecontentitem"><%= @location.notes %></div>
+				<% end %>
+			</div>                               
+
+			<%= render :partial => 'species/divided_list', :object => @location.species, :locals => { :show_headings => true } %>
+
+		<%= between_columns %>
 					
-					<% @photos_module_title = 'Location Photos' %>
-					<%= show_thumbnail_list(@location.photos) %>
-					
-					<% if (@location.latitude != 0) %>
-						<% @center_latitude = @location.latitude %>
-						<% @center_longitude = @location.longitude %>
-						<% @locations = [ @location ] %>
- 						<% @map_module_title = 'Location Map' %>
-   						<%= render :partial => 'locations/google', :object => [ @location ] %>
-					<% end %>
-					
-					<%= show_trip_list(@location.trips, true) %>					
-				</td>
-			</tr>
-		</table>
+			<% @photos_module_title = 'Location Photos' %>
+			<%= show_thumbnail_list(@location.photos) %>
+		
+			<% if ((@location.latitude != 0) && (! iphone?)) %>
+				<% @center_latitude = @location.latitude %>
+				<% @center_longitude = @location.longitude %>
+				<% @locations = [ @location ] %>
+					<% @map_module_title = 'Location Map' %>
+							<%= render :partial => 'locations/google', :object => [ @location ] %>
+			<% end %>
+		
+			<%= show_trip_list(@location.trips, true) %>					
+
+   		<%= close_second_column %>
+		
 	</div>
 </div>
 

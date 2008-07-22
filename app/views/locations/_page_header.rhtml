@@ -15,7 +15,7 @@
 		<% end %>
 	</div>                    
 	
-	<% if (location.common?) %>
+	<% if (! iphone?) && (location.common?) %>
 		<div class="pageheaderitem">
 			<%= link_to 'normal view', :id => location, :action => 'show' %>
 			<% has_multiple_years?(location) do %>

@@ -14,17 +14,25 @@
 			<div class="pagecontentitem">
 				<% if @featured_photo != nil then %>
 					<div style="font-size: 20px"><%= @location.name %> photos by Bill Walker</div>
-					<div style="font-size: 24px"><%= safe_species_common_name(@featured_photo) %></div>
+
+					<div style="font-size: 24px"><%= safe_species_common_name(@featured_photo) %>
+	 					<% editing_is_allowed?() do %>
+							<span style="font-size: 9pt"><%= link_to 'edit', edit_photo_url(@featured_photo) %></span>
+						<% end %>                                                                
+   					</div>
+
 					<div style="margin-bottom: 20px"><%= short_nice_date(@featured_photo.trip.date) %> at <%= safe_location_name(@featured_photo) %></div>
-					<img src="<%= @featured_photo.photoURL %>"/><br/>
-					<p>All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com</p>
+
+
+   					<img src="<%= @featured_photo.photoURL %>"/><br/>            
+
+					<div style="padding-top: 20px; width: 50%"><%= @featured_photo.notes %></div>
+					
+					<div style="padding-top: 20px">
+						All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
+					</div>
 				<% end %>                  
 			</div>                             
-		</div>
-
-		<div class="pagecontentmodule">
-			To <%= link_to @location.county.name + " County Gallery", county_url(@location.county) %><br/>
-			To <%= link_to @location.county.state.name + " Gallery", state_url(@location.county.state) %>
 		</div>
 	</div>        
 </div>
