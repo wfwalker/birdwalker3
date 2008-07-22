@@ -5,6 +5,7 @@
 EXECUTABLE="/usr/local/mysql/bin/mysql"
 
 cat birdwalker_dump.sql | $EXECUTABLE -u root -D HelloWorld_development
+cat birdwalker_dump.sql | $EXECUTABLE -u root -D HelloWorld_production
 
 
 
