@@ -2,10 +2,16 @@
 
 <div class="pagecontentitem">
 	<p>
-		<% if @controller.page_kind == 'trip' %>
+		<% if @controller.page_kind == 'trips' %>
 			<%= link_to safe_species_common_name(sighting), species_instance_url(sighting.species_id) %> at
 		<% end %>
-		<%= link_to safe_location_name(sighting), location_url(sighting.location_id) %>,
+		
+		<% if @controller.page_kind == 'locations' %>
+			<%= link_to safe_trip_name(sighting), trip_url(sighting.trip_id) %>,
+		<% else %>
+			<%= link_to safe_location_name(sighting), location_url(sighting.location_id) %>,
+		<% end %>
+
 	 	<%= link_to short_nice_date(sighting.trip.date), trip_url(sighting.trip_id) %>
 	</p>
 
