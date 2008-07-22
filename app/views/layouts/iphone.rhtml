@@ -8,13 +8,13 @@
     </head>
     <body>
         <div id="menu">
-			<div class="<%= @controller.page_kind == 'location' ? 'locationmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'locations' ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "locations", locations_url %>
 			</div>
 			<div class="<%= @controller.page_kind == 'species' ? 'speciesmenuitem' : 'menuitem' %>">
 				<%= link_to "species", species_url %>
 			</div>
-			<div class="<%= @controller.page_kind == 'trip' ? 'tripmenuitem' : 'menuitem' %>">
+			<div class="<%= @controller.page_kind == 'trips' ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
 			</div>
 		</div>
