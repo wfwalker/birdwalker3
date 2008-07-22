@@ -7,14 +7,12 @@ class ApplicationController < ActionController::Base
   
   layout :choose_layout
   
-  protected
   def iphone?                   
     request.class.to_s.include?("CgiRequest") && request.user_agent.include?('iPhone')  
     #true
   end  
   
   def choose_layout  
-    logger.error("CHOOSE LAYOUT")
     if iphone?  
         "iphone"  
       else
@@ -25,5 +23,5 @@ class ApplicationController < ActionController::Base
   def is_editing_allowed?()
     session[:username] != nil
   end
-  
+
 end
