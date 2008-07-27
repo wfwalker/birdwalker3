@@ -8,6 +8,9 @@
     </head>
     <body>
         <div id="menu">
+			<div class="menuitem">
+				<%= link_to "home", "/bird_walker" %>
+			</div>
 			<div class="<%= @controller.page_kind == 'locations' ? 'locationmenuitem' : 'menuitem' %>">
 				<%= link_to "locations", locations_url %>
 			</div>
@@ -17,7 +20,17 @@
 			<div class="<%= @controller.page_kind == 'trips' ? 'tripmenuitem' : 'menuitem' %>">
 				<%= link_to "trips", trips_url %>
 			</div>
-		</div>
+ 
+			<% if (session[:username] != nil) then %>
+				<div class="menuitem">
+					<%= link_to 'logout', :controller => 'bird_walker', :action => 'logout'%>
+				</div>
+			<% else %>
+				<div class="menuitem">
+					<%= link_to 'login', :controller => 'bird_walker', :action => 'login'%>
+				</div>
+			<% end %>
+   	</div>
 
         <%= yield %>
      </body>
