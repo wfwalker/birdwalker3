@@ -1,6 +1,6 @@
 body
 {
-	font: 10pt Gill Sans; width: 320px;
+	font: 10pt Arial; width: 320px;
 }
 
 a       { text-decoration: none; }
@@ -31,41 +31,41 @@ a:hover { color: red; text-decoration: underline; }
 
 #menu .menuitem
 {
-	padding-left: 10px;
-	margin-top: 5px;
+	text-align: center;
+	margin-top: 1px;
 	background-color: #888888;
 	color: white;
-	width: 75px;
+	width: 55px;
 	display: inline-block;
 }
 
 #menu .tripmenuitem
 {
-	padding-left: 10px;
-	margin-top: 5px;
+	text-align: center;
+	margin-top: 1px;
 	background-color: #0000DD;
 	color: white;
-	width: 75px;
+	width: 55px;
 	display: inline-block;
 }
 
 #menu .locationmenuitem
 {
-	padding-left: 10px;
-	margin-top: 5px;
+	text-align: center;
+	margin-top: 1px;
 	background-color: #00DD00;
 	color: white;
-	width: 75px;
+	width: 55px;
 	display: inline-block;
 }
 
 #menu .speciesmenuitem
 {
-	padding-left: 10px;
-	margin-top: 5px;
+	text-align: center;
+	margin-top: 1px;
 	background-color: #DD0000;
 	color: white;
-	width: 75px;
+	width: 55px;
 	display: inline-block;
 }
 
@@ -77,7 +77,7 @@ a:hover { color: red; text-decoration: underline; }
 
 #pagetitle
 {
-	font: 16pt Gill Sans;
+	font: 16pt Arial;
 	padding-left: 3px;
 	padding-bottom: 5px;
 }

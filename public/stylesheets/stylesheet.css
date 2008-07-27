@@ -3,9 +3,9 @@ body
 	font: 10pt Gill Sans, Sans-Serif;
 }
 
-a       { text-decoration: none; }
+a       { color: #2D6C91; text-decoration: none; }
 .pagecontentitem p a { text-decoration: underline; }
-a:hover { color: red; text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 .tablecell
 {
@@ -36,6 +36,7 @@ a:hover { color: red; text-decoration: none; }
 }
 
 .modulesubtitle a { text-decoration: none; }
+.modulesubtitle a:hover { text-decoration: underline; }
 
 
 #browse
@@ -91,29 +92,11 @@ a:hover { color: red; text-decoration: none; }
 	border-bottom: solid 1px white;
 }
 
-#menu .tripmenuitem
+#menu .photomenuitem
 {
 	padding-left: 10px;
 	padding-top: 5px; padding-bottom: 5px;
-	background-color: #0000DD;
-	color: white;
-	border-bottom: solid 1px white;
-}
-
-#menu .locationmenuitem
-{
-	padding-left: 10px;
-	padding-top: 5px; padding-bottom: 5px;
-	background-color: #00DD00;
-	color: white;
-	border-bottom: solid 1px white;
-}
-
-#menu .speciesmenuitem
-{
-	padding-left: 10px;
-	padding-top: 5px; padding-bottom: 5px;
-	background-color: #DD0000;
+	background-color: #333333;
 	color: white;
 	border-bottom: solid 1px white;
 }
@@ -122,6 +105,12 @@ a:hover { color: red; text-decoration: none; }
 {
 	color: white;
 	text-decoration: none;
+}
+
+#menu a:hover
+{
+	color: white;
+	text-decoration: underline;
 }
 
 #pagetitle
@@ -137,6 +126,19 @@ a:hover { color: red; text-decoration: none; }
 	padding-top: 8px;
 	padding-bottom: 4px;
 	background-color: white;
+}                                             
+
+/* SEE http://www.yafla.com/dforbes/yaflaColor/ColorRGBHSL.aspx? with code 91842D */
+ 
+/* -------------------------- SPECIES -------------------- */
+
+#menu .speciesmenuitem
+{
+	padding-left: 10px;
+	padding-top: 5px; padding-bottom: 5px;
+	background-color: #91522D;
+	color: white;
+	border-bottom: solid 1px white;
 }
 
 #pageheader-species
@@ -144,8 +146,25 @@ a:hover { color: red; text-decoration: none; }
 	height: 70px;
 	padding-top: 8px;
 	padding-bottom: 4px;
-	background-image: url(/images/species-banner.jpg);
-	background-position: 50%;
+	background-color: #91522D;   
+	color: white;
+}  
+
+#pageheader-species a
+{
+	color: white;
+	text-decoration: none;
+}
+
+/* ------------------------- LOCATION -------------------- */
+       
+#menu .locationmenuitem
+{
+	padding-left: 10px;
+	padding-top: 5px; padding-bottom: 5px;
+	background-color: #91842D;
+	color: white;
+	border-bottom: solid 1px white;
 }
 
 #pageheader-location
@@ -153,8 +172,25 @@ a:hover { color: red; text-decoration: none; }
 	height: 70px;
 	padding-top: 8px;
 	padding-bottom: 4px;
-	background-image: url(/images/location-banner.jpg);
-	background-position: 50%;
+	background-color: #91842D;
+	color: white;
+}
+
+#pageheader-location a
+{
+	color: white;
+	text-decoration: none;
+}
+
+/* ------------- TRIP ----------------------- */
+     
+#menu .tripmenuitem
+{
+	padding-left: 10px;
+	padding-top: 5px; padding-bottom: 5px;
+	background-color: #6C912D;
+	color: white;
+	border-bottom: solid 1px white;
 }
 
 #pageheader-trip
@@ -162,8 +198,27 @@ a:hover { color: red; text-decoration: none; }
 	height: 70px;
 	padding-top: 8px;
 	padding-bottom: 4px;
-	background-image: url(/images/trip-banner.jpg);
-	background-position: 50%;
+	background-color: #6C912D;
+	color: white;
+}
+          
+#pageheader-trip a
+{
+	color: white;
+	text-decoration: none;
+}
+
+#pageheader-photo
+{
+	height: 70px;
+	padding-top: 8px;
+	padding-bottom: 4px;
+}
+          
+#pageheader-photo a
+{
+	color: white;
+	text-decoration: none;
 }
 
 #pageheader-home1
