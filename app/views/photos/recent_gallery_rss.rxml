@@ -1,0 +1,22 @@
+xml.instruct!
+
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+   xml.channel do
+     xml.title "birdWalker recent images gallery"    
+     xml.link url_for :only_path => false, :controller => 'bird_walker', :action => 'index'
+     xml.description "recent images from birdWalker"
+
+     xml.language "en-US"
+     xml.generator "birdWalker"
+           
+      @recent_gallery_photos.each do |photo|
+        xml.item do
+          xml.title       photo.species.common_name
+          xml.pubDate     photo.trip.date
+          xml.link        url_for :only_path => false, :controller => 'photos', :action => 'show', :id => photo.id
+          xml.description photo.thumb
+          xml.guid        url_for :only_path => false, :controller => 'photos', :action => 'show', :id => photo.id
+        end
+      end 
+   end
+ end

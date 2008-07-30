@@ -45,6 +45,13 @@ class PhotosController < ApplicationController
     @end_index = @start_index + 5
     
     render :action => 'recent_gallery', :collection => @recent_gallery_photos
+  end            
+  
+  def recent_gallery_rss
+    @recent_gallery_photos = Photo.find_recent_gallery   
+    
+    render_without_layout :file => 'app/views/photos/recent_gallery_rss.rxml'
+      @headers["Content-Type"] = "application/xml"  
   end
 
   def new
