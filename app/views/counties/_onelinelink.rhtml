@@ -1,5 +1,5 @@
 <% county = onelinelink %>
 
 <div class="pagecontentitem">
-	<%= link_to county.name + " County", county_url(county) %><% if show_extras %>, <%= county.state.abbreviation %><% end %>
+	<%= link_to county.name + " County", county_url(county) %><% if (show_extras) %>, <%= county.state.abbreviation %><% end %>
 </div>

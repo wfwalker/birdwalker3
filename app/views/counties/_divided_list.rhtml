@@ -13,6 +13,6 @@
 
 	<% for state in ordered_states %>
 		<div class="modulesubtitle"><%= state.name %></div>
-		<%= render :partial => 'counties/onelinelink' , :collection => counties_by_state[state] %>
+		<%= render :partial => 'counties/onelinelink' , :collection => counties_by_state[state], :locals => { :show_extras => show_extras } %>
 	<% end %>
 </div>
