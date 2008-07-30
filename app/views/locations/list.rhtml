@@ -7,20 +7,28 @@
 			<div class="pageheaderitem"><%= link_to 'New', new_location_url %></div>
 		<% end %>
 	</div>
-	
-	<% location_lists = @locations/(@locations.size / 3 + 3)%>
-	
+
 	<div id="pagecontent">
-		<table width="100%">
-			<tr>
-				<% for location_list in location_lists do %>
-					<td valign="top">
-						<%= show_location_list(location_list, false) %>
-					</td>
-				<% end %>
-			</tr>
-		</table>
+
+		<% has_no_columns? do %>
+	 		<%= render :partial => 'locations/divided_list', :object => @locations, :locals => { :show_headings => true } %>
+		<% end %>
+	
+		<% has_columns? do %>
+			<% location_lists = @locations/(@locations.size / 3 + 3)%>
+	
+				<table width="100%">
+					<tr>
+						<% for location_list in location_lists do %>
+							<td valign="top">
+								<%= show_location_list(location_list, false) %>
+							</td>
+						<% end %>
+					</tr>
+				</table>
 		
-		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations) %>
-	</div>
+				<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations) %>
+		<% end %>
+
+	</div>             
 </div>

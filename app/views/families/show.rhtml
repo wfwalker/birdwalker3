@@ -8,15 +8,14 @@
 	</div>
 	
 	<div id="pagecontent">
-		<table width="100%" cellpadding="0px" cellspacing="0px">
-			<tr valign="top">
-				<td width="50%" valign="top">
+		<%= open_first_column %>
+
 					<%= render :partial => 'species/divided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
 					
 					<%= show_trip_list(@family.trips, true) %>
-				</td>
 
-				<td>
+	   	<%= between_columns %>
+	
 					<% @photos_module_title = 'Family Photos' %>
 					<%= show_thumbnail_list(@family.photos) %>
 					
@@ -26,8 +25,7 @@
 					<% end %>
 
    					<%= show_location_list(@family.locations, true) %>
-				</td>
-			</tr>
-		</table>
+
+	  	<%= close_second_column %>
 	</div>
 </div>
