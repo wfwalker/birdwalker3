@@ -32,11 +32,6 @@ module ApplicationHelper
     yield if subject.sightings && subject.sightings.length > 1
   end
                       
-  def iphone?                   
-    request.class.to_s.include?("CgiRequest") && request.user_agent.include?('iPhone')  
-    #true
-  end  
-  
   def has_columns?(&block)
     yield if not (@controller.send(:iphone?))
   end
