@@ -18,7 +18,7 @@ class Photo < ActiveRecord::Base
   end
   
   def thumbURL
-    image_base_URL + "/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    image_base_URL + "/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
   end
   
   def thumb      
