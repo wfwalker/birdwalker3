@@ -6,18 +6,25 @@
 		<%= render :partial => 'list_page_header' %>
 	</div>
 	
-	<% species_lists = @all_species_seen/(@all_species_seen.size / 3 + 3)%>
- 	
 	<div id="pagecontent">          
-		<div class="moduletitle"><%= @all_species_seen.size %> Species</div>
-		<table width="100%">
-			<tr>
-				<% for species_list in species_lists do %>
-					<td valign="top">
-						<%= show_species_list(species_list, false) %>
-					</td>
-				<% end %>
-			</tr>
-		</table>
-	</div>
+		              
+		<% has_no_columns? do %>
+			<%= render :partial => 'species/divided_list', :object => @all_species_seen, :locals => { :show_headings => true } %>
+		<% end %>
+		
+		<% has_columns? do %>
+			<% species_lists = @all_species_seen/(@all_species_seen.size / 3 + 3)%>
+
+			<div class="moduletitle"><%= @all_species_seen.size %> Species</div> 
+				<table width="100%">
+					<tr width="33%">
+						<% for species_list in species_lists do %>
+							<td width="33%" valign="top">
+								<%= render :partial => 'species/divided_list', :object => species_list, :locals => { :show_headings => false } %>
+							</td>
+						<% end %>
+					</tr>
+				</table>
+			</div>
+		<% end %>
 </div>

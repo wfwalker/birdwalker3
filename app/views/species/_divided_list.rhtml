@@ -10,7 +10,8 @@
 	<% end %>
 	
 	<% for family in sorted_families %>
-		<div class="modulesubtitle"><%= family.common_name %></div>
-		<%= render :partial => 'species/onelinelink', :collection => species_by_family[family] %>
+		<div class="modulesubtitle"><%= family.common_name %></div>     
+		<% sorted_species_list = Species.sort_taxonomic(species_by_family[family]) %>	    
+		<%= render :partial => 'species/onelinelink', :collection => sorted_species_list %>
 	<% end %>
 </div>
