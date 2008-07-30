@@ -11,50 +11,50 @@
 		<div class="pageheaderitem"><%= link_to 'Show', trip_url(@trip) %></div>
 	</div>
 	
-	<div id="pagecontent">
-		<table width="100%" cellpadding="0px" cellspacing="0px">
-			<tr valign="top">
-				<td width="50%" valign="top">
-					<div class="pagecontentmodule">
-						<div class="pagecontentitem">
-							<% form_for :trip, @trip, :url => trip_path(@trip), :html => { :method => 'put' } do |form| %>
-							  <%= render :partial => 'form' %>
-							  <%= submit_tag 'Save' %>
-							<% end %>
-						</div>
+	<div id="pagecontent">               
+		<%= open_first_column %>
+					
+			<div class="pagecontentmodule">
+				<div class="pagecontentitem">
+					<% form_for :trip, @trip, :url => trip_path(@trip), :html => { :method => 'put' } do |form| %>
+					  <%= render :partial => 'form' %>
+					  <%= submit_tag 'Save' %>
+					<% end %>
+				</div>
+			</div>
+					
+		<%= between_columns %>
+					
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Add Species</div>
+				<div class="pagecontentitem">
+
+					<% form_tag :controller => 'sightings', :action => 'create_list' do %>
+						<%= error_messages_for 'sighting' %>
+
+						<!--[form:sighting]-->
+						<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
+						<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => "Choose location"}) %>
+
+						<p><label for="sighting_species">Abbreviations</label><br/>
+						<%= text_area_tag 'abbreviation_list', nil, :size => "25x10" %><br/>
+					  	<%= submit_tag "Add" %></p>
+					<% end %>
+				</div>
+			</div>
+	
+			<div class="pagecontentmodule">
+				<div class="moduletitle"><%= @trip.species.size %> Species</div>
+				<% for @sighting in Sighting.sort_taxonomic(@trip.sightings) %>
+					<div class="pagecontentitem">
+						<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
+						<%= link_to 'edit', edit_sighting_url(@sighting) %>
+						<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete ' + @sighting.species.common_name + ' Are you sure?', :method => 'delete' %>
 					</div>
-				</td>
-				<td width="50%" valign="top">
-					<div class="pagecontentmodule">
-						<div class="moduletitle">Add Species</div>
-						<div class="pagecontentitem">
+				<% end %>
+			<div>
 
-							<% form_tag :controller => 'sightings', :action => 'create_list' do %>
-								<%= error_messages_for 'sighting' %>
+		<%= close_second_column %>
 
-								<!--[form:sighting]-->
-								<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
-								<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => "Choose location"}) %>
-
-								<p><label for="sighting_species">Abbreviations</label><br/>
-								<%= text_area_tag 'abbreviation_list', nil, :size => "25x10" %><br/>
-							  	<%= submit_tag "Add" %></p>
-							<% end %>
-						</div>
-					</div>
-				
-					<div class="pagecontentmodule">
-						<div class="moduletitle"><%= @trip.species.size %> Species</div>
-						<% for @sighting in Sighting.sort_taxonomic(@trip.sightings) %>
-							<div class="pagecontentitem">
-								<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
-								<%= link_to 'edit', edit_sighting_url(@sighting) %>
-								<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete ' + @sighting.species.common_name + ' Are you sure?', :method => 'delete' %>
-							</div>
-						<% end %>
-					<div>
-				</td>
-			</tr>
-		</table>
 	</div>
 </div>
