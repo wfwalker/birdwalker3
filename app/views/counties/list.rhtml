@@ -11,7 +11,7 @@
 	<div id="pagecontent">         
 		
 		<% has_no_columns? do %>
-			<%= render :partial => 'counties/divided_list', :object => @counties, :locals => { :show_headings => true } %>
+			<%= render :partial => 'counties/divided_list', :object => @counties, :locals => { :show_headings => true, :show_extras => true } %>
 		<% end %>
 
 		<% has_columns? do %>
@@ -21,7 +21,7 @@
 				<tr>
 					<% for county_list in county_lists do %>
 					<td width="33%" valign="top">
-						<%= render :partial => 'counties/divided_list', :object => county_list, :locals => { :show_headings => false } %>
+						<%= render :partial => 'counties/divided_list', :object => county_list, :locals => { :show_headings => false, :show_extras => false } %>
 					</td>
 					<% end %>
 				</tr>
