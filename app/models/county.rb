@@ -14,7 +14,12 @@ class County < ActiveRecord::Base
  # do something like county.sightings.map(&:species).flatten.uniq
  # (Grab all of the sightings for the county, create a new array made up of all 
  #of the arrays of species associated with each sighting, flatten it into a 1-d array and remove dupes)
- # Which I would build into the sightings association using a block.
+ # Which I would build into the sightings association using a block.    
+ 
+ def County.map_by_state(countyList)
+   countyList.inject({}) { | map, county |
+      map[county.state] ? map[county.state] << county : map[county.state] = [county] ; map }
+ end  
 
   def species
     Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, locations WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "'")
