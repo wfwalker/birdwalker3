@@ -4,13 +4,21 @@ class Photo < ActiveRecord::Base
   belongs_to :trip
   
   validates_presence_of :species_id, :location_id, :trip_id
+  
+  def image_base_URL
+    if (ENV['image_base_url'] != nil)
+      ENV['image_base_url']
+    else
+      "/images"
+    end
+  end
     
   def photoURL
-    "/images/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    image_base_URL + "/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
   end
   
   def thumbURL
-    "/images/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    image_base_URL + "/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
   end
   
   def thumb      

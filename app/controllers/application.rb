@@ -6,11 +6,13 @@ class ApplicationController < ActionController::Base
   session :session_key => '_HelloWorld_session_id'
   
   layout :choose_layout
-  
-  def iphone?                   
-    request.class.to_s.include?("CgiRequest") && request.user_agent.include?('iPhone')  
-    #true
-  end  
+
+  protected
+
+  def iphone?
+    ENV['force_iphone'] == 'true' ||
+      (request.class.to_s.include?("CgiRequest") && request.user_agent.include?('iPhone'))
+  end
   
   def choose_layout  
     if iphone?  

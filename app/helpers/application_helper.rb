@@ -38,7 +38,7 @@ module ApplicationHelper
   end  
   
   def has_columns?(&block)
-    yield if not (iphone?)
+    yield if not (@controller.send(:iphone?))
   end
 
   def open_first_column
