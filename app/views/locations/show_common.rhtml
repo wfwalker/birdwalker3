@@ -11,7 +11,7 @@
 				<div class="moduletitle">Location Notes</div>	
 				<div class="pagecontentitem">
 					We visit <%= @location.name %> at least
-					<%= @location.trips.size / (@location.last_sighting.trip.date.year - @location.first_sighting.trip.date.year) %> times a year. 
+					<%= (@location.trips.size.to_f / (@location.last_sighting.trip.date.year - @location.first_sighting.trip.date.year)).ceil %> times a year. 
 				</div>	
 
 				<% has_notes?(@location) do %>
