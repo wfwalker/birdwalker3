@@ -20,8 +20,8 @@
 			<table width="100%">
 				<tr>
 					<% for county_list in county_lists do %>
-					<td valign="top">
-						<%= show_county_list(county_list, false) %>
+					<td width="33%" valign="top">
+						<%= render :partial => 'counties/divided_list', :object => county_list, :locals => { :show_headings => false } %>
 					</td>
 					<% end %>
 				</tr>
