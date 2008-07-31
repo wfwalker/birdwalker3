@@ -1,4 +1,12 @@
-<div class="pagecontentitem">
+<div class="pagecontentitem"> 
+	
+	<p>     
+		<% chartString = "http://chart.apis.google.com/chart?chxt=y&cht=bvs&chtt=Species+seen+by+month&chd=t:" %>
+      	<% chartString = chartString + @totals[1..12].join(",") %>	
+		<% chartString = chartString + "&chs=400x200&chl=" + Date::ABBR_MONTHNAMES[1..12].join("|") %>  
+		<img width="400" height="200" src="<%= chartString %>">
+	</p>
+	
 	<table spacing="0" cellspacing="0" padding="0" cellpadding="0">
 		<tr>
 			<td></td>
