@@ -2,8 +2,18 @@
 
 <div id="pagebody">
 	<%= render :partial => 'page_header', :object => @location %>
+                                
+	<div id="pagecontent">        
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Species seen by month</div>	
+			<div class="pagecontentitem">
+				<% chartString = "http://chart.apis.google.com/chart?chco=555555&chxt=y&cht=bvs&chd=t:" %>
+		      	<% chartString = chartString + @totals[1..12].join(",") %>	
+				<% chartString = chartString + "&chs=400x150&chl=" + Date::ABBR_MONTHNAMES[1..12].join("|") %>  
+				<img width="400" height="150" src="<%= chartString %>">
+			</div>
+		</div>
 
-	<div id="pagecontent">
 		<div class="pagecontentmodule">
 			<div class="moduletitle">
 				<%= @location.species.size %> Species

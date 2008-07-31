@@ -3,7 +3,17 @@
 <div id="pagebody">
 	<%= render :partial => 'page_header', :object => @location %>
 
-	<div id="pagecontent">
+	<div id="pagecontent">        
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Species seen by year</div>	
+			<div class="pagecontentitem">
+				<% chartString = "http://chart.apis.google.com/chart?chco=555555&chxt=y&cht=bvs&chd=t:" %>
+		      	<% chartString = chartString + (@totals[1996..2008]).join(",") %>	
+				<% chartString = chartString + "&chs=400x150&chl=" + (1996..2008).to_a.join("|") %>  
+				<img width="400" height="150" src="<%= chartString %>">
+			</div>
+		</div>
+
 		<div class="pagecontentmodule">
 			<div class="moduletitle">
 				<%= @location.species.size %> Species
