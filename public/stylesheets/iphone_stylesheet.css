@@ -94,6 +94,11 @@ a:hover { color: red; text-decoration: underline; }
 {
 	margin-left: 7px; margin-right: 15px; margin-bottom: 2px;
 }
+        
+.pagecontentmodule .photo
+{
+	text-align: center; display: inline;
+}
 
 #photos
 {
