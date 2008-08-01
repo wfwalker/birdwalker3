@@ -278,6 +278,7 @@ a:hover { text-decoration: underline; }
 
 #gallerythumbs .photo
 {
-	padding-bottom: 5px;
+	padding-bottom: 2px;
+	padding-top: 2px;
 }
 
