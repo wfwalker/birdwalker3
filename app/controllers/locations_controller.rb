@@ -51,7 +51,9 @@ class LocationsController < ApplicationController
     else
       @start_index = 0
     end
-
+           
+    if @start_index < 0 then @start_index = 0 end
+    if @start_index > @location.gallery_photos.size - 6 then @start_index = @location.gallery_photos.size - 6 end
     @end_index = @start_index + 5
     
     render :action => 'gallery'
