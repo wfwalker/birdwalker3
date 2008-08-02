@@ -2,7 +2,9 @@
 location_one:
   id: 1
   name: First Place
-  county_id: 1
+  county_id: 1  
+  latitude: 34
+  longitude: 23
 location_two:
   id: 2
   name: Second Place
