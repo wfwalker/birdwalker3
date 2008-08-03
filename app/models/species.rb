@@ -74,7 +74,7 @@ class Species < ActiveRecord::Base
   end
   
   def Species.sort_taxonomic(species_list)
-    species_list.sort_by { |s| logger.debug("moo " + s.id.to_s) && s.family.taxonomic_sort_id * 100000000000 + s.id }
+    species_list.sort_by { |s| s.family.taxonomic_sort_id * 100000000000 + s.id }
   end
   
   def Species.bird_of_the_week
