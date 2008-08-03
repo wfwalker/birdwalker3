@@ -11,8 +11,10 @@
 			<%= render :partial => 'bird_walker/welcome' %>
 
 			<%= render :partial => 'bird_walker/this_year_so_far' %>
-
-			<%= render :partial => 'bird_walker/see_it_this_week' %>   
+                                   
+			<% if @bird_of_the_week != nil && @photo_of_the_week != nil %>
+				<%= render :partial => 'bird_walker/see_it_this_week' %>   
+            <% end %>
 
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Locations Visited Recently</div>
