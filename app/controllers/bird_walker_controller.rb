@@ -9,8 +9,12 @@ class BirdWalkerController < ApplicationController
   def index
     @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
     @most_visited_locations = Location.most_visited_recently
+    
     @bird_of_the_week = Species.bird_of_the_week
-    @photo_of_the_week = @bird_of_the_week.photo_of_the_week
+    if @bird_of_the_week != nil then
+      @photo_of_the_week = @bird_of_the_week.photo_of_the_week
+    end
+
     @this_year_species = Species.year_to_date(Date.today.year)
     @last_year_species = Species.year_to_date(Date.today.year - 1)
   end
