@@ -15,4 +15,9 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     get :about
     assert_response :success
   end
+
+  def test_index
+    get :index
+    assert_response :success
+  end
 end
