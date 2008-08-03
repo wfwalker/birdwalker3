@@ -54,7 +54,21 @@ module ApplicationHelper
 
   def close_second_column
 		"</td></tr></table>" unless iphone?
-	end	
+	end	                        
+	
+	def counts_by_month_image_tag(totals, width=400, height=150) 
+	  stuff = {
+	    :chco => 555555,
+	    :chxt => "y",
+	    :cht => "bvs",
+	    :chd => "t:" + totals[1..12].join(","),
+	    :chs => width.to_s + "x" + height.to_s,
+	    :chl => Date::ABBR_MONTHNAMES[1..12].join("|")
+	  } 
+	      
+    chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
+    image_tag chartString, :alt => 'Totals By Month'	                                     
+  end
   
   def editing_is_allowed?(&block)
     yield if session[:username] != nil
