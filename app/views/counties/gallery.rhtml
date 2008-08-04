@@ -14,7 +14,23 @@
 			<div class="pagecontentitem">
 				<% if @featured_photo != nil then %>
 					<div style="font-size: 20px"><%= @county.name %> County photos by Bill Walker</div>
-					<div style="font-size: 24px"><%= safe_species_common_name(@featured_photo) %></div>
+
+					<div style="font-size: 24px">
+						<%= safe_species_common_name(@featured_photo) %>
+
+	 					<% editing_is_allowed?() do %>
+							<span style="font-size: 9pt"><%= link_to 'edit', edit_photo_url(@featured_photo) %></span>
+
+	 						<span style="font: 9pt Courier">
+								[
+									<% (1..5).each do |index| %>
+										<%= link_to (@featured_photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @featured_photo, :rating => index %>
+									<% end %>
+								]
+							</span> 
+						<% end %>                                                                
+					</div>
+					
 					<div style="margin-bottom: 20px"><%= short_nice_date(@featured_photo.trip.date) %> at <%= safe_location_name(@featured_photo) %></div>
 					<img src="<%= @featured_photo.photoURL %>"/><br/>
 					<p>All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com</p>
