@@ -27,7 +27,14 @@
 	 					<% editing_is_allowed?() do %>
 							<span style="font-size: 9pt"><%= link_to 'edit', edit_photo_url(@featured_photo) %></span>
 						<% end %>                                                                
-   					</div>
+ 						<span style="font: 9pt Courier">
+							[
+								<% (1..5).each do |index| %>
+									<%= link_to (@featured_photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @featured_photo, :rating => index %>
+								<% end %>
+							]
+						</span> 
+  					</div>
 
 					<div style="margin-bottom: 20px"><%= short_nice_date(@featured_photo.trip.date) %> at <%= safe_location_name(@featured_photo) %></div>
 

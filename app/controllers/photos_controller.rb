@@ -139,6 +139,19 @@ class PhotosController < ApplicationController
     end
   end
 
+  def update_rating
+    @photo = Photo.find(params[:id])
+    
+    if (! is_editing_allowed?) then
+      flash[:notice] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    else
+      @photo.rating = params[:rating]
+      @photo.save
+      render :action => 'show'
+    end
+  end
+
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy

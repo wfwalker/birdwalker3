@@ -19,7 +19,7 @@
 				<% end %>
 			</div>            
 		                   
-					<div class="pagecontentmodule">
+			<div class="pagecontentmodule">
 				<div class="moduletitle">Latest trip</div>	
 					<div class="pagecontentitem">
 					 			<%= link_to @location.last_sighting.trip.name + ",  " + short_nice_date(@location.last_sighting.trip.date), trip_url(@location.last_sighting.trip) %>
