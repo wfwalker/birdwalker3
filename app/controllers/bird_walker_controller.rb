@@ -101,6 +101,18 @@ class BirdWalkerController < ApplicationController
       @terms = params[:terms]
     else
       @terms = "terms"
+    end           
+
+    if ((@found_species.size + @found_counties.size + @found_trips.size + @found_locations.size) == 1) then    
+      if (@found_species.size == 1) then
+        redirect_to :controller => 'species', :action => 'show', :id => @found_species[0]       
+      elsif (@found_counties.size == 1) then
+        redirect_to :controller => 'counties', :action => 'show', :id => @found_counties[0]       
+      elsif (@found_trips.size == 1) then
+        redirect_to :controller => 'trips', :action => 'show', :id => @found_trips[0]       
+      elsif (@found_locations.size == 1) then
+        redirect_to :controller => 'locations', :action => 'show', :id => @found_locations[0]       
+      end
     end
   end
   
