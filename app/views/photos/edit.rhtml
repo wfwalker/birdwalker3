@@ -21,11 +21,11 @@
 			</div>
 			<div class="pagecontentitem">     
 				<p><label for="photo_trip">Photo URL</label><br/>
-				<%= @photo.photoURL %>
+				<%= @photo.photo_URL %>
 				</p>
 
 				<p><label for="photo_trip">Thumb URL</label><br/>
-				<%= @photo.thumbURL %>
+				<%= @photo.thumb_URL %>
 				</p>  
 				
 				<% form_for :photo, @photo, :url => photo_path(@photo), :html => { :method => 'put' } do |form|%>

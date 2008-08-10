@@ -35,16 +35,18 @@ ActiveRecord::Schema.define() do
   add_index "locations", ["name"], :name => "NameIndex"
 
   create_table "photos", :force => true do |t|
-    t.column "notes",       :text
-    t.column "location_id", :integer, :limit => 9
-    t.column "species_id",  :integer, :limit => 9
-    t.column "trip_id",     :integer, :limit => 9
-    t.column "rating",      :integer, :limit => 3
+    t.column "notes",             :text
+    t.column "location_id",       :integer, :limit => 9
+    t.column "species_id",        :integer, :limit => 9
+    t.column "trip_id",           :integer, :limit => 9
+    t.column "rating",            :integer, :limit => 3
+    t.column "original_filename", :text
   end
 
   add_index "photos", ["location_id"], :name => "LocationIndex"
   add_index "photos", ["species_id"], :name => "SpeciesIndex"
   add_index "photos", ["trip_id"], :name => "TripIndex"
+  add_index "photos", ["rating"], :name => "RatingIndex"
 
   create_table "sightings", :force => true do |t|
     t.column "notes",       :text
