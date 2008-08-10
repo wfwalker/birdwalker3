@@ -1,11 +1,11 @@
 <% @page_title = "Recent Images Gallery" %>
 
 <div id="gallerythumbs">
-	<div><%= link_to 'prev', {:action => 'recent_gallery', :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %></div>
+	<div><%= link_to image_tag("prev-up.gif", :border=>0), {:action => 'recent_gallery', :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %></div>
 	<% for gallery_thumb in @recent_gallery_photos[@start_index..@end_index] do %>
 		<div class="photo"><%= link_to gallery_thumb.tiny_thumb, {:action => 'recent_gallery', :start_index => @start_index, :featured_photo_id => gallery_thumb.id} %></div>
 	<% end %>
-	<div><%= link_to 'next', {:action => 'recent_gallery', :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %></div>
+	<div><%= link_to image_tag("next-down.gif", :border=>0), {:action => 'recent_gallery', :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %></div>
 </div>
 
 <div id="pagebody">

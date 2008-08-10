@@ -1,11 +1,11 @@
 <% @page_title = @county.name + " Gallery" %>
 
 <div id="gallerythumbs">
-	<div><%= link_to 'prev', {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %></div>
+	<div><%= link_to image_tag("prev-up.gif", :border=>0), {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %></div>
 	<% for gallery_thumb in @county.gallery_photos[@start_index..@end_index] do %>
 		<div class="photo"><%= link_to gallery_thumb.tiny_thumb, {:action => 'gallery', :start_index => @start_index, :id => @county, :featured_photo_id => gallery_thumb.id} %></div>
 	<% end %>
-	<div><%= link_to 'next', {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %></div>
+	<div><%= link_to image_tag("next-down.gif", :border=>0), {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %></div>
 </div>
 
 <div id="pagebody">
