@@ -6,7 +6,7 @@
 			<%= link_to "trip reports", trips_url %>
 			by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County.
 			We've been collecting our trip reports since 1996,
-			we have now recorded <%= Trip.find_all.size %> trips and
+			we have now recorded <%= Trip.find(:all).size %> trips and
 			<%= Species.find_all_seen.size %> species.</p>
 
 		<p>Some of our favorite places to go birding include

@@ -1,7 +1,7 @@
 <div class="pagecontentmodule">
 	<div class="moduletitle">See it this week!</div>
 	<div class="pagecontentitem">
-		<img width="100%" src="<%= @bird_of_the_week.photo_of_the_week.photoURL %>"/>
+		<img width="100%" src="<%= @bird_of_the_week.photo_of_the_week.photo_URL %>"/>
 		<p>
 			The Bird of the Week is the <%= link_to @bird_of_the_week.common_name, :controller => 'species', :action => 'show', :id => @bird_of_the_week %><br/>
 			Photographed <%= link_to nice_date(@photo_of_the_week.trip.date), :controller => 'trips', :action => 'show', :id => @photo_of_the_week.trip %> at 
