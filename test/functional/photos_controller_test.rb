@@ -13,6 +13,18 @@ class PhotosControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = photos(:photo_one).id
+  end   
+  
+  def test_index
+    get :index
+    assert_response :success
+    assert_template 'index'
+  end
+
+  def test_recent_gallery
+    get :recent_gallery
+    assert_response :success
+    assert_template 'recent_gallery'
   end
 
   def test_show

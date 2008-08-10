@@ -4,10 +4,11 @@ photo_one:
   trip_id: 1
   location_id: 1
   species_id: 2
+  rating: 5
 
 photo_two:
   id: 2
   trip_id: 1
   location_id: 2
   species_id: 1
-  
+  rating: 1
