@@ -11,22 +11,30 @@ class Photo < ActiveRecord::Base
     else
       "/images"
     end
+  end      
+  
+  def image_filename
+    if self.original_filename != nil
+      self.trip.date.to_s + "-" + self.species.abbreviation + "-" + self.original_filename + ".jpg"
+    else                             
+      self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+    end
   end
     
-  def photoURL
-    image_base_URL + "/photo/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+  def photo_URL
+    image_base_URL + "/photo/" + image_filename
   end
   
-  def thumbURL
-    image_base_URL + "/thumb/" + self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+  def thumb_URL
+    image_base_URL + "/thumb/" + image_filename
   end
   
   def thumb      
-    "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumbURL + "\"/>"
+    "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumb_URL + "\"/>"
   end
 
   def tiny_thumb
-    "<img border=\"0\" width=\"75\" height=\"75\" src=\"" + thumbURL + "\"/>"
+    "<img border=\"0\" width=\"75\" height=\"75\" src=\"" + thumb_URL + "\"/>"
   end
   
   def Photo.map_by_location(photo_list)
