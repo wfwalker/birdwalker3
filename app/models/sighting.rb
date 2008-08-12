@@ -74,7 +74,7 @@ class Sighting < ActiveRecord::Base
   end                   
 
   def Sighting.map_by_month(sighting_list)
-    totals = (1996.2008).to_a
+    totals = (1..12).to_a
     for month in (1..12) do
       totals[month] = 0
     end
