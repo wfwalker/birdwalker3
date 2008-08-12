@@ -56,7 +56,7 @@ module ApplicationHelper
 		"</td></tr></table>" unless iphone?
 	end	                        
 	
-	def counts_by_month_image_tag(totals, width=400, height=150) 
+	def counts_by_month_image_tag(totals, width=350, height=150) 
 	  stuff = {
 	    :chco => 555555,
 	    :chxt => "y",
@@ -67,7 +67,7 @@ module ApplicationHelper
 	  } 
 	      
     chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
-    image_tag chartString, :alt => 'Totals By Month'	                                     
+    "<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"" + width.to_s + " height=\"" + height.to_s + "\"/>"	                                     
   end
   
   def editing_is_allowed?(&block)
