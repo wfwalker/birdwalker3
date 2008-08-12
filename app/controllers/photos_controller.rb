@@ -68,6 +68,15 @@ class PhotosController < ApplicationController
     if (params[:location_id] != "")
       @photo.location_id = params[:location_id]
     end
+    if (params[:species_id] != "")
+      @photo.species_id = params[:species_id]
+    end
+    if (params[:original_filename] != "")
+      @photo.original_filename = params[:original_filename]
+    end
+    if (params[:rating] != "")
+      @photo.rating = params[:rating]
+    end
   end
   
   def create
