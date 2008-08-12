@@ -41,7 +41,7 @@ end
           var ne = new GLatLng(<%= max_latitude %>, <%= max_longitude %>);
           var bounds = new GLatLngBounds(sw, ne);
 		  <% if (locations.size > 1) %>
-          	var zoom = map.getBoundsZoomLevel(bounds, 450);
+          	var zoom = map.getBoundsZoomLevel(bounds, 340);
 		  <% else %>
 		    var zoom = 10;
 		  <% end %>
@@ -70,6 +70,6 @@ end
 		<% end %>
 	</div>
 	<div class="pagecontentitem">
-		<div id="map" style="width: 450px; height: 450px; background-color: lightgray"></div>
+		<div id="map" style="width: 340px; height: 340px; background-color: lightgray"></div>
 	</div>
 </div>
