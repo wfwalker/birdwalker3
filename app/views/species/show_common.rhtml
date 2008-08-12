@@ -11,10 +11,7 @@
 				<div class="moduletitle">Sightings by month</div>	
 				<div class="pagecontentitem">
 					<% month_totals = Sighting.map_by_month(@species.sightings) %>
-					<% chartString = "http://chart.apis.google.com/chart?chco=555555&chxr=0,10,60&chds=0,60&chxt=y&cht=bvs&chd=t:" %>
-			      	<% chartString = chartString + month_totals[1..12].join(",") %>	
-					<% chartString = chartString + "&chs=400x150&chl=" + Date::ABBR_MONTHNAMES[1..12].join("|") %>  
-					<img width="400" height="150" src="<%= chartString %>">
+					<%= counts_by_month_image_tag(month_totals)%>
 				</div>
 			</div>
 
