@@ -2,7 +2,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	font: 10pt Gill Sans, Sans-Serif;
+	font: 10pt Gill Sans, Sans-Serif;    
 }
 
 a       { color: #2D6C91; text-decoration: none; }
@@ -68,39 +68,58 @@ a:hover { text-decoration: underline; }
 	padding: 5px;
 	border: solid 1px red;
 }
-
-#menu
+     
+#banner
 {
-	position: fixed; top: 0px; left: 0px; width: 120px;
-	z-index: 2;
-	background-color: white;
+	position: absolute; top: 0px; width: 100%;      
+	background-color: #E0E0E0;          
+	height: 72px;     
 }
 
-#menu .menuitem
+#searchbox
 {
-	padding-left: 10px;
-	padding-top: 5px; padding-bottom: 5px;
+	position: absolute; top: 20px; width: 100%; left: 80%;  
+	height: 72px;     
+}
+
+#sitetitle
+{
+	font-size: 12pt; margin-left: 30px; margin-top: 15px; width: 800px;
+}                                                                               
+
+#menu
+{                   
+	position: absolute; top: 50px; 
+	padding-left: 50px; width: 800px; 
+}
+         
+ul, ol {list-style: none; margin: 0;}
+ul.sortable {cursor: move}
+
+#menu li
+{
+	padding-left: 10px; padding-right: 10px;
+	width: 50px; height: 22px;
 	background-color: #888888;
 	color: white;
-	border-bottom: solid 1px white;
+	border-right: solid 1px white;     
+	
+	cursor: pointer;
+	text-align: left;   
+	float: left;
+	
 }
 
 #menu .homemenuitem
 {
-	padding-left: 10px;
-	padding-top: 5px; padding-bottom: 5px;
 	background-color: #666666;
 	color: white;
-	border-bottom: solid 1px white;
 }
 
 #menu .photomenuitem
 {
-	padding-left: 10px;
-	padding-top: 5px; padding-bottom: 5px;
 	background-color: #333333;
 	color: white;
-	border-bottom: solid 1px white;
 }
 
 #menu a
@@ -117,7 +136,7 @@ a:hover { text-decoration: underline; }
 
 #pagetitle
 {
-	font: 20pt Gill Sans, Sans-Serif;
+	font: 18pt Gill Sans, Sans-Serif;
 	padding-left: 10px;
 	padding-bottom: 5px;
 }
@@ -126,8 +145,8 @@ a:hover { text-decoration: underline; }
 {
 	height: 70px;
 	padding-top: 8px;
-	padding-bottom: 4px;
-	background-color: white;
+	padding-bottom: 4px; 
+	border: solid 1px #CCCCCC;
 }                                             
 
 /* SEE http://www.yafla.com/dforbes/yaflaColor/ColorRGBHSL.aspx? with code 91842D */
@@ -136,91 +155,24 @@ a:hover { text-decoration: underline; }
 
 #menu .speciesmenuitem
 {
-	padding-left: 10px;
-	padding-top: 5px; padding-bottom: 5px;
 	background-color: #91522D;
 	color: white;
-	border-bottom: solid 1px white;
-}
-
-#pageheader-species
-{
-	height: 70px;
-	padding-top: 8px;
-	padding-bottom: 4px;
-	background-color: #91522D;   
-	color: white;
-}  
-
-#pageheader-species a
-{
-	color: white;
-	text-decoration: none;
 }
 
 /* ------------------------- LOCATION -------------------- */
        
 #menu .locationmenuitem
 {
-	padding-left: 10px;
-	padding-top: 5px; padding-bottom: 5px;
 	background-color: #91842D;
 	color: white;
-	border-bottom: solid 1px white;
-}
-
-#pageheader-location
-{
-	height: 70px;
-	padding-top: 8px;
-	padding-bottom: 4px;
-	background-color: #91842D;
-	color: white;
-}
-
-#pageheader-location a
-{
-	color: white;
-	text-decoration: none;
 }
 
 /* ------------- TRIP ----------------------- */
      
 #menu .tripmenuitem
 {
-	padding-left: 10px;
-	padding-top: 5px; padding-bottom: 5px;
 	background-color: #6C912D;
 	color: white;
-	border-bottom: solid 1px white;
-}
-
-#pageheader-trip
-{
-	height: 70px;
-	padding-top: 8px;
-	padding-bottom: 4px;
-	background-color: #6C912D;
-	color: white;
-}
-          
-#pageheader-trip a
-{
-	color: white;
-	text-decoration: none;
-}
-
-#pageheader-photo
-{
-	height: 70px;
-	padding-top: 8px;
-	padding-bottom: 4px;
-}
-          
-#pageheader-photo a
-{
-	color: white;
-	text-decoration: none;
 }
 
 #pageheader-home1
@@ -245,13 +197,16 @@ a:hover { text-decoration: underline; }
 
 #pagebody
 {
-	margin: 0 auto;
+	margin-left: auto; 
+	margin-right: auto;  
+	min-height: 100%;
+	padding-top: 90px;
 	width: 760px;
 	padding-bottom: 50px;
 }
 
 #pagecontent
-{
+{             
 	background-color: white;
 }
 
@@ -274,7 +229,7 @@ a:hover { text-decoration: underline; }
 
 #gallerythumbs
 {
-	position: absolute; top: 70px; right: 0px; width: 100px;
+	position: absolute; top: 100px; right: 0px; width: 100px;
 	z-index: 2;
 	background-color: white;
 }
