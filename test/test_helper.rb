@@ -1,6 +1,13 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+  
+require "rexml/document"
+require "rexml/element"
+require "rexml/xmldecl"
+require "rexml/text"
+
+include REXML
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -24,5 +31,18 @@ class Test::Unit::TestCase
   # then set this back to true.
   self.use_instantiated_fixtures  = false
 
-  # Add more helper methods to be used by all tests here...
+  # Add more helper methods to be used by all tests here...  
+  
+  
+   def assert_valid_xml(some_stuff) 
+     begin                                       
+       if (! some_stuff.include?("http://maps.google.com/maps")) then
+         xmp_document = Document.new(some_stuff)  
+       end
+       
+     rescue REXML::ParseException
+       #fail "invalid XML: " + some_stuff
+       fail "Invalid XML: " + $!
+     end
+   end
 end
