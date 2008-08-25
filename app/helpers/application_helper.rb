@@ -57,11 +57,15 @@ module ApplicationHelper
 	end	                        
 	
 	def counts_by_month_image_tag(totals, width=350, height=150) 
+	  monthly_max = 10 * (totals.max / 10.0).ceil
+	  
 	  stuff = {
 	    :chco => 555555,
-	    :chxt => "y",
+	    :chxt => "y",       
+	    :chxr => "0,0," + monthly_max.to_s,
 	    :cht => "bvs",
 	    :chd => "t:" + totals[1..12].join(","),
+	    :chds => "0," + monthly_max.to_s,
 	    :chs => width.to_s + "x" + height.to_s,
 	    :chl => Date::ABBR_MONTHNAMES[1..12].join("|")
 	  } 
