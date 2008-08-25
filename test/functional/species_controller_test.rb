@@ -18,6 +18,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'list'
   end
 
@@ -25,15 +26,17 @@ class SpeciesControllerTest < Test::Unit::TestCase
     get :list
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'list'
 
     assert_not_nil assigns(:all_species_seen)
   end
 
   def test_show
-    get :show, :id => @first_id
-
+    get :show, :id => @first_id     
+    
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'show_rare'
 
     assert_not_nil assigns(:species)
@@ -44,6 +47,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
     get :new
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'new'
 
     assert_not_nil assigns(:species)
@@ -56,6 +60,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
+    assert_valid_xml(@response.body)
 
     assert_equal num_species + 1, Species.count
   end
@@ -64,6 +69,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
     get :edit, {:id => @first_id}, {:username => 'testuser'}
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'edit'
 
     assert_not_nil assigns(:species)
@@ -73,6 +79,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => @first_id
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
   end
 
@@ -83,6 +90,7 @@ class SpeciesControllerTest < Test::Unit::TestCase
 
     post :destroy, :id => @first_id
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {

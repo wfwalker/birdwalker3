@@ -18,6 +18,7 @@ class TripsControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'list'
   end
 
@@ -25,6 +26,7 @@ class TripsControllerTest < Test::Unit::TestCase
     get :list
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'list'
 
     assert_not_nil assigns(:trips)
@@ -34,6 +36,7 @@ class TripsControllerTest < Test::Unit::TestCase
     get :show, :id => @first_id
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'show'
 
     assert_not_nil assigns(:trip)
@@ -44,6 +47,7 @@ class TripsControllerTest < Test::Unit::TestCase
     get :new, {}, {:username => 'testuser'} 
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'new'
 
     assert_not_nil assigns(:trip)
@@ -55,6 +59,7 @@ class TripsControllerTest < Test::Unit::TestCase
     post :create, {:trip => {:name => 'new trip', :date => '2007-01-01', :leader => 'new guy'}}, {:username => 'testuser'} 
 
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show'
 
     assert_equal num_trips + 1, Trip.count
@@ -64,6 +69,7 @@ class TripsControllerTest < Test::Unit::TestCase
     get :edit, {:id => @first_id}, {:username => 'testuser'}
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'edit'
 
     assert_not_nil assigns(:trip)
@@ -73,6 +79,7 @@ class TripsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
   end
 
@@ -83,6 +90,7 @@ class TripsControllerTest < Test::Unit::TestCase
 
     post :destroy, :id => @first_id
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
