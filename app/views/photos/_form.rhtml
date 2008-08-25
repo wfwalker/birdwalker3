@@ -20,7 +20,8 @@
 <p><label for="photo_rating">Rating</label><br/>
 <select id="photo_rating" name="photo[rating]">
 	<%= options_for_select([1, 2, 3, 4, 5], @photo.rating)%>
-</select>
+</select> 
+</p>
 
 <p><label for="photo_notes">Notes</label><br/>
 <%= text_area 'photo', 'notes'  %></p>
