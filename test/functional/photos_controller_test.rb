@@ -18,12 +18,14 @@ class PhotosControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'index'
   end
 
   def test_recent_gallery
     get :recent_gallery
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'recent_gallery'
   end
 
@@ -31,6 +33,7 @@ class PhotosControllerTest < Test::Unit::TestCase
     get :show, :id => @first_id
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'show'
 
     assert_not_nil assigns(:photo)
@@ -41,6 +44,7 @@ class PhotosControllerTest < Test::Unit::TestCase
     get :new, {}, {:username => 'testuser'} 
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'new'
 
     assert_not_nil assigns(:photo)
@@ -52,6 +56,7 @@ class PhotosControllerTest < Test::Unit::TestCase
     post :create, {:photo => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser'} 
 
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'edit'
 
     assert_equal num_sightings + 1, Photo.count
@@ -61,6 +66,7 @@ class PhotosControllerTest < Test::Unit::TestCase
     get :edit, {:id => @first_id}, {:username => 'testuser'}
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'edit'
 
     assert_not_nil assigns(:photo)
@@ -70,6 +76,7 @@ class PhotosControllerTest < Test::Unit::TestCase
   def test_update
     post :update, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show'
   end
 
@@ -80,6 +87,7 @@ class PhotosControllerTest < Test::Unit::TestCase
 
     post :destroy, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect             
+    assert_valid_xml(@response.body)
     
     # redirected to edit trip
     assert_redirected_to :action => 'edit'

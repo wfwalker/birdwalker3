@@ -19,6 +19,7 @@ class SightingsControllerTest < Test::Unit::TestCase
     get :show, :id => @first_id
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'show'
 
     assert_not_nil assigns(:sighting)
@@ -29,6 +30,7 @@ class SightingsControllerTest < Test::Unit::TestCase
     get :new, {}, {:username => 'testuser'} 
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'new'
 
     assert_not_nil assigns(:sighting)
@@ -40,6 +42,7 @@ class SightingsControllerTest < Test::Unit::TestCase
     post :create, {:sighting => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser'} 
 
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'edit'
 
     assert_equal num_sightings + 1, Sighting.count
@@ -49,6 +52,7 @@ class SightingsControllerTest < Test::Unit::TestCase
     get :edit, {:id => @first_id}, {:username => 'testuser'}
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'edit'
 
     assert_not_nil assigns(:sighting)
@@ -69,6 +73,7 @@ class SightingsControllerTest < Test::Unit::TestCase
 
     post :destroy, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect             
+    assert_valid_xml(@response.body)
     
     # redirected to edit trip
     assert_redirected_to :action => 'edit'

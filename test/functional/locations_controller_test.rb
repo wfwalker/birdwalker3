@@ -18,6 +18,7 @@ class LocationsControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'list'
   end
 
@@ -25,6 +26,7 @@ class LocationsControllerTest < Test::Unit::TestCase
     get :list
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'list'
 
     assert_not_nil assigns(:locations)
@@ -34,6 +36,7 @@ class LocationsControllerTest < Test::Unit::TestCase
     get :show, :id => @first_id
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'show_rare'
 
     assert_not_nil assigns(:location)
@@ -44,6 +47,7 @@ class LocationsControllerTest < Test::Unit::TestCase
     get :new, {}, {:username => 'testuser'} 
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'new'
 
     assert_not_nil assigns(:location)
@@ -52,13 +56,14 @@ class LocationsControllerTest < Test::Unit::TestCase
   def test_create
     num_location = Location.count
 
-    post :create, :location => {:name => 'some cool birding place', :county_id => 1}
+    post :create, {:location => {:name => 'some cool birding place', :county_id => 1}}, {:username => 'testuser'} 
  
     assert flash[:error] == nil
     
-# TODO: why does this fail:
-#    assert_template 'show_rare'              
-
+# TODO: why does this not render with 'show_rare_'
+    # assert_template 'show_rare'                 
+    
+    assert_valid_xml(@response.body)
     assert_equal num_location + 1, Location.count
   end
 
@@ -66,6 +71,7 @@ class LocationsControllerTest < Test::Unit::TestCase
     get :edit, {:id => @first_id}, {:username => 'testuser'}
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'edit'
 
     assert_not_nil assigns(:location)
@@ -75,6 +81,7 @@ class LocationsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
   end
 
@@ -85,6 +92,7 @@ class LocationsControllerTest < Test::Unit::TestCase
 
     post :destroy, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect
+    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {

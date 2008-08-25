@@ -14,10 +14,12 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
   def test_about
     get :about
     assert_response :success
+    assert_valid_xml(@response.body)
   end
 
   def test_index
     get :index
     assert_response :success
+    assert_valid_xml(@response.body)
   end
 end

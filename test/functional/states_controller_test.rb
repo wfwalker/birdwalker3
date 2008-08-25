@@ -18,6 +18,7 @@ class StatesControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'list'
   end
 
@@ -25,6 +26,7 @@ class StatesControllerTest < Test::Unit::TestCase
     get :list
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'list'
 
     assert_not_nil assigns(:states)
@@ -34,6 +36,7 @@ class StatesControllerTest < Test::Unit::TestCase
     get :show, :id => @first_id
 
     assert_response :success
+    assert_valid_xml(@response.body)
     assert_template 'show'
 
     assert_not_nil assigns(:state)
