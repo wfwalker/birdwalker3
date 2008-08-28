@@ -60,6 +60,6 @@ class Photo < ActiveRecord::Base
   end
   
   def Photo.find_recent_gallery
-    Photo.find_by_sql("select photos.* from photos, trips where photos.rating >=4 AND photos.trip_id=trips.id ORDER BY trips.date DESC LIMIT 10")
+    Photo.find_by_sql("select photos.* from photos, trips where photos.rating >=3 AND photos.trip_id=trips.id ORDER BY trips.date DESC LIMIT 10")
   end
 end

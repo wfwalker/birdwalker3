@@ -3,6 +3,10 @@ class Family < ActiveRecord::Base
   has_many :sightings, :through => :species
   has_many :photos, :through =>:species
   
+  def common?
+    self.sightings.size > 30
+  end
+  
   def species_seen
     Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND species.family_id='" + self.id.to_s + "'")
   end
@@ -19,8 +23,25 @@ class Family < ActiveRecord::Base
          ORDER BY families.taxonomic_sort_id, photos.species_id")
   end  
 
+  def first_sighting
+    Sighting.find_by_sql (
+      "SELECT * FROM sightings, species, trips
+        WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND species.family_id='" + self.id.to_s + "'
+        ORDER BY trips.date limit 1")[0]
+  end
+
+  def last_sighting
+    Sighting.find_by_sql (
+      "SELECT * FROM sightings, species, trips
+        WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND species.family_id='" + self.id.to_s + "'
+        ORDER BY trips.date DESC limit 1")[0]
+  end
+  
   def locations
-    Location.find_by_sql "SELECT DISTINCT locations.* from species, locations, sightings WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND species.family_id='" + self.id.to_s + "' ORDER BY locations.name"
+    Location.find_by_sql (
+      "SELECT DISTINCT locations.* from species, locations, sightings
+        WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND species.family_id='" + self.id.to_s + "'
+        ORDER BY locations.name")
   end  
 
   def trips

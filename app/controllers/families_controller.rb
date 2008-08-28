@@ -24,6 +24,12 @@ class FamiliesController < ApplicationController
 
   def show
     @family = Family.find(params[:id])
+
+    if (@family.common?)
+        render :action => 'show_common'
+    else
+      render :action => 'show_rare'
+    end
   end
 
   def show_species_by_year
