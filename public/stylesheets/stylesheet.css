@@ -78,7 +78,7 @@ a:hover { text-decoration: underline; }
 
 #searchbox
 {
-	position: absolute; top: 20px; width: 100%; left: 80%;  
+	position: absolute; top: 20px; width: 20%; left: 80%;  
 	height: 72px;     
 }
 
