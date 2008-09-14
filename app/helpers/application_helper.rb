@@ -56,8 +56,8 @@ module ApplicationHelper
 		"</td></tr></table>" unless iphone?
 	end	                        
 	
-	def counts_by_month_image_tag(totals, width=350, height=150) 
-	  monthly_max = 10 * (totals.max / 10.0).ceil
+	def counts_by_month_image_tag(totals, width=450, height=150) 
+	  monthly_max = 10 * (totals[1..12].max / 10.0).ceil
 	  
 	  stuff = {
 	    :chco => 555555,
@@ -72,6 +72,24 @@ module ApplicationHelper
 	      
     chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
     "<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"" + width.to_s + " height=\"" + height.to_s + "\"/>"	                                     
+  end
+
+	def counts_by_year_image_tag(totals, width=450, height=150) 
+	  yearly_max = 10 * (totals[1996..2008].max / 10.0).ceil
+	  
+	  stuff = {
+	    :chco => 555555,
+	    :chxt => "y",       
+	    :chxr => "0,0," + yearly_max.to_s,
+	    :cht => "bvs",
+	    :chd => "t:" + totals[1996..2008].join(","),
+	    :chds => "0," + yearly_max.to_s,
+	    :chs => width.to_s + "x" + height.to_s,
+	    :chl => (1996..2008).to_a.join("|")
+	  } 
+	      
+    chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
+    "<img src=\"" + chartString + "\" alt=\"Totals By Year\" width=\"" + width.to_s + " height=\"" + height.to_s + "\"/>"	                                     
   end
   
   def editing_is_allowed?(&block)
