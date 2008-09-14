@@ -29,7 +29,7 @@ class Sighting < ActiveRecord::Base
   
   def Sighting.map_by_year_and_species(sighting_list)
     map = {}
-    totals = (1996.2008).to_a
+    totals = []
     for year in (1996..2008) do
       totals[year] = 0
     end
@@ -38,6 +38,9 @@ class Sighting < ActiveRecord::Base
         if (sighting.species) then
           if (!map[sighting.species]) then
             map[sighting.species] = (1996..2008).to_a
+            for year in (1996..2008) do
+              map[sighting.species][year] = ''
+            end            
           end
         
           if (map[sighting.species][sighting.trip.date.year] != 'X') then
@@ -46,13 +49,13 @@ class Sighting < ActiveRecord::Base
           end
         end
     end
-
+    
     return map, totals
   end
 
   def Sighting.map_by_year_and_location(sighting_list)
     map = {}
-    totals = (1996.2008).to_a
+    totals = []
     for year in (1996..2008) do
       totals[year] = 0
     end
@@ -88,7 +91,7 @@ class Sighting < ActiveRecord::Base
 
   def Sighting.map_by_month_and_location(sighting_list)
     map = {}
-    totals = (1996.2008).to_a
+    totals = []
     for month in (1..12) do
       totals[month] = 0
     end
@@ -114,7 +117,7 @@ class Sighting < ActiveRecord::Base
 
   def Sighting.map_by_month_and_species(sighting_list)
     map = {}
-    totals = (1..12).to_a
+    totals = []
     for month in (1..12) do
       totals[month] = 0
     end
