@@ -40,15 +40,6 @@ a:hover { text-decoration: underline; }
 .modulesubtitle a { text-decoration: none; }
 .modulesubtitle a:hover { text-decoration: underline; }
 
-
-#browse
-{
-	position: fixed; bottom: 0px; left: 0px; width: 120px; height: 20px;
-	z-index: 2;
-	background-color: #CCCCCC;
-	text-align: center;
-}
-
 #notice
 {
 	position: absolute;
@@ -72,8 +63,9 @@ a:hover { text-decoration: underline; }
 #banner
 {
 	position: absolute; top: 0px; width: 100%;      
-	background-color: #E0E0E0;          
-	height: 72px;     
+	height: 77px;        
+	background: #DAE0D2 url("/images/bg.gif") repeat-x bottom;	 
+	
 }
 
 #searchbox
@@ -90,7 +82,8 @@ a:hover { text-decoration: underline; }
 #menu
 {                   
 	position: absolute; top: 50px; 
-	padding-left: 50px; width: 800px; 
+	padding-left: 50px; min-width: 800px; 
+	background: #DAE0D2 url("/images/bg.gif") repeat-x bottom;	 
 }
          
 ul, ol {list-style: none; margin: 0;}
@@ -98,34 +91,30 @@ ul.sortable {cursor: move}
 
 #menu li
 {
-	padding-left: 10px; padding-right: 10px;
-	width: 50px; height: 22px;
-	background-color: #888888;
-	color: white;
-	border-right: solid 1px white;     
+    background:url("/images/norm_left_trans.gif") no-repeat left top;
 	
-	cursor: pointer;
 	text-align: left;   
-	float: left;
-	
-}
+	float: left;     
+	padding:0 0 0 9px;
+}             
 
-#menu .homemenuitem
+#menu #current
 {
-	background-color: #666666;
-	color: white;
-}
-
-#menu .photomenuitem
-{
-	background-color: #333333;
-	color: white;
+    background-image:url("/images/norm_left_on_trans.gif")
 }
 
 #menu a
+{                                          
+	display:block;
+	background: url("/images/norm_right_trans.gif") no-repeat right top;
+	padding:5px 15px 4px 6px;
+	text-decoration: none;       
+}
+
+#menu #current a
 {
-	color: white;
-	text-decoration: none;
+    background-image:url("/images/norm_right_on_trans.gif");
+    padding-bottom:5px;
 }
 
 #menu a:hover
@@ -146,35 +135,11 @@ ul.sortable {cursor: move}
 	height: 70px;
 	padding-top: 8px;
 	padding-bottom: 4px; 
-	border: solid 1px #CCCCCC;
+   /*  border: solid 1px #CCCCCC; */
 }                                             
 
 /* SEE http://www.yafla.com/dforbes/yaflaColor/ColorRGBHSL.aspx? with code 91842D */
  
-/* -------------------------- SPECIES -------------------- */
-
-#menu .speciesmenuitem
-{
-	background-color: #91522D;
-	color: white;
-}
-
-/* ------------------------- LOCATION -------------------- */
-       
-#menu .locationmenuitem
-{
-	background-color: #91842D;
-	color: white;
-}
-
-/* ------------- TRIP ----------------------- */
-     
-#menu .tripmenuitem
-{
-	background-color: #6C912D;
-	color: white;
-}
-
 #pageheader-home1
 {
 	height: 70px;
