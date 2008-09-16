@@ -6,7 +6,7 @@ class FamiliesController < ApplicationController
   helper :photos
   
   def page_kind
-    "families"
+    "species"
   end
 
   def index
