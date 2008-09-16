@@ -6,6 +6,10 @@
 	<% if (sighting.heard_only) then %>
 		(h)
 	<% end %>
+	
+	<% if @show_location_abbreviation %>
+		<span class="location-abbreviation"><%= sighting.location.abbreviation %></span>
+	<% end %>
 
 	<% if (sighting.notes && sighting.notes.length > 1) then %>
 		<div class="notes"><%= sighting.notes %></div>

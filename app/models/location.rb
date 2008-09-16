@@ -23,6 +23,10 @@ class Location < ActiveRecord::Base
   def common?
     self.trips.size > 8
   end
+  
+  def abbreviation
+    self.name.gsub(/[a-z' ]/,'')
+  end
 
   def Location.map_by_state(locationList)
     locationList.inject({}) { | map, location |

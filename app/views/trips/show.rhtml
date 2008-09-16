@@ -22,19 +22,20 @@
 		
 		<%= open_first_column %>
 		
-			<% if @trip.locations.size > 1 %>
-				<div class="pagecontentmodule">
-					<div class="moduletitle">
-						<%= @trip.species.size %> Species at <%= @trip.locations.size %> Locations
-					</div>
-				</div>
+			<% if (@trip.locations.size == 1) %>
+				<% @module_title = @trip.locations[0].name %>
+			<% else %>
+				<% @module_title = @trip.locations.size.to_s + " Locations" %>
+				<% @show_location_abbreviation = true %>
 			<% end %>
-	
-			<% for a_location in mapped.keys %>
-				<% sighting_list = mapped[a_location] %>
-				<% @module_title = link_to a_location.name, location_url(a_location) %>
-				<%= show_taxonomic_sighting_list(sighting_list) %>
-			<% end %>
+		
+			<%= show_taxonomic_sighting_list(@trip.sightings) %>
+			
+			<% if (@trip.locations.size > 1) %>
+				<% for location in @trip.locations %>
+					<div><%= location.name %> = <span class="location-abbreviation"><%= location.abbreviation %></span></div>
+				<% end %>
+			<% end%>
 			
 		<%= between_columns %>
 		

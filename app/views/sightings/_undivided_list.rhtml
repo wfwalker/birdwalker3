@@ -1,6 +1,6 @@
 <% sighting_list = undivided_list %>
 
 <div class="pagecontentmodule">
-	<div class="modulesubtitle"><%= @module_title %>, <%= sighting_list.size %> Sighting<%= sighting_list.size > 1? 's' : '' %></div>
+	<div class="moduletitle"><%= @module_title %>, <%= sighting_list.size %> Sighting<%= sighting_list.size > 1? 's' : '' %></div>
 	<%= render :partial => 'sightings/onelinelink' , :collection => sighting_list %>
 </div>

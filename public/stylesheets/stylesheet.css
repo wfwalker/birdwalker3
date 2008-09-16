@@ -144,6 +144,11 @@ ul.sortable {cursor: move}
    /*  border: solid 1px #CCCCCC; */
 }                                             
 
+.location-abbreviation
+{
+	color: green; font-style: italic;
+}                          
+
 /* SEE http://www.yafla.com/dforbes/yaflaColor/ColorRGBHSL.aspx? with code 91842D */
  
 #pageheader-home1

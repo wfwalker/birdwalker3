@@ -5,7 +5,9 @@
 <% sorted_families = Family.sort_taxonomic(sightings_by_family.keys) %>
 
 <div class="pagecontentmodule">
-	<div class="modulesubtitle"><%= @module_title %>, <%= sighting_list.size %> Sightings</div>
+	<div class="moduletitle">
+		<% if (@module_title != nil && @module_title != "") then %><%= @module_title %>, <% end %><%= sighting_list.size %> Sightings
+	</div>
 
 	<% for family in sorted_families %>
   		<div class="modulesubtitle"><%= family.common_name %></div>
