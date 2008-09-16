@@ -37,11 +37,11 @@ class Test::Unit::TestCase
    def assert_valid_xml(some_stuff) 
      begin                                       
        if (! some_stuff.include?("http://maps.google.com/maps")) then
-         xmp_document = Document.new(some_stuff)  
+         xmp_document = Document.new(some_stuff)     
+         assert true
        end
        
      rescue REXML::ParseException
-       #fail "invalid XML: " + some_stuff
        fail "Invalid XML: " + $!
      end
    end
