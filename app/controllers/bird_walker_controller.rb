@@ -4,7 +4,11 @@ class BirdWalkerController < ApplicationController
   helper :locations
   helper :counties
   helper :sightings
-  helper :photos
+  helper :photos    
+  
+  def page_kind
+    "main"
+  end
   
   def index
     @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
@@ -124,9 +128,5 @@ class BirdWalkerController < ApplicationController
     end
     
     render :action => 'login'
-  end
-  
-  def page_kind
-    "home"
   end
 end
