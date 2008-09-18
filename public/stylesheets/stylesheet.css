@@ -48,6 +48,16 @@ a:hover { text-decoration: underline; }
 	left: 50%; top: 10px;
 	padding: 5px;
 	border: solid 1px green;
+}       
+
+#error
+{
+	position: absolute;
+	background-color: #FFAAAA;
+	z-index: 3;
+	left: 50%; top: 10px;
+	padding: 5px;
+	border: solid 1px red;
 }
 
 #errorExplanation
@@ -125,7 +135,7 @@ ul.sortable {cursor: move}
 
 #menu a:hover
 {
-	color: white;
+	color: red;
 	text-decoration: underline;
 }
 
