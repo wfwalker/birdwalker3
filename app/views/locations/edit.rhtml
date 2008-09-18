@@ -10,8 +10,6 @@
 		<% has_reference_url?(@location) do %>
 			<div class="pageheaderitem"><a href="<%= @location.reference_url %>">See also...</a></div>
 		<% end%>
-		<% # TODO WAAAH could lose work %>
-		<div class="pageheaderitem"><%= link_to 'Show', location_url(@location) %></div>
 	</div>
 	
 	<div id="pagecontent">
