@@ -27,7 +27,7 @@ class TripsController < ApplicationController
 
   def new
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     else
       @trip = Trip.new
@@ -38,7 +38,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(params[:trip])
     
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     elsif @trip.save
       flash[:notice] = 'Trip was successfully created.'
@@ -52,7 +52,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
 
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     end
   end
@@ -61,7 +61,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
 
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     elsif @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'

@@ -73,7 +73,7 @@ class LocationsController < ApplicationController
 
   def new
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     else
       @location = Location.new
@@ -95,7 +95,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
                                             
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     end
   end
@@ -104,7 +104,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     elsif @location.update_attributes(params[:location])
       flash[:notice] = 'Location was successfully updated.'

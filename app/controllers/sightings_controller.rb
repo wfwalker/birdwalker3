@@ -22,7 +22,7 @@ class SightingsController < ApplicationController
     @sighting = Sighting.new  
     
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     end
   
@@ -50,41 +50,47 @@ class SightingsController < ApplicationController
       render :action => 'new'
     end
   end
-  
-  def create_list
-    if (params[:abbreviation_list])
-      @sighting = Sighting.new(params[:sighting])
-      raise "Missing location" if @sighting.location_id == nil
-      
-      abbreviations = params[:abbreviation_list].scan(/\w+/)
-      raise "Missing abbreviations" if abbreviations.size == 0
 
-      bogus_abbreviations = []
-      for an_abbrev in abbreviations do
-        temp = Species.find_by_abbreviation(an_abbrev)
-        bogus_abbreviations << an_abbrev if ! temp
-      end
-      
-      raise "Bogus abbreviations: " + bogus_abbreviations.join(", ") if bogus_abbreviations.size > 0
-      
-      for an_abbrev in abbreviations do
+  def create_list 
+    begin
+      if (params[:abbreviation_list])
         @sighting = Sighting.new(params[:sighting])
-        temp = Species.find_by_abbreviation(an_abbrev)
-        @sighting.species_id = temp.id  
-        @sighting.save
+        raise "Missing location" if @sighting.location_id == nil
+
+        abbreviations = params[:abbreviation_list].scan(/\w+/)
+        raise "Missing abbreviations" if abbreviations.size == 0
+
+        bogus_abbreviations = []
+        for an_abbrev in abbreviations do
+          temp = Species.find_by_abbreviation(an_abbrev)
+          bogus_abbreviations << an_abbrev if ! temp
+        end
+
+        raise "Bogus abbreviations: " + bogus_abbreviations.join(", ") if bogus_abbreviations.size > 0
+
+        for an_abbrev in abbreviations do
+          @sighting = Sighting.new(params[:sighting])
+          temp = Species.find_by_abbreviation(an_abbrev)
+          @sighting.species_id = temp.id  
+          @sighting.save
+        end
+
+        flash[:notice] = 'Added ' + abbreviations.size.to_s + ' species.'
       end
 
-      flash[:notice] = 'Added ' + abbreviations.size.to_s + ' species.'
-    end
+      redirect_to edit_trip_url(@sighting.trip_id)    
 
-    redirect_to edit_trip_url(@sighting.trip_id)
-  end
+    rescue Exception => exc
+      flash[:error] = exc.message
+      redirect_to :back
+    end  
+  end                            
 
   def edit
     @sighting = Sighting.find(params[:id])
 
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     end
   end
@@ -93,7 +99,7 @@ class SightingsController < ApplicationController
     @sighting = Sighting.find(params[:id])
 
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     elsif @sighting.update_attributes(params[:sighting])
       flash[:notice] = 'Sighting was successfully updated.'
@@ -107,9 +113,5 @@ class SightingsController < ApplicationController
     @sighting = Sighting.find(params[:id])
     @sighting.destroy
     redirect_to edit_trip_url(@sighting.trip_id)
-  end
-  
-  def autocomplete_species
-      @species_list = Species.find(:all, :conditions => ["common_name like ?", "%#{params[:sighting][:species]}%"])
   end
 end

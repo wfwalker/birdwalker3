@@ -58,7 +58,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new  
     
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     end
   
@@ -138,10 +138,10 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
 
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     elsif @photo.update_attributes(params[:photo])
-      flash[:notice] = 'Photo was successfully updated.'
+      flash[:error] = 'Photo was successfully updated.'
       redirect_to photo_url(@photo)
     else
       render :action => 'edit'
@@ -152,7 +152,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     
     if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
+      flash[:error] = 'Editing not allowed.'
       redirect_to :controller => 'bird_walker', :action => 'login'
     else
       @photo.rating = params[:rating]
