@@ -43,10 +43,11 @@ class BirdWalkerController < ApplicationController
         if (aUser != nil && aUser.password == params[:password]) then
           logger.error("Logging in as  " + aUser.name)
           flash[:notice] = 'Welcome back, ' + aUser.name
-          session[:username] = aUser.name    
+          session[:username] = aUser.name  
+          redirect_to :action => 'index'  
         else
           logger.error("Failed login attempt")
-          flash[:notice] = 'Incorrect login or password; please try again'
+          flash[:error] = 'Incorrect login or password; please try again'
           session[:username] = nil    
         end
     end
@@ -127,6 +128,6 @@ class BirdWalkerController < ApplicationController
       session[:username] = nil    
     end
     
-    render :action => 'login'
+    redirect_to :action => 'index'  
   end
 end
