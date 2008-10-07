@@ -56,7 +56,7 @@ module ApplicationHelper
 		"</td></tr></table>" unless iphone?
 	end	                        
 	
-	def counts_by_month_image_tag(totals, width=450, height=150) 
+	def counts_by_month_image_tag(totals, width=370, height=150) 
 	  monthly_max = 10 * (totals[1..12].max / 10.0).ceil
 	  
 	  stuff = {
@@ -74,7 +74,7 @@ module ApplicationHelper
     "<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"" + width.to_s + " height=\"" + height.to_s + "\"/>"	                                     
   end
 
-	def counts_by_year_image_tag(totals, width=450, height=150) 
+	def counts_by_year_image_tag(totals, width=370, height=150) 
 	  yearly_max = 10 * (totals[1996..2008].max / 10.0).ceil
 	  
 	  stuff = {
