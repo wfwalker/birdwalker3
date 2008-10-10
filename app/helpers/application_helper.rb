@@ -71,7 +71,7 @@ module ApplicationHelper
 	  } 
 	      
     chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
-    "<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"" + width.to_s + " height=\"" + height.to_s + "\"/>"	                                     
+    "<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>"	                                     
   end
 
 	def counts_by_year_image_tag(totals, width=370, height=150) 
@@ -89,7 +89,7 @@ module ApplicationHelper
 	  } 
 	      
     chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
-    "<img src=\"" + chartString + "\" alt=\"Totals By Year\" width=\"" + width.to_s + " height=\"" + height.to_s + "\"/>"	                                     
+    "<img src=\"" + chartString + "\" alt=\"Totals By Year\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>"	                                     
   end
   
   def editing_is_allowed?(&block)
