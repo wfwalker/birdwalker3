@@ -35,8 +35,8 @@
 				<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long %>
 			<% end %>
 		
-			<%= show_location_list(@county.locations, true) %>     
-					
+			<%= show_location_list(@county.locations, false) %>     
+
  		<%= close_second_column %>      
 
 	</div>
