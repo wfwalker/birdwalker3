@@ -5,5 +5,5 @@
 		<div class="moduletitle"><%= location_list.size %> Location<%= location_list.size > 1? 's' : '' %></div>
 	<% end %>
 	
-	<%= render :partial => 'locations/onelinelink' , :collection => location_list, :locals => { :show_extras => true } %>
+	<%= render :partial => 'locations/onelinelink' , :collection => location_list, :locals => { :show_extras => show_headings } %>
 </div>
