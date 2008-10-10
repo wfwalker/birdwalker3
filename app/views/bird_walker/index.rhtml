@@ -1,9 +1,12 @@
 <% @page_title = 'Index' %>
 
 <div id="pagebody">
-	<div id="pageheader-home1">
-		<div id="pagetitle"></div>
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= Date.today.strftime("%B %d, %Y") %>
+		</div>
 	</div>
+
 	<div id="pagecontent">
 
 		<%= open_first_column %>
