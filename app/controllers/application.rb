@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def iphone?
     ENV['force_iphone'] == 'true' ||
-      (request.class.to_s.include?("CgiRequest") && request.user_agent.include?('iPhone'))
+      (request.class && request.class.to_s.include?("CgiRequest") && request.user_agent && request.user_agent.include?('iPhone'))
   end
   
   def choose_layout  
