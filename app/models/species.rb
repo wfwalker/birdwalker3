@@ -29,6 +29,7 @@ class Species < ActiveRecord::Base
   end
   
   # TODO: some cleaner way to do this!
+  # TODO: what about select common_name,id from species where id in (select species_id from sightings where exclude!=1);
   def Species.find_all_seen
     Species.find_by_sql( 
       "SELECT DISTINCT(species.id), species.* from species, sightings, families 
