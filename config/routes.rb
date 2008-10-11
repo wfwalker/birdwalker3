@@ -1,4 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+
+  # wfw root URL
+  map.connect '', :controller => 'bird_walker', :action => 'index'
+
+  # resources
   map.resources :counties
   map.resources :sightings
   map.resources :photos, :collection => { :recent_gallery => :get, :recent_gallery_rss => :get }
@@ -8,9 +13,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :families
   map.resources :species, :singular => :species_instance, :collection => { :life_list => :get, :photo_life_list => :get, :photo_to_do_list => :get }
   
-  # wfw
+  # wfw special map for year list
   map.connect 'species/year/:year', :controller => 'species', :action => 'year'
-  
+
   # map.resources :fish, :singular => :fish_instance, :new => {:preview => :post}, :member => {:fillet => :post}
 
   # The priority is based upon order of creation: first created -> highest priority.
