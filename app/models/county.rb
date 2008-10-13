@@ -11,6 +11,10 @@ class County < ActiveRecord::Base
   
   validates_presence_of :name, :state
   
+  def common?
+    self.trips.size > 8
+  end
+  
  # do something like county.sightings.map(&:species).flatten.uniq
  # (Grab all of the sightings for the county, create a new array made up of all 
  #of the arrays of species associated with each sighting, flatten it into a 1-d array and remove dupes)
