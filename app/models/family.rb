@@ -24,21 +24,21 @@ class Family < ActiveRecord::Base
   end  
 
   def first_sighting
-    Sighting.find_by_sql (
+    Sighting.find_by_sql(
       "SELECT * FROM sightings, species, trips
         WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND species.family_id='" + self.id.to_s + "'
         ORDER BY trips.date limit 1")[0]
   end
 
   def last_sighting
-    Sighting.find_by_sql (
+    Sighting.find_by_sql(
       "SELECT * FROM sightings, species, trips
         WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND species.family_id='" + self.id.to_s + "'
         ORDER BY trips.date DESC limit 1")[0]
   end
   
   def locations
-    Location.find_by_sql (
+    Location.find_by_sql(
       "SELECT DISTINCT locations.* from species, locations, sightings
         WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND species.family_id='" + self.id.to_s + "'
         ORDER BY locations.name")
