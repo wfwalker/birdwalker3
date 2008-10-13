@@ -22,4 +22,9 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_valid_xml(@response.body)
   end
+
+  def test_root_routing
+    assert_generates("/", :controller => "bird_walker", :action => "index")
+    assert_generates("", :controller => "bird_walker", :action => "index")
+  end
 end
