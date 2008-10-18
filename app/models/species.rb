@@ -2,12 +2,13 @@ class Species < ActiveRecord::Base
   belongs_to :family
   
   has_many :sightings
-  has_many :photos
   has_one :first_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id DESC'
+
+  has_many :photos
+  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   
-  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
-  end
+  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC"
 
   has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name" do
     def with_lat_long

@@ -2,6 +2,7 @@ class Family < ActiveRecord::Base
   has_many :species
   has_many :sightings, :through => :species
   has_many :photos, :through =>:species
+  has_many :gallery_photos, :through => :species, :conditions => { :rating => [4,5] }
   
   def common?
     self.sightings.size > 30

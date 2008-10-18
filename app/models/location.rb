@@ -1,19 +1,23 @@
 class Location < ActiveRecord::Base
+  belongs_to :county
+
   has_many :sightings
-  has_many :photos
-  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'   # MOOO THIS IS WRONG
-  belongs_to :county
+
+  has_many :photos
+  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   
   has_many :species, :through => :sightings, :select => "DISTINCT species.*" do
     def map_by_family
+      load_target
       Species.map_by_family(proxy_target)
     end  
   end
   
   has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
     def map_by_year
+      load_target
       Trip.map_by_year(proxy_target)
     end
   end      
