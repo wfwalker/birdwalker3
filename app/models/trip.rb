@@ -9,13 +9,15 @@ class Trip < ActiveRecord::Base
   
   has_many :species, :through => :sightings, :select => "DISTINCT species.*" do
     def map_by_family
+      load_target
       Species.map_by_family(proxy_target)
     end  
   end
   
   has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name" do
     def with_lat_long
-      Location.with_lat_long(self)
+      load_target
+      Location.with_lat_long(proxy_target)
     end
   end
     
