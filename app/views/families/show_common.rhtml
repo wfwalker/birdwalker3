@@ -43,7 +43,7 @@
 		<%= between_columns %>
 		
 			<% @photos_module_title = 'Family Photos' %>
-			<%= show_thumbnail_list(@family.photos) %>
+			<%= show_thumbnail_list(@family.gallery_photos) %>
 	
 			<% if ((Location.with_lat_long(@family.locations).size > 0) && (! iphone?)) %>  
 				<% @map_module_title = 'Species Map' %>
