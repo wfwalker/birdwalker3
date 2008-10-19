@@ -37,7 +37,7 @@ class CountiesControllerTest < Test::Unit::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'show'
+    assert_template 'show_rare'
 
     assert_not_nil assigns(:county)
     assert assigns(:county).valid?
