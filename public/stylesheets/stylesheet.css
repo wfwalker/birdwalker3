@@ -148,7 +148,6 @@ ul.sortable {cursor: move}
 
 #pageheader
 {
-	height: 70px;
 	padding-top: 8px;
 	padding-bottom: 4px; 
    /*  border: solid 1px #CCCCCC; */
@@ -163,7 +162,6 @@ ul.sortable {cursor: move}
  
 #pageheader-home1
 {
-	height: 70px;
 	padding-top: 8px;
 	padding-bottom: 4px;
 	background-image: url(/images/banner1.jpg);
