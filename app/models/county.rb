@@ -1,11 +1,14 @@
 class County < ActiveRecord::Base
   belongs_to :state
+  
   has_many :locations do
     def with_lat_long
       Location.with_lat_long(self)
     end
   end
+  
   has_many :sightings, :through => :locations
+  
   has_many :photos, :through => :locations
   has_many :gallery_photos, :through => :locations, :conditions => { :rating => [4,5] }
   
@@ -31,5 +34,10 @@ class County < ActiveRecord::Base
 
   def trips
     Trip.find_by_sql("SELECT DISTINCT trips.* FROM trips, sightings, locations WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "'")
+  end
+  
+  def year_span
+    years = trips.collect {|trip| trip.date.year}
+    return years.max - years.min
   end
 end

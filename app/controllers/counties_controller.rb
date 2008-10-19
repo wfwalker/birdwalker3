@@ -7,10 +7,16 @@ class CountiesController < ApplicationController
   
   def show
     @county = County.find(params["id"])
+
+    if @county.common?
+        render :action => 'show_common'
+      else
+        render :action => 'show_rare'
+    end
   end
 
   def gallery
-    show       
+    @county = County.find(params["id"])
     
     if params[:featured_photo_id] != nil then
       @featured_photo = Photo.find(params[:featured_photo_id])
