@@ -21,8 +21,12 @@ pageTracker._trackPageview();
     </head>
     <body onload="google_initialize()">
 	    <div id="banner">
-			<div id="sitetitle"><%= link_to "BirdWalker", '/bird_walker' %><span style="font-size: 10pt; padding-left: 110px">birding field notes and photographs by Bill Walker and Mary Wisnewski</span></div>
+			<div id="sitetitle"><%= link_to "BirdWalker", '/bird_walker' %></div>
 	    </div>
+
+		<div id="pagekind">
+			<%= @page_kind %> : <%= @page_title %>
+		</div>
 
 		<div id="searchbox">
 			<form action="/bird_walker/search" method="post">

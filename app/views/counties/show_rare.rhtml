@@ -1,4 +1,5 @@
-<% @page_title = 'County Report: ' + @county.name + " County" %>
+<% @page_kind = 'County' %>
+<% @page_title = @county.name + " County" %>
 
 <div id="pagebody">
 	<div id="pageheader">
@@ -15,6 +16,14 @@
 	<div id="pagecontent">
 
 		<%= open_first_column %>
+
+			<div class="pagecontentmodule">
+				<div class="moduletitle">County Notes</div>	
+				<div class="pagecontentitem">
+					We have only visited this county <%= @county.trips.size %> times since we started birding,
+					so we think of it as rare.
+				</div>	
+			</div>
 
 			<%= show_species_list(@county.species, true) %>
 
