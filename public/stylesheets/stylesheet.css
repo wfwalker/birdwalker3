@@ -86,12 +86,12 @@ a:hover { text-decoration: underline; }
 
 #sitetitle
 {
-	font-size: 24pt; margin-left: 20px; margin-top: 5px; width: 800px;
+	font-size: 20pt; margin-left: 20px; margin-top: 5px; width: 800px;
 }                                                                               
 
 #menu
 {                   
-	position: absolute; top: 50px; 
+	position: absolute; top: 50px;
 	padding-left: 50px; min-width: 800px; 
 	background: #DAE0D2 url("/images/bg.gif") repeat-x bottom;	 
 }
@@ -150,24 +150,13 @@ ul.sortable {cursor: move}
 {
 	padding-top: 8px;
 	padding-bottom: 4px; 
-   /*  border: solid 1px #CCCCCC; */
 }                                             
 
 .location-abbreviation
 {
 	color: green; font-style: italic;
 }                          
-
-/* SEE http://www.yafla.com/dforbes/yaflaColor/ColorRGBHSL.aspx? with code 91842D */
  
-#pageheader-home1
-{
-	padding-top: 8px;
-	padding-bottom: 4px;
-	background-image: url(/images/banner1.jpg);
-	background-position: 60%;
-}
-
 .pageheaderitem
 {
 	margin-left: 15px; margin-right: 15px; margin-bottom: 3px;
@@ -222,5 +211,16 @@ ul.sortable {cursor: move}
 {
 	padding-bottom: 2px;
 	padding-top: 2px;
+}
+
+#pagekind
+{
+	position: fixed; bottom: -10px; width: 100%; height: 30px;
+	font: 10pt Gill Sans, Sans-Serif;
+	color: gray;
+	background-color: #EEEEEE;
+	border-top: solid 1px gray;
+	z-index: 2;
+	padding-left: 10px;
 }
 
