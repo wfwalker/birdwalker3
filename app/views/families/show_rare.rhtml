@@ -19,7 +19,7 @@
 				</div>	
 			</div>
 
-			<%= render :partial => 'species/divided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
+			<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
 			
 			<%= show_trip_list(@family.trips, true) %>
 

@@ -30,6 +30,8 @@
 					at <%= @family.locations.size %> different locations.
 				</div>	
 			</div>
+        
+  			<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
 
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Latest sighting</div>	
@@ -40,7 +42,7 @@
 				<div class="moduletitle">First sighting</div>	
 				<%= render :partial => 'sightings/full_details', :object => @family.first_sighting %>	
 			</div>
-		
+					
 		<%= between_columns %>
 		
 			<% @photos_module_title = 'Family Photos' %>
