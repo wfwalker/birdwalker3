@@ -30,8 +30,8 @@
 				<% @center_latitude = @location.latitude %>
 				<% @center_longitude = @location.longitude %>
 				<% @locations = [ @location ] %>
-					<% @map_module_title = 'Location Map' %>
-							<%= render :partial => 'locations/google', :object => [ @location ] %>
+				<% @map_module_title = 'Location Map' %>
+				<%= render :partial => 'locations/google', :object => [ @location ] %>
 			<% end %>
 		
 			<%= show_trip_list(@location.trips, true) %>					
