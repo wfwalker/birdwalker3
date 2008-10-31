@@ -213,7 +213,7 @@ ul.sortable {cursor: move}
 	padding-top: 2px;
 }
 
-#pagekind
+#bottombar
 {
 	position: fixed; bottom: -10px; width: 100%; height: 30px;
 	font: 10pt Gill Sans, Sans-Serif;
@@ -222,5 +222,14 @@ ul.sortable {cursor: move}
 	border-top: solid 1px gray;
 	z-index: 2;
 	padding-left: 10px;
+}   
+
+.baritem
+{                        
+	padding-left: 10px;
+	padding-right: 10px;   
+	height: 30px;
+	border-right: solid 1px gray;
+	text-transform: lowercase;
 }
 
