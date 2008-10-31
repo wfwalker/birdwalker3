@@ -20,7 +20,7 @@
 				<table width="100%">
 					<tr width="33%">
 						<% for species_list in species_lists do %>
-							<td width="33%" valign="top">
+							<td width="33%" valign="top" style="white-space: nowrap">
 								<%= render :partial => 'species/divided_list', :object => species_list, :locals => { :show_headings => false } %>
 							</td>
 						<% end %>
