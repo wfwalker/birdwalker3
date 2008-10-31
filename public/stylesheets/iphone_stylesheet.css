@@ -1,6 +1,6 @@
 body
 {
-	font: 10pt Arial; width: 320px;
+	font: 9pt Arial; width: 320px;
 }
 
 a       { text-decoration: none; }
@@ -77,8 +77,7 @@ a:hover { color: red; text-decoration: underline; }
 
 #pagetitle
 {
-	font: 16pt Arial;
-	padding-left: 3px;
+	font: 14pt Arial;
 	padding-bottom: 5px;
 }
 
@@ -86,8 +85,6 @@ a:hover { color: red; text-decoration: underline; }
 {
 	padding-top: 2px;
 	padding-bottom: 2px;
-	background-color: #EEEEEE;
-	border-left: solid 3px #AAAAAA;
 }
 
 .pageheaderitem
