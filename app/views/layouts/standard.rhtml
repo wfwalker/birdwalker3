@@ -24,9 +24,17 @@ pageTracker._trackPageview();
 			<div id="sitetitle"><%= link_to "BirdWalker", '/bird_walker' %></div>
 	    </div>
 
-		<div id="pagekind">
-			<%= @page_kind %> : <%= @page_title %>
-		</div>
+		<div id="bottombar">
+			<span class="baritem"><%= @page_kind %> : <%= @page_title %></span>
+                                  
+		  	<span class="baritem">
+			<% if (session[:username] != nil) then %>
+				<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout'%>
+			<% else %>
+			    <%= link_to 'Login', :controller => 'bird_walker', :action => 'login'%>
+			<% end %>      
+			</span>
+   		</div>
 
 		<div id="searchbox">
 			<form action="/bird_walker/search" method="post">
@@ -69,16 +77,6 @@ pageTracker._trackPageview();
 				<li id="<%= @controller.page_kind == 'photos' ? 'current' : '' %>">
 					<%= link_to "photos", photos_url %>
 				</li>
-
-				<% if (session[:username] != nil) then %>
-					<li class="menuitem">
-						<%= link_to 'logout', :controller => 'bird_walker', :action => 'logout'%>
-					</li>
-				<% else %>
-					<li class="menuitem">
-						<%= link_to 'login', :controller => 'bird_walker', :action => 'login'%>
-					</li>
-				<% end %>      
 			</ul>
 		</div>
 		
