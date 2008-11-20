@@ -33,6 +33,10 @@ class Photo < ActiveRecord::Base
     "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumb_URL + "\"/>"
   end
 
+  def photo      
+    "<img border=\"0\" src=\"" + photo_URL + "\"/>"
+  end
+
   def tiny_thumb
     "<img border=\"0\" width=\"75\" height=\"75\" src=\"" + thumb_URL + "\"/>"
   end
