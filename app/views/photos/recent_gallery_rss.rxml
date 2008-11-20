@@ -14,7 +14,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
           xml.title       photo.species.common_name
           xml.pubDate     photo.trip.date
           xml.link        url_for :only_path => false, :controller => 'photos', :action => 'show', :id => photo.id
-          xml.description photo.thumb
+          xml.description link_to photo.photo, :controller => 'photos', :action => 'show', :id => photo.id
           xml.guid        url_for :only_path => false, :controller => 'photos', :action => 'show', :id => photo.id
         end
       end 
