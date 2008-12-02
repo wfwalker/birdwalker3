@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'bird_walker_controller'
+require 'application_helper'
 
 # Re-raise errors caught by the controller.
 class BirdWalkerController; def rescue_action(e) raise e end; end
