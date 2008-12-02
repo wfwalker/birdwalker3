@@ -92,6 +92,44 @@ module ApplicationHelper
     "<img src=\"" + chartString + "\" alt=\"Totals By Year\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>"	                                     
   end
   
+  def inactivity_timeout
+    if (ENV['inactivity_timeout'] != nil)
+      ENV['inactivity_timeout']
+    else
+      600
+    end
+  end      
+  
+  def check_for_timeout
+    if (session[:username] == nil) then
+      # username is nil, just clobber login_time
+      logger.error("Not logged in, no timeout check")
+      session[:login_time] = nil      
+    else
+      if (session[:login_time] == nil) then
+        # username is not nil but login_time is nil, this should never happen!
+        flash[:error] = 'Editing session timed out; please login again to continue editing'
+        session[:username] = nil    
+        session[:login_time] = nil
+      else
+        # username is valid, login_time is valid, do the real checking
+        inactivity = Time.now.to_i - session[:login_time]
+        logger.error("Checking timeout " + inactivity.to_s + " versus " + inactivity_timeout.to_s)
+
+        if (inactivity > inactivity_timeout) then
+          # timeout! clobber the session
+          flash[:error] = 'Editing session timed out; please login again to continue editing'
+          session[:username] = nil    
+          session[:login_time] = nil
+        else
+          # active session, update the timer
+          logger.error("Activtely logged in, setting activity timer")
+          session[:login_time] = Time.now.to_i
+        end
+      end
+    end
+  end
+  
   def editing_is_allowed?(&block)
     yield if session[:username] != nil
   end

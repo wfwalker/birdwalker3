@@ -1,4 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<% check_for_timeout %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
 		<%= stylesheet_link_tag 'stylesheet'%>
@@ -28,6 +31,7 @@ pageTracker._trackPageview();
 			<span class="baritem"><%= @page_kind %> : <%= @page_title %></span>
                                   
 		  	<span class="baritem">
+
 			<% if (session[:username] != nil) then %>
 				<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout'%>
 			<% else %>

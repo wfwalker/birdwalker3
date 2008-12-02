@@ -44,11 +44,13 @@ class BirdWalkerController < ApplicationController
           logger.error("Logging in as  " + aUser.name)
           flash[:notice] = 'Welcome back, ' + aUser.name
           session[:username] = aUser.name  
+          session[:login_time] = Time.now.to_i
           redirect_to :action => 'index'  
         else
           logger.error("Failed login attempt")
           flash[:error] = 'Incorrect login or password; please try again'
           session[:username] = nil    
+          session[:login_time] = nil
         end
     end
   end
