@@ -11,7 +11,7 @@
 		<span class="location-abbreviation"><%= sighting.location.abbreviation %></span>
 	<% end %>
 
-	<% if (sighting.notes && sighting.notes.length > 1) then %>
+	<% has_notes?(sighting) do %>
 		<div class="notes"><%= sighting.notes %></div>
 	<% end%>
 </div>
