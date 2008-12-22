@@ -4,6 +4,7 @@ sighting_one:
   trip_id: 1
   location_id: 1
   species_id: 2
+  notes: "1"
   heard_only: true
 
 sighting_two:
@@ -11,6 +12,7 @@ sighting_two:
   trip_id: 1
   location_id: 2
   species_id: 1
+  notes: "2"
   heard_only: false
 
 sighting_three:
@@ -18,6 +20,7 @@ sighting_three:
   trip_id: 2
   location_id: 1
   species_id: 2
+  notes: "three"
   heard_only: false
 
 sighting_four:

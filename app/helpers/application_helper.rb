@@ -17,11 +17,11 @@ module ApplicationHelper
   end
   
   def has_reference_url?(subject, &block)
-    yield if subject.reference_url && subject.reference_url.length > 1
+    yield if subject.reference_url && subject.reference_url.length >= 1
   end
   
   def has_notes?(subject, &block)
-    yield if subject.notes && subject.notes.length > 1
+    yield if subject.notes && subject.notes.length >= 1
   end
 
   def has_no_notes?(subject, &block)
@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def has_sightings?(subject, &block)
-    yield if subject.sightings && subject.sightings.length > 1
+    yield if subject.sightings && subject.sightings.length >= 1
   end         
   
   def iphone?
