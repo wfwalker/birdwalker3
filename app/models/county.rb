@@ -38,6 +38,10 @@ class County < ActiveRecord::Base
   
   def year_span
     years = trips.collect {|trip| trip.date.year}
-    return years.max - years.min
+    return years.max - years.min + 1
+  end
+  
+  def trips_per_year
+    (self.trips.size.to_f / self.year_span.to_f).ceil 
   end
 end
