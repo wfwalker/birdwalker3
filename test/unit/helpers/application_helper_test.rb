@@ -4,7 +4,7 @@ class ApplicationHelperTest < HelperTestCase
 
   include ApplicationHelper
 
-  #fixtures :users, :articles
+  fixtures :sightings
 
   def setup
     #super

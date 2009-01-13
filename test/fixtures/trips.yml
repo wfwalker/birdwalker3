@@ -6,6 +6,6 @@ trip_one:
   id: 1
 trip_two:
   name: 'Second Trip'  
-  date: '2008-01-01'
+  date: '2007-02-01'
   leader: 'One Gal'
   id: 2
