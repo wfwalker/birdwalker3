@@ -1,3 +1,4 @@
+<% @page_kind = 'Trip' %>
 <% @page_title = @trip.name %>
 
 <div id="pagebody">
@@ -37,7 +38,7 @@
 
 						<p>
 							<label for="sighting_species">Abbreviations</label><br/>
-							<%= text_area_tag 'abbreviation_list', nil, :size => "25x10" %><br/>
+							<%= text_area_tag 'abbreviation_list', flash[:abbreviations], :size => "25x10" %><br/>
 					  		<%= submit_tag "Add" %>
 						</p>
 					<% end %>

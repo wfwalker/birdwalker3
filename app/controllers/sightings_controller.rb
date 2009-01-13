@@ -82,6 +82,8 @@ class SightingsController < ApplicationController
 
     rescue Exception => exc
       flash[:error] = exc.message
+      flash[:abbreviations] = params[:abbreviation_list]
+      flash[:location_id] = @sighting.location_id
       redirect_to :back
     end  
   end                            
