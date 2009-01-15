@@ -12,10 +12,6 @@ module ApplicationHelper
     h date.strftime("%B %d")
   end
   
-  def sighting_year_range()
-    (1996..2008)
-  end
-  
   def has_reference_url?(subject, &block)
     yield if subject.reference_url && subject.reference_url.length >= 1
   end
@@ -75,17 +71,17 @@ module ApplicationHelper
   end
 
 	def counts_by_year_image_tag(totals, width=370, height=150) 
-	  yearly_max = 10 * (totals[1996..2008].max / 10.0).ceil
+	  yearly_max = 10 * (totals[1996..2009].max / 10.0).ceil
 	  
 	  stuff = {
 	    :chco => 555555,
 	    :chxt => "y",       
 	    :chxr => "0,0," + yearly_max.to_s,
 	    :cht => "bvs",
-	    :chd => "t:" + totals[1996..2008].join(","),
+	    :chd => "t:" + totals[1996..2009].join(","),
 	    :chds => "0," + yearly_max.to_s,
 	    :chs => width.to_s + "x" + height.to_s,
-	    :chl => (1996..2008).to_a.join("|")
+	    :chl => Sighting.year_range.to_a.join("|")
 	  } 
 	      
     chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
