@@ -3,7 +3,11 @@ class Sighting < ActiveRecord::Base
   belongs_to :species
   belongs_to :trip
   
-  validates_presence_of :species_id, :location_id, :trip_id
+  validates_presence_of :species_id, :location_id, :trip_id      
+  
+  def Sighting.year_range
+    (1996..2009)
+  end
     
   def Sighting.map_by_location(sighting_list)
     sighting_list.inject({}) { | map, sighting |
@@ -30,15 +34,15 @@ class Sighting < ActiveRecord::Base
   def Sighting.map_by_year_and_species(sighting_list)
     map = {}
     totals = []
-    for year in (1996..2008) do
+    for year in year_range do
       totals[year] = 0
     end
 	
     for sighting in sighting_list do
         if (sighting.species) then
           if (!map[sighting.species]) then
-            map[sighting.species] = (1996..2008).to_a
-            for year in (1996..2008) do
+            map[sighting.species] = year_range.to_a
+            for year in Sighting.year_range do
               map[sighting.species][year] = ''
             end            
           end
@@ -56,14 +60,14 @@ class Sighting < ActiveRecord::Base
   def Sighting.map_by_year_and_location(sighting_list)
     map = {}
     totals = []
-    for year in (1996..2008) do
+    for year in year_range do
       totals[year] = 0
     end
 	
     for sighting in sighting_list do
         if (sighting.location) then
           if (!map[sighting.location]) then
-            map[sighting.location] = (1996..2008).to_a
+            map[sighting.location] = year_range.to_a
           end
         
           if (map[sighting.location][sighting.trip.date.year] != 'X') then
