@@ -41,6 +41,17 @@ class CountiesControllerTest < Test::Unit::TestCase
 
     assert_not_nil assigns(:county)
     assert assigns(:county).valid?
+  end             
+  
+  def test_show_species_by_year
+    get :show_species_by_year, :id => @first_id
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'show_species_by_year'
+
+    assert_not_nil assigns(:county)
+    assert assigns(:county).valid?
   end
 
   def test_new
