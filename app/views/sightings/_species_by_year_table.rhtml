@@ -1,3 +1,5 @@
+<% total_columns = (Sighting.year_range.to_a.size) + 1 %>
+                                  
 <div class="pagecontentitem">
    <table spacing="0" cellspacing="0" padding="0" cellpadding="0">
 		<tr>
@@ -7,7 +9,7 @@
 			<% end %>
 		</tr>      
 		
-		<tr><td class="tabledivider" colspan="14"> </td></tr>       
+		<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
 		
 		<% for key in Species.sort_taxonomic(@map.keys) %>
 			<tr valign="top">
@@ -17,7 +19,7 @@
 				<% end %>
 			</tr>
 		
-			<tr><td class="tabledivider" colspan="14"> </td></tr>       
+			<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
 		<% end %>
 		
 		<% if (@map.keys.size > 20) then %>
@@ -30,7 +32,7 @@
 		<% end %>
 		
 		<% if (@map.keys.size > 30) then %>
-			<tr><td class="tabledivider" colspan="14"> </td></tr>       
+			<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
 		
 			<tr>
 				<td></td>	

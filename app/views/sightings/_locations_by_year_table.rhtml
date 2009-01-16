@@ -1,3 +1,5 @@
+<% total_columns = (Sighting.year_range.to_a.size) + 1 %>
+
 <div class="pagecontentitem">
 	<table spacing="0" cellspacing="0" padding="0" cellpadding="0">
 		<tr>
@@ -7,7 +9,7 @@
 			<% end %>
 		</tr>
  		
-		<tr><td class="tabledivider" colspan="14"> </td></tr>       
+		<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
    	
 		<% for key in (@map.keys) %>
 			<tr valign="top">
@@ -16,7 +18,7 @@
 					<td class="<%= year % 2 == 0 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= @map[key][year] %></td>
 				<% end %>
 
-				<tr><td class="tabledivider" colspan="14"> </td></tr>       
+				<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
 			</tr>
 		<% end %>
 				
@@ -28,7 +30,7 @@
 				<% end %>
 			</tr>
 		
-			<tr><td class="tabledivider" colspan="14"> </td></tr>       
+			<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
 		<% end %>
 		
 		<% if (@map.keys.size > 30) then %>
