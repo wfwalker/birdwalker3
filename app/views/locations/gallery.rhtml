@@ -1,57 +1,41 @@
 <% @page_kind = 'Location' %>
 <% @page_title = @location.name + " Gallery" %>
 
-<div id="gallerythumbs">
-	<div>
-		<%= link_to image_tag("prev-up.gif", :border=>0), {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
-	</div>
-	
-	<% for gallery_thumb in @location.gallery_photos[@start_index..@end_index] do %>
-		<div class="photo">
-			<%= link_to gallery_thumb.tiny_thumb, {:action => 'gallery', :start_index => @start_index, :id => @location, :featured_photo_id => gallery_thumb.id} %>
-		</div>
-	<% end %>
-	
-	<div>
-		<%= link_to image_tag("next-down.gif", :border=>0), {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
-	</div>
-</div>
-
 <div id="pagebody">
 	<div id="pagecontent"> 
 		<div class="pagecontentmodule">  
 			<div class="pagecontentitem">
-				<% if @featured_photo != nil then %>
-					<div style="font-size: 20px"><%= @location.name %> photos by Bill Walker</div>
+				<div style="font-size: 24px"><%= @location.name %> photos by Bill Walker</div>
+			
+				<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
+				<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+			</div>
+		</div>		
+		
+		<div class="pagecontentmodule">  
+			<div class="pagecontentitem">
+				<% for gallery_thumb in @location.gallery_photos[@start_index..@end_index] do %>
+					<div style="font-size: 24px; margin-top: 30px"><%= safe_species_common_name(gallery_thumb) %></div>
+					<div style="margin-bottom: 10px"><%= short_nice_date(gallery_thumb.trip.date) %> at <%= safe_location_name(gallery_thumb) %></div>
 
-					<div style="font-size: 24px">
-						<%= safe_species_common_name(@featured_photo) %>
-						
-	 					<% editing_is_allowed?() do %>
-							<span style="font-size: 9pt"><%= link_to 'edit', edit_photo_url(@featured_photo) %></span>
-
-	 						<span style="font: 9pt Courier">
-								[
-									<% (1..5).each do |index| %>
-										<%= link_to (@featured_photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @featured_photo, :rating => index %>
-									<% end %>
-								]
-							</span> 
-						<% end %>                                                                
-  					</div>
-
-					<div style="margin-bottom: 20px"><%= short_nice_date(@featured_photo.trip.date) %> at <%= safe_location_name(@featured_photo) %></div>
-
-   					<img src="<%= @featured_photo.photo_URL %>"/><br/>            
-
-					<div style="padding-top: 20px; width: 50%"><%= @featured_photo.notes %></div>
-					
-					<div style="padding-top: 20px">
-						All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
+					<div class="photo">
+						<%= link_to gallery_thumb.photo, {:action => 'gallery', :start_index => @start_index, :id => @location, :featured_photo_id => gallery_thumb.id} %>
 					</div>
-				<% end %>                  
-			</div>                             
+
+				<% end %>
+				
+				<div style="padding-top: 20px; padding-bottom: 50px">
+					All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
+				</div>				
+			</div>
 		</div>
+
+		<div class="pagecontentmodule">  
+			<div class="pagecontentitem">
+				<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
+				<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+			</div>
+		</div>		
 	</div>        
 </div>
 
