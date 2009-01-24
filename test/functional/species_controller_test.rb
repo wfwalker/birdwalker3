@@ -57,9 +57,9 @@ class SpeciesControllerTest < Test::Unit::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'photo_life_list'
+    assert_template 'photo_to_do_list'
 
-    assert_not_nil assigns(:all_species_photographed)
+    assert_not_nil assigns(:all_species_not_photographed)
   end
 
   def test_show
