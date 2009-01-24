@@ -95,4 +95,12 @@ class Species < ActiveRecord::Base
          WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "' 
          AND WeekOfYear(trips.date)<='" + Date.today.cweek.to_s + "'")
   end
+
+  def Species.find_all_seen_in_year(year)  
+    Species.find_by_sql(
+      "SELECT DISTINCT species.* FROM species, families
+         WHERE families.id=species.family_id
+         AND EXISTS (select species_id from sightings, trips WHERE species.id=sightings.species_id AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "')
+         ORDER BY families.taxonomic_sort_id, species.id")
+  end
 end
