@@ -61,9 +61,10 @@ class Species < ActiveRecord::Base
 
   def Species.find_all_not_photographed
     Species.find_by_sql(
-      "SELECT * FROM species
-         WHERE aba_countable=1 AND id=ANY
-           (SELECT distinct species_id FROM (select distinct species_id, max(photo) AS count FROM sightings as t1 GROUP BY species_id) AS t2 WHERE count=0)")
+    "SELECT DISTINCT(species.id), species.* from species, sightings, families 
+       WHERE species.id=sightings.species_id AND species.family_id=families.id AND species.aba_countable=1
+       AND NOT EXISTS (select species_id from photos WHERE species.id=photos.species_id)
+       ORDER BY families.taxonomic_sort_id, species.id")
   end  
 
   def Species.find_all_seen_by_common_name

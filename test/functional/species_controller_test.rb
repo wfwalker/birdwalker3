@@ -32,6 +32,36 @@ class SpeciesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:all_species_seen)
   end
 
+  def test_life_list
+    get :life_list
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'life_list'
+
+    assert_not_nil assigns(:life_sightings)
+  end
+
+  def test_photo_life_list
+    get :photo_life_list
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'photo_life_list'
+
+    assert_not_nil assigns(:all_species_photographed)
+  end
+
+  def test_photo_to_do_list
+    get :photo_to_do_list
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'photo_life_list'
+
+    assert_not_nil assigns(:all_species_photographed)
+  end
+
   def test_show
     get :show, :id => @first_id     
     
