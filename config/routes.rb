@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :species, :singular => :species_instance, :collection => { :life_list => :get, :photo_life_list => :get, :photo_to_do_list => :get }
   
   # wfw special map for year list
-  map.connect 'species/year/:year', :controller => 'species', :action => 'year'
+  map.connect 'species/year_list/:year', :controller => 'species', :action => 'year_list'
 
   # map.resources :fish, :singular => :fish_instance, :new => {:preview => :post}, :member => {:fillet => :post}
 

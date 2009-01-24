@@ -34,10 +34,9 @@ class SpeciesController < ApplicationController
     @all_species_not_photographed = Species.find_all_not_photographed
   end
   
-  def year
-    @all_species_seen = Species.find_by_sql("SELECT DISTINCT(species.id), species.* FROM species, sightings, trips WHERE sightings.trip_id=trips.id AND sightings.species_id=species.id AND year(trips.date)=" + params[:year])
+  def year_list
+    @all_species_seen = Species.find_all_seen_in_year(params[:year])
     @page_title = params[:year].to_s
-    render :action => 'list'
   end      
   
   def show
