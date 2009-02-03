@@ -23,6 +23,37 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_valid_xml(@response.body)
   end
+  
+  def test_search_redirect_to_species
+    get(:search, :terms => 'Wood')
+    assert_response 302
+  end
+
+  def test_search_redirect_to_trip
+    get(:search, :terms => 'First Trip')
+    assert_response 302
+  end
+
+  def test_search_redirect_to_location
+    get(:search, :terms => 'First Place')
+    assert_response 302
+  end
+
+  def test_search_two_locations
+    get(:search, :terms => 'Place')
+    assert @response.body.include?("2 Locations")
+    assert ! @response.body.include?("Trips")
+    assert ! @response.body.include?("Species")
+    assert_valid_xml(@response.body)    
+  end
+
+  def test_search_two_trips
+    get (:search, :terms => 'Trip' )
+    assert ! @response.body.include?("Locations")
+    assert @response.body.include?("2 Trips")
+    assert ! @response.body.include?("Species")
+    assert_valid_xml(@response.body)    
+  end
 
   def test_root_routing
     assert_generates("/", :controller => "bird_walker", :action => "index")
