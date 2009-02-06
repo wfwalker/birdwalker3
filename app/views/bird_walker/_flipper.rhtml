@@ -1,0 +1,27 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Hide from old browsers
+
+function makeArray() {
+        this.length = makeArray.arguments.length
+        for (var i = 0; i < this.length; i++) this[i+1] = makeArray.arguments[i]
+}
+
+var images = new makeArray (
+<%= @recent_gallery_photos.collect { |photo| "\"" + photo.thumb_URL + "\"" }.join(",") %>
+);
+
+var imageIndex = 1;
+var destinationIndex = 1;
+
+function flipper() {
+        if (destinationIndex == 1) document.getElementById("image1").src = images[imageIndex];
+        if (destinationIndex == 2) document.getElementById("image2").src = images[imageIndex];
+        if (destinationIndex == 3) document.getElementById("image3").src = images[imageIndex];
+        imageIndex += 1;
+        destinationIndex += 1;
+        if (imageIndex == images.length) imageIndex = 1;
+        if (destinationIndex == 4) destinationIndex = 1;
+        setTimeout("flipper()", 8000);
+}
+// -->
+</SCRIPT>
