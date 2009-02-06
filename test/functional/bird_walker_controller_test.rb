@@ -23,7 +23,19 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_valid_xml(@response.body)
   end
+
+  def test_index_rss
+    get :index_rss
+    assert_response :success
+    assert_valid_xml(@response.body)
+  end
   
+  def test_sialia_rss
+    get :sialia_rss
+    assert_response :success
+    assert_valid_xml(@response.body)
+  end
+
   def test_search_redirect_to_species
     get(:search, :terms => 'Wood')
     assert_response 302
