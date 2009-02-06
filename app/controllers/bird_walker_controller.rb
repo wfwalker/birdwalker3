@@ -21,6 +21,11 @@ class BirdWalkerController < ApplicationController
 
     @this_year_species = Species.year_to_date(Date.today.year)
     @last_year_species = Species.year_to_date(Date.today.year - 1)
+  end      
+  
+  def photographer
+    @recent_gallery_photos = Photo.find_recent_gallery
+    render_without_layout :file => 'app/views/bird_walker/photographer.rhtml'
   end
 
   def index_rss
@@ -31,7 +36,7 @@ class BirdWalkerController < ApplicationController
     @last_year_species = Species.year_to_date(Date.today.year - 1)  
     
     render_without_layout :file => 'app/views/bird_walker/index_rss.rxml'
-      @headers["Content-Type"] = "application/xml"  
+    headers["Content-Type"] = "application/xml"  
   end
 
   def about
