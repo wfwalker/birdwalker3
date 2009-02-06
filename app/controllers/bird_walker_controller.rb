@@ -1,3 +1,6 @@
+require "nokogiri"
+require "open-uri"   
+
 class BirdWalkerController < ApplicationController
   helper :trips
   helper :species
@@ -29,15 +32,51 @@ class BirdWalkerController < ApplicationController
   end
 
   def index_rss
-    @recent_trips = Trip.find(:all, :limit => 10, :order => 'date DESC')
-    @bird_of_the_week = Species.bird_of_the_week
-    @photo_of_the_week = @bird_of_the_week.photo_of_the_week
+    @recent_trips = Trip.find(:all, :limit => 10, :order => 'date DESC')     
+    
+    @bird_of_the_week = Species.bird_of_the_week 
+    if (@bird_of_the_week != nil)
+      @photo_of_the_week = @bird_of_the_week.photo_of_the_week
+    end
+
     @this_year_species = Species.year_to_date(Date.today.year)
     @last_year_species = Species.year_to_date(Date.today.year - 1)  
     
     render_without_layout :file => 'app/views/bird_walker/index_rss.rxml'
     headers["Content-Type"] = "application/xml"  
+  end           
+  
+  def sialia_rss
+    site_root = "http://www.sialia.com"
+    
+    @record_list = []       
+    i = 0
+
+    doc = Nokogiri::HTML(open(site_root + "/s/calists.pl"))
+
+    for row in doc.css("tr.regular-text") do  
+      cells = row.xpath("td")                
+
+      details_link = site_root + cells[3].xpath("a/@href").text  
+      details = Nokogiri::HTML(open(details_link))    
+
+      record = {}
+
+      record["date"]         = cells[0].text
+      record["list_name"]    = cells[1].text
+      record["author"]       = cells[2].text
+      record["title"]        = cells[3].text            
+      record["details_link"] = details_link            
+      record["details_text"] = details.css("tr.regular-text").xpath("td").text  
+
+      @record_list[i] = record     
+      i = i + 1
+    end      
+    
+    render_without_layout :file => 'app/views/bird_walker/sialia_rss.rxml'
+    headers["Content-Type"] = "application/xml"  
   end
+  
 
   def about
   end
