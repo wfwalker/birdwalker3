@@ -60,7 +60,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
   end
 
   def test_search_two_trips
-    get (:search, :terms => 'Trip' )
+    get :search, :terms => 'Trip'
     assert ! @response.body.include?("Locations")
     assert @response.body.include?("2 Trips")
     assert ! @response.body.include?("Species")
