@@ -28,7 +28,7 @@ class BirdWalkerController < ApplicationController
   
   def photographer
     @recent_gallery_photos = Photo.find_recent_gallery
-    render_without_layout :file => 'app/views/bird_walker/photographer.rhtml'
+    render :layout => false, :file => 'app/views/bird_walker/photographer.rhtml'
   end
 
   def index_rss
@@ -42,7 +42,7 @@ class BirdWalkerController < ApplicationController
     @this_year_species = Species.year_to_date(Date.today.year)
     @last_year_species = Species.year_to_date(Date.today.year - 1)  
     
-    render_without_layout :file => 'app/views/bird_walker/index_rss.rxml'
+    render :layout => false, :file => 'app/views/bird_walker/index_rss.rxml'
     headers["Content-Type"] = "application/xml"  
   end           
   
@@ -73,7 +73,7 @@ class BirdWalkerController < ApplicationController
       i = i + 1
     end      
     
-    render_without_layout :file => 'app/views/bird_walker/sialia_rss.rxml'
+    render :layout => false, :file => 'app/views/bird_walker/sialia_rss.rxml'
     headers["Content-Type"] = "application/xml"  
   end
   
