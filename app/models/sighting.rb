@@ -1,8 +1,8 @@
 class Sighting < ActiveRecord::Base
   belongs_to :location
   belongs_to :species
-  belongs_to :trip
-  
+  belongs_to :trip                                   
+    
   validates_presence_of :species_id, :location_id, :trip_id      
   
   def Sighting.year_range
