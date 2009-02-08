@@ -51,15 +51,15 @@ class PhotosControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_sightings = Photo.count
+    num_photos = Photo.count
 
     post :create, {:photo => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser'} 
 
     assert_response :redirect
     assert_valid_xml(@response.body)
-    assert_redirected_to :action => 'edit'
-
-    assert_equal num_sightings + 1, Photo.count
+    
+    assert_redirected_to :id => 1, :controller => 'trips', :action => 'edit'
+    assert_equal num_photos + 1, Photo.count
   end
 
   def test_edit
@@ -81,6 +81,8 @@ class PhotosControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
+    num_photos = Photo.count
+ 
     assert_nothing_raised {
       Photo.find(@first_id)
     }
@@ -88,9 +90,12 @@ class PhotosControllerTest < Test::Unit::TestCase
     post :destroy, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect             
     assert_valid_xml(@response.body)
+
+    assert_redirected_to :id => 1, :controller => 'trips', :action => 'edit'
+    assert_equal num_photos - 1, Photo.count
     
-    # redirected to edit trip
-    assert_redirected_to :action => 'edit'
+    # redirected to edit trip #1
+    assert_redirected_to :controller => 'trips', :id => 1, :action => 'edit'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Photo.find(@first_id)

@@ -31,6 +31,17 @@ class SpeciesControllerTest < Test::Unit::TestCase
 
     assert_not_nil assigns(:all_species_seen)
   end
+                
+  def test_year_list
+    get :year_list, :year => 2007
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'list'
+
+    assert_not_nil assigns(:all_species_seen)       
+    assert_equal 2, assigns(:all_species_seen).length, "wrong number of species for 2007"
+  end
 
   def test_life_list
     get :life_list

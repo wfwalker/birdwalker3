@@ -70,8 +70,9 @@ class CountiesControllerTest < Test::Unit::TestCase
     post :create, {:county => {:name => 'newname', :state_id => 1}}, {:username => 'testuser'}
 
     assert_response :redirect
-    assert_valid_xml(@response.body)
-    assert_redirected_to :action => 'show'
+    assert_valid_xml(@response.body)                              
+    new_county_id = County.find_by_name("newname").id
+    assert_redirected_to :id => new_county_id, :action => 'show'
 
     assert_equal num_counties + 1, County.count
   end

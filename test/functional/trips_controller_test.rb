@@ -59,8 +59,10 @@ class TripsControllerTest < Test::Unit::TestCase
     post :create, {:trip => {:name => 'new trip', :date => '2007-01-01', :leader => 'new guy'}}, {:username => 'testuser'} 
 
     assert_response :redirect
-    assert_valid_xml(@response.body)
-    assert_redirected_to :action => 'show'
+    assert_valid_xml(@response.body)                                                  
+    
+    new_trip_id = Trip.find_by_name("new trip").id
+    assert_redirected_to :action => 'show', :controller => 'trips', :id => new_trip_id
 
     assert_equal num_trips + 1, Trip.count
   end
