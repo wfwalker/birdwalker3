@@ -1,0 +1,22 @@
+xml.instruct!
+
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+   xml.channel do
+     xml.title "sialia"    
+     xml.link url_for(:only_path => false, :controller => 'bird_walker', :action => 'index')
+     xml.description "sialia"
+
+     xml.language "en-US"
+     xml.generator "birdWalker"
+           
+      @record_list.each do |record|
+        xml.item do
+          xml.title       record["title"]
+          xml.pubDate     record["date"]
+          xml.link        record["details_link"]
+          xml.description record["details_text"]
+          xml.guid        "guid"
+        end
+      end 
+   end
+ end
