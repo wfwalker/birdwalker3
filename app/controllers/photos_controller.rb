@@ -1,10 +1,4 @@
 class PhotosController < ApplicationController
-  auto_complete_for :species, :common_name
- 
-# here's the autocomplete voodoo, put this in someplace, some time 
-#  <p>
-# <%= text_field_with_auto_complete :species, :common_name %>
-#  </p>  
 
   def page_kind
     "photos"
@@ -50,7 +44,7 @@ class PhotosController < ApplicationController
   def recent_gallery_rss
     @recent_gallery_photos = Photo.find_recent_gallery   
     
-    render_without_layout :file => 'app/views/photos/recent_gallery_rss.rxml'
+    render :layout => false, :file => 'app/views/photos/recent_gallery_rss.rxml'
       @headers["Content-Type"] = "application/xml"  
   end
 
