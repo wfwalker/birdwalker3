@@ -6,6 +6,8 @@ require 'application_helper'
 class BirdWalkerController; def rescue_action(e) raise e end; end
 
 class BirdWalkerControllerTest < Test::Unit::TestCase
+  fixtures :species, :families, :photos, :locations, :sightings, :counties, :states
+
   def setup
     @controller = BirdWalkerController.new
     @request    = ActionController::TestRequest.new
@@ -54,6 +56,22 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
   def test_search_two_locations
     get(:search, :terms => 'Place')
     assert @response.body.include?("2 Locations")
+    assert ! @response.body.include?("Trips")
+    assert ! @response.body.include?("Species")
+    assert_valid_xml(@response.body)    
+  end
+
+  def test_search_empty_terms_should_find_nothing
+    get(:search, :terms => '')
+    assert ! @response.body.include?("Locations")
+    assert ! @response.body.include?("Trips")
+    assert ! @response.body.include?("Species")
+    assert_valid_xml(@response.body)    
+  end
+
+  def test_search_no_terms
+    get :search
+    assert ! @response.body.include?("Locations")
     assert ! @response.body.include?("Trips")
     assert ! @response.body.include?("Species")
     assert_valid_xml(@response.body)    
