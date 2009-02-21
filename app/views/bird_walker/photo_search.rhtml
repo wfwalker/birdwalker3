@@ -21,7 +21,7 @@
 				</p>
 				<p>
 					<label for="sighting_species">Species</label><br/>
-					<%= collection_select("photo", "species_id", Species.find_all_photographed, :id, :common_name, {:prompt => true}) %>
+					<%= collection_select("photo", "species_id", Species.photographed, :id, :common_name, {:prompt => true}) %>
 				</p>
 				<p>
 					<label for="sighting_species">Family</label><br/>
