@@ -18,16 +18,16 @@ class SpeciesController < ApplicationController
 #         :redirect_to => { :action => :list }
 
   def list
-    @all_species_seen = Species.find_all_seen_not_excluded
+    @all_species_seen = Species.seen_not_excluded
   end
   
   def life_list
-    all_species_seen = Species.find_all_seen_not_excluded
+    all_species_seen = Species.seen_not_excluded
     @life_sightings = all_species_seen.map(&:first_sighting).flatten.uniq    
   end
 
   def photo_life_list
-    @all_species_photographed = Species.find_all_countable_photographed
+    @all_species_photographed = Species.photographed.countable
   end                        
   
   def photo_to_do_list
