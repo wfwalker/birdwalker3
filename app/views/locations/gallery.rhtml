@@ -2,33 +2,37 @@
 <% @page_title = @location.name + " Gallery" %>
 
 <div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @location.name %> photos by Bill Walker
+		</div>
+	</div>
+	
 	<div id="pagecontent"> 
 		<div class="pagecontentmodule">  
 			<div class="pagecontentitem">
-				<div style="font-size: 24px"><%= @location.name %> photos by Bill Walker</div>
-			
 				<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
 				<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
 			</div>
 		</div>		
 		
-		<div class="pagecontentmodule">  
-			<div class="pagecontentitem">
-				<% for gallery_thumb in @location.gallery_photos[@start_index..@end_index] do %>
-					<div style="font-size: 24px; margin-top: 30px"><%= safe_species_common_name(gallery_thumb) %></div>
-					<div style="margin-bottom: 10px"><%= short_nice_date(gallery_thumb.trip.date) %> at <%= safe_location_name(gallery_thumb) %></div>
-
-					<div class="photo">
-						<%= link_to gallery_thumb.photo, {:action => 'gallery', :start_index => @start_index, :id => @location, :featured_photo_id => gallery_thumb.id} %>
-					</div>
-
-				<% end %>
-				
-				<div style="padding-top: 20px; padding-bottom: 50px">
-					All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
-				</div>				
+		<% for gallery_thumb in @location.gallery_photos[@start_index..@end_index] do %>
+			<div class="pagecontentmodule">  
+				<div style="font-size: 14pt; padding-top: 30px; margin-left: 12px">
+					<%= safe_species_common_name(gallery_thumb) %>
+				</div>
+				<div style="margin-left: 12px; padding-bottom: 15px">
+					<%= short_nice_date(gallery_thumb.trip.date) %> at <%= safe_location_name(gallery_thumb) %>
+				</div>
+				<div class="pagecontentitem">
+					<%= link_to gallery_thumb.photo, {:action => 'gallery', :start_index => @start_index, :id => @location, :featured_photo_id => gallery_thumb.id} %>
+				</div>
 			</div>
-		</div>
+		<% end %>
+		
+		<div style="padding-top: 20px; padding-bottom: 50px">
+			All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
+		</div>				
 
 		<div class="pagecontentmodule">  
 			<div class="pagecontentitem">
