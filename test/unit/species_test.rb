@@ -9,10 +9,10 @@ class SpeciesTest < Test::Unit::TestCase
   end                 
   
   def test_find_all_countable_photographed
-    assert Species.find_all_countable_photographed.size == 2
+    assert Species.countable.photographed.size == 2
   end
 
   def test_find_all_photographed
-    assert Species.find_all_photographed.size == 2
+    assert Species.photographed.size == 2
   end
 end
