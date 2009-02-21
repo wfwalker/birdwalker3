@@ -28,11 +28,11 @@ class SightingTest < Test::Unit::TestCase
   
   def test_secondary_associations
     # species to/from locations
-    assert_equal 2, Location.find(1).species.count
-    assert_equal 2, Location.find(2).species.count
+    assert_equal 1, Location.find(1).species.count
+    assert_equal 1, Location.find(2).species.count
 
-    assert_equal 2, Species.find(1).locations.count
-    assert_equal 2, Species.find(2).locations.count
+    assert_equal 1, Species.find(1).locations.count
+    assert_equal 1, Species.find(2).locations.count
 
     # trips to/from species
     assert_equal 2, Trip.find(1).species.count
