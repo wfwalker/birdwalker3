@@ -142,29 +142,27 @@ class BirdWalkerController < ApplicationController
   end
   
   def search
-    if (params[:terms] != nil) then
-      logger.error("searching for  " + params[:terms])
-      
+    if (params[:terms] != nil && params[:terms].length > 0) then
       @found_counties = County.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
       @found_species = Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND species.common_name LIKE '%#{params[:terms]}%' ORDER BY species.id")
       @found_trips = Trip.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
       @found_locations = Location.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
       @terms = params[:terms]
+
+      if ((@found_species.size + @found_counties.size + @found_trips.size + @found_locations.size) == 1) then    
+	    if (@found_species.size == 1) then
+          redirect_to :controller => 'species', :action => 'show', :id => @found_species[0]       
+      	elsif (@found_counties.size == 1) then
+          redirect_to :controller => 'counties', :action => 'show', :id => @found_counties[0]       
+        elsif (@found_trips.size == 1) then
+          redirect_to :controller => 'trips', :action => 'show', :id => @found_trips[0]       
+        elsif (@found_locations.size == 1) then
+          redirect_to :controller => 'locations', :action => 'show', :id => @found_locations[0]       
+        end
+      end
     else
       @terms = "terms"
     end           
-
-    if ((@found_species.size + @found_counties.size + @found_trips.size + @found_locations.size) == 1) then    
-      if (@found_species.size == 1) then
-        redirect_to :controller => 'species', :action => 'show', :id => @found_species[0]       
-      elsif (@found_counties.size == 1) then
-        redirect_to :controller => 'counties', :action => 'show', :id => @found_counties[0]       
-      elsif (@found_trips.size == 1) then
-        redirect_to :controller => 'trips', :action => 'show', :id => @found_trips[0]       
-      elsif (@found_locations.size == 1) then
-        redirect_to :controller => 'locations', :action => 'show', :id => @found_locations[0]       
-      end
-    end
   end
   
   def logout
