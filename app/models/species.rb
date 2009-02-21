@@ -1,18 +1,27 @@
 class Species < ActiveRecord::Base
   belongs_to :family
-  
+                     
+  # a Species has many sightings, including a first and last one                     
   has_many :sightings
   has_one :first_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id'
   has_one :last_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id DESC'
-
+                                 
+  # a Species has many photos, including 'gallery' (best quality) photos
   has_many :photos
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
-  
-  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC"
-         
-  named_scope :seen_during, lambda { |year| { :include => :trips, :conditions => [ 'year(trips.date) = ?', year ] } }  
-
-  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name" do
+    
+  # trip-related assocations
+  has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC"
+                          
+  # different species lists
+  named_scope :seen, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'         
+  named_scope :photographed, :include => [ :photos, :family ], :conditions => [ 'photos.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'
+  named_scope :seen_not_excluded, :include => [ :sightings, :family ], :conditions => [ 'sightings.exclude = false' ], :order => 'families.taxonomic_sort_id, species.id'  
+  named_scope :countable, :include => :family, :conditions => [ 'species.aba_countable = true' ], :order => 'families.taxonomic_sort_id, species.id'  
+  named_scope :seen_during, lambda { |year| { :include => [ :trips, :family ], :conditions => [ 'year(trips.date) = ?', year ], :order => 'families.taxonomic_sort_id, species.id' } }  
+                                                                            
+  # location-related associations
+  has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do
     def with_lat_long
       Location.with_lat_long(self)
     end
@@ -31,38 +40,6 @@ class Species < ActiveRecord::Base
          AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
   end
   
-  # TODO: some cleaner way to do this!
-  # TODO: what about select common_name,id from species where id in (select species_id from sightings where exclude!=1);
-  def Species.find_all_seen
-    Species.find_by_sql( 
-      "SELECT DISTINCT(species.id), species.* from species, families 
-         WHERE species.family_id=families.id
-         AND EXISTS (select * from sightings where sightings.species_id=species.id)
-         ORDER BY families.taxonomic_sort_id, species.id")
-  end  
-
-  def Species.find_all_seen_not_excluded
-    Species.find_by_sql(
-      "SELECT DISTINCT(species.id), species.* from species, families
-         WHERE species.aba_countable='1' AND species.family_id=families.id
-         AND EXISTS (select * from sightings where sightings.species_id=species.id and sightings.exclude != '1')
-         ORDER BY families.taxonomic_sort_id, species.id")
-  end  
-
-  def Species.find_all_countable_photographed
-    Species.find_by_sql(
-      "SELECT DISTINCT(species.id), species.* FROM species, families, photos
-         WHERE species.aba_countable='1' AND species.id=photos.species_id AND species.family_id=families.id
-         ORDER BY families.taxonomic_sort_id, photos.species_id")
-  end  
-
-  def Species.find_all_photographed
-    Species.find_by_sql(
-      "SELECT DISTINCT(species.id), species.* FROM species, families, photos
-         WHERE species.id=photos.species_id AND species.family_id=families.id
-         ORDER BY families.taxonomic_sort_id, photos.species_id")
-  end  
-
   def Species.find_all_not_photographed
     Species.find_by_sql(
     "SELECT DISTINCT(species.id), species.* from species, sightings, families 

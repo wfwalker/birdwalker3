@@ -7,14 +7,14 @@ class Trip < ActiveRecord::Base
   
   has_many :photos
   
-  has_many :species, :through => :sightings, :select => "DISTINCT species.*" do
+  has_many :species, :through => :sightings, :uniq => true, :order => "species.taxonomic_sort_id, species.id" do
     def map_by_family
       load_target
       Species.map_by_family(proxy_target)
     end  
   end
   
-  has_many :locations, :through => :sightings, :select => "DISTINCT locations.*", :order => "locations.county_id, locations.name" do
+  has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do
     def with_lat_long
       load_target
       Location.with_lat_long(proxy_target)

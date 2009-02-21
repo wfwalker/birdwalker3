@@ -8,14 +8,14 @@ class Location < ActiveRecord::Base
   has_many :photos
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   
-  has_many :species, :through => :sightings, :select => "DISTINCT species.*" do
+  has_many :species, :through => :sightings, :uniq => true do
     def map_by_family
       load_target
       Species.map_by_family(proxy_target)
     end  
   end
   
-  has_many :trips, :through => :sightings, :select => "DISTINCT trips.*", :order => "trips.date DESC" do
+  has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC" do
     def map_by_year
       load_target
       Trip.map_by_year(proxy_target)
