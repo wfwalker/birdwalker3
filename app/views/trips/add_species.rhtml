@@ -1,0 +1,49 @@
+<% @page_kind = 'Trip' %>
+<% @page_title = @trip.name %>
+
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem"><%= nice_date(@trip.date) %></div>
+		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
+		<% has_reference_url?(@trip) do %>
+			<div class="pageheaderitem"><a href="<%= @trip.reference_url %>">See also...</a></div>
+		<% end %>
+	</div>
+	
+	<div id="pagecontent">               
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Trip Sightings</div>
+
+			<div class="pagecontentitem">
+				<% form_tag :controller => 'sightings', :action => 'create_list' do %>
+					<%= error_messages_for 'sighting' %>
+
+					<!--[form:sighting]-->
+					<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
+					<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => "Choose location"}) %>
+
+					<p>
+						<label for="sighting_species">Abbreviations</label><br/>
+						<%= text_area_tag 'abbreviation_list', flash[:abbreviations], :size => "25x10" %><br/>
+				  		<%= submit_tag "Add" %>
+					</p>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="pagecontentmodule">
+			<div class="moduletitle">
+				<%= @trip.species.size %> Species
+			</div>
+			
+			<% for @sighting in Sighting.sort_taxonomic(@trip.sightings) %>
+				<div class="pagecontentitem">
+					<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
+					<%= link_to 'edit', edit_sighting_url(@sighting) %>
+					<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete ' + @sighting.species.common_name + ' Are you sure?', :method => 'delete' %>
+				</div>
+			<% end %> 
+		</div>
+	</div>
+</div>
