@@ -57,6 +57,15 @@ class TripsController < ApplicationController
     end
   end
 
+  def add_species
+    @trip = Trip.find(params[:id])
+
+    if (! is_editing_allowed?) then
+      flash[:error] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    end
+  end
+
   def update
     @trip = Trip.find(params[:id])
 
