@@ -9,8 +9,14 @@ class BirdWalkerController < ApplicationController
   helper :sightings
   helper :photos    
   
-  def page_kind
-    "main"
+  def page_kind                                 
+    this_action = request.path_parameters[:action]
+
+    if ((! this_action) or (this_action.strip == "index"))
+      "main"                  
+    else         
+      this_action.strip
+    end
   end
   
   def index

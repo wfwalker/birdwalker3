@@ -16,20 +16,23 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
 
   def test_about
     get :about
-    assert_response :success
-    assert_valid_xml(@response.body)
+    assert_response :success  
+    assert_valid_xml(@response.body)  
+    assert_template 'about'
   end
 
   def test_index
     get :index
     assert_response :success
     assert_valid_xml(@response.body)
+    assert_template 'index'
   end
 
   def test_index_rss
     get :index_rss
     assert_response :success
     assert_valid_xml(@response.body)
+    assert_template 'app/views/bird_walker/index_rss.rxml'
   end
   
 #  def test_sialia_rss
@@ -59,6 +62,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert ! @response.body.include?("Trips")
     assert ! @response.body.include?("Species")
     assert_valid_xml(@response.body)    
+    assert_template 'search'
   end
 
   def test_search_empty_terms_should_find_nothing
@@ -67,6 +71,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert ! @response.body.include?("Trips")
     assert ! @response.body.include?("Species")
     assert_valid_xml(@response.body)    
+    assert_template 'search'
   end
 
   def test_search_no_terms
@@ -75,6 +80,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert ! @response.body.include?("Trips")
     assert ! @response.body.include?("Species")
     assert_valid_xml(@response.body)    
+    assert_template 'search'
   end
 
   def test_search_two_trips
@@ -83,6 +89,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert @response.body.include?("2 Trips")
     assert ! @response.body.include?("Species")
     assert_valid_xml(@response.body)    
+    assert_template 'search'
   end
 
   def test_root_routing
