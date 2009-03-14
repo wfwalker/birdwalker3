@@ -78,6 +78,17 @@ class TripsControllerTest < Test::Unit::TestCase
     assert assigns(:trip).valid?
   end
 
+  def test_add_species
+    get :add_species, {:id => @first_id}, {:username => 'testuser'}
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'add_species'
+
+    assert_not_nil assigns(:trip)
+    assert assigns(:trip).valid?
+  end
+
   def test_update
     post :update, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect

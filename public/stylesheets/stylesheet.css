@@ -55,7 +55,7 @@ a:hover { text-decoration: underline; }
 	position: absolute;
 	background-color: #FFAAAA;
 	z-index: 3;
-	left: 50%; top: 10px;
+	left: 10%; top: 80px;
 	padding: 5px;
 	border: solid 1px red;
 }

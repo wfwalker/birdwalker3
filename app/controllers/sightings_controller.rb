@@ -60,7 +60,7 @@ class SightingsController < ApplicationController
           bogus_abbreviations << an_abbrev if ! temp
         end
 
-        raise "Please pick your location again and fix these abbreviations: " + bogus_abbreviations.join(", ") if bogus_abbreviations.size > 0
+        raise "Please fix these abbreviations: " + bogus_abbreviations.join(", ") if bogus_abbreviations.size > 0
 
         for an_abbrev in abbreviations do
           @sighting = Sighting.new(params[:sighting])
@@ -76,7 +76,8 @@ class SightingsController < ApplicationController
 
     rescue Exception => exc
       flash[:error] = exc.message
-      flash[:abbreviations] = params[:abbreviation_list]
+      flash[:abbreviations] = params[:abbreviation_list]    
+      flash[:location_id] = @sighting.location_id
       redirect_to :back
     end  
   end                            

@@ -13,16 +13,23 @@
 	
 	<div id="pagecontent">               
 		<div class="pagecontentmodule">
-			<div class="moduletitle">Trip Sightings</div>
-
+			<div class="moduletitle">Trip Sightings</div>             
+			
 			<div class="pagecontentitem">
 				<% form_tag :controller => 'sightings', :action => 'create_list' do %>
-					<%= error_messages_for 'sighting' %>
+					<%= error_messages_for 'sighting' %> 
+					
+					<% location_id_to_use = nil
+					   if (flash[:location_id])   
+					       location_id_to_use = flash[:location_id]
+					   elsif (@trip.locations and @trip.locations.size > 0)
+						   location_id_to_use = @trip.locations[0].id
+ 					   end %>
 
 					<!--[form:sighting]-->
 					<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
-					<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name, {:prompt => "Choose location"}) %>
-
+					
+					<%= select("sighting", "location_id", Location.find(:all, :order => 'name').collect { |p| [ p.name, p.id ] }, { :selected => location_id_to_use, :prompt => "Choose Location" })%>
 					<p>
 						<label for="sighting_species">Abbreviations</label><br/>
 						<%= text_area_tag 'abbreviation_list', flash[:abbreviations], :size => "25x10" %><br/>
