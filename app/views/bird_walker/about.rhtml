@@ -23,7 +23,8 @@
 
 	      <div class="pagecontentmodule">
 		  <div class="moduletitle"> Field Notes and Listing</div>
-			<p class="pagecontentitem">Mary and Bill maintain a <a href="/species;life_list">joint life list</a>, meaning that both of us have to see a particular species
+			<p class="pagecontentitem">Mary and Bill maintain a <%= link_to 'joint life list', :controller => 'species', :action => 'life_list' %>,
+			meaning that both of us have to see a particular species
 	        before we put it on the life list. When one of us sees a bird the other doesn&#39;t see, we mark that sighting
 	        "excluded" so that it doesn&#39;t get added to the life list.</p>
 			<p class="pagecontentitem">In the field, we use John Shipman&#39;s <a href="http://www.nmt.edu/~shipman/z/nom/6home.html">six letter code</a>
