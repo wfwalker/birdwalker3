@@ -11,7 +11,7 @@
 		</div>
 		<div class="pageheaderitem"><%= nice_date(@trip.date) %>
 			<% has_reference_url?(@trip) do %>
-				(<a href="<%= @trip.reference_url %>">See also...</a>)
+				(<%= link_to 'See also...', @trip.reference_url %>)
 			<% end %>
 		</div>
 		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
