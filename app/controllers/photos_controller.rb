@@ -160,8 +160,4 @@ class PhotosController < ApplicationController
     @photo.destroy
     redirect_to edit_trip_url(@photo.trip_id)
   end
-  
-  def autocomplete_species
-      @species_list = Species.find(:all, :conditions => ["common_name like ?", "%#{params[:photo][:species]}%"])
-  end
 end
