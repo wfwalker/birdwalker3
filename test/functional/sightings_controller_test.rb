@@ -48,6 +48,18 @@ class SightingsControllerTest < Test::Unit::TestCase
     assert_equal num_sightings + 1, Sighting.count
   end
 
+  def test_create_list
+    num_sightings = Sighting.count
+
+    post :create_list, {:sighting => {:trip_id => 1, :location_id => 1}, :abbreviation_list => "dodo ivbwoo"}, {:username => 'testuser'} 
+
+    assert_response :redirect
+    assert_valid_xml(@response.body)
+    assert_redirected_to :controller => 'trips', :id => 1, :action => 'edit'
+
+    assert_equal num_sightings + 2, Sighting.count
+  end
+
   def test_edit
     get :edit, {:id => @first_id}, {:username => 'testuser'}
 
