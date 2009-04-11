@@ -1,0 +1,33 @@
+<% @page_kind = 'Trip' %>
+<% @page_title = @trip.name %>
+
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle"><%= @page_title %></div>
+		<div class="pageheaderitem"><%= nice_date(@trip.date) %></div>
+		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
+		<% has_reference_url?(@trip) do %>
+			<div class="pageheaderitem"><%= link_to 'See also...', @trip.reference_url %></div>
+		<% end %>
+	</div>
+	
+	<div id="pagecontent">           
+		<div class="pageheaderitem">
+			<%= link_to 'back to trip', :id => @trip.id, :controller => 'trips', :action => 'edit' %>
+		</div>    
+
+		<div class="pagecontentmodule">
+			<div class="moduletitle">
+				Trip Sightings (<%= @trip.species.size %>)
+			</div>
+		
+			<% for @sighting in Sighting.sort_taxonomic(@trip.sightings) %>
+				<div class="pagecontentitem">
+					<%= link_to 'edit', edit_sighting_url(@sighting) %>
+					<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
+					<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete ' + @sighting.species.common_name + ' Are you sure?', :method => 'delete' %>
+				</div>
+			<% end %> 
+		</div>
+	</div>
+</div>

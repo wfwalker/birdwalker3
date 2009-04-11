@@ -12,8 +12,12 @@
 	</div>
 	
 	<div id="pagecontent">               
+		<div class="pageheaderitem">
+			<%= link_to 'back to trip', :id => @trip.id, :controller => 'trips', :action => 'edit' %>
+		</div>    
+
 		<div class="pagecontentmodule">
-			<div class="moduletitle">Trip Sightings</div>             
+			<div class="moduletitle">Trip Sightings (<%= @trip.species.size %>)</div>             
 			
 			<div class="pagecontentitem">
 				<% form_tag :controller => 'sightings', :action => 'create_list' do %>
@@ -37,20 +41,6 @@
 					</p>
 				<% end %>
 			</div>
-		</div>
-
-		<div class="pagecontentmodule">
-			<div class="moduletitle">
-				<%= @trip.species.size %> Species
-			</div>
-			
-			<% for @sighting in Sighting.sort_taxonomic(@trip.sightings) %>
-				<div class="pagecontentitem">
-					<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
-					<%= link_to 'edit', edit_sighting_url(@sighting) %>
-					<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete ' + @sighting.species.common_name + ' Are you sure?', :method => 'delete' %>
-				</div>
-			<% end %> 
 		</div>
 	</div>
 </div>

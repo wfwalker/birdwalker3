@@ -12,12 +12,18 @@
 	</div>
 	
 	<div id="pagecontent">               
-		<div class="pagecontentmodule">
-			<div class="moduletitle">Trip Detail</div>
+		<div class="pageheaderitem">
+			<%= link_to 'add sightings', :id => @trip.id, :controller => 'trips', :action => 'add_species' %>
+		</div>
+		<div class="pageheaderitem">
+			<%= link_to 'change/delete sightings', :id => @trip.id, :controller => 'trips', :action => 'edit_sightings' %>
+		</div>
+		<div class="pageheaderitem">
+			<%= link_to 'back to trip', :id => @trip.id, :controller => 'trips', :action => 'show' %>
+		</div>
 
-			<p class="pagecontentitem">
-				<%= link_to 'add species', :id => @trip.id, :controller => 'trips', :action => 'add_species' %>
-			</p>
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Trip Details</div>
 
 			<div class="pagecontentitem">
 				<% form_for :trip, @trip, :url => trip_path(@trip), :html => { :method => 'put' } do |form| %>

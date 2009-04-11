@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   helper :locations
   helper :sightings
   helper :photos
-
+  
   def page_kind
     "trips"
   end
@@ -58,6 +58,15 @@ class TripsController < ApplicationController
   end
 
   def add_species
+    @trip = Trip.find(params[:id])
+
+    if (! is_editing_allowed?) then
+      flash[:error] = 'Editing not allowed.'
+      redirect_to :controller => 'bird_walker', :action => 'login'
+    end
+  end
+
+  def edit_sightings
     @trip = Trip.find(params[:id])
 
     if (! is_editing_allowed?) then
