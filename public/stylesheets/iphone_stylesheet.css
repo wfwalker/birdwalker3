@@ -18,6 +18,23 @@ a:hover { color: red; text-decoration: underline; }
 	margin-left: 4px; margin-top: 5px; margin-bottom: 7px
 }
 
+#notice
+{
+	background-color: #AAFFAA;
+	z-index: 3;
+	padding: 5px;
+	border: solid 1px green;
+}       
+
+#error
+{
+	background-color: #FFAAAA;
+	z-index: 3;
+	padding: 5px;
+	border: solid 1px red;
+}
+
+
 #browse
 {
 	background-color: #EEEEEE;
