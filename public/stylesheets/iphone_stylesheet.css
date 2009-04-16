@@ -34,13 +34,6 @@ a:hover { color: red; text-decoration: underline; }
 	border: solid 1px red;
 }
 
-
-#browse
-{
-	background-color: #EEEEEE;
-	text-align: center;
-}
-
 #menu
 {
 	margin-bottom: 5px;
@@ -121,12 +114,6 @@ a:hover { color: red; text-decoration: underline; }
 #photos .photo
 {
 	padding-bottom: 5px; display: inline;
-}
-
-#pagebody
-{
-	top: 0px; left: 110px; width: 320px;	
-	padding-bottom: 50px;
 }
 
 #pagecontent
