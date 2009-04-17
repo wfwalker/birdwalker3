@@ -36,7 +36,7 @@
 					<%= select("sighting", "location_id", Location.find(:all, :order => 'name').collect { |p| [ p.name, p.id ] }, { :selected => location_id_to_use, :prompt => "Choose Location" })%>
 					<p>
 						<label for="sighting_species">Abbreviations</label><br/>
-						<%= text_area_tag 'abbreviation_list', flash[:abbreviations], :size => "25x10" %><br/>
+						<%= text_area_tag 'abbreviation_list', flash[:abbreviations], :autocapitalize => "off", :autocorrect => "off", :size => "7x25" %><br/>
 				  		<%= submit_tag "Add" %>
 					</p>
 				<% end %>

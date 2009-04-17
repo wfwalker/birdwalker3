@@ -1,21 +1,23 @@
 body
 {
-	font: 9pt Arial; width: 320px;
+	font: 10pt Arial; width: 320px;
 }
 
 a       { text-decoration: none; }
 a:hover { color: red; text-decoration: underline; }
 
+textarea { font: 14pt Arial; }
+
 .moduletitle
 {
 	font-weight: normal; font-size: 14pt;
-	margin-left: 2px; margin-top: 5px; margin-bottom: 7px
+	margin-left: 2px; margin-top: 4px; margin-bottom: 5px
 }
 
 .modulesubtitle
 {
 	font-weight: normal; font-size: 12pt;
-	margin-left: 4px; margin-top: 5px; margin-bottom: 7px
+	margin-left: 4px; margin-top: 4px; margin-bottom: 5px
 }
 
 #notice
