@@ -22,6 +22,10 @@ class Trip < ActiveRecord::Base
   end
     
   validates_presence_of :name, :date, :leader
+  
+  def Trip.biggest(tripCount)
+    Trip.find_by_sql(["SELECT trips.*, count(distinct(species.id)) AS thecount FROM trips, sightings, species WHERE trips.id=sightings.trip_id AND species.id=sightings.species_id GROUP BY trips.id ORDER BY thecount DESC LIMIT ?", tripCount])
+  end
 
   def Trip.map_by_year(tripList)
     tripList.inject({}) { | map, trip |

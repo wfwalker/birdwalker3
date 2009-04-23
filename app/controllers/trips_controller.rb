@@ -10,6 +10,10 @@ class TripsController < ApplicationController
   def list
     @trips = Trip.find(:all, :order => "date DESC")
   end
+
+  def list_biggest
+    @trips = Trip.biggest(15)
+  end
   
   def show
     @trip = Trip.find(params["id"])
