@@ -65,6 +65,15 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert_template 'search'
   end
 
+  def test_search_apostrophe_should_find_nothing
+    get(:search, :terms => 'Clark\'s Grebe')
+    assert ! @response.body.include?("Locations")
+    assert ! @response.body.include?("Trips")
+    assert ! @response.body.include?("Species")
+    assert_valid_xml(@response.body)    
+    assert_template 'search'
+  end
+
   def test_search_empty_terms_should_find_nothing
     get(:search, :terms => '')
     assert ! @response.body.include?("Locations")
