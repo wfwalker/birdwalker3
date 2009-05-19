@@ -12,7 +12,7 @@ class TripsController < ApplicationController
   end
 
   def list_biggest
-    @trips = Trip.biggest(15)
+    @trips = Trip.biggest(20)
   end
   
   def show
