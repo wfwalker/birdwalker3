@@ -12,7 +12,10 @@
 
 
 	<div id="pagecontent">
-		                
-		<%= render :partial => 'trips/undivided_list', :object => @trips, :locals => { :show_headings => true } %>
+		<% for trip in @trips do %>
+		 <div><%= trip.species.size %>, <%= link_to trip.name, trip_url(trip) %>, <%= trip.date.strftime("%Y %b %d") %></div>
+		                         
+		<% end %>
+		
 	</div>
 </div>
