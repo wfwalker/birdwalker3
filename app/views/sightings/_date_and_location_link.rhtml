@@ -1,5 +1,14 @@
 <% sighting = date_and_location_link %>
 
 <div class="pagecontentitem">
-	<%= sighting.trip.date.strftime('%Y %b %d') %>, <%= link_to sighting.location.name, trip_url(sighting.trip) %>
+	<%= sighting.trip.date.strftime('%Y %b %d') %>, <%= link_to sighting.location.name, trip_url(sighting.trip) %>         
+	
+	<% if (sighting.heard_only) then %>
+		(h)
+	<% end %>
+	
+	<% if (sighting.exclude) then %>
+		(excluded)
+	<% end %>
+	
 </div>
