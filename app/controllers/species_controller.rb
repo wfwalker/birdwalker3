@@ -22,7 +22,7 @@ class SpeciesController < ApplicationController
   end
   
   def life_list
-    all_species_seen = Species.seen_not_excluded
+    all_species_seen = Species.seen_not_excluded.countable
     @life_sightings = all_species_seen.map(&:first_sighting).flatten.uniq    
   end
 
