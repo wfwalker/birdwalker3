@@ -32,6 +32,16 @@ class TripsControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:trips)
   end
 
+  def test_list_biggest
+    get :list_biggest
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'list_biggest'
+
+    assert_not_nil assigns(:trips)
+  end
+
   def test_show
     get :show, :id => @first_id
 
