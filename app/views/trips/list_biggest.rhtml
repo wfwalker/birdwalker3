@@ -1,5 +1,5 @@
 <% @page_kind = "Index" %>
-<% @page_title = "Biggest Days" %>
+<% @page_title = "Our 20 Biggest Big Days" %>
 
 <div id="pagebody">
 	<div id="pageheader">
@@ -11,11 +11,38 @@
 	</div>
 
 
-	<div id="pagecontent">
-		<% for trip in @trips do %>
-		 <div><%= trip.species.size %>, <%= link_to trip.name, trip_url(trip) %>, <%= trip.date.strftime("%Y %b %d") %></div>
-		                         
-		<% end %>
+	<div id="pagecontent">       
+ 
+	  <%= open_first_column %>
+                   
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Trip Summaries</div>
+		</div>
+
+		<%= render :partial => 'trips/summary', :collection => @trips %>
+
+		<%= between_columns %>     
+                                        
+        <% i = 1 %>
+	    
+	    <div class="pagecontentmodule">   
+ 			<div class="moduletitle">Rankings</div>
+			<div class="pagecontentitem">
+			       <table>                   
+					<% for trip in @trips do %>
+					    <tr>
+			                <td align="right"><%= trip.species.size %></td>
+					        <td align="right">#<%= i %></td>
+							<td style="nowrap"><%= link_to trip.name, trip_url(trip) %>, <%= short_nice_date(trip.date) %></td>
+					    </tr>
+				        <% i += 1 %>
+					<% end %>
+					</table> 
+				</div>  
+			</div>    
+		</div>
 		
+		<%= close_second_column %>
+ 		
 	</div>
 </div>
