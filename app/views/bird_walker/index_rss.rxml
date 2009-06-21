@@ -13,8 +13,10 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
        xml.item do
          xml.title       "Bird of the Week (week " + Date.today.cweek.to_s + ")"
          xml.pubDate     Date.today
-         xml.link        url_for(:only_path => false, :controller => 'species', :action => 'show', :id => @bird_of_the_week)
-         xml.description "This week's Bird of the Week is the " + @bird_of_the_week.common_name + ". Photographed " + nice_date(@photo_of_the_week.trip.date) + " <p>" + @photo_of_the_week.tiny_thumb + "</p>"
+         xml.link        url_for(:only_path => false, :controller => 'bird_walker', :action => 'index')
+         xml.description "This week's Bird of the Week is the #{ link_to @bird_of_the_week.common_name, :controller => 'species', :action => 'show', :id => @bird_of_the_week }. " +
+                         "I took this photograph on #{nice_date(@photo_of_the_week.trip.date)} at #{@photo_of_the_week.location.name}<p> " +
+                         "#{ link_to @photo_of_the_week.tiny_thumb, :controller => 'photos', :id => @photo_of_the_week, :action => 'show' } </p>"
          xml.guid        'bird_of_the_week_' + Date.today.year.to_s + '_' + Date.today.cweek.to_s
        end                         
      end
