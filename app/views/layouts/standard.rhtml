@@ -74,7 +74,7 @@ pageTracker._trackPageview();
 					<%= link_to "trips", trips_url %>
 				</li>
 				<li id="<%= @controller.page_kind == 'photos' ? 'current' : '' %>">
-					<%= link_to "photos", photos_url %>
+					<%= link_to "photos", url_for(:controller => 'photos', :action => 'recent_gallery') %>
 				</li>
 			</ul>
 		</div>
