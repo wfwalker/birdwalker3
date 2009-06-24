@@ -28,21 +28,21 @@
 	    <div class="pagecontentmodule">   
  			<div class="moduletitle">Rankings</div>
 			<div class="pagecontentitem">
-			       <table>                   
+		       <table>                   
 					<% for trip in @trips do %>
 					    <tr>
 			                <td align="right"><%= trip.species.size %></td>
 					        <td align="right">#<%= i %></td>
 							<td style="nowrap"><%= link_to trip.name, trip_url(trip) %>, <%= short_nice_date(trip.date) %></td>
 					    </tr>
-				        <% i += 1 %>
+				        <% i += 1 %>           
 					<% end %>
-					</table> 
-				</div>  
+			   </table> 
 			</div>    
 		</div>
 		
-		<%= close_second_column %>
+		<%= close_second_column %>         
+		moo2
  		
 	</div>
 </div>
