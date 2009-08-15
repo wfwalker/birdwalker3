@@ -45,7 +45,7 @@ class PhotosController < ApplicationController
     @recent_gallery_photos = Photo.find_recent_gallery   
     
     render :layout => false, :file => 'app/views/photos/recent_gallery_rss.rxml'
-      @headers["Content-Type"] = "application/xml"  
+    headers["Content-Type"] = "application/xml"  
   end
 
   def new
