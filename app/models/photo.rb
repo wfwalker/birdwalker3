@@ -5,9 +5,11 @@ class Photo < ActiveRecord::Base
   
   validates_presence_of :species_id, :location_id, :trip_id
   
-  def image_base_URL
+  def image_base_URL(hostname)
     if (ENV['image_base_url'] != nil)
       ENV['image_base_url']
+    elsif (hostname != "")
+      "http://" + hostname + "/images"
     else
       "/images"
     end
@@ -21,24 +23,24 @@ class Photo < ActiveRecord::Base
     end
   end
     
-  def photo_URL
-    image_base_URL + "/photo/" + image_filename
+  def photo_URL(hostname="")
+    image_base_URL(hostname) + "/photo/" + image_filename
   end
   
-  def thumb_URL
-    image_base_URL + "/thumb/" + image_filename
+  def thumb_URL(hostname="")
+    image_base_URL(hostname) + "/thumb/" + image_filename
   end
   
-  def thumb      
-    "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumb_URL + "\"/>"
+  def thumb(hostname="")      
+    "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumb_URL(hostname) + "\"/>"
   end
 
-  def photo      
-    "<img border=\"0\" src=\"" + photo_URL + "\"/>"
+  def photo(hostname="")     
+    "<img border=\"0\" src=\"" + photo_URL(hostname) + "\"/>"
   end
 
-  def tiny_thumb
-    "<img border=\"0\" width=\"75\" height=\"75\" src=\"" + thumb_URL + "\"/>"
+  def tiny_thumb(hostname="")
+    "<img border=\"0\" width=\"75\" height=\"75\" src=\"" + thumb_URL(hostname) + "\"/>"
   end
   
   def Photo.map_by_location(photo_list)
