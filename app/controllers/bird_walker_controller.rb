@@ -48,6 +48,8 @@ class BirdWalkerController < ApplicationController
     @this_year_species = Species.year_to_date(Date.today.year)
     @last_year_species = Species.year_to_date(Date.today.year - 1)  
     
+    @http_host = request.headers['Host']
+    
     render :layout => false, :file => 'app/views/bird_walker/index_rss.rxml'
     headers["Content-Type"] = "application/xml"  
   end           
