@@ -29,6 +29,12 @@ class PhotosControllerTest < Test::Unit::TestCase
     assert_template 'recent_gallery'
   end
 
+  def test_recent_gallery_rss
+    get :recent_gallery_rss
+    assert_response :success
+    assert_valid_xml(@response.body)
+  end
+
   def test_show
     get :show, :id => @first_id
 
