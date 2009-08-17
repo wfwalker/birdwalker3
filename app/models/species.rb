@@ -7,7 +7,12 @@ class Species < ActiveRecord::Base
   has_one :last_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id DESC'
                                  
   # a Species has many photos, including 'gallery' (best quality) photos
-  has_many :photos
+  has_many :photos do
+    # Returns photos of this Species taken during the current week-of-the-year
+    def this_week
+      Photo.this_week(self)
+    end
+  end
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
     
   # trip-related assocations
@@ -36,10 +41,6 @@ class Species < ActiveRecord::Base
     self.sightings.size > 30
   end
 
-  # Find a photo of this Species that was taken during the current week-of-the-year
-  def photos_this_week
-    photos.select { |a_photo| a_photo.trip.date.cweek == Date.today.cweek }
-  end
   
   def Species.find_all_not_photographed
     Species.find_by_sql(

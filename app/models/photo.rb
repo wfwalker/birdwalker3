@@ -8,12 +8,16 @@ class Photo < ActiveRecord::Base
   def image_base_URL(hostname)
     if (ENV['image_base_url'] != nil)
       ENV['image_base_url']
-    elsif (hostname != "")
+    elsif (hostname && hostname.length >= 1)
       "http://" + hostname + "/images"
     else
       "/images"
     end
   end      
+  
+  def Photo.this_week(photoList)
+    photoList.select { |a_photo| a_photo.trip.date.cweek == Date.today.cweek }
+  end 
   
   def image_filename
     if self.original_filename != nil
