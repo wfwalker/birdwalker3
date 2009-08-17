@@ -1,4 +1,3 @@
-require "nokogiri"
 require "open-uri"   
 
 class BirdWalkerController < ApplicationController
@@ -48,38 +47,6 @@ class BirdWalkerController < ApplicationController
     headers["Content-Type"] = "application/xml"  
   end           
   
-  def sialia_rss
-    site_root = "http://www.sialia.com"
-    
-    @record_list = []       
-    i = 0
-
-    doc = Nokogiri::HTML(open(site_root + "/s/calists.pl"))
-
-    for row in doc.css("tr.regular-text") do  
-      cells = row.xpath("td")                
-
-      details_link = site_root + cells[3].xpath("a/@href").text  
-      details = Nokogiri::HTML(open(details_link))    
-
-      record = {}
-
-      record["date"]         = cells[0].text
-      record["list_name"]    = cells[1].text
-      record["author"]       = cells[2].text
-      record["title"]        = cells[3].text            
-      record["details_link"] = details_link            
-      record["details_text"] = details.css("tr.regular-text").xpath("td").text  
-
-      @record_list[i] = record     
-      i = i + 1
-    end      
-    
-    render :layout => false, :file => 'app/views/bird_walker/sialia_rss.rxml'
-    headers["Content-Type"] = "application/xml"  
-  end
-  
-
   def about
   end
   
