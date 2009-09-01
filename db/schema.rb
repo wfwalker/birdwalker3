@@ -9,10 +9,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 0) do
 
   create_table "counties", :force => true do |t|
-    t.text    "name"
+    t.text    "name",     :limit => 255
     t.integer "state_id"
   end
 
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(:version => 8) do
     t.text    "city"
     t.integer "county_id"
     t.text    "notes"
-    t.float   "latitude",      :default => 0.0
-    t.float   "longitude",     :default => 0.0
-    t.boolean "photo",         :default => false
+    t.float   "latitude",      :limit => 15, :default => 0.0
+    t.float   "longitude",     :limit => 15, :default => 0.0
+    t.boolean "photo",                       :default => false
   end
 
   add_index "locations", ["name"], :name => "NameIndex"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(:version => 8) do
     t.boolean "aba_countable",              :default => true, :null => false
     t.integer "family_id"
   end
+  
+  change_column(:species, :id, :bigint, :limit => 20, :null => false)
 
   add_index "species", ["aba_countable"], :name => "aba_countableIndex"
   add_index "species", ["abbreviation"], :name => "AbbreviationIndex"
