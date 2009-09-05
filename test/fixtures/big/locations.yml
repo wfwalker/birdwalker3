@@ -1,0 +1,3520 @@
+--- 
+locations_310: 
+  photo: "0"
+  city: ""
+  name: Lake Cypress
+  latitude: "28.0844459534"
+  notes: includes Lake Cypress Road and the boat dock at the end of that road
+  reference_url: ""
+  id: "311"
+  longitude: "-81.3037643433"
+  county_id: "58"
+locations_015: 
+  photo: "0"
+  city: Cape May
+  name: Cape May
+  latitude: "38.9350013733"
+  notes: ""
+  reference_url: ""
+  id: "15"
+  longitude: "-74.9064025879"
+  county_id: "39"
+locations_041: 
+  photo: "0"
+  city: San Francisco
+  name: Golden Gate Park
+  latitude: "37.7857017517"
+  notes: ""
+  reference_url: http://www.nps.gov/goga/
+  id: "41"
+  longitude: "-122.4209976196"
+  county_id: "14"
+locations_122: 
+  photo: "0"
+  city: San Jose
+  name: Ulistac Natural Area
+  latitude: "37.4025001526"
+  notes: ""
+  reference_url: http://www.scu.edu/envs/ulistac/
+  id: "121"
+  longitude: "-121.9680023193"
+  county_id: "2"
+locations_203: 
+  photo: "0"
+  city: California City
+  name: Galileo Hill
+  latitude: "35.2122001648"
+  notes: ""
+  reference_url: ""
+  id: "204"
+  longitude: "-117.7529983521"
+  county_id: "24"
+locations_311: 
+  photo: "0"
+  city: San Mateo
+  name: Skylawn Memorial Park
+  latitude: "37.5018196106"
+  notes: ""
+  reference_url: ""
+  id: "312"
+  longitude: "-122.3710098267"
+  county_id: "13"
+locations_230: 
+  photo: "0"
+  city: Paicines
+  name: Paicines Reservoir
+  latitude: "36.7286643982"
+  notes: ""
+  reference_url: ""
+  id: "231"
+  longitude: "-121.2878799438"
+  county_id: "17"
+locations_016: 
+  photo: "0"
+  city: Carmel
+  name: Carmel
+  latitude: "36.5550003052"
+  notes: ""
+  reference_url: ""
+  id: "16"
+  longitude: "-121.9240036011"
+  county_id: "3"
+locations_042: 
+  photo: "0"
+  city: San Jose
+  name: Grant Ranch County Park
+  latitude: "37.3408012390"
+  notes: ""
+  reference_url: ""
+  id: "42"
+  longitude: "-121.7210006714"
+  county_id: "2"
+locations_123: 
+  photo: "0"
+  city: Palo Alto
+  name: University Lutheran Church
+  latitude: "37.4188995361"
+  notes: ""
+  reference_url: http://www.stanford.edu/group/LSM/
+  id: "122"
+  longitude: "-122.1549987793"
+  county_id: "2"
+locations_204: 
+  photo: "0"
+  city: Kernville
+  name: Kelso Valley Road
+  latitude: "35.3511009216"
+  notes: ""
+  reference_url: ""
+  id: "205"
+  longitude: "-118.2180023193"
+  county_id: "24"
+locations_312: 
+  photo: "0"
+  city: Half Moon Bay
+  name: Blufftop Coastal Park
+  latitude: "37.4551620483"
+  notes: ""
+  reference_url: ""
+  id: "313"
+  longitude: "-122.4435195923"
+  county_id: "13"
+locations_231: 
+  photo: "0"
+  city: Paicines
+  name: Mercey Hot Springs
+  latitude: "36.7041702271"
+  notes: ""
+  reference_url: ""
+  id: "232"
+  longitude: "-120.8591690063"
+  county_id: "28"
+locations_017: 
+  photo: "0"
+  city: Carmel
+  name: Carmel River
+  latitude: "36.5360984802"
+  notes: ""
+  reference_url: ""
+  id: "17"
+  longitude: "-121.9270019531"
+  county_id: "3"
+locations_043: 
+  photo: "0"
+  city: Sausalito
+  name: Hawk Hill
+  latitude: "37.8305015564"
+  notes: ""
+  reference_url: http://www.ggro.org/
+  id: "43"
+  longitude: "-122.4800033569"
+  county_id: "7"
+locations_124: 
+  photo: "0"
+  city: Madison
+  name: University of Wisconsin Arboretum
+  latitude: "43.0466995239"
+  notes: ""
+  reference_url: http://wiscinfo.doit.wisc.edu/arboretum/
+  id: "123"
+  longitude: "-89.4160995483"
+  county_id: "53"
+locations_150: 
+  photo: "0"
+  city: Weslaco
+  name: Estero Llano Grande State Park
+  latitude: "26.1217994690"
+  notes: ""
+  reference_url: http://www.tpwd.state.tx.us/worldbirdingcenter/sites/weslaco/index.phtml
+  id: "150"
+  longitude: "-97.9617004395"
+  county_id: "46"
+locations_205: 
+  photo: "0"
+  city: Mt Hamilton
+  name: Twin Gates
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "206"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_313: 
+  photo: "0"
+  city: Half Moon Bay
+  name: Cascade Ranch
+  latitude: "37.1420822144"
+  notes: This spot along highway one was, in 2007, the site of the famous "rotting brussel sprouts" field that brought dozens of kinglets, warblers, and sparrows to within arm's length in the morning light
+  reference_url: http://findarticles.com/p/articles/mi_qn4176/is_/ai_n17130143
+  id: "314"
+  longitude: "-122.3230514526"
+  county_id: "13"
+locations_232: 
+  photo: "0"
+  city: Panoche
+  name: Panoche Road
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "233"
+  longitude: "0.0000000000"
+  county_id: "17"
+locations_018: 
+  photo: "0"
+  city: Champaign
+  name: Rural Areas of Champaign County
+  latitude: "40.1129989624"
+  notes: Our ancestral home.
+  reference_url: ""
+  id: "18"
+  longitude: "-88.2649002075"
+  county_id: "35"
+locations_044: 
+  photo: "0"
+  city: Madras
+  name: Haystack Reservoir
+  latitude: "44.0586013794"
+  notes: ""
+  reference_url: http://www.recreation.gov/detail.cfm?ID=1145
+  id: "44"
+  longitude: "-121.3140029907"
+  county_id: "42"
+locations_070: 
+  photo: "0"
+  city: Mountain View
+  name: Parcourse Marsh
+  latitude: "37.4222335815"
+  notes: A nice place to work amidst Mountain View office buildings. Home of the bay area's alleged Waterthrush, which has so far eluded us.
+  reference_url: ""
+  id: "70"
+  longitude: "-122.0710296631"
+  county_id: "2"
+locations_125: 
+  photo: "0"
+  city: ""
+  name: Unknown
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "124"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_151: 
+  photo: "0"
+  city: Weslaco
+  name: Frontera Audubon
+  latitude: "26.1467990875"
+  notes: ""
+  reference_url: http://www.fronteraaudubon.org/
+  id: "151"
+  longitude: "-97.9903030396"
+  county_id: "46"
+locations_206: 
+  photo: "0"
+  city: Mt Hamilton
+  name: Smith Creek Fire Station
+  latitude: "37.3224983215"
+  notes: ""
+  reference_url: ""
+  id: "207"
+  longitude: "-121.6675033569"
+  county_id: "2"
+locations_340: 
+  photo: "0"
+  city: Point Reyes Station
+  name: Drake's Bay Oyster Farm
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "344"
+  longitude: "0.0000000000"
+  county_id: "7"
+locations_314: 
+  photo: "0"
+  city: McAllen
+  name: Martin Refuge, Javalina Tract
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "315"
+  longitude: "0.0000000000"
+  county_id: "46"
+locations_233: 
+  photo: "0"
+  city: ""
+  name: Ryer Island
+  latitude: "38.1866683960"
+  notes: ""
+  reference_url: ""
+  id: "234"
+  longitude: "-121.6594390869"
+  county_id: "26"
+locations_019: 
+  photo: "0"
+  city: Palo Alto
+  name: Charleston Slough
+  latitude: "37.4347763062"
+  notes: Our most visited and most productive site. Includes the adjacent Shoreline Lake.
+  reference_url: http://www.calmanac.com/paw/paonline/things_do/baylands.shtml
+  id: "19"
+  longitude: "-122.0990600586"
+  county_id: "2"
+locations_045: 
+  photo: "0"
+  city: San Jose
+  name: Henry Coe State Park
+  latitude: "37.1949996948"
+  notes: ""
+  reference_url: ""
+  id: "45"
+  longitude: "-121.5080032349"
+  county_id: "2"
+locations_071: 
+  photo: "0"
+  city: Trinidad
+  name: Patrick's Point State Park
+  latitude: "41.1361007690"
+  notes: ""
+  reference_url: http://www.parks.ca.gov/allpages/default.asp?page_id=417
+  id: "71"
+  longitude: "-124.1600036621"
+  county_id: "5"
+locations_126: 
+  photo: "0"
+  city: Prairie Du Chien
+  name: Upper Mississippi NWR
+  latitude: "42.3403015137"
+  notes: ""
+  reference_url: http://refuges.fws.gov/profiles/index.cfm?id=32579
+  id: "125"
+  longitude: "-90.4158020020"
+  county_id: "52"
+locations_152: 
+  photo: "0"
+  city: Mission
+  name: Bentsen Rio Grande Valley State Park
+  latitude: "26.1728000641"
+  notes: ""
+  reference_url: http://www.tpwd.state.tx.us/worldbirdingcenter/sites/mission/
+  id: "152"
+  longitude: "-98.3822021484"
+  county_id: "46"
+locations_207: 
+  photo: "0"
+  city: Redwood City
+  name: Marlin Park
+  latitude: "37.5299682617"
+  notes: ""
+  reference_url: ""
+  id: "208"
+  longitude: "-122.2497100830"
+  county_id: "13"
+locations_341: 
+  photo: "0"
+  city: Pacifica
+  name: Pacifica and environs
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "345"
+  longitude: "0.0000000000"
+  county_id: "14"
+locations_315: 
+  photo: "0"
+  city: McAllen
+  name: Allen Williams's Yard
+  latitude: "26.1891689301"
+  notes: ""
+  reference_url: ""
+  id: "316"
+  longitude: "-98.1935424805"
+  county_id: "46"
+locations_260: 
+  photo: "0"
+  city: Sierra City
+  name: Baja Carmen Valley
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "261"
+  longitude: "0.0000000000"
+  county_id: "29"
+locations_234: 
+  photo: "0"
+  city: Union City
+  name: Union City Library
+  latitude: "37.5880584717"
+  notes: ""
+  reference_url: ""
+  id: "235"
+  longitude: "-122.0261077881"
+  county_id: "12"
+locations_046: 
+  photo: "0"
+  city: Palo Alto
+  name: House of Ted
+  latitude: "0.0000000000"
+  notes: Our friend Pat introduced us to his friend Ted in Palo Alto. Ted has a lovely wooded yard with bird feeders. He attracts an interesting combination of birds I don't think of as backyard birds.
+  reference_url: ""
+  id: "46"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_072: 
+  photo: "0"
+  city: Pescadero
+  name: Pescadero Marsh
+  latitude: "37.2611007690"
+  notes: This location records sightings all the way from the ocean and the ranger station inland to the slough
+  reference_url: http://parks.ca.gov/central/bayarea/psb227.htm
+  id: "72"
+  longitude: "-122.4029998779"
+  county_id: "13"
+locations_127: 
+  photo: "0"
+  city: San Jose
+  name: Uvas Canyon Reservoir
+  latitude: "37.0657997131"
+  notes: ""
+  reference_url: http://www.parkhere.org/channel/0,4770,chid%253D16516,00.html
+  id: "126"
+  longitude: "-121.6890029907"
+  county_id: "2"
+locations_153: 
+  photo: "0"
+  city: McAllen
+  name: Anzalduas County Park
+  latitude: "26.1394004822"
+  notes: ""
+  reference_url: ""
+  id: "153"
+  longitude: "-98.3321990967"
+  county_id: "46"
+locations_208: 
+  photo: "0"
+  city: Incline Village
+  name: Tahoe Meadows
+  latitude: "39.2994384766"
+  notes: ""
+  reference_url: ""
+  id: "209"
+  longitude: "-119.9166717529"
+  county_id: "38"
+locations_342: 
+  photo: "0"
+  city: Fremont
+  name: Lake Elizabeth
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "346"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_316: 
+  photo: "0"
+  city: Harlingen
+  name: Suburban Harlingen
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "317"
+  longitude: "0.0000000000"
+  county_id: "46"
+locations_261: 
+  photo: "0"
+  city: Sierra City
+  name: Plumas-Eureka State Park
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "262"
+  longitude: "0.0000000000"
+  county_id: "29"
+locations_235: 
+  photo: "0"
+  city: Scotts Valley
+  name: Spring Lakes
+  latitude: "37.0444374084"
+  notes: Trailer park near Scotts Valley
+  reference_url: ""
+  id: "236"
+  longitude: "-122.0308532715"
+  county_id: "19"
+locations_047: 
+  photo: "0"
+  city: Arcata
+  name: Rural Areas of Humboldt County
+  latitude: "40.6666984558"
+  notes: ""
+  reference_url: ""
+  id: "47"
+  longitude: "-123.9169998169"
+  county_id: "5"
+locations_073: 
+  photo: "0"
+  city: Philadelphia
+  name: Philadelphia
+  latitude: "39.9522018433"
+  notes: ""
+  reference_url: ""
+  id: "73"
+  longitude: "-75.1639022827"
+  county_id: "45"
+locations_128: 
+  photo: "0"
+  city: Los Gatos
+  name: Vasona Creek
+  latitude: "37.2431983948"
+  notes: ""
+  reference_url: http://claraweb.co.santa-clara.ca.us/parks/prkpages/vasndch.htm
+  id: "127"
+  longitude: "-121.9690017700"
+  county_id: "2"
+locations_154: 
+  photo: "0"
+  city: Kernville
+  name: Kern River Preserve
+  latitude: "35.6693992615"
+  notes: ""
+  reference_url: ""
+  id: "154"
+  longitude: "-118.3150024414"
+  county_id: "24"
+locations_180: 
+  photo: "0"
+  city: Point Reyes Station
+  name: Bear Valley Visitors Center
+  latitude: "38.0430984497"
+  notes: ""
+  reference_url: http://www.nps.gov/pore/
+  id: "181"
+  longitude: "-122.7979965210"
+  county_id: "7"
+locations_209: 
+  photo: "0"
+  city: Incline Village
+  name: Mount Rose Trail
+  latitude: "39.3133316040"
+  notes: ""
+  reference_url: ""
+  id: "210"
+  longitude: "-119.8955612183"
+  county_id: "38"
+locations_343: 
+  photo: "0"
+  city: Sisters
+  name: Calliope Crossing
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "347"
+  longitude: "0.0000000000"
+  county_id: "41"
+locations_317: 
+  photo: "0"
+  city: Raymondville
+  name: El Canelo Ranch
+  latitude: "26.6620426178"
+  notes: ""
+  reference_url: ""
+  id: "318"
+  longitude: "-97.8301849365"
+  county_id: "46"
+locations_262: 
+  photo: "0"
+  city: Sierra City
+  name: Sardine Lakes
+  latitude: "39.6107368469"
+  notes: ""
+  reference_url: ""
+  id: "263"
+  longitude: "-120.6313858032"
+  county_id: "29"
+locations_236: 
+  photo: "0"
+  city: Byron
+  name: Byron Hot Springs Road
+  latitude: "37.8358306885"
+  notes: ""
+  reference_url: ""
+  id: "237"
+  longitude: "-121.6369400024"
+  county_id: "10"
+locations_048: 
+  photo: "0"
+  city: San Francisco
+  name: Lake Merced
+  latitude: "37.7256011963"
+  notes: ""
+  reference_url: ""
+  id: "48"
+  longitude: "-122.4980010986"
+  county_id: "14"
+locations_074: 
+  photo: "0"
+  city: McAllen
+  name: McAllen
+  latitude: "26.2031002045"
+  notes: ""
+  reference_url: ""
+  id: "74"
+  longitude: "-98.2296981812"
+  county_id: "46"
+locations_129: 
+  photo: "0"
+  city: South Wellfleet
+  name: Wellfleet Bay
+  latitude: "41.9196014404"
+  notes: ""
+  reference_url: http://www.wellfleetbay.org/default.htm
+  id: "128"
+  longitude: "-69.9971008301"
+  county_id: "37"
+locations_155: 
+  photo: "0"
+  city: ""
+  name: Piute Mountains
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "155"
+  longitude: "0.0000000000"
+  county_id: "25"
+locations_181: 
+  photo: "0"
+  city: Bolinas
+  name: Bolinas Harbor
+  latitude: "37.9094009399"
+  notes: ""
+  reference_url: ""
+  id: "182"
+  longitude: "-122.6849975586"
+  county_id: "7"
+locations_344: 
+  photo: "0"
+  city: Sisters
+  name: Steve's House
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "348"
+  longitude: "0.0000000000"
+  county_id: "41"
+locations_318: 
+  photo: "0"
+  city: Edinburg
+  name: Edinburg Scenic Wetlands
+  latitude: "26.2915248871"
+  notes: ""
+  reference_url: ""
+  id: "319"
+  longitude: "-98.1348800659"
+  county_id: "46"
+locations_263: 
+  photo: "0"
+  city: Edmonton
+  name: Leduc
+  latitude: "53.2647018433"
+  notes: ""
+  reference_url: ""
+  id: "264"
+  longitude: "-113.5530014038"
+  county_id: "54"
+locations_237: 
+  photo: "0"
+  city: San Francisco
+  name: El Polin Loop
+  latitude: "37.7929153442"
+  notes: ""
+  reference_url: ""
+  id: "238"
+  longitude: "-122.4554061890"
+  county_id: "14"
+locations_049: 
+  photo: "0"
+  city: San Rafael
+  name: Las Gallinas Sewage Ponds
+  latitude: "38.0256004333"
+  notes: ""
+  reference_url: ""
+  id: "49"
+  longitude: "-122.5159988403"
+  county_id: "7"
+locations_075: 
+  photo: "0"
+  city: Phoenix
+  name: Phoenecian Resort
+  latitude: "33.5021018982"
+  notes: ""
+  reference_url: http://www.thephoenician.com
+  id: "131"
+  longitude: "-111.9520034790"
+  county_id: "1"
+locations_156: 
+  photo: "0"
+  city: Kernville
+  name: Fay Ranch Road
+  latitude: "35.7283706665"
+  notes: ""
+  reference_url: ""
+  id: "156"
+  longitude: "-118.3057785034"
+  county_id: "24"
+locations_182: 
+  photo: "0"
+  city: Novato
+  name: Stafford Lake Park
+  latitude: "38.1138992310"
+  notes: ""
+  reference_url: ""
+  id: "183"
+  longitude: "-122.6490020752"
+  county_id: "7"
+locations_345: 
+  photo: "0"
+  city: Fall River Mills
+  name: Fall River Mills
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "349"
+  longitude: "0.0000000000"
+  county_id: "8"
+locations_319: 
+  photo: "0"
+  city: Edinburg
+  name: Martin Refuge, Homestead Tract
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "320"
+  longitude: "0.0000000000"
+  county_id: "46"
+locations_290: 
+  photo: "0"
+  city: ""
+  name: Tassajara Creek Regional Park
+  latitude: "37.6847190857"
+  notes: ""
+  reference_url: ""
+  id: "291"
+  longitude: "-121.8894424438"
+  county_id: "12"
+locations_264: 
+  photo: "0"
+  city: Stedtler
+  name: Lowden Springs Prairie Preserve
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "265"
+  longitude: "0.0000000000"
+  county_id: "54"
+locations_238: 
+  photo: "0"
+  city: Milpitas
+  name: Calaveras Reservoir
+  latitude: "37.4667510986"
+  notes: ""
+  reference_url: ""
+  id: "239"
+  longitude: "-121.8190689087"
+  county_id: "2"
+locations_076: 
+  photo: "0"
+  city: Los Altos
+  name: Picchetti Ranch
+  latitude: "37.2910995483"
+  notes: ""
+  reference_url: http://www.openspace.org/preserves/picchetti_ranch/picchetti_ranch.html
+  id: "75"
+  longitude: "-122.0859985352"
+  county_id: "2"
+locations_157: 
+  photo: "0"
+  city: Kernville
+  name: Chimney Creek Campground
+  latitude: "35.7308006287"
+  notes: ""
+  reference_url: ""
+  id: "157"
+  longitude: "-118.1360015869"
+  county_id: "24"
+locations_183: 
+  photo: "0"
+  city: Point Reyes Station
+  name: Five Brooks
+  latitude: "38.0010986328"
+  notes: ""
+  reference_url: ""
+  id: "184"
+  longitude: "-122.7570037842"
+  county_id: "7"
+locations_346: 
+  photo: "0"
+  city: Tulelake, CA
+  name: Tule Lake NWR
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "350"
+  longitude: "0.0000000000"
+  county_id: "9"
+locations_291: 
+  photo: "0"
+  city: San Leandro
+  name: San Leandro Marina
+  latitude: "37.6977806091"
+  notes: ""
+  reference_url: ""
+  id: "292"
+  longitude: "-122.1900024414"
+  county_id: "12"
+locations_265: 
+  photo: "0"
+  city: Stedtler
+  name: Dry Island Buffalo Jump Provincial Park
+  latitude: "51.9400253296"
+  notes: ""
+  reference_url: ""
+  id: "266"
+  longitude: "-112.9612884521"
+  county_id: "54"
+locations_239: 
+  photo: "0"
+  city: Fremont
+  name: Marsh Road
+  latitude: "37.4412193298"
+  notes: Near Calaveras Reservoir
+  reference_url: ""
+  id: "240"
+  longitude: "-121.8253021240"
+  county_id: "2"
+locations_077: 
+  photo: "0"
+  city: Pescadero
+  name: Pigeon Point
+  latitude: "37.1861991882"
+  notes: ""
+  reference_url: http://www.pigeonpointlighthouse.org/index_00.html
+  id: "76"
+  longitude: "-122.3970031738"
+  county_id: "13"
+locations_158: 
+  photo: "0"
+  city: Kernville
+  name: Kennedy Meadows
+  latitude: "36.0093994141"
+  notes: ""
+  reference_url: ""
+  id: "158"
+  longitude: "-118.1279983521"
+  county_id: "24"
+locations_184: 
+  photo: "0"
+  city: Palo Alto
+  name: Geng Road
+  latitude: "37.4532508850"
+  notes: ""
+  reference_url: ""
+  id: "185"
+  longitude: "-122.1205215454"
+  county_id: "2"
+locations_347: 
+  photo: "0"
+  city: Bend, OR
+  name: Shevlin Park
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "351"
+  longitude: "0.0000000000"
+  county_id: "41"
+locations_292: 
+  photo: "0"
+  city: Oakland
+  name: Chabot Space and Science Center
+  latitude: "37.7872200012"
+  notes: ""
+  reference_url: http://www.chabotspace.org/
+  id: "293"
+  longitude: "-122.1769409180"
+  county_id: "12"
+locations_266: 
+  photo: "0"
+  city: Camrose
+  name: Camrose and environs
+  latitude: "53.0180664062"
+  notes: ""
+  reference_url: ""
+  id: "267"
+  longitude: "-112.8311538696"
+  county_id: "54"
+locations_078: 
+  photo: "0"
+  city: McGregor
+  name: Pikes Peak
+  latitude: "43.0055999756"
+  notes: ""
+  reference_url: http://www.state.ia.us/parks/pikepeak.htm
+  id: "77"
+  longitude: "-91.2138977051"
+  county_id: "36"
+locations_159: 
+  photo: "0"
+  city: Kernville
+  name: Troy Meadow Campground
+  latitude: "36.0677986145"
+  notes: ""
+  reference_url: ""
+  id: "159"
+  longitude: "-118.2360000610"
+  county_id: "25"
+locations_185: 
+  photo: "0"
+  city: Belmont
+  name: Ralston and 101
+  latitude: "37.5261001587"
+  notes: The highway interchange includes several seasonal ponds.
+  reference_url: ""
+  id: "186"
+  longitude: "-122.2675704956"
+  county_id: "13"
+locations_348: 
+  photo: "0"
+  city: ""
+  name: Rural Areas of Modoc County
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "352"
+  longitude: "0.0000000000"
+  county_id: "60"
+locations_293: 
+  photo: "0"
+  city: Monterey
+  name: Jacks Peak County Park
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "294"
+  longitude: "0.0000000000"
+  county_id: "3"
+locations_267: 
+  photo: "0"
+  city: Elnora
+  name: Elnora
+  latitude: "51.9944992065"
+  notes: ""
+  reference_url: ""
+  id: "268"
+  longitude: "-113.1969985962"
+  county_id: "54"
+locations_079: 
+  photo: "0"
+  city: El Granada
+  name: Pillar Point
+  latitude: "37.5097007751"
+  notes: ""
+  reference_url: http://www.smharbor.com/pillarpoint/
+  id: "78"
+  longitude: "-122.4670028687"
+  county_id: "13"
+locations_186: 
+  photo: "0"
+  city: ""
+  name: Sacramento River Delta
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "187"
+  longitude: "0.0000000000"
+  county_id: "27"
+locations_349: 
+  photo: "0"
+  city: Tulelake
+  name: Petroglyph Point
+  latitude: "0.0000000000"
+  notes: Part of Lava Beds National Monument
+  reference_url: ""
+  id: "353"
+  longitude: "0.0000000000"
+  county_id: "9"
+locations_294: 
+  photo: "0"
+  city: Santa Clara
+  name: Moonglow Dairy
+  latitude: "36.8091430664"
+  notes: ""
+  reference_url: ""
+  id: "295"
+  longitude: "-121.7648773193"
+  county_id: "3"
+locations_268: 
+  photo: "0"
+  city: Camrose
+  name: Beaverhill Lake
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "269"
+  longitude: "0.0000000000"
+  county_id: "54"
+locations_187: 
+  photo: "0"
+  city: Point Reyes Station
+  name: Drake's Estero
+  latitude: "38.0475006104"
+  notes: ""
+  reference_url: ""
+  id: "188"
+  longitude: "-122.9410018921"
+  county_id: "7"
+locations_295: 
+  photo: "0"
+  city: Seaside
+  name: Seaside Lagoon
+  latitude: "36.6075439453"
+  notes: Seaside Lagoon sits between highway 1 and the Embassay Suite hotel, which has a peregrine nest box. Be sure to check the large letters of the hotel logo for roosting peregrines.
+  reference_url: ""
+  id: "296"
+  longitude: "-121.8584136963"
+  county_id: "3"
+locations_269: 
+  photo: "0"
+  city: Camrose
+  name: Elk Island National Park
+  latitude: "53.6096000671"
+  notes: ""
+  reference_url: http://www.pc.gc.ca/pn-np/ab/elkisland/index_E.asp
+  id: "270"
+  longitude: "-112.8639984131"
+  county_id: "54"
+locations_188: 
+  photo: "0"
+  city: Saratoga
+  name: Castle Rock State Park
+  latitude: "37.2317008972"
+  notes: ""
+  reference_url: ""
+  id: "189"
+  longitude: "-122.1159973145"
+  county_id: "2"
+locations_296: 
+  photo: "0"
+  city: Monterey
+  name: Highway One
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "297"
+  longitude: "0.0000000000"
+  county_id: "3"
+locations_189: 
+  photo: "0"
+  city: Estes Park
+  name: Rocky Mountain National Park
+  latitude: "40.3333015442"
+  notes: ""
+  reference_url: ""
+  id: "190"
+  longitude: "-105.7080001831"
+  county_id: "31"
+locations_297: 
+  photo: "0"
+  city: ""
+  name: Rural Areas of Glenn County
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "298"
+  longitude: "0.0000000000"
+  county_id: "20"
+locations_298: 
+  photo: "0"
+  city: ""
+  name: District 10
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "299"
+  longitude: "0.0000000000"
+  county_id: "55"
+locations_001: 
+  photo: "0"
+  city: Santa Clara
+  name: Our House
+  latitude: "37.3614997864"
+  notes: in the back we have a peanut feeder, a thistle feeder, and a general purpose seed feeder
+  reference_url: ""
+  id: "1"
+  longitude: "-121.9940032959"
+  county_id: "2"
+locations_299: 
+  photo: "0"
+  city: ""
+  name: Gray Lodge Wildlife Area
+  latitude: "39.3286094666"
+  notes: ""
+  reference_url: ""
+  id: "300"
+  longitude: "-121.8288879395"
+  county_id: "56"
+locations_002: 
+  photo: "0"
+  city: Alviso
+  name: Alviso Marina
+  latitude: "37.4295997620"
+  notes: the marina parking lot provides access to many miles of levees suitable for biking or walking. the open water right near the parking lot sometimes yields interesting birds.
+  reference_url: http://santaclaracounty.org/parks/prkpages/alviso.htm
+  id: "2"
+  longitude: "-121.9779968262"
+  county_id: "2"
+locations_110: 
+  photo: "0"
+  city: Stanford
+  name: Stanford University
+  latitude: "37.4239997864"
+  notes: Stanford lands include several different birding areas -- the hills around the radio telescope, the Stanford Mausoleum, and Lake Lagunita (mostly in winter)
+  reference_url: ""
+  id: "109"
+  longitude: "-122.1650009155"
+  county_id: "2"
+locations_003: 
+  photo: "1"
+  city: Monterey
+  name: Andrew Molera
+  latitude: "36.2727012634"
+  notes: you can hike in less than a mile to a campground near the beach.
+  reference_url: http://parks.ca.gov/central/monterey/amsp.htm
+  id: "3"
+  longitude: "-121.8420028687"
+  county_id: "3"
+locations_004: 
+  photo: "0"
+  city: Borrego Springs
+  name: Anza Borrego Desert State Park
+  latitude: "33.2691993713"
+  notes: ""
+  reference_url: http://www.parks.ca.gov/default.asp?page_id=638
+  id: "4"
+  longitude: "-116.4059982300"
+  county_id: "4"
+locations_030: 
+  photo: "0"
+  city: Burlinghame
+  name: Coyote Point Marina
+  latitude: "37.5670013428"
+  notes: First visited here with Steve Shunk  in January 2001.
+  reference_url: http://www.cpyc.com/
+  id: "30"
+  longitude: "-122.3669967651"
+  county_id: "13"
+locations_111: 
+  photo: "0"
+  city: Belmont
+  name: Starbucks Pond
+  latitude: "37.5233001709"
+  notes: Right behind Starbucks in the strip mall at Holly and Shoreway Road, near San Carlos airport
+  reference_url: ""
+  id: "110"
+  longitude: "-122.2519989014"
+  county_id: "13"
+locations_300: 
+  photo: "0"
+  city: ""
+  name: Sutter Buttes
+  latitude: "39.2058296204"
+  notes: Mostly from the scenic drive encircling the buttes
+  reference_url: ""
+  id: "301"
+  longitude: "-121.8191680908"
+  county_id: "57"
+locations_005: 
+  photo: "0"
+  city: Mountain View
+  name: Arastradero Preserve
+  latitude: "37.4267005920"
+  notes: ""
+  reference_url: http://www.arastradero.org/
+  id: "5"
+  longitude: "-122.1389999390"
+  county_id: "2"
+locations_031: 
+  photo: "0"
+  city: Mountain View
+  name: Crittenden Marsh
+  latitude: "37.4369010925"
+  notes: ""
+  reference_url: ""
+  id: "31"
+  longitude: "-122.0619964600"
+  county_id: "2"
+locations_112: 
+  photo: "0"
+  city: Alviso
+  name: State and Speckles Pond
+  latitude: "37.4327011108"
+  notes: ""
+  reference_url: http://www.stanford.edu/~kendric/birds/PondMaps/Alviso3.html
+  id: "111"
+  longitude: "-121.9660034180"
+  county_id: "2"
+locations_301: 
+  photo: "0"
+  city: ""
+  name: Rural Areas of Butte County
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "302"
+  longitude: "0.0000000000"
+  county_id: "56"
+locations_220: 
+  photo: "0"
+  city: Orlando
+  name: Henkel Circle
+  latitude: "28.5951595306"
+  notes: Vacation house we rented while visiting John and Susan
+  reference_url: ""
+  id: "221"
+  longitude: "-81.3410110474"
+  county_id: "32"
+locations_006: 
+  photo: "0"
+  city: Arcata
+  name: Arcata Marsh
+  latitude: "40.8577995300"
+  notes: an amazing artificial marsh created by the City of Arcata to process its sewage.
+  reference_url: http://www.arcatacityhall.org/birding.html
+  id: "6"
+  longitude: "-124.0889968872"
+  county_id: "5"
+locations_032: 
+  photo: "0"
+  city: Alameda
+  name: Crown Memorial State Beach
+  latitude: "37.7658004761"
+  notes: ""
+  reference_url: http://www.parks.ca.gov/allpages/default.asp?page_id=526
+  id: "32"
+  longitude: "-122.2740020752"
+  county_id: "12"
+locations_113: 
+  photo: "0"
+  city: Cupertino
+  name: Stevens Creek County Park
+  latitude: "37.3114013672"
+  notes: ""
+  reference_url: http://www.parkhere.org/prkpages/stcrk.htm
+  id: "112"
+  longitude: "-122.0680007935"
+  county_id: "2"
+locations_302: 
+  photo: "0"
+  city: Morgan Hill
+  name: Coyote Valley
+  latitude: "0.0000000000"
+  notes: Concentrating especially on Laguna Drive on both sides of Santa Theresa
+  reference_url: ""
+  id: "303"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_221: 
+  photo: "0"
+  city: Winter Haven
+  name: Saddle Creek Park
+  latitude: "28.0541706085"
+  notes: ""
+  reference_url: ""
+  id: "222"
+  longitude: "-81.8841705322"
+  county_id: "33"
+locations_007: 
+  photo: "0"
+  city: McKinleyville
+  name: Azelea State Reserve
+  latitude: "40.9185981750"
+  notes: a lovely park full of wild azeleas growing in forest clearings
+  reference_url: http://parks.ca.gov/allpages/default.asp?page_id=420
+  id: "7"
+  longitude: "-124.0770034790"
+  county_id: "5"
+locations_033: 
+  photo: "0"
+  city: Alviso
+  name: Don Edwards Center
+  latitude: "37.4327011108"
+  notes: "Note to photographers: The Don Edwards Center and surrounding area afford many bird photography opportunities. Begin by driving the access road slowly, looking for shorebirds foraging in the marsh next to the road. Sparrows, towhees, thrushes, and some warblers near the parking lot can be fairly cooperative. Walk out on the levee for flight shots of gulls and terns. No entrance fee, Porta potty available. The gate is  often locked in the morning, you can walk in after parking your car off the road."
+  reference_url: http://www.r1.fws.gov/sfbnwr/default.htm
+  id: "33"
+  longitude: "-121.9619979858"
+  county_id: "2"
+locations_114: 
+  photo: "0"
+  city: San Francisco
+  name: Stowe Lake
+  latitude: "37.7689018250"
+  notes: ""
+  reference_url: ""
+  id: "113"
+  longitude: "-122.4720001221"
+  county_id: "14"
+locations_140: 
+  photo: "0"
+  city: Oakland
+  name: Arrowhead Marsh
+  latitude: "37.7444000244"
+  notes: "Note to photographers: A great place to find rails at high tides in January, but subjects can be frustratingly far away."
+  reference_url: http://baytrail.abag.ca.gov/vtour/map5/access/arrow.htm
+  id: "140"
+  longitude: "-122.2129974365"
+  county_id: "12"
+locations_303: 
+  photo: "0"
+  city: ""
+  name: Cosumnes River Preserve
+  latitude: "38.2661476135"
+  notes: ""
+  reference_url: ""
+  id: "304"
+  longitude: "-121.4397277832"
+  county_id: "27"
+locations_222: 
+  photo: "0"
+  city: Winter Haven
+  name: Rural Areas of Polk County
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "223"
+  longitude: "0.0000000000"
+  county_id: "33"
+locations_008: 
+  photo: "0"
+  city: Bend
+  name: Bend Wastewater Treatment Plant
+  latitude: "44.0586013794"
+  notes: Bill visited this site with Steve. Steve was checking it for a book about Oregon's sewage ponds.
+  reference_url: ""
+  id: "8"
+  longitude: "-121.3140029907"
+  county_id: "41"
+locations_034: 
+  photo: "0"
+  city: Fremont
+  name: Drawbridge
+  latitude: "37.4664001465"
+  notes: An abandoned town along the Amtrak tracks in the marshes of Fremont. We got to go there during a San Jose Christmas Bird Count.
+  reference_url: http://www.slip.net/~bobk/
+  id: "34"
+  longitude: "-121.9739990234"
+  county_id: "2"
+locations_060: 
+  photo: "0"
+  city: Monterey
+  name: Monterey Bay
+  latitude: "36.6012992859"
+  notes: This location denotes pelagic trips out of Monterey Bay, especially with Debra Shearwater.
+  reference_url: http://www.shearwaterjourneys.com/
+  id: "60"
+  longitude: "-121.8820037842"
+  county_id: "3"
+locations_115: 
+  photo: "0"
+  city: Sunnyvale
+  name: Sunnyvale Baylands
+  latitude: "37.4132995605"
+  notes: ""
+  reference_url: http://www.ci.sunnyvale.ca.us/baylands/
+  id: "114"
+  longitude: "-121.9950027466"
+  county_id: "2"
+locations_141: 
+  photo: "0"
+  city: Oakland
+  name: Lake Merritt
+  latitude: "37.8064002991"
+  notes: "Note to photographers: Many subjects here, including grebes, ducks, and night-herons are highly acclimated to people. Morning light tends to be from the side, makind head angle crucial for duck portraits. Active cormorant rookery in the spring makes an interesting feature for landscape shots. Hard to get down to eye level due to steep banks down to the lake. Lake Merritt is in the middle of an urban area, so parking can be tricky."
+  reference_url: ""
+  id: "141"
+  longitude: "-122.2539978027"
+  county_id: "12"
+locations_330: 
+  photo: "0"
+  city: Santa Cruz
+  name: UCSC Arboretum
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "333"
+  longitude: "0.0000000000"
+  county_id: "19"
+locations_304: 
+  photo: "0"
+  city: Lodi
+  name: Staten Island Road
+  latitude: "38.1731719971"
+  notes: ""
+  reference_url: ""
+  id: "305"
+  longitude: "-121.5122299194"
+  county_id: "27"
+locations_223: 
+  photo: "0"
+  city: Orlando
+  name: Harry P. Leu Gardens
+  latitude: "28.5666694641"
+  notes: ""
+  reference_url: http://www.leugardens.org/
+  id: "224"
+  longitude: "-81.3555603027"
+  county_id: "32"
+locations_009: 
+  photo: "0"
+  city: Big Sur
+  name: Big Sur
+  latitude: "36.2703018188"
+  notes: ""
+  reference_url: http://www.bigsurcalifornia.org/
+  id: "9"
+  longitude: "-121.8059997559"
+  county_id: "3"
+locations_035: 
+  photo: "0"
+  city: Milpitas
+  name: Ed Levin County Park Sandy Wool
+  latitude: "37.4557151794"
+  notes: ""
+  reference_url: http://santaclaracounty.org/parks/prkpages/levndch.htm
+  id: "35"
+  longitude: "-121.8643112183"
+  county_id: "2"
+locations_061: 
+  photo: "0"
+  city: Morro Bay
+  name: Morro Bay
+  latitude: "35.3317985535"
+  notes: includes Morro Bay estuary, Montana de Oro state park, San Simeon Hearst Memorial beach, etc. The latitude and longitude coordinates given are for our rental house in Baywood Park
+  reference_url: http://www.morro-bay.net
+  id: "61"
+  longitude: "-120.8410034180"
+  county_id: "16"
+locations_116: 
+  photo: "0"
+  city: Sunnyvale
+  name: Sunnyvale Water Treatment Plant
+  latitude: "37.4197998047"
+  notes: ""
+  reference_url: ""
+  id: "115"
+  longitude: "-122.0169982910"
+  county_id: "2"
+locations_142: 
+  photo: "0"
+  city: Redwood City
+  name: Bair Island
+  latitude: "37.5299987793"
+  notes: ""
+  reference_url: ""
+  id: "142"
+  longitude: "-122.2210006714"
+  county_id: "13"
+locations_331: 
+  photo: "0"
+  city: Half Moon Bay
+  name: Wavecrest Beach
+  latitude: "37.4466972351"
+  notes: ""
+  reference_url: ""
+  id: "334"
+  longitude: "-122.4367446899"
+  county_id: "13"
+locations_305: 
+  photo: "0"
+  city: Kissimmee
+  name: Lake Tohopekaliga
+  latitude: "28.2188892365"
+  notes: ""
+  reference_url: ""
+  id: "306"
+  longitude: "-81.3880615234"
+  county_id: "58"
+locations_250: 
+  photo: "0"
+  city: Ashland
+  name: Hobart Bluff
+  latitude: "42.0950012207"
+  notes: ""
+  reference_url: ""
+  id: "251"
+  longitude: "-122.4766693115"
+  county_id: "44"
+locations_224: 
+  photo: "0"
+  city: Venice
+  name: Venice Rookery
+  latitude: "27.0458602905"
+  notes: ""
+  reference_url: ""
+  id: "225"
+  longitude: "-82.3999328613"
+  county_id: "34"
+locations_036: 
+  photo: "0"
+  city: Santa Cruz
+  name: Elkhorn Slough
+  latitude: "36.8044013977"
+  notes: a lovely estuary south of Santa Cruz. Unfortunately, the slough's limited access hours have prevented us from exploring it in depth.
+  reference_url: http://www.elkhornslough.org/
+  id: "36"
+  longitude: "-121.7860031128"
+  county_id: "3"
+locations_062: 
+  photo: "0"
+  city: Moss Landing
+  name: Moss Landing State Beach
+  latitude: "36.8135986328"
+  notes: ""
+  reference_url: ""
+  id: "62"
+  longitude: "-121.7890014648"
+  county_id: "3"
+locations_117: 
+  photo: "0"
+  city: San Francisco
+  name: Sutro Baths
+  latitude: "37.7799987793"
+  notes: ""
+  reference_url: ""
+  id: "116"
+  longitude: "-122.5120010376"
+  county_id: "14"
+locations_143: 
+  photo: "0"
+  city: Palo Alto
+  name: Downtown Palo Alto
+  latitude: "37.4444007874"
+  notes: ""
+  reference_url: ""
+  id: "143"
+  longitude: "-122.1589965820"
+  county_id: "2"
+locations_332: 
+  photo: "0"
+  city: Pescadero
+  name: Burleigh Murray State Park
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "335"
+  longitude: "0.0000000000"
+  county_id: "13"
+locations_306: 
+  photo: "0"
+  city: Melbourne
+  name: Viera Wetlands
+  latitude: "28.2264614105"
+  notes: ""
+  reference_url: ""
+  id: "307"
+  longitude: "-80.7632827759"
+  county_id: "58"
+locations_251: 
+  photo: "0"
+  city: Los Gatos
+  name: Bald Mountain Trail
+  latitude: "0.0000000000"
+  notes: In Sierra Azul Open Space Preserve, where Mt. Umunhum Road ends in a gate.
+  reference_url: ""
+  id: "252"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_225: 
+  photo: "0"
+  city: Cape Coral
+  name: Ding Darling NWR
+  latitude: "26.4633293152"
+  notes: ""
+  reference_url: ""
+  id: "226"
+  longitude: "-82.0899963379"
+  county_id: "32"
+locations_037: 
+  photo: "0"
+  city: Arcata
+  name: Fairhaven
+  latitude: "40.7853012085"
+  notes: ""
+  reference_url: ""
+  id: "37"
+  longitude: "-124.2020034790"
+  county_id: "5"
+locations_063: 
+  photo: "0"
+  city: San Jose
+  name: Mount Hamilton
+  latitude: "37.3418998718"
+  notes: "Note to photographers: The road over Mount Hamilton is an inevitable part of our tour through Mines Road. For more details, see Birding at the Bottom of the Bay. Bring your long lens and keep an eye out for Lewis's Woodpecker, and other passerines (i. e., Lark Sparrow). Also be sure to stop at Grant Ranch Park and work the trees for thrushes, bluebirds, and other passerines. "
+  reference_url: ""
+  id: "63"
+  longitude: "-121.6419982910"
+  county_id: "2"
+locations_118: 
+  photo: "0"
+  city: Medford
+  name: Table Rock
+  latitude: "42.4552993774"
+  notes: ""
+  reference_url: http://nature.org/wherewework/northamerica/states/oregon/preserves/art6805.html
+  id: "117"
+  longitude: "-122.9479980469"
+  county_id: "44"
+locations_144: 
+  photo: "0"
+  city: Talent
+  name: Bear Creek Greenway
+  latitude: "42.2458000183"
+  notes: ""
+  reference_url: http://www.bearcreekgreenway.com/
+  id: "144"
+  longitude: "-122.7870025635"
+  county_id: "44"
+locations_170: 
+  photo: "0"
+  city: Yolano
+  name: Liberty Island Road
+  latitude: "38.2842369080"
+  notes: ""
+  reference_url: ""
+  id: "170"
+  longitude: "-121.6804046631"
+  county_id: "26"
+locations_333: 
+  photo: "0"
+  city: Foster City
+  name: Foster City Shellbar
+  latitude: "37.5636940002"
+  notes: ""
+  reference_url: ""
+  id: "336"
+  longitude: "-122.2497940063"
+  county_id: "13"
+locations_307: 
+  photo: "0"
+  city: Kissimmee
+  name: Rural Areas of Osceola County
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "308"
+  longitude: "0.0000000000"
+  county_id: "58"
+locations_252: 
+  photo: "0"
+  city: Sacramento
+  name: Sacramento
+  latitude: "0.0000000000"
+  notes: Denotes any birding done in and around Sacramento
+  reference_url: ""
+  id: "253"
+  longitude: "0.0000000000"
+  county_id: "27"
+locations_226: 
+  photo: "0"
+  city: Orlando
+  name: Mead Gardens
+  latitude: "28.5836105347"
+  notes: ""
+  reference_url: ""
+  id: "227"
+  longitude: "-81.3586120605"
+  county_id: "32"
+locations_038: 
+  photo: "0"
+  city: San Francisco
+  name: Farallon Islands
+  latitude: "37.7332992554"
+  notes: ""
+  reference_url: ""
+  id: "38"
+  longitude: "-123.0329971313"
+  county_id: "14"
+locations_064: 
+  photo: "0"
+  city: Santa Clara
+  name: Nortel Networks
+  latitude: "37.3944015503"
+  notes: Mary's office, located right next to Great America
+  reference_url: ""
+  id: "64"
+  longitude: "-121.9769973755"
+  county_id: "2"
+locations_090: 
+  photo: "0"
+  city: Rohnert Park
+  name: Rohnert Park
+  latitude: "38.3396987915"
+  notes: ""
+  reference_url: ""
+  id: "89"
+  longitude: "-122.6999969482"
+  county_id: "6"
+locations_119: 
+  photo: "0"
+  city: Medford
+  name: Touvelle State Park
+  latitude: "42.1842994690"
+  notes: ""
+  reference_url: http://www.oregonstateparks.org/park_106.php
+  id: "118"
+  longitude: "-122.5619964600"
+  county_id: "44"
+locations_145: 
+  photo: "0"
+  city: Brownsville
+  name: Sabal Palm Audubon Sanctuary
+  latitude: "25.8661003113"
+  notes: ""
+  reference_url: http://www.audubon.org/local/sanctuary/sabal/
+  id: "145"
+  longitude: "-97.4078979492"
+  county_id: "48"
+locations_171: 
+  photo: "0"
+  city: Yolano
+  name: Flannery Road
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "171"
+  longitude: "0.0000000000"
+  county_id: "26"
+locations_334: 
+  photo: "0"
+  city: Half Moon Bay
+  name: Butano State Park
+  latitude: "37.2018165588"
+  notes: ""
+  reference_url: ""
+  id: "337"
+  longitude: "-122.3393554688"
+  county_id: "13"
+locations_308: 
+  photo: "0"
+  city: ""
+  name: Lake Kissimmee
+  latitude: "27.9136104584"
+  notes: ""
+  reference_url: ""
+  id: "309"
+  longitude: "-81.2702789307"
+  county_id: "58"
+locations_253: 
+  photo: "0"
+  city: Sierra City
+  name: Yuba Pass
+  latitude: "39.6175003052"
+  notes: On Highway 49 between Highway 89 and Sierra City, elevation 7,123 feet.
+  reference_url: ""
+  id: "254"
+  longitude: "-120.4888916016"
+  county_id: "29"
+locations_227: 
+  photo: "0"
+  city: Santa Cruz
+  name: Neary Lagoon
+  latitude: "36.9625015259"
+  notes: ""
+  reference_url: http://www.ci.santa-cruz.ca.us/pr/parksrec/parks/neary.html
+  id: "228"
+  longitude: "-122.0288925171"
+  county_id: "19"
+locations_039: 
+  photo: "0"
+  city: Meno Park
+  name: Filoli
+  latitude: "37.4609985352"
+  notes: ""
+  reference_url: ""
+  id: "39"
+  longitude: "-122.2929992676"
+  county_id: "13"
+locations_065: 
+  photo: "0"
+  city: San Francisco
+  name: Ocean Beach
+  latitude: "37.7593994141"
+  notes: ""
+  reference_url: ""
+  id: "65"
+  longitude: "-122.5100021362"
+  county_id: "14"
+locations_091: 
+  photo: "0"
+  city: Saratoga
+  name: Russian Ridge Open Space Preserve
+  latitude: "37.3180999756"
+  notes: ""
+  reference_url: http://www.openspace.org/RRIDGE.html
+  id: "90"
+  longitude: "-122.2180023193"
+  county_id: "19"
+locations_146: 
+  photo: "0"
+  city: McAllen
+  name: Laguna Atascosa NWR
+  latitude: "26.2833003998"
+  notes: ""
+  reference_url: ""
+  id: "146"
+  longitude: "-97.3833007812"
+  county_id: "48"
+locations_172: 
+  photo: "0"
+  city: Yolano
+  name: Putah Creek Bridge
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "172"
+  longitude: "0.0000000000"
+  county_id: "26"
+locations_335: 
+  photo: "0"
+  city: Woodside
+  name: Crystal Springs Reservoir
+  latitude: "37.5084266663"
+  notes: ""
+  reference_url: ""
+  id: "338"
+  longitude: "-122.3480300903"
+  county_id: "13"
+locations_309: 
+  photo: "0"
+  city: ""
+  name: Overstreet Road
+  latitude: "27.9378585815"
+  notes: ""
+  reference_url: ""
+  id: "310"
+  longitude: "-81.2134017944"
+  county_id: "58"
+locations_280: 
+  photo: "0"
+  city: Berkeley
+  name: Redwood Regional Park
+  latitude: "37.8141708374"
+  notes: ""
+  reference_url: ""
+  id: "281"
+  longitude: "-122.1624984741"
+  county_id: "12"
+locations_254: 
+  photo: "0"
+  city: Sierra City
+  name: Bassett's
+  latitude: "39.6197204590"
+  notes: ""
+  reference_url: ""
+  id: "255"
+  longitude: "-120.5863876343"
+  county_id: "29"
+locations_228: 
+  photo: "0"
+  city: Santa Cruz
+  name: Antonelli Pond
+  latitude: "36.9547195435"
+  notes: ""
+  reference_url: ""
+  id: "229"
+  longitude: "-122.0591735840"
+  county_id: "19"
+locations_066: 
+  photo: "0"
+  city: San Jose
+  name: Oka Ponds
+  latitude: "37.2603569031"
+  notes: ""
+  reference_url: ""
+  id: "66"
+  longitude: "-121.9556198120"
+  county_id: "2"
+locations_092: 
+  photo: "0"
+  city: Sacramento
+  name: Sacramento NWR
+  latitude: "39.3714981079"
+  notes: "Note to photographers: Take the auto tour route in the winter for some great opportunities for close-up shots at overwintering birds. If lighting permits, be prepared to shoot out both sides of the car, preferably by sitting in back and having someone else drive (thanks, Mary!) Also walk the trees near the parking lots for passerines. Check the trees and ponds near the visitor center, and look for rarity sightings in the notebook inside the visitor center. Bathrooms available. Entrance fee (or buy your federal duck stamp at your local post office)."
+  reference_url: http://www.r1.fws.gov/sacnwrc/
+  id: "91"
+  longitude: "-122.1819992065"
+  county_id: "20"
+locations_147: 
+  photo: "0"
+  city: South Padre
+  name: South Padre Island
+  latitude: "26.1033000946"
+  notes: ""
+  reference_url: ""
+  id: "147"
+  longitude: "-97.1643981934"
+  county_id: "48"
+locations_173: 
+  photo: "0"
+  city: Santa Cruz
+  name: West Cliff Drive
+  latitude: "36.9529991150"
+  notes: ""
+  reference_url: ""
+  id: "173"
+  longitude: "-122.0370025635"
+  county_id: "19"
+locations_336: 
+  photo: "0"
+  city: Hayward
+  name: Winton Avenue
+  latitude: "37.6463851929"
+  notes: ""
+  reference_url: ""
+  id: "340"
+  longitude: "-122.1471023560"
+  county_id: "12"
+locations_281: 
+  photo: "0"
+  city: Oakland
+  name: Sibley Regional Park
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "282"
+  longitude: "0.0000000000"
+  county_id: "12"
+locations_255: 
+  photo: "0"
+  city: Sierra City
+  name: Sierra Valley
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "256"
+  longitude: "0.0000000000"
+  county_id: "29"
+locations_229: 
+  photo: "0"
+  city: Paicines
+  name: San Benito County Fair Grounds
+  latitude: "36.7669754028"
+  notes: ""
+  reference_url: ""
+  id: "230"
+  longitude: "-121.3036041260"
+  county_id: "17"
+locations_067: 
+  photo: "0"
+  city: Novato
+  name: Olompali State Park
+  latitude: "38.1516990662"
+  notes: ""
+  reference_url: ""
+  id: "67"
+  longitude: "-122.5739974976"
+  county_id: "7"
+locations_093: 
+  photo: "0"
+  city: Salton City
+  name: Salton Sea
+  latitude: "33.3333015442"
+  notes: ""
+  reference_url: ""
+  id: "92"
+  longitude: "-115.8330001831"
+  county_id: "21"
+locations_148: 
+  photo: "0"
+  city: Brownsville
+  name: Old Port Isabel Road
+  latitude: "25.9799995422"
+  notes: ""
+  reference_url: ""
+  id: "148"
+  longitude: "-97.4414978027"
+  county_id: "48"
+locations_174: 
+  photo: "0"
+  city: Santa Cruz
+  name: Long Marine Laboratory
+  latitude: "36.9547996521"
+  notes: ""
+  reference_url: http://seymourcenter.ucsc.edu/
+  id: "174"
+  longitude: "-122.0630035400"
+  county_id: "19"
+locations_337: 
+  photo: "0"
+  city: Hayward
+  name: Frank's Dump
+  latitude: "37.6522903442"
+  notes: ""
+  reference_url: ""
+  id: "341"
+  longitude: "-122.1552429199"
+  county_id: "12"
+locations_282: 
+  photo: "0"
+  city: Emeryville
+  name: Emeryville Marina
+  latitude: "37.8400001526"
+  notes: ""
+  reference_url: ""
+  id: "283"
+  longitude: "-122.3119430542"
+  county_id: "12"
+locations_256: 
+  photo: "0"
+  city: Sierra City
+  name: Hariot Lane
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "257"
+  longitude: "0.0000000000"
+  county_id: "29"
+locations_068: 
+  photo: "0"
+  city: Palo Alto
+  name: Palo Alto Duck Pond
+  latitude: "37.4573287964"
+  notes: |-
+    Our second most visited site; location of bill's first birdwalk with Steve Shunk. Includes birds sighted at Lucy Evans Nature Center.
+    
+    Note to photographers: This site is now most famous for the egret and night-heron rookery located immediately adjacent to the duck pond parking lot. Here in April and May you can get great morning light shots of nesting egrets and night-herons  squabbling over nest sites, sitting on eggs, perched in the palm trees with their chicks, or flying frequently to and from the nest. Be sure to check the duck pond for interesting and highly acclimated ducks and gulls -- with a 500mm you can get some great portraits here. Be sure to check the trees around the pond for passerines and raptors.
+  reference_url: http://www.xymox.palo-alto.ca.us/av/baylands.html
+  id: "68"
+  longitude: "-122.1088256836"
+  county_id: "2"
+locations_094: 
+  photo: "0"
+  city: Larwrence
+  name: San Antonio Valley
+  latitude: "37.3436012268"
+  notes: ""
+  reference_url: ""
+  id: "93"
+  longitude: "-121.4520034790"
+  county_id: "12"
+locations_149: 
+  photo: "0"
+  city: McAllen
+  name: Santa Ana NWR
+  latitude: "26.0697002411"
+  notes: ""
+  reference_url: ""
+  id: "149"
+  longitude: "-98.1449966431"
+  county_id: "46"
+locations_175: 
+  photo: "0"
+  city: Monterey
+  name: Fishermans Wharf
+  latitude: "36.6043014526"
+  notes: ""
+  reference_url: ""
+  id: "175"
+  longitude: "-121.8929977417"
+  county_id: "3"
+locations_338: 
+  photo: "0"
+  city: Potosi
+  name: Potosi Point
+  latitude: "42.6589851379"
+  notes: ""
+  reference_url: ""
+  id: "342"
+  longitude: "-90.7327423096"
+  county_id: "59"
+locations_283: 
+  photo: "0"
+  city: Fort Bragg
+  name: Noyo Canyon
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "284"
+  longitude: "0.0000000000"
+  county_id: "30"
+locations_257: 
+  photo: "0"
+  city: Sierra City
+  name: Antelope Valley Road
+  latitude: "39.6294479370"
+  notes: ""
+  reference_url: ""
+  id: "258"
+  longitude: "-120.2828292847"
+  county_id: "29"
+locations_069: 
+  photo: "0"
+  city: Panoche
+  name: Panoche Valley
+  latitude: "36.5969009399"
+  notes: ""
+  reference_url: http://www.ca.blm.gov/hollister/panoche_tumeys.html
+  id: "69"
+  longitude: "-120.8320007324"
+  county_id: "17"
+locations_095: 
+  photo: "0"
+  city: San Diego
+  name: San Diego
+  latitude: "32.7000007629"
+  notes: ""
+  reference_url: ""
+  id: "94"
+  longitude: "-117.1669998169"
+  county_id: "4"
+locations_176: 
+  photo: "0"
+  city: Monterey
+  name: Monterey Beach Resort
+  latitude: "36.6104011536"
+  notes: ""
+  reference_url: ""
+  id: "177"
+  longitude: "-121.8580017090"
+  county_id: "3"
+locations_339: 
+  photo: "0"
+  city: Point Reyes Station
+  name: Limantour Beach
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "343"
+  longitude: "0.0000000000"
+  county_id: "7"
+locations_284: 
+  photo: "0"
+  city: Fort Bragg
+  name: Mendocino Coast Botanical Garden
+  latitude: "39.4091911316"
+  notes: ""
+  reference_url: http://www.gardenbythesea.org/
+  id: "285"
+  longitude: "-123.8106994629"
+  county_id: "30"
+locations_258: 
+  photo: "0"
+  city: Sierra City
+  name: Sierra City
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "259"
+  longitude: "0.0000000000"
+  county_id: "29"
+locations_096: 
+  photo: "0"
+  city: San Francisco
+  name: San Francisco
+  latitude: "37.7832984924"
+  notes: ""
+  reference_url: ""
+  id: "95"
+  longitude: "-122.4329986572"
+  county_id: "14"
+locations_177: 
+  photo: "0"
+  city: Watsonville
+  name: Lee Road
+  latitude: "36.9039039612"
+  notes: ""
+  reference_url: ""
+  id: "178"
+  longitude: "-121.7836303711"
+  county_id: "19"
+locations_285: 
+  photo: "0"
+  city: Mendocino
+  name: Sea Cave
+  latitude: "0.0000000000"
+  notes: At the end of Main Street
+  reference_url: ""
+  id: "286"
+  longitude: "0.0000000000"
+  county_id: "30"
+locations_259: 
+  photo: "0"
+  city: Sierra City
+  name: Carmen Valley
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "260"
+  longitude: "0.0000000000"
+  county_id: "29"
+locations_097: 
+  photo: "0"
+  city: San Francisco
+  name: San Francisco Zoo
+  latitude: "37.7327995300"
+  notes: ""
+  reference_url: http://www.sfzoo.org/
+  id: "96"
+  longitude: "-122.4990005493"
+  county_id: "14"
+locations_178: 
+  photo: "0"
+  city: Cupertino
+  name: Upper Stevens Creek County Park
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "179"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_286: 
+  photo: "0"
+  city: Mendocino
+  name: Van Damme State Park
+  latitude: "39.2763900757"
+  notes: ""
+  reference_url: http://www.gomendo.com/showrecord.asp?id=243
+  id: "287"
+  longitude: "-123.7733306885"
+  county_id: "30"
+locations_098: 
+  photo: "0"
+  city: Pescadero
+  name: San Gregorio State Beach
+  latitude: "37.3232994080"
+  notes: ""
+  reference_url: http://www.parks.ca.gov/default.asp?page_id=529
+  id: "97"
+  longitude: "-122.4020004272"
+  county_id: "13"
+locations_179: 
+  photo: "0"
+  city: Point Reyes Station
+  name: Waldo's Dike
+  latitude: "38.0788307190"
+  notes: ""
+  reference_url: http://www.nps.gov/pore/
+  id: "180"
+  longitude: "-122.8315811157"
+  county_id: "7"
+locations_287: 
+  photo: "0"
+  city: ""
+  name: Del Valle Regional Park
+  latitude: "37.5963897705"
+  notes: ""
+  reference_url: ""
+  id: "288"
+  longitude: "-121.7130584717"
+  county_id: "12"
+locations_099: 
+  photo: "0"
+  city: Los Banos
+  name: San Luis NWR
+  latitude: "37.2000007629"
+  notes: ""
+  reference_url: http://sanluis.fws.gov/
+  id: "98"
+  longitude: "-120.8000030518"
+  county_id: "15"
+locations_288: 
+  photo: "0"
+  city: ""
+  name: Rural Areas of Alameda County
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "289"
+  longitude: "0.0000000000"
+  county_id: "12"
+locations_289: 
+  photo: "0"
+  city: ""
+  name: Murietta's Well
+  latitude: "37.6597213745"
+  notes: ""
+  reference_url: ""
+  id: "290"
+  longitude: "-121.7336120605"
+  county_id: "12"
+locations_100: 
+  photo: "0"
+  city: San Mateo
+  name: Rural Areas of San Mateo County
+  latitude: "37.4500007629"
+  notes: A catch-all location for birds seen on the road in San Mateo County
+  reference_url: ""
+  id: "99"
+  longitude: "-122.3499984741"
+  county_id: "13"
+locations_020: 
+  photo: "0"
+  city: Morgan Hill
+  name: Chesbro Reservoir
+  latitude: "37.1157989502"
+  notes: ""
+  reference_url: ""
+  id: "20"
+  longitude: "-121.6920013428"
+  county_id: "2"
+locations_101: 
+  photo: "0"
+  city: Santa Clara
+  name: Rural Areas of Santa Clara County
+  latitude: "37.2332992554"
+  notes: This page shows all the birds we've seen in Santa Clara county but don't remember exactly where they were.
+  reference_url: ""
+  id: "100"
+  longitude: "-121.7669982910"
+  county_id: "2"
+locations_021: 
+  photo: "0"
+  city: Big Sur
+  name: Chez Frankel
+  latitude: "35.8381996155"
+  notes: Between Gorda and Ragged Point
+  reference_url: ""
+  id: "21"
+  longitude: "-121.3990020752"
+  county_id: "3"
+locations_102: 
+  photo: "0"
+  city: Santa Cruz
+  name: Santa Cruz
+  latitude: "36.9742012024"
+  notes: ""
+  reference_url: ""
+  id: "101"
+  longitude: "-122.0299987793"
+  county_id: "19"
+locations_022: 
+  photo: "0"
+  city: San Rafael
+  name: China Camp State Park
+  latitude: "38.0010986328"
+  notes: ""
+  reference_url: ""
+  id: "22"
+  longitude: "-122.4609985352"
+  county_id: "7"
+locations_103: 
+  photo: "0"
+  city: Saratoga
+  name: Saratoga Parks
+  latitude: "37.2639007568"
+  notes: includes Hakone Gardens and Saratoga Wildwood Park
+  reference_url: http://www.hakone.com/about/index.html
+  id: "102"
+  longitude: "-122.0220031738"
+  county_id: "2"
+locations_210: 
+  photo: "0"
+  city: Incline Village
+  name: State Line Fire Lookout
+  latitude: "39.2316703796"
+  notes: ""
+  reference_url: ""
+  id: "211"
+  longitude: "-120.0084609985"
+  county_id: "38"
+locations_023: 
+  photo: "0"
+  city: Julian
+  name: Cleveland National Forest
+  latitude: "33.2999992371"
+  notes: ""
+  reference_url: ""
+  id: "23"
+  longitude: "-116.8000030518"
+  county_id: "4"
+locations_104: 
+  photo: "0"
+  city: Petaluma
+  name: Schollenberger Park
+  latitude: "38.2308006287"
+  notes: ""
+  reference_url: ""
+  id: "103"
+  longitude: "-122.5970001221"
+  county_id: "6"
+locations_130: 
+  photo: "0"
+  city: Lodi
+  name: Woodbridge Ecological Preserve
+  latitude: "38.1231994629"
+  notes: A piece of land owned by the Nature Conservancy.
+  reference_url: http://www.sacbee.com/ourtown/diversions/wildlife_view.html
+  id: "129"
+  longitude: "-121.2939987183"
+  county_id: "22"
+locations_211: 
+  photo: "0"
+  city: San Jose
+  name: Guadalupe Oak Grove Park
+  latitude: "37.2355613708"
+  notes: ""
+  reference_url: ""
+  id: "212"
+  longitude: "-121.8808288574"
+  county_id: "2"
+locations_024: 
+  photo: "0"
+  city: ""
+  name: Clifton Court Forebay
+  latitude: "37.8300018311"
+  notes: ""
+  reference_url: ""
+  id: "24"
+  longitude: "-121.5559997559"
+  county_id: "10"
+locations_050: 
+  photo: "0"
+  city: Ashland
+  name: Lithia Park
+  latitude: "42.1875991821"
+  notes: ""
+  reference_url: ""
+  id: "50"
+  longitude: "-122.6859970093"
+  county_id: "42"
+locations_105: 
+  photo: "0"
+  city: Yreka
+  name: Rural Areas of Siskiyou County
+  latitude: "41.5833015442"
+  notes: ""
+  reference_url: ""
+  id: "104"
+  longitude: "-122.5169982910"
+  county_id: "9"
+locations_131: 
+  photo: "0"
+  city: Yosemite National Park
+  name: Yosemite
+  latitude: "37.8499984741"
+  notes: ""
+  reference_url: ""
+  id: "130"
+  longitude: "-119.5670013428"
+  county_id: "23"
+locations_212: 
+  photo: "0"
+  city: Pescadero
+  name: Gazos Creek
+  latitude: "37.1655616760"
+  notes: This location record covers both the beach access at the creek mouth as well as birds seen driving up Gazos Creek Road. We've been birding here since May of 2000 when Al Eisner took us up Gazos Creek Road.
+  reference_url: ""
+  id: "213"
+  longitude: "-122.3616714478"
+  county_id: "13"
+locations_320: 
+  photo: "0"
+  city: Weslaco
+  name: Weslaco Sod Farms
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "321"
+  longitude: "0.0000000000"
+  county_id: "46"
+locations_025: 
+  photo: "0"
+  city: Monterey
+  name: Coast Guard Pier
+  latitude: "36.5946998596"
+  notes: ""
+  reference_url: ""
+  id: "25"
+  longitude: "-121.8809967041"
+  county_id: "3"
+locations_051: 
+  photo: "0"
+  city: San Jose
+  name: Los Alamitos Water Recharge Pond
+  latitude: "37.2458000183"
+  notes: ""
+  reference_url: ""
+  id: "51"
+  longitude: "-121.8710021973"
+  county_id: "2"
+locations_106: 
+  photo: "0"
+  city: Saratoga
+  name: Skyline Ridge Open Space Preserve
+  latitude: "37.2975006104"
+  notes: features the lovely David C. Daniels Nature Center and accompanying pond.
+  reference_url: http://www.openspace.org/SKYLINE.html
+  id: "105"
+  longitude: "-122.1709976196"
+  county_id: "2"
+locations_132: 
+  photo: "0"
+  city: Leaky
+  name: Leakey
+  latitude: "29.7285995483"
+  notes: ""
+  reference_url: ""
+  id: "132"
+  longitude: "-99.7611007690"
+  county_id: "47"
+locations_213: 
+  photo: "0"
+  city: Pescadero
+  name: Bean Hollow State Beach
+  latitude: "37.2257194519"
+  notes: ""
+  reference_url: ""
+  id: "214"
+  longitude: "-122.4088211060"
+  county_id: "13"
+locations_321: 
+  photo: "0"
+  city: ""
+  name: Sanborn County Park John Nicholas Trail
+  latitude: "37.2056045532"
+  notes: Trailhead on Black Road on the southern end of Sanborn County Park
+  reference_url: http://www.waymarking.com/waymarks/WMH84
+  id: "323"
+  longitude: "-122.0376586914"
+  county_id: "2"
+locations_240: 
+  photo: "0"
+  city: Fremont
+  name: Calaveras Road
+  latitude: "0.0000000000"
+  notes: Near Calaveras Reservoir
+  reference_url: ""
+  id: "241"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_026: 
+  photo: "0"
+  city: Colusa
+  name: Colusa NWR
+  latitude: "39.2396011353"
+  notes: ""
+  reference_url: http://www.r1.fws.gov/sacnwrc/
+  id: "26"
+  longitude: "-122.0739974976"
+  county_id: "11"
+locations_052: 
+  photo: "0"
+  city: Tulelake
+  name: Lower Klamath NWR
+  latitude: "41.9542007446"
+  notes: ""
+  reference_url: http://www.klamathnwr.org/lowerklamath.html
+  id: "52"
+  longitude: "-121.4749984741"
+  county_id: "9"
+locations_107: 
+  photo: "0"
+  city: ""
+  name: Rural Areas of Sonoma County
+  latitude: "38.7503013611"
+  notes: ""
+  reference_url: ""
+  id: "106"
+  longitude: "-123.5000000000"
+  county_id: "6"
+locations_133: 
+  photo: "0"
+  city: Brownsville
+  name: Brownsville
+  latitude: "25.9013996124"
+  notes: ""
+  reference_url: ""
+  id: "133"
+  longitude: "-97.4972000122"
+  county_id: "48"
+locations_214: 
+  photo: "0"
+  city: Pescadero
+  name: Lake Lucerne
+  latitude: "37.2233314514"
+  notes: ""
+  reference_url: ""
+  id: "215"
+  longitude: "-122.4049987793"
+  county_id: "13"
+locations_322: 
+  photo: "0"
+  city: San Jose
+  name: Almaden Quicksilver County Park
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "324"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_241: 
+  photo: "0"
+  city: Fremont
+  name: Ed Levin County Park Spring Valley
+  latitude: "0.0000000000"
+  notes: Second part of Ed Levin County Park
+  reference_url: ""
+  id: "242"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_027: 
+  photo: "0"
+  city: San Jose
+  name: Coyote Creek County Park
+  latitude: "37.2848014832"
+  notes: ""
+  reference_url: ""
+  id: "27"
+  longitude: "-121.8109970093"
+  county_id: "2"
+locations_053: 
+  photo: "0"
+  city: San Francisco
+  name: Magic Brush Pile
+  latitude: "37.7224998474"
+  notes: |-
+    Well, this is what Steve and Bob called it!
+    
+    (near Harding Park Municipal Golf Course)
+  reference_url: ""
+  id: "53"
+  longitude: "-122.4879989624"
+  county_id: "14"
+locations_108: 
+  photo: "0"
+  city: Prairie du Chien
+  name: Southwest Wisconsin
+  latitude: "43.2505989075"
+  notes: ""
+  reference_url: ""
+  id: "107"
+  longitude: "-90.9167022705"
+  county_id: "52"
+locations_134: 
+  photo: "0"
+  city: Port Aransas
+  name: Port Aransas
+  latitude: "27.8335990906"
+  notes: ""
+  reference_url: ""
+  id: "134"
+  longitude: "-97.0607986450"
+  county_id: "49"
+locations_160: 
+  photo: "0"
+  city: Johnsondale
+  name: Johnsondale Bridge
+  latitude: "35.9747009277"
+  notes: Known locally as "The Magic Pullout", famous for early morning Swifts.
+  reference_url: ""
+  id: "160"
+  longitude: "-118.5400009155"
+  county_id: "25"
+locations_215: 
+  photo: "0"
+  city: Pescadero
+  name: Ano Nuevo State Reserve
+  latitude: "37.1172218323"
+  notes: ""
+  reference_url: ""
+  id: "216"
+  longitude: "-122.3258285522"
+  county_id: "13"
+locations_323: 
+  photo: "0"
+  city: Cupertino
+  name: Gates of Heaven
+  latitude: "37.3270835876"
+  notes: ""
+  reference_url: ""
+  id: "325"
+  longitude: "-122.0816650391"
+  county_id: "2"
+locations_242: 
+  photo: "0"
+  city: Milpitas
+  name: Ed Levin County Park Elm Picnic Area
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: http://santaclaracounty.org/parks/prkpages/levndch.htm
+  id: "243"
+  longitude: "0.0000000000"
+  county_id: "2"
+locations_054: 
+  photo: "0"
+  city: Burns
+  name: Malheur NWR
+  latitude: "43.2658004761"
+  notes: If you're ever anywhere near central Oregon, you need to make the effort to visit Malheur.
+  reference_url: http://www.fws.gov/malheur/
+  id: "54"
+  longitude: "-118.8430023193"
+  county_id: "43"
+locations_080: 
+  photo: "0"
+  city: Monterey
+  name: Point Pinos
+  latitude: "36.6335983276"
+  notes: ""
+  reference_url: ""
+  id: "79"
+  longitude: "-121.9329986572"
+  county_id: "3"
+locations_109: 
+  photo: "0"
+  city: Saratoga
+  name: St Joseph Open Space Preserve
+  latitude: "37.2000999451"
+  notes: Probably you should park in the Lexington Reservoir parking lot, which costs four dollars.
+  reference_url: http://www.openspace.org/STJOE.html
+  id: "108"
+  longitude: "-121.9860000610"
+  county_id: "2"
+locations_135: 
+  photo: "0"
+  city: Laredo
+  name: Laredo
+  latitude: "27.5060997009"
+  notes: ""
+  reference_url: ""
+  id: "135"
+  longitude: "-99.5072021484"
+  county_id: "50"
+locations_161: 
+  photo: "0"
+  city: ""
+  name: Holey Meadow
+  latitude: "35.9533004761"
+  notes: ""
+  reference_url: ""
+  id: "161"
+  longitude: "-118.6190032959"
+  county_id: "25"
+locations_216: 
+  photo: "0"
+  city: Pescadero
+  name: Downtown Pescadero
+  latitude: "37.2556343079"
+  notes: ""
+  reference_url: ""
+  id: "217"
+  longitude: "-122.3833694458"
+  county_id: "13"
+locations_028: 
+  photo: "0"
+  city: Alviso
+  name: Coyote Creek Field Station
+  latitude: "37.4202003479"
+  notes: Formerly the Coyote Creek Riparian Station, now part of the San Francisco Bay Bird Observatory
+  reference_url: http://www.sfbbo.org/ccfs01.html
+  id: "28"
+  longitude: "-121.9879989624"
+  county_id: "2"
+locations_350: 
+  photo: "0"
+  city: ""
+  name: Rural Areas of Klamath County
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "354"
+  longitude: "0.0000000000"
+  county_id: "61"
+locations_324: 
+  photo: "0"
+  city: Palo Alto
+  name: Arastradero Overpass
+  latitude: "37.3863754272"
+  notes: ""
+  reference_url: ""
+  id: "326"
+  longitude: "-122.1537017822"
+  county_id: "2"
+locations_243: 
+  photo: "0"
+  city: Cupterino
+  name: Stevens Creek Reservoir
+  latitude: "37.2970657349"
+  notes: ""
+  reference_url: ""
+  id: "244"
+  longitude: "-122.0776290894"
+  county_id: "2"
+locations_055: 
+  photo: "0"
+  city: Marin
+  name: Rural Areas of Marin County
+  latitude: "38.0666999817"
+  notes: denotes birds seen while driving the roads of Marin County.
+  reference_url: ""
+  id: "55"
+  longitude: "-122.7330017090"
+  county_id: "7"
+locations_081: 
+  photo: "0"
+  city: Point Reyes
+  name: Point Reyes National Seashore
+  latitude: "37.9958000183"
+  notes: ""
+  reference_url: http://www.nps.gov/pore/
+  id: "80"
+  longitude: "-123.0220031738"
+  county_id: "7"
+locations_136: 
+  photo: "0"
+  city: Corpus Christi
+  name: Corpus Christi
+  latitude: "27.8003005981"
+  notes: ""
+  reference_url: ""
+  id: "136"
+  longitude: "-97.3961029053"
+  county_id: "49"
+locations_162: 
+  photo: "0"
+  city: ""
+  name: Quaking Aspen Meadow
+  latitude: "36.1192016602"
+  notes: ""
+  reference_url: ""
+  id: "162"
+  longitude: "-118.5469970703"
+  county_id: "25"
+locations_217: 
+  photo: "0"
+  city: Pescadero
+  name: Stage Road
+  latitude: "37.2809867859"
+  notes: Connects Downtown Pescadero with La Honda Road
+  reference_url: ""
+  id: "218"
+  longitude: "-122.3759765625"
+  county_id: "13"
+locations_029: 
+  photo: "0"
+  city: Fremont
+  name: Coyote Hills Regional Park
+  latitude: "37.5505981445"
+  notes: "Note to photographers: Slow and cautious walk on the marsh bordwalk can yield good shots of egrets and ducks. On some days, a great place for pelican flight shots. White-tailed kites seen almost every trip, often far away. Early morning access restricted by locked gate approx 1/2 mile from parking lot -- no good parking outside the gate. Entrance fee. Bathrooms available."
+  reference_url: http://www.ebparks.org/parks/coyote.htm
+  id: "29"
+  longitude: "-122.0859985352"
+  county_id: "12"
+locations_351: 
+  photo: "0"
+  city: Tomales Bay
+  name: Tomales Bay
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "356"
+  longitude: "0.0000000000"
+  county_id: "7"
+locations_325: 
+  photo: "0"
+  city: Milpitas
+  name: Sierra Road
+  latitude: "37.4094886780"
+  notes: ""
+  reference_url: ""
+  id: "327"
+  longitude: "-121.8027420044"
+  county_id: "2"
+locations_270: 
+  photo: "0"
+  city: Cold Lake
+  name: Jackpine Forest
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "271"
+  longitude: "0.0000000000"
+  county_id: "54"
+locations_244: 
+  photo: "0"
+  city: Cupterino
+  name: Stevens Creek County Park Ranger Station
+  latitude: "37.3056640625"
+  notes: ""
+  reference_url: ""
+  id: "245"
+  longitude: "-122.0733489990"
+  county_id: "2"
+locations_082: 
+  photo: "0"
+  city: Portola
+  name: Portola Redwoods State Park
+  latitude: "37.2597007751"
+  notes: ""
+  reference_url: http://www.parks.ca.gov/default.asp?page_id=539
+  id: "81"
+  longitude: "-122.1999969482"
+  county_id: "2"
+locations_137: 
+  photo: "0"
+  city: San Antonio
+  name: Palmetto State Park
+  latitude: "29.5874996185"
+  notes: ""
+  reference_url: http://www.tpwd.state.tx.us/park/palmetto/
+  id: "137"
+  longitude: "-97.5842971802"
+  county_id: "51"
+locations_163: 
+  photo: "0"
+  city: ""
+  name: Quaking Aspen Campground
+  latitude: "36.1192016602"
+  notes: ""
+  reference_url: ""
+  id: "163"
+  longitude: "-118.5469970703"
+  county_id: "25"
+locations_218: 
+  photo: "0"
+  city: San Francisco
+  name: Sutro Heights Park
+  latitude: "37.7783317566"
+  notes: ""
+  reference_url: ""
+  id: "219"
+  longitude: "-122.5100021362"
+  county_id: "14"
+locations_056: 
+  photo: "0"
+  city: Cupertino
+  name: McClellan Ranch
+  latitude: "37.3138999939"
+  notes: |-
+    the home of the Santa Clara Valley Audubon Society.
+    
+    Note to photographers: This site in a deep canyon affords little direct light in the morning, but does offer an interesting variety of passerines visiting the feeders at the Audubon society office or the community garden plots. Choose your angles carefully to deliberately include or exclude manmade perches and backgrounds.
+  reference_url: http://www.scvas.org/office.html
+  id: "56"
+  longitude: "-122.0619964600"
+  county_id: "2"
+locations_326: 
+  photo: "0"
+  city: San Jose
+  name: San Tomas Aquino Creek Trail
+  latitude: "37.3965606689"
+  notes: ""
+  reference_url: ""
+  id: "328"
+  longitude: "-121.9686813354"
+  county_id: "2"
+locations_271: 
+  photo: "0"
+  city: Cold Lake
+  name: Cold Lake Provincial Park
+  latitude: "54.4726982117"
+  notes: ""
+  reference_url: ""
+  id: "272"
+  longitude: "-110.1159973145"
+  county_id: "54"
+locations_245: 
+  photo: "0"
+  city: Cupertino
+  name: Stevens Creek County Park Villa Maria
+  latitude: "37.3039207458"
+  notes: ""
+  reference_url: http://www.parkhere.org/prkpages/stcrk.htm
+  id: "246"
+  longitude: "-122.0729827881"
+  county_id: "2"
+locations_083: 
+  photo: "0"
+  city: Orick
+  name: Prairie Creek Redwoods State Park
+  latitude: "41.4071998596"
+  notes: ""
+  reference_url: http://www.parks.ca.gov/allpages/default.asp?page_id=415
+  id: "82"
+  longitude: "-124.0189971924"
+  county_id: "5"
+locations_138: 
+  photo: "0"
+  city: ""
+  name: Rural Areas of San Benito County
+  latitude: "36.6166992188"
+  notes: ""
+  reference_url: ""
+  id: "138"
+  longitude: "-121.0830001831"
+  county_id: "17"
+locations_164: 
+  photo: "0"
+  city: Hayward
+  name: Hayward Regional Shoreline
+  latitude: "37.6499671936"
+  notes: "Note to photographers: A good place for morning light on shorebirds, be prepared to walk through some muck to get near the water. You'll have to work to exclude culverts and other man-made structures from your backgrounds. Look in the trees on the way to the shore for warblers and accipiters. No restrictions on early morning access. No entrance fee."
+  reference_url: ""
+  id: "164"
+  longitude: "-122.1473464966"
+  county_id: "12"
+locations_190: 
+  photo: "0"
+  city: Pacific Grove
+  name: Asilomar State Beach
+  latitude: "36.6241989136"
+  notes: ""
+  reference_url: ""
+  id: "191"
+  longitude: "-121.9380035400"
+  county_id: "3"
+locations_219: 
+  photo: "0"
+  city: Half Moon Bay
+  name: Venice Beach
+  latitude: "37.4797210693"
+  notes: "Note to photographers: This is a great place for gulls. Move quietly to the edge of the salt-water pond at the foot of the parking lot and wait quietly in the morning to get close to bathing gulls and, sometimes, a wayward Wood Duck"
+  reference_url: ""
+  id: "220"
+  longitude: "-122.4494400024"
+  county_id: "13"
+locations_057: 
+  photo: "0"
+  city: Los Banos
+  name: Rural Areas of Merced County
+  latitude: "37.1666984558"
+  notes: ""
+  reference_url: ""
+  id: "57"
+  longitude: "-120.7509994507"
+  county_id: "15"
+locations_327: 
+  photo: "0"
+  city: ""
+  name: Lemon Canyon Road
+  latitude: "39.5637207031"
+  notes: ""
+  reference_url: ""
+  id: "329"
+  longitude: "-120.2609252930"
+  county_id: "29"
+locations_272: 
+  photo: "0"
+  city: Lake La Biche
+  name: Lakeland Provincial Park
+  latitude: "54.8110198975"
+  notes: ""
+  reference_url: ""
+  id: "273"
+  longitude: "-111.5181961060"
+  county_id: "54"
+locations_246: 
+  photo: "0"
+  city: Saratoga
+  name: Monte Bello Gate 5
+  latitude: "37.3193893433"
+  notes: The pond at Gate 05
+  reference_url: http://www.openspace.org/MBELLO.html
+  id: "247"
+  longitude: "-122.1852493286"
+  county_id: "2"
+locations_139: 
+  photo: "0"
+  city: Ben Lomond
+  name: Big Basin State Park
+  latitude: "37.1852989197"
+  notes: ""
+  reference_url: ""
+  id: "139"
+  longitude: "-122.2289962769"
+  county_id: "19"
+locations_165: 
+  photo: "0"
+  city: Yosemite National Park
+  name: Chevron Meadow
+  latitude: "37.8499984741"
+  notes: The famous meadow behind the Chevron station at Crane Flat
+  reference_url: ""
+  id: "165"
+  longitude: "-119.5670013428"
+  county_id: "23"
+locations_191: 
+  photo: "0"
+  city: ""
+  name: Loma Prieta
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "192"
+  longitude: "0.0000000000"
+  county_id: "19"
+locations_058: 
+  photo: "0"
+  city: Merced
+  name: Merced NWR
+  latitude: "37.2962989807"
+  notes: ""
+  reference_url: http://www.gorp.com/gorp/resource/us_nwr/ca_merce.htm
+  id: "58"
+  longitude: "-120.4840011597"
+  county_id: "15"
+locations_084: 
+  photo: "0"
+  city: Prairie du Chien
+  name: Prairie du Chien
+  latitude: "43.0518989563"
+  notes: ""
+  reference_url: http://www.prairieduchien.org/
+  id: "83"
+  longitude: "-91.1481018066"
+  county_id: "52"
+locations_328: 
+  photo: "0"
+  city: ""
+  name: Smithneck Road
+  latitude: "39.6009368896"
+  notes: ""
+  reference_url: ""
+  id: "330"
+  longitude: "-120.1715087891"
+  county_id: "29"
+locations_273: 
+  photo: "0"
+  city: Lac La Biche
+  name: Sir Winston Churchill Provincial Park
+  latitude: "54.8318557739"
+  notes: ""
+  reference_url: ""
+  id: "274"
+  longitude: "-111.9740676880"
+  county_id: "54"
+locations_247: 
+  photo: "0"
+  city: East Palo Alto
+  name: O'Connor Street
+  latitude: "37.4609680176"
+  notes: The county boundary runs through the creek accessible from this location. County listers, be careful.
+  reference_url: ""
+  id: "248"
+  longitude: "-122.1242675781"
+  county_id: "2"
+locations_166: 
+  photo: "0"
+  city: San Antonio
+  name: Bosque del Apache NWR
+  latitude: "33.8050003052"
+  notes: ""
+  reference_url: ""
+  id: "166"
+  longitude: "-106.9069976807"
+  county_id: "40"
+locations_192: 
+  photo: "0"
+  city: ""
+  name: Mount Madonna Road
+  latitude: "37.0122184753"
+  notes: ""
+  reference_url: ""
+  id: "193"
+  longitude: "-121.7038879395"
+  county_id: "19"
+locations_059: 
+  photo: "0"
+  city: Saratoga
+  name: Monte Bello Open Space Preserve
+  latitude: "37.3166999817"
+  notes: "Note to photographers: this preserve can be great for woodpeckers, sparrows, and other passerines. I've observed Wrentits here on several occassions. This can be a great place to go during those rare bay area snows."
+  reference_url: http://www.openspace.org/MBELLO.html
+  id: "59"
+  longitude: "-122.1470031738"
+  county_id: "2"
+locations_085: 
+  photo: "0"
+  city: Princeton
+  name: Princeton Harbor
+  latitude: "37.5050010681"
+  notes: ""
+  reference_url: ""
+  id: "84"
+  longitude: "-122.4860000610"
+  county_id: "13"
+locations_329: 
+  photo: "0"
+  city: San Martin
+  name: Coyote Lake
+  latitude: "37.0990715027"
+  notes: ""
+  reference_url: http://www.sccgov.org/portal/site/parks/parksarticle?path=%252Fv7%252FParks%2520and%2520Recreation%252C%2520Department%2520of%2520%2528DEP%2529&contentId=5ac18a77d9784010VgnVCMP230004adc4a92____
+  id: "332"
+  longitude: "-121.5378112793"
+  county_id: "2"
+locations_274: 
+  photo: "0"
+  city: Slave Lake
+  name: Slave Lake
+  latitude: "55.2887992859"
+  notes: ""
+  reference_url: ""
+  id: "275"
+  longitude: "-114.7649993896"
+  county_id: "54"
+locations_248: 
+  photo: "0"
+  city: Palo Alto
+  name: Byxbee Park
+  latitude: "37.4526481628"
+  notes: ""
+  reference_url: ""
+  id: "249"
+  longitude: "-122.1054840088"
+  county_id: "2"
+locations_167: 
+  photo: "0"
+  city: Mountain View
+  name: Shoreline Lake
+  latitude: "37.4332542419"
+  notes: "Note to photographers: The lake can be a good early morning spot for Goldeneye, Bufflehead, Canvasback, Grebes, Gulls, and Coots. It's tempting to chase your target birds up and down the shore, but I find its more productive to be quiet and stationary and let the birds drift toward you as they forage. Check the trees for Red-tailed Hawks. This can also be a good spot for sparrows and some shorebirds. There is a booth at the entrance to the park, but I have never paid a fee there. Bathrooms available. Parking can be crowded on the weekends."
+  reference_url: ""
+  id: "167"
+  longitude: "-122.0921478271"
+  county_id: "2"
+locations_193: 
+  photo: "1"
+  city: Carmel Valley
+  name: Garland Ranch State Park
+  latitude: "36.5119018555"
+  notes: ""
+  reference_url: ""
+  id: "194"
+  longitude: "-121.8209991455"
+  county_id: "3"
+locations_086: 
+  photo: "0"
+  city: Cupertino
+  name: Rancho San Antonio
+  latitude: "37.3311004639"
+  notes: "Note to photographers: Rancho San Antonio is a very popular park for jogging and bicycling. So, don't go there expected a quiet, contemplative communion between you and your subject. You will find good morning light and some acclimated and cooperative woodpeckers and various passerines. At midday it is possible to find shaded subjects against shaded backgrounds if you work at it. No entrance fee. Parking can be difficult on the weekends. Bathrooms provided. The park is officially open from 8am until shortly after sunset, but in practice the gate is often opened earlier in the morning."
+  reference_url: http://www.openspace.org/RANCHO.html
+  id: "85"
+  longitude: "-122.0920028687"
+  county_id: "2"
+locations_275: 
+  photo: "0"
+  city: Athabasca
+  name: Athabasca
+  latitude: "54.7194252014"
+  notes: ""
+  reference_url: ""
+  id: "276"
+  longitude: "-113.2858505249"
+  county_id: "54"
+locations_249: 
+  photo: "0"
+  city: Alviso
+  name: Jubilee Christian Center
+  latitude: "37.4256439209"
+  notes: ""
+  reference_url: http://www.jubilee.org/
+  id: "250"
+  longitude: "-121.9599914551"
+  county_id: "2"
+locations_168: 
+  photo: "0"
+  city: San Mateo
+  name: Tidelands Park
+  latitude: "37.5696983337"
+  notes: ""
+  reference_url: ""
+  id: "168"
+  longitude: "-122.2850036621"
+  county_id: "13"
+locations_194: 
+  photo: "0"
+  city: Los Altos Hills
+  name: Hidden Villa
+  latitude: "37.3541984558"
+  notes: ""
+  reference_url: ""
+  id: "195"
+  longitude: "-122.1579971313"
+  county_id: "2"
+locations_087: 
+  photo: "0"
+  city: Claremont
+  name: Rancho Santa Ana Botanic Gardens
+  latitude: "34.1116981506"
+  notes: Near Ran and Laura's house
+  reference_url: http://www.rsabg.org/
+  id: "86"
+  longitude: "-117.7149963379"
+  county_id: "18"
+locations_276: 
+  photo: "0"
+  city: Jasper
+  name: Jasper National Park
+  latitude: "52.8572006226"
+  notes: ""
+  reference_url: ""
+  id: "277"
+  longitude: "-118.0859985352"
+  county_id: "54"
+locations_169: 
+  photo: "0"
+  city: San Jose
+  name: Ogier Ponds
+  latitude: "37.1772003174"
+  notes: ""
+  reference_url: ""
+  id: "169"
+  longitude: "-121.6989974976"
+  county_id: "2"
+locations_195: 
+  photo: "0"
+  city: Santa Cruz
+  name: Salinas River State Beach
+  latitude: "36.7831001282"
+  notes: "Note to photographers: This can be a good place to look for Snowy Plovers in late spring, with better light in the afternoon. Most of the birds are banded, however. The beach can be crowded. Porta-potty available. No entrance fee."
+  reference_url: ""
+  id: "196"
+  longitude: "-121.7939987183"
+  county_id: "3"
+locations_088: 
+  photo: "0"
+  city: Belmont
+  name: Reactivity
+  latitude: "37.5251998901"
+  notes: ""
+  reference_url: http://www.reactivity.com/
+  id: "87"
+  longitude: "-122.2669982910"
+  county_id: "13"
+locations_277: 
+  photo: "0"
+  city: Berkeley
+  name: Berkeley Marina
+  latitude: "37.8680610657"
+  notes: ""
+  reference_url: ""
+  id: "278"
+  longitude: "-122.3152770996"
+  county_id: "12"
+locations_196: 
+  photo: "0"
+  city: Santa Cruz
+  name: Zmudowski State Beach
+  latitude: "36.8372001648"
+  notes: "Note to photographers: Prepare to drive several miles after turning off the highway to get to this beach. This can be a good place to look for Snowy Plovers in late spring, with better light in the afternoon. Porta-potty available. No entrance fee."
+  reference_url: ""
+  id: "197"
+  longitude: "-121.8010025024"
+  county_id: "3"
+locations_089: 
+  photo: "0"
+  city: Orick
+  name: Redwood Creek Horse Trail
+  latitude: "41.2849998474"
+  notes: ""
+  reference_url: ""
+  id: "88"
+  longitude: "-124.0920028687"
+  county_id: "5"
+locations_278: 
+  photo: "0"
+  city: Hayward
+  name: Garin / Dry Creek Regional Parks
+  latitude: "37.6286163330"
+  notes: ""
+  reference_url: ""
+  id: "279"
+  longitude: "-122.0289535522"
+  county_id: "12"
+locations_197: 
+  photo: "0"
+  city: Kernville
+  name: Chimney Peak Road
+  latitude: "35.7590217590"
+  notes: ""
+  reference_url: ""
+  id: "198"
+  longitude: "-118.0992202759"
+  county_id: "24"
+locations_279: 
+  photo: "0"
+  city: Berkeley
+  name: Berkeley Aquatic Park
+  latitude: "37.8569412231"
+  notes: ""
+  reference_url: ""
+  id: "280"
+  longitude: "-122.2977828979"
+  county_id: "12"
+locations_198: 
+  photo: "0"
+  city: Mojave
+  name: Butterbredt Spring
+  latitude: "35.3821983337"
+  notes: ""
+  reference_url: ""
+  id: "199"
+  longitude: "-118.1119995117"
+  county_id: "24"
+locations_199: 
+  photo: "0"
+  city: Kernville
+  name: Canebrake Ecological Reserve
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "200"
+  longitude: "0.0000000000"
+  county_id: "24"
+locations_010: 
+  photo: "0"
+  city: Bodega
+  name: Bodega Bay
+  latitude: "38.2736015320"
+  notes: ""
+  reference_url: ""
+  id: "10"
+  longitude: "-123.0049972534"
+  county_id: "6"
+locations_011: 
+  photo: "0"
+  city: Bolinas
+  name: Bolinas Lagoon
+  latitude: "37.9280014038"
+  notes: ""
+  reference_url: http://www.marin.org/mc/pos/osdboli.html
+  id: "11"
+  longitude: "-122.6890029907"
+  county_id: "7"
+locations_012: 
+  photo: "0"
+  city: Burney
+  name: Burney Falls
+  latitude: "40.9066009521"
+  notes: ""
+  reference_url: http://www.burneyfalls.com/pages/burnyfls.html
+  id: "12"
+  longitude: "-121.6579971313"
+  county_id: "8"
+locations_200: 
+  photo: "0"
+  city: Mojave
+  name: Jawbone Canyon Road
+  latitude: "35.3751525879"
+  notes: ""
+  reference_url: ""
+  id: "201"
+  longitude: "-118.1653747559"
+  county_id: "24"
+locations_013: 
+  photo: "0"
+  city: Macdoel
+  name: Butte Valley Wildlife Area
+  latitude: "41.6701011658"
+  notes: ""
+  reference_url: http://www.buttevalleychamber.com/
+  id: "13"
+  longitude: "-121.8750000000"
+  county_id: "9"
+locations_120: 
+  photo: "0"
+  city: Trinidad
+  name: Trinidad Harbor
+  latitude: "41.0555992126"
+  notes: ""
+  reference_url: ""
+  id: "119"
+  longitude: "-124.1460037231"
+  county_id: "5"
+locations_201: 
+  photo: "0"
+  city: California City
+  name: California City Golf Course
+  latitude: "0.0000000000"
+  notes: ""
+  reference_url: ""
+  id: "202"
+  longitude: "0.0000000000"
+  county_id: "24"
+locations_014: 
+  photo: "0"
+  city: San Jose
+  name: Calero Reservoir
+  latitude: "37.2015991211"
+  notes: A reservoir south of San Jose, said to be a reliable spot for Bald Eagles.
+  reference_url: http://claraweb.co.santa-clara.ca.us/parks/prkpages/calero.htm
+  id: "14"
+  longitude: "-121.8280029297"
+  county_id: "2"
+locations_040: 
+  photo: "0"
+  city: Foster City
+  name: Foster City Radio Tower
+  latitude: "37.5424003601"
+  notes: "Note to photographers: The pond between the dog park and the sewage treatment plant can be a great place for end-of-day shorebird shots as the sun is going down. A slow and stealthy approach can allow you a pretty close, low angle shot of dowitchers and sandpipers. Flights of terns, ducks, shorebirds, and even skimmers are also possible. The dog park might have a porta potty. No entrance fee. "
+  reference_url: ""
+  id: "40"
+  longitude: "-122.2289962769"
+  county_id: "13"
+locations_121: 
+  photo: "0"
+  city: Trinidad
+  name: Trinidad State Beach
+  latitude: "41.0656013489"
+  notes: ""
+  reference_url: http://www.northcoast.com/~rras/hotspot2.htm
+  id: "120"
+  longitude: "-124.1490020752"
+  county_id: "5"
+locations_202: 
+  photo: "0"
+  city: California City
+  name: California City Central Park
+  latitude: "35.1277999878"
+  notes: ""
+  reference_url: ""
+  id: "203"
+  longitude: "-117.9459991455"
+  county_id: "24"
