@@ -7,7 +7,12 @@ class Species < ActiveRecord::Base
   has_one :last_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id DESC'
                                  
   # a Species has many photos, including 'gallery' (best quality) photos
-  has_many :photos
+  has_many :photos do
+    # Returns photos of this Species taken during the current week-of-the-year
+    def this_week
+      Photo.this_week(self)
+    end
+  end
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
     
   # trip-related assocations
@@ -15,6 +20,7 @@ class Species < ActiveRecord::Base
                           
   # different species lists
   named_scope :seen, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'         
+  named_scope :seen_by_common_name, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'species.common_name'         
   named_scope :photographed, :include => [ :photos, :family ], :conditions => [ 'photos.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'
   named_scope :seen_not_excluded, :include => [ :sightings, :family ], :conditions => [ 'sightings.exclude = false' ], :order => 'families.taxonomic_sort_id, species.id'  
   named_scope :countable, :include => :family, :conditions => [ 'species.aba_countable = true' ], :order => 'families.taxonomic_sort_id, species.id'  
@@ -22,6 +28,7 @@ class Species < ActiveRecord::Base
                                                                             
   # location-related associations
   has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do
+    # Returns the list of locations for which we have latitude and longitude
     def with_lat_long
       Location.with_lat_long(self)
     end
@@ -29,16 +36,11 @@ class Species < ActiveRecord::Base
   
   validates_presence_of :common_name, :latin_name, :abbreviation    
   
+  # Returns true if this species has been seen at least thirty times, false otherwise
   def common?
     self.sightings.size > 30
   end
 
-  def photo_of_the_week
-    Photo.find_by_sql(
-      "SELECT photos.* FROM photos, trips
-         WHERE photos.trip_id=trips.id AND photos.species_id=" + self.id.to_s + "
-         AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "' LIMIT 1")[0]
-  end
   
   def Species.find_all_not_photographed
     Species.find_by_sql(
@@ -47,20 +49,19 @@ class Species < ActiveRecord::Base
        AND NOT EXISTS (select species_id from photos WHERE species.id=photos.species_id)
        ORDER BY families.taxonomic_sort_id, species.id")
   end  
-
-  def Species.find_all_seen_by_common_name
-    Species.find_by_sql("SELECT DISTINCT(species.id), species.* FROM species, sightings WHERE species.id=sightings.species_id ORDER BY species.common_name")
-  end  
   
+  # Returns a dictionary where keys are family objects and values are lists of species
   def Species.map_by_family(species_list)
     species_list.inject({}) { | map, species |
        map[species.family] ? map[species.family] << species : map[species.family] = [species] ; map }
   end
   
+  # Sort species, first by taxonomic_sort_id and then by species.id field
   def Species.sort_taxonomic(species_list)
     species_list.sort_by { |s| s.family.taxonomic_sort_id * 100000000000 + s.id }
   end
   
+  # Find a species for which there was at least one photo from the current week-of-the-year
   def Species.bird_of_the_week
     Species.find_by_sql("SELECT DISTINCT species.* FROM species, photos, trips
       WHERE photos.species_id=species.id AND photos.trip_id=trips.id
@@ -68,6 +69,7 @@ class Species < ActiveRecord::Base
       ORDER BY trips.date DESC LIMIT 1")[0]
   end
 
+  # Returns the list of species that have been seen in the given year up to the current week-of-the-year
   def Species.year_to_date(year)  
     Species.find_by_sql(
       "SELECT DISTINCT species.* FROM species, sightings, trips
