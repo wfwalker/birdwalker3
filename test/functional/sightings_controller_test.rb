@@ -5,7 +5,7 @@ require 'sightings_controller'
 class SightingsController; def rescue_action(e) raise e end; end
 
 class SightingsControllerTest < Test::Unit::TestCase
-  fixtures :trips, :sightings, :locations
+  fixtures :trips, :sightings, :locations, :species
 
   def setup
     @controller = SightingsController.new

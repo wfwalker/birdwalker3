@@ -5,7 +5,7 @@ require 'locations_controller'
 class LocationsController; def rescue_action(e) raise e end; end
 
 class LocationsControllerTest < Test::Unit::TestCase
-  fixtures :locations, :counties, :photos, :sightings, :states, :trips, :species
+  fixtures :locations, :counties, :photos, :sightings, :states, :trips, :species, :families
 
   def setup
     @controller = LocationsController.new

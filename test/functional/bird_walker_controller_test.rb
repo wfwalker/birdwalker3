@@ -6,7 +6,7 @@ require 'application_helper'
 class BirdWalkerController; def rescue_action(e) raise e end; end
 
 class BirdWalkerControllerTest < Test::Unit::TestCase
-  fixtures :species, :families, :photos, :locations, :sightings, :counties, :states
+  fixtures :species, :families, :photos, :locations, :sightings, :counties, :states, :trips
 
   def setup
     @controller = BirdWalkerController.new
