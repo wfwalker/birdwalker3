@@ -1,0 +1,256 @@
+--- 
+states_043: 
+  name: Texas
+  abbreviation: TX
+  notes: ""
+  id: "43"
+states_032: 
+  name: New York
+  abbreviation: NY
+  notes: ""
+  id: "32"
+states_021: 
+  name: Massachusetts
+  abbreviation: MA
+  notes: ""
+  id: "21"
+states_010: 
+  name: Georgia
+  abbreviation: GA
+  notes: ""
+  id: "10"
+states_044: 
+  name: Utah
+  abbreviation: UT
+  notes: ""
+  id: "44"
+states_033: 
+  name: North Carolina
+  abbreviation: NC
+  notes: ""
+  id: "33"
+states_022: 
+  name: Michigan
+  abbreviation: MI
+  notes: ""
+  id: "22"
+states_011: 
+  name: Hawaii
+  abbreviation: HI
+  notes: ""
+  id: "11"
+states_045: 
+  name: Vermont
+  abbreviation: VT
+  notes: ""
+  id: "45"
+states_034: 
+  name: North Dakota
+  abbreviation: ND
+  notes: ""
+  id: "34"
+states_023: 
+  name: Minnesota
+  abbreviation: MN
+  notes: ""
+  id: "23"
+states_012: 
+  name: Idaho
+  abbreviation: ID
+  notes: ""
+  id: "12"
+states_001: 
+  name: Alabama
+  abbreviation: AL
+  notes: ""
+  id: "1"
+states_046: 
+  name: Virginia
+  abbreviation: VA
+  notes: ""
+  id: "46"
+states_035: 
+  name: Ohio
+  abbreviation: OH
+  notes: ""
+  id: "35"
+states_024: 
+  name: Mississippi
+  abbreviation: MS
+  notes: ""
+  id: "24"
+states_013: 
+  name: Illinois
+  abbreviation: IL
+  notes: ""
+  id: "13"
+states_002: 
+  name: Alaska
+  abbreviation: AK
+  notes: ""
+  id: "2"
+states_047: 
+  name: Washington
+  abbreviation: WA
+  notes: ""
+  id: "47"
+states_036: 
+  name: Oklahoma
+  abbreviation: OK
+  notes: ""
+  id: "36"
+states_025: 
+  name: Missouri
+  abbreviation: MO
+  notes: ""
+  id: "25"
+states_014: 
+  name: Indiana
+  abbreviation: IN
+  notes: ""
+  id: "14"
+states_003: 
+  name: Arizona
+  abbreviation: AZ
+  notes: ""
+  id: "3"
+states_048: 
+  name: West Virginia
+  abbreviation: WV
+  notes: ""
+  id: "48"
+states_037: 
+  name: Oregon
+  abbreviation: OR
+  notes: ""
+  id: "37"
+states_026: 
+  name: Montana
+  abbreviation: MT
+  notes: ""
+  id: "26"
+states_015: 
+  name: Iowa
+  abbreviation: IA
+  notes: ""
+  id: "15"
+states_004: 
+  name: Arkansas
+  abbreviation: AR
+  notes: ""
+  id: "4"
+states_049: 
+  name: Wisconsin
+  abbreviation: WI
+  notes: ""
+  id: "49"
+states_038: 
+  name: Pennsylvania
+  abbreviation: PA
+  notes: ""
+  id: "38"
+states_027: 
+  name: Nebraska
+  abbreviation: NE
+  notes: ""
+  id: "27"
+states_016: 
+  name: Kansas
+  abbreviation: KS
+  notes: ""
+  id: "16"
+states_005: 
+  name: California
+  abbreviation: CA
+  notes: ""
+  id: "5"
+states_050: 
+  name: Wyoming
+  abbreviation: WY
+  notes: ""
+  id: "50"
+states_039: 
+  name: Rhode Island
+  abbreviation: RI
+  notes: ""
+  id: "39"
+states_028: 
+  name: Nevada
+  abbreviation: NV
+  notes: ""
+  id: "28"
+states_017: 
+  name: Kentucky
+  abbreviation: KY
+  notes: ""
+  id: "17"
+states_006: 
+  name: Colorado
+  abbreviation: CO
+  notes: ""
+  id: "6"
+states_051: 
+  name: Alberta
+  abbreviation: AB
+  notes: 
+  id: "51"
+states_040: 
+  name: South Carolina
+  abbreviation: SC
+  notes: ""
+  id: "40"
+states_029: 
+  name: New Hampshire
+  abbreviation: NH
+  notes: ""
+  id: "29"
+states_018: 
+  name: Lousiana
+  abbreviation: LA
+  notes: ""
+  id: "18"
+states_007: 
+  name: Connecticut
+  abbreviation: CT
+  notes: ""
+  id: "7"
+states_041: 
+  name: South Dakota
+  abbreviation: SD
+  notes: ""
+  id: "41"
+states_030: 
+  name: New Jersey
+  abbreviation: NJ
+  notes: ""
+  id: "30"
+states_019: 
+  name: Maine
+  abbreviation: ME
+  notes: ""
+  id: "19"
+states_008: 
+  name: Delaware
+  abbreviation: DE
+  notes: ""
+  id: "8"
+states_042: 
+  name: Tennessee
+  abbreviation: TN
+  notes: ""
+  id: "42"
+states_031: 
+  name: New Mexico
+  abbreviation: NM
+  notes: ""
+  id: "31"
+states_020: 
+  name: Maryland
+  abbreviation: MD
+  notes: ""
+  id: "20"
+states_009: 
+  name: Florida
+  abbreviation: FL
+  notes: ""
+  id: "9"

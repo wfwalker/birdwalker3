@@ -1,0 +1,245 @@
+--- 
+counties_059: 
+  name: Grant
+  id: "59"
+  state_id: "49"
+counties_048: 
+  name: Cameron
+  id: "48"
+  state_id: "43"
+counties_037: 
+  name: Barnstable
+  id: "37"
+  state_id: "21"
+counties_026: 
+  name: Solano
+  id: "26"
+  state_id: "5"
+counties_015: 
+  name: Merced
+  id: "15"
+  state_id: "5"
+counties_004: 
+  name: San Diego
+  id: "4"
+  state_id: "5"
+counties_060: 
+  name: Modoc
+  id: "60"
+  state_id: "5"
+counties_049: 
+  name: Nueces
+  id: "49"
+  state_id: "43"
+counties_038: 
+  name: Washoe
+  id: "38"
+  state_id: "28"
+counties_027: 
+  name: Sacramento
+  id: "27"
+  state_id: "5"
+counties_016: 
+  name: San Luis Obispo
+  id: "16"
+  state_id: "5"
+counties_005: 
+  name: Humboldt
+  id: "5"
+  state_id: "5"
+counties_061: 
+  name: Klamath
+  id: "61"
+  state_id: "37"
+counties_050: 
+  name: Webb
+  id: "50"
+  state_id: "43"
+counties_039: 
+  name: Cape May
+  id: "39"
+  state_id: "30"
+counties_028: 
+  name: Fresno
+  id: "28"
+  state_id: "5"
+counties_017: 
+  name: San Benito
+  id: "17"
+  state_id: "5"
+counties_006: 
+  name: Sonoma
+  id: "6"
+  state_id: "5"
+counties_051: 
+  name: Gonzales
+  id: "51"
+  state_id: "43"
+counties_040: 
+  name: Socorro
+  id: "40"
+  state_id: "31"
+counties_052: 
+  name: Crawford
+  id: "52"
+  state_id: "49"
+counties_041: 
+  name: Deschutes
+  id: "41"
+  state_id: "37"
+counties_030: 
+  name: Mendocino
+  id: "30"
+  state_id: "5"
+counties_029: 
+  name: Sierra
+  id: "29"
+  state_id: "5"
+counties_018: 
+  name: Los Angeles
+  id: "18"
+  state_id: "5"
+counties_007: 
+  name: Marin
+  id: "7"
+  state_id: "5"
+counties_053: 
+  name: Dane
+  id: "53"
+  state_id: "49"
+counties_042: 
+  name: Jefferson
+  id: "42"
+  state_id: "37"
+counties_031: 
+  name: Grand
+  id: "31"
+  state_id: "6"
+counties_020: 
+  name: Glenn
+  id: "20"
+  state_id: "5"
+counties_019: 
+  name: Santa Cruz
+  id: "19"
+  state_id: "5"
+counties_008: 
+  name: Shasta
+  id: "8"
+  state_id: "5"
+counties_054: 
+  name: Alberta
+  id: "54"
+  state_id: "51"
+counties_043: 
+  name: Harney
+  id: "43"
+  state_id: "37"
+counties_032: 
+  name: Orange
+  id: "32"
+  state_id: "9"
+counties_021: 
+  name: Imperial
+  id: "21"
+  state_id: "5"
+counties_010: 
+  name: Contra Costa
+  id: "10"
+  state_id: "5"
+counties_009: 
+  name: Siskiyou
+  id: "9"
+  state_id: "5"
+counties_055: 
+  name: Yuba
+  id: "55"
+  state_id: "5"
+counties_044: 
+  name: Jackson
+  id: "44"
+  state_id: "37"
+counties_033: 
+  name: Polk
+  id: "33"
+  state_id: "9"
+counties_022: 
+  name: San Joaquin
+  id: "22"
+  state_id: "5"
+counties_011: 
+  name: Colusa
+  id: "11"
+  state_id: "5"
+counties_056: 
+  name: Butte
+  id: "56"
+  state_id: "5"
+counties_045: 
+  name: Philadelphia
+  id: "45"
+  state_id: "38"
+counties_034: 
+  name: Sarasota
+  id: "34"
+  state_id: "9"
+counties_023: 
+  name: Mono
+  id: "23"
+  state_id: "5"
+counties_012: 
+  name: Alameda
+  id: "12"
+  state_id: "5"
+counties_001: 
+  name: Maricopa
+  id: "1"
+  state_id: "3"
+counties_057: 
+  name: Sutter
+  id: "57"
+  state_id: "5"
+counties_046: 
+  name: Hidalgo
+  id: "46"
+  state_id: "43"
+counties_035: 
+  name: Champaign
+  id: "35"
+  state_id: "13"
+counties_024: 
+  name: Kern
+  id: "24"
+  state_id: "5"
+counties_013: 
+  name: San Mateo
+  id: "13"
+  state_id: "5"
+counties_002: 
+  name: Santa Clara
+  id: "2"
+  state_id: "5"
+counties_058: 
+  name: Osceola
+  id: "58"
+  state_id: "9"
+counties_047: 
+  name: Real
+  id: "47"
+  state_id: "43"
+counties_036: 
+  name: Clayton
+  id: "36"
+  state_id: "15"
+counties_025: 
+  name: Tulare
+  id: "25"
+  state_id: "5"
+counties_014: 
+  name: San Francisco
+  id: "14"
+  state_id: "5"
+counties_003: 
+  name: Monterey
+  id: "3"
+  state_id: "5"
