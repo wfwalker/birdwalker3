@@ -1,11 +1,11 @@
 <div class="pagecontentmodule">
 	<div class="moduletitle">See it this week!</div>
 	<div class="pagecontentitem">
-		<img width="100%" src="<%= @bird_of_the_week.photo_of_the_week.photo_URL %>"/>
+		<img width="100%" src="<%= @bird_of_the_week.photos.this_week[0].photo_URL %>"/>
 		<p>
 			The Bird of the Week is the <%= link_to @bird_of_the_week.common_name, :controller => 'species', :action => 'show', :id => @bird_of_the_week %><br/>
-			Photographed <%= link_to nice_date(@photo_of_the_week.trip.date), :controller => 'trips', :action => 'show', :id => @photo_of_the_week.trip %> at 
-			<%= link_to @photo_of_the_week.location.name, :controller => 'locations', :action => 'show', :id => @photo_of_the_week.location %>
+			Photographed <%= link_to nice_date(@bird_of_the_week.photos.this_week[0].trip.date), :controller => 'trips', :action => 'show', :id => @bird_of_the_week.photos.this_week[0].trip %> at 
+			<%= link_to @bird_of_the_week.photos.this_week[0].location.name, :controller => 'locations', :action => 'show', :id => @bird_of_the_week.photos.this_week[0].location %>
 		</p>
 	</div>
 </div>                
