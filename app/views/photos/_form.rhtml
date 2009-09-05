@@ -11,7 +11,7 @@
 </p>
 
 <p><label for="photo_species">Species</label><br/>
-<%= collection_select("photo", "species_id", Species.find_all_seen_by_common_name, :id, :common_name, {:prompt => true}) %>
+<%= collection_select("photo", "species_id", Species.seen_by_common_name, :id, :common_name, {:prompt => true}) %>
 </p>
 
 <p><label for="original_filename">Original Filename</label><br/>
