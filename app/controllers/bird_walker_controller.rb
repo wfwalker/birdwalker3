@@ -69,44 +69,47 @@ class BirdWalkerController < ApplicationController
   end
   
   def photo_search
-    where_clause = "SELECT photos.* from photos, species, trips, locations, counties WHERE photos.trip_id=trips.id AND photos.location_id=locations.id AND photos.species_id=species.id AND locations.county_id=counties.id "
+    base_where_clause = "SELECT photos.* from photos, species, trips, locations, counties WHERE photos.trip_id=trips.id AND photos.location_id=locations.id AND photos.species_id=species.id AND locations.county_id=counties.id "
+    additional_where_clause = " "
     do_search = false
     
     if (params[:photo] != nil && params[:photo][:species_id] != "") then
-      where_clause = where_clause + " AND photos.species_id='" + params[:photo][:species_id].to_s + "'"
+      additional_where_clause = additional_where_clause + " AND photos.species_id='" + params[:photo][:species_id].to_s + "'"
       do_search = true
     end
     if (params[:photo] != nil && params[:photo][:location_id] != "") then
-      where_clause = where_clause + " AND photos.location_id='" + params[:photo][:location_id].to_s + "'"
+      additional_where_clause = additional_where_clause + " AND photos.location_id='" + params[:photo][:location_id].to_s + "'"
       do_search = true
     end
     if (params[:species] != nil && params[:species][:family_id] != "") then
-      where_clause = where_clause + " AND species.family_id='" + params[:species][:family_id].to_s + "'"
+      additional_where_clause = additional_where_clause + " AND species.family_id='" + params[:species][:family_id].to_s + "'"
       do_search = true
     end
-    if (params[:location] != nil && params[:location][:county_id] != "") then
-      where_clause = where_clause + " AND locations.county_id='" + params[:location][:county_id].to_s + "'"
+    if (params[:photo] != nil && params[:photo][:county_id] != "") then
+      additional_where_clause = additional_where_clause + " AND locations.county_id='" + params[:photo][:county_id].to_s + "'"
       do_search = true
     end
     if (params[:county] != nil && params[:county][:state_id] != "") then
-      where_clause = where_clause + " AND counties.state_id='" + params[:county][:state_id].to_s + "'"
+      additional_where_clause = additional_where_clause + " AND counties.state_id='" + params[:county][:state_id].to_s + "'"
       do_search = true
     end
     if (params[:date] != nil && params[:date][:month] != "") then
-      where_clause = where_clause + " AND MONTH(trips.date)='" + params[:date][:month].to_s + "'"
+      additional_where_clause = additional_where_clause + " AND MONTH(trips.date)='" + params[:date][:month].to_s + "'"
       do_search = true
     end
     if (params[:date] != nil && params[:date][:year] != "") then
-      where_clause = where_clause + " AND YEAR(trips.date)='" + params[:date][:year].to_s + "'"
+      additional_where_clause = additional_where_clause + " AND YEAR(trips.date)='" + params[:date][:year].to_s + "'"
       do_search = true
     end
     if (params[:photo] != nil && params[:photo][:rating] != "") then
-      where_clause = where_clause + " AND photos.rating='" + params[:photo][:rating].to_s + "'"
+      additional_where_clause = additional_where_clause + " AND photos.rating='" + params[:photo][:rating].to_s + "'"
       do_search = true
-    end
+    end            
+    
+    logger.error("\n\n*** where clause for photo search " + additional_where_clause + "\n\n\n")
     
     if (do_search) then
-      @found_photos = Photo.find_by_sql(where_clause);
+      @found_photos = Photo.find_by_sql(base_where_clause + additional_where_clause);
     end
   end
   
