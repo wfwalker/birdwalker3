@@ -45,8 +45,8 @@ class BirdWalkerController < ApplicationController
     
     render :layout => false, :file => 'app/views/bird_walker/index_rss.rxml'
     headers["Content-Type"] = "application/xml"  
-  end           
-  
+  end   
+    
   def about
   end
   
