@@ -10,9 +10,17 @@
 	
 	<div id="pagecontent"> 
 		<div class="pagecontentmodule">  
-			<div class="pagecontentitem">
-				<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
-				<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+			<div style="font-size: 14pt; margin-left: 12px">
+				<% if @start_index > 0 %>
+					<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
+				<% else %>
+					prev
+				<% end %>
+				<% if @start_index + 5 < @location.gallery_photos.size %>
+					<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+				<% else %>
+					next
+				<% end %>
 			</div>
 		</div>		
 		
@@ -30,16 +38,24 @@
 			</div>
 		<% end %>
 		
-		<div style="padding-top: 20px; padding-bottom: 50px">
-			All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
-		</div>				
-
 		<div class="pagecontentmodule">  
-			<div class="pagecontentitem">
-				<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
-				<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+			<div style="padding-top: 20px; font-size: 14pt; margin-left: 12px">
+				<% if @start_index > 0 %>
+					<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
+				<% else %>
+					prev
+				<% end %>
+				<% if @start_index + 5 < @location.gallery_photos.size %>
+					<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+				<% else %>
+					next
+				<% end %>
 			</div>
 		</div>		
+
+		<div style="padding-top: 20px; padding-bottom: 50px; margin-left: 12px">
+			All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
+		</div>				
 	</div>        
 </div>
 
