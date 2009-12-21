@@ -94,7 +94,17 @@ module ApplicationHelper
     else
       600
     end
-  end      
+  end         
+  
+  def manage_history
+    request.path_parameters    
+    session[:history] ||= []
+    new_entry = {"url" => request.request_uri, "name" => @page_title }
+    if (! session[:history].include?(new_entry)) then
+	    session[:history].unshift({"url" => request.request_uri, "name" => @page_title })
+	  end
+	  session[:history].pop while session[:history].length > 6
+  end        
   
   def check_for_timeout
     if (session[:username] == nil) then
