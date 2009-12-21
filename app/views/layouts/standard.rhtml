@@ -31,12 +31,16 @@ pageTracker._trackPageview();
 			<span class="baritem"><%= @page_kind %> : <%= @page_title %></span>
                                   
 		  	<span class="baritem">
-
-			<% if (session[:username] != nil) then %>
-				<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout'%>
-			<% else %>
-			    <%= link_to 'Login', :controller => 'bird_walker', :action => 'login'%>
-			<% end %>      
+				<% if (session[:username] != nil) then %>
+					<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout'%>
+				<% else %>
+				    <%= link_to 'Login', :controller => 'bird_walker', :action => 'login'%>
+				<% end %>      
+			</span>            
+			
+			<span class="baritem">
+				<% manage_history %>
+				recently visited: <%= session[:history].collect{|entry| link_to entry["name"], entry["url"]}.join(" | ")%>
 			</span>
    		</div>
 
