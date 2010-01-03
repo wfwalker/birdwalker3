@@ -1,10 +1,5 @@
 <% @page_kind = 'Sighting' %>
-<% if (@sighting.species != nil) then
-  		@page_title = @sighting.species.common_name
-   	else	
-  		@page_title = "Unknown Species"
-   end 
-%>
+<% @page_title = safe_species_common_name(@sighting) + " at " + safe_location_name(@sighting) + " on " + safe_trip_date(@sighting) %>
 
 <div id="pagebody">
 	<div id="pageheader">
