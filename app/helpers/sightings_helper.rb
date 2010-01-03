@@ -6,6 +6,10 @@ module SightingsHelper
 			"unknown"
 	  end
   end
+                        
+  def has_count?(subject, &block)
+    yield if subject.count
+  end
 
   def safe_location_name(sighting)
 	  if (sighting && sighting.location) then
@@ -18,6 +22,14 @@ module SightingsHelper
   def safe_trip_name(sighting)
 	  if (sighting && sighting.trip) then
 		  sighting.trip.name
+	  else
+			"unknown"
+	  end
+  end
+
+  def safe_trip_date(sighting)
+	  if (sighting && sighting.trip) then
+		  short_nice_date(sighting.trip.date)
 	  else
 			"unknown"
 	  end

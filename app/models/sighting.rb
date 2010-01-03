@@ -3,7 +3,9 @@ class Sighting < ActiveRecord::Base
   belongs_to :species
   belongs_to :trip                                   
     
-  validates_presence_of :species_id, :location_id, :trip_id      
+  validates_presence_of :species_id, :location_id, :trip_id        
+
+  validates_numericality_of :count, :allow_nil => true
   
   def Sighting.year_range
     (1996..2009)
