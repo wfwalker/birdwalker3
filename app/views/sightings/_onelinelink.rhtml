@@ -6,6 +6,10 @@
 	<% if (sighting.heard_only) then %>
 		(h)
 	<% end %>
+
+	<% if (sighting.count) then %>
+		[<%= sighting.count %>]
+	<% end %>
 	
 	<% if @show_location_abbreviation %>
 		<span class="location-abbreviation"><%= sighting.location.abbreviation %></span>

@@ -24,7 +24,8 @@
 			<% for @sighting in Sighting.sort_taxonomic(@trip.sightings) %>
 				<div class="pagecontentitem">
 					<%= link_to 'edit', edit_sighting_url(@sighting) %>
-					<%= safe_species_common_name(@sighting)%>, <%= @sighting.location.name %>
+					<%= safe_species_common_name(@sighting)%>, <%= safe_location_name(@sighting) %>
+					<% if @sighting.count then %> [<%= @sighting.count %>] <% end %>
 					<%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete ' + @sighting.species.common_name + ' Are you sure?', :method => 'delete' %>
 				</div>
 			<% end %> 
