@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer "location_id", :limit => 3
     t.integer "species_id",  :limit => 8
     t.integer "trip_id",     :limit => 3
+    t.integer "count",       :limit => 3
   end
 
   add_index "sightings", ["exclude"], :name => "ExcludeIndex"
@@ -78,8 +79,6 @@ ActiveRecord::Schema.define(:version => 0) do
     t.boolean "aba_countable",              :default => true, :null => false
     t.integer "family_id"
   end
-  
-  change_column(:species, :id, :bigint, :limit => 20, :null => false)
 
   add_index "species", ["aba_countable"], :name => "aba_countableIndex"
   add_index "species", ["abbreviation"], :name => "AbbreviationIndex"
