@@ -2,7 +2,7 @@
 	<div class="moduletitle">This year so far</div>
 	<div class="pagecontentitem">
 		<p>So far in
-		<%= link_to 'week ' + Date.today.cweek.to_s + ' of ' + Date.today.year.to_s + ' we have seen ' + @this_year_species.size.to_s + ' species', :controller => 'species', :action => 'year_list', :id => Date.today.year %>.
+		<%= link_to 'day ' + Date.today.yday.to_s + ' of ' + Date.today.year.to_s + ' we have seen ' + @this_year_species.size.to_s + ' species', :controller => 'species', :action => 'year_list', :id => Date.today.year %>.
 		Last year at this time we had seen <%= @last_year_species.size.to_s %>.</p>
 	</div>
 </div>

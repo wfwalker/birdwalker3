@@ -74,6 +74,6 @@ class Species < ActiveRecord::Base
     Species.find_by_sql(
       "SELECT DISTINCT species.* FROM species, sightings, trips
          WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "' 
-         AND WeekOfYear(trips.date)<='" + Date.today.cweek.to_s + "'")
+         AND DayOfYear(trips.date)<='" + Date.today.yday.to_s + "'")
   end
 end
