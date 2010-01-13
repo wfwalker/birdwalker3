@@ -1,47 +1,61 @@
 <% @page_kind = 'County' %>
-<% @page_title = @county.name + " Gallery" %>
-
-<div id="gallerythumbs">
-	<div><%= link_to image_tag("prev-up.gif", :border=>0), {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %></div>
-	<% for gallery_thumb in @county.gallery_photos[@start_index..@end_index] do %>
-		<div class="photo"><%= link_to gallery_thumb.tiny_thumb, {:action => 'gallery', :start_index => @start_index, :id => @county, :featured_photo_id => gallery_thumb.id} %></div>
-	<% end %>
-	<div><%= link_to image_tag("next-down.gif", :border=>0), {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %></div>
-</div>
+<% @page_title = @county.name + " County Gallery" %>
 
 <div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @county.name %> County photos by Bill Walker
+		</div>
+	</div>
+	
 	<div id="pagecontent"> 
 		<div class="pagecontentmodule">  
-			<div class="pagecontentitem">
-				<% if @featured_photo != nil then %>
-					<div style="font-size: 20px"><%= @county.name %> County photos by Bill Walker</div>
+			<div style="font-size: 14pt; margin-left: 12px">
+				<% if @start_index > 0 %>
+					<%= link_to "prev", {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
+				<% else %>
+					prev
+				<% end %>
+				<% if @start_index + 5 < @county.gallery_photos.size %>
+					<%= link_to "next", {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+				<% else %>
+					next
+				<% end %>
+			</div>
+		</div>		
 
-					<div style="font-size: 24px">
-						<%= safe_species_common_name(@featured_photo) %>
+		<% for gallery_thumb in @county.gallery_photos[@start_index..@end_index] do %>
+			<div class="pagecontentmodule">  
+				<div style="font-size: 14pt; padding-top: 30px; margin-left: 12px">
+					<%= safe_species_common_name(gallery_thumb) %>
+				</div>
+				<div style="margin-left: 12px; padding-bottom: 15px">
+					<%= short_nice_date(gallery_thumb.trip.date) %> at <%= safe_location_name(gallery_thumb) %>
+				</div>
+				<div class="pagecontentitem">
+					<%= gallery_thumb.photo %>
+				</div>
+			</div>
+		<% end %>
 
-	 					<% editing_is_allowed?() do %>
-							<span style="font-size: 9pt"><%= link_to 'edit', edit_photo_url(@featured_photo) %></span>
+		<div class="pagecontentmodule">  
+			<div style="font-size: 14pt; margin-left: 12px">
+				<% if @start_index > 0 %>
+					<%= link_to "prev", {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
+				<% else %>
+					prev
+				<% end %>
+				<% if @start_index + 5 < @county.gallery_photos.size %>
+					<%= link_to "next", {:action => 'gallery', :id => @county, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+				<% else %>
+					next
+				<% end %>
+			</div>
+		</div>		
 
-	 						<span style="font: 9pt Courier">
-								[
-									<% (1..5).each do |index| %>
-										<%= link_to (@featured_photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @featured_photo, :rating => index %>
-									<% end %>
-								]
-							</span> 
-						<% end %>                                                                
-					</div>
-					
-					<div style="margin-bottom: 20px"><%= short_nice_date(@featured_photo.trip.date) %> at <%= safe_location_name(@featured_photo) %></div>
-					<img src="<%= @featured_photo.photo_URL %>"/><br/>
-					<p>All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com</p>
-				<% end %>                  
-			</div>                             
-		</div>
-
-		<div class="pagecontentmodule">
-			To <%= link_to @county.state.name + " Gallery", state_url(@county.state) %>
-		</div>
+		<div style="padding-top: 20px; padding-bottom: 50px; margin-left: 12px">
+			All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
+		</div>				
 	</div>        
 </div>
 

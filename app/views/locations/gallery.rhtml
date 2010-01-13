@@ -33,7 +33,7 @@
 					<%= short_nice_date(gallery_thumb.trip.date) %> at <%= safe_location_name(gallery_thumb) %>
 				</div>
 				<div class="pagecontentitem">
-					<%= link_to gallery_thumb.photo, {:action => 'gallery', :start_index => @start_index, :id => @location, :featured_photo_id => gallery_thumb.id} %>
+					<%= gallery_thumb.photo %>
 				</div>
 			</div>
 		<% end %>
