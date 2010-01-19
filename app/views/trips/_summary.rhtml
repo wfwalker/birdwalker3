@@ -14,7 +14,7 @@
 	<div class="pagecontentitem">
 		<% has_no_notes?(trip) do %>
 			<p>
-				We observed <%= trip.species.size %> species <%= distance_of_time_in_words_to_now(trip.date) %> ago
+				We observed <%= trip.species.size %> species on <%= month_day(trip.date) %>
 
 				<% if (trip.locations.size > 1) then %>
 					at <%= trip.locations.size %> locations in <%= trip.locations[0].county.name %> County, <%= trip.locations[0].county.state.name %>
