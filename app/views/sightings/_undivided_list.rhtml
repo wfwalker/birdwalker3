@@ -1,6 +1,8 @@
-<% sighting_list = undivided_list %>
+<% sighting_list = undivided_list %>     
+
+<% common_names = sighting_list.collect {|item|item.species.common_name}.uniq %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle"><%= @module_title %>, <%= sighting_list.size %> Sighting<%= sighting_list.size > 1? 's' : '' %></div>
+	<div class="moduletitle"><%= @module_title %>, <%= common_names.size %> Species</div>
 	<%= render :partial => 'sightings/onelinelink' , :collection => sighting_list %>
 </div>
