@@ -32,14 +32,10 @@ end
           map.addControl(new GSmallMapControl());
 
 		  <% longitudes = locations.collect { | a_location | a_location.longitude } %>
-		  <% min_longitude = longitudes.min %>
-		  <% max_longitude = longitudes.max %>
 		  <% latitudes = locations.collect { | a_location | a_location.latitude } %>
-		  <% min_latitude = latitudes.min %>
-		  <% max_latitude = latitudes.max %>
 
-          var sw = new GLatLng(<%= min_latitude %>, <%= min_longitude %>);
-          var ne = new GLatLng(<%= max_latitude %>, <%= max_longitude %>);
+          var sw = new GLatLng(<%= latitudes.min %>, <%= longitudes.min %>);
+          var ne = new GLatLng(<%= latitudes.max %>, <%= longitudes.max %>);
           var bounds = new GLatLngBounds(sw, ne);
 		  <% if (locations.size > 1) %>
           	var zoom = map.getBoundsZoomLevel(bounds, 340);
@@ -47,10 +43,7 @@ end
 		    var zoom = 10;
 		  <% end %>
 		
-		  <% center_longitude = (min_longitude + max_longitude) / 2 %>
-		  <% center_latitude = (min_latitude + max_latitude) / 2 %>
-                                                                                          
-   		  map.setCenter(new GLatLng(<%= center_latitude %>, <%= center_longitude %>), zoom, G_PHYSICAL_MAP);     
+   		  map.setCenter(bounds.getCenter(), zoom, G_PHYSICAL_MAP);     
           
 		  <% for location in locations %> 
 			<% contents = render :partial => 'locations/show_google_popup', :object => location %>

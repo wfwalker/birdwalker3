@@ -37,11 +37,6 @@ pageTracker._trackPageview();
 				    <%= link_to 'Login', :controller => 'bird_walker', :action => 'login'%>
 				<% end %>      
 			</span>            
-			
-			<span class="baritem">
-				<% manage_history %>
-				recently visited: <%= session[:history].collect{|entry| link_to entry["name"], entry["url"]}.join(" | ")%>
-			</span>
    		</div>
 
 		<div id="searchbox">
