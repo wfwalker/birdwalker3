@@ -9,16 +9,17 @@
 			</div>
 		</div>
   	
-		<% for gallery_thumb in @recent_gallery_photos do %>
+		<% for gallery_photo in @recent_gallery_photos do %>
 			<div class="pagecontentmodule">  
 				<div class="moduletitle">
-					<%= safe_species_common_name(gallery_thumb) %>
+					<%= link_to safe_species_common_name(gallery_photo), species_instance_url(gallery_photo.species) %>
 				</div>
 				<div style="margin-left: 12px; padding-bottom: 15px">
-					<%= short_nice_date(gallery_thumb.trip.date) %> at <%= safe_location_name(gallery_thumb) %>
+					<%= link_to short_nice_date(gallery_photo.trip.date), trip_url(gallery_photo.trip) %> at
+					<%= link_to safe_location_name(gallery_photo), location_url(gallery_photo.location) %>
 				</div>
 				<div class="pagecontentitem">
-					<%= link_to gallery_thumb.photo, {:action => 'gallery', :start_index => @start_index, :id => @location, :featured_photo_id => gallery_thumb.id} %>
+					<%= gallery_photo.photo %>
 				</div>
 				<div style="padding-bottom: 70px">
 				</div>

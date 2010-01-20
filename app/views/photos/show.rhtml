@@ -5,29 +5,41 @@
 
 <div id="pagebody">
 	<div id="pagecontent">	 
+
+  		<div id="pageheader">
+			<div id="pagetitle">
+				Bird Photos by Bill Walker
+			</div>
+		</div>
+  	
 		<div class="pagecontentmodule">
-			<div class="pagecontentitem">
-				<div style="font-size: 20px">Bird photos by Bill Walker</div>
+			<div class="moduletitle">
+				<%= link_to safe_species_common_name(@photo), species_instance_url(@photo.species) %>
+				<% editing_is_allowed?() do %>
+					<span style="font-size: 9pt"><%= link_to '[edit]', edit_photo_url(@photo) %></span>    
+					<span style="font: 9pt Courier">
+						[
+							<% (1..5).each do |index| %>
+								<%= link_to (@photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @photo, :rating => index %>
+							<% end %>
+						]
+					</span> 
+				<% end %>                                                                
+			</div>
 
-				<div style="font-size: 24px"><%= safe_species_common_name(@photo) %>
-					<% editing_is_allowed?() do %>
-						<span style="font-size: 9pt"><%= link_to 'edit', edit_photo_url(@photo) %></span>    
-						<span style="font: 9pt Courier">
-							[
-								<% (1..5).each do |index| %>
-									<%= link_to (@photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @photo, :rating => index %>
-								<% end %>
-							]
-						</span> 
-					<% end %>                                                                
-				</div>
+			<div style="margin-left: 12px; padding-bottom: 15px">
+				<%= link_to short_nice_date(@photo.trip.date), trip_url(@photo.trip) %> at
+				<%= link_to safe_location_name(@photo), location_url(@photo.location) %>
+			</div>
 
-				<div style="margin-bottom: 20px"><%= short_nice_date(@photo.trip.date) %> at <%= safe_location_name(@photo) %></div>
-					<img src="<%= @photo.photo_URL %>"/><br/>
-	               	<div style="padding-top: 20px; width: 50%"><%= @photo.notes %></div>
+			<div class="pagecontentitem">				
+				<img src="<%= @photo.photo_URL %>"/><br/>
+			</div>
+			
+           	<div style="padding-top: 20px; width: 50%"><%= @photo.notes %></div>
 
-					<div style="padding-top: 20px">All photos on birdWalker are Copyright William F Walker<br/>
-					   For licensing information please contact wfwalkerphoto@gmail.com</div>
+			<div style="padding-top: 20px">All photos on birdWalker are Copyright William F Walker<br/>
+			   For licensing information please contact wfwalkerphoto@gmail.com</div>
 			</div>       
 		</div>
 	</div>
