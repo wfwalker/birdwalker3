@@ -2,11 +2,13 @@
 
 <% sightings_by_family = Sighting.map_by_family(sighting_list) %>
 
-<% sorted_families = Family.sort_taxonomic(sightings_by_family.keys) %>
+<% sorted_families = Family.sort_taxonomic(sightings_by_family.keys) %>  
+
+<% common_names = sighting_list.collect {|item|item.species.common_name}.uniq %>
 
 <div class="pagecontentmodule">
 	<div class="moduletitle">
-		<% if (@module_title != nil && @module_title != "") then %><%= @module_title %>, <% end %><%= sighting_list.size %> Sightings
+		<% if (@module_title != nil && @module_title != "") then %><%= @module_title %>, <% end %><%= common_names.size %> Species
 	</div>
 
 	<% for family in sorted_families %>
