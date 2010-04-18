@@ -160,4 +160,9 @@ class PhotosController < ApplicationController
     @photo.destroy
     redirect_to edit_trip_url(@photo.trip_id)
   end
+  
+  def gallery_page_size()
+	  10
+  end  
 end
+
