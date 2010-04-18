@@ -12,12 +12,12 @@
 		<div class="pagecontentmodule">  
 			<div style="font-size: 14pt; margin-left: 12px">
 				<% if @start_index > 0 %>
-					<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
+					<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - gallery_page_size())} %>
 				<% else %>
 					prev
 				<% end %>
-				<% if @start_index + 5 < @location.gallery_photos.size %>
-					<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+				<% if @start_index + gallery_page_size() < @location.gallery_photos.size %>
+					<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + gallery_page_size())} %>
 				<% else %>
 					next
 				<% end %>
@@ -41,12 +41,12 @@
 		<div class="pagecontentmodule">  
 			<div style="padding-top: 20px; font-size: 14pt; margin-left: 12px">
 				<% if @start_index > 0 %>
-					<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - 5)} %>
+					<%= link_to "prev", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index - gallery_page_size())} %>
 				<% else %>
 					prev
 				<% end %>
-				<% if @start_index + 5 < @location.gallery_photos.size %>
-					<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + 5)} %>
+				<% if @start_index + gallery_page_size() < @location.gallery_photos.size %>
+					<%= link_to "next", {:action => 'gallery', :id => @location, :featured_photo_id => @featured_photo.id, :start_index => (@start_index + gallery_page_size())} %>
 				<% else %>
 					next
 				<% end %>

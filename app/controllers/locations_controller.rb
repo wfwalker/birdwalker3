@@ -53,7 +53,7 @@ class LocationsController < ApplicationController
     end
            
     if @start_index < 0 then @start_index = 0 end
-    @end_index = @start_index + 5
+    @end_index = @start_index + gallery_page_size() - 1
     
     render :action => 'gallery'
   end
@@ -117,4 +117,8 @@ class LocationsController < ApplicationController
     Location.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+  
+  def gallery_page_size()
+	  10
+  end  
 end

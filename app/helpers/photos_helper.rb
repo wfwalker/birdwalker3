@@ -52,4 +52,8 @@ module PhotosHelper
 	      
 	  render :partial => 'photos/chronological_list', :object => sorted_photo_list
 	end
+	
+	def gallery_page_size()
+	  10
+  end
 end

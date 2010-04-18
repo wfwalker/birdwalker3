@@ -30,7 +30,7 @@ class CountiesController < ApplicationController
       @start_index = 0
     end
 
-    @end_index = @start_index + 5
+    @end_index = @start_index + gallery_page_size() - 1
     
     render :action => 'gallery'
   end
@@ -102,5 +102,9 @@ class CountiesController < ApplicationController
   
   def list
     @counties = County.find(:all, :order => 'state_id, name')
+  end
+  
+  def gallery_page_size()
+	  10
   end
 end
