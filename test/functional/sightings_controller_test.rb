@@ -75,8 +75,8 @@ class SightingsControllerTest < Test::Unit::TestCase
     post :update, {:id => @first_id}, {:username => 'testuser'}
     assert_response :redirect
 
-    # redirected to edit trip
-    assert_redirected_to :controller => 'trips', :id => 1, :action => 'edit'
+    # redirected to show trip
+    assert_redirected_to :controller => 'trips', :id => 1, :action => 'show'
   end
 
   def test_destroy
@@ -89,7 +89,7 @@ class SightingsControllerTest < Test::Unit::TestCase
     assert_valid_xml(@response.body)
     
     # redirected to edit trip
-    assert_redirected_to :controller => 'trips', :id => 1, :action => 'edit'
+    assert_redirected_to :controller => 'trips', :id => 1, :action => 'show'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Sighting.find(@first_id)
