@@ -43,10 +43,6 @@ class Photo < ActiveRecord::Base
     "<img border=\"0\" src=\"" + photo_URL(hostname) + "\"/>"
   end
 
-  def tiny_thumb(hostname="")
-    "<img border=\"0\" width=\"75\" height=\"75\" src=\"" + thumb_URL(hostname) + "\"/>"
-  end
-  
   def Photo.map_by_location(photo_list)
     photo_list.inject({}) { | map, photo |
        map[Photo.location] ? map[Photo.location] << Photo : map[Photo.location] = [Photo] ; map }

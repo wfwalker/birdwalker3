@@ -41,7 +41,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
         
         description_thumbs = ""
         for photo in trip.photos do
-          description_thumbs += link_to photo.tiny_thumb(@http_host), :only_path => false, :controller => 'photos', :id => photo, :action => 'show'
+          description_thumbs += link_to photo.thumb(@http_host), :only_path => false, :controller => 'photos', :id => photo, :action => 'show'
         end
         
         xml.title       "Trip Report: " + trip.name
