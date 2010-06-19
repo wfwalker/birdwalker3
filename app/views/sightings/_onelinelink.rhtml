@@ -1,6 +1,10 @@
 <% sighting = onelinelink %>
 
 <div class="pagecontentitem">
+	<% editing_is_allowed?() do %>
+		<%= link_to '[edit]', :controller => 'sightings', :id => sighting, :action => 'edit' %>
+	<% end %>
+
 	<%= link_to safe_species_common_name(sighting), species_instance_url(sighting.species_id) %>
 
 	<% if (sighting.heard_only) then %>
@@ -14,7 +18,11 @@
 	<% if @show_location_abbreviation %>
 		<span class="location-abbreviation"><%= sighting.location.abbreviation %></span>
 	<% end %>
-
+	
+	<% editing_is_allowed?() do %>
+		<%= link_to '[delete]', sighting_url(sighting), :confirm => 'Delete "' + sighting.species.common_name + '", are you sure?', :method => 'delete' %>
+	<% end %>
+	
 	<% has_notes?(sighting) do %>
 		<div class="notes"><%= sighting.notes %></div>
 	<% end%>
