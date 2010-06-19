@@ -99,7 +99,7 @@ class SightingsController < ApplicationController
       redirect_to :controller => 'bird_walker', :action => 'login'
     elsif @sighting.update_attributes(params[:sighting])
       flash[:notice] = 'Sighting was successfully updated.'
-      redirect_to edit_trip_url(@sighting.trip_id)
+      redirect_to trip_url(@sighting.trip_id)
     else
       render :action => 'edit'
     end
@@ -108,6 +108,6 @@ class SightingsController < ApplicationController
   def destroy
     @sighting = Sighting.find(params[:id])
     @sighting.destroy
-    redirect_to edit_trip_url(@sighting.trip_id)
+    redirect_to trip_url(@sighting.trip_id)
   end
 end
