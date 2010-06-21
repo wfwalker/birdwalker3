@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
   has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'   # MOOO THIS IS WRONG
 
   has_many :photos
-  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
+  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }, :order => 'trip_id DESC' # MOO THIS IS WRONG
   
   has_many :species, :through => :sightings, :uniq => true do
     def map_by_family
