@@ -6,12 +6,6 @@
 <div id="pagebody">
 	<div id="pagecontent">	 
 
-  		<div id="pageheader">
-			<div id="pagetitle">
-				Bird Photos by Bill Walker
-			</div>
-		</div>
-  	
 		<div class="pagecontentmodule">
 			<div class="moduletitle">
 				<%= link_to safe_species_common_name(@photo), species_instance_url(@photo.species) %>
@@ -29,7 +23,7 @@
 
 			<div style="margin-left: 12px; padding-bottom: 15px">
 				<%= link_to short_nice_date(@photo.trip.date), trip_url(@photo.trip) %> at
-				<%= link_to safe_location_name(@photo), location_url(@photo.location) %>
+				<%= link_to @photo.location.full_name, location_url(@photo.location) %>
 			</div>
 
 			<div class="pagecontentitem">				
