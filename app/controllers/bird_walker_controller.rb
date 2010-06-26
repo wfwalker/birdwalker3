@@ -10,8 +10,9 @@ class BirdWalkerController < ApplicationController
   
   def page_kind                                 
     this_action = request.path_parameters[:action]
+    default_to_main_actions = ["index", "search"]
 
-    if ((! this_action) or (this_action.strip == "index"))
+    if ((! this_action) or default_to_main_actions.include?(this_action.strip))
       "main"                  
     else         
       this_action.strip

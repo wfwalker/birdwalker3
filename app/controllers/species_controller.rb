@@ -18,7 +18,7 @@ class SpeciesController < ApplicationController
 #         :redirect_to => { :action => :list }
 
   def list
-    @all_species_seen = Species.seen_not_excluded
+    @all_species_seen = Species.seen_not_excluded.countable
   end
   
   def life_list
