@@ -31,6 +31,10 @@ class Location < ActiveRecord::Base
   def abbreviation
     self.name.gsub(/[a-z' ]/,'')
   end
+  
+  def full_name
+    self.name + ", " + self.county.state.abbreviation
+  end
 
   def Location.map_by_state(locationList)
     locationList.inject({}) { | map, location |

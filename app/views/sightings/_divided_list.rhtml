@@ -8,7 +8,7 @@
 
 <div class="pagecontentmodule">
 	<div class="moduletitle">
-		<% if (@module_title != nil && @module_title != "") then %><%= @module_title %>, <% end %><%= common_names.size %> Species
+		<%= common_names.size %> Species<% if (@module_title != nil && @module_title != "") then %> at <%= @module_title %><% end %>
 	</div>
 
 	<% for family in sorted_families %>
