@@ -7,7 +7,7 @@
 			by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County.
 			We've been collecting our trip reports since 1996,
 			we have now recorded <%= Trip.all.size %> trips and
-			<%= Species.seen.size %> species.</p>
+			<%= Species.seen_not_excluded.countable.size %> species.</p>
 
 		<p>Some of our favorite places to go birding include
 			<%= link_to 'Charleston Slough', location_url(19) %> and  
