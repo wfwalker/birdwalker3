@@ -17,7 +17,11 @@ class Photo < ActiveRecord::Base
   
   def Photo.this_week(photoList)
     photoList.select { |a_photo| a_photo.trip.date.cweek == Date.today.cweek }
-  end 
+  end     
+  
+  def Photo.latest(photoList)
+    photoList.sort{|x,y| y.trip.date <=> x.trip.date}.first
+  end
   
   def image_filename
     if self.original_filename != nil

@@ -11,9 +11,13 @@ class Species < ActiveRecord::Base
     # Returns photos of this Species taken during the current week-of-the-year
     def this_week
       Photo.this_week(self)
+    end  
+    
+    def latest
+      Photo.latest(self)
     end
   end
-  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
+  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }     
     
   # trip-related assocations
   has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC"
@@ -41,7 +45,6 @@ class Species < ActiveRecord::Base
     self.sightings.size > 30
   end
 
-  
   def Species.find_all_not_photographed
     Species.find_by_sql(
     "SELECT DISTINCT(species.id), species.* from species, sightings, families 
