@@ -9,6 +9,14 @@ class Sighting < ActiveRecord::Base
   
   def Sighting.year_range
     (1996..2010)
+  end   
+  
+  def Sighting.latest(sighting_list)
+    sighting_list.sort{|x,y| y.trip.date <=> x.trip.date}.first
+  end
+
+  def Sighting.earliest(sighting_list)
+    sighting_list.sort{|x,y| x.trip.date <=> y.trip.date}.first
   end
     
   def Sighting.map_by_location(sighting_list)

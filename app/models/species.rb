@@ -2,9 +2,15 @@ class Species < ActiveRecord::Base
   belongs_to :family
                      
   # a Species has many sightings, including a first and last one                     
-  has_many :sightings
-  has_one :first_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id'
-  has_one :last_sighting, :class_name => 'Sighting', :conditions => 'exclude != 1', :order => 'trip_id DESC'
+  has_many :sightings do
+    def earliest
+      Sighting.earliest(self)
+    end                      
+
+    def latest
+      Sighting.latest(self)
+    end
+  end
                                  
   # a Species has many photos, including 'gallery' (best quality) photos
   has_many :photos do
