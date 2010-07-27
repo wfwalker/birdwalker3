@@ -23,7 +23,7 @@ class SpeciesController < ApplicationController
   
   def life_list
     all_species_seen = Species.seen_not_excluded.countable
-    @life_sightings = all_species_seen.map(&:first_sighting).flatten.uniq    
+    @life_sightings = all_species_seen.collect {|x| x.sightings.earliest}
   end
 
   def photo_life_list
