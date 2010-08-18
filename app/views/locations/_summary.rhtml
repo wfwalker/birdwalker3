@@ -16,8 +16,7 @@
 			<p>
 				Located near <%= location.city %> in <%= location.county.name %> County, <%= location.county.state.name %>.
 				We have recorded <%= location.species.size %> species during <%= location.trips.size %> trips.
-				The first trip was <%= distance_of_time_in_words_to_now(location.trips.last.date) %> ago, 
-				the latest trip was <%= distance_of_time_in_words_to_now(location.trips.first.date) %> ago.
+				Our most recent visit was <%= nice_date(location.sightings.latest.trip.date) %>.
 			</p>
 		<% end %>
 		

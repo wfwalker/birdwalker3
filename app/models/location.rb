@@ -1,9 +1,15 @@
 class Location < ActiveRecord::Base
   belongs_to :county
 
-  has_many :sightings
-  has_one :first_sighting, :class_name => 'Sighting', :order => 'trip_id'
-  has_one :last_sighting, :class_name => 'Sighting', :order => 'trip_id DESC'   # MOOO THIS IS WRONG
+  has_many :sightings do
+    def earliest
+      Sighting.earliest(self)
+    end                      
+
+    def latest
+      Sighting.latest(self)
+    end
+  end
 
   has_many :photos
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }, :order => 'trip_id DESC' # MOO THIS IS WRONG
