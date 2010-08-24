@@ -4,6 +4,8 @@ class StatesController < ApplicationController
   helper :locations
   helper :photos
 
+  before_filter :update_activity_timer  
+
   def page_kind
     "states"
   end

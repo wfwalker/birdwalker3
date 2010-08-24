@@ -3,6 +3,11 @@ class SpeciesController < ApplicationController
   helper :locations
   helper :sightings
   helper :photos
+  
+  before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :destroy]  
+  before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :destroy]  
+  
+#  caches_action :list, :life_list, :index
 
   def page_kind
     "species"

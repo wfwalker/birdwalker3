@@ -4,6 +4,9 @@ class LocationsController < ApplicationController
   helper :sightings
   helper :photos
   
+  before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :destroy]  
+  before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :destroy]  
+  
   def page_kind
     "locations"
   end
@@ -92,20 +95,12 @@ class LocationsController < ApplicationController
 
   def edit
     @location = Location.find(params[:id])
-                                            
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    end
   end
 
   def update
     @location = Location.find(params[:id])
 
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    elsif @location.update_attributes(params[:location])
+    if @location.update_attributes(params[:species])
       flash[:notice] = 'Location was successfully updated.'
       redirect_to location_url(@location)
     else

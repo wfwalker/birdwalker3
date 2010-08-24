@@ -3,6 +3,9 @@ class TripsController < ApplicationController
   helper :sightings
   helper :photos
   
+  before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :destroy]  
+  before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :destroy]  
+  
   def page_kind
     "trips"
   end
@@ -30,21 +33,13 @@ class TripsController < ApplicationController
 #         :redirect_to => { :action => :list }
 
   def new
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    else
-      @trip = Trip.new
-    end
+    @trip = Trip.new
   end
 
   def create
     @trip = Trip.new(params[:trip])
     
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    elsif @trip.save
+    if @trip.save
       flash[:notice] = 'Trip was successfully created.'
       redirect_to trip_url(@trip)
     else
@@ -63,20 +58,12 @@ class TripsController < ApplicationController
 
   def add_species
     @trip = Trip.find(params[:id])
-
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    end
   end
 
   def update
     @trip = Trip.find(params[:id])
 
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    elsif @trip.update_attributes(params[:trip])
+    if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'
       redirect_to trip_url(@trip)
     else

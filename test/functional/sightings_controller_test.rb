@@ -16,7 +16,7 @@ class SightingsControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, :id => @first_id
+    get :show, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -27,7 +27,7 @@ class SightingsControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    get :new, {}, {:username => 'testuser'} 
+    get :new, {}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -39,7 +39,7 @@ class SightingsControllerTest < Test::Unit::TestCase
   def test_create
     num_sightings = Sighting.count
 
-    post :create, {:sighting => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser'} 
+    post :create, {:sighting => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :redirect
     assert_valid_xml(@response.body)
@@ -51,7 +51,7 @@ class SightingsControllerTest < Test::Unit::TestCase
   def test_create_list
     num_sightings = Sighting.count
 
-    post :create_list, {:sighting => {:trip_id => 1, :location_id => 1}, :abbreviation_list => "dodo ivbwoo"}, {:username => 'testuser'} 
+    post :create_list, {:sighting => {:trip_id => 1, :location_id => 1}, :abbreviation_list => "dodo ivbwoo"}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :redirect
     assert_valid_xml(@response.body)
@@ -61,7 +61,7 @@ class SightingsControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, {:id => @first_id}, {:username => 'testuser'}
+    get :edit, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -72,7 +72,7 @@ class SightingsControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser'}
+    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
 
     # redirected to show trip
@@ -84,7 +84,7 @@ class SightingsControllerTest < Test::Unit::TestCase
       Sighting.find(@first_id)
     }
 
-    post :destroy, {:id => @first_id}, {:username => 'testuser'}
+    post :destroy, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect             
     assert_valid_xml(@response.body)
     

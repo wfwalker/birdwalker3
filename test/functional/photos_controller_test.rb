@@ -41,7 +41,7 @@ class PhotosControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    get :new, {}, {:username => 'testuser'} 
+    get :new, {}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -53,7 +53,7 @@ class PhotosControllerTest < Test::Unit::TestCase
   def test_create
     num_photos = Photo.count
 
-    post :create, {:photo => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser'} 
+    post :create, {:photo => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :redirect
     assert_valid_xml(@response.body)
@@ -63,7 +63,7 @@ class PhotosControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, {:id => @first_id}, {:username => 'testuser'}
+    get :edit, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -74,7 +74,7 @@ class PhotosControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser'}
+    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show'
@@ -87,7 +87,7 @@ class PhotosControllerTest < Test::Unit::TestCase
       Photo.find(@first_id)
     }
 
-    post :destroy, {:id => @first_id}, {:username => 'testuser'}
+    post :destroy, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect             
     assert_valid_xml(@response.body)
 

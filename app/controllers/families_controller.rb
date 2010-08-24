@@ -4,6 +4,9 @@ class FamiliesController < ApplicationController
   helper :locations
   helper :sightings
   helper :photos
+
+  before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :destroy]  
+  before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :destroy]  
   
   def page_kind
     "species"
@@ -60,18 +63,12 @@ class FamiliesController < ApplicationController
 
   def edit
     @family = Family.find(params[:id])
-    
-    if (! is_editing_allowed?) then
-      redirect_to family_url(@family)
-    end
   end
 
   def update
     @family = Family.find(params[:id])
 
-    if (! is_editing_allowed?) then
-      redirect_to family_url(@family)
-    elsif @family.update_attributes(params[:family])
+    if @family.update_attributes(params[:family])
       flash[:notice] = 'Family was successfully updated.'
       redirect_to family_url(@family)
     else

@@ -8,6 +8,8 @@ class BirdWalkerController < ApplicationController
   helper :sightings
   helper :photos    
   
+  before_filter :update_activity_timer, :except => [:login, :logout]  
+  
   def page_kind                                 
     this_action = request.path_parameters[:action]
     default_to_main_actions = ["index", "search"]

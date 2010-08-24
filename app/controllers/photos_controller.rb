@@ -1,5 +1,8 @@
 class PhotosController < ApplicationController
 
+  before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :update_rating, :destroy]  
+  before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :update_rating, :destroy]  
+
   def page_kind
     "photos"
   end
@@ -51,11 +54,6 @@ class PhotosController < ApplicationController
   def new
     @photo = Photo.new  
     
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    end
-  
     if (params[:trip_id] != "")
       @photo.trip_id = params[:trip_id]
     end
@@ -121,20 +119,12 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
-
-    if (! is_editing_allowed?) then
-      flash[:notice] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    end
   end
 
   def update
     @photo = Photo.find(params[:id])
 
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    elsif @photo.update_attributes(params[:photo])
+    if @photo.update_attributes(params[:photo])
       flash[:error] = 'Photo was successfully updated.'
       redirect_to photo_url(@photo)
     else
@@ -144,15 +134,9 @@ class PhotosController < ApplicationController
 
   def update_rating
     @photo = Photo.find(params[:id])
-    
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    else
-      @photo.rating = params[:rating]
-      @photo.save
-      render :action => 'show'
-    end
+    @photo.rating = params[:rating]
+    @photo.save
+    render :action => 'show'
   end
 
   def destroy

@@ -54,7 +54,7 @@ class TripsControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    get :new, {}, {:username => 'testuser'} 
+    get :new, {}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -66,7 +66,7 @@ class TripsControllerTest < Test::Unit::TestCase
   def test_create
     num_trips = Trip.count
 
-    post :create, {:trip => {:name => 'new trip', :date => '2007-01-01', :leader => 'new guy'}}, {:username => 'testuser'} 
+    post :create, {:trip => {:name => 'new trip', :date => '2007-01-01', :leader => 'new guy'}}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :redirect
     assert_valid_xml(@response.body)                                                  
@@ -78,7 +78,7 @@ class TripsControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, {:id => @first_id}, {:username => 'testuser'}
+    get :edit, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -89,7 +89,7 @@ class TripsControllerTest < Test::Unit::TestCase
   end
 
   def test_add_species
-    get :add_species, {:id => @first_id}, {:username => 'testuser'}
+    get :add_species, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -100,7 +100,7 @@ class TripsControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser'}
+    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
@@ -111,7 +111,7 @@ class TripsControllerTest < Test::Unit::TestCase
       Trip.find(@first_id)
     }
 
-    post :destroy, :id => @first_id
+    post :destroy, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
     assert_redirected_to :action => 'list'

@@ -55,7 +55,7 @@ class CountiesControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    get :new, {}, {:username => 'testuser'}
+    get :new, {}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -67,7 +67,7 @@ class CountiesControllerTest < Test::Unit::TestCase
   def test_create
     num_counties = County.count
 
-    post :create, {:county => {:name => 'newname', :state_id => 1}}, {:username => 'testuser'}
+    post :create, {:county => {:name => 'newname', :state_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :redirect
     assert_valid_xml(@response.body)                              
@@ -78,7 +78,7 @@ class CountiesControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, {:id => @first_id}, {:username => 'testuser'}
+    get :edit, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
     assert_valid_xml(@response.body)
@@ -89,7 +89,7 @@ class CountiesControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser'}
+    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
@@ -100,7 +100,7 @@ class CountiesControllerTest < Test::Unit::TestCase
       County.find(@first_id)
     }
 
-    post :destroy, :id => @first_id
+    post :destroy, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
     assert_redirected_to :action => 'list'

@@ -5,6 +5,9 @@ class CountiesController < ApplicationController
   helper :sightings
   helper :photos
   
+  before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :destroy]  
+  before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :destroy]  
+  
   def show
     @county = County.find(params["id"])
 
@@ -56,10 +59,7 @@ class CountiesController < ApplicationController
   def create
     @county = County.new(params[:county])
 
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    elsif @county.save
+    if @county.save
       flash[:notice] = 'County was successfully created.'
       redirect_to county_url(@county)
     else
@@ -69,20 +69,12 @@ class CountiesController < ApplicationController
   
   def edit
     @county = County.find(params[:id])
-
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    end
   end
 
   def update
     @county = County.find(params[:id])
 
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    elsif @county.update_attributes(params[:location])
+    if @county.update_attributes(params[:location])
       flash[:notice] = 'County was successfully updated.'
       redirect_to county_url(@county)
     else
