@@ -7,6 +7,8 @@ class LocationsController < ApplicationController
   before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :destroy]  
   before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :destroy]  
   
+  caches_action :list, :index, :layout => false
+  
   def page_kind
     "locations"
   end
@@ -74,12 +76,7 @@ class LocationsController < ApplicationController
   end
 
   def new
-    if (! is_editing_allowed?) then
-      flash[:error] = 'Editing not allowed.'
-      redirect_to :controller => 'bird_walker', :action => 'login'
-    else
-      @location = Location.new
-    end
+    @location = Location.new
   end
 
   def create
@@ -88,6 +85,8 @@ class LocationsController < ApplicationController
     if @location.save
       flash[:notice] = 'Location was successfully created.'
       redirect_to location_url(@location)
+      expire_action :action => :list
+      expire_action :action => :index
     else
       render :action => 'new'
     end

@@ -7,7 +7,7 @@ class SpeciesController < ApplicationController
   before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :destroy]  
   before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :destroy]  
   
-  caches_action :list, :life_list, :index
+  caches_action :list, :life_list, :index, :layout => false
 
   def page_kind
     "species"
@@ -84,18 +84,12 @@ class SpeciesController < ApplicationController
 
   def edit    
     @species = Species.find(params[:id])
-
-    if (! is_editing_allowed?) then
-      redirect_to species_instance_url(@species)
-    end
   end
 
   def update
     @species = Species.find(params[:id])
 
-    if (! is_editing_allowed?) then
-      redirect_to species_instance_url(@species)
-    elsif @species.update_attributes(params[:species])
+    if @species.update_attributes(params[:species])
       flash[:notice] = 'Species was successfully updated.'
       redirect_to species_instance_url(@species)
     else
