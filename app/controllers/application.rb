@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   
   layout :choose_layout
 
+  before_filter :check_uri
+  
+  def check_uri
+    redirect_to request.protocol + "birdwalker.com" + request.request_uri if /spflrc/.match(request.host)
+  end
+
   protected
 
   def iphone?
@@ -22,15 +28,11 @@ class ApplicationController < ActionController::Base
     end  
   end    
   
-  def is_editing_allowed?()
-    session[:username] != nil
-  end
-
   def inactivity_timeout
     if (ENV['inactivity_timeout'] != nil)
       ENV['inactivity_timeout']
     else
-      600
+      1200
     end
   end         
   
