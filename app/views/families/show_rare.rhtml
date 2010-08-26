@@ -11,6 +11,15 @@
 	<div id="pagecontent">
 		<%= open_first_column %>
 
+			<% has_photos?(@family) do %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Latest Photo</div>	
+				<div class="pagecontentitem">				
+					<img width="340" src="<%= @family.photos.latest.photo_URL %>" /><br/>
+				</div>                     
+			</div>
+			<% end %>
+
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Family Notes</div>	
 				<div class="pagecontentitem">
@@ -25,9 +34,6 @@
 
 	   	<%= between_columns %>
 	
-			<% @photos_module_title = 'Family Photos' %>
-			<%= show_thumbnail_list(@family.photos) %>
-		
 			<% if (Location.with_lat_long(@family.locations).size > 0) %>
 				<% @map_module_title = 'Family Map' %>                       
 				<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations) %>

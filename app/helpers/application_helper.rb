@@ -28,6 +28,10 @@ module ApplicationHelper
     yield if subject.photos && subject.photos.length >= 1
   end
 
+  def has_no_photos?(subject, &block)
+    yield if ! subject.photos || subject.photos.length == 0
+  end
+
   def has_sightings?(subject, &block)
     yield if subject.sightings && subject.sightings.length >= 1
   end         

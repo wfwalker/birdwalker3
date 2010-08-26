@@ -1,7 +1,22 @@
 class Family < ActiveRecord::Base
   has_many :species
-  has_many :sightings, :through => :species
-  has_many :photos, :through =>:species
+  
+  has_many :sightings, :through => :species do
+    def earliest
+      Sighting.earliest(self)
+    end                      
+
+    def latest
+      Sighting.latest(self)
+    end
+  end
+  
+  has_many :photos, :through =>:species do    
+    def latest
+      Photo.latest(self)
+    end
+  end
+  
   has_many :gallery_photos, :through => :species, :conditions => { :rating => [4,5] }
   
   def common?
