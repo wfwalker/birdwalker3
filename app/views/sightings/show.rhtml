@@ -15,17 +15,17 @@
 		<div class="pagecontentmodule">
 			<div class="modulesubtitle">Date</div>
 			<div class="pagecontentitem">
-			        <%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip_id) %>
+			        <%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip) %>
 			</div>
 
 			<div class="modulesubtitle">Location</div>
 			<div class="pagecontentitem">
-			        <%= link_to safe_location_name(@sighting), location_url(@sighting.location_id) %>
+			        <%= link_to safe_location_name(@sighting), location_url(@sighting.location) %>
 			</div>
 
 			<div class="modulesubtitle">Species</div>
 			<div class="pagecontentitem">
-			        <%= link_to safe_species_common_name(@sighting), species_instance_url(@sighting.species_id) %>
+			        <%= link_to safe_species_common_name(@sighting), species_instance_url(@sighting.species) %>
 			</div>
 
 			<% has_notes?(@sighting) do %>

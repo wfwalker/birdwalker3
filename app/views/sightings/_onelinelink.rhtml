@@ -5,7 +5,7 @@
 		<%= link_to '[edit]', :controller => 'sightings', :id => sighting, :action => 'edit' %>
 	<% end %>
 
-	<%= link_to safe_species_common_name(sighting), species_instance_url(sighting.species_id) %>
+	<%= link_to safe_species_common_name(sighting), species_instance_url(sighting.species) %>
 
 	<% if (sighting.heard_only) then %>
 		(h)
