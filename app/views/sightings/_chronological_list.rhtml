@@ -12,10 +12,18 @@
 		<% previous_sighting = nil %>
 		<% for sighting in sighting_list do %>
 		<tr>
-			<% changes = ! previous_sighting || previous_sighting.trip_id != sighting.trip_id || ! previous_sighting || previous_sighting.location_id != sighting.location_id %>
+			<% changes = ! previous_sighting || previous_sighting.trip_id != sighting.trip_id || previous_sighting.location_id != sighting.location_id %>
 			<td valign="top" align="right" style="white-space: nowrap">
 				<% if changes %>
-					<%= link_to short_nice_date(sighting.trip.date), :controller => 'trips', :id => sighting.trip, :action => 'show'  %>
+					<%= link_to short_nice_date(sighting.trip.date), :controller => 'trips', :id => sighting.trip, :action => 'show'  %><br /><%= sighting.location.name %>
+				<% end %>
+			</td>
+			<td valign="top" style="padding: 2px">
+				<% has_photos?(sighting.species) do %>
+					<img width="40" src="<%= sighting.species.photos.latest.photo_URL %>" />
+				<% end %>
+				<% has_no_photos?(sighting.species) do %>
+					<div style="height: 40px; width: 40px; background-color: lightgray">
 				<% end %>
 			</td>
 			<td valign="top">
@@ -24,10 +32,8 @@
 				<div><%= sighting.notes%></div>
 			</td>
 			<td valign="top" style="color: gray; white-space: nowrap">
-				<% if changes %>
-					<%= sighting.location.name %>
-				<% end %>
 			</td>
+						
 			<% previous_sighting = sighting %>
 		</tr>
 		<% end %>
