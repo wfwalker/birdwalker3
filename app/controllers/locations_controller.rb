@@ -35,6 +35,7 @@ class LocationsController < ApplicationController
   
   def show
     @location = Location.find(params[:id])
+    
     if @location.common?
         render :action => 'show_common'
       else
@@ -99,7 +100,7 @@ class LocationsController < ApplicationController
   def update
     @location = Location.find(params[:id])
 
-    if @location.update_attributes(params[:species])
+    if @location.update_attributes(params[:location])
       flash[:notice] = 'Location was successfully updated.'
       redirect_to location_url(@location)
     else
