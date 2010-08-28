@@ -21,11 +21,14 @@ class PhotosController < ApplicationController
           
   def show
     @photo = Photo.find(params[:id])
+    @page_title = @photo.species.common_name
+    
     render :action => 'show'
   end
 
   def recent_gallery
     @recent_gallery_photos = Photo.find_recent_gallery
+    @page_title = "recent"
 
     if params[:featured_photo_id] != nil then
       @featured_photo = Photo.find(params[:featured_photo_id])
@@ -53,6 +56,7 @@ class PhotosController < ApplicationController
 
   def new
     @photo = Photo.new  
+    @page_title = "new"
     
     if (params[:trip_id] != "")
       @photo.trip_id = params[:trip_id]
@@ -73,6 +77,7 @@ class PhotosController < ApplicationController
   
   def create
     @photo = Photo.new(params[:photo])
+    @page_title = "new"
 
     if (params[:abbreviation])
       temp = Species.find_by_abbreviation(params[:abbreviation])
@@ -89,6 +94,8 @@ class PhotosController < ApplicationController
   end
   
   def create_list
+    @page_title = "new"
+
     if (params[:abbreviation_list])
       @photo = Photo.new(params[:photo])
       raise "Missing location" if @photo.location_id == nil
@@ -119,10 +126,12 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
+    @page_title = @photo.species.common_name
   end
 
   def update
     @photo = Photo.find(params[:id])
+    @page_title = @photo.species.common_name
 
     if @photo.update_attributes(params[:photo])
       flash[:error] = 'Photo was successfully updated.'
@@ -134,6 +143,8 @@ class PhotosController < ApplicationController
 
   def update_rating
     @photo = Photo.find(params[:id])
+    @page_title = @photo.species.common_name
+
     @photo.rating = params[:rating]
     @photo.save
     render :action => 'show'

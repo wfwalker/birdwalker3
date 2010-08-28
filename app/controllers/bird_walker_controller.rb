@@ -11,13 +11,10 @@ class BirdWalkerController < ApplicationController
   before_filter :update_activity_timer, :except => [:login, :logout]  
   
   def page_kind                                 
-    this_action = request.path_parameters[:action]
-    default_to_main_actions = ["index", "search"]
-
-    if ((! this_action) or default_to_main_actions.include?(this_action.strip))
-      "main"                  
-    else         
-      this_action.strip
+    if request.path_parameters[:action] == "about"
+      "about"
+    else
+      "home"
     end
   end
   
@@ -72,6 +69,8 @@ class BirdWalkerController < ApplicationController
   end
   
   def photo_search
+    @page_title = "photo search results"
+
     base_where_clause = "SELECT photos.* from photos, species, trips, locations, counties WHERE photos.trip_id=trips.id AND photos.location_id=locations.id AND photos.species_id=species.id AND locations.county_id=counties.id "
     additional_where_clause = " "
     do_search = false
@@ -117,6 +116,7 @@ class BirdWalkerController < ApplicationController
   end
   
   def search
+    @page_title = "search results"
     if (params[:terms] != nil && params[:terms].length > 0) then
       @found_counties = County.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
       @found_species = Species.find_by_sql(["SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND species.common_name LIKE ? ORDER BY species.id", "%#{params[:terms]}%"])

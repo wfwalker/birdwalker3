@@ -12,16 +12,19 @@ class StatesController < ApplicationController
   
   def show
     @state = State.find(params["id"])
+    @page_title = @state.name
   end
 
   def show_species_by_year
     @state = State.find(params["id"])
+    @page_title = @state.name
     
     @map, @totals = Sighting.map_by_year_and_species(@state.sightings)
   end
 
   def show_species_by_month
     @state = State.find(params["id"])
+    @page_title = @state.name
     
     @map, @totals = Sighting.map_by_month_and_species(@state.sightings)
   end

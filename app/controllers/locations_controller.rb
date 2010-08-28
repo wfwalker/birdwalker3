@@ -31,10 +31,12 @@ class LocationsController < ApplicationController
 
   def google
     @location = Location.find(params[:id])
+    @page_title = @location.name
   end
   
   def show
     @location = Location.find(params[:id])
+    @page_title = @location.name
     
     if @location.common?
         render :action => 'show_common'
@@ -45,6 +47,7 @@ class LocationsController < ApplicationController
   
   def gallery
     @location = Location.find(params[:id])
+    @page_title = @location.name
     
     if params[:featured_photo_id] != nil then
       @featured_photo = Photo.find(params[:featured_photo_id])
@@ -66,22 +69,26 @@ class LocationsController < ApplicationController
   
   def show_species_by_year
     @location = Location.find(params[:id])
+    @page_title = @location.name
     
     @map, @totals = Sighting.map_by_year_and_species(@location.sightings)
   end
 
   def show_species_by_month
     @location = Location.find(params[:id])
+    @page_title = @location.name
     
     @map, @totals = Sighting.map_by_month_and_species(@location.sightings)
   end
 
   def new
     @location = Location.new
+    @page_title = "new"
   end
 
   def create
     @location = Location.new(params[:location])
+    @page_title = "new"
 
     if @location.save
       flash[:notice] = 'Location was successfully created.'
@@ -95,10 +102,12 @@ class LocationsController < ApplicationController
 
   def edit
     @location = Location.find(params[:id])
+    @page_title = @location.name
   end
 
   def update
     @location = Location.find(params[:id])
+    @page_title = @location.name
 
     if @location.update_attributes(params[:location])
       flash[:notice] = 'Location was successfully updated.'

@@ -48,7 +48,8 @@ class SpeciesController < ApplicationController
   
   def show
     @species = Species.find(params[:id])
-
+    @page_title = @species.common_name
+    
     if (@species.common?)
         render :action => 'show_common'
     else
@@ -58,22 +59,27 @@ class SpeciesController < ApplicationController
 
   def show_locations_by_year
     @species = Species.find(params[:id])
+    @page_title = @species.common_name
     
     @map, @totals = Sighting.map_by_year_and_location(@species.sightings)
   end
 
   def show_locations_by_month
     @species = Species.find(params[:id])
+    @page_title = @species.common_name
     
     @map, @totals = Sighting.map_by_month_and_location(@species.sightings)
   end
 
   def new
     @species = Species.new
+    @page_title = "new"   
   end
 
   def create
     @species = Species.new(params[:species])
+    @page_title = "new"   
+
     if @species.save
       flash[:notice] = 'Species was successfully created.'
       redirect_to :action => 'list'
@@ -84,10 +90,12 @@ class SpeciesController < ApplicationController
 
   def edit    
     @species = Species.find(params[:id])
+    @page_title = "new"   
   end
 
   def update
     @species = Species.find(params[:id])
+    @page_title = @species.common_name
 
     if @species.update_attributes(params[:species])
       flash[:notice] = 'Species was successfully updated.'

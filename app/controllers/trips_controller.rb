@@ -20,6 +20,7 @@ class TripsController < ApplicationController
   
   def show
     @trip = Trip.find(params["id"])
+    @page_title = @trip.name
   end
   
   def index
@@ -34,10 +35,12 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
+    @page_title = "new"
   end
 
   def create
     @trip = Trip.new(params[:trip])
+    @page_title = "new"
     
     if @trip.save
       flash[:notice] = 'Trip was successfully created.'
@@ -49,14 +52,17 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find(params[:id])
+    @page_title = @trip.name
   end
 
   def add_species
     @trip = Trip.find(params[:id])
+    @page_title = @trip.name
   end
 
   def update
     @trip = Trip.find(params[:id])
+    @page_title = @trip.name
 
     if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'

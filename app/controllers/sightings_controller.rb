@@ -13,10 +13,12 @@ class SightingsController < ApplicationController
 
   def show
     @sighting = Sighting.find(params[:id])
+    @page_title = @sighting.full_name
   end
 
   def new
     @sighting = Sighting.new  
+    @page_title = "new"
 
     if (params[:trip_id] != "")
       @sighting.trip_id = params[:trip_id]
@@ -28,6 +30,7 @@ class SightingsController < ApplicationController
   
   def create
     @sighting = Sighting.new(params[:sighting])
+    @page_title = "new"
 
     if (params[:abbreviation])
       temp = Species.find_by_abbreviation(params[:abbreviation])
@@ -44,6 +47,8 @@ class SightingsController < ApplicationController
   end
 
   def create_list 
+    @page_title = "new"
+
     begin
       if (params[:abbreviation_list])
         @sighting = Sighting.new(params[:sighting])
@@ -82,10 +87,12 @@ class SightingsController < ApplicationController
 
   def edit
     @sighting = Sighting.find(params[:id])
+    @page_title = @sighting.full_name
   end
 
   def update
     @sighting = Sighting.find(params[:id])
+    @page_title = @sighting.full_name
 
     if @sighting.update_attributes(params[:sighting])
       flash[:notice] = 'Sighting was successfully updated.'

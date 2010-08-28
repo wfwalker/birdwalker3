@@ -27,6 +27,7 @@ class FamiliesController < ApplicationController
 
   def show
     @family = Family.find(params[:id])
+    @page_title = @family.common_name
 
     if (@family.common?)
         render :action => 'show_common'
@@ -37,22 +38,27 @@ class FamiliesController < ApplicationController
 
   def show_species_by_year
     @family = Family.find(params[:id])
+    @page_title = @family.common_name
     
     @map, @totals = Sighting.map_by_year_and_species(@family.sightings)
   end
 
   def show_species_by_month
     @family = Family.find(params[:id])
+    @page_title = @family.common_name
     
     @map, @totals = Sighting.map_by_month_and_species(@family.sightings)
   end
 
   def new
     @family = Family.new
+    @page_title = "new"
   end
 
   def create
     @family = Family.new(params[:family])
+    @page_title = "new"
+
     if @family.save
       flash[:notice] = 'Family was successfully created.'
       redirect_to :action => 'list'
@@ -63,10 +69,12 @@ class FamiliesController < ApplicationController
 
   def edit
     @family = Family.find(params[:id])
+    @page_title = @family.common_name
   end
 
   def update
     @family = Family.find(params[:id])
+    @page_title = @family.common_name
 
     if @family.update_attributes(params[:family])
       flash[:notice] = 'Family was successfully updated.'
