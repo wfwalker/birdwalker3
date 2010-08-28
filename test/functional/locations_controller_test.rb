@@ -101,10 +101,19 @@ class LocationsControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
+    originalLocation = Location.find(@first_id)
+    assert_equal "First Place", originalLocation.name, "original location name should match"
+    assert_nil originalLocation.notes, "original location notes should be nil"
+
+    post :update, {:id => @first_id, :location => {:name => 'First Place Updated', :notes => "Updated"}}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
+
+    updatedLocation = Location.find(@first_id)
+    assert_equal "First Place Updated", updatedLocation.name, "updated location name should match"
+    assert_not_nil updatedLocation.notes, "updated location notes should not be nil"
+    assert_equal "Updated", updatedLocation.notes, "updated location notes should be updated"
   end
 
   def test_destroy

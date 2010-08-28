@@ -100,10 +100,19 @@ class TripsControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
+    originalTrip = Trip.find(@first_id)
+    assert_equal "First Trip", originalTrip.name, "original trip name should match"
+    assert_nil originalTrip.notes, "trip notes should be nil"
+
+    post :update, {:id => @first_id, :trip => {:name => "First Trip Updated", :notes => 'Updated'}}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
+
+    updatedTrip = Trip.find(@first_id)
+    assert_equal "First Trip Updated", updatedTrip.name, "updated trip name should match"
+    assert_not_nil updatedTrip.notes, "updated trip notes should be nil"
+    assert_equal "Updated", updatedTrip.notes, "updated trip notes should be updated"
   end
 
   def test_destroy
