@@ -23,6 +23,10 @@ class Trip < ActiveRecord::Base
     
   validates_presence_of :name, :date, :leader
   
+  # def to_param
+  #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
+  # end
+  
   def Trip.biggest(tripCount)
     Trip.find_by_sql(["SELECT trips.*, count(distinct(species.id)) AS thecount FROM trips, sightings, species WHERE trips.id=sightings.trip_id AND species.id=sightings.species_id GROUP BY trips.id ORDER BY thecount DESC LIMIT ?", tripCount])
   end

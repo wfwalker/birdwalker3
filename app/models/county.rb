@@ -14,6 +14,10 @@ class County < ActiveRecord::Base
   
   validates_presence_of :name, :state
   
+  # def to_param
+  #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
+  # end
+
   def common?
     self.trips.size > 8
   end

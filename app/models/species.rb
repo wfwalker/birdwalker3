@@ -44,7 +44,11 @@ class Species < ActiveRecord::Base
     end
   end
   
-  validates_presence_of :common_name, :latin_name, :abbreviation    
+  validates_presence_of :common_name, :latin_name, :abbreviation      
+  
+  # def to_param
+  #   "#{id}-#{common_name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
+  # end
   
   # Returns true if this species has been seen at least thirty times, false otherwise
   def common?

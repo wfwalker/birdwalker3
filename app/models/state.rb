@@ -5,6 +5,10 @@ class State < ActiveRecord::Base
       Location.with_lat_long(self)
     end
   end
+  
+  # def to_param
+  #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
+  # end
 
   def species
     Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, locations, counties 
