@@ -26,7 +26,7 @@ pageTracker._trackPageview();
 	    </div>
 
 		<div id="bottombar">
-			<span class="baritem"><%= @page_kind %> : <%= @page_title %></span>
+			<span class="baritem"><%= @controller.page_kind %> <% if @page_title then %>: <%= @page_title %> <% end %></span>
                                   
 		  	<span class="baritem">
 				<% if (session[:username] != nil) then %>
@@ -49,7 +49,7 @@ pageTracker._trackPageview();
 
         <div id="menu">  
 			<ul>                                 
-				<li id="<%= @controller.page_kind == 'main' ? 'current' : '' %>">
+				<li id="<%= @controller.page_kind == 'home' ? 'current' : '' %>">
 					<%= link_to "home", '/bird_walker' %>
 				</li>
 				<li id="<%= @controller.page_kind == 'about' ? 'current' : '' %>">
