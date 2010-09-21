@@ -40,7 +40,7 @@ class Photo < ActiveRecord::Base
   end
   
   def thumb(hostname="")      
-    "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumb_URL(hostname) + "\"/>"
+    "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumb_URL(hostname) + "\" />"
   end
 
   def photo(hostname="")     
