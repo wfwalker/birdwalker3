@@ -35,4 +35,18 @@ class Trip < ActiveRecord::Base
     tripList.inject({}) { | map, trip |
        map[trip.date.year] ? map[trip.date.year] << trip : map[trip.date.year] = [trip] ; map }
   end
+  
+  def Trip.map_by_month(trip_list)
+    totals = (1..12).to_a
+    for month in (1..12) do
+      totals[month] = 0
+    end
+	
+    for trip in trip_list do
+      totals[trip.date.month] = totals[trip.date.month] + 1
+    end
+
+    return totals
+  end
+  
 end
