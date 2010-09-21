@@ -17,7 +17,7 @@ class Family < ActiveRecord::Base
     end
   end
   
-  has_many :gallery_photos, :through => :species, :conditions => { :rating => [4,5] }
+  has_many :gallery_photos, :through => :species, :conditions => { :rating => [4,5] }, :limit => 15, :order => 'id DESC'
   
   def common?
     self.sightings.size > 30
