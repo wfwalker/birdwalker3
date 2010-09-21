@@ -11,8 +11,13 @@ class Location < ActiveRecord::Base
     end
   end
 
-  has_many :photos
-  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }, :order => 'trip_id DESC' # MOO THIS IS WRONG
+  has_many :photos do
+    def latest
+      Photo.latest(self)
+    end
+  end
+  
+  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }, :limit => 15, :order => 'trip_id DESC' # MOO THIS IS WRONG
   
   has_many :species, :through => :sightings, :uniq => true do
     def map_by_family
