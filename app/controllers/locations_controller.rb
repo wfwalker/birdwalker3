@@ -14,6 +14,7 @@ class LocationsController < ApplicationController
   end
 
   def list
+    @page_title = "Locations"
     @locations = Location.find_by_county_and_state
   end
   

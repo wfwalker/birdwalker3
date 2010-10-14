@@ -15,6 +15,7 @@ class SpeciesController < ApplicationController
 
   def index
     list
+    @page_title = "Species"
     render :action => 'list'
   end
 
@@ -23,19 +24,23 @@ class SpeciesController < ApplicationController
 #         :redirect_to => { :action => :list }
 
   def list
+    @page_title = "Species"
     @all_species_seen = Species.seen_not_excluded.countable
   end
   
   def life_list
+    @page_title = "Life List"
     all_species_seen = Species.seen_not_excluded.countable
     @life_sightings = all_species_seen.collect {|x| x.sightings.earliest}
   end
 
   def photo_life_list
+    @page_title = "Life List"
     @all_species_photographed = Species.photographed.countable
   end                        
   
   def photo_to_do_list
+    @page_title = "Life List"
     @all_species_not_photographed = Species.find_all_not_photographed
   end
   

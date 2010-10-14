@@ -31,10 +31,12 @@ class StatesController < ApplicationController
   
   def index
     list
+    @page_title = "States"
     render :action => 'list'
   end
   
   def list
+    @page_title = "States"
     @states = State.find(:all)
   end
 end

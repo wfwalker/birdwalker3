@@ -97,10 +97,12 @@ class CountiesController < ApplicationController
     
   def index
     list
+    @page_title = "Counties"
     render :action => 'list'
   end
   
   def list
+    @page_title = "Counties"
     @counties = County.find(:all, :order => 'state_id, name')
   end
   
