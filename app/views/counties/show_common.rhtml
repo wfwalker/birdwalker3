@@ -1,16 +1,22 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle">
-			<%= @page_title %>
+			<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
 	 		<% editing_is_allowed?() do %>
 				<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
 			<% end %>       
 		</div> 
-		<div class="pageheaderitem"><%= link_to @county.state.name, state_url(@county.state) %></div>
-   		<%= render :partial => 'counties/view_links', :object => @county %>
 	</div>
 
+	<% if @county.gallery_photos.size >= 15 %>
+		<%= render :partial => 'photos/gallery', :object => @county.gallery_photos %>
+	<% elsif @county.photos.size > 0 %>
+		<%= render :partial => 'photos/gallery', :object => @county.photos %>
+	<% end %>
+	
 	<div id="pagecontent">
+
+		<%= render :partial => 'species/multi_column_list', :object => @county.species %>
 
 		<%= open_first_column %>
 		
@@ -20,27 +26,37 @@
 					We visit <%= @county.name %> County at least
 					<%= (@county.trips.size.to_f / @county.year_span.to_f).ceil %> times a year. 
 				</div>	
-			</div>            		
+			</div>      
+			      		
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Latest trip</div>	
+					<div class="pagecontentitem">
+					 			<%= link_to @county.sightings.latest.trip.name + ",  " + short_nice_date(@county.sightings.latest.trip.date), trip_url(@county.sightings.latest.trip) %>
+				</div>
+			</div>
 
-			<%= show_species_list(@county.species, true) %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">First trip</div>	
+					<div class="pagecontentitem">
+			 		<%= link_to @county.sightings.earliest.trip.name + ",  " + short_nice_date(@county.sightings.earliest.trip.date), trip_url(@county.sightings.earliest.trip) %>
+				</div>
+			</div>
+
+			<div class="pagecontentmodule">
+				<div class="moduletitle">When we bird <%= @county.name %> County</div>	
+				<div class="pagecontentitem">
+					<% month_totals = Trip.map_by_month(@county.trips) %>
+					<%= counts_by_month_image_tag(month_totals)%>
+				</div>
+			</div>
 
 		<%= between_columns %>
-                                                     
-			<% if @county.gallery_photos.size > 10 then %>
-				<% @photos_module_title = 'County Photos' %>
-				<%= show_thumbnail_list(@county.gallery_photos) %>
-			<% elsif @county.photos.size > 0 then %>
-				<% @photos_module_title = 'County Photos' %>
-				<%= show_thumbnail_list(@county.photos) %>
-			<% end %>
 		
 			<% if ((@county.locations.with_lat_long.size > 0) && (! iphone?)) %>
 				<% @map_module_title = 'County Map' %>                       
 				<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long %>
 			<% end %>
 		
-			<%= show_location_list(@county.locations, false) %>     
-
  		<%= close_second_column %>      
 
 	</div>
