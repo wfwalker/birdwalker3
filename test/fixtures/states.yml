@@ -8,3 +8,8 @@ state_two:
   id: 2
   name: 'Second State'
   abbreviation: 'SS'
+
+state_three:
+  id: 3
+  name: 'Third State'
+  abbreviation: 'TS'
