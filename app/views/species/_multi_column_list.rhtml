@@ -1,0 +1,20 @@
+<% total_species_list = multi_column_list %>
+
+<% has_no_columns? do %>
+	<%= render :partial => 'species/divided_list', :object => total_species_list, :locals => { :show_headings => true } %>
+<% end %>
+
+<% has_columns? do %>
+	<% species_lists = total_species_list/((total_species_list.size / 3.0).ceil)%>
+
+	<div class="moduletitle"><%= total_species_list.size %> Species</div> 
+	<table width="100%">
+		<tr width="33%">
+			<% for species_list in species_lists do %>
+				<td width="33%" valign="top" style="white-space: nowrap">
+					<%= render :partial => 'species/divided_list', :object => species_list, :locals => { :show_headings => false } %>
+				</td>
+			<% end %>
+		</tr>
+	</table>
+<% end %>
