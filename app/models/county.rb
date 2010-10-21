@@ -7,10 +7,23 @@ class County < ActiveRecord::Base
     end
   end
   
-  has_many :sightings, :through => :locations
+  has_many :sightings, :through => :locations do
+    def earliest
+      Sighting.earliest(self)
+    end                      
+
+    def latest
+      Sighting.latest(self)
+    end
+  end
   
-  has_many :photos, :through => :locations
-  has_many :gallery_photos, :through => :locations, :conditions => { :rating => [4,5] }
+  has_many :photos, :through => :locations do
+    def latest
+      Photo.latest(self)
+    end
+  end
+  
+  has_many :gallery_photos, :through => :locations, :conditions => { :rating => [4,5] }, :limit => 15, :order => 'id DESC'
   
   validates_presence_of :name, :state
   
@@ -23,7 +36,7 @@ class County < ActiveRecord::Base
   end
     
   def full_name()
-    self.name + " county, " + self.state.abbreviation
+    self.name + " County"
   end
 
  # do something like county.sightings.map(&:species).flatten.uniq
