@@ -1,24 +1,28 @@
 <div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= link_to safe_species_common_name(@photo), species_instance_url(@photo.species) %>,
+			<%= link_to short_nice_date(@photo.trip.date), trip_url(@photo.trip) %> at
+			<%= link_to @photo.location.full_name, location_url(@photo.location) %>
+			<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to '[edit]', edit_photo_url(@photo) %></span>    
+				<span style="font: 9pt Courier">
+					[
+						<% (1..5).each do |index| %>
+							<%= link_to (@photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @photo, :rating => index %>
+						<% end %>
+					]
+				</span> 
+			<% end %>   
+		</div>                                                             
+	</div>
+
 	<div id="pagecontent">	 
 
+
 		<div class="pagecontentmodule">
-			<div class="moduletitle">
-				<%= link_to safe_species_common_name(@photo), species_instance_url(@photo.species) %>
-				<% editing_is_allowed?() do %>
-					<span style="font-size: 9pt"><%= link_to '[edit]', edit_photo_url(@photo) %></span>    
-					<span style="font: 9pt Courier">
-						[
-							<% (1..5).each do |index| %>
-								<%= link_to (@photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @photo, :rating => index %>
-							<% end %>
-						]
-					</span> 
-				<% end %>                                                                
-			</div>
 
 			<div style="margin-left: 12px; padding-bottom: 15px">
-				<%= link_to short_nice_date(@photo.trip.date), trip_url(@photo.trip) %> at
-				<%= link_to @photo.location.full_name, location_url(@photo.location) %>
 			</div>
 
 			<div class="pagecontentitem">				
