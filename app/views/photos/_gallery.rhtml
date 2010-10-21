@@ -1,0 +1,33 @@
+<% gallery_photos = gallery %>
+
+<div id="bigphotoframe">
+	<% @photos_module_title = "" %>
+	<%= show_thumbnail_list(gallery_photos) %>
+</div>
+
+<!--	<%= link_to_function "close", "hideBigPhoto()"%> -->
+
+<script type="text/javascript">
+function hideBigPhoto()
+  {
+  var bigPhotoFrame=document.getElementById("bigphotoframe");
+  bigPhotoFrame.style.display = 'none'
+  var graylayer=document.getElementById("graylayer");
+  graylayer.style.display = 'none'
+  }
+</script>
+
+<script type="text/javascript">
+function showBigPhoto(theHTML, theTitle)
+  {
+//  var graylayer=document.getElementById("graylayer");
+//  graylayer.style.display = 'block'
+
+  var bigPhotoDiv=document.getElementById("bigphoto");
+  bigPhotoDiv.innerHTML = theHTML;
+  var bigPhotoDiv=document.getElementById("bigphototitle");
+  bigPhotoDiv.innerHTML = theTitle;
+  var bigPhotoFrame=document.getElementById("bigphotoframe");
+//  bigPhotoFrame.style.display = 'block';
+  }
+</script>
