@@ -31,7 +31,7 @@ class State < ActiveRecord::Base
   def photos
     Photo.find_by_sql("SELECT DISTINCT photos.* FROM photos, locations, counties 
       WHERE photos.location_id=locations.id AND
-      locations.county_id=counties.id AND counties.state_id='" + self.id.to_s + "' ORDER BY photos.id")
+      locations.county_id=counties.id AND counties.state_id='" + self.id.to_s + "' ORDER BY photos.id DESC LIMIT 15")
   end
   
   def State.sort_alphabetic(state_list)
