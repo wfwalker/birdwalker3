@@ -6,27 +6,11 @@
 		<% editing_is_allowed?() do %>
 			<span style="font-size: 9pt"><%= link_to 'edit', edit_location_url(location) %></span>
 		<% end %>
-	</div>
-	<div class="pageheaderitem">
-		<%= link_to location.county.name + " County", county_url(location.county) %>,
+
+		in <%= link_to location.county.name + " County", county_url(location.county) %>,
 		<%= link_to location.county.state.name, state_url(location.county.state) %>
 		<% has_reference_url?(location) do %>
 			(<a href="<%= location.reference_url %>">See also...</a>)
 		<% end %>
 	</div>                    
-	
-	<% if (! iphone?) && (location.common?) %>
-		<div class="pageheaderitem">
-			<%= link_to 'normal view', :id => location, :action => 'show' %>
-			<% has_multiple_years?(location) do %>
-				| <%= link_to 'by year view', :id => location, :action => 'show_species_by_year' %>
-			<% end %>
-			<% has_multiple_months?(location) do %>
-				| <%= link_to 'by month view', :id => location, :action => 'show_species_by_month' %>
-			<% end %>
-			<% has_gallery?(location) do %>
-				| <%= link_to 'gallery', :id => location, :action => 'gallery' %>
-			<% end %>
-		</div>                  
-	<% end %>
 </div>
