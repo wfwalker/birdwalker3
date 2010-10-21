@@ -1,17 +1,23 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle">
-			<%= @page_title %>
+			<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
 	 		<% editing_is_allowed?() do %>
 				<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
 			<% end %>       
 		</div> 
-		<div class="pageheaderitem"><%= link_to @county.state.name, state_url(@county.state) %></div>
-   		<%= render :partial => 'counties/view_links', :object => @county %>
 	</div>
 
-	<div id="pagecontent">
+	<% if @county.gallery_photos.size >= 15 %>
+		<%= render :partial => 'photos/gallery', :object => @county.gallery_photos %>
+	<% elsif @county.photos.size > 0 %>
+		<%= render :partial => 'photos/gallery', :object => @county.photos %>
+	<% end %>
 
+	<div id="pagecontent">
+		
+		<%= render :partial => 'species/multi_column_list', :object => @county.species %>
+		
 		<%= open_first_column %>
 
 			<div class="pagecontentmodule">
@@ -21,27 +27,15 @@
 				</div>	
 			</div>
 
-			<%= show_species_list(@county.species, true) %>
-
 			<%= show_trip_list(@county.trips, true) %>
 
 		<%= between_columns %>
                                                      
-			<% if @county.gallery_photos.size > 10 then %>
-				<% @photos_module_title = 'County Photos' %>
-				<%= show_thumbnail_list(@county.gallery_photos) %>
-			<% elsif @county.photos.size > 0 then %>
-				<% @photos_module_title = 'County Photos' %>
-				<%= show_thumbnail_list(@county.photos) %>
-			<% end %>
-		
 			<% if ((@county.locations.with_lat_long.size > 0) && (! iphone?)) %>
 				<% @map_module_title = 'County Map' %>                       
 				<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long %>
 			<% end %>
 		
-			<%= show_location_list(@county.locations, false) %>     
-
  		<%= close_second_column %>      
 
 	</div>
