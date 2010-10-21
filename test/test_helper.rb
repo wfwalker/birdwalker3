@@ -44,7 +44,7 @@ class Test::Unit::TestCase
        end
        
      rescue REXML::ParseException
-       fail "Invalid XML: " + $!
+       fail "Invalid XML: " + $! + "\n\n\n\n-------------------" + some_stuff + "\n-----------------------------\n\n"
      end
    end
 end
