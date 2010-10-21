@@ -1,21 +1,17 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem"><%= @family.latin_name %></div>
-		<%= render :partial => 'families/view_links', :object => @family %>
+		<div id="pagetitle"><%= @page_title %> (<i><%= @family.latin_name %></i>)</div>
 	</div>
+
+	<% if @family.gallery_photos.size >= 15 %>
+		<%= render :partial => 'photos/gallery', :object => @family.gallery_photos %>
+	<% elsif @family.photos.size > 0 %>
+		<%= render :partial => 'photos/gallery', :object => @family.photos %>
+	<% end %>
 	
 	<div id="pagecontent">
+		
 		<%= open_first_column %>
-
-			<% has_photos?(@family) do %>
-			<div class="pagecontentmodule">
-				<div class="moduletitle">Latest Photo</div>	
-				<div class="pagecontentitem">				
-					<img width="340" src="<%= @family.photos.latest.photo_URL %>" /><br/>
-				</div>                     
-			</div>
-			<% end %>
 
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Family Notes</div>	

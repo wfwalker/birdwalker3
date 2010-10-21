@@ -1,33 +1,20 @@
 <div id="pagebody">	
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem"><%= @family.latin_name %></div>
-		<%= render :partial => 'families/view_links', :object => @family %>
+		<div id="pagetitle"><%= @page_title %> (<i><%= @family.latin_name %></i>)</div>
 	</div>
 
+	<% if @family.gallery_photos.size >= 15 %>
+		<%= render :partial => 'photos/gallery', :object => @family.gallery_photos %>
+	<% elsif @family.photos.size > 0 %>
+		<%= render :partial => 'photos/gallery', :object => @family.photos %>
+	<% end %>
+	
 	<div id="pagecontent">
-
-		<%= open_first_column %>  
 		
-			<% has_photos?(@family) do %>
-			<div class="pagecontentmodule">
-				<div class="moduletitle">Latest Photo</div>	
-				<div class="pagecontentitem">				
-					<img width="340" src="<%= @family.photos.latest.photo_URL %>" /><br/>
-				</div>                     
-			</div>
-			<% end %>
+		<%= open_first_column %>  
 
 			<div class="pagecontentmodule">
-				<div class="moduletitle">Sightings by month</div>	
-				<div class="pagecontentitem">
-					<% month_totals = Sighting.map_by_month(@family.sightings) %>
-					<%= counts_by_month_image_tag(month_totals)%>
-				</div>
-			</div>
-
-			<div class="pagecontentmodule">
-				<div class="moduletitle">Family Notes</div>	
+				<div class="moduletitle"><%= @family.common_name %> we've seen</div>	
 				<div class="pagecontentitem">
 					We see <%= @family.common_name %> at least
 					<%= @family.sightings.size / (@family.last_sighting.trip.date.year - @family.first_sighting.trip.date.year) %> times a year. 
@@ -37,7 +24,7 @@
 				</div>	
 			</div>
         
-  			<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
+  			<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => false } %>
 
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Latest sighting</div>	
@@ -49,10 +36,18 @@
 				<%= render :partial => 'sightings/full_details', :object => @family.first_sighting %>	
 			</div>
 					
+			<div class="pagecontentmodule">
+				<div class="moduletitle">When we see <%= @family.common_name.downcase %></div>	
+				<div class="pagecontentitem">
+					<% month_totals = Sighting.map_by_month(@family.sightings) %>
+					<%= counts_by_month_image_tag(month_totals)%>
+				</div>
+			</div>
+
 		<%= between_columns %>
 		
 			<% if ((Location.with_lat_long(@family.locations).size > 0) && (! iphone?)) %>  
-				<% @map_module_title = 'Species Map' %>
+				<% @map_module_title = 'Where we see ' + @family.common_name.downcase %>
 				<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations) %>
 			<% end %>
 
