@@ -3,22 +3,20 @@
 <div id="pageheader">
     <div id="pagetitle">
 		<%= @page_title %>
+		(<i><%= species.latin_name %></i>) in
+		<i><%= link_to species.family.common_name, family_url(species.family) %></i>
 
 		<span style="font-size: 9pt">
-
 			<% editing_is_allowed?() do %>
 				<%= link_to 'edit', edit_species_instance_url(species) %>
 			<% end %>
 		</span>
+
 	</div>
 	
-	<div class="pageheaderitem">
-		<%= species.latin_name %> in
-		<%= link_to species.family.latin_name, family_url(species.family) %>
-	</div>                                                                      
+	<% if ! species.aba_countable %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>     
 	
-	<% if species.aba_countable == 0 %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>     
-	
+<!--
 	<% if (! iphone?) && (species.common?) %>
 		<div class="pageheaderitem">
 			<%= link_to 'normal view', :id => species, :action => 'show' %> | 
@@ -29,4 +27,5 @@
 	 		<% end %>
 		</div>               
 	<% end %>
+-->
 </div>
