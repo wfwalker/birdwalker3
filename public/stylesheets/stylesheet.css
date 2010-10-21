@@ -28,13 +28,13 @@ a:hover { text-decoration: underline; }
 {
 	border-bottom: solid 1px #CCCCCC;
 	font-weight: normal; font-size: 14pt;
-	margin-left: 10px; margin-top: 10px; margin-bottom: 10px
+	margin-top: 10px; margin-bottom: 10px
 }
 
 .modulesubtitle
 {
 	font-weight: normal; font-size: 12pt;
-	margin-left: 12px; margin-top: 10px; margin-bottom: 10px
+	margin-top: 10px; margin-bottom: 10px
 }
 
 .modulesubtitle a { text-decoration: none; }
@@ -73,9 +73,8 @@ a:hover { text-decoration: underline; }
 #banner
 {
 	position: absolute; top: 0px; width: 100%;      
-	height: 77px;        
-	background: #DAE0D2 url("/images/bg.gif") repeat-x bottom;	 
-	
+	height: 69px;        
+	background-color: #DAE0D2;	 	
 }
 
 #searchbox
@@ -86,14 +85,14 @@ a:hover { text-decoration: underline; }
 
 #sitetitle
 {
-	font-size: 14pt; margin-left: 20px; margin-top: 5px; width: 800px;
+	font-size: 14pt; margin-left: 40px; margin-top: 5px; width: 800px;
 }                                                                               
 
 #menu
 {                   
-	position: absolute; top: 50px;
-	padding-left: 50px; min-width: 800px; 
-	background: #DAE0D2 url("/images/bg.gif") repeat-x bottom;	 
+	position: absolute; top: 43px;
+	min-width: 800px; 
+	background-color: #DAE0D2;	 
 }
          
 ul, ol {list-style: none; margin: 0;}
@@ -141,15 +140,17 @@ ul.sortable {cursor: move}
 
 #pagetitle
 {
-	font: 18pt Gill Sans, Sans-Serif;
+	font: 14pt Gill Sans, Sans-Serif;
 	padding-left: 10px;
 	padding-bottom: 5px;
 }
 
 #pageheader
 {
-	padding-top: 8px;
-	padding-bottom: 4px; 
+	padding-top: 12px;
+	padding-bottom: 5px;
+ 	padding-left: 28px;
+	background-color: #ffffee;
 }                                             
 
 .location-abbreviation
@@ -159,7 +160,7 @@ ul.sortable {cursor: move}
  
 .pageheaderitem
 {
-	margin-left: 15px; margin-right: 15px; margin-bottom: 3px;
+ 	margin-left: 15px; margin-right: 15px; margin-bottom: 3px;
 }
 
 .pagecontentmodule .photo
@@ -167,20 +168,19 @@ ul.sortable {cursor: move}
 	text-align: center; display: inline;
 }
 
-
 #pagebody
 {
-	margin-left: auto; 
-	margin-right: auto;  
 	min-height: 100%;
-	padding-top: 90px;
-	width: 760px;
+	padding-top: 68px;
 	padding-bottom: 50px;
 }
 
 #pagecontent
 {             
+	margin-left: auto; 
+	margin-right: auto;  
 	background-color: white;
+	width: 760px;
 }
 
 #pagecontent .pagecontentmodule
@@ -192,25 +192,21 @@ ul.sortable {cursor: move}
 
 #pagecontent .pagecontentitem
 {
-	margin-left: 30px; margin-bottom: 1px;
+	margin-bottom: 1px;
 }
 
 #pagecontent .pagecontentitem .notes
 {
-	margin-left: 10px; margin-bottom: 3px; margin-top: 2px; margin-right: 10px;
+	margin-bottom: 3px; margin-top: 2px; margin-right: 10px;
 }
 
-#gallerythumbs
+#bigphotoframe
 {
-	position: absolute; top: 100px; right: 0px; width: 100px;
-	z-index: 2;
-	background-color: white;
-}
-
-#gallerythumbs .photo
-{
-	padding-bottom: 2px;
-	padding-top: 2px;
+	margin-left: auto; 
+	margin-right: auto;  
+	background-color: #ffffee;
+	padding-bottom: 5px;
+ 	padding-left: 43px;
 }
 
 #bottombar
