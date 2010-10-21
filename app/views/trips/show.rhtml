@@ -1,18 +1,20 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle">
-			<%= @page_title %>
+			<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
+
 			<% editing_is_allowed?() do %>
 				<span style="font-size: 9pt"><%= link_to 'edit', edit_trip_url(@trip) %></span>
 			<% end %>
-		</div>
-		<div class="pageheaderitem"><%= nice_date(@trip.date) %>
 			<% has_reference_url?(@trip) do %>
 				(<%= link_to 'See also...', @trip.reference_url %>)
 			<% end %>
 		</div>
-		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
 	</div>
+
+	<% if @trip.photos.size > 0 %>
+		<%= render :partial => 'photos/gallery', :object => @trip.photos %>
+	<% end %>	
 	
 	<div id="pagecontent">
 		<% mapped = @trip.sightings.map_by_location %>
@@ -42,9 +44,6 @@
 					<div class="pagecontentitem"><%= @trip.notes %></div>
 				</div>
 			<% end %>
-	
-			<% @photos_module_title = 'Trip Photos' %>                       
-			<%= show_thumbnail_list(@trip.photos) %>
 	
 			<% if ((@trip.locations.with_lat_long.size > 0) && (! iphone?)) %>
 				<% @map_module_title = 'Trip Map' %>                       
