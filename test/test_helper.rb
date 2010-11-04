@@ -38,13 +38,25 @@ class Test::Unit::TestCase
   
    def assert_valid_xml(some_stuff) 
      begin                                       
-       if (! some_stuff.include?("http://maps.google.com/maps")) then
-         xmp_document = Document.new(some_stuff)     
-         assert true
+       if (some_stuff.include?("http://maps.google.com/maps")) then
+         puts "WARNING: document contains google map, can't validate XML"
+         return nil
+       else         
+         return Document.new(some_stuff)     
        end
        
      rescue REXML::ParseException
        fail "Invalid XML: " + $! + "\n\n\n\n-------------------" + some_stuff + "\n-----------------------------\n\n"
      end
    end
+
+   def assert_valid_document_title(xml_document)
+     if xml_document != nil then
+       assert_equal 1, xml_document.get_elements("html").size(), "root tag should be 'html'"
+       assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']").size(), "html body should contain pagebody div"
+       assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']/div[@id='pageheader']").size(), "pagebody div should contain pageheader div"
+       assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']/div[@id='pageheader']/div[@id='pagetitle']").size(), "div containing title should be at expected path"
+     end
+   end
+
 end
