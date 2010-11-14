@@ -1,11 +1,8 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-		<div class="pageheaderitem"><%= nice_date(@trip.date) %></div>
-		<div class="pageheaderitem">Led by <%= @trip.leader %></div>
-		<% has_reference_url?(@trip) do %>
-			<div class="pageheaderitem"><%= link_to 'See also...', @trip.reference_url %></div>
-		<% end %>
+		<div id="pagetitle">
+			<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
+		</div>
 	</div>
 	
 	<div id="pagecontent">               

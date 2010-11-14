@@ -18,7 +18,8 @@ class TripsControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
-    assert_valid_xml(@response.body)
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document)
     assert_template 'list'
   end
 
@@ -26,7 +27,8 @@ class TripsControllerTest < Test::Unit::TestCase
     get :list
 
     assert_response :success
-    assert_valid_xml(@response.body)
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document)
     assert_template 'list'
 
     assert_not_nil assigns(:trips)
@@ -36,7 +38,8 @@ class TripsControllerTest < Test::Unit::TestCase
     get :list_biggest
 
     assert_response :success
-    assert_valid_xml(@response.body)
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document)
     assert_template 'list_biggest'
 
     assert_not_nil assigns(:trips)
@@ -46,7 +49,8 @@ class TripsControllerTest < Test::Unit::TestCase
     get :show, :id => @first_id
 
     assert_response :success
-    assert_valid_xml(@response.body)
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document)
     assert_template 'show'
 
     assert_not_nil assigns(:trip)
@@ -69,7 +73,7 @@ class TripsControllerTest < Test::Unit::TestCase
     post :create, {:trip => {:name => 'new trip', :date => '2007-01-01', :leader => 'new guy'}}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :redirect
-    assert_valid_xml(@response.body)                                                  
+    xml_document = assert_valid_xml(@response.body)
     
     new_trip_id = Trip.find_by_name("new trip").id
     assert_redirected_to :action => 'show', :controller => 'trips', :id => new_trip_id
@@ -81,7 +85,8 @@ class TripsControllerTest < Test::Unit::TestCase
     get :edit, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
-    assert_valid_xml(@response.body)
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document)
     assert_template 'edit'
 
     assert_not_nil assigns(:trip)
@@ -92,7 +97,8 @@ class TripsControllerTest < Test::Unit::TestCase
     get :add_species, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :success
-    assert_valid_xml(@response.body)
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document)
     assert_template 'add_species'
 
     assert_not_nil assigns(:trip)
@@ -106,9 +112,11 @@ class TripsControllerTest < Test::Unit::TestCase
 
     post :update, {:id => @first_id, :trip => {:name => "First Trip Updated", :notes => 'Updated'}}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
-    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
 
+    # note: we're not testing the response for xml validity, since it's a redirect 
+    # but we are testing the values in the updated record
+    
     updatedTrip = Trip.find(@first_id)
     assert_equal "First Trip Updated", updatedTrip.name, "updated trip name should match"
     assert_not_nil updatedTrip.notes, "updated trip notes should be nil"

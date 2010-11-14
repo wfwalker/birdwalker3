@@ -120,8 +120,9 @@ class SpeciesControllerTest < Test::Unit::TestCase
   def test_update
     post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
-    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
+
+    # note: we're not testing the response for xml validity, since it's a redirect 
   end
 
   def test_destroy

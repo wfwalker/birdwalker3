@@ -74,9 +74,9 @@ class SightingsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
-
-    # redirected to show trip
     assert_redirected_to :controller => 'trips', :id => 1, :action => 'show'
+
+    # note: we're not testing the response for xml validity, since it's a redirect 
   end
 
   def test_destroy

@@ -107,8 +107,10 @@ class LocationsControllerTest < Test::Unit::TestCase
 
     post :update, {:id => @first_id, :location => {:name => 'First Place Updated', :notes => "Updated"}}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
-    assert_valid_xml(@response.body)
     assert_redirected_to :action => 'show', :id => @first_id
+
+    # note: we're not testing the response for xml validity, since it's a redirect 
+    # but we are testing the values in the updated record
 
     updatedLocation = Location.find(@first_id)
     assert_equal "First Place Updated", updatedLocation.name, "updated location name should match"
