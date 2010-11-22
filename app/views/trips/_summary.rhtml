@@ -7,7 +7,7 @@
 
 	<% has_photo?(trip) do %>
 		<div style="float: right; padding-left: 10px">	
-			<%= render :partial => 'photos/thumbnail', :object => trip.photos.first %>
+			<div class="photo"><%= link_to trip.photos.first.thumb, trip_url(trip) %></div>
 		</div>
 	<% end %>
 
