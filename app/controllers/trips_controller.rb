@@ -6,6 +6,8 @@ class TripsController < ApplicationController
   before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :destroy]  
   before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :destroy]  
   
+  caches_action :list, :index, :show, :layout => false
+  
   def page_kind
     "trips"
   end

@@ -5,6 +5,8 @@ class StatesController < ApplicationController
   helper :photos
 
   before_filter :update_activity_timer  
+  
+  caches_action :list, :index, :show, :layout => false
 
   def page_kind
     "states"
