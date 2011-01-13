@@ -49,6 +49,7 @@ class TripsController < ApplicationController
     
     if @trip.save
       flash[:notice] = 'Trip was successfully created.'
+      expire_action :action => [:index, :list, :show]
       redirect_to trip_url(@trip)
     else
       render :action => 'new'
@@ -57,11 +58,13 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find(params[:id])
+    expire_action :action => :show
     @page_title = @trip.name
   end
 
   def add_species
     @trip = Trip.find(params[:id])
+    expire_action :action => :show
     @page_title = @trip.name
   end
 
@@ -71,6 +74,7 @@ class TripsController < ApplicationController
 
     if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'
+      expire_action :action => [:index, :list, :show]
       redirect_to trip_url(@trip)
     else
       render :action => 'edit'
@@ -79,6 +83,7 @@ class TripsController < ApplicationController
 
   def destroy
     Trip.find(params[:id]).destroy
+    expire_action :action => [:index, :list]
     redirect_to :action => 'list'
   end
 end

@@ -58,6 +58,7 @@ class BirdWalkerController < ApplicationController
           flash[:notice] = 'Welcome back, ' + aUser.name
           session[:username] = aUser.name  
           session[:login_time] = Time.now.to_i
+          expire_action :action => :show, :controller => 'trip'
           redirect_to :action => 'index'  
         else
           logger.error("Failed login attempt")
