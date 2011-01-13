@@ -34,7 +34,7 @@ a:hover { text-decoration: underline; }
 .modulesubtitle
 {
 	font-weight: normal; font-size: 12pt;
-	margin-top: 10px; margin-bottom: 10px
+	margin-top: 15px; margin-bottom: 2px
 }
 
 .modulesubtitle a { text-decoration: none; }
@@ -141,16 +141,16 @@ ul.sortable {cursor: move}
 #pagetitle
 {
 	font: 14pt Gill Sans, Sans-Serif;
-	padding-left: 10px;
-	padding-bottom: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 #pageheader
 {
-	padding-top: 12px;
-	padding-bottom: 5px;
- 	padding-left: 28px;
-	background-color: #ffffee;
+	margin-left: auto; 
+	margin-right: auto;
+	width: 760px;
+/*	background-color: #ffffee; */
 }                                             
 
 .location-abbreviation
@@ -181,6 +181,7 @@ ul.sortable {cursor: move}
 	margin-right: auto;  
 	background-color: white;
 	width: 760px;
+/*	border: solid 1px red; */
 }
 
 #pagecontent .pagecontentmodule
@@ -203,10 +204,10 @@ ul.sortable {cursor: move}
 #bigphotoframe
 {
 	margin-left: auto; 
-	margin-right: auto;  
-	background-color: #ffffee;
+	margin-right: auto;
+	width: 760px;
 	padding-bottom: 5px;
- 	padding-left: 43px;
+/* 	border: solid 1px red; */
 }
 
 #bottombar
