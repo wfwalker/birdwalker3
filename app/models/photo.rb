@@ -5,6 +5,10 @@ class Photo < ActiveRecord::Base
   
   validates_presence_of :species_id, :location_id, :trip_id
   
+  def Photo.default_gallery_size
+      14
+  end
+  
   def image_base_URL(hostname)
     if (ENV['image_base_url'] != nil)
       ENV['image_base_url']
