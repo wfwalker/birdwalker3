@@ -3,7 +3,7 @@
 		<div id="pagetitle"><%= @page_title %> (<i><%= @family.latin_name %></i>)</div>
 	</div>
 
-	<% if @family.gallery_photos.size >= 15 %>
+	<% if @family.gallery_photos.size >= Photo.default_gallery_size() %>
 		<%= render :partial => 'photos/gallery', :object => @family.gallery_photos %>
 	<% elsif @family.photos.size > 0 %>
 		<%= render :partial => 'photos/gallery', :object => @family.photos %>

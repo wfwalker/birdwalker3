@@ -1,7 +1,7 @@
 <div id="pagebody">
 	<%= render :partial => 'page_header', :object => @location %>
 
-	<% if @location.gallery_photos.size >= 15 %>
+	<% if @location.gallery_photos.size >= Photo.default_gallery_size() %>
 		<%= render :partial => 'photos/gallery', :object => @location.gallery_photos %>
 	<% elsif @location.photos.size > 5 %>
 		<%= render :partial => 'photos/gallery', :object => @location.photos %>
