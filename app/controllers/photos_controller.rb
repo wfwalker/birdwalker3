@@ -86,7 +86,8 @@ class PhotosController < ApplicationController
     end
 
     if @photo.save
-      flash[:notice] = 'Photo was successfully created.'
+      flash[:notice] = 'Photo was successfully created.'         
+      expire_action :controller => 'trips', :action => 'show', :id => @photo.trip_id
       redirect_to edit_trip_url(@photo.trip_id)
     else
       render :action => 'new'
@@ -135,6 +136,7 @@ class PhotosController < ApplicationController
 
     if @photo.update_attributes(params[:photo])
       flash[:error] = 'Photo was successfully updated.'
+      expire_action :controller => 'trips', :action => 'show', :id => @photo.trip_id
       redirect_to photo_url(@photo)
     else
       render :action => 'edit'
@@ -147,12 +149,14 @@ class PhotosController < ApplicationController
 
     @photo.rating = params[:rating]
     @photo.save
+    expire_action :controller => 'trips', :action => 'show', :id => @photo.trip_id
     render :action => 'show'
   end
 
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
+    expire_action :controller => 'trips', :action => 'show', :id => @photo.trip_id
     redirect_to edit_trip_url(@photo.trip_id)
   end
   

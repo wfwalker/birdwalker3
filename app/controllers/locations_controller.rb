@@ -110,6 +110,8 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @page_title = @location.name
 
+    expire_action :action => :show
+
     if @location.update_attributes(params[:location])
       flash[:notice] = 'Location was successfully updated.'
       redirect_to location_url(@location)
@@ -120,6 +122,8 @@ class LocationsController < ApplicationController
 
   def destroy
     Location.find(params[:id]).destroy
+    expire_action :action => :list
+    expire_action :action => :index
     redirect_to :action => 'list'
   end
   

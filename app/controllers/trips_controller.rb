@@ -58,7 +58,6 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find(params[:id])
-    expire_action :action => :show
     @page_title = @trip.name
   end
 

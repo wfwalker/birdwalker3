@@ -57,8 +57,8 @@ class BirdWalkerController < ApplicationController
           logger.error("Logging in as  " + aUser.name)
           flash[:notice] = 'Welcome back, ' + aUser.name
           session[:username] = aUser.name  
-          session[:login_time] = Time.now.to_i
-          expire_action :action => :show, :controller => 'trip'
+          session[:login_time] = Time.now.to_i     
+          Rails.cache.clear
           redirect_to :action => 'index'  
         else
           logger.error("Failed login attempt")
@@ -145,6 +145,7 @@ class BirdWalkerController < ApplicationController
     if (session[:username] != nil) then
       logger.error("Logging out")
       flash[:notice] = 'Logged out'
+      Rails.cache.clear
       session[:username] = nil    
     end
     
