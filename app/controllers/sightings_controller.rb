@@ -40,6 +40,8 @@ class SightingsController < ApplicationController
 
     if @sighting.save
       flash[:notice] = 'Sighting was successfully created.'
+      expire_action :controller => 'trips', :action => 'show', :id => @sighting.trip_id
+      expire_action :controller => 'trips', :action => 'edit', :id => @sighting.trip_id
       redirect_to edit_trip_url(@sighting.trip_id)
     else
       render :action => 'new'
@@ -75,6 +77,8 @@ class SightingsController < ApplicationController
         flash[:notice] = 'Added ' + abbreviations.size.to_s + ' species.'
       end
 
+      expire_action :controller => 'trips', :action => 'show', :id => @sighting.trip_id
+      expire_action :controller => 'trips', :action => 'edit', :id => @sighting.trip_id
       redirect_to edit_trip_url(@sighting.trip_id)    
 
     rescue Exception => exc
@@ -96,6 +100,8 @@ class SightingsController < ApplicationController
 
     if @sighting.update_attributes(params[:sighting])
       flash[:notice] = 'Sighting was successfully updated.'
+      expire_action :controller => 'trips', :action => 'show', :id => @sighting.trip_id
+      expire_action :controller => 'trips', :action => 'edit', :id => @sighting.trip_id
       redirect_to trip_url(@sighting.trip_id)
     else
       render :action => 'edit'
@@ -105,6 +111,8 @@ class SightingsController < ApplicationController
   def destroy
     @sighting = Sighting.find(params[:id])
     @sighting.destroy
+    expire_action :controller => 'trips', :action => 'show', :id => @sighting.trip_id
+    expire_action :controller => 'trips', :action => 'edit', :id => @sighting.trip_id
     redirect_to trip_url(@sighting.trip_id)
   end
 end
