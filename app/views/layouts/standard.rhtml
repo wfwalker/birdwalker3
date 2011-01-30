@@ -7,8 +7,12 @@
 
 		<%= javascript_include_tag :defaults %>
 		
-        <title>birdWalker | <%= @page_title %></title>
-                 
+		<% if @page_title %>
+        	<title>birdWalker | <%= @page_title %></title>
+		<% else %>
+        	<title>birdWalker</title>
+        <% end %>
+
 		<% if ! is_laptop %>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

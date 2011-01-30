@@ -19,7 +19,7 @@ class TripsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     xml_document = assert_valid_xml(@response.body)
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | Trips")
     assert_template 'list'
   end
 
@@ -28,7 +28,7 @@ class TripsControllerTest < Test::Unit::TestCase
 
     assert_response :success
     xml_document = assert_valid_xml(@response.body)
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | Trips")
     assert_template 'list'
 
     assert_not_nil assigns(:trips)
@@ -39,7 +39,7 @@ class TripsControllerTest < Test::Unit::TestCase
 
     assert_response :success
     xml_document = assert_valid_xml(@response.body)
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | Biggest Trips")
     assert_template 'list_biggest'
 
     assert_not_nil assigns(:trips)
@@ -50,9 +50,8 @@ class TripsControllerTest < Test::Unit::TestCase
 
     assert_response :success
     xml_document = assert_valid_xml(@response.body)
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | First Trip")
     assert_template 'show'
-
     assert_not_nil assigns(:trip)
     assert assigns(:trip).valid?
   end
@@ -86,7 +85,7 @@ class TripsControllerTest < Test::Unit::TestCase
 
     assert_response :success
     xml_document = assert_valid_xml(@response.body)
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | First Trip")
     assert_template 'edit'
 
     assert_not_nil assigns(:trip)
@@ -98,7 +97,7 @@ class TripsControllerTest < Test::Unit::TestCase
 
     assert_response :success
     xml_document = assert_valid_xml(@response.body)
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | First Trip")
     assert_template 'add_species'
 
     assert_not_nil assigns(:trip)

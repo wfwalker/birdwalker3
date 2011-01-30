@@ -50,9 +50,13 @@ class Test::Unit::TestCase
      end
    end
 
-   def assert_valid_document_title(xml_document)
+   def assert_valid_document_title(xml_document, expected_title)
      if xml_document != nil then
        assert_equal 1, xml_document.get_elements("html").size(), "root tag should be 'html'"
+       
+       assert_equal 1, xml_document.get_elements("html/head/title").size(), "html head should have a title"
+       assert_equal expected_title, xml_document.get_elements("html/head/title")[0].text, "title tag should match expected"
+       
        assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']").size(), "html body should contain pagebody div"
        assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']/div[@id='pageheader']").size(), "pagebody div should contain pageheader div"
        assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']/div[@id='pageheader']/div[@id='pagetitle']").size(), "div containing title should be at expected path"

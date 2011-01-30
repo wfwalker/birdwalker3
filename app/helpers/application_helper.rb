@@ -109,6 +109,10 @@ module ApplicationHelper
   def editing_is_allowed?(&block)
     yield if session[:username] != nil
   end
+
+  def editing_is_not_allowed?(&block)
+    yield if session[:username] == nil
+  end
   
   def is_laptop
     `hostname`.strip == "vermillion.local"

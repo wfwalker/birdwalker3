@@ -43,17 +43,6 @@ module SightingsHelper
 	  end
   end
   
-  # used only by Trip.show
-	def show_taxonomic_sighting_list(sighting_list)
-	  sorted_sighting_list = Sighting.sort_taxonomic(sighting_list)
-	      
-    if sorted_sighting_list.size > 40
-			render :partial => 'sightings/divided_list', :object => sorted_sighting_list
-		else
-		  render :partial => 'sightings/undivided_list', :object => sorted_sighting_list
-		end
-	end
-
   # used only by Species.life_list
 	def show_chronological_sighting_list(sighting_list)
 	  sorted_sighting_list = Sighting.sort_chronological(sighting_list);

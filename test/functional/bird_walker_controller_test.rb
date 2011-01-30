@@ -18,7 +18,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     get :about
     assert_response :success  
     xml_document = assert_valid_xml(@response.body)  
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | About")
     assert_template 'about'
   end
 
@@ -26,7 +26,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     xml_document = assert_valid_xml(@response.body)  
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker")
     assert_template 'index'
   end
 
@@ -64,7 +64,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert ! @response.body.include?("Trips")
     assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)  
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
 
@@ -73,8 +73,8 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert ! @response.body.include?("Locations")
     assert ! @response.body.include?("Trips")
     assert ! @response.body.include?("Species")
-    xml_document = assert_valid_xml(@response.body)  
-    assert_valid_document_title(xml_document)
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
 
@@ -84,7 +84,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert ! @response.body.include?("Trips")
     assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)  
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
 
@@ -94,7 +94,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert ! @response.body.include?("Trips")
     assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)  
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
 
@@ -104,7 +104,7 @@ class BirdWalkerControllerTest < Test::Unit::TestCase
     assert @response.body.include?("2 Trips")
     assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)  
-    assert_valid_document_title(xml_document)
+    assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
 

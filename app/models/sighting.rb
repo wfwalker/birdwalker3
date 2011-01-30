@@ -44,6 +44,29 @@ class Sighting < ActiveRecord::Base
     sighting_list.inject({}) { | map, sighting |
        map[sighting.species.family] ? map[sighting.species.family] << sighting : map[sighting.species.family] = [sighting] ; map }
   end
+
+  def Sighting.map_by_species(sighting_list)
+    sighting_list.inject({}) { | map, sighting |
+       map[sighting.species] ? map[sighting.species] << sighting : map[sighting.species] = [sighting] ; map }
+  end
+
+  def Sighting.map_by_family_and_species(sighting_list)
+    map = {}
+    
+    for sighting in sighting_list do
+      if ! map[sighting.species.family] then
+        map[sighting.species.family] = {}
+      end
+      
+      if ! map[sighting.species.family][sighting.species] then
+        map[sighting.species.family][sighting.species] = []
+      end
+      
+      map[sighting.species.family][sighting.species] << sighting      
+    end
+
+    return map
+  end
   
   def Sighting.map_by_year_and_species(sighting_list)
     map = {}

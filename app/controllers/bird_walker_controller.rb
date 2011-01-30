@@ -48,6 +48,7 @@ class BirdWalkerController < ApplicationController
   end   
     
   def about
+    @page_title = "About"
   end
   
   def login

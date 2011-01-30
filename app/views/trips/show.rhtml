@@ -23,18 +23,46 @@
 		
 			<% if (@trip.locations.size == 1) %>
 				<% @module_title = @trip.locations[0].full_name %>
-			<% else %>
+			<% else %>	
 				<% @module_title = @trip.locations.size.to_s + " Locations" %>
 				<% @show_location_abbreviation = true %>
 			<% end %>
 		
-			<%= show_taxonomic_sighting_list(@trip.sightings) %>
+			<% sorted_sighting_list = Sighting.sort_taxonomic(@trip.sightings) %>
+			<% common_names = sorted_sighting_list.collect {|item|item.species.common_name}.uniq %>
+			<% sightings_by_family = Sighting.map_by_family(sorted_sighting_list) %>
+			<% sightings_by_family_and_species = Sighting.map_by_family_and_species(sorted_sighting_list) %>
+			<% sorted_families = Family.sort_taxonomic(sightings_by_family.keys) %>  
+
+			<div class="pagecontentmodule">
+				<div class="moduletitle">
+					<%= common_names.size %> Species at <%= @module_title %>
+				</div>
+
+				<% for a_family in sorted_families do %>
+				    <% if sorted_sighting_list.size > 40 %>
+				  		<div class="modulesubtitle"><%= a_family.common_name %></div>
+					<% end %>
+					<% sightings_by_family_and_species[a_family].each_key do | a_species | %>
+						<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
+							<% editing_is_allowed?() do %>
+								<%= render :partial => 'sightings/onelinelink', :collection => sightings_by_family_and_species[a_family][a_species] %>
+							<% end %>
+							<% editing_is_not_allowed?() do %>
+								<%= render :partial => 'sightings/onelinemultilink', :object => sightings_by_family_and_species[a_family][a_species] %>
+							<% end %>
+						<% else %>
+							<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
+						<% end %>
+					<% end %>
+				<% end %>
+			</div>
 			
 			<% if (@trip.locations.size > 1) %>
 				<% for location in @trip.locations %>
 					<div><%= location.full_name %> = <span class="location-abbreviation"><%= location.abbreviation %></span></div>
 				<% end %>
-			<% end%>
+			<% end %>
 			
 		<%= between_columns %>
 		
