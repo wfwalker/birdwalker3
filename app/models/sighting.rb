@@ -15,6 +15,52 @@ class Sighting < ActiveRecord::Base
     (1996..2010)
   end   
   
+  def to_ebird_record_format
+    # column definitions
+    row = []
+    # A: Common Name
+    row[0]  = self.species.common_name
+    # B: Genus (Latin)
+    row[1]  = ''
+    # C: Species (Latin)
+    row[2]  =  ''
+    # D: Number
+    row[3]  = (self.count ? self.count.to_s : "X")
+    # E: Species Comments
+    row[4]  = ''
+    # F: Location Name
+    row[5]  = self.location.name
+    # G: Latitude
+    row[6]  = (self.location.latitude ? self.location.latitude.to_s : '')
+    # H: Longitude
+    row[7]  = (self.location.longitude ? self.location.longitude.to_s : '')
+    # I: Date
+    row[8]  = h self.trip.date.strftime("%m/%d/%Y")
+    
+    # J: Start Time
+    row[9]  = ''
+    # K: State/Province
+    row[10] = self.location.county.state.abbreviation
+    # L: Country Code
+    row[11] = (self.location.county.state == "Alberta" ? "CA" : "US")
+    # M: Protocol
+    row[12] = 'casual'
+    # N: Number of Observers
+    row[13] = ''
+    # O: Duration (mins)
+    row[14] = ''
+    # P: All observations reported? (Y/N)
+    row[15] = 'Y'
+    # Q: Distance Covered
+    row[16] = ''
+    # R: Area Covered
+    row[17] = ''
+    # S: Checklist comments
+    row[18] = ''
+    
+    return row
+  end
+  
   def Sighting.latest(sighting_list)
     sighting_list.sort{|x,y| y.trip.date <=> x.trip.date}.first
   end
