@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CountyTest < Test::Unit::TestCase
-  fixtures :photos, :locations, :species, :trips, :sightings, :counties, :states
+  fixtures :photos, :locations, :species, :trips, :sightings, :counties, :states, :families
 
   def setup
     @first_id = counties(:county_one).id

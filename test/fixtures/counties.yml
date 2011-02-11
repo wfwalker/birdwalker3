@@ -2,8 +2,7 @@
 county_one:
   id: 1
   name: 'First County'
-  state_id: 1
-  
+  state_id: 1  
 county_two:
   id: 2
   name: 'Second County'
