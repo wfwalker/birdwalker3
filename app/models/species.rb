@@ -85,8 +85,8 @@ class Species < ActiveRecord::Base
   # Returns the list of species that have been seen in the given year up to the current week-of-the-year
   def Species.year_to_date(year)  
     Species.find_by_sql(
-      "SELECT DISTINCT species.* FROM species, sightings, trips
-         WHERE sightings.species_id=species.id AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "' 
-         AND DayOfYear(trips.date)<='" + Date.today.yday.to_s + "'")
+      "SELECT DISTINCT species.* FROM species, families, sightings, trips
+         WHERE sightings.species_id=species.id AND species.family_id=families.id AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "' 
+         AND DayOfYear(trips.date)<='" + Date.today.yday.to_s + "' ORDER BY families.taxonomic_sort_id, species.id")
   end
 end

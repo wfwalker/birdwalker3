@@ -11,9 +11,9 @@ class State < ActiveRecord::Base
   # end
 
   def species
-    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings, locations, counties 
-      WHERE species.id=sightings.species_id AND sightings.location_id=locations.id AND
-      locations.county_id=counties.id AND counties.state_id='" + self.id.to_s + "'")
+    Species.find_by_sql("SELECT DISTINCT species.* FROM species, families, sightings, locations, counties 
+      WHERE species.id=sightings.species_id AND species.family_id=families.id AND sightings.location_id=locations.id AND
+      locations.county_id=counties.id AND counties.state_id='" + self.id.to_s + "' ORDER BY families.taxonomic_sort_id, species.id")
   end
   
   def trips

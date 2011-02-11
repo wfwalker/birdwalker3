@@ -24,7 +24,7 @@ class Family < ActiveRecord::Base
   end
   
   def species_seen
-    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND species.family_id='" + self.id.to_s + "'")
+    Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND species.family_id='" + self.id.to_s + "' ORDER BY species.id")
   end
   
   # TODO: some cleaner way to do this!
