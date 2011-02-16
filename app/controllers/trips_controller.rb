@@ -25,6 +25,10 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params["id"])
     @page_title = @trip.name
+    
+    if @trip.sightings.length == 0
+      render :action => 'blog_show'
+    end
   end
   
   def index
