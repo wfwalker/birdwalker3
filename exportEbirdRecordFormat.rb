@@ -20,9 +20,12 @@
 # R: Area Covered
 # S: Checklist comments
 
-aTrip = Trip.find_by_id(734)
+# aCollection = Trip.find_by_id(733).sightings
 
-rows = aTrip.sightings.collect { | sighting | sighting.to_ebird_record_format() }
+aCollection = Sighting.find_by_sql("SELECT DISTINCT sightings.* FROM trips, sightings
+       WHERE sightings.trip_id=trips.id AND Year(trips.date)=2007 AND Month(trips.date)<10 AND Month(trips.date)>6")
+
+rows = aCollection.collect { | sighting | sighting.to_ebird_record_format() }
 
 rows.each do | row |
   puts row.join(',')
