@@ -19,7 +19,8 @@ class Location < ActiveRecord::Base
   
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }, :limit => Photo.default_gallery_size(), :order => 'trip_id DESC' # MOO THIS IS WRONG
   
-  has_many :species, :through => :sightings, :uniq => true do
+# TODO: should be sorted by families.taxonomic_sort_id first  
+  has_many :species, :through => :sightings, :order => 'species.id', :uniq => true do
     def map_by_family
       load_target
       Species.map_by_family(proxy_target)
