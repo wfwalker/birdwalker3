@@ -149,7 +149,7 @@ ul.sortable {cursor: move}
 {
 	margin-left: auto; 
 	margin-right: auto;
-	width: 760px;
+	width: 780px;
 /*	background-color: #ffffee; */
 }                                             
 
@@ -180,7 +180,7 @@ ul.sortable {cursor: move}
 	margin-left: auto; 
 	margin-right: auto;  
 	background-color: white;
-	width: 760px;
+	width: 780px;
 /*	border: solid 1px red; */
 }
 
@@ -188,7 +188,7 @@ ul.sortable {cursor: move}
 {
 	margin-top: 10px;
 	margin-bottom: 15px;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 #pagecontent .pagecontentitem
@@ -205,7 +205,7 @@ ul.sortable {cursor: move}
 {
 	margin-left: auto; 
 	margin-right: auto;
-	width: 760px;
+	width: 780px;
 	padding-bottom: 5px;
 /* 	border: solid 1px red; */
 }

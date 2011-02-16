@@ -20,10 +20,10 @@
 			</td>
 			<td valign="top" style="padding: 2px">
 				<% has_photos?(sighting.species) do %>
-					<img width="40" src="<%= sighting.species.photos.latest.photo_URL %>" />
+					<img width="60px" height="60px" src="<%= sighting.species.photos.latest.thumb_URL %>" />
 				<% end %>
 				<% has_no_photos?(sighting.species) do %>
-					<div style="height: 40px; width: 40px; background-color: lightgray">
+					<div style="height: 60px; width: 60px; background-color: lightgray">
 				<% end %>
 			</td>
 			<td valign="top">
