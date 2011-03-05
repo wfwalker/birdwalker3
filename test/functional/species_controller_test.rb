@@ -57,7 +57,8 @@ class SpeciesControllerTest < Test::Unit::TestCase
     get :photo_life_list
 
     assert_response :success
-    assert_valid_xml(@response.body)
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document, "birdWalker | Life List")
     assert_template 'photo_life_list'
 
     assert_not_nil assigns(:all_species_photographed)
