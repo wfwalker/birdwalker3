@@ -1,13 +1,18 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
+		<div id="pagetitle">
+			<%= @page_title %>
+			<%= link_to 'by taxonomy', species_url %> |
+			<%= link_to 'by date', :controller => 'species', :action => 'life_list'%> |
+			<%= link_to 'photos', :controller => 'species', :action => 'photo_life_list'%>
+		</div>		
 	</div>
 
 	<% species_lists = @all_species_not_photographed/(@all_species_not_photographed.size / 3 + 3)%>
 
-	<div class="moduletitle"><%= @all_species_not_photographed.size %> ABA Species Seen but not Photographed</div>
- 	
 	<div id="pagecontent">
+		<div class="moduletitle"><%= @all_species_not_photographed.size %> ABA Species Seen but not Photographed</div>
+
 		<table width="100%">
 			<tr>
 				<% for species_list in species_lists do %>
