@@ -8,18 +8,24 @@
 		</div>		
 	</div>
 	
-	<% species_lists = @all_species_photographed/(@all_species_photographed.size / 3 + 3)%>
-
 	<div id="pagecontent">
-		<div class="moduletitle"><%= @all_species_photographed.size %> ABA Species Photographed</div>
-		<table width="100%">
-			<tr>
-				<% for species_list in species_lists do %>
-					<td valign="top">
-						<%= show_species_list(species_list, false) %>
-					</td>
-				<% end %>
-			</tr>
-		</table>
+		<% has_no_columns? do %>
+			<%= render :partial => 'species/divided_list', :object => @all_species_photographed, :locals => { :show_headings => true } %>
+		<% end %>
+	
+		<% has_columns? do %>
+			<% species_lists = @all_species_photographed/(@all_species_photographed.size / 3 + 3)%>
+		
+			<div class="moduletitle"><%= @all_species_photographed.size %> ABA Species Photographed</div>
+			<table width="100%">
+				<tr>
+					<% for species_list in species_lists do %>
+						<td valign="top">
+							<%= show_species_list(species_list, false) %>
+						</td>
+					<% end %>
+				</tr>
+			</table>
+		<% end %>
 	</div>
 </div>
