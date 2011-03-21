@@ -6,7 +6,6 @@ require "rexml/document"
 require "rexml/element"
 require "rexml/xmldecl"
 require "rexml/text"
-include REXML
 
 def get_XML_from_eBird(in_path, in_args)
   # construct URL
@@ -19,12 +18,12 @@ def get_XML_from_eBird(in_path, in_args)
   
   # parse XML
   xmlData = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
-  Document.new(xmlData.body())
+  REXML::Document.new(xmlData.body())
 end
 
 def parse_XML_as_ebird_sightings(in_XML)
   entries = []
-  XPath.each(in_XML, "/response/result/sighting") { | sighting_xml |
+  REXML::XPath.each(in_XML, "/response/result/sighting") { | sighting_xml |
     entry = {}
     entry['loc-name'] = sighting_xml.get_elements("loc-name")[0].text()
     entry['common-name'] = sighting_xml.get_elements("com-name")[0].text()
