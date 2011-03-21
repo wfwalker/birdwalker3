@@ -48,6 +48,15 @@ class Location < ActiveRecord::Base
     self.name + ", " + self.county.state.abbreviation
   end
   
+  def recent_nearby_ebird_sightings
+    if self.longitude != 0
+      recent_sightings_xml = EBird.get_XML('data/obs/geo/recent', {'lng' => self.longitude, 'lat' => self.latitude, 'dist' => 5, 'back' => 5})
+      EBird.parse_XML_as_sightings(recent_sightings_xml)
+    else
+      []
+    end
+  end
+  
   # def to_param
   #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
   # end

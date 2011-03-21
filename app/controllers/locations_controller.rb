@@ -1,3 +1,11 @@
+require 'net/http'
+require 'uri'
+require "rexml/document"
+require "rexml/element"
+require "rexml/xmldecl"
+require "rexml/text"
+include REXML
+
 class LocationsController < ApplicationController
   helper :trips
   helper :species
@@ -38,6 +46,7 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @page_title = @location.name
+#    @recent_ebird_sightings = @location.recent_nearby_ebird_sightings
     
     if @location.common?
         render :action => 'show_common'
