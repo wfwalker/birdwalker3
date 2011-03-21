@@ -22,8 +22,11 @@
 
 # aCollection = Trip.find_by_id(733).sightings
 
+#aCollection = Sighting.find_by_sql("SELECT DISTINCT sightings.* FROM trips, sightings
+#       WHERE sightings.exclude!=1 AND sightings.trip_id=trips.id AND Year(trips.date)=2002 AND Month(trips.date)<4 AND Month(trips.date)>0")
+
 aCollection = Sighting.find_by_sql("SELECT DISTINCT sightings.* FROM trips, sightings
-       WHERE sightings.trip_id=trips.id AND Year(trips.date)=2007 AND Month(trips.date)<10 AND Month(trips.date)>6")
+       WHERE sightings.exclude!=1 AND sightings.trip_id=trips.id AND Year(trips.date)=1995")
 
 rows = aCollection.collect { | sighting | sighting.to_ebird_record_format() }
 
