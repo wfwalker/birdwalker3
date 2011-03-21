@@ -20,13 +20,13 @@ xmp_document = Document.new(xmp_file.read)
 
 entries = []
 
-XPath.each(xmp_document, "/feed/entry[author/name/text()='Bill Walker']") { | thing |
+XPath.each(xmp_document, "/feed/entry[author/name/text()='Bill Walker']") { | entry_xml |
   entry = {}
-  entry['title'] = thing.get_elements("title")[0].text()
-  entry['date'] = Date.strptime(thing.get_elements("published")[0].text())
-  entry['kind'] = thing.get_elements("category")[0].attribute("term").to_s().split('#')[1]
-  if thing.get_elements("content")[0].text() then
-    entry['content'] = thing.get_elements("content")[0].text()
+  entry['title'] = entry_xml.get_elements("title")[0].text()
+  entry['date'] = Date.strptime(entry_xml.get_elements("published")[0].text())
+  entry['kind'] = entry_xml.get_elements("category")[0].attribute("term").to_s().split('#')[1]
+  if entry_xml.get_elements("content")[0].text() then
+    entry['content'] = entry_xml.get_elements("content")[0].text()
   end
   entries << entry
 }
