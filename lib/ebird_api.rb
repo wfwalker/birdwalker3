@@ -13,6 +13,7 @@ class EBird
   def EBird.get_XML(in_path, in_args)
     # construct URL
     query_strings = in_args.collect { |key, value| "%s=%s" % [key, value] }
+    query_strings << "fmt=xml"
     full_url_string = "http://ebird.org/ws1.1/%s?%s" % [in_path, query_strings.join('&')]
 
     # GET data
@@ -22,6 +23,21 @@ class EBird
     # parse XML
     xmlData = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
     REXML::Document.new(xmlData.body())
+  end
+
+  def EBird.get_JSON(in_path, in_args)
+    # construct URL
+    query_strings = in_args.collect { |key, value| "%s=%s" % [key, value] }    
+    query_strings << "fmt=json"
+    full_url_string = "http://ebird.org/ws1.1/%s?%s" % [in_path, query_strings.join('&')]
+
+    # GET data
+    url = URI.parse(full_url_string)
+    req = Net::HTTP::Get.new(full_url_string)
+           
+    # parse JSON
+    jsonData = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }  
+    return jsonData.body()
   end
 
   def EBird.parse_XML_as_sightings(in_XML)

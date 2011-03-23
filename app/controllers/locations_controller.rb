@@ -42,11 +42,14 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @page_title = @location.name
   end
+
+  def recent_nearby_ebird_sightings_as_JSON
+    @location.recent_nearby_ebird_sightings_as_JSON
+  end
   
   def show
     @location = Location.find(params[:id])
     @page_title = @location.name
-#    @recent_ebird_sightings = @location.recent_nearby_ebird_sightings
     
     if @location.common?
         render :action => 'show_common'

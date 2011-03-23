@@ -56,6 +56,14 @@ class Location < ActiveRecord::Base
       []
     end
   end
+
+  def recent_nearby_ebird_sightings_as_JSON
+    if self.longitude != 0
+      EBird.get_JSON('data/obs/geo/recent', {'lng' => self.longitude, 'lat' => self.latitude, 'dist' => 5, 'back' => 5})
+    else
+      ""
+    end
+  end
   
   # def to_param
   #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
