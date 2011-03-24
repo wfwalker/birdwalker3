@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require '/Users/wilwalke/rubyOnRails/birdwalker3/config/boot'
+require '/Users/walker/rubyOnRails/birdwalker3/config/boot'
 require "rexml/document"
 require "rexml/element"
 require "rexml/xmldecl"
@@ -12,12 +12,13 @@ require 'net/http'
 require 'uri'
 
 include REXML
+                    
+# Parse the Blogspot export file
 
-require 'readline'       
-
-xmp_file = File.new("blog-02-14-2011.xml", "r")
+xmp_file = File.new("blog-03-23-2011.xml", "r")
 xmp_document = Document.new(xmp_file.read)
 
+# extract title, date, kind, and content into hashtable; create array of such hashtables
 entries = []
 
 XPath.each(xmp_document, "/feed/entry[author/name/text()='Bill Walker']") { | entry_xml |
@@ -29,6 +30,37 @@ XPath.each(xmp_document, "/feed/entry[author/name/text()='Bill Walker']") { | en
     entry['content'] = entry_xml.get_elements("content")[0].text()
   end
   entries << entry
-}
+}                          
+                                                                                        
+# pull out just the content entries
+content_entries = entries.select { | an_entry | an_entry["kind"] == 'post' }
+                                   
+# find all the existing trips and their dates
+all_trips = Trip.find(:all, :order => "date DESC")    
 
-entries.each { | an_entry | print "%s %s %s\n\n%s\n\n" % [an_entry["kind"], an_entry["date"], an_entry["title"], an_entry["content"]] }
+all_trip_by_date = {}
+
+all_trips.each { | a_trip |
+  all_trip_by_date[a_trip.date] = a_trip
+}
+                                             
+                                                                      
+# TODO: what if it's always the next day, not the current day
+# TODO: links to flickr probably not good?
+
+content_entries.each { | an_entry| 
+                                              
+  if (all_trip_by_date.include?(an_entry["date"]))  
+    # TODO: if there is already a trip on that date, append these notes?
+    existing_trip = all_trip_by_date[an_entry["date"]]
+    print "EXISTING %s TRIP %s HAS SAME DATE AS %s %s\n" % [existing_trip.date, existing_trip.name, an_entry["date"], an_entry["title"]]    
+  else
+    print "%s %s %s\n" % [an_entry["kind"], an_entry["date"], an_entry["title"]] 
+    new_trip = Trip.new
+    new_trip.leader = "Bill"
+    new_trip.name = an_entry['title']
+    new_trip.notes = an_entry["content"]
+    new_trip.date = an_entry["date"]
+    new_trip.save
+  end
+}
