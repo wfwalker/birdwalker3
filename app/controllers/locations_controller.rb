@@ -43,8 +43,9 @@ class LocationsController < ApplicationController
     @page_title = @location.name
   end
 
-  def recent_nearby_ebird_sightings_as_JSON
-    @location.recent_nearby_ebird_sightings_as_JSON
+  def recent_nearby_ebird_sightings
+    @location = Location.find(params[:id])    
+    render :json => @location.recent_nearby_ebird_sightings
   end
   
   def show
