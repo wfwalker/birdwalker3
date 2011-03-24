@@ -69,7 +69,7 @@
 			<% has_notes?(@trip) do %>
 				<div class="pagecontentmodule">
 					<div class="moduletitle">Trip Notes</div>
-					<div class="pagecontentitem"><%= textilize(@trip.notes) %></div>
+					<div class="pagecontentitem"><%= @trip.notes %></div>
 				</div>
 			<% end %>
 	

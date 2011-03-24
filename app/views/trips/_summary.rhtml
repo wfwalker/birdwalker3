@@ -26,9 +26,9 @@
 	
 		<% has_notes?(trip) do %>
 				<% if (trip.notes.size > 500) %>
-					<%= textilize(trip.notes[0,500]) %>...
+					<%= trip.notes[0,500] %>...
 				<% else %>
-					<%= textilize(trip.notes) %>
+					<%= trip.notes %>
 				<% end %>
 		<% end %>
 	</div>

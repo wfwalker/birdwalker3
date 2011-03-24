@@ -20,7 +20,7 @@
 		<% has_notes?(@trip) do %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle"><%= nice_date(@trip.date) %></div>
-				<div class="pagecontentitem"><%= textilize(@trip.notes) %></div>
+				<div class="pagecontentitem"><%= @trip.notes %></div>
 			</div>
 		<% end %>
 	</div>
