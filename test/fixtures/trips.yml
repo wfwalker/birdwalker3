@@ -7,5 +7,6 @@ trip_one:
 trip_two:
   name: 'Second Trip'  
   date: '2007-02-01'
-  leader: 'One Gal'
+  leader: 'One Gal'        
+  notes: 'this trip note has <b>formatting</b>'
   id: 2
