@@ -1,0 +1,44 @@
+<html> 
+	<head>
+		<title>Where has Bill gone birding near me?</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
+	</head>
+	
+	
+	<body>              
+		<h1>Where has Bill gone birding near me?</h1>    
+
+		<div id="results">
+		</div>
+		
+		<script language="JavaScript">
+			function find_nearby_locations(position) {  
+			  	$("input#lat").val(position.coords.latitude)
+			  	$("input#lat").val(position.coords.longitude)
+			                                               			
+				$.ajax({
+					url: "http://localhost:3000/locations/locations_near?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&miles=5",
+					error: function() { alert("error "); },               
+
+					success: function(results) {      
+						$("div#results").append("<table>"); 		            
+						for each (var location in results) {
+							$("div#results").append("<tr>"); 
+							$("div#results").append("<td>" + location.name + "</td>"); 
+							$("div#results").append("<td>" + location.city + "</td>"); 
+							$("div#results").append("<td>" + location.id + "</td>"); 
+							$("div#results").append("</tr>"); 
+						}
+						$("div#results").append("</table>"); 		            
+					},
+				 });
+			}
+
+			$(document).ready(function(){  
+	    		console.log("getting location")
+		    	navigator.geolocation.getCurrentPosition(find_nearby_locations);
+			});
+
+		</script>
+ 	</body>
+</html>

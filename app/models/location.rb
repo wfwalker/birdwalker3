@@ -56,12 +56,16 @@ class Location < ActiveRecord::Base
     end
   end     
   
-  def distance_in_miles_from(another_location)
-    d2r = (Math::PI / 180.0)
-    dlong = (another_location.longitude - self.longitude) * d2r;
-    dlat = (another_location.latitude - self.latitude) * d2r;
-    a = (Math.sin(dlat/2.0) ** 2) + Math.cos(self.latitude*d2r) * Math.cos(another_location.latitude*d2r) * (Math.sin(dlong/2.0) ** 2)
-    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  def distance_in_miles_from(another_location)  
+    # answer found at http://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
+    # Apparently this is known as Haversize computation
+    degrees_to_radians = (Math::PI / 180.0)
+
+    difference_in_longitude = (another_location.longitude - self.longitude) * degrees_to_radians;
+    difference_in_latitude = (another_location.latitude - self.latitude) * degrees_to_radians;
+    
+    a = (Math.sin(difference_in_latitude/2.0) ** 2) + Math.cos(self.latitude*degrees_to_radians) * Math.cos(another_location.latitude * degrees_to_radians) * (Math.sin(difference_in_longitude/2.0) ** 2)
+    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     d = 3956 * c; 
   end  
   
@@ -69,6 +73,14 @@ class Location < ActiveRecord::Base
     Location.find(:all).select { | a_location | self.distance_in_miles_from(a_location) < miles_radius }
   end
   
+  def Location.locations_near(in_lat, in_long, miles_radius)
+    temp_location = Location.new
+    temp_location.latitude = in_lat
+    temp_location.longitude = in_long  
+    
+    temp_location.nearby_locations(miles_radius)
+  end
+
   # def to_param
   #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
   # end

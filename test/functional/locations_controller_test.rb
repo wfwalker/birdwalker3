@@ -103,7 +103,7 @@ class LocationsControllerTest < Test::Unit::TestCase
   def test_update
     originalLocation = Location.find(@first_id)
     assert_equal "First Place", originalLocation.name, "original location name should match"
-    assert_nil originalLocation.notes, "original location notes should be nil"
+    assert_equal "lat and long from Charleston Slough", originalLocation.notes
 
     post :update, {:id => @first_id, :location => {:name => 'First Place Updated', :notes => "Updated"}}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
@@ -131,5 +131,11 @@ class LocationsControllerTest < Test::Unit::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       Location.find(@first_id)
     }
+  end     
+  
+  def test_locations_near
+    originalLocation = Location.find(@first_id)
+    get :locations_near, {:lat => originalLocation.latitude, :long => originalLocation.longitude, :miles => 1 }
+    assert @response.body.include?("First Place"), "JSON results for nearby server should contain 'First Place'"
   end
 end

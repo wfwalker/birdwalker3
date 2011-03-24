@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :photos, :collection => { :recent_gallery => :get, :recent_gallery_rss => :get }
   map.resources :trips, :collection => { :list_biggest => :get }
   map.resources :states
-  map.resources :locations
+  map.resources :locations, :collection => { :locations_near => :get }
   map.resources :families
   map.resources :species, :singular => :species_instance, :collection => { :life_list => :get, :photo_life_list => :get, :photo_to_do_list => :get }
   
