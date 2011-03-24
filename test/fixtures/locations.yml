@@ -3,9 +3,13 @@ location_one:
   id: 1
   name: First Place
   county_id: 1  
-  latitude: 34
-  longitude: 23
+  latitude: 37.4347763062
+  longitude: -122.0990600586
+  notes: "lat and long from Charleston Slough"
 location_two:
   id: 2
   name: Second Place
+  latitude: 37.4573287964
+  longitude: -122.1088256836
+  notes: "lat and long from Palo Alto Duck Pond"
   county_id: 2

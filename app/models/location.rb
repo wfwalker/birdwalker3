@@ -54,6 +54,19 @@ class Location < ActiveRecord::Base
     else
       ""
     end
+  end     
+  
+  def distance_in_miles_from(another_location)
+    d2r = (Math::PI / 180.0)
+    dlong = (another_location.longitude - self.longitude) * d2r;
+    dlat = (another_location.latitude - self.latitude) * d2r;
+    a = (Math.sin(dlat/2.0) ** 2) + Math.cos(self.latitude*d2r) * Math.cos(another_location.latitude*d2r) * (Math.sin(dlong/2.0) ** 2)
+    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    d = 3956 * c; 
+  end  
+  
+  def nearby_locations(miles_radius)
+    Location.find(:all).select { | a_location | self.distance_in_miles_from(a_location) < miles_radius }
   end
   
   # def to_param

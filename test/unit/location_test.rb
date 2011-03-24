@@ -5,6 +5,7 @@ class LocationTest < Test::Unit::TestCase
 
   def setup
     @first_id = locations(:location_one).id
+    @second_id = locations(:location_two).id
   end
 
   def test_abbreviation
@@ -29,5 +30,9 @@ class LocationTest < Test::Unit::TestCase
 
   def test_photos
     assert_equal 1, Location.find(@first_id).photos.size, "test fixture has one photos for this location"
+  end   
+  
+  def test_distance_in_miles_from
+    assert Location.find(@first_id).distance_in_miles_from(Location.find(@second_id)) < 5, "Charleston Slough should be less than five miles from Palo Alto Duck Pond"
   end
 end
