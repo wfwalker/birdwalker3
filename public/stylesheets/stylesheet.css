@@ -201,13 +201,12 @@ ul.sortable {cursor: move}
 	margin-bottom: 3px; margin-top: 2px; margin-right: 10px;
 }
 
-#bigphotoframe
+#thumbnailcollection
 {
 	margin-left: auto; 
 	margin-right: auto;
 	width: 780px;
 	padding-bottom: 5px;
-/* 	border: solid 1px red; */
 }
 
 #bottombar
