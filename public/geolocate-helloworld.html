@@ -7,20 +7,28 @@
 	
 	<body>              
 		<h1>Where has Bill gone birding near me?</h1>    
+		
+		<form id="milesForm"> 
+			Miles: <input id="milesField" type="text" name="radius" />
+			<input type="submit" />
+		</form>
 
 		<div id="results">
 		</div>
 		
-		<script language="JavaScript">
+		<script language="JavaScript">  
+			miles_radius = 5;
+			
 			function find_nearby_locations(position) {  
 			  	$("input#lat").val(position.coords.latitude)
 			  	$("input#lat").val(position.coords.longitude)
 			                                               			
 				$.ajax({
-					url: "http://localhost:3000/locations/locations_near?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&miles=5",
+					url: "http://localhost:3000/locations/locations_near?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&miles=" + miles_radius,
 					error: function() { alert("error "); },               
 
 					success: function(results) {      
+						$("div#results").empty()
 						$("div#results").append("<table>"); 		            
 						for each (var location in results) {
 							$("div#results").append("<tr>"); 
@@ -35,8 +43,14 @@
 			}
 
 			$(document).ready(function(){  
-	    		console.log("getting location")
-		    	navigator.geolocation.getCurrentPosition(find_nearby_locations);
+				$('#milesForm').submit(function() { 
+					miles_radius = $("#milesField").val()					
+					console.log("getting location with radius " + miles_radius)  
+					$("div#results").empty()
+					$("div#results").append("<div>working</div>")
+					navigator.geolocation.getCurrentPosition(find_nearby_locations);
+					return false;
+				});
 			});
 
 		</script>
