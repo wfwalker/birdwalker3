@@ -11,7 +11,16 @@ require 'optparse'
 require 'net/http'
 require 'uri'
 
-include REXML
+include REXML  
+
+
+def fixup_content(content_string)                  
+  # http://www.spflrc.org/~walker/tripdetail.php?view=&tripid=431        
+  # http://www.spflrc.org/~walker/photodetail.php?id=9506
+  # http://www.spflrc.org/~walker/tripdetail.php?view=photo&tripid=431
+  # http://www.spflrc.org/~walker/index.php
+  content_string.gsub('http://www.spflrc.org/~walker/tripdetail.php?id=', '/trips/')
+end
                     
 # Parse the Blogspot export file
 
@@ -49,7 +58,6 @@ all_trips.each { | a_trip |
 # TODO: links to flickr probably not good?
 
 content_entries.each { | an_entry| 
-                                              
   if (all_trip_by_date.include?(an_entry["date"]))  
     # TODO: if there is already a trip on that date, append these notes?
     existing_trip = all_trip_by_date[an_entry["date"]]
@@ -59,7 +67,7 @@ content_entries.each { | an_entry|
     new_trip = Trip.new
     new_trip.leader = "Bill"
     new_trip.name = an_entry['title']
-    new_trip.notes = an_entry["content"]
+    new_trip.notes = fixup_content(an_entry["content"])
     new_trip.date = an_entry["date"]
     new_trip.save
   end
