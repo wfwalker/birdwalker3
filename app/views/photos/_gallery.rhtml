@@ -1,33 +1,19 @@
 <% gallery_photos = gallery %>
 
-<div id="bigphotoframe">
-	<% @photos_module_title = "" %>
-	<%= show_thumbnail_list(gallery_photos) %>
+<div id="thumbnailcollection">
+	<div class="pagecontentmodule">
+		<div class="pagecontentitem" id="thumbnail_list"> 
+			<% gallery_photos.each { | a_photo | %>
+				<div class="photo"><%= link_to a_photo.thumb, a_photo.photo_URL %></div>
+			<% } %>
+		</div>
+	</div>
 </div>
 
-<!--	<%= link_to_function "close", "hideBigPhoto()"%> -->
+<script language="JavaScript">
 
-<script type="text/javascript">
-function hideBigPhoto()
-  {
-  var bigPhotoFrame=document.getElementById("bigphotoframe");
-  bigPhotoFrame.style.display = 'none'
-  var graylayer=document.getElementById("graylayer");
-  graylayer.style.display = 'none'
-  }
-</script>
+$(document).ready(function(){   
+	$('#thumbnailcollection a').lightBox(); // Select all links in object with gallery ID}
+});
 
-<script type="text/javascript">
-function showBigPhoto(theHTML, theTitle)
-  {
-//  var graylayer=document.getElementById("graylayer");
-//  graylayer.style.display = 'block'
-
-  var bigPhotoDiv=document.getElementById("bigphoto");
-  bigPhotoDiv.innerHTML = theHTML;
-  var bigPhotoDiv=document.getElementById("bigphototitle");
-  bigPhotoDiv.innerHTML = theTitle;
-  var bigPhotoFrame=document.getElementById("bigphotoframe");
-//  bigPhotoFrame.style.display = 'block';
-  }
 </script>

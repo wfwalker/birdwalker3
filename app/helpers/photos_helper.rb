@@ -30,13 +30,7 @@ module PhotosHelper
 			"unknown"
 	  end
   end
-  
-  def show_thumbnail_list(photo_list)
-	  if photo_list.size > 0
-			render :partial => 'photos/thumbnail_list', :object => photo_list
-		end
-	end
-	
+  	
 	def show_taxonomic_photo_list(photo_list)
 	  sorted_photo_list = Sighting.sort_taxonomic(photo_list)
 	      

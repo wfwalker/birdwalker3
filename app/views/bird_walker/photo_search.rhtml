@@ -76,7 +76,7 @@
 			</form>
 			
 			<% if (@found_photos != nil && @found_photos.size > 0) then %>
-				<%= show_thumbnail_list(@found_photos) %>
+				<%= render :partial => 'photos/thumbnail_list', :object => @found_photos %>
 			<% end %>			
 		</div>
 	</div>
