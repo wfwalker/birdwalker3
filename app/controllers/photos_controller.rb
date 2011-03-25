@@ -29,22 +29,6 @@ class PhotosController < ApplicationController
   def recent_gallery
     @recent_gallery_photos = Photo.find_recent_gallery
     @page_title = "recent"
-
-    if params[:featured_photo_id] != nil then
-      @featured_photo = Photo.find(params[:featured_photo_id])
-    else
-      @featured_photo = @recent_gallery_photos[0]
-    end
-
-    if params[:start_index] != nil then
-      @start_index = params[:start_index].to_i
-    else
-      @start_index = 0
-    end
-
-    @end_index = @start_index + gallery_page_size() - 1
-    
-    render :action => 'recent_gallery', :collection => @recent_gallery_photos
   end            
   
   def recent_gallery_rss

@@ -6,22 +6,7 @@
 	</div>
 
 	<div id="pagecontent"> 
-		<% for gallery_photo in @recent_gallery_photos do %>
-			<div class="pagecontentmodule">  
-				<div class="moduletitle">
-					<%= link_to safe_species_common_name(gallery_photo), species_instance_url(gallery_photo.species) %>
-				</div>
-				<div style="margin-left: 12px; padding-bottom: 15px">
-					<%= link_to short_nice_date(gallery_photo.trip.date), trip_url(gallery_photo.trip) %> at
-					<%= link_to safe_location_name(gallery_photo), location_url(gallery_photo.location) %>
-				</div>
-				<div class="pagecontentitem">
-					<%= gallery_photo.photo %>
-				</div>
-				<div style="padding-bottom: 70px">
-				</div>
-			</div>
-		<% end %>
+		<%= render :partial => 'photos/gallery', :object => @recent_gallery_photos %>
 		
 		<div style="padding-top: 20px; padding-bottom: 50px">
 			All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com

@@ -4,7 +4,8 @@
 	<div class="pagecontentmodule">
 		<div class="pagecontentitem" id="thumbnail_list"> 
 			<% gallery_photos.each { | a_photo | %>
-				<div class="photo"><%= link_to a_photo.thumb, a_photo.photo_URL %></div>
+				<% lightbox_caption = [a_photo.species.common_name, a_photo.location.name, a_photo.location.county.state.abbreviation, short_nice_date(a_photo.trip.date)].join(", ") %>
+				<div class="photo"><%= link_to a_photo.thumb, a_photo.photo_URL, :title => lightbox_caption %></div>
 			<% } %>
 		</div>
 	</div>
@@ -13,7 +14,7 @@
 <script language="JavaScript">
 
 $(document).ready(function(){   
-	$('#thumbnailcollection a').lightBox(); // Select all links in object with gallery ID}
+	$('#thumbnailcollection a').lightBox();
 });
 
 </script>
