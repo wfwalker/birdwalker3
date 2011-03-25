@@ -20,9 +20,8 @@ $(document).ready(function(){
 			$("div#results").append("<table>"); 		            
 			for each (var sighting in results) {
 				$("div#results").append("<tr>"); 
-				$("div#results").append("<td>" + sighting.comName + "</td>"); 
-				$("div#results").append("<td>" + sighting.locName + "</td>"); 
 				$("div#results").append("<td>" + sighting.obsDt + "</td>"); 
+				$("div#results").append("<td>" + sighting.comName + "</td>"); 
 				$("div#results").append("</tr>"); 
 			}
 			$("div#results").append("</table>"); 		            
