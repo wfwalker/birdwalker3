@@ -1,0 +1,34 @@
+<% location = recent_nearby_ebird_sightings %>
+
+<div id="results"> 
+</div>
+
+<script language="JavaScript">
+
+$(document).ready(function(){     
+	$("div#results").empty()
+	$("div#results").append("<div>retrieving from eBird</div>")
+	
+	$.ajax({
+		url: "/locations/recent_nearby_ebird_sightings/<%= @location.id %>",
+
+		error: function() { alert("error "); },               
+
+		success: function(results) {      
+			$("div#results").empty()          
+			$("div#results").append("<div>" + results.length + " results found</div>")
+			$("div#results").append("<table>"); 		            
+			for each (var sighting in results) {
+				$("div#results").append("<tr>"); 
+				$("div#results").append("<td>" + sighting.comName + "</td>"); 
+				$("div#results").append("<td>" + sighting.locName + "</td>"); 
+				$("div#results").append("<td>" + sighting.obsDt + "</td>"); 
+				$("div#results").append("</tr>"); 
+			}
+			$("div#results").append("</table>"); 		            
+		},
+	 });
+
+});
+
+</script>
