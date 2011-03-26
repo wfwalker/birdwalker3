@@ -27,8 +27,11 @@
 
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Recent Trip Reports</div>
-			</div>
-			<%= render :partial => 'trips/summary', :collection => @recent_trips %>
+			</div>                                         
+			
+			<%= render :partial => 'trips/summary', :collection => @recent_trips %>    
+			
+			<%= render :partial => 'bird_walker/geolocate' %>
 
    		<%= close_second_column %>
 
