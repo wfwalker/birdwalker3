@@ -1,31 +1,24 @@
-<html> 
-	<head>
-		<title>Where has Bill gone birding near me?</title>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
-	</head>
-	
-	
-	<body>              
-		<h1>Where has Bill gone birding near me?</h1>    
-		
+<div class="pagecontentmodule">
+	<div class="moduletitle">Birding near me</div>
+	<div class="pagecontentitem"> 
 		<form id="milesForm"> 
-			Miles: <input id="milesField" type="text" name="radius" />
-			<input type="submit" />
+			Find birding sites within <input id="milesField" type="text" name="radius" size="4" value="10"/> milesof this computer
+			<input type="submit" value="Go" />
 		</form>
 
 		<div id="results">
 		</div>
-		
+
 		<script language="JavaScript">  
 			miles_radius = 5;
-			
+	
 			function find_nearby_locations(position) {  
 			  	$("input#lat").val(position.coords.latitude)
 			  	$("input#lat").val(position.coords.longitude)
 
 				$("div#results").empty()
 				$("div#results").append("<div>you are at " + position.coords.latitude + ", " + position.coords.longitude + "</div>")
-			                                               			
+	                                               			
 				$.ajax({
 					url: "http://localhost:3000/locations/locations_near?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&miles=" + miles_radius,
 					error: function() { alert("error "); },               
@@ -51,5 +44,6 @@
 			});
 
 		</script>
- 	</body>
-</html>
+                                               
+	</div>
+</div>
