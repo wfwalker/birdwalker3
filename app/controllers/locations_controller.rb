@@ -64,28 +64,6 @@ class LocationsController < ApplicationController
     end
   end          
   
-  def gallery
-    @location = Location.find(params[:id])
-    @page_title = @location.name
-    
-    if params[:featured_photo_id] != nil then
-      @featured_photo = Photo.find(params[:featured_photo_id])
-    else
-      @featured_photo = @location.gallery_photos[0]
-    end
-    
-    if params[:start_index] != nil then
-      @start_index = params[:start_index].to_i
-    else
-      @start_index = 0
-    end
-           
-    if @start_index < 0 then @start_index = 0 end
-    @end_index = @start_index + gallery_page_size() - 1
-    
-    render :action => 'gallery'
-  end
-  
   def show_species_by_year
     @location = Location.find(params[:id])
     @page_title = @location.name
@@ -144,8 +122,4 @@ class LocationsController < ApplicationController
     expire_action :action => :index
     redirect_to :action => 'list'
   end
-  
-  def gallery_page_size()
-	  10
-  end  
 end

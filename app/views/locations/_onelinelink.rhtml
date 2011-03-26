@@ -2,7 +2,4 @@
 
 <div class="pagecontentitem">
 	<%= link_to location.name, location_url(location) %><% if (show_extras) %>, <%= location.county.name%> County, <%= location.county.state.name %><% end %>
-	<% if (location.gallery_photos.size > 5) %>
-		<%= link_to '[gallery]', :controller => 'locations', :id => location, :action => 'gallery' %>
-	<% end %>
 </div>
