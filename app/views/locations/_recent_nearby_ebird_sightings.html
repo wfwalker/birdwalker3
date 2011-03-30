@@ -17,12 +17,14 @@ $(document).ready(function(){
 		success: function(results) {      
 			$("div#results").empty()          
 			$("div#results").append("<div>" + results.length + " results found</div>")
-			$("div#results").append("<table>"); 		            
 			for each (var sighting in results) {
-				$("div#results").append("<tr>"); 
-				$("div#results").append("<td>" + sighting.obsDt + "</td>"); 
-				$("div#results").append("<td>" + sighting.comName + "</td>"); 
-				$("div#results").append("</tr>"); 
+				if ($("div#" + sighting.comName.replace(" ", "-")).length > 0) {
+					$("div#" + sighting.comName.replace(" ", "-")).append("ebird")
+				} else {
+					$("div#results").append("<div>"); 
+					$("div#results").append(sighting.obsDt + ", " + sighting.comName); 
+					$("div#results").append("</div>"); 
+				}
 			}
 			$("div#results").append("</table>"); 		            
 		},
