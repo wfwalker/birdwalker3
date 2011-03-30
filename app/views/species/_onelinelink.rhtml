@@ -1,6 +1,7 @@
 <% species = onelinelink %>
 
 <div class="pagecontentitem">
-	<%= link_to species.common_name, species_instance_url(species) %>
+	<% link_title = "Species report, " + species.common_name %>
+	<%= link_to species.common_name, species_instance_url(species), :title => link_title %>
 	<% if ! species.aba_countable %>NOT ABA COUNTABLE <% end %>
 </div>
