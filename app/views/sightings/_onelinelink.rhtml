@@ -1,6 +1,6 @@
 <% sighting = onelinelink %>
 
-<div class="pagecontentitem" id="<%= sighting.species.common_name.sub(' ', '-')  %>">
+<div class="pagecontentitem" id="<%= sighting.species.common_name.gsub(/[ '\-\(\)\/\.]/g, '').downcase %>">
 	<% editing_is_allowed?() do %>
 		<%= link_to '[edit]', :controller => 'sightings', :id => sighting, :action => 'edit' %>
 	<% end %>

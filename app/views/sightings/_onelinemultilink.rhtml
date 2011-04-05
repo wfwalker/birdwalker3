@@ -1,7 +1,7 @@
 <% sightings_that_share_species = onelinemultilink %>
 <% a_sighting = sightings_that_share_species[0] %>
 
-<div class="pagecontentitem" id="<%= sighting.species.common_name.sub(' ', '-')  %>">
+<div class="pagecontentitem" id="<%= sighting.species.common_name.gsub(/[ '\-\(\)\/\.]/g, '').downcase %>">
 	<%= link_to safe_species_common_name(a_sighting), species_instance_url(a_sighting.species) %>
 
 	<% sightings_that_share_species.each do | sighting | %>
