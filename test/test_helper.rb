@@ -38,13 +38,7 @@ class Test::Unit::TestCase
   
    def assert_valid_xml(some_stuff) 
      begin                                       
-       if (some_stuff.include?("http://maps.google.com/maps")) then
-         puts "WARNING: document contains google map, can't validate XML"
-         return nil
-       else         
-         return Document.new(some_stuff)     
-       end
-       
+       return Document.new(some_stuff)     
      rescue REXML::ParseException
        fail "Invalid XML: " + $! + "\n\n\n\n-------------------" + some_stuff + "\n-----------------------------\n\n"
      end
