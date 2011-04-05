@@ -41,6 +41,7 @@ class SpeciesController < ApplicationController
   
   def photo_to_do_list
     @page_title = "Life List"
+    @our_house = Location.find_by_name("Our House")
     @all_species_not_photographed = Species.find_all_not_photographed
   end
   
