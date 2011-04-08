@@ -21,7 +21,7 @@
 				$("div#results").append("<div>you are at " + position.coords.latitude + ", " + position.coords.longitude + "</div>")
 	                                               			
 				$.ajax({
-					url: "http://localhost:3000/locations/locations_near?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&miles=" + miles_radius,
+					url: "/locations/locations_near?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&miles=" + miles_radius,
 					error: function() { alert("error "); },               
 
 					success: function(results) {      
