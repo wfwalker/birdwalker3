@@ -41,9 +41,8 @@
 
 		<div class="pagecontentmodule">
 			<div class="moduletitle">Recent nearby sightings from eBird</div>	
-				<div class="pagecontentitem">
-					<%= render :partial => 'locations/recent_nearby_ebird_sightings' %>
-				</div>
+			<div class="pagecontentitem">
+				<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @location %>
 			</div>
 		</div>
 		

@@ -2,7 +2,7 @@
 	<div class="moduletitle">Birding near me</div>
 	<div class="pagecontentitem"> 
 		<form id="milesForm"> 
-			Find birding sites within <input id="milesField" type="text" name="radius" size="4" value="10"/> milesof this computer
+			Find birding sites within <input id="milesField" type="text" name="radius" size="4" value="10"/> miles of this computer
 			<input type="submit" value="Go" />
 		</form>
 
@@ -10,6 +10,7 @@
 		</div>
 
 		<script language="JavaScript">  
+		<!--
 			miles_radius = 5;
 	
 			function find_nearby_locations(position) {  
@@ -25,7 +26,9 @@
 
 					success: function(results) {      
 						$("div#results").append("<div>found " + results.length + " locations</div>")
-						for each (var location in results) {
+
+						for (var i = 0; i < results.length; i++) {
+							var location = results[i];
 							$("div#results").append("<div><a href=\"/locations/" + location.id + "\">" + location.name + "</a></div>"); 
 						}
 					},
@@ -42,7 +45,7 @@
 					return false;
 				});
 			});
-
+		-->
 		</script>
                                                
 	</div>

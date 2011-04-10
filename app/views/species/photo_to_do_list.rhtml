@@ -22,5 +22,14 @@
 				<% end %>
 			</tr>
 		</table>
-	</div>
+	
+		<% if @our_house %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Recent nearby sightings from eBird</div>	
+				<div class="pagecontentitem">
+					<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @our_house %>
+				</div>
+			</div>
+		<% end %>
+	</div>	
 </div>
