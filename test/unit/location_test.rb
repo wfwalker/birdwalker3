@@ -34,5 +34,10 @@ class LocationTest < Test::Unit::TestCase
   
   def test_distance_in_miles_from
     assert Location.find(@first_id).distance_in_miles_from(Location.find(@second_id)) < 5, "Charleston Slough should be less than five miles from Palo Alto Duck Pond"
+  end     
+  
+  def test_sunrise_sunset
+    Location.find(@first_id).sunrise(Date.today).localtime
+    Location.find(@first_id).sunset(Date.today).localtime
   end
 end

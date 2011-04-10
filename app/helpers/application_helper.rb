@@ -6,6 +6,10 @@ module ApplicationHelper
   
   def short_nice_date(date)
     h date.strftime("%b %d, %Y")
+  end          
+  
+  def short_nice_time(date)
+    h date.strftime("%l:%M%p")
   end
   
   def month_day(date)
@@ -53,7 +57,7 @@ module ApplicationHelper
   end         
   
   def between_columns
-		"</td><td valign=\"top\" width=\"50%\">" unless iphone?
+		"</td><td width=\"20px\" ><img src=\"/images/blank.gif\" width=\"20px\"/></td><td valign=\"top\" width=\"50%\">" unless iphone?
 	end
 
   def close_second_column

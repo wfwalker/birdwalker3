@@ -181,14 +181,12 @@ ul.sortable {cursor: move}
 	margin-right: auto;  
 	background-color: white;
 	width: 780px;
-/*	border: solid 1px red; */
 }
 
 #pagecontent .pagecontentmodule
 {
 	margin-top: 10px;
 	margin-bottom: 15px;
-	margin-right: 20px;
 }
 
 #pagecontent .pagecontentitem
@@ -206,7 +204,7 @@ ul.sortable {cursor: move}
 	margin-left: auto; 
 	margin-right: auto;
 	width: 780px;
-	padding-bottom: 5px;
+	padding-bottom: 5px;  
 }
 
 #bottombar
