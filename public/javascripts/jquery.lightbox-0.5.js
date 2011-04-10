@@ -25,7 +25,7 @@
 			overlayBgColor: 		'#000',		// (string) Background color to overlay; inform a hexadecimal value like: #RRGGBB. Where RR, GG, and BB are the hexadecimal values for the red, green, and blue values of the color.
 			overlayOpacity:			0.8,		// (integer) Opacity value to overlay; inform: 0.X. Where X are number from 0 to 9
 			// Configuration related to navigation
-			fixedNavigation:		false,		// (boolean) Boolean that informs if the navigation (next and prev button) will be fixed or not in the interface.
+			fixedNavigation:		true,		// (boolean) Boolean that informs if the navigation (next and prev button) will be fixed or not in the interface.
 			// Configuration related to images
 			imageLoading:			'/images/lightbox-ico-loading.gif',		// (string) Path and the name of the loading icon
 			imageBtnPrev:			'/images/lightbox-btn-prev.gif',			// (string) Path and the name of the prev button image
@@ -42,7 +42,7 @@
 			keyToClose:				'c',		// (string) (c = close) Letter to close the jQuery lightBox interface. Beyond this letter, the letter X and the SCAPE key is used to.
 			keyToPrev:				'p',		// (string) (p = previous) Letter to show the previous image
 			keyToNext:				'n',		// (string) (n = next) Letter to show the next image.
-			// Don´t alter these variables in any way
+			// Don't alter these variables in any way
 			imageArray:				[],
 			activeImage:			0
 		},settings);
@@ -72,7 +72,7 @@
 			settings.imageArray.length = 0;
 			// Unset image active information
 			settings.activeImage = 0;
-			// We have an image set? Or just an image? Let´s see it.
+			// We have an image set? Or just an image? Let's see it.
 			if ( jQueryMatchedObj.length == 1 ) {
 				settings.imageArray.push(new Array(objClicked.getAttribute('href'),objClicked.getAttribute('title')));
 			} else {
@@ -170,14 +170,14 @@
 			});
 		}
 		/**
-		 * Prepares image exibition; doing a image´s preloader to calculate it´s size
+		 * Prepares image exibition; doing a image's preloader to calculate it's size
 		 *
 		 */
 		function _set_image_to_view() { // show the loading
 			// Show the loading
 			$('#lightbox-loading').show();
 			if ( settings.fixedNavigation ) {
-				$('#lightbox-image,#lightbox-container-image-data-box,#lightbox-image-details-currentNumber').hide();
+				$('#lightbox-image').hide();
 			} else {
 				// Hide some elements
 				$('#lightbox-image,#lightbox-nav,#lightbox-nav-btnPrev,#lightbox-nav-btnNext,#lightbox-container-image-data-box,#lightbox-image-details-currentNumber').hide();
@@ -196,16 +196,19 @@
 		/**
 		 * Perfomance an effect in the image container resizing it
 		 *
-		 * @param integer intImageWidth The image´s width that will be showed
-		 * @param integer intImageHeight The image´s height that will be showed
+		 * @param integer intImageWidth The image's width that will be showed
+		 * @param integer intImageHeight The image's height that will be showed
 		 */
 		function _resize_container_image_box(intImageWidth,intImageHeight) {
 			// Get current width and height
 			var intCurrentWidth = $('#lightbox-container-image-box').width();
 			var intCurrentHeight = $('#lightbox-container-image-box').height();
 			// Get the width and height of the selected image plus the padding
-			var intWidth = (intImageWidth + (settings.containerBorderSize * 2)); // Plus the image´s width and the left and right padding value
-			var intHeight = (intImageHeight + (settings.containerBorderSize * 2)); // Plus the image´s height and the left and right padding value
+			//var intWidth = (intImageWidth + (settings.containerBorderSize * 2)); // Plus the image's width and the left and right padding value
+			//var intHeight = (intImageHeight + (settings.containerBorderSize * 2)); // Plus the image's height and the left and right padding value
+			var intWidth = 800;
+			var intHeight = 600;
+
 			// Diferences
 			var intDiffW = intCurrentWidth - intWidth;
 			var intDiffH = intCurrentHeight - intHeight;
@@ -218,8 +221,8 @@
 					___pause(100);	
 				}
 			} 
-			$('#lightbox-container-image-data-box').css({ width: intImageWidth });
-			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ height: intImageHeight + (settings.containerBorderSize * 2) });
+			$('#lightbox-container-image-data-box').css({ width: 780 });
+			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ height: (settings.containerBorderSize * 3) });
 		};
 		/**
 		 * Show the prepared image
@@ -238,8 +241,9 @@
 		 *
 		 */
 		function _show_image_data() {
-			$('#lightbox-container-image-data-box').slideDown('fast');
-			$('#lightbox-image-details-caption').hide();
+			// $('#lightbox-container-image-data-box').slideDown('fast');
+			$('#lightbox-container-image-data-box').show();
+			$('#lightbox-image-details-caption').show();
 			if ( settings.imageArray[settings.activeImage][1] ) {
 				$('#lightbox-image-details-caption').html(settings.imageArray[settings.activeImage][1]).show();
 			}
@@ -255,9 +259,9 @@
 		function _set_navigation() {
 			$('#lightbox-nav').show();
 
-			// Instead to define this configuration in CSS file, we define here. And it´s need to IE. Just.
+			// Instead to define this configuration in CSS file, we define here. And it's need to IE. Just.
 			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
-			
+
 			// Show the prev button, if not the first image in set
 			if ( settings.activeImage != 0 ) {
 				if ( settings.fixedNavigation ) {
@@ -346,7 +350,7 @@
 			}
 			// Verify the key to show the previous image
 			if ( ( key == settings.keyToPrev ) || ( keycode == 37 ) ) {
-				// If we´re not showing the first image, call the previous
+				// If we're not showing the first image, call the previous
 				if ( settings.activeImage != 0 ) {
 					settings.activeImage = settings.activeImage - 1;
 					_set_image_to_view();
@@ -355,7 +359,7 @@
 			}
 			// Verify the key to show the next image
 			if ( ( key == settings.keyToNext ) || ( keycode == 39 ) ) {
-				// If we´re not showing the last image, call the next
+				// If we're not showing the last image, call the next
 				if ( settings.activeImage != ( settings.imageArray.length - 1 ) ) {
 					settings.activeImage = settings.activeImage + 1;
 					_set_image_to_view();
