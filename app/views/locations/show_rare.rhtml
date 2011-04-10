@@ -15,6 +15,7 @@
 
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Location Notes</div>	
+				<div class="pagecontentitem">Daylight today: <%= short_nice_time(@location.sunrise().localtime) %> to <%= short_nice_time(@location.sunset().localtime) %></div>  
 				<div class="pagecontentitem">
 					We have only visited <%= @location.name %> <%= @location.trips.size %> times. 
 				</div>	
