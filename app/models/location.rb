@@ -1,3 +1,5 @@
+require 'sun_times'
+
 class Location < ActiveRecord::Base
   belongs_to :county
 
@@ -54,7 +56,23 @@ class Location < ActiveRecord::Base
     else
       ""
     end
-  end     
+  end   
+  
+  def sunrise(in_date = Date.today)     
+    if self.latitude != 0.0
+      return SunTimes.rise(in_date, self.latitude, self.longitude)
+    else
+      nil
+    end
+  end
+
+  def sunset(in_date = Date.today)  
+    if self.latitude != 0.0
+      return SunTimes.set(in_date, self.latitude, self.longitude)
+    else
+      nil
+    end
+  end
   
   def distance_in_miles_from(another_location)  
     # answer found at http://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
