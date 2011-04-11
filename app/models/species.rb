@@ -54,6 +54,10 @@ class Species < ActiveRecord::Base
   def common?
     self.sightings.size > 30
   end
+  
+  def Species.sort_taxonomic(species_list)
+    species_list.sort_by { |s| s ? s.family.taxonomic_sort_id * 100000000000 + s.id : 0 }
+  end
 
   def Species.find_all_not_photographed
     Species.find_by_sql(
