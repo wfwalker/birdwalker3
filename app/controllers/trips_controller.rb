@@ -31,6 +31,11 @@ class TripsController < ApplicationController
     end
   end
   
+  def show_as_ebird_record_format
+    @trip = Trip.find(params["id"])
+    render :text => @trip.sightings.collect { | a_sighting | a_sighting.to_ebird_record_format.join(",") }
+  end
+  
   def index
     list
     @page_title = "Trips"
