@@ -4,7 +4,7 @@ require 'families_controller'
 # Re-raise errors caught by the controller.
 class FamiliesController; def rescue_action(e) raise e end; end
 
-class FamiliesControllerTest < Test::Unit::TestCase
+class FamiliesControllerTest < ActionController::TestCase
   fixtures :families
 
   def setup

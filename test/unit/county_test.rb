@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class CountyTest < Test::Unit::TestCase
+class CountyTest < ActiveSupport::TestCase
   fixtures :photos, :locations, :species, :trips, :sightings, :counties, :states, :families
 
   def setup

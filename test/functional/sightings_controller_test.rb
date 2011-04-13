@@ -4,7 +4,7 @@ require 'sightings_controller'
 # Re-raise errors caught by the controller.
 class SightingsController; def rescue_action(e) raise e end; end
 
-class SightingsControllerTest < Test::Unit::TestCase
+class SightingsControllerTest < ActionController::TestCase
   fixtures :trips, :sightings, :locations, :species
 
   def setup

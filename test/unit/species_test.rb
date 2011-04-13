@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'species'
 
-class SpeciesTest < Test::Unit::TestCase
+class SpeciesTest < ActiveSupport::TestCase
   fixtures :species, :families, :photos, :locations, :trips, :sightings
 
   def setup

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FamilyTest < Test::Unit::TestCase
+class FamilyTest < ActiveSupport::TestCase
   fixtures :photos, :locations, :species, :trips, :sightings, :counties, :states, :families
   
   def setup

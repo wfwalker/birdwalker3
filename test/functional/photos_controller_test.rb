@@ -4,7 +4,7 @@ require 'photos_controller'
 # Re-raise errors caught by the controller.
 class PhotosController; def rescue_action(e) raise e end; end
 
-class PhotosControllerTest < Test::Unit::TestCase
+class PhotosControllerTest < ActionController::TestCase
   fixtures :trips, :photos, :locations, :species, :counties, :states
 
   def setup

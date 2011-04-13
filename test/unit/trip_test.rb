@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TripTest < Test::Unit::TestCase
+class TripTest < ActiveSupport::TestCase
   fixtures :photos, :locations, :species, :trips, :sightings
   
   def setup

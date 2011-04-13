@@ -4,7 +4,7 @@ require 'trips_controller'
 # Re-raise errors caught by the controller.
 class TripsController; def rescue_action(e) raise e end; end
 
-class TripsControllerTest < Test::Unit::TestCase
+class TripsControllerTest < ActionController::TestCase
   fixtures :trips
 
   def setup

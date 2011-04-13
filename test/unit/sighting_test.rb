@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class SightingTest < Test::Unit::TestCase
+class SightingTest < ActiveSupport::TestCase
   fixtures :sightings, :trips, :locations, :species, :counties, :states, :families
 
   def test_properties

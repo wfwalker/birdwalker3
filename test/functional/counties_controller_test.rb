@@ -4,7 +4,7 @@ require 'counties_controller'
 # Re-raise errors caught by the controller.
 class CountiesController; def rescue_action(e) raise e end; end
 
-class CountiesControllerTest < Test::Unit::TestCase
+class CountiesControllerTest < ActionController::TestCase
   fixtures :counties, :states
 
   def setup

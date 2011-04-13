@@ -5,7 +5,7 @@ require 'application_helper'
 # Re-raise errors caught by the controller.
 class BirdWalkerController; def rescue_action(e) raise e end; end
 
-class BirdWalkerControllerTest < Test::Unit::TestCase
+class BirdWalkerControllerTest < ActionController::TestCase
   fixtures :species, :families, :photos, :locations, :sightings, :counties, :states, :trips
 
   def setup

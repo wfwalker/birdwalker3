@@ -4,7 +4,7 @@ require 'species_controller'
 # Re-raise errors caught by the controller.
 class SpeciesController; def rescue_action(e) raise e end; end
 
-class SpeciesControllerTest < Test::Unit::TestCase
+class SpeciesControllerTest < ActionController::TestCase
   fixtures :species, :families, :photos, :sightings, :trips, :locations
 
   def setup
