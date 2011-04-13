@@ -55,14 +55,14 @@ class BirdWalkerController < ApplicationController
     if (params[:username] != nil && params[:password] != nil) then
         aUser = User.find_by_name(params[:username])  
         if (aUser != nil && aUser.password == params[:password]) then
-          logger.error("Logging in as  " + aUser.name)
+          logger.error("VC: Logging in as  " + aUser.name)
           flash[:notice] = 'Welcome back, ' + aUser.name
           session[:username] = aUser.name  
           session[:login_time] = Time.now.to_i     
           Rails.cache.clear
           redirect_to :action => 'index'  
         else
-          logger.error("Failed login attempt")
+          logger.error("VC: Failed login attempt")
           flash[:error] = 'Incorrect login or password; please try again'
           session[:username] = nil    
           session[:login_time] = nil
@@ -147,10 +147,11 @@ class BirdWalkerController < ApplicationController
   
   def logout
     if (session[:username] != nil) then
-      logger.error("Logging out")
+      logger.error("VC: Logging out")
       flash[:notice] = 'Logged out'
       Rails.cache.clear
       session[:username] = nil    
+      session[:login_time] = nil
     end
     
     redirect_to :action => 'index'  
