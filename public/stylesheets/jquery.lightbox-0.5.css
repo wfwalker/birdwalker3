@@ -31,7 +31,8 @@
 #jquery-lightbox a img { border: none; }
 #lightbox-container-image-box {
 	position: relative;
-	background-color: #fff;
+    background-image: url(/images/photo-gallery-label.png);
+    background-position: center top;
 	width: 800px;
 	height: 600px;
 	margin: 0 auto;
