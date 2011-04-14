@@ -35,9 +35,13 @@ class ApplicationController < ActionController::Base
       1200
     end
   end         
+  
+  def has_valid_credentials
+    return ((session[:login_time] != nil) and (session[:username] != nil))
+  end
     
   def update_activity_timer
-    if (session[:login_time] != nil) then
+    if (has_valid_credentials) then
       # username is valid, login_time is valid, do the real checking
       inactivity = Time.now.to_i - session[:login_time]
       logger.error("VC: Checking timeout " + inactivity.to_s + " versus " + inactivity_timeout.to_s)
