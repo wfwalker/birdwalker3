@@ -35,7 +35,7 @@ class Sighting < ActiveRecord::Base
     # H: Longitude
     row[7]  = (self.location.longitude ? self.location.longitude.to_s : '')
     # I: Date
-    row[8]  = h self.trip.date.strftime("%m/%d/%Y")
+    row[8]  = self.trip.date.strftime("%m/%d/%Y")
     
     # J: Start Time
     row[9]  = ''
