@@ -15,7 +15,9 @@
 		
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Location Notes</div>  
-				<div class="pagecontentitem">Daylight today: <%= short_nice_time(@location.sunrise().localtime) %> to <%= short_nice_time(@location.sunset().localtime) %></div>  
+				<% if ((@location.latitude != 0) && (! iphone?)) %>
+					<div class="pagecontentitem">Daylight today: <%= short_nice_time(@location.sunrise().localtime) %> to <%= short_nice_time(@location.sunset().localtime) %></div>  
+				<% end %>
 				<div class="pagecontentitem">
 					We visit <%= @location.name %> at least
 					<%= (@location.trips.size.to_f / (@location.sightings.latest.trip.date.year - @location.sightings.earliest.trip.date.year)).ceil %> times a year. 
