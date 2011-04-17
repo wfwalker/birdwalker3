@@ -24,11 +24,12 @@
 		</table>
 	
 		<% if @our_house %>
+			<%= render :partial => 'locations/google', :object => [ @our_house ] %>
+			
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Recent nearby sightings from eBird</div>	
 				<div class="pagecontentitem">
-					<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @our_house %>
-				</div>
+					<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @our_house, :locals => { :dist => 40 } %>
 			</div>
 		<% end %>
 	</div>	

@@ -45,7 +45,13 @@ class LocationsController < ApplicationController
 
   def recent_nearby_ebird_sightings
     @location = Location.find(params[:id])    
-    render :json => @location.recent_nearby_ebird_sightings
+    
+    if params[:dist] then
+      render :json => @location.recent_nearby_ebird_sightings(params[:dist])
+    else
+      render :json => @location.recent_nearby_ebird_sightings()
+    end
+  
   end      
   
   def locations_near

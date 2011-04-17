@@ -26,11 +26,13 @@ end
           return marker;
       }
 
+	  var gMap;
+
       // this is called when the page loads. 
       // it initializes the map, and creates each marker
-      function google_initialize() {
-          var map = new GMap2(document.getElementById("map"));
-          map.addControl(new GSmallMapControl());
+	  $(document).ready(function(){     
+          gMap = new GMap2(document.getElementById("map"));
+          gMap.addControl(new GSmallMapControl());
 
 		  <% longitudes = locations.collect { | a_location | a_location.longitude } %>
 		  <% latitudes = locations.collect { | a_location | a_location.latitude } %>
@@ -39,21 +41,21 @@ end
           var ne = new GLatLng(<%= latitudes.max %>, <%= longitudes.max %>);
           var bounds = new GLatLngBounds(sw, ne);
 		  <% if (locations.size > 1) %>
-          	var zoom = map.getBoundsZoomLevel(bounds, 340);
+          	var zoom = gMap.getBoundsZoomLevel(bounds, 340);
 		  <% else %>
 		    var zoom = 10;
 		  <% end %>
 		
-   		  map.setCenter(bounds.getCenter(), zoom, G_PHYSICAL_MAP);     
+   		  gMap.setCenter(bounds.getCenter(), zoom, G_PHYSICAL_MAP);     
           
 		  <% for location in locations %> 
 			<% contents = render :partial => 'locations/show_google_popup', :object => location %>
 		
 			<% if (location.longitude != 0) %>
-          		map.addOverlay(createMarker(new GLatLng(<%=location.latitude.to_s%>,<%= location.longitude.to_s%>),'<div><%= escape_javascript(contents) %></div>'));
+          		gMap.addOverlay(createMarker(new GLatLng(<%=location.latitude.to_s%>,<%= location.longitude.to_s%>),'<div><%= escape_javascript(contents) %></div>'));
 			<% end %>
 		  <% end %>
-      }    
+      })    
 -->
   </script>                   
 

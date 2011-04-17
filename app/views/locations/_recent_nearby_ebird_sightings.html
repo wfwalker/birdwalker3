@@ -10,22 +10,25 @@ $(document).ready(function(){
 	$("div#results").append("<div>retrieving from eBird</div>")
 	
 	$.ajax({
-		url: "/locations/recent_nearby_ebird_sightings/<%= location.id %>",
+		url: "/locations/recent_nearby_ebird_sightings/<%= location.id %>?dist=<%= dist %>",
 
 		error: function() { alert("error "); },               
 
 		success: function(results) {      
 			$("div#results").empty()          
-			$("div#results").append("<div>" + results.length + " results found</div>")
+			$("div#results").append("<div>" + results.length + " results found within " + <%= dist %> + " miles</div>")
 
 			for (var i = 0; i < results.length; i++) {
 				var sighting = results[i];
+				aMarker = createMarker(new GLatLng(sighting.lat, sighting.lng), "<div>" + sighting.comName + ", " + sighting.obsDt + "</div>");
+				gMap.addOverlay(aMarker);
+				
 				mangledCommonName = sighting.comName.replace(/[ '\-\(\)\/\.]/g, "").toLowerCase();
 				if ($("div#" + mangledCommonName).length > 0) {
-					$("div#" + mangledCommonName).append("ebird")
+					$("div#" + mangledCommonName).append("<span style='color: red'>eBird</span>")
 				} else {
 					$("div#results").append("<div>"); 
-					$("div#results").append(sighting.obsDt + ", " + sighting.comName); 
+					$("div#results").append(sighting.comName); 
 					$("div#results").append("</div>"); 
 				}
 			}

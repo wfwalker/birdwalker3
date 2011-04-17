@@ -50,9 +50,10 @@ class Location < ActiveRecord::Base
     self.name + ", " + self.county.state.abbreviation
   end
   
-  def recent_nearby_ebird_sightings
+  def recent_nearby_ebird_sightings(in_dist = 5)
+    print "DISTANCE %d" % in_dist
     if self.longitude != 0
-      EBird.get_JSON('data/obs/geo/recent', {'lng' => self.longitude, 'lat' => self.latitude, 'dist' => 5, 'back' => 5})
+      EBird.get_JSON('data/obs/geo/recent', {'lng' => self.longitude, 'lat' => self.latitude, 'dist' => in_dist, 'back' => 5})
     else
       ""
     end
