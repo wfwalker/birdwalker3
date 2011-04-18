@@ -5,6 +5,35 @@
 
 <script language="JavaScript">
 <!--
+// helper function to create markers
+function createEbirdMarker(latitude, longitude, important, html) {
+	var ebirdIcon = new GIcon(G_DEFAULT_ICON);
+	if (important) {
+		ebirdIcon.image = 'http://labs.google.com/ridefinder/images/mm_20_red.png';
+	} else {
+		ebirdIcon.image = 'http://labs.google.com/ridefinder/images/mm_20_gray.png';
+	}
+	ebirdIcon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+	ebirdIcon.iconSize = new GSize(12, 20);
+	ebirdIcon.shadowSize = new GSize(22, 20);
+	ebirdIcon.iconAnchor = new GPoint(6, 20);
+	ebirdIcon.infoWindowAnchor = new GPoint(5, 1);
+
+	var ebirdPoint = new GLatLng(latitude, longitude);
+    var ebirdMarker = new GMarker(ebirdPoint, ebirdIcon);
+
+    GEvent.addListener(ebirdMarker, "click", function() {
+		ebirdMarker.openInfoWindowHtml(html);
+	});
+
+    return ebirdMarker;
+};
+
+function formatEbirdSightingForGoogleMapsInfoWndow(ebirdSighting)
+{
+	return "<div><div>" + ebirdSighting.comName + "</div><div>Observed on " + ebirdSighting.obsDt + " at " + ebirdSighting.locName + "</div></div>";
+}
+
 $(document).ready(function(){     
 	$("div#results").empty()
 	$("div#results").append("<div>retrieving from eBird</div>")
@@ -20,16 +49,20 @@ $(document).ready(function(){
 
 			for (var i = 0; i < results.length; i++) {
 				var sighting = results[i];
-				aMarker = createMarker(new GLatLng(sighting.lat, sighting.lng), "<div>" + sighting.comName + ", " + sighting.obsDt + "</div>");
-				gMap.addOverlay(aMarker);
 				
+				// TODO: multiple sightings at same lat/long stomp each other
 				mangledCommonName = sighting.comName.replace(/[ '\-\(\)\/\.]/g, "").toLowerCase();
 				if ($("div#" + mangledCommonName).length > 0) {
 					$("div#" + mangledCommonName).append("<span style='color: red'>eBird</span>")
+					aMarker = createEbirdMarker(sighting.lat, sighting.lng, true, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
+					gMap.addOverlay(aMarker);
 				} else {
 					$("div#results").append("<div>"); 
 					$("div#results").append(sighting.comName); 
 					$("div#results").append("</div>"); 
+					// TODO boring ones are trumping interesting ones
+					aMarker = createEbirdMarker(sighting.lat, sighting.lng, false, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
+					gMap.addOverlay(aMarker);
 				}
 			}
 		},
