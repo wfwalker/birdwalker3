@@ -34,7 +34,7 @@ class TripsController < ApplicationController
   def show_as_ebird_record_format
     @trip = Trip.find(params["id"])
     sighting_exports = @trip.sightings.collect { | a_sighting | a_sighting.to_ebird_record_format.join(",") }
-    render :text => sighting_exports.join("\n")
+    render :text => sighting_exports.join("\n"), :content_type => 'text/plain'
   end
   
   def index
