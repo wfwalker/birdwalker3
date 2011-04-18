@@ -151,6 +151,6 @@ class TripsControllerTest < ActionController::TestCase
   
   def test_show_as_ebird_record_format
     get :show_as_ebird_record_format, {:id => @first_id}
-    assert_equal "Dodo,,,2,,First Place,37.4348,-122.099,01/01/2007,,FS,US,casual,,,Y,,,Ivory-billed Woodpecker,,,X,,Second Place,37.4573,-122.109,01/01/2007,,SS,US,casual,,,Y,,,", @response.body, "ebird text should match"
+    assert_equal "Dodo,,,2,,First Place,37.4348,-122.099,01/01/2007,,FS,US,casual,,,Y,,,\nIvory-billed Woodpecker,,,X,,Second Place,37.4573,-122.109,01/01/2007,,SS,US,casual,,,Y,,,", @response.body, "ebird text should match"
   end
 end
