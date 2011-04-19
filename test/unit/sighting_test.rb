@@ -50,19 +50,19 @@ class SightingTest < ActiveSupport::TestCase
   end
   
   def test_remote_associations
-    assert_equal 2, County.find(1).trips.size  # not really "COUNT"
-    assert_equal 2, County.find(2).trips.size  # not really "COUNT"
+    assert_equal 2, County.find(1).trips.count
+    assert_equal 2, County.find(2).trips.count
 
-    assert_equal 1, County.find(1).species.size  # not really "COUNT"
-    assert_equal 1, County.find(2).species.size  # not really "COUNT"
+    assert_equal 2, County.find(1).species.count
+    assert_equal 2, County.find(2).species.count
 
-    assert_equal 2, State.find(1).trips.size  # not really "COUNT"
-    assert_equal 2, State.find(2).trips.size  # not really "COUNT"
+    assert_equal 2, State.find(1).trips.count
+    assert_equal 2, State.find(2).trips.count
 
-    assert_equal 1, State.find(1).species.size  # not really "COUNT"
-    assert_equal 1, State.find(2).species.size  # not really "COUNT"
+    assert_equal 2, State.find(1).species.count
+    assert_equal 2, State.find(2).species.count
 
-    assert_equal 1, State.find(1).locations.size  # not really "COUNT"
-    assert_equal 1, State.find(2).locations.size  # not really "COUNT"
+    assert_equal 1, State.find(1).locations.count
+    assert_equal 1, State.find(2).locations.count
   end
 end

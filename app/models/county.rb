@@ -17,6 +17,13 @@ class County < ActiveRecord::Base
     end
   end
   
+  has_many :species, :class_name => 'Species', :finder_sql => 'SELECT DISTINCT species.* FROM species, families, sightings, locations
+    WHERE species.id=sightings.species_id AND species.family_id=families.id AND sightings.location_id=locations.id
+    AND locations.county_id=#{id} ORDER BY families.taxonomic_sort_id, species.id'
+
+  has_many :trips, :class_name => 'Trip', :finder_sql => 'SELECT DISTINCT trips.* FROM trips, sightings, locations
+    WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county_id=#{id} ORDER BY trips.date'
+  
   has_many :photos, :through => :locations do
     def latest
       Photo.latest(self)
@@ -39,24 +46,11 @@ class County < ActiveRecord::Base
     self.name + " County"
   end
 
- # do something like county.sightings.map(&:species).flatten.uniq
- # (Grab all of the sightings for the county, create a new array made up of all 
- #of the arrays of species associated with each sighting, flatten it into a 1-d array and remove dupes)
- # Which I would build into the sightings association using a block.    
- 
- def County.map_by_state(countyList)
+  def County.map_by_state(countyList)
    countyList.inject({}) { | map, county |
       map[county.state] ? map[county.state] << county : map[county.state] = [county] ; map }
- end  
+  end  
 
-  def species
-    Species.find_by_sql("SELECT DISTINCT species.* FROM species, families, sightings, locations WHERE species.id=sightings.species_id AND species.family_id=families.id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "' ORDER BY species.id")
-  end
-
-  def trips
-    Trip.find_by_sql("SELECT DISTINCT trips.* FROM trips, sightings, locations WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county_id='" + self.id.to_s + "'")
-  end
-  
   def year_span
     years = trips.collect {|trip| trip.date.year}
     return years.max - years.min + 1

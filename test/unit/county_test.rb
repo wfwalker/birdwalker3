@@ -14,22 +14,22 @@ class CountyTest < ActiveSupport::TestCase
   end
   
   def test_sightings
-    assert_equal 2, County.find(@first_id).sightings.size, "test fixture has two sightings for this county"
+    assert_equal 2, County.find(@first_id).sightings.count, "test fixture has two sightings for this county"
   end
 
   def test_species
-    assert_equal 1, County.find(@first_id).species.size, "test fixture has one species for this county"
+    assert_equal 2, County.find(@first_id).species.count, "test fixture has two species for this county"
   end
 
   def test_locations
-    assert_equal 1, County.find(@first_id).locations.size, "test fixture has one location for this county"
+    assert_equal 1, County.find(@first_id).locations.count, "test fixture has one location for this county"
   end
 
   def test_trips
-    assert_equal 2, County.find(@first_id).trips.size, "test fixture has two trips for this county"
+    assert_equal 2, County.find(@first_id).trips.count, "test fixture has two trips for this county"
   end
 
   def test_photos
-    assert_equal 1, County.find(@first_id).photos.size, "test fixture has one photos for this county"
+    assert_equal 1, County.find(@first_id).photos.count, "test fixture has one photos for this county"
   end
 end
