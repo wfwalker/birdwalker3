@@ -39,7 +39,7 @@ class Location < ActiveRecord::Base
   validates_presence_of :name, :county  
   
   def common?
-    self.trips.size > 8
+    self.trips.length > 8
   end
   
   def abbreviation

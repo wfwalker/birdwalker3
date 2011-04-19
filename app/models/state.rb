@@ -26,6 +26,10 @@ class State < ActiveRecord::Base
       WHERE photos.location_id=locations.id AND
       locations.county_id=counties.id AND counties.state_id=#{id} ORDER BY photos.id DESC LIMIT #{Photo.default_gallery_size()}'
   
+  def common?
+    self.trips.length > 20
+  end
+  
   def State.sort_alphabetic(state_list)
     state_list.sort_by { |s| s.name }
   end
