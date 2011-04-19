@@ -5,9 +5,11 @@
 <% end %>
 
 <% has_columns? do %>
-	<% species_lists = total_species_list/((total_species_list.size / 3.0).ceil)%>
+	<% species_lists = total_species_list/((total_species_list.length / 3.0).ceil)%>
 
-	<div class="moduletitle"><%= total_species_list.size %> Species</div> 
+	<div>COUNT <%= species_lists.length%></div>
+
+	<div class="moduletitle"><%= total_species_list.length %> Species</div> 
 	<table width="100%">
 		<tr width="33%">
 			<% for species_list in species_lists do %>
