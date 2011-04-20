@@ -2,15 +2,23 @@
 	<div id="pageheader">
 		<div id="pagetitle">
 			<%= @page_title %>
-			<%= link_to 'by taxonomy', species_url %> |
-			<%= link_to 'by date', :controller => 'species', :action => 'life_list'%> |
-			<%= link_to 'photos', :controller => 'species', :action => 'photo_life_list'%>
 		</div>		
 	</div>
 
 	<% species_lists = @all_species_not_photographed/(@all_species_not_photographed.size / 3 + 3)%>
 
 	<div id="pagecontent">
+		<% if @our_house %>
+			<%= render :partial => 'locations/google', :object => [ @our_house ], :locals => { :map_width => 780, :map_height => 780 } %>
+			
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Recent nearby sightings from eBird</div>	
+				<div class="pagecontentitem">
+					<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @our_house, :locals => { :dist => 40 } %>
+				</div>
+			</div>
+		<% end %>
+
 		<div class="moduletitle"><%= @all_species_not_photographed.size %> ABA Species Seen but not Photographed</div>
 
 		<table width="100%">
@@ -22,15 +30,5 @@
 				<% end %>
 			</tr>
 		</table>
-	
-		<% if @our_house %>
-			<%= render :partial => 'locations/google', :object => [ @our_house ] %>
-			
-			<div class="pagecontentmodule">
-				<div class="moduletitle">Recent nearby sightings from eBird</div>	
-				<div class="pagecontentitem">
-					<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @our_house, :locals => { :dist => 40 } %>
-			</div>
-		<% end %>
 	</div>	
 </div>

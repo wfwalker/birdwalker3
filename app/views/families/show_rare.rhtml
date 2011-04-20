@@ -29,7 +29,7 @@
 	
 			<% if (Location.with_lat_long(@family.locations).size > 0) %>
 				<% @map_module_title = 'Family Map' %>                       
-				<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations) %>
+				<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations), :locals => { :map_width => 380, :map_height => 380 }  %>
 			<% end %>
 
 			<%= show_location_list(@family.locations, true) %>
