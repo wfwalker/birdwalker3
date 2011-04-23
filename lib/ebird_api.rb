@@ -37,7 +37,11 @@ class EBird
            
     # parse JSON
     jsonData = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }  
-    return jsonData.body()
+    ebirdData = jsonData.body()
+    if ebirdData.index("errorCode") >= 0:
+      raise RuntimeError, "Exception from eBird: %s" % ebirdData
+    end
+    return ebirdData
   end
 
   def EBird.parse_XML_as_sightings(in_XML)
