@@ -58,6 +58,10 @@ class Species < ActiveRecord::Base
   def Species.sort_taxonomic(species_list)
     species_list.sort_by { |s| s ? s.family.taxonomic_sort_id * 100000000000 + s.id : 0 }
   end
+  
+  def recent_nearby_ebird_sightings(in_location, in_dist = 5)
+    EBird.get_JSON('data/obs/geo_spp/recent', {'lng' => in_location.longitude, 'lat' => in_location.latitude, 'sci' => URI.escape(self.latin_name.downcase()), 'dist' => in_dist, 'back' => 5 })
+  end   
 
   def Species.find_all_not_photographed
     Species.find_by_sql(

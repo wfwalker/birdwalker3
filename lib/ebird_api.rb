@@ -36,9 +36,10 @@ class EBird
     req = Net::HTTP::Get.new(full_url_string)
            
     # parse JSON
-    jsonData = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }  
+    jsonData = Net::HTTP.new(url.host, url.port).start { |http| http.request(req) }  
     ebirdData = jsonData.body()
-    if ebirdData.index("errorCode") >= 0:
+    puts "-- %s --" % ebirdData
+    if ! ebirdData or ebirdData.include?("errorCode"):
       raise RuntimeError, "Exception from eBird: %s" % ebirdData
     end
     return ebirdData

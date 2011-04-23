@@ -52,7 +52,7 @@ class Location < ActiveRecord::Base
   
   def recent_nearby_ebird_sightings(in_dist = 5)
     if self.longitude != 0
-          EBird.get_JSON('data/obs/geo/recent', {'lng' => self.longitude, 'lat' => self.latitude, 'dist' => in_dist, 'back' => 5 })
+      EBird.get_JSON('data/obs/geo/recent', {'lng' => self.longitude, 'lat' => self.latitude, 'dist' => in_dist, 'back' => 5 })
     else
       ""
     end
