@@ -31,7 +31,7 @@ function createEbirdMarker(latitude, longitude, important, html) {
 
 function formatEbirdSightingForGoogleMapsInfoWndow(ebirdSighting)
 {
-	return "<div><div>" + ebirdSighting.comName + "</div><div>Observed on " + ebirdSighting.obsDt + " at " + ebirdSighting.locName + "</div></div>";
+	return "<div><div>" + ebirdSighting.comName + "</div><div>" + ebirdSighting.obsDt + "<br/>" + ebirdSighting.locName + "</div></div>";
 }
 
 $(document).ready(function(){     
@@ -54,14 +54,11 @@ $(document).ready(function(){
 				mangledCommonName = sighting.comName.replace(/[ '\-\(\)\/\.]/g, "").toLowerCase();
 				if ($("div#" + mangledCommonName).length > 0) {
 					$("div#" + mangledCommonName).append("<span style='color: red'>eBird</span>")
-					aMarker = createEbirdMarker(sighting.lat, sighting.lng, true, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
+					aMarker = createEbirdMarker(sighting.lat, sighting.lng, false, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
 					gMap.addOverlay(aMarker);
 				} else {
-					$("div#results").append("<div>"); 
-					$("div#results").append(sighting.comName); 
-					$("div#results").append("</div>"); 
 					// TODO boring ones are trumping interesting ones
-					aMarker = createEbirdMarker(sighting.lat, sighting.lng, false, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
+					aMarker = createEbirdMarker(sighting.lat, sighting.lng, true, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
 					gMap.addOverlay(aMarker);
 				}
 			}
