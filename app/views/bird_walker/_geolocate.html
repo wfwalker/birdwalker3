@@ -6,7 +6,73 @@
 			<input type="submit" value="Go" />
 		</form>
 
-		<div id="results">
+		<%
+		# for spflrc port 3000 use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohQ3sUasK0Xp4JNHAphqfqhi7UexehQ0DASKsdtZI7ZiC_qc1MWcWRc9pw
+		# for localhost use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw
+		# for google use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohSUK0GhnQC7rYdVWRYnAqkasXMRmBQvk1Xz8gT-AfNj5yvZI5ENFkQS4w
+
+		if (is_laptop)
+			the_key="ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw"
+		else
+			the_key="ABQIAAAAHB2OV0S5_ezvt-IsSEgTohSUK0GhnQC7rYdVWRYnAqkasXMRmBQvk1Xz8gT-AfNj5yvZI5ENFkQS4w"
+		end 
+
+		%>
+
+		 <script src="http://maps.google.com/maps?file=api&v=2&key=<%= the_key %>" type="text/javascript"></script>
+
+		  <script type="text/javascript">
+		<!--
+			function createHereMarker(latitude, longitude) {
+				var ebirdIcon = new GIcon(G_DEFAULT_ICON);
+				ebirdIcon.image = 'http://labs.google.com/ridefinder/images/mm_20_gray.png';
+				ebirdIcon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+				ebirdIcon.iconSize = new GSize(12, 20);
+				ebirdIcon.shadowSize = new GSize(22, 20);
+				ebirdIcon.iconAnchor = new GPoint(6, 20);
+				ebirdIcon.infoWindowAnchor = new GPoint(5, 1);
+
+				var ebirdPoint = new GLatLng(latitude, longitude);
+			    var ebirdMarker = new GMarker(ebirdPoint, ebirdIcon);
+
+			    GEvent.addListener(ebirdMarker, "click", function() {
+					ebirdMarker.openInfoWindowHtml('<div>here</div>');
+				});
+
+			    return ebirdMarker;
+			};
+
+		      // helper function to create markers
+		      function createMarker(point,html) {
+		          var marker = new GMarker(point);
+		          GEvent.addListener(marker, "click", function() {
+		           marker.openInfoWindowHtml(html);
+		           });
+		          return marker;
+		      }
+
+			  var gMap;
+
+		      // this is called when the page loads. 
+		      // it initializes the map, and creates each marker
+			  $(document).ready(function(){     
+		          gMap = new GMap2(document.getElementById("map"));
+		          gMap.addControl(new GSmallMapControl());
+		      })    
+		-->
+		  </script>                   
+
+		<div class="pagecontentmodule">
+			<div class="moduletitle">
+				<% if (@map_module_title != nil && @map_module_title != "") then %>
+					<%= @map_module_title %>   
+				<% else %>
+				    Map
+				<% end %>
+			</div>
+			<div class="pagecontentitem">
+				<div id="map" style="width: 380px; height: 380px; background-color: lightgray"></div>
+			</div>
 		</div>
 
 		<script language="JavaScript">  
@@ -16,20 +82,22 @@
 			function find_nearby_locations(position) {  
 			  	$("input#lat").val(position.coords.latitude)
 			  	$("input#lat").val(position.coords.longitude)
+          		gMap.addOverlay(createHereMarker(position.coords.latitude, position.coords.longitude));
 
 				$("div#results").empty()
 				$("div#results").append("<div>you are at " + position.coords.latitude + ", " + position.coords.longitude + "</div>")
+	   		  	gMap.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 10, G_PHYSICAL_MAP);     
 	                                               			
 				$.ajax({
 					url: "/locations/locations_near?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&miles=" + miles_radius,
-					error: function() { alert("error "); },               
+					error: function(results) { alert("error: " + results); },               
 
 					success: function(results) {      
 						$("div#results").append("<div>found " + results.length + " locations</div>")
 
 						for (var i = 0; i < results.length; i++) {
 							var location = results[i];
-							$("div#results").append("<div><a href=\"/locations/" + location.id + "\">" + location.name + "</a></div>"); 
+			          		gMap.addOverlay(createMarker(new GLatLng(location.latitude, location.longitude), "<div><a href=\"/locations/" + location.id + "\">" + location.name + "</a></div>"));
 						}
 					},
 				 });
