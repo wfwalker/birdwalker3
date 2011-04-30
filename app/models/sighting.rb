@@ -12,7 +12,7 @@ class Sighting < ActiveRecord::Base
   end
   
   def Sighting.year_range
-    (1996..2010)
+    (1996..2011)
   end   
   
   def to_ebird_record_format
