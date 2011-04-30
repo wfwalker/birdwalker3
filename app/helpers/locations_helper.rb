@@ -15,10 +15,6 @@ module LocationsHelper
     yield if location.trips.map(&:date).map(&:month).flatten.uniq.size > 1 
   end
 
-  def has_gallery?(location, &block)
-    yield if location.gallery_photos.size > 1 
-  end
-
   def show_location_list(location_list, headings_flag)
 	  if location_list.size > 30
 			render :partial => 'locations/divided_list', :object => location_list, :locals => { :show_headings => headings_flag }

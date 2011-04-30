@@ -39,7 +39,7 @@ class County < ActiveRecord::Base
   # end
 
   def common?
-    self.trips.size > 8
+    self.trips.length > 8
   end
     
   def full_name()

@@ -13,33 +13,6 @@ class CountiesController < ApplicationController
   def show
     @county = County.find(params["id"])
     @page_title = @county.full_name
-
-    if @county.common?
-        render :action => 'show_common'
-      else
-        render :action => 'show_rare'
-    end
-  end
-
-  def gallery
-    @county = County.find(params["id"])
-    @page_title = @county.full_name
-    
-    if params[:featured_photo_id] != nil then
-      @featured_photo = Photo.find(params[:featured_photo_id])
-    else
-      @featured_photo = @county.gallery_photos[0]
-    end
-    
-    if params[:start_index] != nil then
-      @start_index = params[:start_index].to_i
-    else
-      @start_index = 0
-    end
-
-    @end_index = @start_index + gallery_page_size() - 1
-    
-    render :action => 'gallery'
   end
 
   def show_species_by_year

@@ -1,0 +1,74 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
+	 		<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
+			<% end %>       
+		</div> 
+	</div>
+
+	<% if @county.gallery_photos.size >= Photo.default_gallery_size() %>
+		<%= render :partial => 'photos/gallery', :object => @county.gallery_photos %>
+	<% elsif @county.photos.size > 0 %>
+		<%= render :partial => 'photos/gallery', :object => @county.photos %>
+	<% end %>
+	
+	<div id="pagecontent">
+
+		<%= render :partial => 'species/multi_column_list', :object => @county.species %>
+
+		<%= open_first_column %>
+		
+			<% if @county.common? %>
+				<div class="pagecontentmodule">
+					<div class="moduletitle">County Notes</div>	
+					<div class="pagecontentitem">
+						We visit <%= @county.name %> county at least
+						<%= (@county.trips.length.to_f / @county.year_span.to_f).ceil %> times a year. 
+					</div>	
+				</div>      
+
+				<div class="pagecontentmodule">
+					<div class="moduletitle">Latest trip</div>	
+						<div class="pagecontentitem">
+						 			<%= link_to @county.sightings.latest.trip.name + ",  " + short_nice_date(@county.sightings.latest.trip.date), trip_url(@county.sightings.latest.trip) %>
+					</div>
+				</div>
+
+				<div class="pagecontentmodule">
+					<div class="moduletitle">First trip</div>	
+						<div class="pagecontentitem">
+				 		<%= link_to @county.sightings.earliest.trip.name + ",  " + short_nice_date(@county.sightings.earliest.trip.date), trip_url(@county.sightings.earliest.trip) %>
+					</div>
+				</div>
+
+				<div class="pagecontentmodule">
+					<div class="moduletitle">When we bird <%= @county.name %> County</div>	
+					<div class="pagecontentitem">
+						<% month_totals = Trip.map_by_month(@county.trips) %>
+						<%= counts_by_month_image_tag(month_totals)%>
+					</div>
+				</div>
+			<% else %>
+				<div class="pagecontentmodule">
+					<div class="moduletitle">County Notes</div>	
+					<div class="pagecontentitem">
+						We have only visited <%= @county.name %> county <%= @county.trips.length %> times since we started birding.
+					</div>	
+				</div>      
+
+				<%= show_trip_list(@county.trips, true) %>
+			<% end %>
+			      		
+		<%= between_columns %>
+		
+			<% if (@county.locations.with_lat_long.size > 0) %>
+				<% @map_module_title = 'County Map' %>                       
+				<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long, :locals => { :map_width => 380, :map_height => 380 }  %>
+			<% end %>
+		
+ 		<%= close_second_column %>      
+
+	</div>
+</div>
