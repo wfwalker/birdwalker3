@@ -32,12 +32,12 @@ class CountiesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:counties)
   end  
   
-  def test_show_rare
+  def test_show
     get :show, :id => @first_id
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'show_rare'
+    assert_template 'show'
 
     assert_not_nil assigns(:county)
     assert assigns(:county).valid?
