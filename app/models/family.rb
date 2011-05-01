@@ -20,7 +20,7 @@ class Family < ActiveRecord::Base
   has_many :gallery_photos, :through => :species, :conditions => { :rating => [4,5] }, :limit => Photo.default_gallery_size(), :order => 'id DESC'
   
   def common?
-    self.sightings.size > 30
+    self.sightings.length > 30
   end
   
   def species_seen
