@@ -62,12 +62,6 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @page_title = @location.name
-    
-    if @location.common?
-        render :action => 'show_common'
-      else
-        render :action => 'show_rare'
-    end
   end          
   
   def show_species_by_year

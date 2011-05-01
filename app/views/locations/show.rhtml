@@ -14,24 +14,33 @@
 		<%= open_first_column %>
 
 			<div class="pagecontentmodule">
-				<div class="moduletitle">Location Notes</div>	
-				<% if ((@location.latitude != 0) && (! iphone?)) %>
+				<div class="moduletitle">Location Notes</div>  
+				  
+				<% if (@location.latitude != 0) %>
 					<div class="pagecontentitem">Daylight today: <%= short_nice_time(@location.sunrise().localtime) %> to <%= short_nice_time(@location.sunset().localtime) %></div>  
-				<% end %>
-				<div class="pagecontentitem">
-					We have only visited <%= @location.name %> <%= @location.trips.size %> times. 
-				</div>	
+				<% end %>  
+				
+				<% if @location.common? %>
+					<div class="pagecontentitem">
+						We visit <%= @location.name %> at least
+						<%= (@location.trips.length.to_f / (@location.sightings.latest.trip.date.year - @location.sightings.earliest.trip.date.year)).ceil %> times a year. 
+					</div>	
+				<% else %>
+					<div class="pagecontentitem">
+						We have only visited <%= @location.name %> <%= @location.trips.length %> times. 
+
+						<%= show_trip_list(@location.trips, true) %>					
+					</div>	               
+                <% end %>     
 
 				<% has_notes?(@location) do %>
 					<div class="pagecontentitem"><%= @location.notes %></div>
 				<% end %>
 			</div>                               
 
-			<%= show_trip_list(@location.trips, true) %>					
-
 		<%= between_columns %>
 					
-			<% if ((@location.latitude != 0) && (! iphone?)) %>
+			<% if (@location.latitude != 0) %>
 				<% @center_latitude = @location.latitude %>
 				<% @center_longitude = @location.longitude %>
 				<% @locations = [ @location ] %>
