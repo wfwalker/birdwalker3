@@ -31,14 +31,14 @@
 
 				<div class="pagecontentmodule">
 					<div class="moduletitle">Latest trip</div>	
-						<div class="pagecontentitem">
-						 			<%= link_to @county.sightings.latest.trip.name + ",  " + short_nice_date(@county.sightings.latest.trip.date), trip_url(@county.sightings.latest.trip) %>
+					<div class="pagecontentitem">
+			 			<%= link_to @county.sightings.latest.trip.name + ",  " + short_nice_date(@county.sightings.latest.trip.date), trip_url(@county.sightings.latest.trip) %>
 					</div>
 				</div>
 
 				<div class="pagecontentmodule">
 					<div class="moduletitle">First trip</div>	
-						<div class="pagecontentitem">
+					<div class="pagecontentitem">
 				 		<%= link_to @county.sightings.earliest.trip.name + ",  " + short_nice_date(@county.sightings.earliest.trip.date), trip_url(@county.sightings.earliest.trip) %>
 					</div>
 				</div>
