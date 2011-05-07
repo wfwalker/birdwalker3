@@ -55,12 +55,6 @@ class SpeciesController < ApplicationController
   def show
     @species = Species.find(params[:id])
     @page_title = @species.common_name
-    
-    if (@species.common?)
-        render :action => 'show_common'
-    else
-      render :action => 'show_rare'
-    end
   end
 
   def show_locations_by_year
