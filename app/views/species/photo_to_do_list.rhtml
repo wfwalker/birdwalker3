@@ -9,7 +9,7 @@
 
 	<div id="pagecontent">
 		<% if @our_house %>
-			<%= render :partial => 'locations/google', :object => [ @our_house ], :locals => { :map_width => 780, :map_height => 780 } %>
+			<%= render :partial => 'locations/google', :object => [ @our_house ], :locals => { :map_width => 780, :map_height => 480 } %>
 			
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Recent nearby sightings from eBird</div>	

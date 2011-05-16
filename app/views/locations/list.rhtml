@@ -13,7 +13,7 @@
 		<% end %>
 	
 		<% has_columns? do %>
-			<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 780, :map_height => 780 } %>
+			<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 780, :map_height => 480 } %>
 			
 			<% location_lists = @locations/(@locations.size / 3 + 3)%>
 	

@@ -26,6 +26,11 @@ function createEbirdMarker(latitude, longitude, important, html) {
 		ebirdMarker.openInfoWindowHtml(html);
 	});
 
+	$("span#ebird-" + mangledCommonName).click(function() {
+		alertString = $(this).attr('id')  
+		gMap.setCenter(ebirdPoint, 13)
+	});
+	
     return ebirdMarker;
 };
 
@@ -61,11 +66,6 @@ $(document).ready(function(){
 					aMarker = createEbirdMarker(sighting.lat, sighting.lng, true, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
 					gMap.addOverlay(aMarker);
 				}   
-				
-				$("span#ebird-" + mangledCommonName).click(function() {
-				  alertString = $(this).attr('id')  
-				  alert(alertString);
-				});
 			}
 		},
 	 });
