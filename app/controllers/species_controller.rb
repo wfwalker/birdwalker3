@@ -57,6 +57,16 @@ class SpeciesController < ApplicationController
     @page_title = @species.common_name
   end
 
+  def recent_nearby_ebird_sightings(location)
+    @species = Species.find(params[:id])
+    
+    if params[:dist] then
+      render :json => @species.recent_nearby_ebird_sightings(location, params[:dist])
+    else
+      render :json => @species.recent_nearby_ebird_sightings(location)
+    end
+  end      
+
   def show_locations_by_year
     @species = Species.find(params[:id])
     @page_title = @species.common_name

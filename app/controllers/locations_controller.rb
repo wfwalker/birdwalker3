@@ -51,7 +51,6 @@ class LocationsController < ApplicationController
     else
       render :json => @location.recent_nearby_ebird_sightings()
     end
-  
   end      
   
   def locations_near

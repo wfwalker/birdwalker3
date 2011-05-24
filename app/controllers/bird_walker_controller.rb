@@ -32,6 +32,23 @@ class BirdWalkerController < ApplicationController
     @recent_gallery_photos = Photo.find_recent_gallery
     render :layout => false, :file => 'app/views/bird_walker/photographer.rhtml'
   end
+  
+  def webapp_manifest
+    manifest = {}
+    
+    manifest["version"] = "1.0"
+    manifest["name"] = "BirdWalker"
+    manifest["description"] = "Photographs and Field Notes from Bill Walker"
+    manifest["icons"] = []
+    manifest["widget"] = []
+    manifest["locales"] = []
+    manifest["default_locale"] = "en"
+    manifest["installs_allowed_from"] = ["https://appstore.mozillalabs.com"]
+    manifest["developer"] = {"name" => "Bill Walker", "url" => "http://birdwalker.com"}
+    
+    render :json => manifest
+    headers["Content-type"] = "application/x-web-app-manifest+json"
+  end
 
   def index_rss
     @recent_trips = Trip.find(:all, :limit => 10, :order => 'date DESC')     

@@ -39,4 +39,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'  
+  
+  map.connect 'webapp.manifest', :controller =>'bird_walker', :action => 'webapp_manifest'
 end
