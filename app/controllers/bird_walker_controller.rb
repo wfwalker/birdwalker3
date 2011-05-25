@@ -39,7 +39,7 @@ class BirdWalkerController < ApplicationController
     manifest["version"] = "1.0"
     manifest["name"] = "BirdWalker"
     manifest["description"] = "Photographs and Field Notes from Bill Walker"
-    manifest["icons"] = []
+    manifest["icons"] = {"128" => "/images/birdwalker-logo-128.png"}
     manifest["widget"] = []
     manifest["locales"] = []
     manifest["default_locale"] = "en"
@@ -48,6 +48,10 @@ class BirdWalkerController < ApplicationController
     
     render :json => manifest
     headers["Content-type"] = "application/x-web-app-manifest+json"
+  end
+  
+  def webapp_install
+    @page_title = "Install birdwalker.com Open Web Application"
   end
 
   def index_rss
