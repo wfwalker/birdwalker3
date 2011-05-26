@@ -1,23 +1,53 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle">Install birdwalker.com Open Web Application</div>
+		<div id="pagetitle">birdwalker.com Open Web Application</div>
 	</div>
 	<div id="pagecontent">
-		This is an experimental version of birdwalker.com packaged as an Open Web Application
+		This is an experimental version of birdwalker.com packaged as an <a href="https://apps.mozillalabs.com/">Open Web Application</a>
+		<div>You can manage your apps and see our widget at <a href="https://myapps.mozillalabs.com/">myapps.mozillalabs.com</a></div>
+
+		<div><img src="/images/birdwalker-logo-128.png" width="128" height="128" /></div>
+
+		<div id="installResults">
+		</div>
+		<form id="installForm">
+			<input id="installButton" type="button" value="Install" />
+		</form>
+		
 	</div>
 	
 	<script type="text/javascript">
 	<!--
+	function amInstalledCallback(inApplicationObject) {
+		if (inApplicationObject != null) {
+			$('#installResults').html(inApplicationObject.manifest.name + " is already installed")
+			$('#installButton').attr('disabled', 'disabled')
+		}
+		else
+		{
+			$('#installResults').html("BirdWalker is not already installed")
+			$('#installButton').removeAttr('disabled')
+		}
+	}
+	
+	function amInstalledErrorCallback() {
+		$('#installResults').html("Unable to verify whether birdwalker.com is already installed")
+	}
+
 	function onsuccess_installed() {
-		alert("onsuccess installed");
+		$('#installResults').html("Installed birdwalker.com")
+		$('#installButton').attr('disabled', 'disabled')
 	}
 
 	function onerror_installed() {
-		alert("onsuccess installed");
+		$('#installResults').html("Unable to install birdwalker.com")
 	}
 	
 	$(document).ready(function(){  
-		navigator.apps.install({url: "/webapp.manifest", onsuccess: onsuccess_installed, onerror: onerror_installed});
+		navigator.apps.amInstalled(amInstalledCallback, amInstalledErrorCallback)
+		$('#installButton').click(function() { 
+			navigator.apps.install({url: "/webapp.manifest", onsuccess: onsuccess_installed, onerror: onerror_installed});
+		})
 	})
 	-->
 	</script>
