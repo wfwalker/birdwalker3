@@ -1,0 +1,16 @@
+<html>
+<head>
+</head>
+
+<body>
+<div style="width: 180px; height: 100px; position: absolute; top: 5px; left: 5px">
+	<%= @bird_of_the_week.photos.this_week[0].thumb %>
+</div>
+<div style="width: 180px; height: 100px; position: absolute; top: 5px; left: 105px">
+	<% @recent_gallery_photos.each { | aPhoto | %><span style="padding: 0px; spacing: 0px; margin: 0px"><img border="0" width="25px" height="25px" src="<%= aPhoto.thumb_URL %>" /></span><% } %>
+</div>
+<div style="color: white; width: 180px; height: 100px; font: 18pt Arial; font-weight: bold; position: absolute; top: 8px; left: 8px; text-align: left; text-shadow: 2px 2px 2px #000000">
+	BirdWalker
+</div>
+</body>
+</html>

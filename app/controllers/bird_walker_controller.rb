@@ -40,7 +40,7 @@ class BirdWalkerController < ApplicationController
     manifest["name"] = "BirdWalker"
     manifest["description"] = "Photographs and Field Notes from Bill Walker"
     manifest["icons"] = {"128" => "/images/birdwalker-logo-128.png"}
-    manifest["widget"] = []
+    manifest["widget"] = {"path" => "/bird_walker/webapp_widget", "width" => 200, "height" => 100}
     manifest["locales"] = []
     manifest["default_locale"] = "en"
     manifest["installs_allowed_from"] = ["https://appstore.mozillalabs.com"]
@@ -52,6 +52,12 @@ class BirdWalkerController < ApplicationController
   
   def webapp_install
     @page_title = "Install birdwalker.com Open Web Application"
+  end
+  
+  def webapp_widget
+    @bird_of_the_week = Species.bird_of_the_week 
+    @recent_gallery_photos = Photo.find_recent_gallery
+    render :layout => false, :file => 'app/views/bird_walker/webapp_widget.rhtml'
   end
 
   def index_rss
