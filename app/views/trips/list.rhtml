@@ -7,24 +7,17 @@
 		<% end %>
 	</div>
 
-
 	<div id="pagecontent">
-		                
-		<% has_no_columns? do %>
-			<%= render :partial => 'trips/divided_list', :object => @trips, :locals => { :show_headings => true } %>
-		<% end %>
+		<% trip_lists = @trips/(@trips.size / 3 + 3) %>
 		
-		<% has_columns? do %>
-			<% trip_lists = @trips/(@trips.size / 3 + 3)%>
-			<table width="100%">
-				<tr>
-					<% for trip_list in trip_lists do %>
-					<td width="33%" valign="top">
-						<%= show_trip_list(trip_list, false) %>
-					</td>
-					<% end %>
-				</tr>
-			</table>           
-		<% end %>
+		<table width="100%">
+			<tr>
+				<% for trip_list in trip_lists do %>
+				<td width="33%" valign="top">
+					<%= show_trip_list(trip_list, false) %>
+				</td>
+				<% end %>
+			</tr>
+		</table>           
 	</div>
 </div>

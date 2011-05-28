@@ -73,7 +73,7 @@
 				</div>
 			<% end %>
 	
-			<% if ((@trip.locations.with_lat_long.size > 0) && (! iphone?)) %>
+			<% if (@trip.locations.with_lat_long.size > 0) %>
 				<% @map_module_title = 'Trip Map' %>                       
 				<%= render :partial => 'locations/google', :object => @trip.locations.with_lat_long, :locals => { :map_width => 380, :map_height => 380 } %>
 			<% end %>

@@ -17,15 +17,13 @@
 	<% if ! species.aba_countable %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>     
 	
 <!--
-	<% if (! iphone?) && (species.common?) %>
-		<div class="pageheaderitem">
-			<%= link_to 'normal view', :id => species, :action => 'show' %> | 
-			<%= link_to 'by year view', :id => species, :action => 'show_locations_by_year' %> |
-			<%= link_to 'by month view', :id => species, :action => 'show_locations_by_month' %>
-			<% has_reference_url?(species) do %>
-				| <a href="<%= species.reference_url %>">see also...</a>
-	 		<% end %>
-		</div>               
-	<% end %>
+	<div class="pageheaderitem">
+		<%= link_to 'normal view', :id => species, :action => 'show' %> | 
+		<%= link_to 'by year view', :id => species, :action => 'show_locations_by_year' %> |
+		<%= link_to 'by month view', :id => species, :action => 'show_locations_by_month' %>
+		<% has_reference_url?(species) do %>
+			| <a href="<%= species.reference_url %>">see also...</a>
+ 		<% end %>
+	</div>               
 -->
 </div>

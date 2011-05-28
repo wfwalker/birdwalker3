@@ -6,6 +6,9 @@
    	<% state_lists = @states/(@states.size / 3)%>
 
 	<div id="pagecontent">
+		
+		<%= render :partial => 'states/imagemap' %>
+		
 		<table width="100%">
 			<tr>
 				<% for state_list in state_lists do %>

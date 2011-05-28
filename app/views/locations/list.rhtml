@@ -7,27 +7,18 @@
 	</div>
 
 	<div id="pagecontent">
-
-		<% has_no_columns? do %>
-	 		<%= render :partial => 'locations/divided_list', :object => @locations, :locals => { :show_headings => true } %>
-		<% end %>
+		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 780, :map_height => 480 } %>
 	
-		<% has_columns? do %>
-			<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 780, :map_height => 480 } %>
-			
-			<% location_lists = @locations/(@locations.size / 3 + 3)%>
-	
-				<table width="100%">
-					<tr>
-						<% for location_list in location_lists do %>
-							<td width="33%" valign="top">
-								<%= show_location_list(location_list, false) %>
-							</td>
-						<% end %>
-					</tr>
-				</table>
-		
-		<% end %>
+		<% location_lists = @locations/(@locations.size / 3 + 3)%>
 
+		<table width="100%">
+			<tr>
+				<% for location_list in location_lists do %>
+					<td width="33%" valign="top">
+						<%= show_location_list(location_list, false) %>
+					</td>
+				<% end %>
+			</tr>
+		</table>
 	</div>             
 </div>

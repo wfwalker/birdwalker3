@@ -7,24 +7,16 @@
 	</div>         
 	
 	<div id="pagecontent">         
-		
-		<% has_no_columns? do %>
-			<%= render :partial => 'counties/divided_list', :object => @counties, :locals => { :show_headings => true, :show_extras => true } %>
-		<% end %>
+	   	<% county_lists = @counties/(@counties.size / 3 + 3) %>
 
-		<% has_columns? do %>
-		   	<% county_lists = @counties/(@counties.size / 3 + 3) %>
-		
-			<table width="100%">
-				<tr>
-					<% for county_list in county_lists do %>
+		<table width="100%">
+			<tr>
+				<% for county_list in county_lists do %>
 					<td width="33%" valign="top">
 						<%= render :partial => 'counties/divided_list', :object => county_list, :locals => { :show_headings => false, :show_extras => false } %>
 					</td>
-					<% end %>
-				</tr>
-			</table>           
-		<% end %>
-
+				<% end %>
+			</tr>
+		</table>           
 	</div>
 </div>
