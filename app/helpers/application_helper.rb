@@ -40,28 +40,16 @@ module ApplicationHelper
     yield if subject.sightings && subject.sightings.length >= 1
   end         
   
-  def iphone?
-    @controller.send(:iphone?)    
-  end
-                      
-  def has_columns?(&block)         
-    yield unless iphone?
-  end
-
-  def has_no_columns?(&block)
-    yield if iphone?
-  end
-
   def open_first_column
-    "<table width=\"100%\" cellpadding=\"0px\" cellspacing=\"0px\"><tr valign=\"top\"><td valign=\"top\" width=\"50%\">" unless iphone?
+    "<table width=\"100%\" cellpadding=\"0px\" cellspacing=\"0px\"><tr valign=\"top\"><td valign=\"top\" width=\"50%\">"
   end         
   
   def between_columns
-		"</td><td width=\"20px\" ><img src=\"/images/blank.gif\" width=\"20px\"/></td><td valign=\"top\" width=\"50%\">" unless iphone?
+		"</td><td width=\"20px\" ><img src=\"/images/blank.gif\" width=\"20px\"/></td><td valign=\"top\" width=\"50%\">"
 	end
 
   def close_second_column
-		"</td></tr></table>" unless iphone?
+		"</td></tr></table>"
 	end	                        
 	
 	def counts_by_month_image_tag(totals, width=370, height=150) 
