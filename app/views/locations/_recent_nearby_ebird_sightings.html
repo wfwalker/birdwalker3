@@ -41,7 +41,7 @@ function formatEbirdSightingForGoogleMapsInfoWndow(ebirdSighting)
 
 $(document).ready(function(){     
 	$("div#results").empty()
-	$("div#results").append("<div>retrieving from eBird</div>")
+	$("div#results").append("<div><img src='/images/small-progress.gif' />Retrieving from eBird</div>")
 	
 	$.ajax({
 		url: "/locations/recent_nearby_ebird_sightings/<%= location.id %>?dist=<%= dist %>",

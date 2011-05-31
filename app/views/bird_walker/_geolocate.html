@@ -5,6 +5,7 @@
 			Find birding sites within <input id="milesField" type="text" name="radius" size="4" value="10"/> miles of this computer
 			<input type="submit" value="Go" />
 		</form>
+		<div id="results"></div>
 
 		<%
 		# for spflrc port 3000 use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohQ3sUasK0Xp4JNHAphqfqhi7UexehQ0DASKsdtZI7ZiC_qc1MWcWRc9pw
@@ -62,7 +63,7 @@
 		-->
 		  </script>                   
 
-		<div class="pagecontentmodule">
+		<div class="pagecontentmodule" id="mapresults">
 			<div class="moduletitle">
 				<% if (@map_module_title != nil && @map_module_title != "") then %>
 					<%= @map_module_title %>   
@@ -85,7 +86,8 @@
           		gMap.addOverlay(createHereMarker(position.coords.latitude, position.coords.longitude));
 
 				$("div#results").empty()
-				$("div#results").append("<div>you are at " + position.coords.latitude + ", " + position.coords.longitude + "</div>")
+				$("div#results").append("<div>You are at " + position.coords.latitude + ", " + position.coords.longitude + "</div>")
+				$('div#mapresults').show() 
 	   		  	gMap.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 10, G_PHYSICAL_MAP);     
 	                                               			
 				$.ajax({
@@ -93,7 +95,7 @@
 					error: function(results) { alert("error: " + results); },               
 
 					success: function(results) {      
-						$("div#results").append("<div>found " + results.length + " locations</div>")
+						$("div#results").append("<div>Found " + results.length + " locations</div>")
 
 						for (var i = 0; i < results.length; i++) {
 							var location = results[i];
@@ -103,12 +105,13 @@
 				 });
 			}
 
-			$(document).ready(function(){  
+			$(document).ready(function(){ 
+				$('div#mapresults').hide() 
 				$('#milesForm').submit(function() { 
-					miles_radius = $("#milesField").val()					
-					console.log("getting location with radius " + miles_radius)  
 					$("div#results").empty()
-					$("div#results").append("<div>working</div>")
+					$("div#results").append("<div><img src='/images/small-progress.gif' />Working</div>")
+					miles_radius = $("#milesField").val()					
+					console.log("Getting locations within radius " + miles_radius)  
 					navigator.geolocation.getCurrentPosition(find_nearby_locations);
 					return false;
 				});
