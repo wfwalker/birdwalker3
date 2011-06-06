@@ -19,7 +19,7 @@ class Location < ActiveRecord::Base
     end
   end
   
-  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }, :limit => Photo.default_gallery_size(), :order => 'trip_id DESC' # MOO THIS IS WRONG
+  has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   
 # TODO: should be sorted by families.taxonomic_sort_id first  
   has_many :species, :through => :sightings, :order => 'species.id', :uniq => true do

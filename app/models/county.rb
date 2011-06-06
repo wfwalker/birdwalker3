@@ -30,7 +30,7 @@ class County < ActiveRecord::Base
     end
   end
   
-  has_many :gallery_photos, :through => :locations, :conditions => { :rating => [4,5] }, :limit => Photo.default_gallery_size(), :order => 'id DESC'
+  has_many :gallery_photos, :through => :locations, :conditions => { :rating => [4,5] }
   
   validates_presence_of :name, :state
   
