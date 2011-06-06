@@ -10,7 +10,7 @@
 		in <%= link_to location.county.name + " County", county_url(location.county) %>,
 		<%= link_to location.county.state.name, state_url(location.county.state) %>
 		<% has_reference_url?(location) do %>
-			(<a href="<%= location.reference_url %>">See also...</a>)
+			(<a href="<%= location.reference_url %>">location website</a>)
 		<% end %>
 	</div>                    
 </div>
