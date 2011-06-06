@@ -8,6 +8,8 @@
 	<% species_lists = @all_species_not_photographed/(@all_species_not_photographed.size / 3 + 3)%>
 
 	<div id="pagecontent">
+		<div>TODO: change this page to list only species we have seen within 40 miles of the house, making it comperable to the ebird sightings</div>
+		<div>TODO: also interesting are species recorded in ebird that we have neither seen nor photographed</div>
 		<% if @our_house %>
 			<%= render :partial => 'locations/google', :object => [ @our_house ], :locals => { :map_width => 780, :map_height => 480 } %>
 			
