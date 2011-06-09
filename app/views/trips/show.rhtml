@@ -1,11 +1,11 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle">
+			<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to '[edit]', edit_trip_url(@trip) %></span>
+			<% end %>
 			<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
 
-			<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to 'edit', edit_trip_url(@trip) %></span>
-			<% end %>
 			<% has_reference_url?(@trip) do %>
 				(<%= link_to 'See also...', @trip.reference_url %>)
 			<% end %>
@@ -38,6 +38,11 @@
 				<div class="moduletitle">
 					<%= common_names.size %> Species at <%= @module_title %>
 				</div>
+				<% editing_is_allowed?() do %>
+					<div>
+						<%= link_to '[add sightings]', :id => @trip.id, :controller => 'trips', :action => 'add_species' %>
+					</div>
+				<% end %>
 
 				<% for a_family in sorted_families do %>
 				    <% if sorted_sighting_list.size > 40 %>
@@ -68,7 +73,12 @@
 		
 			<% has_notes?(@trip) do %>
 				<div class="pagecontentmodule">
-					<div class="moduletitle">Trip Notes</div>
+					<div class="moduletitle">
+						<% editing_is_allowed?() do %>
+							<span style="font-size: 9pt"><%= link_to '[edit]', edit_trip_url(@trip) %></span>
+						<% end %>
+						Trip Notes
+					</div>
 					<div class="pagecontentitem"><%= @trip.notes %></div>
 				</div>
 			<% end %>
