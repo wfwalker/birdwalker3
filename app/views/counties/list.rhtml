@@ -1,9 +1,11 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-		<% editing_is_allowed?() do %>
-			<div class="pageheaderitem"><%= link_to 'New', new_county_url %></div>
-		<% end %>
+		<div id="pagetitle">
+			<%= @page_title %>
+			<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to 'new', new_county_url %></span>
+			<% end %>
+		</div>
 	</div>         
 	
 	<div id="pagecontent">         
