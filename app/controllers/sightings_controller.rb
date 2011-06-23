@@ -79,7 +79,7 @@ class SightingsController < ApplicationController
 
       expire_action :controller => 'trips', :action => 'show', :id => @sighting.trip_id
       expire_action :controller => 'trips', :action => 'edit', :id => @sighting.trip_id
-      redirect_to edit_trip_url(@sighting.trip_id)    
+      redirect_to trip_url(@sighting.trip_id)    
 
     rescue Exception => exc
       flash[:error] = exc.message
