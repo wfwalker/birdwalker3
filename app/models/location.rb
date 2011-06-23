@@ -28,6 +28,8 @@ class Location < ActiveRecord::Base
       Species.map_by_family(proxy_target)
     end  
   end
+
+  has_many :photographed_species, :through => :photos, :order => 'species.id', :source => 'species', :uniq => true
   
   has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC" do
     def map_by_year
@@ -89,6 +91,16 @@ class Location < ActiveRecord::Base
   
   def nearby_locations(miles_radius)
     Location.find(:all).select { | a_location | self.distance_in_miles_from(a_location) < miles_radius }
+  end
+  
+  def species_seen_nearby(miles_radius)  
+    nearby_locations = self.nearby_locations(miles_radius)
+    (nearby_locations.collect { |loc| loc.species.countable }).flatten.uniq
+  end
+
+  def species_photographed_nearby(miles_radius)  
+    nearby_locations = self.nearby_locations(miles_radius)
+    (nearby_locations.collect { |loc| loc.photographed_species }).flatten.uniq
   end
   
   def Location.locations_near(in_lat, in_long, miles_radius)

@@ -33,7 +33,7 @@ class Species < ActiveRecord::Base
   named_scope :seen_by_common_name, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'species.common_name'         
   named_scope :photographed, :include => [ :photos, :family ], :conditions => [ 'photos.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'
   named_scope :seen_not_excluded, :include => [ :sightings, :family ], :conditions => [ 'sightings.exclude = false' ], :order => 'families.taxonomic_sort_id, species.id'  
-  named_scope :countable, :conditions => [ 'species.aba_countable = true' ], :order => 'families.taxonomic_sort_id, species.id'  
+  named_scope :countable, :conditions => [ 'species.aba_countable = true' ], :include => :family, :order => 'families.taxonomic_sort_id, species.id'  
   named_scope :seen_during, lambda { |year| { :include => [ :trips, :family ], :conditions => [ 'year(trips.date) = ?', year ], :order => 'families.taxonomic_sort_id, species.id' } }  
                                                                             
   # location-related associations
