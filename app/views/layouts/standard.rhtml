@@ -38,9 +38,9 @@ pageTracker._trackPageview();
                                   
 		  	<span class="baritem">
 				<% if (session[:username] != nil) then %>
-					<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout'%>
+					<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout' %>
 				<% else %>
-				    <%= link_to 'Login', :controller => 'bird_walker', :action => 'login'%>
+				    <a href="#" id="loginlink">login</a>
 				<% end %>      
 			</span>            
    		</div>
@@ -93,5 +93,37 @@ pageTracker._trackPageview();
 		<% end %>
 		
         <%= yield %>
+
+		<div id="loginbox" style="position: fixed; left: 10px; bottom: 30px; height: 120px; border: solid 1px gray; background-color: #EEEEEE; padding: 10px">
+			<div>Log into birdwalker.com</div>
+			<form action="/bird_walker/login" method="post">
+			<div class="modulesubtitle">
+				<input onclick="select()" type="text" id="username" name="username" value="username"></input>
+			</div>
+			<div class="modulesubtitle">
+				<input onclick="select()" type="password" id="password" name="password" value=""></input>
+			</div>
+			<div class="modulesubtitle">
+				<input type="submit" value="Log in"></input>
+				<input id="cancellink" type="button" value="Cancel"></input>
+			</div>
+			</form>
+		</div>
+		
+		<script language="JavaScript">
+		<!--
+		$("#cancellink").click(function() {
+			$('#loginbox').hide()
+		});
+		$("a#loginlink").click(function() {
+			$("#loginbox").show();
+			$("#username").focus();
+			$("#username").select();
+		});
+		$(document).ready(function(){ 
+			$('#loginbox').hide();
+		});
+		-->
+		</script>
      </body>
 </html>
