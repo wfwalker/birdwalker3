@@ -26,7 +26,7 @@ function createEbirdMarker(latitude, longitude, important, html) {
 		ebirdMarker.openInfoWindowHtml(html);
 	});
 
-	$("span#ebird-" + mangledCommonName).click(function() {
+	$("div#ebird-" + mangledCommonName).click(function() {
 		alertString = $(this).attr('id')  
 		gMap.setCenter(ebirdPoint, 13)
 	});
@@ -58,11 +58,7 @@ $(document).ready(function(){
 				// TODO: multiple sightings at same lat/long stomp each other
 				mangledCommonName = sighting.comName.replace(/[ '\-\(\)\/\.]/g, "").toLowerCase();
 				if ($("div#" + mangledCommonName).length > 0) {
-					$("div#" + mangledCommonName).append("<span id='ebird-" + mangledCommonName + "' style='color: red'>eBird</span>")
-					aMarker = createEbirdMarker(sighting.lat, sighting.lng, false, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
-					gMap.addOverlay(aMarker);
-				} else {
-					// TODO boring ones are trumping interesting ones
+					$("div#" + mangledCommonName).append("<div id='ebird-" + mangledCommonName + "' style='color: red; margin-left: 10px'>" + sighting.obsDt + "<br/>" + sighting.locName + "</div>")
 					aMarker = createEbirdMarker(sighting.lat, sighting.lng, true, formatEbirdSightingForGoogleMapsInfoWndow(sighting));
 					gMap.addOverlay(aMarker);
 				}   
