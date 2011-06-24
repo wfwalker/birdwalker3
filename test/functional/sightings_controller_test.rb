@@ -55,7 +55,7 @@ class SightingsControllerTest < ActionController::TestCase
 
     assert_response :redirect
     assert_valid_xml(@response.body)
-    assert_redirected_to :controller => 'trips', :id => 1, :action => 'edit'
+    assert_redirected_to :controller => 'trips', :id => 1, :action => 'show'
 
     assert_equal num_sightings + 2, Sighting.count
   end

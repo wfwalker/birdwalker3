@@ -64,16 +64,6 @@ class SpeciesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:all_species_photographed)
   end
 
-  def test_photo_to_do_list
-    get :photo_to_do_list
-
-    assert_response :success
-    assert_valid_xml(@response.body)
-    assert_template 'photo_to_do_list'
-
-    assert_not_nil assigns(:all_species_not_photographed)
-  end
-
   def test_show
     get :show, :id => @first_id     
     
