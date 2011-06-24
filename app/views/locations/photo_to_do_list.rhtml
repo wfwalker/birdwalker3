@@ -1,0 +1,32 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @page_title %>
+		</div>		
+	</div>
+
+	<% species_lists = @species_seen_not_photographed_nearby/(@species_seen_not_photographed_nearby.size / 3 + 3)%>
+
+	<div id="pagecontent">
+		<%= render :partial => 'locations/google', :object => [ @location ], :locals => { :map_width => 780, :map_height => 480 } %>
+		
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Recent nearby sightings from eBird</div>	
+			<div class="pagecontentitem">
+				<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @location, :locals => { :dist => 40 } %>
+			</div>
+		</div>
+
+		<div class="moduletitle"><%= @species_seen_not_photographed_nearby.size %> species seen near <%= @location.name %> but never photographed</div>
+
+		<table width="100%">
+			<tr>
+				<% for species_list in species_lists do %>
+					<td valign="top">
+						<%= show_species_list(species_list, false) %>
+					</td>
+				<% end %>
+			</tr>
+		</table>
+	</div>	
+</div>

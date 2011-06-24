@@ -38,15 +38,7 @@ class SpeciesController < ApplicationController
     @page_title = "Photo Life List"
     @all_species_photographed = Species.photographed.countable
   end                        
-  
-  def photo_to_do_list
-    @page_title = "Photo TODO List"
-    @our_house = Location.find_by_name("Our House")
-    @all_species_photographed = Species.photographed.countable
-    @species_seen_nearby = @our_house.species_seen_nearby(40)
-    @species_seen_not_photographed_nearby = @species_seen_nearby - @all_species_photographed
-  end
-  
+
   def year_list
     @all_species_seen = Species.seen_during(params[:year])
     @page_title = params[:year].to_s   

@@ -76,7 +76,15 @@ class LocationsController < ApplicationController
     
     @map, @totals = Sighting.map_by_month_and_species(@location.sightings)
   end
-
+  
+  def photo_to_do_list
+    @location = Location.find(params[:id])
+    @page_title = "Photo TODO List"
+    @all_species_photographed = Species.photographed.countable
+    @species_seen_nearby = @location.species_seen_nearby(40)
+    @species_seen_not_photographed_nearby = @species_seen_nearby - @all_species_photographed
+  end
+  
   def new
     @location = Location.new
     @page_title = "new"
