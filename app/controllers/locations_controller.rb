@@ -63,6 +63,12 @@ class LocationsController < ApplicationController
     @page_title = @location.name
   end          
   
+  def show_chronological_list
+    @location = Location.find(params[:id])
+    @page_title = @location.name + " Life List"
+    @life_sightings = @location.sightings.life
+  end
+
   def show_species_by_year
     @location = Location.find(params[:id])
     @page_title = @location.name

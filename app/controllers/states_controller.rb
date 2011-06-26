@@ -1,5 +1,6 @@
 class StatesController < ApplicationController
-  helper :trips
+  helper :trips            
+  helper :sightings
   helper :species
   helper :locations
   helper :photos
@@ -17,6 +18,12 @@ class StatesController < ApplicationController
     @page_title = @state.name
   end
   
+  def show_chronological_list
+    @state = State.find(params["id"])
+    @page_title = @state.name + " Life List"
+    @life_sightings = @state.sightings.life
+  end
+
   def show_species_by_year
     @state = State.find(params["id"])
     @page_title = @state.name
