@@ -2,7 +2,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	font: 10pt Gill Sans, Sans-Serif;    
+	font: 10pt Georgia, Sans-Serif;    
 }
 
 a       { color: #2D6C91; text-decoration: none; }
@@ -27,14 +27,14 @@ a:hover { text-decoration: underline; }
 .moduletitle
 {
 	border-bottom: solid 1px #CCCCCC;
-	font-weight: normal; font-size: 14pt;
+	font-weight: normal; font-size: 16pt;
 	margin-top: 10px; margin-bottom: 10px
 }
 
 .modulesubtitle
 {
-	font-weight: normal; font-size: 12pt;
-	margin-top: 15px; margin-bottom: 2px
+	font-weight: normal; font-size: 14pt;
+	margin-top: 15px; margin-bottom: 15px
 }
 
 .modulesubtitle a { text-decoration: none; }
@@ -140,7 +140,7 @@ ul.sortable {cursor: move}
 
 #pagetitle
 {
-	font: 14pt Gill Sans, Sans-Serif;
+	font: 14pt Georgia, Sans-Serif;
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -227,3 +227,25 @@ ul.sortable {cursor: move}
 	text-transform: lowercase;
 }
 
+
+/* ---------- format dates like pages from a daily tearoff calendar ---------- */
+/* courtesy of http://www.mattvarone.com/web-design/daily-calendar-dates-with-css/ */
+
+.date {
+    float:left;
+    display:block;
+    font-size:28px;
+    text-align:center;
+    line-height:15px;
+    width:32px;
+    height:25px;
+    color: #2D6C91;
+    padding-right: 5px;
+    padding-top: 3px;
+    text-transform: uppercase;
+}
+
+.date small {
+    font-size: 8pt;
+    color: gray;
+}

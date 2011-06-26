@@ -1,15 +1,15 @@
 <% location = summary %>
 
 <div class="pagecontentmodule">
-	<div class="modulesubtitle">
-		<%= link_to location.name, location_url(location) %></a>
-	</div>
-	
 	<% has_photo?(location) do %>
 		<div style="float: right; padding-left: 10px">	
 			<%= render :partial => 'photos/thumbnail', :object => location.photos.last %>
 		</div>
 	<% end %>
+
+	<div class="modulesubtitle">
+		<%= link_to location.name, location_url(location) %></a>
+	</div>	
 	
 	<div class="pagecontentitem">
 		<% has_no_notes?(location) do %>
