@@ -15,6 +15,17 @@ class County < ActiveRecord::Base
     def latest
       Sighting.latest(self)
     end
+
+    def life
+      # create triples of trip.date, species_id, and sighting object
+      triples = self.collect{ |sighting| [sighting.trip.date, sighting.species_id, sighting] }.sort{ |x,y| x[0] <=>y[0] }
+      # get a list of unique species_ids
+      species_ids = self.collect{ |sighting| sighting.species_id }.uniq
+      # use rassoc to find the first triple for each species_id
+      firsts = species_ids.collect { |species_id| triples.rassoc(species_id) }
+      # return the third item from the first triple for each species_id
+      return firsts.collect { |triple| triple[2] }
+    end
   end
   
   has_many :species, :class_name => 'Species', :finder_sql => 'SELECT DISTINCT species.* FROM species, families, sightings, locations

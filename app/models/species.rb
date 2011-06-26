@@ -35,6 +35,7 @@ class Species < ActiveRecord::Base
   named_scope :seen_not_excluded, :include => [ :sightings, :family ], :conditions => [ 'sightings.exclude = false' ], :order => 'families.taxonomic_sort_id, species.id'  
   named_scope :countable, :conditions => [ 'species.aba_countable = true' ], :include => :family, :order => 'families.taxonomic_sort_id, species.id'  
   named_scope :seen_during, lambda { |year| { :include => [ :trips, :family ], :conditions => [ 'year(trips.date) = ?', year ], :order => 'families.taxonomic_sort_id, species.id' } }  
+  named_scope :seen_in_county, lambda { |county_id| { :include => [ :locations, :family ], :conditions => [ 'year(locations.county_id) = ?', year ], :order => 'families.taxonomic_sort_id, species.id' } }  
                                                                             
   # location-related associations
   has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do
