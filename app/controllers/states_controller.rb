@@ -16,7 +16,7 @@ class StatesController < ApplicationController
     @state = State.find(params["id"])
     @page_title = @state.name
   end
-
+  
   def show_species_by_year
     @state = State.find(params["id"])
     @page_title = @state.name

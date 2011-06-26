@@ -14,6 +14,12 @@ class CountiesController < ApplicationController
     @county = County.find(params["id"])
     @page_title = @county.full_name
   end
+  
+  def show_chronological_list
+    @county = County.find(params["id"])
+    @page_title = @county.name + " County Life List"
+    @life_sightings = @county.sightings.life
+  end
 
   def show_species_by_year
     @county = County.find(params["id"])
