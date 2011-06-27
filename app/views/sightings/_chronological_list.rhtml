@@ -10,6 +10,7 @@
 	<div class="pagecontentitem">
 	<table>
 		<% previous_sighting = nil %>
+		<% counter = sighting_list.size %>
 		<% for sighting in sighting_list do %>
 		<tr>
 			<% changes = ! previous_sighting || previous_sighting.trip_id != sighting.trip_id || previous_sighting.location_id != sighting.location_id %>
@@ -18,20 +19,13 @@
 					<%= link_to short_nice_date(sighting.trip.date), :controller => 'trips', :id => sighting.trip, :action => 'show'  %><br /><%= sighting.location.name %>
 				<% end %>
 			</td>
-			<td valign="top" style="padding: 2px">
-				<% has_photos?(sighting.species) do %>
-					<img width="60px" height="60px" src="<%= sighting.species.photos.latest.thumb_URL %>" />
-				<% end %>
-				<% has_no_photos?(sighting.species) do %>
-					<div style="height: 60px; width: 60px; background-color: lightgray">
-				<% end %>
+			<td valign="top" style="height: 35px; font-size: 18pt; text-align: center; background-color: #DDDDDD">
+				<% if (counter % 10) == 0 then %><%= counter %><% end %>
+				<% counter = counter - 1 %>
 			</td>
-			<td valign="top">
+			<td valign="top" style="font-size: 14pt">
 				<%= link_to sighting.species.common_name, :controller => 'species', :id => sighting.species, :action => 'show' %>
 				<% if (sighting.heard_only) then %>(h)<% end %>
-				<div><%= sighting.notes%></div>
-			</td>
-			<td valign="top" style="color: gray; white-space: nowrap">
 			</td>
 						
 			<% previous_sighting = sighting %>
