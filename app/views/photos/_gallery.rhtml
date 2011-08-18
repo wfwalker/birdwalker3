@@ -4,8 +4,9 @@
 	<div class="pagecontentmodule">
 		<div class="pagecontentitem" id="thumbnail_list"> 
 			<% gallery_photos[0..(Photo.default_gallery_size() - 1)].each { | a_photo | %>
+				<% tooltip = [a_photo.species.common_name, a_photo.location.name, a_photo.location.county.state.abbreviation, short_nice_date(a_photo.trip.date)].join(", ") %>
 				<% lightbox_caption = [a_photo.species.common_name, a_photo.location.name, a_photo.location.county.state.abbreviation, short_nice_date(a_photo.trip.date), link_to("[permalink]", photo_url(a_photo))].join(", ") %>
-				<div class="photo"><%= link_to a_photo.thumb, a_photo.photo_URL, :title => lightbox_caption %></div>
+				<div class="photo"><%= link_to a_photo.thumb, a_photo.photo_URL, :id => a_photo.id, :title => tooltip %></div>
 			<% } %>
 		</div>
 		<div><i>photos by Bill Walker, click thumbnails to enlarge</i></div>
