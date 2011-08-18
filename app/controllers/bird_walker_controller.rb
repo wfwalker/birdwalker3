@@ -95,6 +95,47 @@ class BirdWalkerController < ApplicationController
           session[:login_time] = nil
         end
     end
+  end    
+  
+  def verify_browserid
+    if (params[:assertion])                     
+      # now post to https://browserid.org/verify with two POST args, assertion and audience
+      
+      url = URI.parse('https://browserid.org/verify')                       
+      http = Net::HTTP.new(url.host, url.port)
+
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+            
+      req = Net::HTTP::Post.new(url.path)
+      req.set_form_data({'assertion' => params[:assertion], 'audience' => 'localhost:3000'})
+      res = http.start {|http| http.request(req) } 
+                                                                
+      # results should be JSON like result {"status":"okay","email":"walker@shout.net","audience":"localhost:3000","valid-until":1313649622973,"issuer":"browserid.org:443"}
+      
+      parsedResults = ActiveSupport::JSON.decode(res.body())  
+      
+      if parsedResults["status"] == "okay" and parsedResults["email"] == "walker@shout.net"
+        logger.error("VC: Logging in as " + parsedResults["email"])
+        flash[:notice] = 'Welcome back, ' + parsedResults["email"]
+        session[:username] = parsedResults["email"] 
+        session[:login_time] = Time.now.to_i     
+        Rails.cache.clear   
+        render :text => '', :layout => false, :status => 200    
+      else
+        logger.error("VC: no editing priviledges for " + parsedResults["email"])
+        flash[:error] = 'No editing priviledges for ' + parsedResults["email"]
+        session[:username] = nil    
+        session[:login_time] = nil 
+        render :text => '', :layout => false, :status => 500
+      end
+    else
+      logger.error("VC: Failed login attempt")
+      flash[:error] = 'Incorrect login or password; please try again'
+      session[:username] = nil    
+      session[:login_time] = nil 
+      render :text => '', :layout => false, :status => 500
+    end
   end
   
   def photo_search
