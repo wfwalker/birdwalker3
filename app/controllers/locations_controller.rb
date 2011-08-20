@@ -65,7 +65,7 @@ class LocationsController < ApplicationController
   
   def show_chronological_list
     @location = Location.find(params[:id])
-    @page_title = @location.name + " Life List"
+    @page_title = @location.name
     @life_sightings = @location.sightings.life
   end
 

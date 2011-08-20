@@ -20,7 +20,7 @@ class StatesController < ApplicationController
   
   def show_chronological_list
     @state = State.find(params["id"])
-    @page_title = @state.name + " Life List"
+    @page_title = @state.name
     @life_sightings = @state.sightings.life
   end
 

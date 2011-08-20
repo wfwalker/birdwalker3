@@ -17,7 +17,7 @@ class CountiesController < ApplicationController
   
   def show_chronological_list
     @county = County.find(params["id"])
-    @page_title = @county.name + " County Life List"
+    @page_title = @county.full_name
     @life_sightings = @county.sightings.life
   end
 

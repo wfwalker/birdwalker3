@@ -15,7 +15,6 @@ class SpeciesController < ApplicationController
 
   def index
     list
-    @page_title = "Species"
     render :action => 'list'
   end
 
