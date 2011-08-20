@@ -50,8 +50,8 @@ class CountiesControllerTest < ActionController::TestCase
     assert_valid_xml(@response.body)
     assert_template 'counties/show_chronological_list.rhtml'
 
-    assert_not_nil assigns(:state)
-    assert assigns(:state).valid?
+    assert_not_nil assigns(:county)
+    assert assigns(:county).valid?
   end                    
     
   def test_show_species_by_year
