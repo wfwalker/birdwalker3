@@ -1,12 +1,20 @@
 <div id="pagebody">
 	<div id="pageheader">
 		<div id="pagetitle">
-			<%= @page_title %>
-		</div>		
+			<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
+	 		<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
+			<% end %>       
+		</div> 
 	</div>
- 	
+
+	<% if @county.gallery_photos.size >= Photo.default_gallery_size() %>
+		<%= render :partial => 'photos/gallery', :object => @county.gallery_photos %>
+	<% elsif @county.photos.size > 0 %>
+		<%= render :partial => 'photos/gallery', :object => @county.photos %>
+	<% end %>
+
 	<div id="pagecontent">
-		<% @module_title = @county.name + ' County Life Birds' %>
 		<%= show_chronological_sighting_list(@life_sightings) %>
 	</div>
 </div>
