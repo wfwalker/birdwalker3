@@ -19,7 +19,7 @@ class LocationsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'list'
+    assert_template 'locations/list.rhtml'
   end
 
   def test_list
@@ -27,7 +27,7 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'list'
+    assert_template 'locations/list.rhtml'
 
     assert_not_nil assigns(:locations)
   end
@@ -37,7 +37,18 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'show'
+    assert_template 'locations/show.rhtml'
+
+    assert_not_nil assigns(:location)
+    assert assigns(:location).valid?
+  end
+
+  def test_show_chronological_list
+    get :show_chronological_list, :id => @first_id
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'locations/show_chronological_list.rhtml'
 
     assert_not_nil assigns(:location)
     assert assigns(:location).valid?
@@ -58,7 +69,7 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'show_species_by_year'
+    assert_template 'locations/show_species_by_year.rhtml'
 
     assert_not_nil assigns(:location)
     assert assigns(:location).valid?
@@ -69,7 +80,7 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'show_species_by_month'
+    assert_template 'locations/show_species_by_month.rhtml'
 
     assert_not_nil assigns(:location)
     assert assigns(:location).valid?

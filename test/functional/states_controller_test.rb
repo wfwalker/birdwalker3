@@ -42,6 +42,17 @@ class StatesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:state)
     assert assigns(:state).valid?
   end                    
+
+  def test_show_chronological_list
+    get :show_chronological_list, :id => @first_id
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'states/show_chronological_list.rhtml'
+
+    assert_not_nil assigns(:state)
+    assert assigns(:state).valid?
+  end                    
   
   def test_show_species_by_year
     get :show_species_by_year, :id => @first_id
