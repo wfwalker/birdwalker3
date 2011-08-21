@@ -39,7 +39,7 @@ class SpeciesController < ApplicationController
   end                        
 
   def year_list
-    @all_species_seen = Species.seen_during(params[:year])
+    @all_species_seen = Species.seen_not_excluded_during(params[:year]).countable
     @page_title = params[:year].to_s   
     
     render :action => 'list'
