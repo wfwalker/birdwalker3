@@ -12,9 +12,4 @@
 	<div>Daylight today: <%= short_nice_time(location.sunrise().localtime) %> to <%= short_nice_time(location.sunset().localtime) %></div>  
 <% end %>  
 
-<% if location.common? %>
-	<div>We visit <%= location.name %> at least
-	<%= (location.trips.length.to_f / (location.sightings.latest.trip.date.year - location.sightings.earliest.trip.date.year)).ceil %> times a year. </div>
-<% end %>     
-                                                            
 </div>
