@@ -3,7 +3,10 @@ require 'sun_times'
 class Location < ActiveRecord::Base
   belongs_to :county
 
-  has_many :sightings do
+  has_many :sightings, :class_name => 'Sighting', :finder_sql => 'SELECT DISTINCT sightings.* FROM species, sightings
+    WHERE species.id=sightings.species_id AND sightings.location_id=#{id}
+    AND sightings.exclude=false AND species.aba_countable=true' do
+
     def earliest
       Sighting.earliest(self)
     end                      
@@ -25,8 +28,10 @@ class Location < ActiveRecord::Base
   
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   
-# TODO: should be sorted by families.taxonomic_sort_id first  
-  has_many :species, :through => :sightings, :order => 'species.id', :uniq => true do
+  has_many :species, :class_name => 'Species', :finder_sql => 'SELECT DISTINCT species.* FROM species, sightings
+    WHERE species.id=sightings.species_id AND sightings.location_id=#{id}
+    AND sightings.exclude=false AND species.aba_countable=true' do   
+    
     def map_by_family
       load_target
       Species.map_by_family(proxy_target)
@@ -99,7 +104,7 @@ class Location < ActiveRecord::Base
   
   def species_seen_nearby(miles_radius)  
     nearby_locations = self.nearby_locations(miles_radius)
-    (nearby_locations.collect { |loc| loc.species.countable }).flatten.uniq
+    (nearby_locations.collect { |loc| loc.species }).flatten.uniq
   end
 
   def species_photographed_nearby(miles_radius)  
