@@ -13,15 +13,17 @@ class State < ActiveRecord::Base
   
   has_many :species, :class_name => 'Species', :finder_sql => 'SELECT DISTINCT species.* FROM species, families, sightings, locations, counties 
       WHERE species.id=sightings.species_id AND species.family_id=families.id AND sightings.location_id=locations.id AND
-      locations.county_id=counties.id AND counties.state_id=#{id} ORDER BY families.taxonomic_sort_id, species.id'
+      locations.county_id=counties.id AND counties.state_id=#{id}
+      AND sightings.exclude=false AND species.aba_countable=true 
+      ORDER BY families.taxonomic_sort_id, species.id'
       
-  has_many :sightings, :class_name => 'Sighting', :finder_sql => 'SELECT DISTINCT sightings.* FROM sightings, locations, counties 
-      WHERE sightings.location_id=locations.id AND locations.county_id=counties.id AND counties.state_id=#{id} ORDER BY sightings.id' do
+  has_many :sightings, :class_name => 'Sighting', :finder_sql => 'SELECT DISTINCT sightings.* FROM sightings, locations, counties, species
+      WHERE sightings.exclude=false AND sightings.species_id=species.id AND species.aba_countable=true AND sightings.location_id=locations.id
+      AND locations.county_id=counties.id AND counties.state_id=#{id} ORDER BY sightings.id' do
 
       def life        
         Sighting.first_per_species(self)
       end
-
   end
   
   has_many :trips, :class_name => 'Trip', :finder_sql => 'SELECT DISTINCT trips.* FROM trips, sightings, locations, counties 
