@@ -4,7 +4,11 @@
 #EXECUTABLE="/usr/local/mysql-5.0.45-osx10.4-i686/bin/mysqldump"
 EXECUTABLE=/usr/local/mysql/bin/mysqldump
 
-AUTHFLAGS="-u root HelloWorld_development"
+AUTHFLAGS="-u root"
+DATABASENAME="HelloWorld_development"
+TABLENAMES="counties countyfrequency families locations photos sightings species states taxonomy trips users"
 OTHERFLAGS="--extended-insert=FALSE --quote-names=TRUE --complete-insert=TRUE --comments=FALSE --add-locks=FALSE"
 
-$EXECUTABLE $OTHERFLAGS $AUTHFLAGS > birdwalker_dump.sql
+echo $EXECUTABLE $OTHERFLAGS $AUTHFLAGS $DATABASENAME $TABLENAMES 
+
+$EXECUTABLE $OTHERFLAGS $AUTHFLAGS $DATABASENAME $TABLENAMES > birdwalker_dump.sql
