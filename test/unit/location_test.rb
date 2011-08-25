@@ -17,19 +17,19 @@ class LocationTest < ActiveSupport::TestCase
   end
   
   def test_sightings
-    assert_equal 2, Location.find(@first_id).sightings.size, "test fixture has two sightings for this location"
+    assert_equal 2, Location.find(@first_id).sightings.length, "test fixture has two sightings for this location"
   end
 
   def test_species
-    assert_equal 1, Location.find(@first_id).species.size, "test fixture has one species for this location"
+    assert_equal 1, Location.find(@first_id).species.length, "test fixture has one species for this location"
   end
 
   def test_trips
-    assert_equal 2, Location.find(@first_id).trips.size, "test fixture has two trips for this location"
+    assert_equal 2, Location.find(@first_id).trips.length, "test fixture has two trips for this location"
   end
 
   def test_photos
-    assert_equal 1, Location.find(@first_id).photos.size, "test fixture has one photos for this location"
+    assert_equal 1, Location.find(@first_id).photos.length, "test fixture has one photos for this location"
   end   
   
   def test_distance_in_miles_from
