@@ -30,7 +30,7 @@ class Location < ActiveRecord::Base
   
   has_many :species, :class_name => 'Species', :finder_sql => 'SELECT DISTINCT species.* FROM species, sightings
     WHERE species.id=sightings.species_id AND sightings.location_id=#{id}
-    AND sightings.exclude=false AND species.aba_countable=true' do   
+    AND sightings.exclude<>true AND species.aba_countable=true' do   
     
     def map_by_family
       load_target
@@ -44,6 +44,14 @@ class Location < ActiveRecord::Base
     def map_by_year
       load_target
       Trip.map_by_year(proxy_target)
+    end
+    
+    def earliest
+      Trip.earliest(self)
+    end                      
+
+    def latest
+      Trip.latest(self)
     end
   end      
   

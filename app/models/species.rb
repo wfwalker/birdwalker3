@@ -26,7 +26,16 @@ class Species < ActiveRecord::Base
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }     
     
   # trip-related assocations
-  has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC"
+  has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC" do
+    
+    def earliest
+      Trip.earliest(self)
+    end                      
+
+    def latest
+      Trip.latest(self)
+    end
+  end
                           
   # different species lists
   named_scope :seen, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'         

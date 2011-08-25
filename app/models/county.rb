@@ -31,7 +31,16 @@ class County < ActiveRecord::Base
     AND locations.county_id=#{id} ORDER BY families.taxonomic_sort_id, species.id'
 
   has_many :trips, :class_name => 'Trip', :finder_sql => 'SELECT DISTINCT trips.* FROM trips, sightings, locations
-    WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county_id=#{id} ORDER BY trips.date'
+    WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND locations.county_id=#{id} ORDER BY trips.date' do   
+    
+    def earliest
+      Trip.earliest(self)
+    end                      
+
+    def latest
+      Trip.latest(self)
+    end
+  end
   
   has_many :photos, :through => :locations do
     def latest

@@ -7,7 +7,7 @@ class Trip < ActiveRecord::Base
   
   has_many :photos
   
-  has_many :species, :through => :sightings, :uniq => true, :order => "species.taxonomic_sort_id, species.id" do
+  has_many :species, :through => :sightings, :uniq => true do
     def map_by_family
       load_target
       Species.map_by_family(proxy_target)
@@ -48,5 +48,13 @@ class Trip < ActiveRecord::Base
 
     return totals
   end
+
+  def Trip.latest(trip_list)
+    trip_list.sort{|x,y| y.date <=> x.date}.first
+  end
+
+  def Trip.earliest(trip_list)
+    trip_list.sort{|x,y| x.date <=> y.date}.first
+  end                                             
   
 end
