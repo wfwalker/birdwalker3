@@ -59,8 +59,8 @@ class SightingTest < ActiveSupport::TestCase
     assert_equal 2, State.find(1).trips.length
     assert_equal 2, State.find(2).trips.length
 
-    assert_equal 2, State.find(1).species.length
-    assert_equal 2, State.find(2).species.length
+    assert_equal 1, State.find(1).species.length
+    assert_equal 1, State.find(2).species.length
 
     assert_equal 1, State.find(1).locations.length
     assert_equal 1, State.find(2).locations.length
