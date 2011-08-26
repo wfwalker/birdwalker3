@@ -32,7 +32,7 @@ class State < ActiveRecord::Base
   
   has_many :photos, :class_name => 'Photo', :finder_sql => 'SELECT DISTINCT photos.* FROM photos, locations, counties 
       WHERE photos.location_id=locations.id AND
-      locations.county_id=counties.id AND counties.state_id=#{id} ORDER BY photos.id DESC LIMIT #{Photo.default_gallery_size()}'
+      locations.county_id=counties.id AND counties.state_id=#{id}'
   
   def common?
     self.trips.length > 20

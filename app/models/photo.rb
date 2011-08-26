@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
   validates_presence_of :species_id, :location_id, :trip_id
   
   def Photo.default_gallery_size
-      14
+      28
   end
   
   def image_base_URL(hostname)
