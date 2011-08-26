@@ -43,6 +43,11 @@ class LocationsControllerTest < ActionController::TestCase
     assert assigns(:location).valid?
   end
 
+  def test_photo_metadata
+    get :photo_metadata, :id => @first_id
+    assert_response :success
+  end
+
   def test_show_chronological_list
     get :show_chronological_list, :id => @first_id
 

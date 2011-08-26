@@ -29,6 +29,18 @@ class LocationsController < ApplicationController
   def index
     list
     render :action => 'list'
+  end  
+  
+  def photo_metadata          
+    @location = Location.find(params[:id])
+    photoDataList = @location.photos.collect { |photo|
+      {
+        "imageTitle" => photo.species.common_name, 
+        "imgUrl" => photo.thumb_URL("birdwalker.com"),
+        "launchUrl" => photo_url(photo)
+      }
+    }
+    render :json => photoDataList
   end
   
   # for 'http://localhost:3000/', use google maps key
