@@ -10,11 +10,7 @@
                                 
 	<% benchmark("county show gallery") do %>
 	
-	<% if @county.gallery_photos.size >= Photo.default_gallery_size() %>
-		<%= render :partial => 'photos/gallery', :object => @county.gallery_photos %>
-	<% elsif @county.photos.size > 0 %>
-		<%= render :partial => 'photos/gallery', :object => @county.photos %>
-	<% end %>   
+	<%= render :partial => 'photos/gallery', :object => @county.photos %>
 	
 	<% end %>
 	
