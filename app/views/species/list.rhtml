@@ -8,9 +8,14 @@
 		</div>		
 	</div>
 	
-	<div id="pagecontent">          
-		<% species_lists = @all_species_seen/(@all_species_seen.size / 3 + 3) %>
+	<div id="pagecontent">                                              
+		<% species_lists = [] %>
+		<% list_length = @all_species_seen.size %>
+		<% benchmark("divide the species list into three parts") do %>
+		<% species_lists = @all_species_seen/(list_length / 3 + 3) %>
+		<% end %>
 
+		<% benchmark("the big taxo life list") do %>  
 		<div class="moduletitle"><%= @all_species_seen.size %> Species</div> 
 		<table width="100%">
 			<tr width="33%">
@@ -20,6 +25,7 @@
 					</td>
 				<% end %>
 			</tr>
-		</table>
+		</table>    
+		<% end %>
 	</div>
 </div>
