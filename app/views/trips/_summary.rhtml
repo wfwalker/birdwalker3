@@ -16,20 +16,20 @@
 	</div>
 	
 	<div class="pagecontentitem">
-		<i>We observed <%= trip.species.size %> and photographed <%= trip.photos.size %> species
+		<div style="font-style: italic"><%= trip.species.size %> species seen, <%= trip.photos.size %> photographed</div>
 
 		<% if (trip.locations.size > 1) then %>
-			at <%= trip.locations.size %> locations in <%= trip.locations[0].county.name %> County, <%= trip.locations[0].county.state.name %>.
+			<div style="font-style: italic"><%= trip.locations.size %> locations, <%= trip.locations[0].county.state.abbreviation %></div>
 		<% elsif (trip.locations.size > 0) %>
-			at <%= trip.locations[0].name %> in <%= trip.locations[0].county.name %> County, <%= trip.locations[0].county.state.name %>.
-		<% end %></i>
-
+			<div style="font-style: italic"><%= trip.locations[0].name %>, <%= trip.locations[0].county.state.abbreviation %></div>
+		<% end %>     
+		
 		<% has_notes?(trip) do %>
-				<% if (trip.notes.size > 500) %>
-					<%= trip.notes[0,500] %>...
-				<% else %>
-					<%= trip.notes %>
-				<% end %>
+			<% if (trip.notes.size > 500) %>
+				<%= trip.notes[0,500] %>...
+			<% else %>
+				<%= trip.notes %>
+			<% end %>
 		<% end %>
 	</div>
 
