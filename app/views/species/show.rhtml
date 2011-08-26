@@ -16,9 +16,9 @@
 				<% if @species.common? %>
 					<div class="pagecontentitem">
 	   					We see <%= @species.common_name %> at least
-						<%= @species.sightings.size / (@species.sightings.latest.trip.date.year - @species.sightings.earliest.trip.date.year) %> times a year. 
-						Between <%= @species.sightings.earliest.trip.date.year %> and 
-						<%= @species.sightings.latest.trip.date.year %>, we've seen <%= @species.common_name %>
+						<%= @species.sightings.size / (@species.trips.latest.date.year - @species.trips.earliest.date.year) %> times a year. 
+						Between <%= @species.trips.earliest.date.year %> and 
+						<%= @species.trips.latest.date.year %>, we've seen <%= @species.common_name %>
 						at <%= @species.locations.size %> different locations.            
 					</div>	
 				<% end %>
