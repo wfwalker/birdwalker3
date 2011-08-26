@@ -23,7 +23,7 @@
 				<% if @location.common? %>
 					<div class="pagecontentitem">
 						We visit <%= @location.name %> at least
-						<%= (@location.trips.length.to_f / (@location.sightings.latest.trip.date.year - @location.sightings.earliest.trip.date.year)).ceil %> times a year. 
+						<%= (@location.trips.length.to_f / (@location.trips.latest.date.year - @location.trips.earliest.date.year)).ceil %> times a year. 
 					</div>	
 				<% else %>
 					<div class="pagecontentitem">
