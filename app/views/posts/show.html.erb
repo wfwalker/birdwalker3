@@ -1,0 +1,32 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @page_title %>
+			<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to 'edit', edit_post_url(post) %></span>
+			<% end %>
+		</div>                    
+	</div>
+
+
+	<div id="pagecontent">     
+		<p>
+		  <b>Title:</b>
+		  <%=h @post.title %>
+		</p>
+
+		<p>
+		  <b>Date:</b>
+		  <%=h @post.date %>
+		</p>
+
+		<p>
+		  <b>Content:</b>
+		  <%= @post.content %>
+		</p>
+
+
+		<%= link_to 'Edit', edit_post_path(@post) %> |
+		<%= link_to 'Back', posts_path %>
+	</div>
+</div>

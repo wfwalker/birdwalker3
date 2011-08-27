@@ -64,11 +64,10 @@ content_entries.each { | an_entry|
     print "EXISTING %s TRIP %s HAS SAME DATE AS %s %s\n" % [existing_trip.date, existing_trip.name, an_entry["date"], an_entry["title"]]    
   else
     print "%s %s %s\n" % [an_entry["kind"], an_entry["date"], an_entry["title"]] 
-    new_trip = Trip.new
-    new_trip.leader = "Bill"
-    new_trip.name = an_entry['title']
-    new_trip.notes = fixup_content(an_entry["content"])
-    new_trip.date = an_entry["date"]
-    new_trip.save
+    new_post = Post.new
+    new_post.title = an_entry['title']
+    new_post.content = fixup_content(an_entry["content"])
+    new_post.date = an_entry["date"]
+    new_post.save
   end
 }

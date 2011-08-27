@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: "first post"
+  date: 2011-08-26
+  content: "this is the first post"
+
+two:
+  title: "second post"
+  date: 2011-08-26
+  content: "this is the second post"

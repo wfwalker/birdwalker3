@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :posts
 
   # wfw root URL
   map.connect '', :controller => 'bird_walker', :action => 'index'

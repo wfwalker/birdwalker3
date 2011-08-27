@@ -9,12 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20110827061348) do
 
   create_table "counties", :force => true do |t|
     t.text    "name",     :limit => 255
     t.integer "state_id"
   end
+
+  add_index "counties", ["state_id"], :name => "StateIndex"
 
   create_table "countyfrequency", :id => false, :force => true do |t|
     t.string  "common_name"
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer "taxonomic_sort_id"
   end
 
+  add_index "families", ["taxonomic_sort_id"], :name => "TaxonomicSortIndex"
+
   create_table "locations", :force => true do |t|
     t.string  "name"
     t.text    "reference_url"
@@ -39,6 +43,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.boolean "photo",                       :default => false
   end
 
+  add_index "locations", ["county_id"], :name => "CountyIndex"
   add_index "locations", ["name"], :name => "NameIndex"
 
   create_table "photos", :force => true do |t|
@@ -54,6 +59,14 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "photos", ["rating"], :name => "RatingIndex"
   add_index "photos", ["species_id"], :name => "SpeciesIndex"
   add_index "photos", ["trip_id"], :name => "TripIndex"
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.date     "date"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sightings", :force => true do |t|
     t.text    "notes"
@@ -82,6 +95,7 @@ ActiveRecord::Schema.define(:version => 0) do
 
   add_index "species", ["aba_countable"], :name => "aba_countableIndex"
   add_index "species", ["abbreviation"], :name => "AbbreviationIndex"
+  add_index "species", ["family_id"], :name => "FamilyIndex"
 
   create_table "states", :force => true do |t|
     t.string "name",         :limit => 16
