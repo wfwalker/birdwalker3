@@ -19,17 +19,16 @@ class BirdWalkerController < ApplicationController
   end
   
   def index
-    @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
-    @most_visited_locations = Location.most_visited_recently
+    @bird_of_the_week = Species.bird_of_the_week                  
     
-    @bird_of_the_week = Species.bird_of_the_week
-
+    @recent_photos = Photo.recent(15)
+    
     @this_year_species = Species.year_to_date(Date.today.year)
     @last_year_species = Species.year_to_date(Date.today.year - 1)
   end      
   
   def photographer
-    @recent_gallery_photos = Photo.find_recent_gallery
+    @recent_gallery_photos = Photo.recent(2 * Photo.default_gallery_size())
     render :layout => false, :file => 'app/views/bird_walker/photographer.rhtml'
   end
   
@@ -56,7 +55,7 @@ class BirdWalkerController < ApplicationController
   
   def webapp_widget
     @bird_of_the_week = Species.bird_of_the_week 
-    @recent_gallery_photos = Photo.find_recent_gallery
+    @recent_gallery_photos = Photo.recent(2 * Photo.default_gallery_size())
     render :layout => false, :file => 'app/views/bird_walker/webapp_widget.rhtml'
   end
 

@@ -27,12 +27,12 @@ class PhotosController < ApplicationController
   end
 
   def recent_gallery
-    @recent_gallery_photos = Photo.find_recent_gallery
+    @recent_gallery_photos = Photo.recent(2 * Photo.default_gallery_size())
     @page_title = "recent"
   end            
   
   def recent_gallery_rss
-    @recent_gallery_photos = Photo.find_recent_gallery   
+    @recent_gallery_photos = Photo.recent(2 * Photo.default_gallery_size())
     
     render :layout => false, :file => 'app/views/photos/recent_gallery_rss.rxml'
     headers["Content-Type"] = "application/xml"  

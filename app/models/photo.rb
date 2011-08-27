@@ -73,7 +73,7 @@ class Photo < ActiveRecord::Base
        map[photo.species.family] ? map[photo.species.family] << Photo : map[photo.species.family] = [Photo] ; map }
   end
   
-  def Photo.find_recent_gallery
-    Photo.find_by_sql("select photos.* from photos, trips where photos.rating >=3 AND photos.trip_id=trips.id ORDER BY trips.date DESC LIMIT %d" % (2 * default_gallery_size()))
+  def Photo.recent(count)
+    Photo.find_by_sql("select photos.* from photos, trips where photos.rating >=3 AND photos.trip_id=trips.id ORDER BY trips.date DESC LIMIT %d" % count)
   end
 end
