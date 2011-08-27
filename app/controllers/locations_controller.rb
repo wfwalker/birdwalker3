@@ -22,8 +22,9 @@ class LocationsController < ApplicationController
   end
 
   def list
-    @page_title = "Locations"
+    @page_title = "Birding Map"
     @locations = Location.find_by_county_and_state
+    @most_visited_locations = Location.most_visited_recently
   end
   
   def index
