@@ -8,7 +8,7 @@
 	<% end %>
 
 	<div class="modulesubtitle">
-		<%= link_to location.name, location_url(location) %></a>
+		<%= link_to ("%s, %s" % [location.name, location.county.state.abbreviation]), location_url(location) %></a>
 	</div>	
 	
 	<div class="pagecontentitem">
