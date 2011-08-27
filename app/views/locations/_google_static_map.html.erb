@@ -1,0 +1,6 @@
+<% location = google_static_map %>
+<% size = "100x100" %>
+
+<% static_map_url = "http://maps.googleapis.com/maps/api/staticmap?markers=color:blue|size:small|%f,%f&size=%s&zoom=5&sensor=false" % [location.latitude, location.longitude, size] %>
+<%= image_tag static_map_url, :size => "100x100", :alt => location.name %>
+
