@@ -22,6 +22,8 @@ class BirdWalkerController < ApplicationController
     @bird_of_the_week = Species.bird_of_the_week                  
     
     @recent_photos = Photo.recent(15)
+    @most_visited_locations = Location.most_visited_recently
+    @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
     
     @this_year_species = Species.year_to_date(Date.today.year)
     @last_year_species = Species.year_to_date(Date.today.year - 1)
