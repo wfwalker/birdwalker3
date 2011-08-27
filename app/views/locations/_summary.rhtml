@@ -5,8 +5,14 @@
 		<div style="float: right; padding-left: 10px">	
 			<%= render :partial => 'photos/thumbnail', :object => location.photos.last %>
 		</div>
-	<% end %>
+	<% end %>                                                     
 
+	<% has_lat_long?(location) do %>
+		<div style="float: left; padding-right: 10px">	
+			<%= render :partial => 'locations/google_static_map', :object => location %>
+		</div>
+	<% end %>                                                     
+	
 	<div class="modulesubtitle">
 		<%= link_to ("%s, %s" % [location.name, location.county.state.abbreviation]), location_url(location) %></a>
 	</div>	
