@@ -3,6 +3,8 @@ body
 	margin: 0;
 	padding: 0;
 	font: 10pt Georgia, Sans-Serif;    
+	-moz-hyphens: auto;
+	hyphens: auto;
 }
 
 a       { color: #2D6C91; text-decoration: none; }
