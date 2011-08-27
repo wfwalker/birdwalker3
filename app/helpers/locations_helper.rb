@@ -21,5 +21,9 @@ module LocationsHelper
 		else
 		  render :partial => 'locations/undivided_list', :object => location_list, :locals => { :show_headings => headings_flag }
 		end
-	end
+	end      
+	            
+  def has_lat_long?(location, &block)
+    yield if (location.latitude != 0 and location.longitude != 0)
+  end
 end
