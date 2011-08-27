@@ -15,6 +15,7 @@ class TripsController < ApplicationController
   def list
     @page_title = "Trips"
     @trips = Trip.find(:all, :order => "date DESC")
+    @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
   end
 
   def list_biggest
@@ -35,7 +36,6 @@ class TripsController < ApplicationController
   
   def index
     list
-    @page_title = "Trips"
     render :action => 'list'
   end
 

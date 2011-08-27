@@ -8,6 +8,12 @@
 	</div>
 
 	<div id="pagecontent">
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Recent Trip Reports</div>
+		</div>                                         
+		
+		<%= render :partial => 'trips/summary', :collection => @recent_trips %>    
+		
 		<% trip_lists = @trips/(@trips.size / 3 + 3) %>
 		
 		<table width="100%">
