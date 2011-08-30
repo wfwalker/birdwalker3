@@ -10,9 +10,11 @@
 		<div class="pagecontentmodule">
 			<div class="moduletitle">Locations Visited Recently</div>
 		</div>
-		<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  		
+		<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  	 
+		
+		<br clear="all" />   
 
-		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 780, :map_height => 480 } %>
+		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 930, :map_height => 480 } %>
 	
 		<% location_lists = @locations/(@locations.size / 3 + 3)%>
 
