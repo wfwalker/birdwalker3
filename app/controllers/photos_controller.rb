@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  helper :locations
 
   before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :update_rating, :destroy]  
   before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :update_rating, :destroy]  
