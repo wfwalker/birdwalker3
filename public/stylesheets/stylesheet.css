@@ -151,7 +151,7 @@ ul.sortable {cursor: move}
 {
 	margin-left: auto; 
 	margin-right: auto;
-	width: 780px;
+	width: 930px;
 /*	background-color: #ffffee; */
 }                                             
 
@@ -182,7 +182,7 @@ ul.sortable {cursor: move}
 	margin-left: auto; 
 	margin-right: auto;  
 	background-color: white;
-	width: 780px;
+	width: 930px;
 }
 
 #pagecontent .pagecontentmodule
@@ -205,7 +205,7 @@ ul.sortable {cursor: move}
 {
 	margin-left: auto; 
 	margin-right: auto;
-	width: 780px;
+	width: 930px;
 	padding-bottom: 5px;  
 }
 
