@@ -39,7 +39,11 @@ module ApplicationHelper
   def has_sightings?(subject, &block)
     yield if subject.sightings && subject.sightings.length >= 1
   end         
-  
+
+  def column_width
+    return 460
+  end
+
   def open_first_column
     "<table width=\"100%\" cellpadding=\"0px\" cellspacing=\"0px\"><tr valign=\"top\"><td valign=\"top\" width=\"50%\">"
   end         
