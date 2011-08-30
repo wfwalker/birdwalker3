@@ -109,11 +109,6 @@ class Sighting < ActiveRecord::Base
        map[sighting.species.family] ? map[sighting.species.family] << sighting : map[sighting.species.family] = [sighting] ; map }
   end
 
-  def Sighting.map_by_species(sighting_list)
-    sighting_list.inject({}) { | map, sighting |
-       map[sighting.species] ? map[sighting.species] << sighting : map[sighting.species] = [sighting] ; map }
-  end
-
   def Sighting.map_by_family_and_species(sighting_list)
     map = {}
     
