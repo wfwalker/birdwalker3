@@ -1,0 +1,63 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+		</div>
+	</div>
+
+	<div id="pagecontent">                   
+
+		<%= open_first_column %>
+
+			<%= render :partial => 'bird_walker/welcome' %>   
+	
+		<%= between_columns %>
+	
+			<% if @bird_of_the_week != nil %>
+				<%= render :partial => 'bird_walker/see_it_this_week' %>   
+	        <% end %>           
+
+		<%= close_second_column %>
+
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Recent Photos</div>
+		</div>                                           
+	
+		<% photos_by_trip = @recent_photos.inject({}) { | map, photo | map[photo.trip] ? map[photo.trip] << photo : map[photo.trip] = [photo] ; map } %> 
+
+		<% for trip in photos_by_trip.keys %>
+			<div class="modulesubtitle">
+				<% has_lat_long?(trip.locations[0]) do %>
+					<div style="float: left; padding-right: 10px">	
+						<%= render :partial => 'locations/google_static_map', :object => trip.locations[0] %>
+					</div>
+				<% end %>                                                     
+				<div class="date">
+					<%= '%02d' % trip.date.day %>
+					<small><%= trip.date.strftime('%b%y') %></small>
+				</div>
+				<%= link_to trip.name, trip_url(trip) %>
+			</div>                                         
+		
+			<div><%= trip.notes %></div>
+				
+			<br clear="all" />
+	                              
+			<div style="overflow: auto; width: 930px; height: 560px">
+				<div style="height:480px">    
+					<table height="480px">
+						<tr>
+							<% for photo in photos_by_trip[trip] %>
+								<td class="modulesubtitle"><%= link_to photo.species.common_name, species_instance_url(photo.species) %></td>  
+							<% end %>  
+						</tr>
+						<tr height="480px">
+							<% for photo in photos_by_trip[trip] %>
+							    <td><%= "<img border=\"0\" height=\"480px	\" src=\"%s\" />" % photo.photo_URL('') %></td>
+							<% end %>  
+						</tr>
+					</table>
+				</div>                      
+			</div>
+		<% end %>
+	</div>
+</div>
