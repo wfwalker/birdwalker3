@@ -12,13 +12,9 @@
 	</div>	
 	
 	<div class="pagecontentitem">
-		<% has_no_notes?(location) do %>
-			<p>
-				Located near <%= location.city %> in <%= location.county.name %> County, <%= location.county.state.name %>.
-				We have recorded <%= location.species.size %> species during <%= location.trips.size %> trips.
-				Our most recent visit was <%= nice_date(location.sightings.latest.trip.date) %>.
-			</p>
-		<% end %>
+		<div style="font-style: italic">
+			<%= location.species.size %> species, <%= location.trips.size %> trips (latest on <%= short_nice_date(location.sightings.latest.trip.date) %>)
+		</div>
 		
 		<% has_notes?(location) do %>
 			<% if (location.notes.size > 500) %>
