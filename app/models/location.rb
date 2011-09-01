@@ -28,10 +28,7 @@ class Location < ActiveRecord::Base
   
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   
-  has_many :species, :class_name => 'Species', :finder_sql => 'SELECT DISTINCT species.* FROM species, sightings
-    WHERE species.id=sightings.species_id AND sightings.location_id=#{id}
-    AND sightings.exclude<>true AND species.aba_countable=true' do   
-    
+  has_many :species, :through => :sightings, :uniq => true do    
     def map_by_family
       load_target
       Species.map_by_family(proxy_target)
