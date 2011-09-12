@@ -81,23 +81,23 @@ a:hover { text-decoration: underline; }
 
 #searchbox
 {
-	position: absolute; top: 20px; width: 20%; left: 80%;  
-	height: 72px;     
+	position: relative; top: 40px; width: 940px; margin-right: auto; margin-left: auto;
+	text-align: right; height: 43px; padding-right: 20px;
 }
 
 #sitetitle
 {
-	font-size: 14pt; margin-left: 40px; margin-top: 5px; width: 800px;
+	font-size: 14pt; margin-left: auto; margin-right: auto; margin-top: 5px; width: 940px;
 }                                                                               
 
 #menu
 {                   
-	position: absolute; top: 43px;
-	min-width: 800px; 
+	position: relative;
+	margin-left: auto; margin-right: auto; width: 940px;
 	background-color: #DAE0D2;	 
 }
          
-ul, ol {list-style: none; margin: 0;}
+ul, ol {list-style: none; margin: 0; padding: 0;}
 ul.sortable {cursor: move}
 
 #menu li
@@ -111,7 +111,7 @@ ul.sortable {cursor: move}
 
 #menu #current
 {
-    background-image:url("/images/norm_left_on_trans.gif")
+    background-image:url("/images/norm_left_on_trans.gif");
 }
 
 #menu a
@@ -173,7 +173,7 @@ ul.sortable {cursor: move}
 #pagebody
 {
 	min-height: 100%;
-	padding-top: 68px;
+	padding-top: 28px;
 	padding-bottom: 50px;
 }
 
