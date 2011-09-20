@@ -6,7 +6,7 @@ EXECUTABLE=/usr/local/mysql/bin/mysqldump
 
 AUTHFLAGS="-u root"
 DATABASENAME="HelloWorld_development"
-TABLENAMES="counties countyfrequency families locations photos sightings species states taxonomy trips users"
+TABLENAMES="counties countyfrequency families locations photos sightings species states taxonomy trips users posts"
 OTHERFLAGS="--extended-insert=FALSE --quote-names=TRUE --complete-insert=TRUE --comments=FALSE --add-locks=FALSE"
 
 echo $EXECUTABLE $OTHERFLAGS $AUTHFLAGS $DATABASENAME $TABLENAMES 
