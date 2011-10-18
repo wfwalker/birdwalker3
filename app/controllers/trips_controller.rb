@@ -26,6 +26,12 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params["id"])
     @page_title = @trip.name
+
+    respond_to do |format|
+      format.html # show.rhtml
+      format.xml  { render :xml => @trip.to_xml(:include => [ :sightings, :photos ]) }
+      format.json  { render :json => @trip.to_json(:include => [ :sightings, :photos ]) }
+    end
   end
   
   def show_as_ebird_record_format

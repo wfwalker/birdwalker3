@@ -24,7 +24,11 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @page_title = @photo.species.common_name
     
-    render :action => 'show'
+    respond_to do |format|
+      format.html # show.rhtml
+      format.xml  { render :xml => @photo.to_xml(:methods => [ :photo_URL ]) }
+      format.json  { render :json => @photo }
+    end
   end
 
   def recent_gallery

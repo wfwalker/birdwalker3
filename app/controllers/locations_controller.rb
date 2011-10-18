@@ -74,6 +74,12 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @page_title = @location.name
+
+    respond_to do |format|
+      format.html # show.rhtml
+      format.xml  { render :xml => @location }
+      format.json  { render :json => @location }
+    end
   end          
   
   def show_chronological_list
