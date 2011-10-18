@@ -11,6 +11,13 @@
 
 ActiveRecord::Schema.define(:version => 20110827061348) do
 
+  create_table "blogposts", :id => false, :force => true do |t|
+    t.integer "id"
+    t.text    "title"
+    t.text    "contents"
+    t.date    "date"
+  end
+
   create_table "counties", :force => true do |t|
     t.text    "name",     :limit => 255
     t.integer "state_id"
@@ -126,9 +133,10 @@ ActiveRecord::Schema.define(:version => 20110827061348) do
 
   add_index "trips", ["date"], :name => "dateIndex"
 
-  create_table "users", :force => true do |t|
-    t.text "name"
-    t.text "password"
+  create_table "users", :id => false, :force => true do |t|
+    t.integer "id"
+    t.text    "name"
+    t.text    "password"
   end
 
 end
