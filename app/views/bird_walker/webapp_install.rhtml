@@ -1,10 +1,10 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle">birdwalker.com Open Web Application</div>
+		<div id="pagetitle">birdwalker.com Mozilla App</div>
 	</div>
 	<div id="pagecontent">
-		This is an experimental version of birdwalker.com packaged as an <a href="https://apps.mozillalabs.com/">Open Web Application</a>
-		<div>You can manage your apps and see our widget at <a href="https://myapps.mozillalabs.com/">myapps.mozillalabs.com</a></div>
+		This is a version of birdwalker.com packaged as a <a href="https://apps.mozillalabs.com/">Mozilla App</a>
+		<div>You can manage your apps at <a href="https://myapps.mozillalabs.com/">myapps.mozillalabs.com</a></div>
 
 		<div><img src="/images/birdwalker-logo-128.png" width="128" height="128" /></div>
 
@@ -22,31 +22,39 @@
 		if (inApplicationObject != null) {
 			$('#installResults').html(inApplicationObject.manifest.name + " is already installed")
 			$('#installButton').attr('disabled', 'disabled')
+			console.log("is already installed")
 		}
 		else
 		{
+			console.log("not already installed")
 			$('#installResults').html("BirdWalker is not already installed")
 			$('#installButton').removeAttr('disabled')
 		}
 	}
 	
 	function amInstalledErrorCallback() {
+		console.log("amInstalledErrorCallback")
 		$('#installResults').html("Unable to verify whether birdwalker.com is already installed")
 	}
 
 	function onsuccess_installed() {
+		console.log("onsuccess_installed")
 		$('#installResults').html("Installed birdwalker.com")
 		$('#installButton').attr('disabled', 'disabled')
 	}
 
-	function onerror_installed() {
-		$('#installResults').html("Unable to install birdwalker.com")
+	function onerror_installed(errorObject) {
+		console.log("onerror_installed")
+		$('#installResults').html("Unable to install birdwalker.com " + errorObject.code)
 	}
 	
 	$(document).ready(function(){  
+		console.log("ready")
 		navigator.mozApps.amInstalled(amInstalledCallback, amInstalledErrorCallback)
 		$('#installButton').click(function() { 
-			navigator.mozApps.install("/webapp.manifest", onsuccess_installed, onerror_installed);
+			console.log("click start")
+			navigator.mozApps.install("/webapp.manifest", "receipt goes here", onsuccess_installed, onerror_installed);
+			console.log("click stop")
 		})
 	})
 	-->

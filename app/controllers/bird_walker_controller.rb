@@ -42,7 +42,6 @@ class BirdWalkerController < ApplicationController
     manifest["description"] = "Photographs and Field Notes from Bill Walker"
     manifest["icons"] = {"128" => "/images/birdwalker-logo-128.png"}
     manifest["widget"] = {"path" => "/bird_walker/webapp_widget", "width" => 200, "height" => 100}
-    manifest["locales"] = []
     manifest["default_locale"] = "en"
     manifest["installs_allowed_from"] = ["https://appstore.mozillalabs.com"]
     manifest["developer"] = {"name" => "Bill Walker", "url" => "http://birdwalker.com"}
@@ -52,7 +51,7 @@ class BirdWalkerController < ApplicationController
   end
   
   def webapp_install
-    @page_title = "Install birdwalker.com Open Web Application"
+    @page_title = "Install birdwalker.com Mozilla App"
   end
   
   def webapp_widget
