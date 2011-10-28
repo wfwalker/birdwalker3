@@ -42,4 +42,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'  
   
   map.connect 'webapp.manifest', :controller =>'bird_walker', :action => 'webapp_manifest'
+  map.connect 'webapp.manifest.json', :controller =>'bird_walker', :action => 'webapp_manifest'
+  map.connect 'manifest.webapp', :controller =>'bird_walker', :action => 'webapp_manifest'
 end

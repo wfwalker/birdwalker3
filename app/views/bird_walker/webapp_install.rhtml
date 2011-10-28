@@ -44,9 +44,9 @@
 	}
 	
 	$(document).ready(function(){  
-		navigator.apps.amInstalled(amInstalledCallback, amInstalledErrorCallback)
+		navigator.mozApps.amInstalled(amInstalledCallback, amInstalledErrorCallback)
 		$('#installButton').click(function() { 
-			navigator.apps.install({url: "/webapp.manifest", onsuccess: onsuccess_installed, onerror: onerror_installed});
+			navigator.mozApps.install("/webapp.manifest", onsuccess_installed, onerror_installed);
 		})
 	})
 	-->
