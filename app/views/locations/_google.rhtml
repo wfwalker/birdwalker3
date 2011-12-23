@@ -13,16 +13,13 @@ end
 
 %>
 
- <script src="http://maps.google.com/maps?file=api&v=2&key=<%= the_key %>"  type="text/javascript"></script>
+ <script src="http://maps.google.com/maps/api/js?v=3&sensor=false&key=<%= the_key %>"  type="text/javascript"></script>
 
   <script type="text/javascript">
 <!--
       // helper function to create markers
       function createMarker(point,html) {
-          var marker = new GMarker(point);
-          GEvent.addListener(marker, "click", function() {
-           marker.openInfoWindowHtml(html);
-           });
+          var marker = new google.maps.Marker(point);
           return marker;
       }
 
@@ -31,30 +28,34 @@ end
       // this is called when the page loads. 
       // it initializes the map, and creates each marker
 	  $(document).ready(function(){     
-          gMap = new GMap2(document.getElementById("map"));
-          gMap.addControl(new GSmallMapControl());
+			<% longitudes = locations.collect { | a_location | a_location.longitude } %>
+			<% latitudes = locations.collect { | a_location | a_location.latitude } %>
 
-		  <% longitudes = locations.collect { | a_location | a_location.longitude } %>
-		  <% latitudes = locations.collect { | a_location | a_location.latitude } %>
+			var sw = new google.maps.LatLng(<%= latitudes.min %>, <%= longitudes.min %>);
+			var ne = new google.maps.LatLng(<%= latitudes.max %>, <%= longitudes.max %>);
+			var bounds = new google.maps.LatLngBounds(sw, ne);
 
-          var sw = new GLatLng(<%= latitudes.min %>, <%= longitudes.min %>);
-          var ne = new GLatLng(<%= latitudes.max %>, <%= longitudes.max %>);
-          var bounds = new GLatLngBounds(sw, ne);
-		  <% if (locations.size > 1) %>
-          	var zoom = gMap.getBoundsZoomLevel(bounds, 340);
-		  <% else %>
-		    var zoom = 10;
-		  <% end %>
-		
-   		  gMap.setCenter(bounds.getCenter(), zoom, G_PHYSICAL_MAP);     
-          
-		  <% for location in locations %> 
-			<% contents = render :partial => 'locations/show_google_popup', :object => location %>
-		
-			<% if (location.longitude != 0) %>
-          		gMap.addOverlay(createMarker(new GLatLng(<%=location.latitude.to_s%>,<%= location.longitude.to_s%>),'<div><%= escape_javascript(contents) %></div>'));
-			<% end %>
-		  <% end %>
+	  	    var myOptions = {
+		      zoom: 8,
+		      center: bounds.getCenter(),
+		      mapTypeId: google.maps.MapTypeId.TERRAIN
+		    };
+
+		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+		    map.fitBounds(bounds);
+
+		    // for overlays now do this:
+			// http://code.google.com/apis/maps/documentation/javascript/overlays.html#InfoWindows
+
+            <% for location in locations %> 
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(<%=location.latitude.to_s%>,<%= location.longitude.to_s%>),
+					map: map,
+					title: "<%= location.name %>"
+				});
+            <% end %>
+
       })    
 -->
   </script>                   
