@@ -108,26 +108,30 @@ class BirdWalkerController < ApplicationController
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
             
       req = Net::HTTP::Post.new(url.path)
-      req.set_form_data({'assertion' => params[:assertion], 'audience' => 'birdwalker.com'})
+      req.set_form_data({'assertion' => params[:assertion], 'audience' => request.host})
       res = http.start {|http| http.request(req) } 
                                                                 
+      # could be {"status":"failure","reason":"audience mismatch: domain mismatch"}
       # results should be JSON like result {"status":"okay","email":"walker@shout.net","audience":"localhost:3000","valid-until":1313649622973,"issuer":"browserid.org:443"}
-      
+
       parsedResults = ActiveSupport::JSON.decode(res.body())  
-      
-      if parsedResults["status"] == "okay" and parsedResults["email"] == "walker@shout.net"
+
+      if (parsedResults["status"] == "okay" and parsedResults["email"] == "walker@shout.net")
         logger.error("VC: Logging in as " + parsedResults["email"])
         flash[:notice] = 'Welcome back, ' + parsedResults["email"]
         session[:username] = parsedResults["email"] 
         session[:login_time] = Time.now.to_i     
         Rails.cache.clear   
         render :text => '', :layout => false, :status => 200    
-      else
+      elsif (parsedResults["email"])
         logger.error("VC: no editing priviledges for " + parsedResults["email"])
         flash[:error] = 'No editing priviledges for ' + parsedResults["email"]
         session[:username] = nil    
         session[:login_time] = nil 
         render :text => '', :layout => false, :status => 500
+      elsif (parsedResults["status"] == "failure")
+        flash[:error] = 'Cannot log in, ' + parsedResults["reason"]
+        logger.error('Cannot log in, ' + parsedResults["reason"])
       end
     else
       logger.error("VC: Failed login attempt")
