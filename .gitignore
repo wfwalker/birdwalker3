@@ -5,3 +5,4 @@ doc/app/
 doc/guides/
 public/images/photo/
 public/images/thumb/
+log/production.log
