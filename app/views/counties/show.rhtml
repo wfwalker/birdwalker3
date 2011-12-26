@@ -67,7 +67,7 @@
 		
 			<% if (@county.locations.with_lat_long.size > 0) %>
 				<% @map_module_title = 'County Map' %>                       
-				<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width }  %>
+				<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/counties/locations/%s.json' % @county.id }  %>
 			<% end %>
 		
  		<%= close_second_column %>  

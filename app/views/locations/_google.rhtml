@@ -27,35 +27,43 @@ end
 
       // this is called when the page loads. 
       // it initializes the map, and creates each marker
-	  $(document).ready(function(){     
-			<% longitudes = locations.collect { | a_location | a_location.longitude } %>
-			<% latitudes = locations.collect { | a_location | a_location.latitude } %>
-
-			var sw = new google.maps.LatLng(<%= latitudes.min %>, <%= longitudes.min %>);
-			var ne = new google.maps.LatLng(<%= latitudes.max %>, <%= longitudes.max %>);
-			var bounds = new google.maps.LatLngBounds(sw, ne);
-
+	  $(document).ready(function(){   
+	  		// Create a terrain style map
 	  	    var myOptions = {
-		      zoom: 8,
-		      center: bounds.getCenter(),
 		      mapTypeId: google.maps.MapTypeId.TERRAIN
 		    };
 
 		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-		    map.fitBounds(bounds);
-
 		    // for overlays now do this:
 			// http://code.google.com/apis/maps/documentation/javascript/overlays.html#InfoWindows
 
-            <% for location in locations %> 
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(<%=location.latitude.to_s%>,<%= location.longitude.to_s%>),
-					map: map,
-					title: "<%= location.name %>"
-				});
-            <% end %>
+			$.ajax({
+				url: '<%= locations_json_url %>',
+				error: function() { console.log("error "); },               
+				success: function(results) {
+					var newBounds = new google.maps.LatLngBounds();
+					console.log(newBounds);
 
+					for (var i = 0; i < results.length; i++) {
+						var location = results[i];
+
+						if (location.latitude != 0 && location.longitude != 0) {
+							locationMarker = new google.maps.LatLng(location.latitude, location.longitude);
+							newBounds.extend(locationMarker);
+
+							var marker = new google.maps.Marker({
+								position: new google.maps.LatLng(location.latitude, location.longitude),
+								map: map,
+								title: location.name
+							});
+						}
+
+					}
+					console.log(newBounds);
+				    map.fitBounds(newBounds);
+				}
+			});
       })    
 -->
   </script>                   
