@@ -32,6 +32,15 @@ class FamiliesController < ApplicationController
     @page_title = @family.common_name
   end
 
+  def locations
+    @family = Species.find(params[:id])
+
+    respond_to do |format|
+      format.xml  { render :xml => @family.locations }
+      format.json  { render :json => @family.locations }
+    end
+  end
+
   def show_species_by_year
     @family = Family.find(params[:id])
     @page_title = @family.common_name

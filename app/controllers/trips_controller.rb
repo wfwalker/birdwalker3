@@ -33,6 +33,15 @@ class TripsController < ApplicationController
       format.json  { render :json => @trip.to_json(:include => [ :sightings, :photos ]) }
     end
   end
+
+  def locations
+    @trip = Trip.find(params[:id])
+
+    respond_to do |format|
+      format.xml  { render :xml => @trip.locations }
+      format.json  { render :json => @trip.locations }
+    end
+  end
   
   def show_as_ebird_record_format
     @trip = Trip.find(params["id"])

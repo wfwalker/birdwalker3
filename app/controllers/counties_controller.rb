@@ -14,6 +14,15 @@ class CountiesController < ApplicationController
     @county = County.find(params["id"])
     @page_title = @county.full_name
   end
+
+  def locations
+    @county = County.find(params[:id])
+
+    respond_to do |format|
+      format.xml  { render :xml => @county.locations }
+      format.json  { render :json => @county.locations }
+    end
+  end
   
   def show_chronological_list
     @county = County.find(params["id"])

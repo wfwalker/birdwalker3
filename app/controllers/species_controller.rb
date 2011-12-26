@@ -1,3 +1,5 @@
+require 'json'
+
 class SpeciesController < ApplicationController
   helper :trips
   helper :locations
@@ -48,17 +50,22 @@ class SpeciesController < ApplicationController
   def show
     @species = Species.find(params[:id])
     @page_title = @species.common_name
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @species }
+      format.json  { render :json => @species }
+    end
   end
 
-  def recent_nearby_ebird_sightings(location)
+  def locations
     @species = Species.find(params[:id])
-    
-    if params[:dist] then
-      render :json => @species.recent_nearby_ebird_sightings(location, params[:dist])
-    else
-      render :json => @species.recent_nearby_ebird_sightings(location)
+
+    respond_to do |format|
+      format.xml  { render :xml => @species.locations }
+      format.json  { render :json => @species.locations }
     end
-  end      
+  end
 
   def show_locations_by_year
     @species = Species.find(params[:id])

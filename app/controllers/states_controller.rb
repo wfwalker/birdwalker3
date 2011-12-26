@@ -18,6 +18,15 @@ class StatesController < ApplicationController
     @page_title = @state.name
   end
   
+  def locations
+    @state = State.find(params[:id])
+
+    respond_to do |format|
+      format.xml  { render :xml => @state.locations }
+      format.json  { render :json => @state.locations }
+    end
+  end
+
   def show_chronological_list
     @state = State.find(params["id"])
     @page_title = @state.name
