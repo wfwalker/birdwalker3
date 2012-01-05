@@ -21,17 +21,18 @@ class LocationsController < ApplicationController
     "locations"
   end
 
-  def list
+  def index
     @page_title = "Birding Map"
     @locations = Location.find_by_county_and_state
     @most_visited_locations = Location.most_visited_recently
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @locations }
+      format.json  { render :json => @locations }
+    end
   end
-  
-  def index
-    list
-    render :action => 'list'
-  end  
-  
+    
   def photo_metadata          
     @location = Location.find(params[:id])
     photoDataList = @location.photos.collect { |photo|

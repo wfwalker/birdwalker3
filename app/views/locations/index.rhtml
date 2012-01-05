@@ -14,7 +14,7 @@
 		
 		<br clear="all" />   
 
-		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 930, :map_height => 480 } %>
+		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 930, :map_height => 480, :locations_json_url => '/locations.json' } %>
 	
 		<% location_lists = @locations/(@locations.size / 3 + 3)%>
 

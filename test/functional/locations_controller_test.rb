@@ -19,16 +19,7 @@ class LocationsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'locations/list.rhtml'
-  end
-
-  def test_list
-    get :list
-
-    assert_response :success
-    assert_valid_xml(@response.body)
-    assert_template 'locations/list.rhtml'
-
+    assert_template 'locations/index.rhtml'
     assert_not_nil assigns(:locations)
   end
 
