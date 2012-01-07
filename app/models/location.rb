@@ -5,7 +5,7 @@ class Location < ActiveRecord::Base
 
   has_many :sightings, :class_name => 'Sighting', :finder_sql => 'SELECT DISTINCT sightings.* FROM species, sightings
     WHERE species.id=sightings.species_id AND sightings.location_id=#{id}
-    AND sightings.exclude=false AND species.aba_countable=true' do
+    AND sightings.exclude=false AND species.aba_countable=1' do
 
     def earliest
       Sighting.earliest(self)
@@ -109,7 +109,7 @@ class Location < ActiveRecord::Base
   
   def species_seen_nearby(miles_radius)  
     nearby_locations = self.nearby_locations(miles_radius)
-    (nearby_locations.collect { |loc| loc.species }).flatten.uniq
+    (nearby_locations.collect { |loc| loc.species.countable }).flatten.uniq
   end
 
   def species_photographed_nearby(miles_radius)  

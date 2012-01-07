@@ -9,7 +9,7 @@ class County < ActiveRecord::Base
   
   has_many :sightings, :class_name => 'Sighting', :finder_sql => 'SELECT DISTINCT sightings.* FROM species, sightings, locations
     WHERE species.id=sightings.species_id AND sightings.location_id=locations.id
-    AND sightings.exclude=false AND species.aba_countable=true
+    AND sightings.exclude=false AND species.aba_countable=1
     AND locations.county_id=#{id}' do
     
     def earliest
@@ -27,7 +27,7 @@ class County < ActiveRecord::Base
   
   has_many :species, :class_name => 'Species', :finder_sql => 'SELECT DISTINCT species.* FROM species, families, sightings, locations
     WHERE species.id=sightings.species_id AND species.family_id=families.id AND sightings.location_id=locations.id
-    AND sightings.exclude=false AND species.aba_countable=true
+    AND sightings.exclude=false AND species.aba_countable=1
     AND locations.county_id=#{id} ORDER BY families.taxonomic_sort_id, species.id'
 
   has_many :trips, :class_name => 'Trip', :finder_sql => 'SELECT DISTINCT trips.* FROM trips, sightings, locations
