@@ -1,0 +1,49 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @page_title %>
+		</div>
+	</div>
+	
+	<div id="pagecontent">
+		<div class="pagecontentmodule">
+			<div class="pagecontentitem">
+
+				<% form_tag update_individual_sightings_path, :method => :put do %>
+					<table>
+					<% for sighting in @sightings %>
+						<% fields_for "sightings[]", sighting do |f| %>
+							<tr>
+
+							<!--[form:sighting]-->
+							<td><%=h sighting.species.common_name %><br /><%=h sighting.trip.name %></td>
+
+							<td>
+								<%= f.collection_select :location_id, Location.find(:all, :order => 'name'), :id, :name %>
+							</td>
+
+							<td><%= f.check_box :exclude %>
+							<label for="sighting_exclude">Exclude</label></td>
+
+							<td><%= f.check_box :heard_only %>
+							<label for="sighting_heard_only">Heard only</label></td>
+
+							<td><label for="count">Count</label><br/>
+							<%= f.text_field :count, :size => 4 %></td>
+
+							<td><label for="sighting_notes">Notes</label><br/>
+							<%= f.text_field :notes %></td>
+
+							<!--[eoform:sighting]-->
+							</tr>
+						<% end %>
+				    <% end %>
+					<table>
+
+
+		  			<%= submit_tag 'Save' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

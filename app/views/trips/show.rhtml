@@ -42,22 +42,36 @@
 					<div>
 						<%= link_to '[add sightings]', :id => @trip.id, :controller => 'trips', :action => 'add_species' %>
 					</div>
+
+					<% form_tag edit_individual_sightings_path do %>
+						<% for a_family in sorted_families do %>
+						    <% if sorted_sighting_list.size > 40 %>
+						  		<div class="modulesubtitle"><%= a_family.common_name %></div>
+							<% end %>
+							<% Species.sort_taxonomic(sightings_by_family_and_species[a_family].keys).each do | a_species | %>
+								<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
+									<%= render :partial => 'sightings/onelinelink', :collection => sightings_by_family_and_species[a_family][a_species] %>
+								<% else %>
+									<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
+								<% end %>
+							<% end %>
+						<% end %>
+
+						<%= submit_tag "Edit Checked" %>
+					<% end %>
 				<% end %>
 
-				<% for a_family in sorted_families do %>
-				    <% if sorted_sighting_list.size > 40 %>
-				  		<div class="modulesubtitle"><%= a_family.common_name %></div>
-					<% end %>
-					<% Species.sort_taxonomic(sightings_by_family_and_species[a_family].keys).each do | a_species | %>
-						<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
-							<% editing_is_allowed?() do %>
-								<%= render :partial => 'sightings/onelinelink', :collection => sightings_by_family_and_species[a_family][a_species] %>
-							<% end %>
-							<% editing_is_not_allowed?() do %>
+				<% editing_is_not_allowed?() do %>
+					<% for a_family in sorted_families do %>
+					    <% if sorted_sighting_list.size > 40 %>
+					  		<div class="modulesubtitle"><%= a_family.common_name %></div>
+						<% end %>
+						<% Species.sort_taxonomic(sightings_by_family_and_species[a_family].keys).each do | a_species | %>
+							<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
 								<%= render :partial => 'sightings/onelinemultilink', :object => sightings_by_family_and_species[a_family][a_species] %>
+							<% else %>
+								<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
 							<% end %>
-						<% else %>
-							<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
 						<% end %>
 					<% end %>
 				<% end %>
