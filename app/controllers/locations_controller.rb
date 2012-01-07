@@ -27,7 +27,7 @@ class LocationsController < ApplicationController
     @most_visited_locations = Location.most_visited_recently
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # index.html.erb
       format.xml  { render :xml => @locations }
       format.json  { render :json => @locations }
     end
@@ -79,7 +79,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @location }
-      format.json  { render :json => @location }
+      format.json  { render :json => [@location] }
     end
   end          
   
