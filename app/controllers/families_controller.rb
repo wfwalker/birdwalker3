@@ -30,10 +30,16 @@ class FamiliesController < ApplicationController
   def show
     @family = Family.find(params[:id])
     @page_title = @family.common_name
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @family }
+      format.json  { render :json => @family }
+    end
   end
 
   def locations
-    @family = Species.find(params[:id])
+    @family = Family.find(params[:id])
 
     respond_to do |format|
       format.xml  { render :xml => @family.locations }
