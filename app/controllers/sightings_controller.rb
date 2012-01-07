@@ -108,6 +108,16 @@ class SightingsController < ApplicationController
     end
   end
 
+  def edit_individual
+    @sightings = Sighting.find(params[:sighting_ids])
+  end
+
+  def update_individual
+    @sightings = Sighting.update(params[:sightings].keys, params[:sightings].values)
+    flash[:notice] = "Sightings updated"
+    redirect_to trip_url(@sightings[0].trip_id)
+  end
+
   def destroy
     @sighting = Sighting.find(params[:id])
     @sighting.destroy
