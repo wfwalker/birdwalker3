@@ -13,21 +13,13 @@ end
 
 %>
 
- <script src="http://maps.google.com/maps/api/js?v=3&sensor=false&key=<%= the_key %>"  type="text/javascript"></script>
+<script src="http://maps.google.com/maps/api/js?v=3&sensor=false&key=<%= the_key %>"  type="text/javascript"></script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
 <!--
-      // helper function to create markers
-      function createMarker(point,html) {
-          var marker = new google.maps.Marker(point);
-          return marker;
-      }
-
-	  var gMap;
-
-      // this is called when the page loads. 
-      // it initializes the map, and creates each marker
-	  $(document).ready(function(){   
+		// this is called when the page loads. 
+		// it initializes the map, and creates each marker
+		$(document).ready(function(){   
 	  		// Create a terrain style map
 	  	    var myOptions = {
 		      mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -43,7 +35,6 @@ end
 				error: function() { console.log("error "); },               
 				success: function(results) {
 					var newBounds = new google.maps.LatLngBounds();
-					console.log(newBounds);
 
 					for (var i = 0; i < results.length; i++) {
 						var location = results[i];
@@ -52,21 +43,36 @@ end
 							locationMarker = new google.maps.LatLng(location.latitude, location.longitude);
 							newBounds.extend(locationMarker);
 
-							var marker = new google.maps.Marker({
-								position: new google.maps.LatLng(location.latitude, location.longitude),
+							var contentString = '<div><a href="/locations/' + location.id + '">' + location.name + '</a></div>' +
+								'<div>' + location.notes + '</div>';
+
+							var the_infowindow = new google.maps.InfoWindow({
+								content: contentString
+							});
+
+							function buildHandler(map, infowindow, marker) {
+							    return function() {
+							        infowindow.open(map, marker);
+							    };
+							};
+
+							var the_marker = new google.maps.Marker({
+								position: locationMarker,
 								map: map,
 								title: location.name
 							});
+
+							google.maps.event.addListener(the_marker, 'click', buildHandler(map, the_infowindow, the_marker));
 						}
 
 					}
-					console.log(newBounds);
+
 				    map.fitBounds(newBounds);
 				}
 			});
       })    
 -->
-  </script>                   
+</script>                   
 
 <div class="pagecontentmodule">
 	<div class="moduletitle">
