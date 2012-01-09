@@ -65,9 +65,10 @@ class ApplicationController < ActionController::Base
   def verify_credentials
     if (session[:username] == nil) then
       # username is nil, just clobber login_time
-      logger.error("VC: Not logged in, redirecting to login")
+      logger.error("VC: Not logged in, redirecting to index")
       session[:login_time] = nil      
-      redirect_to :controller => 'bird_walker', :action => 'login'
+      #TODO: something smarter than just index page?
+      redirect_to :controller => 'bird_walker', :action => 'index'
     else
       if (session[:login_time] == nil) then
         # username is not nil but login_time is nil, this should never happen!
@@ -75,7 +76,8 @@ class ApplicationController < ActionController::Base
         flash[:error] = 'Editing session timed out; please login again to continue editing'
         session[:username] = nil    
         session[:login_time] = nil
-        redirect_to :controller => 'bird_walker', :action => 'login'  
+        #TODO: something smarter than just index page?
+        redirect_to :controller => 'bird_walker', :action => 'index'  
       else
         # username is valid, login_time is valid, do the real checking
         inactivity = Time.now.to_i - session[:login_time]
@@ -87,7 +89,8 @@ class ApplicationController < ActionController::Base
           flash[:error] = 'Editing session timed out; please login again to continue editing'
           session[:username] = nil    
           session[:login_time] = nil
-          redirect_to :controller => 'bird_walker', :action => 'login'  
+          #TODO: something smarter than just index page?
+          redirect_to :controller => 'bird_walker', :action => 'index'  
         else
           # active session, update the timer
           logger.error("VC: Actively logged in, setting activity timer")
