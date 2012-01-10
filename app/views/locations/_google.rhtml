@@ -1,19 +1,6 @@
 <% locations = google %>
 
-<%
-# for spflrc port 3000 use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohQ3sUasK0Xp4JNHAphqfqhi7UexehQ0DASKsdtZI7ZiC_qc1MWcWRc9pw
-# for localhost use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw
-# for google use ABQIAAAAHB2OV0S5_ezvt-IsSEgTohSUK0GhnQC7rYdVWRYnAqkasXMRmBQvk1Xz8gT-AfNj5yvZI5ENFkQS4w
-      
-if (is_laptop)
-	the_key="ABQIAAAAHB2OV0S5_ezvt-IsSEgTohTJQa0g3IQ9GZqIMmInSLzwtGDKaBTuJCPwK_4hvDn89zQyn5LZWMzcSw"
-else
-	the_key="ABQIAAAAHB2OV0S5_ezvt-IsSEgTohSUK0GhnQC7rYdVWRYnAqkasXMRmBQvk1Xz8gT-AfNj5yvZI5ENFkQS4w"
-end 
-
-%>
-
-<script src="http://maps.google.com/maps/api/js?v=3&sensor=false&key=<%= the_key %>"  type="text/javascript"></script>
+<script src="http://maps.google.com/maps/api/js?v=3&sensor=false"  type="text/javascript"></script>
 
 <script type="text/javascript">
 <!--
@@ -29,6 +16,9 @@ end
 
 		    // for overlays now do this:
 			// http://code.google.com/apis/maps/documentation/javascript/overlays.html#InfoWindows
+
+			// consider ajax load of info windows using this:
+			// http://stackoverflow.com/questions/3381700/google-maps-v3-loading-infowindow-content-via-ajax
 
 			$.ajax({
 				url: '<%= locations_json_url %>',
