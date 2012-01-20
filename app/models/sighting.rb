@@ -6,7 +6,9 @@ class Sighting < ActiveRecord::Base
   validates_presence_of :species_id, :location_id, :trip_id        
 
   validates_numericality_of :count, :allow_nil => true
-  
+
+  validates_uniqueness_of :species_id, :scope => [:location_id, :trip_id]
+
   def full_name
     self.species.common_name
   end

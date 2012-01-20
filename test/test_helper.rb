@@ -53,7 +53,6 @@ class ActiveSupport::TestCase
        
        assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']").size(), "html body should contain pagebody div"
        assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']/div[@id='pageheader']").size(), "pagebody div should contain pageheader div"
-       assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']/div[@id='pageheader']/div[@id='pagetitle']").size(), "div containing title should be at expected path"
      end
    end
 

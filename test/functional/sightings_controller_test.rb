@@ -51,11 +51,11 @@ class SightingsControllerTest < ActionController::TestCase
   def test_create_list
     num_sightings = Sighting.count
 
-    post :create_list, {:sighting => {:trip_id => 1, :location_id => 1}, :abbreviation_list => "dodo ivbwoo"}, {:username => 'testuser', :login_time => Time.now.to_i}
+    post :create_list, {:sighting => {:trip_id => 3, :location_id => 1}, :abbreviation_list => "dodo ivbwoo"}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :redirect
     assert_valid_xml(@response.body)
-    assert_redirected_to :controller => 'trips', :id => 1, :action => 'show'
+    assert_redirected_to :controller => 'trips', :id => 3, :action => 'show'
 
     assert_equal num_sightings + 2, Sighting.count
   end
