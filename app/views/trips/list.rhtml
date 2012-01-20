@@ -1,19 +1,15 @@
 <div id="pagebody">
 	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-		
 		<% editing_is_allowed?() do %>
-			<div class="pageheaderitem"><%= link_to 'New', :action => 'new' %></div>
+			<div><%= link_to 'Add New Trip Report', :action => 'new' %></div>
 		<% end %>
 	</div>
 
 	<div id="pagecontent">
 		<div class="pagecontentmodule">
-			<div class="moduletitle">Recent Trip Reports</div>
+			<div class="moduletitle">Trip Reports</div>
 		</div>                                         
-		
-		<%= render :partial => 'trips/summary', :collection => @recent_trips %>    
-		
+
 		<% trip_lists = @trips/(@trips.size / 3 + 3) %>
 		
 		<table width="100%">
