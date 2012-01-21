@@ -10,19 +10,14 @@
 
 			<%= render :partial => 'bird_walker/welcome' %>   
 			
-			<%= render :partial => 'bird_walker/calendar' %>   
-
 			<% if @bird_of_the_week != nil %>
 				<%= render :partial => 'bird_walker/see_it_this_week' %>   
             <% end %>
 
 			<%= render :partial => 'bird_walker/this_year_so_far' %>
-                                   
-			<div class="pagecontentmodule">
-				<div class="moduletitle">Locations Visited Recently</div>
-			</div>
-			<%= render :partial => 'locations/summary', :collection => @most_visited_locations %>  
 								
+			<%= render :partial => 'bird_walker/calendar' %>   
+
 		<%= between_columns %>
 
 			<div class="pagecontentmodule">

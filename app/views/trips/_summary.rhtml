@@ -1,9 +1,15 @@
 <% trip = summary %>
 
-<div class="pagecontentmodule">
+<div style="background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%); background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 100%);" class="pagecontentmodule">
 	<% has_photo?(trip) do %>
 		<div style="float: right; padding-left: 10px; display: block">	
 			<div class="photo"><%= link_to trip.photos.first.thumb, trip_url(trip) %></div>
+		</div>
+	<% end %>
+
+	<% has_no_photo?(trip) do %>
+		<div style="float: right; padding-left: 10px; display: block">	
+			<img src="images/spacer.gif" width="100px" height="100px" />
 		</div>
 	<% end %>
 

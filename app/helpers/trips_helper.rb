@@ -7,6 +7,10 @@ module TripsHelper
     yield if trip.photos.size >= 1
   end
     
+  def has_no_photo?(trip, &block)
+    yield if trip.photos.size == 0
+  end
+
   def show_trip_list(triplist, headings_flag)
 	  if triplist.size > 50
 			render :partial => 'trips/divided_list', :object => triplist, :locals => { :show_headings => headings_flag }

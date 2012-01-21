@@ -71,6 +71,8 @@ class SightingsController < ApplicationController
           @sighting = Sighting.new(params[:sighting])
           temp = Species.find_by_abbreviation(an_abbrev)
           @sighting.species_id = temp.id  
+
+          raise "Duplicate %s at %s" % [temp.common_name, @sighting.location.name] unless @sighting.valid?
           @sighting.save
         end
 

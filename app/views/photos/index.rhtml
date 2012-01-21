@@ -8,7 +8,7 @@
 			<div class="moduletitle">Location Galleries</div>
 			<% for location in @location_galleries %>
 				<div class="pagecontentitem">
-				<%= link_to location.name, :action => 'gallery', :controller => 'locations', :id => location %>,
+				<%= link_to location.name, :action => 'show', :controller => 'locations', :id => location %>,
 				<%= location.county.state.name%>
 				</div>
 			<% end %>
