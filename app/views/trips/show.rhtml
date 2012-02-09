@@ -57,7 +57,11 @@
 							<% end %>
 						<% end %>
 
-						<%= submit_tag "Edit Checked" %>
+						<div style='padding-top: 20px'>
+							<%= submit_tag "Edit Checked" %>
+							| <%= link_to_function "Check All", "$(':checkbox').attr('checked', true);" %>
+							| <%= link_to_function "Check None", "$(':checkbox').attr('checked', false);" %>
+						</div>
 					<% end %>
 				<% end %>
 
