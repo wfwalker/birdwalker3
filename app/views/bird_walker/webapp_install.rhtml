@@ -50,10 +50,20 @@
 	
 	$(document).ready(function(){  
 		console.log("ready")
-		navigator.mozApps.amInstalled(amInstalledCallback, amInstalledErrorCallback)
+		pendingGetSelf = navigator.mozApps.getSelf();
+		pendingGetSelf.onsuccess = amInstalledCallback;
+		pendingGetSelf.onerror = amInstalledErrorCallback;
+		
 		$('#installButton').click(function() { 
 			console.log("click start")
-			navigator.mozApps.install("/webapp.manifest", "receipt goes here", onsuccess_installed, onerror_installed);
+			var pendingInstall = navigator.mozApps.install("/webapp.manifest");
+			pendingInstall.onsuccess = function() {
+				var appRecord = this.result;
+				console.log("success!");
+			}
+			pendingInstall.onerror = function() {
+				console.log("install failed, " + this.error.name);
+			}
 			console.log("click stop")
 		})
 	})

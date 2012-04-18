@@ -41,9 +41,8 @@ class BirdWalkerController < ApplicationController
     manifest["name"] = "BirdWalker"
     manifest["description"] = "Photographs and Field Notes from Bill Walker"
     manifest["icons"] = {"128" => "/images/birdwalker-logo-128.png"}
-    manifest["widget"] = {"path" => "/bird_walker/webapp_widget", "width" => 200, "height" => 100}
     manifest["default_locale"] = "en"
-    manifest["installs_allowed_from"] = ["https://apps-preview.mozilla.org", "https://addons.mozilla.org", "https://addons-dev.allizom.org"]
+    manifest["installs_allowed_from"] = ["*"]
     manifest["developer"] = {"name" => "Bill Walker", "url" => "http://birdwalker.com"}
     
     render :json => manifest
