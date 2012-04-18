@@ -45,7 +45,7 @@
 
 	function onerror_installed(errorObject) {
 		console.log("onerror_installed")
-		$('#installResults').html("Unable to install birdwalker.com " + errorObject.code)
+		$('#installResults').html("Unable to install birdwalker.com " + this.error.name)
 	}
 	
 	$(document).ready(function(){  
@@ -56,14 +56,10 @@
 		
 		$('#installButton').click(function() { 
 			console.log("click start")
-			var pendingInstall = navigator.mozApps.install("/webapp.manifest");
-			pendingInstall.onsuccess = function() {
-				var appRecord = this.result;
-				console.log("success!");
-			}
-			pendingInstall.onerror = function() {
-				console.log("install failed, " + this.error.name);
-			}
+			installData = {receipts: []};
+			var pendingInstall = navigator.mozApps.install("http://<%= request.headers["host"] %>/webapp.manifest", installData);
+			pendingInstall.onsuccess = onsuccess_installed;
+			pendingInstall.onerror = onerror_installed;
 			console.log("click stop")
 		})
 	})
