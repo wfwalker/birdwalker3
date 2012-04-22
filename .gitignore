@@ -6,3 +6,13 @@ doc/guides/
 public/images/photo/
 public/images/thumb/
 log/production.log
+
+config/environment.rb
+config/database.yml
+upload-db.sh
+importFromFlickrUp.rb
+birdwalker_dump.sql
+upload.sh
+upload-photo.sh
+dump-remote-db.sh
+
