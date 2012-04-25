@@ -1,2 +1,1 @@
-birdwalker3
-===========
+birdwalker3 is a Ruby on Rails app for organizing bird photos and field notes
