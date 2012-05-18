@@ -18,50 +18,53 @@
 	
 	<script type="text/javascript">
 	<!--
-	function getSelfCallback(inApplicationObject) {
+	function amInstalledCallback(inApplicationObject) {
 		if (inApplicationObject != null) {
-			$('#installResults').html(inApplicationObject.manifest.name + " is already installed");
-			$('#installButton').attr('disabled', 'disabled');
-			console.log("is already installed");
+			$('#installResults').html(inApplicationObject.manifest.name + " is already installed")
+			$('#installButton').attr('disabled', 'disabled')
+			console.log("is already installed")
 		}
 		else
 		{
-			console.log("not already installed");
-			$('#installResults').html("BirdWalker is not already installed");
-			$('#installButton').removeAttr('disabled');
+			console.log("not already installed")
+			$('#installResults').html("BirdWalker is not already installed")
+			$('#installButton').removeAttr('disabled')
 		}
 	}
 	
-	function getSelfErrorCallback() {
-		console.log("getSelfErrorCallback")
-		$('#installResults').html("Unable to verify whether birdwalker.com is already installed");
+	function amInstalledErrorCallback() {
+		console.log("amInstalledErrorCallback")
+		$('#installResults').html("Unable to verify whether birdwalker.com is already installed")
 	}
 
-	function installCallback() {
-		console.log("installCallback");
-		$('#installResults').html("Installed birdwalker.com");
-		$('#installButton').attr('disabled', 'disabled');
+	function onsuccess_installed() {
+		console.log("onsuccess_installed")
+		$('#installResults').html("Installed birdwalker.com")
+		$('#installButton').attr('disabled', 'disabled')
 	}
 
-	function installErrorCallback(errorObject) {
-		console.log("installErrorCallback");
-		$('#installResults').html("Unable to install birdwalker.com " + this.error.name);
+	function onerror_installed(errorObject) {
+		console.log("onerror_installed")
+		$('#installResults').html("Unable to install birdwalker.com " + errorObject.code)
 	}
 	
 	$(document).ready(function(){  
-		console.log("ready");
-		$('#installResults').html("Checking whether Birdwalker is already installed");
+		console.log("ready")
 		pendingGetSelf = navigator.mozApps.getSelf();
-		pendingGetSelf.onsuccess = getSelfCallback;
-		pendingGetSelf.onerror = getSelfErrorCallback;
-
+		pendingGetSelf.onsuccess = amInstalledCallback;
+		pendingGetSelf.onerror = amInstalledErrorCallback;
+		
 		$('#installButton').click(function() { 
-			console.log("click start");
-			installData = {receipts: []};
-			var pendingInstall = navigator.mozApps.install("http://<%= request.headers["host"] %>/webapp.manifest", installData);
-			pendingInstall.onsuccess = installCallback;
-			pendingInstall.onerror = installErrorCallback;
-			console.log("click stop");
+			console.log("click start")
+			var pendingInstall = navigator.mozApps.install("/webapp.manifest");
+			pendingInstall.onsuccess = function() {
+				var appRecord = this.result;
+				console.log("success!");
+			}
+			pendingInstall.onerror = function() {
+				console.log("install failed, " + this.error.name);
+			}
+			console.log("click stop")
 		})
 	})
 	-->
