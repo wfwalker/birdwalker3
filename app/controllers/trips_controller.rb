@@ -34,6 +34,20 @@ class TripsController < ApplicationController
     end
   end
 
+  def show_by_date
+    foundDate = Date.new(Integer(params["year"]), Integer(params["month"]), Integer(params["day"]))
+
+    @trip = Trip.find_by_date(foundDate)
+    @page_title = @trip.name
+
+    
+    respond_to do |format|
+      format.html { render :action => 'show' }
+      format.xml  { render :xml => @trip.to_xml(:include => [ :sightings, :photos ]) }
+      format.json  { render :json => @trip.to_json(:include => [ :sightings, :photos ]) }
+    end
+  end
+
   def locations
     @trip = Trip.find(params[:id])
 

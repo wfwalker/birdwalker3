@@ -57,6 +57,18 @@ class TripsControllerTest < ActionController::TestCase
     assert assigns(:trip).valid?
   end
 
+  def test_show_by_date
+    first_trip_date = trips(:trip_one).date
+    get :show_by_date, :year => first_trip_date.year, :month => first_trip_date.month, :day => first_trip_date.day
+
+    assert_response :success
+    xml_document = assert_valid_xml(@response.body)
+    assert_valid_document_title(xml_document, "birdWalker | First Trip")
+    assert_template 'show'
+    assert_not_nil assigns(:trip)
+    assert assigns(:trip).valid?
+  end
+
   def test_show_notes_with_html_tags
     get :show, :id => @second_id
 
