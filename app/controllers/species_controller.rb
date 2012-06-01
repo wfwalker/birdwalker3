@@ -58,6 +58,17 @@ class SpeciesController < ApplicationController
     end
   end
 
+  def show_by_abbreviation
+    @species = Species.find_by_abbreviation(params[:abbreviation])
+    @page_title = @species.common_name
+
+    respond_to do |format|
+      format.html { render :action => 'show' }
+      format.xml  { render :xml => @species }
+      format.json  { render :json => @species }
+    end
+  end
+
   def locations
     @species = Species.find(params[:id])
 

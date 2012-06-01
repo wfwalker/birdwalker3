@@ -37,13 +37,17 @@ ActionController::Routing::Routes.draw do |map|
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
+  # wfw map trips by date
   map.connect 'trips/:year/:month/:day.:format', :controller => 'trips', :action => 'show_by_date'
 
+  # wfw map species by abbreviation
+  map.connect 'species/abbrev/:abbreviation.:format', :controller => 'species', :action => 'show_by_abbreviation'
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'  
   
+  # wfw support for Mozilla Apps API
   map.connect 'webapp.manifest', :controller =>'bird_walker', :action => 'webapp_manifest'
   map.connect 'webapp.manifest.json', :controller =>'bird_walker', :action => 'webapp_manifest'
   map.connect 'manifest.webapp', :controller =>'bird_walker', :action => 'webapp_manifest'
