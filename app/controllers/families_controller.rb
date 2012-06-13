@@ -25,6 +25,8 @@ class FamiliesController < ApplicationController
 
   def list
     @families = Family.find_all_seen
+    @notable_families = @families.select { |family| family.species_seen.size > 5} 
+    @misc_families = @families.select { |family| family.species_seen.size <= 5} 
   end
 
   def show
