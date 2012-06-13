@@ -27,6 +27,10 @@ class Family < ActiveRecord::Base
     Species.find_by_sql("SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND species.family_id='" + self.id.to_s + "' ORDER BY species.id")
   end
   
+  def species_photographed
+    Species.find_by_sql("SELECT DISTINCT species.* FROM species, photos WHERE photos.species_id=species.id AND species.family_id='" + self.id.to_s + "' ORDER BY species.id")
+  end
+
   # TODO: some cleaner way to do this!
   def Family.find_all_seen
     Family.find_by_sql "SELECT DISTINCT(families.id), families.* from families, species, sightings WHERE species.id=sightings.species_id AND species.family_id=families.id ORDER BY families.taxonomic_sort_id"
