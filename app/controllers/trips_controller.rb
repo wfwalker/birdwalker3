@@ -35,7 +35,7 @@ class TripsController < ApplicationController
   end
 
   def show_by_date
-    foundDate = Date.new(Integer(params["year"]), Integer(params["month"]), Integer(params["day"]))
+    foundDate = Date.new(params["year"].to_i(10), params["month"].to_i(10), params["day"].to_i(10))
 
     @trip = Trip.find_by_date(foundDate)
     @page_title = @trip.name
