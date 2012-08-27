@@ -2,7 +2,8 @@ body
 {
 	margin: 0;
 	padding: 0;
-	font: 10pt Georgia, Sans-Serif;    
+	font: 12pt Baskerville, Serif;    
+	text-rendering: optimizeLegibility;
 	-moz-hyphens: auto;
 	hyphens: auto;
 }
@@ -74,71 +75,65 @@ a:hover { text-decoration: underline; }
      
 #banner
 {
-	position: absolute; top: 0px; width: 100%;      
+	position: fixed; top: 0px; width: 100%;    
 	height: 69px;        
 	background-color: #DAE0D2;	 	
 }
 
 #searchbox
 {
-	position: relative; top: 40px; width: 940px; margin-right: auto; margin-left: auto;
+	position: relative; top: 0px; width: 940px; margin-right: auto; margin-left: auto;
+	top: 13px;
 	text-align: right; height: 43px; padding-right: 20px;
 }
 
 #sitetitle
 {
+	position: relative;
+	padding-left: 6px;
 	font-size: 14pt; margin-left: auto; margin-right: auto; margin-top: 5px; width: 940px;
 }                                                                               
 
 #menu
-{                   
+{
+	z-index: 100;
 	position: relative;
+	top: 13px;
 	margin-left: auto; margin-right: auto; width: 940px;
 	background-color: #DAE0D2;	 
 }
          
 ul, ol {list-style: none; margin: 0; padding: 0;}
-ul.sortable {cursor: move}
 
 #menu li
 {
-    background:url("/images/norm_left_trans.gif") no-repeat left top;
-	
 	text-align: left;   
 	float: left;     
 	padding:0 0 0 9px;
+	background-color: #E4EADB;
+	border-left: solid 2px #DAE0D2;
+}             
+
+#searchtab
+{
+	text-align: left;   
+	float: left;     
+	padding: 4px 2px 2px 15px;
+	background-color: #E4EADB;
+	border-left: solid 2px #DAE0D2;
 }             
 
 #menu #current
 {
-    background-image:url("/images/norm_left_on_trans.gif");
+	background-color: #F4FAEB;
 }
 
 #menu a
 {                      
 	float:left;                    
 	display:block;
-	background: url("/images/norm_right_trans.gif") no-repeat right top;
 	padding:5px 15px 4px 6px;
-	text-decoration: none;       
 }                      
-
-/* Commented Backslash Hack
-    hides rule from IE5-Mac \*/
- #header a {float:none;}
- /* End IE5-Mac hack */
-
-#menu #current a
-{
-    background-image:url("/images/norm_right_on_trans.gif");
-    padding-bottom:5px;
-}
-
-#menu a:hover
-{
-	color: red;
-	text-decoration: underline;
-}
 
 #pagetitle
 {
@@ -173,7 +168,7 @@ ul.sortable {cursor: move}
 #pagebody
 {
 	min-height: 100%;
-	padding-top: 28px;
+	padding-top: 70px;
 	padding-bottom: 50px;
 }
 
@@ -242,8 +237,9 @@ ul.sortable {cursor: move}
     width:32px;
     height:25px;
     color: #2D6C91;
-    padding-right: 5px;
+    margin-right: 5px;
     padding-top: 3px;
+    padding-bottom: 5px;
     text-transform: uppercase;
 }
 

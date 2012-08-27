@@ -39,6 +39,51 @@ pageTracker._trackPageview();
     <body>
 	    <div id="banner">
 			<div id="sitetitle"><%= link_to "BirdWalker: photos and field notes by Bill Walker", '/bird_walker' %></div>
+
+	        <div id="menu">  
+				<ul>                                 
+					<li id="<%= @controller.page_kind == 'home' ? 'current' : '' %>">
+						<%= link_to "blog", '/bird_walker' %>
+					</li>
+					<li id="<%= @controller.page_kind == 'photos' ? 'current' : '' %>">
+						<%= link_to "photos", url_for(:controller => 'photos', :action => 'recent_gallery') %>
+					</li>
+					<li id="<%= @controller.page_kind == 'species' ? 'current' : '' %>">
+						<%= link_to "life list", species_url %>
+					</li>
+					<li id="<%= @controller.page_kind == 'trips' ? 'current' : '' %>">
+						<%= link_to "trip reports", trips_url %>
+					</li>
+					<li id="<%= @controller.page_kind == 'locations' ? 'current' : '' %>">
+						<%= link_to "birding map", locations_url %>
+					</li>                             
+					<% editing_is_allowed?() do %>
+					<li id="<%= @controller.page_kind == 'counties' ? 'current' : '' %>">
+						<%= link_to "county lists", counties_url %>
+					</li>
+					<li id="<%= @controller.page_kind == 'states' ? 'current' : '' %>">
+						<%= link_to "state lists", states_url %>
+					</li>                     
+					<% end %>
+					<li id="<%= @controller.page_kind == 'about' ? 'current' : '' %>">
+						<%= link_to "about", '/bird_walker/about' %>
+					</li>
+					<li>
+					</li>
+				</ul>
+				<div id="searchtab">
+					<form action="/bird_walker/search" method="post">
+						<div class="homemenuitem">
+							<% if (@terms == nil) then @terms = "search" end %>
+							<input size="10" onclick="select()" type="text" name="terms" value="<%= @terms %>"></input>
+							<input type="submit" value="Go"></input>
+						</div>
+					</form> 
+				</div>
+			</div>
+
+			<div id="searchbox">
+	        </div>
 	    </div>
 
 		<div id="bottombar">
@@ -52,48 +97,7 @@ pageTracker._trackPageview();
 				<% end %>      
 			</span>            
    		</div>
-
-		<div id="searchbox">
-			<form action="/bird_walker/search" method="post">
-				<div class="homemenuitem">
-					<% if (@terms == nil) then @terms = "search" end %>
-					<input size="10" onclick="select()" type="text" name="terms" value="<%= @terms %>"></input>
-					<input type="submit" value="Go"></input>
-				</div>
-			</form> 
-        </div>
-
-        <div id="menu">  
-			<ul>                                 
-				<li id="<%= @controller.page_kind == 'home' ? 'current' : '' %>">
-					<%= link_to "blog", '/bird_walker' %>
-				</li>
-				<li id="<%= @controller.page_kind == 'photos' ? 'current' : '' %>">
-					<%= link_to "photos", url_for(:controller => 'photos', :action => 'recent_gallery') %>
-				</li>
-				<li id="<%= @controller.page_kind == 'species' ? 'current' : '' %>">
-					<%= link_to "life list", species_url %>
-				</li>
-				<li id="<%= @controller.page_kind == 'trips' ? 'current' : '' %>">
-					<%= link_to "trip reports", trips_url %>
-				</li>
-				<li id="<%= @controller.page_kind == 'locations' ? 'current' : '' %>">
-					<%= link_to "birding map", locations_url %>
-				</li>                             
-				<% editing_is_allowed?() do %>
-				<li id="<%= @controller.page_kind == 'counties' ? 'current' : '' %>">
-					<%= link_to "county lists", counties_url %>
-				</li>
-				<li id="<%= @controller.page_kind == 'states' ? 'current' : '' %>">
-					<%= link_to "state lists", states_url %>
-				</li>                     
-				<% end %>
-				<li id="<%= @controller.page_kind == 'about' ? 'current' : '' %>">
-					<%= link_to "about", '/bird_walker/about' %>
-				</li>
-			</ul>
-		</div>
-		
+	
 		<% if flash[:notice] %>
 			<div id="notice"><%= flash[:notice] %></div>
 		<% end %>         

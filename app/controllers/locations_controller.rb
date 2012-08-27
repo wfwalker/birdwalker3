@@ -32,7 +32,7 @@ class LocationsController < ApplicationController
       format.json  { render :json => @locations }
     end
   end
-    
+
   def photo_metadata          
     @location = Location.find(params[:id])
     photoDataList = @location.photos.collect { |photo|
