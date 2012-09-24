@@ -1,4 +1,6 @@
 class Photo < ActiveRecord::Base
+  attr_accessible :trip_id, :location_id, :species_id
+
   belongs_to :location
   belongs_to :species
   belongs_to :trip
@@ -44,11 +46,11 @@ class Photo < ActiveRecord::Base
   end
   
   def thumb(hostname="")      
-    "<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumb_URL(hostname) + "\" />"
+    ("<img border=\"0\" width=\"100\" height=\"100\" src=\"" + thumb_URL(hostname) + "\" />").html_safe
   end
 
   def photo(hostname="")     
-    "<img border=\"0\" src=\"" + photo_URL(hostname) + "\" />"
+    ("<img border=\"0\" src=\"" + photo_URL(hostname) + "\" />").html_safe
   end
 
   def Photo.map_by_location(photo_list)

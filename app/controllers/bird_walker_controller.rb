@@ -1,4 +1,9 @@
 require "open-uri"   
+require "rexml/document"
+require "rexml/element"
+require "rexml/xmldecl"
+require "rexml/text"
+include REXML
 
 class BirdWalkerController < ApplicationController
   helper :trips
@@ -69,8 +74,7 @@ class BirdWalkerController < ApplicationController
     
     @http_host = request.headers['Host']
     
-    render :layout => false, :file => 'app/views/bird_walker/index_rss.rxml'
-    headers["Content-Type"] = "application/xml"  
+    render :layout => false, :file => 'app/views/bird_walker/index_rss.xml.erb', :content_type => "application/xml"  
   end   
     
   def about

@@ -1,4 +1,6 @@
 class Species < ActiveRecord::Base
+  attr_accessible :abbreviation, :latin_name, :common_name
+  
   belongs_to :family
                      
   # a Species has many sightings, including a first and last one                     
@@ -38,13 +40,13 @@ class Species < ActiveRecord::Base
   end
                           
   # different species lists
-  named_scope :seen, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'         
-  named_scope :seen_by_common_name, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'species.common_name'         
-  named_scope :photographed, :include => [ :photos, :family ], :conditions => [ 'photos.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'
-  named_scope :seen_not_excluded, :include => [ :sightings, :family ], :conditions => [ 'sightings.exclude = false' ], :order => 'families.taxonomic_sort_id, species.id'  
-  named_scope :countable, :conditions => [ 'species.aba_countable = 1' ], :include => :family, :order => 'families.taxonomic_sort_id, species.id'  
-  named_scope :seen_not_excluded_during, lambda { |year| { :include => [ :trips, :sightings, :family ], :conditions => [ 'sightings.exclude=false AND year(trips.date) = ?', year ], :order => 'families.taxonomic_sort_id, species.id' } }  
-  named_scope :seen_in_county, lambda { |county_id| { :include => [ :locations, :family ], :conditions => [ 'year(locations.county_id) = ?', year ], :order => 'families.taxonomic_sort_id, species.id' } }  
+  scope :seen, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'         
+  scope :seen_by_common_name, :include => [ :sightings, :family ], :conditions => [ 'sightings.species_id = species.id' ], :order => 'species.common_name'         
+  scope :photographed, :include => [ :photos, :family ], :conditions => [ 'photos.species_id = species.id' ], :order => 'families.taxonomic_sort_id, species.id'
+  scope :seen_not_excluded, :include => [ :sightings, :family ], :conditions => [ 'sightings.exclude = false' ], :order => 'families.taxonomic_sort_id, species.id'  
+  scope :countable, :conditions => [ 'species.aba_countable = 1' ], :include => :family, :order => 'families.taxonomic_sort_id, species.id'  
+  scope :seen_not_excluded_during, lambda { |year| { :include => [ :trips, :sightings, :family ], :conditions => [ 'sightings.exclude=false AND year(trips.date) = ?', year ], :order => 'families.taxonomic_sort_id, species.id' } }  
+  scope :seen_in_county, lambda { |county_id| { :include => [ :locations, :family ], :conditions => [ 'year(locations.county_id) = ?', year ], :order => 'families.taxonomic_sort_id, species.id' } }  
                                                                             
   # location-related associations
   has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do

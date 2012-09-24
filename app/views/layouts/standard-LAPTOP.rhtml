@@ -62,19 +62,19 @@ pageTracker._trackPageview();
 					<%= link_to "blog", '/bird_walker' %>
 				</li>
 				<li id="<%= @controller.page_kind == 'species' ? 'current' : '' %>">
-					<%= link_to "life list", species_url %>
+					<%= link_to "life list", :controller => 'species', :action => 'life_list' %>
 				</li>
 				<li id="<%= @controller.page_kind == 'trips' ? 'current' : '' %>">
-					<%= link_to "trip reports", trips_url %>
+					<%= link_to "trip reports", trips_path %>
 				</li>
 				<li id="<%= @controller.page_kind == 'locations' ? 'current' : '' %>">
-					<%= link_to "birding map", locations_url %>
+					<%= link_to "birding map", locations_path %>
 				</li>
 				<li id="<%= @controller.page_kind == 'counties' ? 'current' : '' %>">
-					<%= link_to "county lists", counties_url %>
+					<%= link_to "county lists", counties_path %>
 				</li>
 				<li id="<%= @controller.page_kind == 'states' ? 'current' : '' %>">
-					<%= link_to "state lists", states_url %>
+					<%= link_to "state lists", states_path %>
 				</li>
 				<li id="<%= @controller.page_kind == 'photos' ? 'current' : '' %>">
 					<%= link_to "photos", url_for(:controller => 'photos', :action => 'recent_gallery') %>

@@ -8,12 +8,6 @@ class ApplicationController < ActionController::Base
   layout :choose_layout
 
   before_filter :check_uri
-
-  helper_method :page_kind
-
-  def page_kind
-    raise "subclass should implement"
-  end
   
   def check_uri
     redirect_to request.protocol + "birdwalker.com" + request.request_uri if /spflrc/.match(request.host)

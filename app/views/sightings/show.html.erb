@@ -1,0 +1,45 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= @page_title %>
+			<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to 'edit', edit_sighting_url(@sighting) %></span>
+			<% end %>
+		</div>
+	</div>
+	
+	<div id="pagecontent">	
+		<div class="pagecontentmodule">
+			<div class="modulesubtitle">Date</div>
+			<div class="pagecontentitem">
+			        <%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip) %>
+			</div>
+
+			<div class="modulesubtitle">Location</div>
+			<div class="pagecontentitem">
+			        <%= link_to safe_location_name(@sighting), location_url(@sighting.location) %>
+			</div>
+
+			<div class="modulesubtitle">Species</div>
+			<div class="pagecontentitem">
+			        <%= link_to safe_species_common_name(@sighting), species_path(@sighting.species) %>
+			</div>
+
+			<% has_notes?(@sighting) do %>
+				<div class="modulesubtitle">Notes</div>  
+				<div class="pagecontentitem"><%= @sighting.notes %></div>
+			<% end %>
+
+			<% has_count?(@sighting) do %>
+				<div class="modulesubtitle">Count</div>  
+				<div class="pagecontentitem"><%= @sighting.count %></div>
+			<% end %>
+
+			<div class="modulesubtitle">Exclude</div>
+			<div class="pagecontentitem"><%= @sighting.exclude %></div>
+
+			<div class="modulesubtitle">Heard only</div>
+			<div class="pagecontentitem"><%= @sighting.heard_only %></div>
+		</div>
+	</div>
+</div>

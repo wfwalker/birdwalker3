@@ -1,0 +1,42 @@
+<div id="pagebody">
+	<div id="pageheader">
+		<div id="pagetitle">
+			<%= link_to safe_species_common_name(@photo), species_path(@photo.species) %>,
+			<%= link_to short_nice_date(@photo.trip.date), trip_path(@photo.trip) %> at
+			<%= link_to @photo.location.full_name, location_path(@photo.location) %>
+			<% editing_is_allowed?() do %>
+				<span style="font-size: 9pt"><%= link_to '[edit]', edit_photo_url(@photo) %></span>    
+				<span style="font: 9pt Courier">
+					[
+						<% (1..5).each do |index| %>
+							<%= link_to (@photo.rating >= index ? "*" : "-"), :controller => 'photos', :action => 'update_rating', :id => @photo, :rating => index %>
+						<% end %>
+					]
+				</span> 
+			<% end %>   
+		</div>                                                             
+	</div>
+
+	<div id="pagecontent">	 
+
+		<img id="bigphoto" exif="true" src="<%= @photo.photo_URL %>"/>
+
+		<div class="pagecontentmodule">                                           
+			<div id="exifData"></div>
+           	<div style="padding-top: 20px; width: 50%"><%= @photo.notes %></div>
+
+			<div style="padding-top: 20px">All photos on birdWalker are Copyright William F Walker<br/>
+			   For licensing information please contact wfwalkerphoto@gmail.com
+			</div>       
+		</div>   
+		
+		<script language="JavaScript"> 
+			$(document).ready(function(){
+				$("#bigphoto").click(function() {
+					$("#exifData").append($(this).exif("FocalLength") + "mm, " + $(this).exif("ExposureTime") + "s at f" + $(this).exif("FNumber") + ", ISO " + $(this).exif("ISOSpeedRatings"));
+				// exif(strTagName) returns a string with value for the tag [strTagName]
+				});              
+			})
+		</script>
+	</div>
+</div>

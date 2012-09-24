@@ -1,0 +1,14 @@
+<div id="pagebody">	
+	<%= render :partial => 'page_header', :object => @species %>
+
+	<div id="pagecontent">
+		<div class="pagecontentmodule">
+			<div class='pagecontentitem'>
+				<% form_for @species, :url => species_path(@species), :html => { :method => 'put' } do |form| %>
+					<%= render :partial => 'form' %>
+					<%= submit_tag 'Save' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

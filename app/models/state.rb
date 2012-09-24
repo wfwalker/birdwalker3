@@ -11,28 +11,17 @@ class State < ActiveRecord::Base
   #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
   # end
   
-  has_many :species, :class_name => 'Species', :finder_sql => 'SELECT DISTINCT species.* FROM species, families, sightings, locations, counties 
-      WHERE species.id=sightings.species_id AND species.family_id=families.id AND sightings.location_id=locations.id AND
-      locations.county_id=counties.id AND counties.state_id=#{id}
-      AND sightings.exclude=false AND species.aba_countable=true 
-      ORDER BY families.taxonomic_sort_id, species.id'
-      
-  has_many :sightings, :class_name => 'Sighting', :finder_sql => 'SELECT DISTINCT sightings.* FROM sightings, locations, counties, species
-      WHERE sightings.exclude=false AND sightings.species_id=species.id AND species.aba_countable=true AND sightings.location_id=locations.id
-      AND locations.county_id=counties.id AND counties.state_id=#{id} ORDER BY sightings.id' do
-
+  has_many :sightings, :through => :locations do
       def life        
         Sighting.first_per_species(self)
       end
   end
+
+  has_many :species, :through => :sightings, :uniq => true
+      
+  has_many :trips, :through => :sightings
   
-  has_many :trips, :class_name => 'Trip', :finder_sql => 'SELECT DISTINCT trips.* FROM trips, sightings, locations, counties 
-      WHERE trips.id=sightings.trip_id AND sightings.location_id=locations.id AND
-      locations.county_id=counties.id AND counties.state_id=#{id}'
-  
-  has_many :photos, :class_name => 'Photo', :finder_sql => 'SELECT DISTINCT photos.* FROM photos, locations, counties 
-      WHERE photos.location_id=locations.id AND
-      locations.county_id=counties.id AND counties.state_id=#{id}'
+  has_many :photos, :through => :locations
   
   def common?
     self.trips.length > 20

@@ -1,0 +1,21 @@
+<% sighting = full_details %>
+
+<div class="pagecontentitem">
+	<p>
+		<% if page_kind == 'trips' %>
+			<%= link_to safe_species_common_name(sighting), species_path(sighting.species) %> at
+		<% end %>
+		
+		<% if page_kind == 'locations' %>
+			<%= link_to safe_trip_name(sighting), trip_url(sighting.trip) %>,
+		<% else %>
+			<%= link_to safe_location_name(sighting), location_url(sighting.location) %>,
+		<% end %>
+
+	 	<%= link_to short_nice_date(sighting.trip.date), trip_url(sighting.trip) %>
+	</p>
+
+	<% if (sighting.notes && sighting.notes.length > 1) then %>
+		<div class="notes"><%= sighting.notes %></div>
+	<% end%>
+</div>

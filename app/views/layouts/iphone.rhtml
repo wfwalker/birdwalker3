@@ -12,13 +12,13 @@
 				<%= link_to "home", "/bird_walker" %>
 			</div>
 			<div class="<%= @controller.page_kind == 'locations' ? 'locationmenuitem' : 'menuitem' %>">
-				<%= link_to "places", locations_url %>
+				<%= link_to "places", locations_path %>
 			</div>
 			<div class="<%= @controller.page_kind == 'species' ? 'speciesmenuitem' : 'menuitem' %>">
-				<%= link_to "species", species_url %>
+				<%= link_to "species", :controller => 'species', :action => 'life_list' %>
 			</div>
 			<div class="<%= @controller.page_kind == 'trips' ? 'tripmenuitem' : 'menuitem' %>">
-				<%= link_to "trips", trips_url %>
+				<%= link_to "trips", trips_path %>
 			</div>
  
 			<% if (session[:username] != nil) then %>

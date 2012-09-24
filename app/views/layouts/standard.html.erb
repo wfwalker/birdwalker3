@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+		<%= stylesheet_link_tag 'stylesheet' %>
+		<%= stylesheet_link_tag 'jquery.lightbox-0.5'%>
+
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= url_for :path_only => false, :controller => 'bird_walker', :action => 'index_rss' %>" />
+
+		<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+ 		<%= javascript_include_tag 'https://browserid.org/include.js' %>
+   		<%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js' %>
+		<%= javascript_include_tag '/javascripts/jquery.lightbox-0.5.js' %>
+		<%= javascript_include_tag '/javascripts/jquery.exif.js' %>
+		<%= javascript_include_tag 'https://myapps.mozillalabs.com/jsapi/include.js' %>   
+		
+		<% if controller.page_kind == 'home' %>
+			<link rel="application-manifest" href="/webapp.manifest"/>
+		<% end %>
+		
+		<% if @page_title %>
+        	<title>birdWalker | <%= @page_title %></title>
+		<% else %>
+        	<title>birdWalker</title>
+        <% end %>
+
+		<% if ! is_laptop %>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-717974-5");
+pageTracker._trackPageview();
+</script>
+		<% end %>
+    </head>
+    <body>
+	    <div id="banner">
+			<div id="sitetitle"><%= link_to "BirdWalker: photos and field notes by Bill Walker", '/bird_walker' %></div>
+
+	        <div id="menu">  
+				<ul>                                 
+					<li id="<%= controller.page_kind == 'home' ? 'current' : '' %>">
+						<%= link_to "blog", '/bird_walker' %>
+					</li>
+					<li id="<%= controller.page_kind == 'photos' ? 'current' : '' %>">
+						<%= link_to "photos", url_for(:controller => 'photos', :action => 'recent_gallery') %>
+					</li>
+					<li id="<%= controller.page_kind == 'species' ? 'current' : '' %>">
+						<%= link_to "life list", species_index_url %>
+					</li>
+					<li id="<%= controller.page_kind == 'trips' ? 'current' : '' %>">
+						<%= link_to "trip reports", trips_url %>
+					</li>
+					<li id="<%= controller.page_kind == 'locations' ? 'current' : '' %>">
+						<%= link_to "birding map", locations_url %>
+					</li>                             
+					<% editing_is_allowed?() do %>
+					<li id="<%= controller.page_kind == 'counties' ? 'current' : '' %>">
+						<%= link_to "county lists", counties_url %>
+					</li>
+					<li id="<%= controller.page_kind == 'states' ? 'current' : '' %>">
+						<%= link_to "state lists", states_url %>
+					</li>                     
+					<% end %>
+					<li id="<%= controller.page_kind == 'about' ? 'current' : '' %>">
+						<%= link_to "about", '/bird_walker/about' %>
+					</li>
+					<li>
+					</li>
+				</ul>
+				<div id="searchtab">
+					<form action="/bird_walker/search" method="post">
+						<div class="homemenuitem">
+							<% if (@terms == nil) then @terms = "search" end %>
+							<input size="10" onclick="select()" type="text" name="terms" value="<%= @terms %>"></input>
+							<input type="submit" value="Go"></input>
+						</div>
+					</form> 
+				</div>
+			</div>
+
+			<div id="searchbox">
+	        </div>
+	    </div>
+
+		<div id="bottombar">
+			<span class="baritem"><%= controller.page_kind %> <% if @page_title then %>: <%= @page_title %> <% end %></span>
+                                  
+		  	<span class="baritem">
+				<% if (session[:username] != nil) then %>
+					<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout' %>
+				<% else %>
+				    <a href="#" id="loginlink">login</a>
+				<% end %>      
+			</span>            
+   		</div>
+	
+		<% if flash[:notice] %>
+			<div id="notice"><%= flash[:notice] %></div>
+		<% end %>         
+		
+		<% if flash[:error] %>
+			<div id="error"><%= flash[:error] %></div>
+		<% end %>
+		
+        <%= yield %>
+		
+		<script language="JavaScript">
+		<!--
+		$("a#loginlink").click(function() {
+			navigator.id.getVerifiedEmail(function(theBrowserIDAssertion) {
+			    if (theBrowserIDAssertion) {
+			        // This code will be invoked once the user has successfully
+			        // selected an email address they control to sign in with.    
+			
+					// if we get here, post to /bird_walker/verify_browserid
+					$.post("/bird_walker/verify_browserid", {"assertion": theBrowserIDAssertion}).complete(function() { window.setTimeout('location.reload()', 1); })
+			    } else {             
+			        // something went wrong! we didn't generate an assertion, don't bother redrawing the page
+			    }
+			});			
+		});
+		$(document).ready(function(){ 
+
+		});
+		-->
+		</script>
+     </body>
+</html>

@@ -1,0 +1,78 @@
+<% locations = google %>
+
+<script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"  type="text/javascript"></script>
+
+<script type="text/javascript">
+<!--
+		// this is called when the page loads. 
+		// it initializes the map, and creates each marker
+		$(document).ready(function(){   
+	  		// Create a terrain style map
+	  	    var myOptions = {
+		      mapTypeId: google.maps.MapTypeId.TERRAIN
+		    };
+
+		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+		    // for overlays now do this:
+			// http://code.google.com/apis/maps/documentation/javascript/overlays.html#InfoWindows
+
+			// consider ajax load of info windows using this:
+			// http://stackoverflow.com/questions/3381700/google-maps-v3-loading-infowindow-content-via-ajax
+
+			$.ajax({
+				url: '<%= locations_json_url %>',
+				error: function() { console.log("error "); },               
+				success: function(results) {
+					var newBounds = new google.maps.LatLngBounds();
+
+					for (var i = 0; i < results.length; i++) {
+						var location = results[i];
+
+						if (location.latitude != 0 && location.longitude != 0) {
+							locationMarker = new google.maps.LatLng(location.latitude, location.longitude);
+							newBounds.extend(locationMarker);
+
+							var contentString = '<div><a href="/locations/' + location.id + '">' + location.name + '</a></div>' +
+								'<div>' + location.notes + '</div>';
+
+							var the_infowindow = new google.maps.InfoWindow({
+								content: contentString
+							});
+
+							function buildHandler(map, infowindow, marker) {
+							    return function() {
+							        infowindow.open(map, marker);
+							    };
+							};
+
+							var the_marker = new google.maps.Marker({
+								position: locationMarker,
+								map: map,
+								title: location.name
+							});
+
+							google.maps.event.addListener(the_marker, 'click', buildHandler(map, the_infowindow, the_marker));
+						}
+
+					}
+
+				    map.fitBounds(newBounds);
+				}
+			});
+      })    
+-->
+</script>                   
+
+<div class="pagecontentmodule">
+	<div class="moduletitle">
+		<% if (@map_module_title != nil && @map_module_title != "") then %>
+			<%= @map_module_title %>   
+		<% else %>
+		    Map
+		<% end %>
+	</div>
+	<div class="pagecontentitem">
+		<div id="map" style="width: <%= map_width %>px; height: <%= map_height %>px; background-color: lightgray"></div>
+	</div>
+</div>

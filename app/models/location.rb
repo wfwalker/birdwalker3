@@ -1,12 +1,11 @@
 require 'sun_times'
 
 class Location < ActiveRecord::Base
+  attr_accessible :name, :notes, :county_id
+
   belongs_to :county
 
-  has_many :sightings, :class_name => 'Sighting', :finder_sql => 'SELECT DISTINCT sightings.* FROM species, sightings
-    WHERE species.id=sightings.species_id AND sightings.location_id=#{id}
-    AND sightings.exclude=false AND species.aba_countable=1' do
-
+  has_many :sightings do
     def earliest
       Sighting.earliest(self)
     end                      
@@ -31,7 +30,7 @@ class Location < ActiveRecord::Base
   has_many :species, :through => :sightings, :uniq => true do    
     def map_by_family
       load_target
-      Species.map_by_family(proxy_target)
+      Species.map_by_family(proxy_association.target)
     end  
   end
 
@@ -40,7 +39,7 @@ class Location < ActiveRecord::Base
   has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC" do
     def map_by_year
       load_target
-      Trip.map_by_year(proxy_target)
+      Trip.map_by_year(proxy_association.target)
     end
     
     def earliest

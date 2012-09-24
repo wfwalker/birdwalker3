@@ -1,7 +1,9 @@
 class Trip < ActiveRecord::Base
+  attr_accessible :name, :date, :leader, :notes
+
   has_many :sightings do
       def map_by_location
-        Sighting.map_by_location(proxy_owner.sightings)
+        Sighting.map_by_location(proxy_association.owner.sightings)
       end  
   end
   
@@ -10,14 +12,14 @@ class Trip < ActiveRecord::Base
   has_many :species, :through => :sightings, :uniq => true do
     def map_by_family
       load_target
-      Species.map_by_family(proxy_target)
+      Species.map_by_family(proxy_association.target)
     end  
   end
   
   has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do
     def with_lat_long
       load_target
-      Location.with_lat_long(proxy_target)
+      Location.with_lat_long(proxy_association.target)
     end
   end
     

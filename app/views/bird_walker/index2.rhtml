@@ -47,7 +47,7 @@
 					<table height="480px">
 						<tr>
 							<% for photo in photos_by_trip[trip] %>
-								<td class="modulesubtitle"><%= link_to photo.species.common_name, species_instance_url(photo.species) %></td>  
+								<td class="modulesubtitle"><%= link_to photo.species.common_name, species_path(photo.species) %></td>  
 							<% end %>  
 						</tr>
 						<tr height="480px">

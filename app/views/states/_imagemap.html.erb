@@ -1,0 +1,6 @@
+<% visitedStateList = @states.select { |aState| aState.name != "Alaska" and aState.sightings.size > 1 } %>
+<% notVisitedStateList = @states.select { |aState| aState.name != "Alaska" and aState.name != "Hawaii" and aState.sightings.size == 0 } %>
+<% stateList = visitedStateList.collect { |aState| "US-" + aState.abbreviation } + notVisitedStateList.collect { |aState| "US-" + aState.abbreviation }%>
+<% colorList = visitedStateList.collect { |aState| "007700" } + notVisitedStateList.collect { |aState| "777777" }%>
+
+<img border="1" src="http://chart.googleapis.com/chart?cht=map:fixed=15,-130,55,-60&amp;chco=DDDDDD|<%= colorList.join("|") %>&amp;chs=600x450&amp;chld=<%= stateList.join("|") %>" />
