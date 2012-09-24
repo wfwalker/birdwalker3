@@ -45,15 +45,15 @@ module ApplicationHelper
   end
 
   def open_first_column
-    "<table width=\"100%\" cellpadding=\"0px\" cellspacing=\"0px\"><tr valign=\"top\"><td valign=\"top\" width=\"50%\">"
+    "<table width=\"100%\" cellpadding=\"0px\" cellspacing=\"0px\"><tr valign=\"top\"><td valign=\"top\" width=\"50%\">".html_safe
   end         
   
   def between_columns
-		"</td><td width=\"20px\" ><img src=\"/images/blank.gif\" width=\"20px\"/></td><td valign=\"top\" width=\"50%\">"
+		"</td><td width=\"20px\" ><img src=\"/images/blank.gif\" width=\"20px\"/></td><td valign=\"top\" width=\"50%\">".html_safe
 	end
 
   def close_second_column
-		"</td></tr></table>"
+		"</td></tr></table>".html_safe
 	end	                        
 	
 	def counts_by_month_image_tag(totals, width=370, height=150) 
@@ -70,8 +70,8 @@ module ApplicationHelper
 	    :chl => Date::ABBR_MONTHNAMES[1..12].join("|")
 	  } 
 	      
-    chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
-    "<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>"	                                     
+    chartString = ("http://chart.googleapis.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")).html_safe
+    ("<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>").html_safe
   end
 
 	def counts_by_year_image_tag(totals, width=370, height=150) 
@@ -88,8 +88,8 @@ module ApplicationHelper
 	    :chl => Sighting.year_range.to_a.join("|")
 	  } 
 	      
-    chartString = "http://chart.apis.google.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")
-    "<img src=\"" + chartString + "\" alt=\"Totals By Year\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>"	                                     
+    chartString = ("http://chart.googleapis.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&amp;")).html_safe
+    ("<img src=\"" + chartString + "\" alt=\"Totals By Year\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>").html_safe
   end
   
   def manage_history
