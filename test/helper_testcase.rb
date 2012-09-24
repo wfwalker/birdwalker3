@@ -1,5 +1,5 @@
 # TODO Add this to your test_helper.rb
-#require File.expand_path(File.dirname(__FILE__) + '/helper_testcase')
+require File.expand_path(File.dirname(__FILE__) + '/helper_testcase')
 require File.dirname(__FILE__) + '/test_helper'
 
 # Re-raise errors caught by the controller.

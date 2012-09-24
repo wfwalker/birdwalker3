@@ -1,8 +1,9 @@
 ENV["RAILS_ENV"] = "test"
-require File.expand_path('../../config/environment', __FILE__)
-# require File.expand_path('/helper_testcase', __FILE__)
-require 'rails/test_help'
-   
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+require File.expand_path(File.dirname(__FILE__) + '/helper_testcase')
+
+require 'test_help'
+  
 require "rexml/document"
 require "rexml/element"
 require "rexml/xmldecl"
@@ -39,7 +40,7 @@ class ActiveSupport::TestCase
      begin                                       
        return Document.new(some_stuff)     
      rescue REXML::ParseException
-       fail "Invalid XML: " + ($!).to_s() + "\n-----------------------------\n\n"
+       fail "Invalid XML: " + $! + "\n\n\n\n-------------------" + some_stuff + "\n-----------------------------\n\n"
      end
    end
 

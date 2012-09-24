@@ -16,10 +16,12 @@ class LocationsControllerTest < ActionController::TestCase
   end
 
   def test_index
+    # expecting <"locations/index.rhtml"> but rendering with <"locations/_google, locations/_onelinelink, locations/_undivided_list, locations/index, layouts/standard">
+
     get :index
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'locations/index.rhtml'
+    assert_template 'locations/index'
     assert_not_nil assigns(:locations)
   end
 
@@ -28,7 +30,7 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'locations/show.rhtml'
+    assert_template 'locations/show'
 
     assert_not_nil assigns(:location)
     assert assigns(:location).valid?
@@ -44,7 +46,7 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'locations/show_chronological_list.rhtml'
+    assert_template 'locations/show_chronological_list'
 
     assert_not_nil assigns(:location)
     assert assigns(:location).valid?
@@ -65,7 +67,7 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'locations/show_species_by_year.rhtml'
+    assert_template 'locations/show_species_by_year'
 
     assert_not_nil assigns(:location)
     assert assigns(:location).valid?
@@ -76,7 +78,7 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'locations/show_species_by_month.rhtml'
+    assert_template 'locations/show_species_by_month'
 
     assert_not_nil assigns(:location)
     assert assigns(:location).valid?

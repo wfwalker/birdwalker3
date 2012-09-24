@@ -48,7 +48,7 @@ class StatesControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'states/show_chronological_list.rhtml'
+    assert_template 'states/show_chronological_list'
 
     assert_not_nil assigns(:state)
     assert assigns(:state).valid?

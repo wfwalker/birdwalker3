@@ -18,7 +18,7 @@ class CountyTest < ActiveSupport::TestCase
   end
 
   def test_species
-    assert_equal 2, County.find(@first_id).species.count, "test fixture has two species for this county"
+    assert_equal 1, County.find(@first_id).species.count, "test fixture has one species for this county"
   end
 
   def test_locations
@@ -30,6 +30,6 @@ class CountyTest < ActiveSupport::TestCase
   end
 
   def test_photos
-    assert_equal 1, County.find(@first_id).photos.count, "test fixture has one photos for this county"
+    assert_equal 1, County.find(@first_id).photos.count, "test fixture has one photo for this county"
   end
 end
