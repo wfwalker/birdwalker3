@@ -1,54 +1,58 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :posts
+Birdwalker3::Application.routes.draw do
+  resources :posts
 
-  # wfw root URL
-  map.connect '', :controller => 'bird_walker', :action => 'index'
+  match '' => 'bird_walker#index'
 
-  # resources
-  map.resources :counties
-  map.resources :sightings, :collection => { :edit_individual => :post, :update_individual => :put }
-  map.resources :photos, :collection => { :recent_gallery => :get, :recent_gallery_rss => :get }
-  map.resources :trips, :collection => { :list_biggest => :get }
-  map.resources :states
-  map.resources :locations, :collection => { :locations_near => :get }
-  map.resources :families
-  map.resources :species, :singular => :species_instance, :collection => { :life_list => :get, :photo_life_list => :get, :photo_to_do_list => :get }
-  
-  # wfw special map for year list
-  map.connect 'species/year_list/:year', :controller => 'species', :action => 'year_list'
+  resources :counties
 
-  # map.resources :fish, :singular => :fish_instance, :new => {:preview => :post}, :member => {:fillet => :post}
+  resources :sightings do
+    collection do
+      post :edit_individual
+      put :update_individual
+    end
+  end
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  
-  # Sample of regular route:
-  # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
+  resources :photos do
+    collection do
+      get :recent_gallery
+      get :recent_gallery_rss
+    end
+  end
 
-  # Sample of named route:
-  # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
+  resources :trips do
+    collection do
+      get :list_biggest
+    end
+  end
 
-  # You can have the root of your site routed by hooking up '' 
-  # -- just remember to delete public/index.html.
-  # map.connect '', :controller => "welcome"
+  resources :states
 
-  # Allow downloading Web Service WSDL as a file with an extension
-  # instead of a file named 'wsdl'
-  map.connect ':controller/service.wsdl', :action => 'wsdl'
+  resources :locations do
+    collection do
+      get :locations_near
+    end
+  end
 
-  # wfw map trips by date
-  map.connect 'trips/:year/:month/:day.:format', :controller => 'trips', :action => 'show_by_date'
+  resources :families
 
-  # wfw map species by abbreviation
-  map.connect 'species/abbrev/:abbreviation.:format', :controller => 'species', :action => 'show_by_abbreviation'
+  resources :species do
+    collection do
+      get :life_list
+      get :photo_life_list
+      get :photo_to_do_list
+  end
+end
 
-  # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id.:format'
-  map.connect ':controller/:action/:id'  
-  
-  # wfw support for Mozilla Apps API
-  map.connect 'webapp.manifest', :controller =>'bird_walker', :action => 'webapp_manifest'
-  map.connect 'webapp.manifest.json', :controller =>'bird_walker', :action => 'webapp_manifest'
-  map.connect 'manifest.webapp', :controller =>'bird_walker', :action => 'webapp_manifest'
+  # # resources
+  # map.resources :families
+  # map.resources :species, :singular => :species_instance,
+
+  match 'species/year_list/:year' => 'species#year_list'
+  match ':controller/service.wsdl' => '#wsdl'
+  match 'trips/:year/:month/:day.:format' => 'trips#show_by_date'
+  match 'species/abbrev/:abbreviation.:format' => 'species#show_by_abbreviation'
+  match '/:controller(/:action(/:id))'
+  match 'webapp.manifest' => 'bird_walker#webapp_manifest'
+  match 'webapp.manifest.json' => 'bird_walker#webapp_manifest'
+  match 'manifest.webapp' => 'bird_walker#webapp_manifest'
 end
