@@ -27,7 +27,7 @@ class EBird
 
     parsedEbirdData = JSON.parse(ebirdData)
     
-    if ! ebirdData or ebirdData.include?("errorCode"):
+    if ! ebirdData or ebirdData.include?("errorCode") then
       raise RuntimeError, "Exception from eBird: %s" % ebirdData
     end
     
