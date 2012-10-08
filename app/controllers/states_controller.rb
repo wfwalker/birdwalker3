@@ -16,6 +16,12 @@ class StatesController < ApplicationController
   def show
     @state = State.find(params["id"])
     @page_title = @state.name
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @state }
+      format.json  { render :json => @state }
+    end
   end
   
   def locations

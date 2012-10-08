@@ -13,6 +13,12 @@ class CountiesController < ApplicationController
   def show
     @county = County.find(params["id"])
     @page_title = @county.full_name
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @county }
+      format.json  { render :json => @county }
+    end
   end
 
   def locations

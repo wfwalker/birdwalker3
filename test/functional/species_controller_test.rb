@@ -75,6 +75,11 @@ class SpeciesControllerTest < ActionController::TestCase
     assert assigns(:species).valid?
   end
 
+  def test_show_json
+    get :show, :id => @first_id, :format => 'json'
+    assert @response.body.include?('Ivory-billed Woodpecker'), "JSON results '" + @response.body + "' should include common name of species"
+  end
+
   def test_new
     get :new, {}, {:username => 'testuser', :login_time => Time.now.to_i}
 

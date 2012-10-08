@@ -42,7 +42,12 @@ class FamiliesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:family)
     assert assigns(:family).valid?
   end                    
-  
+
+  def test_show_json
+    get :show, :id => @first_id, :format => 'json'
+    assert @response.body.include?('Common 1'), "JSON results '" + @response.body + "' should include family common name"
+  end
+ 
   def test_show_species_by_year
     get :show_species_by_year, :id => @first_id
 

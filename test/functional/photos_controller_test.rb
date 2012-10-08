@@ -40,6 +40,11 @@ class PhotosControllerTest < ActionController::TestCase
     assert assigns(:photo).valid?
   end
 
+  def test_show_json
+    get :show, :id => @first_id, :format => 'json'
+    assert @response.body.include?('aaa'), "JSON results '" + @response.body + "' should include original file name"
+  end  
+
   def test_new
     get :new, {}, {:username => 'testuser', :login_time => Time.now.to_i} 
 

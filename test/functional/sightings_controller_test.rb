@@ -26,6 +26,11 @@ class SightingsControllerTest < ActionController::TestCase
     assert assigns(:sighting).valid?
   end
 
+  def test_show_json
+    get :show, :id => @first_id, :format => 'json'
+    assert @response.body.include?('"count":2'), "JSON results '" + @response.body + "' should include count of 2"
+  end  
+
   def test_new
     get :new, {}, {:username => 'testuser', :login_time => Time.now.to_i}
 

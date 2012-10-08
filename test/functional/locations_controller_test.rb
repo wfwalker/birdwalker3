@@ -16,8 +16,6 @@ class LocationsControllerTest < ActionController::TestCase
   end
 
   def test_index
-    # expecting <"locations/index.rhtml"> but rendering with <"locations/_google, locations/_onelinelink, locations/_undivided_list, locations/index, layouts/standard">
-
     get :index
     assert_response :success
     assert_valid_xml(@response.body)
@@ -34,6 +32,11 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_not_nil assigns(:location)
     assert assigns(:location).valid?
+  end
+
+  def test_show_json
+    get :show, :id => @first_id, :format => 'json'
+    assert @response.body.include?('First Place'), "JSON results should include name of first place"
   end
 
   def test_photo_metadata

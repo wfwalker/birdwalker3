@@ -43,6 +43,11 @@ class StatesControllerTest < ActionController::TestCase
     assert assigns(:state).valid?
   end                    
 
+  def test_show_json
+    get :show, :id => @first_id, :format => 'json'
+    assert @response.body.include?('First State'), "JSON results '" + @response.body + "' should include state name"
+  end
+  
   def test_show_chronological_list
     get :show_chronological_list, :id => @first_id
 

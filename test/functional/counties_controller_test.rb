@@ -42,6 +42,11 @@ class CountiesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:county)
     assert assigns(:county).valid?
   end             
+
+  def test_show_json
+    get :show, :id => @first_id, :format => 'json'
+    assert @response.body.include?('First County'), "JSON results '" + @response.body + "' should include county name"
+  end
   
   def test_show_chronological_list
     get :show_chronological_list, :id => @first_id
@@ -52,8 +57,8 @@ class CountiesControllerTest < ActionController::TestCase
 
     assert_not_nil assigns(:county)
     assert assigns(:county).valid?
-  end                    
-    
+  end       
+                 
   def test_show_species_by_year
     get :show_species_by_year, :id => @first_id
 

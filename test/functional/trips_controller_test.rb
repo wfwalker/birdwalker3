@@ -57,6 +57,11 @@ class TripsControllerTest < ActionController::TestCase
     assert assigns(:trip).valid?
   end
 
+  def test_show_json
+    get :show, :id => @first_id, :format => 'json'
+    assert @response.body.include?('First Trip'), "JSON results '" + @response.body + "' should include trip name"
+  end
+
   def test_show_by_date_1
     first_trip_date = trips(:trip_one).date
     get :show_by_date, :year => 2007, :month => 1, :day => 1

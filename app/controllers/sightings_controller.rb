@@ -14,6 +14,12 @@ class SightingsController < ApplicationController
   def show
     @sighting = Sighting.find(params[:id])
     @page_title = @sighting.full_name
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @sighting }
+      format.json  { render :json => @sighting }
+    end
   end
 
   def new
