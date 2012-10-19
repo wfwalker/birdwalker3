@@ -43,18 +43,6 @@ module ApplicationHelper
   def column_width
     return 460
   end
-
-  def open_first_column
-    "<table width=\"100%\" cellpadding=\"0px\" cellspacing=\"0px\"><tr valign=\"top\"><td valign=\"top\" width=\"50%\">".html_safe
-  end         
-  
-  def between_columns
-		"</td><td width=\"20px\" ><img src=\"/images/blank.gif\" width=\"20px\"/></td><td valign=\"top\" width=\"50%\">".html_safe
-	end
-
-  def close_second_column
-		"</td></tr></table>".html_safe
-	end	                        
 	
 	def counts_by_month_image_tag(totals, width=370, height=150) 
 	  monthly_max = 10 * (totals[1..12].max / 10.0).ceil

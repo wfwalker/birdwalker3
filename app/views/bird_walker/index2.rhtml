@@ -6,17 +6,18 @@
 
 	<div id="pagecontent">                   
 
-		<%= open_first_column %>
+		<div id='column1of2'>
 
 			<%= render :partial => 'bird_walker/welcome' %>   
 	
-		<%= between_columns %>
+		</div>
+		<div id='column2of2'>
 	
 			<% if @bird_of_the_week != nil %>
 				<%= render :partial => 'bird_walker/see_it_this_week' %>   
 	        <% end %>           
 
-		<%= close_second_column %>
+		</div>
 
 		<div class="pagecontentmodule">
 			<div class="moduletitle">Recent Photos</div>

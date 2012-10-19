@@ -6,8 +6,8 @@
 
 	<div id="pagecontent">
 
-		<%= open_first_column %>
-
+		<div id='column1of2'>
+			
 			<%= render :partial => 'bird_walker/welcome' %>   
 			
 			<% if @bird_of_the_week != nil %>
@@ -16,7 +16,8 @@
 
 			<%= render :partial => 'bird_walker/this_year_so_far' %>
 								
-		<%= between_columns %>
+		</div>
+		<div id='column2of2'>
 
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Recent Trip Reports</div>
@@ -24,7 +25,6 @@
 			
 			<%= render :partial => 'trips/summary', :collection => @recent_trips %>    
 			
-   		<%= close_second_column %>
-
+   		</div>
 	</div>
 </div>

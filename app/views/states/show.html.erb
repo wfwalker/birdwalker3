@@ -7,7 +7,7 @@
 		
 		<%= render :partial => 'species/multi_column_list', :object => @state.species %>
 		
-		<%= open_first_column %>
+		<div id='column1of2'>
 		
 			<% if (@state.common?) %>
 				<div class="pagecontentmodule">
@@ -21,14 +21,15 @@
 				<%= show_trip_list(@state.trips, true) %>
 			<% end %>
 			
-	  	<%= between_columns %>
+	  	</div>
+	  	<div id='column2of2'>
 	
 			<% if (@state.locations.with_lat_long.size > 0) %>
 				<% @map_module_title = 'State Map' %>                       
 				<%= render :partial => 'locations/google', :object => @state.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
 			<% end %>
 
-	   	<%= close_second_column %>
+	   	</div>
 
 	</div>
 </div>

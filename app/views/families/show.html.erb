@@ -7,7 +7,7 @@
 	
 	<div id="pagecontent">
 		
-		<%= open_first_column %>
+		<div id='column1of2'>
 
 			<% if @family.common? %>
 				<div class="pagecontentmodule">
@@ -52,13 +52,14 @@
 			<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
 			
 
-	   	<%= between_columns %>
+	   	</div>
+	   	<div id='column2of2'>
 	
 			<% if (Location.with_lat_long(@family.locations).length > 0) %>
 				<% @map_module_title = 'Family Map' %>                       
 				<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations), :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/families/locations/%s.json' % @family.id }  %>
 			<% end %>
 
-	  	<%= close_second_column %>
+	  	</div>
 	</div>
 </div>

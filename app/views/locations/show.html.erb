@@ -7,7 +7,7 @@
 
 		<%= render :partial => 'species/multi_column_list', :object => @location.species %>
 
-		<%= open_first_column %>
+		<div id='column1of2'>
 
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Location Notes</div>  
@@ -34,7 +34,8 @@
 				<% end %>
 			</div>                               
 
-		<%= between_columns %>
+		</div>
+		<div id='column2of2'>
 					
 			<% if (@location.latitude != 0) %>
 				<% @center_latitude = @location.latitude %>
@@ -44,6 +45,6 @@
 				<%= render :partial => 'locations/google', :object => [ @location ], :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/locations/%s.json' % @location.id } %>
 			<% end %>
 		
-   		<%= close_second_column %>
+   		</div>
 	</div>
 </div>

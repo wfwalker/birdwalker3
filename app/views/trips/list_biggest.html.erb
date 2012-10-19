@@ -10,36 +10,33 @@
 
 	<div id="pagecontent">       
  
-	  <%= open_first_column %>
+		<div id='column1of2'>
                    
-		<div class="pagecontentmodule">
-			<div class="moduletitle">Trip Summaries</div>
-		</div>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Trip Summaries</div>
+			</div>
 
-		<%= render :partial => 'trips/summary', :collection => @trips %>
+			<%= render :partial => 'trips/summary', :collection => @trips %>
 
-		<%= between_columns %>     
-                                        
-        <% i = 1 %>
-	    
-	    <div class="pagecontentmodule">   
- 			<div class="moduletitle">Rankings</div>
-			<div class="pagecontentitem">
-		       <table>                   
-					<% for trip in @trips do %>
-					    <tr>
-			                <td align="right"><%= trip.species.size %></td>
-					        <td align="right">#<%= i %></td>
-							<td style="nowrap"><%= link_to trip.name, trip_url(trip) %>, <%= short_nice_date(trip.date) %></td>
-					    </tr>
-				        <% i += 1 %>           
-					<% end %>
-			   </table> 
-			</div>    
 		</div>
-		
-		<%= close_second_column %>         
-		moo2
- 		
+		<div id='column2of2'>     
+	        <% i = 1 %>
+		    
+		    <div class="pagecontentmodule">   
+	 			<div class="moduletitle">Rankings</div>
+				<div class="pagecontentitem">
+			       <table>                   
+						<% for trip in @trips do %>
+						    <tr>
+				                <td align="right"><%= trip.species.size %></td>
+						        <td align="right">#<%= i %></td>
+								<td style="nowrap"><%= link_to trip.name, trip_url(trip) %>, <%= short_nice_date(trip.date) %></td>
+						    </tr>
+					        <% i += 1 %>           
+						<% end %>
+				   </table> 
+				</div>    
+			</div>
+		</div>         
 	</div>
 </div>

@@ -19,7 +19,7 @@
 	<div id="pagecontent">
 		<% mapped = @trip.sightings.map_by_location %>
 		
-		<%= open_first_column %>
+		<div id='column1of2'>
 		
 			<% if (@trip.locations.size == 1) %>
 				<% @module_title = @trip.locations[0].full_name %>
@@ -87,7 +87,8 @@
 				<% end %>
 			<% end %>
 			
-		<%= between_columns %>
+		</div>
+		<div id='column2of2'>
 		
 			<% has_notes?(@trip) do %>
 				<div class="pagecontentmodule">
@@ -106,7 +107,7 @@
 				<%= render :partial => 'locations/google', :object => @trip.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/trips/locations/%s.json' % @trip.id } %>
 			<% end %>
 
- 		<%= close_second_column %>
+ 		</div>
 
 		<%= link_to 'export as eBird', :action => 'show_as_ebird_record_format', :id => @trip %>
 

@@ -181,6 +181,16 @@ ul, ol {list-style: none; margin: 0; padding: 0;}
 	width: 930px;
 }
 
+#column1of2
+{
+	width: 455px; padding-right: 20px; float: left;
+}
+
+#column2of2
+{
+	width: 455px; float: right;
+}
+
 #pagecontent .pagecontentmodule
 {
 	margin-top: 10px;
