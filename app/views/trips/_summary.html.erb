@@ -16,7 +16,7 @@
 	<div class="modulesubtitle">
 		<div class="date">
 			<%= '%02d' % trip.date.day %>
-			<small><%= trip.date.strftime('%b%y') %></small>
+			<small><%= trip.date.strftime("%b'%y") %></small>
 		</div>
 		<%= link_to trip.name, trip_url(trip) %>
 	</div>
