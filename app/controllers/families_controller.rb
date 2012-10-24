@@ -24,6 +24,7 @@ class FamiliesController < ApplicationController
   #       :redirect_to => { :action => :list }
 
   def list
+    @page_title = 'Families'
     @families = Family.find_all_seen
     @notable_families = @families.select { |family| family.species_seen.size > 5} 
     @misc_families = @families.select { |family| family.species_seen.size <= 5} 

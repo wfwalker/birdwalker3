@@ -111,7 +111,7 @@ class SpeciesController < ApplicationController
 
   def edit    
     @species = Species.find(params[:id])
-    @page_title = "new"   
+    @page_title = @species.common_name   
   end
 
   def update

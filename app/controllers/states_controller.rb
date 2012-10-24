@@ -10,7 +10,7 @@ class StatesController < ApplicationController
   caches_action :list, :index, :show, :layout => false
 
   def page_kind
-    "states"
+    "locations"
   end
   
   def show

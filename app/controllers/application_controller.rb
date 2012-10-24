@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     if iphone?  
         "iphone"  
       else
-        "standard"
+        "responsive"
     end  
   end    
   

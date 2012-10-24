@@ -32,6 +32,12 @@ class PhotosController < ApplicationController
   end
 
   def recent_gallery
+    @location_galleries = Location.find_by_sql("
+      SELECT locations.*, count(DISTINCT photos.id) as photo_count
+        FROM locations, photos
+        WHERE photos.location_id=locations.id AND photos.rating > 3
+        GROUP BY locations.id ORDER BY photo_count DESC LIMIT 20");
+
     @recent_gallery_photos = Photo.recent(2 * Photo.default_gallery_size())
     @page_title = "recent"
   end            
