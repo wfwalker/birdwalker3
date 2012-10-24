@@ -1,8 +1,5 @@
 body
 {
-	margin: 0;
-	padding: 0;
-	font: 12pt Baskerville, Serif;    
 	text-rendering: optimizeLegibility;
 	-moz-hyphens: auto;
 	hyphens: auto;
@@ -30,14 +27,12 @@ a:hover { text-decoration: underline; }
 .moduletitle
 {
 	border-bottom: solid 1px #CCCCCC;
-	font-weight: normal; font-size: 16pt;
 	margin-top: 10px; margin-bottom: 10px
 }
 
 .modulesubtitle
 {
-	font-weight: normal; font-size: 14pt;
-	margin-top: 15px; margin-bottom: 15px
+	margin-top: 7px; margin-bottom: 7px
 }
 
 .modulesubtitle a { text-decoration: none; }
@@ -73,136 +68,29 @@ a:hover { text-decoration: underline; }
 	border: solid 1px red;
 }
      
-#banner
-{
-	position: fixed; top: 0px; width: 100%;    
-	height: 69px;        
-	z-index: 79;
-	background-color: #DAE0D2;	 	
-}
-
-#searchbox
-{
-	position: relative; top: 0px; width: 940px; margin-right: auto; margin-left: auto;
-	top: 13px;
-	text-align: right; height: 43px; padding-right: 20px;
-}
-
-#sitetitle
-{
-	position: relative;
-	padding-left: 6px;
-	font-size: 14pt; margin-left: auto; margin-right: auto; margin-top: 5px; width: 940px;
-}                                                                               
-
-#menu
-{
-	z-index: 80;
-	position: relative;
-	top: 13px;
-	margin-left: auto; margin-right: auto; width: 940px;
-	background-color: #DAE0D2;	 
-}
-         
-ul, ol {list-style: none; margin: 0; padding: 0;}
-
-#menu li
-{
-	text-align: left;   
-	float: left;     
-	padding:0 0 0 9px;
-	background-color: #E4EADB;
-	border-left: solid 2px #DAE0D2;
-}             
-
-#searchtab
-{
-	text-align: left;   
-	float: left;     
-	padding: 4px 2px 2px 15px;
-	background-color: #E4EADB;
-	border-left: solid 2px #DAE0D2;
-}             
-
-#menu #current
-{
-	background-color: #F4FAEB;
-}
-
-#menu a
-{                      
-	float:left;                    
-	display:block;
-	padding:5px 15px 4px 6px;
-}                      
-
-#pagetitle
-{
-	font: 14pt Georgia, Sans-Serif;
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
-#pageheader
-{
-	margin-left: auto; 
-	margin-right: auto;
-	width: 930px;
-/*	background-color: #ffffee; */
-}                                             
-
-.location-abbreviation
-{
-	color: green; font-style: italic;
-}                          
- 
-.pageheaderitem
-{
- 	margin-left: 15px; margin-right: 15px; margin-bottom: 3px;
-}
-
 .pagecontentmodule .photo
 {
 	text-align: center; display: inline;
 }
 
-#pagebody
-{
-	min-height: 100%;
-	padding-top: 70px;
-	padding-bottom: 50px;
-}
-
-#pagecontent
-{             
-	margin-left: auto; 
-	margin-right: auto;  
-	background-color: white;
-	width: 930px;
-}
-
-#column1of2
-{
-	width: 455px; padding-right: 20px; float: left;
-}
-
-#column2of2
-{
-	width: 455px; float: right;
-}
-
-#pagecontent .pagecontentmodule
+#pagetitle
 {
 	margin-top: 10px;
 	margin-bottom: 20px;
 }
 
-#pagecontent .pagecontentitem
+.pagecontentmodule
+{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.pagecontentitem
 {
 	margin-bottom: 1px;
 }
 
-#pagecontent .pagecontentitem .notes
+.pagecontentitem .notes
 {
 	margin-bottom: 3px; margin-top: 2px; margin-right: 10px;
 }
@@ -215,26 +103,6 @@ ul, ol {list-style: none; margin: 0; padding: 0;}
 	padding-bottom: 5px;  
 }
 
-#bottombar
-{
-	position: fixed; bottom: -10px; width: 100%; height: 30px;
-	font: 10pt Gill Sans, Sans-Serif;
-	color: gray;
-	background-color: #EEEEEE;
-	border-top: solid 1px gray;
-	z-index: 2;
-	padding-left: 10px;
-}   
-
-.baritem
-{                        
-	padding-left: 10px;
-	padding-right: 10px;   
-	height: 30px;
-	border-right: solid 1px gray;
-	text-transform: lowercase;
-}
-
 
 /* ---------- format dates like pages from a daily tearoff calendar ---------- */
 /* courtesy of http://www.mattvarone.com/web-design/daily-calendar-dates-with-css/ */
@@ -242,19 +110,21 @@ ul, ol {list-style: none; margin: 0; padding: 0;}
 .date {
     float:left;
     display:block;
-    font-size:28px;
+    font-size:24px;
     text-align:center;
-    line-height:15px;
+    line-height: 8px;
     width:32px;
-    height:25px;
-    color: #2D6C91;
+    height:100px;
+    color: #333333;
     margin-right: 5px;
-    padding-top: 3px;
+    padding-top: 0px;
     padding-bottom: 5px;
     text-transform: uppercase;
 }
 
 .date small {
-    font-size: 8pt;
+    line-height:20px;
+    padding-top: 0px;
+    font-size: 7pt;
     color: gray;
 }
