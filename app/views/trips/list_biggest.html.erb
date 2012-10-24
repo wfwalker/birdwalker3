@@ -1,42 +1,37 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-		
-		<% editing_is_allowed?() do %>
-			<div class="pageheaderitem"><%= link_to 'New', :action => 'new' %></div>
-		<% end %>
-	</div>
+<div class="lead"><%= @page_title %></div>
 
+<% editing_is_allowed?() do %>
+	<div class="pageheaderitem"><%= link_to 'New', :action => 'new' %></div>
+<% end %>
 
-	<div id="pagecontent">       
- 
-		<div id='column1of2'>
-                   
-			<div class="pagecontentmodule">
-				<div class="moduletitle">Trip Summaries</div>
-			</div>
+<div class='row'>       
 
-			<%= render :partial => 'trips/summary', :collection => @trips %>
-
+	<div class='span6'>
+               
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Trip Summaries</div>
 		</div>
-		<div id='column2of2'>     
-	        <% i = 1 %>
-		    
-		    <div class="pagecontentmodule">   
-	 			<div class="moduletitle">Rankings</div>
-				<div class="pagecontentitem">
-			       <table>                   
-						<% for trip in @trips do %>
-						    <tr>
-				                <td align="right"><%= trip.species.size %></td>
-						        <td align="right">#<%= i %></td>
-								<td style="nowrap"><%= link_to trip.name, trip_url(trip) %>, <%= short_nice_date(trip.date) %></td>
-						    </tr>
-					        <% i += 1 %>           
-						<% end %>
-				   </table> 
-				</div>    
-			</div>
-		</div>         
+
+		<%= render :partial => 'trips/summary', :collection => @trips %>
 	</div>
+	
+	<div class='span6'>     
+        <% i = 1 %>
+	    
+	    <div class="pagecontentmodule">   
+ 			<div class="moduletitle">Rankings</div>
+			<div class="pagecontentitem">
+		       <table>                   
+					<% for trip in @trips do %>
+					    <tr>
+			                <td align="right"><%= trip.species.size %></td>
+					        <td align="right">#<%= i %></td>
+							<td style="nowrap"><%= link_to trip.name, trip_url(trip) %>, <%= short_nice_date(trip.date) %></td>
+					    </tr>
+				        <% i += 1 %>           
+					<% end %>
+			   </table> 
+			</div>    
+		</div>
+	</div>         
 </div>

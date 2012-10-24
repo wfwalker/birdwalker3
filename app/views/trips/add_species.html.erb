@@ -1,36 +1,31 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
-		</div>
-	</div>
-	
-	<div id="pagecontent">               
-		<div class="pagecontentmodule">
-			<div class="moduletitle">Trip Sightings (<%= @trip.species.size %>)</div>             
-			
-			<div class="pagecontentitem">
-				<% form_tag :controller => 'sightings', :action => 'create_list' do %>
-					<%= error_messages_for 'sighting' %> 
-					
-					<% location_id_to_use = nil
-					   if (flash[:location_id])   
-					       location_id_to_use = flash[:location_id]
-					   elsif (@trip.locations and @trip.locations.size > 0)
-						   location_id_to_use = @trip.locations[0].id
- 					   end %>
+<div class="lead">
+	<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
+</div>
 
-					<!--[form:sighting]-->
-					<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
-					
-					<%= select("sighting", "location_id", Location.find(:all, :order => 'name').collect { |p| [ p.name, p.id ] }, { :selected => location_id_to_use, :prompt => "Choose Location" })%>
-					<p>
-						<label for="sighting_species">Abbreviations</label><br/>
-						<%= text_area_tag 'abbreviation_list', flash[:abbreviations], :autocapitalize => "off", :autocorrect => "off", :size => "7x25" %><br/>
-				  		<%= submit_tag "Add" %>
-					</p>
-				<% end %>
-			</div>
-		</div>
+<div class="pagecontentmodule">
+	<div class="moduletitle">Trip Sightings (<%= @trip.species.size %>)</div>             
+	
+	<div class="pagecontentitem">
+		<%= form_tag :controller => 'sightings', :action => 'create_list' do %>
+			<%= error_messages_for 'sighting' %> 
+			
+			<% location_id_to_use = nil
+			   if (flash[:location_id])   
+			       location_id_to_use = flash[:location_id]
+			   elsif (@trip.locations and @trip.locations.size > 0)
+				   location_id_to_use = @trip.locations[0].id
+				   end %>
+
+			<!--[form:sighting]-->
+			<%= hidden_field("sighting", "trip_id", :value => @trip.id) %>
+			
+			<%= select("sighting", "location_id", Location.find(:all, :order => 'name').collect { |p| [ p.name, p.id ] }, { :selected => location_id_to_use, :prompt => "Choose Location" })%>
+			<p>
+				<label for="sighting_species">Abbreviations</label><br/>
+				<%= text_area_tag 'abbreviation_list', flash[:abbreviations], :autocapitalize => "off", :autocorrect => "off", :size => "7x25" %><br/>
+		  		<%= submit_tag "Add" %>
+			</p>
+		<% end %>
 	</div>
 </div>
+

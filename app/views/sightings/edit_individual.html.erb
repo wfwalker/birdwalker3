@@ -1,49 +1,43 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %>
-		</div>
-	</div>
-	
-	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<div class="pagecontentitem">
+<div class="lead">
+	<%= @page_title %>
+</div>
 
-				<% form_tag update_individual_sightings_path, :method => :put do %>
-					<table>
-					<% for sighting in @sightings %>
-						<% fields_for "sightings[]", sighting do |f| %>
-							<tr>
+<div class="pagecontentmodule">
+	<div class="pagecontentitem">
 
-							<!--[form:sighting]-->
-							<td><%=h sighting.species.common_name %><br /><%=h sighting.trip.name %></td>
+		<%= form_tag update_individual_sightings_path, :method => :put do %>
+			<table>
+			<% for sighting in @sightings %>
+				<%= fields_for "sightings[]", sighting do |f| %>
+					<tr>
 
-							<td>
-								<%= f.collection_select :location_id, Location.find(:all, :order => 'name'), :id, :name %>
-							</td>
+					<!--[form:sighting]-->
+					<td><%=h sighting.species.common_name %><br /><%=h sighting.trip.name %></td>
 
-							<td><%= f.check_box :exclude %>
-							<label for="sighting_exclude">Exclude</label></td>
+					<td>
+						<%= f.collection_select :location_id, Location.find(:all, :order => 'name'), :id, :name %>
+					</td>
 
-							<td><%= f.check_box :heard_only %>
-							<label for="sighting_heard_only">Heard only</label></td>
+					<td><%= f.check_box :exclude %>
+					<label for="sighting_exclude">Exclude</label></td>
 
-							<td><label for="count">Count</label><br/>
-							<%= f.text_field :count, :size => 4 %></td>
+					<td><%= f.check_box :heard_only %>
+					<label for="sighting_heard_only">Heard only</label></td>
 
-							<td><label for="sighting_notes">Notes</label><br/>
-							<%= f.text_field :notes %></td>
+					<td><label for="count">Count</label><br/>
+					<%= f.text_field :count, :size => 4 %></td>
 
-							<!--[eoform:sighting]-->
-							</tr>
-						<% end %>
-				    <% end %>
-					<table>
+					<td><label for="sighting_notes">Notes</label><br/>
+					<%= f.text_field :notes %></td>
 
-
-		  			<%= submit_tag 'Save' %>
+					<!--[eoform:sighting]-->
+					</tr>
 				<% end %>
-			</div>
-		</div>
+		    <% end %>
+			<table>
+
+
+  			<%= submit_tag 'Save' %>
+		<% end %>
 	</div>
 </div>

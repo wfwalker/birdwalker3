@@ -9,18 +9,17 @@
 
 	<% has_no_photo?(trip) do %>
 		<div style="float: right; padding-left: 10px; display: block">	
-			<img src="images/spacer.gif" width="100px" height="100px" />
+			<img src="/images/spacer.gif" width="100px" height="100px" />
 		</div>
 	<% end %>
 
 	<div class="modulesubtitle">
 		<div class="date">
+			<small><%= trip.date.strftime("%b") %></small>
 			<%= '%02d' % trip.date.day %>
-			<small><%= trip.date.strftime("%b'%y") %></small>
 		</div>
-		<%= link_to trip.name, trip_url(trip) %>
+		<div style="padding-top: 9px"><%= link_to trip.name, trip_url(trip) %></div>
 	</div>
-	
 	<div class="pagecontentitem">
 		<div style="font-style: italic"><%= trip.species.size %> species seen, <%= trip.photos.size %> photographed</div>
 

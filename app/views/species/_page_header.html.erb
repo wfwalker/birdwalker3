@@ -1,20 +1,19 @@
 <% species = page_header %>
 
-<div id="pageheader">
-    <div id="pagetitle">
-		<%= @page_title %>
-		(<i><%= species.latin_name %></i>) in
-		<i><%= link_to species.family.common_name, family_url(species.family) %></i>
+<div class="lead">
+	<%= @page_title %>
+	(<i><%= species.latin_name %></i>) in
+	<i><%= link_to species.family.common_name, family_url(species.family) %></i>
 
-		<span style="font-size: 9pt">
-			<% editing_is_allowed?() do %>
-				<%= link_to 'edit', edit_species_path(species) %>
-			<% end %>
-		</span>
+	<span style="font-size: 9pt">
+		<% editing_is_allowed?() do %>
+			<%= link_to 'edit', edit_species_path(species) %>
+		<% end %>
+	</span>
 
-	</div>
-	
-	<% if ! species.aba_countable %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>     
+</div>
+
+<% if ! species.aba_countable %><div class="pageheaderitem">NOT ABA COUNTABLE</div><% end %>     
 	
 <!--
 	<div class="pageheaderitem">
@@ -26,4 +25,3 @@
  		<% end %>
 	</div>               
 -->
-</div>

@@ -1,17 +1,11 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-		</div>
-	</div>
+	<div class="row">                   
 
-	<div id="pagecontent">                   
-
-		<div id='column1of2'>
+		<div class='span6'>
 
 			<%= render :partial => 'bird_walker/welcome' %>   
 	
 		</div>
-		<div id='column2of2'>
+		<div class='span6'>
 	
 			<% if @bird_of_the_week != nil %>
 				<%= render :partial => 'bird_walker/see_it_this_week' %>   

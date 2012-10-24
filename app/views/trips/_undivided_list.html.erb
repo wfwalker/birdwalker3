@@ -1,6 +1,9 @@
 <% trip_list = undivided_list %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle"><%= trip_list.size %> Trip<%= trip_list.size > 1? 's' : '' %></div>
+	<% if (show_headings) %>
+		<div class="moduletitle"><%= trip_list.size %> Trip<%= trip_list.size > 1? 's' : '' %></div>
+	<% end %>
+	
 	<%= render :partial => 'trips/onelinelink' , :collection => trip_list, :locals => { :date_format => "%Y %b %d" } %>
 </div>

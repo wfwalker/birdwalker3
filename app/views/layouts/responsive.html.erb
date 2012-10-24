@@ -1,0 +1,185 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+ 		<%= javascript_include_tag 'https://browserid.org/include.js' %>
+		<%= javascript_include_tag '/javascripts/jquery.min.js' %>
+		<%= javascript_include_tag '/javascripts/jquery.lightbox-0.5.js' %>
+		<%= javascript_include_tag '/javascripts/jquery.exif.js' %>
+		<%= javascript_include_tag 'https://myapps.mozillalabs.com/jsapi/include.js' %>   
+
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= url_for :path_only => false, :controller => 'bird_walker', :action => 'index_rss' %>" />
+
+		<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+		<% if @page_title %>
+        	<title>birdWalker | <%= @page_title %></title>
+		<% else %>
+        	<title>birdWalker</title>
+        <% end %>
+
+		<% if ! is_laptop %>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-717974-5");
+pageTracker._trackPageview();
+</script>
+		<% end %>
+
+		<%= stylesheet_link_tag 'application' %>
+
+	    <!-- Le styles -->
+		<%= stylesheet_link_tag '/stylesheets/bootstrap' %>
+
+	    <style type="text/css">
+	      body {
+	        padding-top: 60px;
+	        padding-bottom: 40px;
+	      }
+	    </style>
+
+		<%= stylesheet_link_tag '/stylesheets/bootstrap-responsive' %>
+
+	    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+
+    </head>
+    <body>
+	    <div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+
+					<a class="brand" href="/bird_walker">BirdWalker</a>
+
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li class="<%= controller.page_kind == 'photos' && 'active' %>">
+								<%= link_to "Photos", url_for(:controller => 'photos', :action => 'recent_gallery') %>
+							</li>
+
+							<li class="dropdown <%= controller.page_kind == 'species' && 'active' %>">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Life List <b class="caret"></b></a>
+	
+								<ul class="dropdown-menu">
+									<li><%= link_to "Index", species_index_url %></li>
+									<li><%= link_to "By Date", :controller => 'species', :action => 'life_list' %></li>
+									<li><%= link_to "By Family", families_url %></li>
+									<li><%= link_to "Photo Life list", :controller => 'species', :action => 'photo_life_list' %></li>
+								</ul>
+							</li>	      
+
+							<li class="dropdown <%= controller.page_kind == 'trips' && 'active' %>">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip reports <b class="caret"></b></a>
+
+								<ul class="dropdown-menu">
+									<li><%= link_to "Index", trips_url %></li>
+									<li><%= link_to "Biggest", :controller => 'trips', :action => 'list_biggest' %></li>
+									<% editing_is_allowed?() do %>
+										<li class="divider"></li>
+										<li><%= link_to 'New Trip', new_trip_url(@trip) %></li>
+									<% end %>
+								</ul>
+							</li>	      
+
+							<li class="dropdown <%= controller.page_kind == 'locations' && 'active' %>">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Birding Map <b class="caret"></b></a>
+
+								<ul class="dropdown-menu">
+									<li><%= link_to "Locations", locations_url %></li>
+									<li><%= link_to "Counties", counties_url %></li>
+									<li><%= link_to "States", states_url %></li>
+
+									<% editing_is_allowed?() do %>
+										<li class="divider"></li>
+										<li><%= link_to 'New Location', new_location_url(@trip) %></li>
+										<li><%= link_to 'New County', new_county_url(@trip) %></li>
+									<% end %>
+								</ul>
+							</li>	      
+
+							<li class='<%= controller.page_kind == "home" && "class=active" %>'><%= link_to "About", '/bird_walker/about' %></li>
+						</ul>
+	
+						<form class="navbar-form pull-right" action="/bird_walker/search" method="post">
+							<input class="span2" name="terms" type="text" placeholder="Search" />
+							<button type="submit" class="btn">Go</button>
+						</form>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+	    </div>
+
+		<% if flash[:notice] %>
+			<div id="notice"><%= flash[:notice] %></div>
+		<% end %>         
+		
+		<% if flash[:error] %>
+			<div id="error"><%= flash[:error] %></div>
+		<% end %>
+		
+		<div class="container">
+	        <%= yield %>
+
+	        <hr />
+
+			<footer>
+				<% if (session[:username] != nil) then %>
+					<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout' %>
+				<% else %>
+				    <a href="#" id="loginlink">login</a>
+				<% end %>      
+
+				| <%= controller.page_kind %> <% if @page_title then %>: <%= @page_title %> <% end %>
+			</footer>
+	    </div>
+
+		
+		<script language="JavaScript">
+		<!--
+		$("a#loginlink").click(function() {
+			navigator.id.getVerifiedEmail(function(theBrowserIDAssertion) {
+			    if (theBrowserIDAssertion) {
+			        // This code will be invoked once the user has successfully
+			        // selected an email address they control to sign in with.    
+			
+					// if we get here, post to /bird_walker/verify_browserid
+					$.post("/bird_walker/verify_browserid", {"assertion": theBrowserIDAssertion}).complete(function() { window.setTimeout('location.reload()', 1); })
+			    } else {             
+			        // something went wrong! we didn't generate an assertion, don't bother redrawing the page
+			    }
+			});			
+		});
+		$(document).ready(function(){ 
+
+		});
+		-->
+		</script>
+
+	    <!-- Le javascript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+
+		<%= javascript_include_tag '/javascripts/bootstrap-transition.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-alert.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-modal.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-dropdown.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-scrollspy.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-tab.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-tooltip.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-popover.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-button.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-collapse.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-carousel.js' %>
+		<%= javascript_include_tag '/javascripts/bootstrap-typeahead.js' %>
+     </body>
+</html>

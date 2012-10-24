@@ -1,14 +1,5 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %>
-			<%= link_to 'by taxonomy', :controller => 'species', :action => 'index' %> |
-			<%= link_to 'by date', :controller => 'species', :action => 'life_list'%> |
-			<%= link_to 'photos', :controller => 'species', :action => 'photo_life_list'%>
-		</div>		
-	</div>
- 	
-	<div id="pagecontent">
-		<%= show_chronological_sighting_list(@life_sightings) %>
-	</div>
-</div>
+<div class="lead">
+	<%= @page_title %>
+</div>		
+
+<%= show_chronological_sighting_list(@life_sightings) %>

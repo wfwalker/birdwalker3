@@ -17,7 +17,7 @@
 	<% end %>
 	
 	<% if @show_location_abbreviation %>
-		<span class="location-abbreviation"><%= sighting.location.abbreviation %></span>
+		<span class="text-success"><%= sighting.location.abbreviation %></span>
 	<% end %>
 	
 	<% editing_is_allowed?() do %>
