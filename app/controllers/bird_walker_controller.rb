@@ -1,4 +1,4 @@
-require "open-uri"   
+require 'net/http'
 require "rexml/document"
 require "rexml/element"
 require "rexml/xmldecl"
