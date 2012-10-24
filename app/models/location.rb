@@ -27,7 +27,7 @@ class Location < ActiveRecord::Base
   
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   
-  has_many :species, :through => :sightings, :uniq => true do    
+  has_many :species, :through => :sightings, :uniq => true, :order => 'species.id' do    
     def map_by_family
       load_target
       Species.map_by_family(proxy_association.target)

@@ -17,7 +17,7 @@ class State < ActiveRecord::Base
       end
   end
 
-  has_many :species, :through => :sightings, :uniq => true
+  has_many :species, :through => :sightings, :uniq => true, :order => 'species.id'
       
   has_many :trips, :through => :sightings
   

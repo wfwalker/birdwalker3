@@ -23,10 +23,9 @@ class County < ActiveRecord::Base
     end
   end
   
-  has_many :species, :through => :sightings, :uniq => true
+  has_many :species, :through => :sightings, :uniq => true, :order => 'species.id'
 
-  has_many :trips, :through => :sightings do   
-    
+  has_many :trips, :through => :sightings, :uniq => true do       
     def earliest
       Trip.earliest(self)
     end                      
