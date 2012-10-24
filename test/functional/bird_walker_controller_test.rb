@@ -60,40 +60,32 @@ class BirdWalkerControllerTest < ActionController::TestCase
 
   def test_search_two_locations
     get(:search, :terms => 'Place')
-    assert @response.body.include?("2 Locations")
-    assert ! @response.body.include?("Trips")
-    assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)  
+    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle'][text()='2 Locations']").size(), "there should a moduletitle for 2 locations"    
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
 
   def test_search_apostrophe_should_find_nothing
     get(:search, :terms => 'Clark\'s Grebe')
-    assert ! @response.body.include?("Locations")
-    assert ! @response.body.include?("Trips")
-    assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)
+    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle']").size(), "there should be only one moduletitle for overall search results"
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
 
   def test_search_empty_terms_should_find_nothing
     get(:search, :terms => '')
-    assert ! @response.body.include?("Locations")
-    assert ! @response.body.include?("Trips")
-    assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)  
+    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle']").size(), "there should be only one moduletitle for overall search results"
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
 
   def test_search_no_terms
     get :search
-    assert ! @response.body.include?("Locations")
-    assert ! @response.body.include?("Trips")
-    assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)  
+    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle']").size(), "there should be only one moduletitle for overall search results"
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
@@ -101,9 +93,8 @@ class BirdWalkerControllerTest < ActionController::TestCase
   def test_search_two_trips
     get :search, :terms => 'Trip'
     assert ! @response.body.include?("Locations")
-    assert @response.body.include?("2 Trips")
-    assert ! @response.body.include?("Species")
     xml_document = assert_valid_xml(@response.body)  
+    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle'][text()='2 Trips']").size(), "there should a moduletitle for 2 trips"    
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end

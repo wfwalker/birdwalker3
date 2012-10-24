@@ -49,9 +49,9 @@ class ActiveSupport::TestCase
        
        assert_equal 1, xml_document.get_elements("html/head/title").size(), "html head should have a title"
        assert_equal expected_title, xml_document.get_elements("html/head/title")[0].text, "title tag should match expected"
-       
-       assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']").size(), "html body should contain pagebody div"
-       assert_equal 1, xml_document.get_elements("html/body/div[@id='pagebody']/div[@id='pageheader']").size(), "pagebody div should contain pageheader div"
+
+       assert_equal 1, xml_document.get_elements("html/body/div[@class='container']").size(), "html body should contain container div"
+       assert_equal 1, xml_document.get_elements("html/body/div[@class='container']/div[@class='lead']").size(), "container div should contain lead div"
      end
    end
 
