@@ -1,19 +1,14 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %>
-			<span style="font-size: 9pt"><%= link_to 'show', county_url(@county) %></span>
-		</div>
-	</div>
-	
-	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<div class="pagecontentitem">
-				<% form_for @county, :url => county_path(@county), :html => { :method => 'put' } do |form| %>
-				  <%= render :partial => 'form' %>
-				  <%= submit_tag 'Save' %>
-				<% end %>
-			</div>
-		</div>
+<div class="lead">
+	<%= @page_title %>
+	<span style="font-size: 9pt"><%= link_to 'show', county_url(@county) %></span>
+</div>
+
+<div class="pagecontentmodule">
+	<div class="pagecontentitem">
+		<%= form_for @county, :url => county_path(@county), :html => { :method => 'put' } do |form| %>
+		  <%= render :partial => 'form' %>
+		  <%= submit_tag 'Save' %>
+		<% end %>
 	</div>
 </div>
+

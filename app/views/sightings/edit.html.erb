@@ -1,19 +1,14 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %>
-		</div>
-		<div class="pageheaderitem"><%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
-	</div>
-	
-	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<div class="pagecontentitem">
-				<% form_for @sighting, :url => sighting_path(@sighting), :html => { :method => 'put' } do |form|%>
-		  			<%= render :partial => 'form' %>
-		  			<%= submit_tag 'Save' %>
-				<% end %>
-			</div>
-		</div>
+<div class="lead">
+	<%= @page_title %>
+</div>
+
+<div class="pageheaderitem"><%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
+
+<div class="pagecontentmodule">
+	<div class="pagecontentitem">
+		<%= form_for @sighting, :url => sighting_path(@sighting), :html => { :method => 'put' } do |form|%>
+  			<%= render :partial => 'form' %>
+  			<%= submit_tag 'Save' %>
+		<% end %>
 	</div>
 </div>

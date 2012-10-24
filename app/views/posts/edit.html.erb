@@ -1,31 +1,26 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-	</div>
+<div class="lead"><%= @page_title %></div>
 
-	<h1>Editing post</h1>
+<h1>Editing post</h1>
 
-	<% form_for(@post) do |f| %>
-	  <%= f.error_messages %>
+<%= form_for(@post) do |f| %>
+  <%= f.error_messages %>
 
-	  <p>
-	    <%= f.label :title %><br />
-	    <%= f.text_field :title %>
-	  </p>
-	  <p>
-	    <%= f.label :date %><br />
-	    <%= f.date_select :date %>
-	  </p>
-	  <p>
-	    <%= f.label :content %><br />
-	    <%= f.text_area :content %>
-	  </p>
-	  <p>
-	    <%= f.submit 'Update' %>
-	  </p>
-	<% end %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
 
-	<%= link_to 'Show', @post %> |
-	<%= link_to 'Back', posts_path %>
-   
-</div>
+<%= link_to 'Show', @post %> |
+<%= link_to 'Back', posts_path %>
