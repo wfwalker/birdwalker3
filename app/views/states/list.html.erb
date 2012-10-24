@@ -1,22 +1,13 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-	</div>
-	                          
-   	<% state_lists = @states/(@states.size / 3)%>
+<div class="lead"><%= @page_title %></div>
+                      
+<% state_lists = @states/(@states.size / 4 + 2)%>
 
-	<div id="pagecontent">
-		
-		<%= render :partial => 'states/imagemap' %>
-		
-		<table width="100%">
-			<tr>
-				<% for state_list in state_lists do %>
-				<td width="33%" valign="top">
-					<%= render :partial => 'states/onelinelink', :collection => state_list %>
-				</td>
-				<% end %>
-			</tr>
-		</table>
-	</div>
+<%= render :partial => 'states/imagemap' %>
+
+<div class='row'>
+	<% for state_list in state_lists do %>
+		<div class='span3'>
+			<%= render :partial => 'states/onelinelink', :collection => state_list %>
+		</div>
+	<% end %>
 </div>

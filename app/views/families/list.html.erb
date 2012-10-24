@@ -1,27 +1,18 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %></div>
-	</div>
-	
+<div class="lead"><%= @page_title %></div>
 
-	<% notable_family_lists = @notable_families/(@notable_families.size / 3 + 1)%>
+<% notable_family_lists = @notable_families/(@notable_families.size / 3 + 1)%>
 
-	<div id="pagecontent">
-		<table width="100%">
-			<tr>
-			<% for notable_family_list in notable_family_lists %>
-					<td width="33%" valign="top">
-						<%= render :partial => 'families/summary', :collection => notable_family_list %>
-					</td>
-			<% end %>
-			</tr>
-		</table>
-
-		<div class="pagecontentitem">
-			Misc Families:
-			<% for misc_family in @misc_families %>
-				<%= link_to "%s (%d)" % [misc_family.common_name, misc_family.species_seen.size], misc_family %>, 
-			<% end %>
+<div class='row'>
+	<% for notable_family_list in notable_family_lists %>
+		<div class='span4'>
+			<%= render :partial => 'families/summary', :collection => notable_family_list %>
 		</div>
-	</div>
+	<% end %>
+</div>
+
+<div class="pagecontentitem">
+	Misc Families:
+	<% for misc_family in @misc_families %>
+		<%= link_to "%s (%d)" % [misc_family.common_name, misc_family.species_seen.size], misc_family %>, 
+	<% end %>
 </div>
