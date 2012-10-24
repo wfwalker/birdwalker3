@@ -1,14 +1,10 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle"><%= @page_title %> (<i><%= @family.latin_name %></i>)</div>
-	</div>
+<div id="pagetitle"><%= @page_title %> (<i><%= @family.latin_name %></i>)</div>
 
-	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<div class="moduletitle">
-				<%= @family.species_seen.size %> Species
-			</div>
-			<%= render :partial => 'sightings/species_by_month_table', :object => @map, :locals => { :totals => @totals }%>
-		</div>
+<div class="pagecontentmodule">
+	<div class="moduletitle">
+		<%= @family.species_seen.size %> Species
 	</div>
+	
+	<%= render :partial => 'sightings/species_by_month_table', :object => @map, :locals => { :totals => @totals }%>
 </div>
+

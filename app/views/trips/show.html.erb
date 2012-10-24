@@ -1,115 +1,115 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to '[edit]', edit_trip_url(@trip) %></span>
-			<% end %>
-			<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
-
-			<% has_reference_url?(@trip) do %>
-				(<%= link_to 'See also...', @trip.reference_url %>)
-			<% end %>
-		</div>
-	</div>
-
-	<% if @trip.photos.size > 0 %>
-		<%= render :partial => 'photos/gallery', :object => @trip.photos %>
-	<% end %>	
+<div class="lead">
+	<% editing_is_allowed?() do %>
+		<span style="font-size: 9pt"><%= link_to '[edit]', edit_trip_url(@trip) %></span>
+	<% end %>
 	
-	<div id="pagecontent">
-		<% mapped = @trip.sightings.map_by_location %>
-		
-		<div id='column1of2'>
-		
-			<% if (@trip.locations.size == 1) %>
-				<% @module_title = @trip.locations[0].full_name %>
-			<% else %>	
-				<% @module_title = @trip.locations.size.to_s + " Locations" %>
-				<% @show_location_abbreviation = true %>
+	<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
+
+	<% has_reference_url?(@trip) do %>
+		(<%= link_to 'See also...', @trip.reference_url %>)
+	<% end %>
+</div>
+
+<% if @trip.photos.length > 3 %>
+	<%= render :partial => 'photos/gallery', :object => @trip.photos %>
+<% end %>	
+
+<div class='row'>
+	<div class='span6'>
+		<% if @trip.photos.length > 0 and @trip.photos.length <= 3 %>
+			<div class="moduletitle">Trip Photos</div>
+			<% for trip_photo in @trip.photos do %>
+				<p><img width="100%" src="<%= trip_photo.photo_URL %>"/></p>
 			<% end %>
-		
-			<% sorted_sighting_list = Sighting.sort_taxonomic(@trip.sightings) %>
-			<% common_names = sorted_sighting_list.collect {|item|item.species.common_name}.uniq %>
-			<% sightings_by_family = Sighting.map_by_family(sorted_sighting_list) %>
-			<% sightings_by_family_and_species = Sighting.map_by_family_and_species(sorted_sighting_list) %>
-			<% sorted_families = Family.sort_taxonomic(sightings_by_family.keys) %>  
+		<% end %>	
 
-			<div class="pagecontentmodule">
-				<div class="moduletitle">
-					<%= common_names.size %> Species at <%= @module_title %>
+		<% if (@trip.locations.size == 1) %>
+			<% @module_title = @trip.locations[0].full_name %>
+		<% else %>	
+			<% @module_title = @trip.locations.size.to_s + " Locations" %>
+			<% @show_location_abbreviation = true %>
+		<% end %>
+	
+		<% sorted_sighting_list = Sighting.sort_taxonomic(@trip.sightings) %>
+		<% common_names = sorted_sighting_list.collect {|item|item.species.common_name}.uniq %>
+		<% sightings_by_family = Sighting.map_by_family(sorted_sighting_list) %>
+		<% sightings_by_family_and_species = Sighting.map_by_family_and_species(sorted_sighting_list) %>
+		<% sorted_families = Family.sort_taxonomic(sightings_by_family.keys) %>  
+
+		<div class="pagecontentmodule">
+			<div class="moduletitle">
+				<%= common_names.size %> Species at <%= @module_title %>
+			</div>
+			<% editing_is_allowed?() do %>
+				<div>
+					<%= link_to '[add sightings]', :id => @trip.id, :controller => 'trips', :action => 'add_species' %>
 				</div>
-				<% editing_is_allowed?() do %>
-					<div>
-						<%= link_to '[add sightings]', :id => @trip.id, :controller => 'trips', :action => 'add_species' %>
-					</div>
 
-					<% form_tag edit_individual_sightings_path do %>
-						<% for a_family in sorted_families do %>
-						    <% if sorted_sighting_list.size > 40 %>
-						  		<div class="modulesubtitle"><%= a_family.common_name %></div>
-							<% end %>
-							<% Species.sort_taxonomic(sightings_by_family_and_species[a_family].keys).each do | a_species | %>
-								<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
-									<%= render :partial => 'sightings/onelinelink', :collection => sightings_by_family_and_species[a_family][a_species] %>
-								<% else %>
-									<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
-								<% end %>
-							<% end %>
-						<% end %>
-
-						<div style='padding-top: 20px'>
-							<%= submit_tag "Edit Checked" %>
-							| <%= link_to_function "Check All", "$(':checkbox').attr('checked', true);" %>
-							| <%= link_to_function "Check None", "$(':checkbox').attr('checked', false);" %>
-						</div>
-					<% end %>
-				<% end %>
-
-				<% editing_is_not_allowed?() do %>
+				<%= form_tag edit_individual_sightings_path do %>
 					<% for a_family in sorted_families do %>
 					    <% if sorted_sighting_list.size > 40 %>
 					  		<div class="modulesubtitle"><%= a_family.common_name %></div>
 						<% end %>
 						<% Species.sort_taxonomic(sightings_by_family_and_species[a_family].keys).each do | a_species | %>
 							<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
-								<%= render :partial => 'sightings/onelinemultilink', :object => sightings_by_family_and_species[a_family][a_species] %>
+								<%= render :partial => 'sightings/onelinelink', :collection => sightings_by_family_and_species[a_family][a_species] %>
 							<% else %>
 								<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
 							<% end %>
 						<% end %>
 					<% end %>
-				<% end %>
-			</div>
-			
-			<% if (@trip.locations.size > 1) %>
-				<% for location in @trip.locations %>
-					<div><%= location.full_name %> = <span class="location-abbreviation"><%= location.abbreviation %></span></div>
-				<% end %>
-			<% end %>
-			
-		</div>
-		<div id='column2of2'>
-		
-			<% has_notes?(@trip) do %>
-				<div class="pagecontentmodule">
-					<div class="moduletitle">
-						<% editing_is_allowed?() do %>
-							<span style="font-size: 9pt"><%= link_to '[edit]', edit_trip_url(@trip) %></span>
-						<% end %>
-						Trip Notes
+
+					<div style='padding-top: 20px'>
+						<%= submit_tag "Edit Checked" %>
+						| <%= link_to_function "Check All", "$(':checkbox').attr('checked', true);" %>
+						| <%= link_to_function "Check None", "$(':checkbox').attr('checked', false);" %>
 					</div>
-					<div class="pagecontentitem"><%= @trip.notes %></div>
+				<% end %>
+			<% end %>
+
+			<% editing_is_not_allowed?() do %>
+				<% for a_family in sorted_families do %>
+				    <% if sorted_sighting_list.size > 40 %>
+				  		<div class="modulesubtitle"><%= a_family.common_name %></div>
+					<% end %>
+					<% Species.sort_taxonomic(sightings_by_family_and_species[a_family].keys).each do | a_species | %>
+						<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
+							<%= render :partial => 'sightings/onelinemultilink', :object => sightings_by_family_and_species[a_family][a_species] %>
+						<% else %>
+							<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+		
+		<% if (@trip.locations.size > 1) %>
+			<div class="modulesubtitle">Legend</div>
+			<% for location in @trip.locations %>
+				<div><%= location.full_name %> = <span class="text-success"><%= location.abbreviation %></span></div>
+			<% end %>
+		<% end %>
+	</div>
+
+	<div class='span6'>
+		<% has_notes?(@trip) do %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">
+					<% editing_is_allowed?() do %>
+						<span style="font-size: 9pt"><%= link_to '[edit]', edit_trip_url(@trip) %></span>
+					<% end %>
+					Trip Notes
 				</div>
-			<% end %>
-	
-			<% if (@trip.locations.with_lat_long.size > 0) %>
-				<% @map_module_title = 'Trip Map' %>                       
-				<%= render :partial => 'locations/google', :object => @trip.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/trips/locations/%s.json' % @trip.id } %>
-			<% end %>
+				<div class="pagecontentitem"><%= @trip.notes.html_safe %></div>
+			</div>
+		<% end %>
 
- 		</div>
-
-		<%= link_to 'export as eBird', :action => 'show_as_ebird_record_format', :id => @trip %>
-
+		<% if (@trip.locations.with_lat_long.size > 0) %>
+			<% @map_module_title = 'Trip Map' %>                       
+			<%= render :partial => 'locations/google', :object => @trip.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/trips/locations/%s.json' % @trip.id } %>
+		<% end %>
 	</div>
 </div>
+
+<%= link_to 'export as eBird', :action => 'show_as_ebird_record_format', :id => @trip %>
+

@@ -1,21 +1,15 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<div class="date">
-				<%= '%02d' % @post.date.day %>
-				<small><%= @post.date.strftime('%b%y') %></small>
-			</div>
-			<%=h @post.title %>
-			<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to 'edit', edit_post_url(post) %></span>
-			<% end %>
-		</div>                    
+<div class="lead">
+	<div class="date">
+		<%= '%02d' % @post.date.day %>
+		<small><%= @post.date.strftime('%b%y') %></small>
 	</div>
+	<%=h @post.title %>
+	<% editing_is_allowed?() do %>
+		<span style="font-size: 9pt"><%= link_to 'edit', edit_post_url(post) %></span>
+	<% end %>
+</div>                    
 
+<p>
+	<%= @post.content %>
+</p>
 
-	<div id="pagecontent">     
-		<p>
-		  <%= @post.content %>
-		</p>
-	</div>
-</div>

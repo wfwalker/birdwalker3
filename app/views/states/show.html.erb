@@ -1,35 +1,29 @@
-<div id="pagebody">
-	<%= render :partial => 'page_header', :object => @state %>
+<%= render :partial => 'page_header', :object => @state %>
 
+<% if @state.photos.length > 3 %>
 	<%= render :partial => 'photos/gallery', :object => @state.photos %>
+<% end %>
 
-	<div id="pagecontent">
-		
-		<%= render :partial => 'species/multi_column_list', :object => @state.species %>
-		
-		<div id='column1of2'>
-		
-			<% if (@state.common?) %>
-				<div class="pagecontentmodule">
-					<div class="moduletitle">When we bird <%= @state.name %></div>	
-					<div class="pagecontentitem">
-						<% month_totals = Trip.map_by_month(@state.trips) %>
-						<%= counts_by_month_image_tag(month_totals)%>
-					</div>
+<%= render :partial => 'species/multi_column_list', :object => @state.species %>
+
+<div class='row'>
+	<div class='span6'>
+		<% if (@state.common?) %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">When we bird <%= @state.name %></div>	
+				<div class="pagecontentitem">
+					<% month_totals = Trip.map_by_month(@state.trips) %>
+					<%= counts_by_month_image_tag(month_totals)%>
 				</div>
-			<% else %>
-				<%= show_trip_list(@state.trips, true) %>
-			<% end %>
-			
-	  	</div>
-	  	<div id='column2of2'>
-	
-			<% if (@state.locations.with_lat_long.size > 0) %>
-				<% @map_module_title = 'State Map' %>                       
-				<%= render :partial => 'locations/google', :object => @state.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
-			<% end %>
-
-	   	</div>
-
+			</div>
+		<% else %>
+			<%= show_trip_list(@state.trips, true) %>
+		<% end %>
+	</div>
+	<div class='span6'>
+		<% if (@state.locations.with_lat_long.size > 0) %>
+			<% @map_module_title = 'State Map' %>                       
+			<%= render :partial => 'locations/google', :object => @state.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
+		<% end %>
 	</div>
 </div>

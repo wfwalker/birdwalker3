@@ -1,20 +1,16 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
-	 		<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
-			<% end %>       
-		</div> 
-	</div>
+<div id="pagetitle">
+	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
+		<% editing_is_allowed?() do %>
+		<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
+	<% end %>       
+</div> 
 
-	<%= render :partial => 'photos/gallery', :object => @county.photos %>
+<%= render :partial => 'photos/gallery', :object => @county.photos %>
 
-	<div id="pagecontent">
-		<div class="pagecontentmodule">
-			<div class="moduletitle"><%= @county.species.length %> Species
-			</div>
-		</div>
-		<%= render :partial => 'sightings/species_by_year_table', :object => @map, :locals => { :totals => @totals }%>
+<div class="pagecontentmodule">
+	<div class="moduletitle"><%= @county.species.length %> Species
 	</div>
 </div>
+
+<%= render :partial => 'sightings/species_by_year_table', :object => @map, :locals => { :totals => @totals }%>
+

@@ -1,12 +1,9 @@
-<div id="pagebody">
-	<%= render :partial => 'page_header', :object => @location %>
-                                
-	<div id="pagecontent">        
-		<div class="pagecontentmodule">
-			<div class="moduletitle">
-				<%= @location.species.size %> Species
-			</div>
-			<%= render :partial => 'sightings/species_by_month_table', :object => @map, :locals => { :totals => @totals }%>
-		</div>
+<%= render :partial => 'page_header', :object => @location %>
+                        
+<div class="pagecontentmodule">                        
+	<div class="moduletitle">
+		<%= @location.species.size %> Species
 	</div>
 </div>
+
+<%= render :partial => 'sightings/species_by_month_table', :object => @map, :locals => { :totals => @totals }%>

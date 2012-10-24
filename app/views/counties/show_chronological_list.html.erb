@@ -1,16 +1,12 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
-	 		<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
-			<% end %>       
-		</div> 
-	</div>
+<div class="lead">
+	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
+		<% editing_is_allowed?() do %>
+		<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
+	<% end %>       
+</div> 
 
+<% if @county.photos.length > 3 %>
 	<%= render :partial => 'photos/gallery', :object => @county.photos %>
+<% end %>
 
-	<div id="pagecontent">
-		<%= show_chronological_sighting_list(@life_sightings) %>
-	</div>
-</div>
+<%= show_chronological_sighting_list(@life_sightings) %>

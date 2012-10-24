@@ -1,63 +1,63 @@
-<div id="pagebody">	
-	<%= render :partial => 'page_header', :object => @species %>
+<%= render :partial => 'page_header', :object => @species %>
 
+<% if @species.photos.length > 3 %>
 	<%= render :partial => 'photos/gallery', :object => @species.photos %>
-	
-	<div id="pagecontent">
+<% end %>
 
-		<div id='column1of2'>  
-		                     
-			<div class="pagecontentmodule">
+<div class='row'>
+
+	<div class='span6'>  
+		<% if @species.photos.length > 0 and @species.photos.length <= 3 %>
+			<div class="moduletitle">Species Photos</div>
+			<% for species_photo in @species.photos do %>
+				<p><img width="100%" src="<%= species_photo.photo_URL %>"/></p>
+			<% end %>
+		<% end %>	
+	                     
+		<div class="pagecontentmodule">
+			<% if @species.notes? or @species.common? %>
 				<div class="moduletitle">Species Notes</div>	
-				<% if @species.common? %>
-					<div class="pagecontentitem">
-	   					We see <%= @species.common_name %> at least
-						<%= @species.sightings.size / (@species.trips.latest.date.year - @species.trips.earliest.date.year) %> times a year. 
-						Between <%= @species.trips.earliest.date.year %> and 
-						<%= @species.trips.latest.date.year %>, we've seen <%= @species.common_name %>
-						at <%= @species.locations.size %> different locations.            
-					</div>	
-				<% end %>
-
-				<% has_notes?(@species) do %>
-					<div class="pagecontentitem"><%= @species.notes %></div>
-				<% end %>
-			</div>
+			<% end %>
 
 			<% if @species.common? %>
-				<div class="pagecontentmodule">
-					<div class="moduletitle">Latest sighting</div>	
-					<%= render :partial => 'sightings/full_details', :object => @species.sightings.latest %>	
-				</div>
-
-				<div class="pagecontentmodule">
-					<div class="moduletitle">First sighting</div>	
-					<%= render :partial => 'sightings/full_details', :object => @species.sightings.earliest %>	
-				</div>
-
-				<div class="pagecontentmodule">
-					<div class="moduletitle">When we see <%= @species.common_name.downcase %></div>	
-					<div class="pagecontentitem">
-						<% month_totals = Sighting.map_by_month(@species.sightings) %>
-						<%= counts_by_month_image_tag(month_totals) %>
-					</div>
-				</div> 
-			<% else %>
-				<div class="pagecontentmodule">
-					<div class="moduletitle">When we see <%= @species.common_name.downcase %></div>	
-					<%= render :partial => 'sightings/date_and_location_link', :collection => Sighting.sort_chronological(@species.sightings) %>
-				</div>
+				<div class="pagecontentitem">
+					From <%= render :partial => 'sightings/full_details', :object => @species.sightings.earliest %> to 
+					<%= render :partial => 'sightings/full_details', :object => @species.sightings.latest %>,
+					we've seen <%= @species.common_name %> roughly
+					<%= @species.sightings.size / (@species.trips.latest.date.year - @species.trips.earliest.date.year) %>
+					times a year
+					at <%= @species.locations.size %> different locations.         
+				</div>	
 			<% end %>
 
+			<% has_notes?(@species) do %>
+				<div class="pagecontentitem"><%= @species.notes %></div>
+			<% end %>
 		</div>
-		<div id='column2of2'>
-	
-			<% if (@species.locations.with_lat_long.size > 0) %>  
-				<% @map_module_title = 'Where we see ' + @species.common_name.downcase %>
-				<%= render :partial => 'locations/google', :object => @species.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/species/locations/%s.json' % @species.id }  %>
-			<% end %>
 
-   		</div>
+		<% if @species.common? %>
+			<div class="pagecontentmodule">
+				<div class="modulesubtitle">Sightings by Month</div>	
+
+				<div class="pagecontentitem">
+					<% month_totals = Sighting.map_by_month(@species.sightings) %>
+					<%= counts_by_month_image_tag(month_totals) %>
+				</div>
+			</div> 
+		<% else %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Sightings</div>	
+				<%= render :partial => 'sightings/date_and_location_link', :collection => Sighting.sort_chronological(@species.sightings) %>
+			</div>
+		<% end %>
 
 	</div>
+	<div class='span6'>
+
+		<% if (@species.locations.with_lat_long.size > 0) %>  
+			<%= render :partial => 'locations/google', :object => @species.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/species/locations/%s.json' % @species.id }  %>
+		<% end %>
+
+		</div>
+
 </div>

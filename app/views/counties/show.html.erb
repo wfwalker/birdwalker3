@@ -1,77 +1,72 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
-	 		<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
-			<% end %>       
-		</div> 
-	</div>
-                                
-	<% benchmark("county show gallery") do %>
-	
+<div class="lead">
+	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
+		<% editing_is_allowed?() do %>
+		<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
+	<% end %>       
+</div> 
+                            
+<% if @county.photos.length > 3 %>
 	<%= render :partial => 'photos/gallery', :object => @county.photos %>
-	
-	<% end %>
-	
-	<div id="pagecontent">
-                                 
-		<%= render :partial => 'species/multi_column_list', :object => @county.species %>
-                                     
-		<div id='column1of2'>
-		
-			<% if @county.common? %>
-				<div class="pagecontentmodule">
-					<div class="moduletitle">County Notes</div>	
-					<div class="pagecontentitem">
-						We visit <%= @county.name %> county at least
-						<%= (@county.trips.length.to_f / @county.year_span.to_f).ceil %> times a year. 
-					</div>	
-				</div>      
+<% end %>
 
-				<div class="pagecontentmodule">
-					<div class="moduletitle">Latest trip</div>	
-					<div class="pagecontentitem">         
-						<% latestTrip = @county.trips.latest %>
-			 			<%= link_to latestTrip.name + ",  " + short_nice_date(latestTrip.date), trip_url(latestTrip) %>
-					</div>
+<div class='row'>
+	<div class='span6'>
+		<% if @county.photos.length > 0 and @county.photos.length <= 3 %>
+			<div class="moduletitle">County Photos</div>
+			<img width="100%" src="<%= @county.photos[0].photo_URL %>"/>
+		<% end %>	
+
+		<% if @county.common? %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">County Notes</div>	
+				<div class="pagecontentitem">
+					We visit <%= @county.name %> county at least
+					<%= (@county.trips.length.to_f / @county.year_span.to_f).ceil %> times a year. 
+				</div>	
+			</div>      
+
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Latest trip</div>	
+				<div class="pagecontentitem">         
+					<% latestTrip = @county.trips.latest %>
+		 			<%= link_to latestTrip.name + ",  " + short_nice_date(latestTrip.date), trip_url(latestTrip) %>
 				</div>
+			</div>
 
-				<div class="pagecontentmodule">
-					<div class="moduletitle">First trip</div>	
-					<div class="pagecontentitem">
-						<% earliestTrip = @county.trips.earliest %>
-				 		<%= link_to earliestTrip.name + ",  " + short_nice_date(earliestTrip.date), trip_url(earliestTrip) %>
-					</div>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">First trip</div>	
+				<div class="pagecontentitem">
+					<% earliestTrip = @county.trips.earliest %>
+			 		<%= link_to earliestTrip.name + ",  " + short_nice_date(earliestTrip.date), trip_url(earliestTrip) %>
 				</div>
+			</div>
 
-				<div class="pagecontentmodule">
-					<div class="moduletitle">When we bird <%= @county.name %> County</div>	
-					<div class="pagecontentitem">                
-						<% month_totals = Trip.map_by_month(@county.trips) %>
-						<%= counts_by_month_image_tag(month_totals)%>
-					</div>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">When we bird <%= @county.name %> County</div>	
+				<div class="pagecontentitem">                
+					<% month_totals = Trip.map_by_month(@county.trips) %>
+					<%= counts_by_month_image_tag(month_totals)%>
 				</div>
-			<% else %>
-				<div class="pagecontentmodule">
-					<div class="moduletitle">County Notes</div>	
-					<div class="pagecontentitem">
-						We have only visited <%= @county.name %> county <%= @county.trips.length %> times since we started birding.
-					</div>	
-				</div>      
+			</div>
+		<% else %>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">County Notes</div>	
+				<div class="pagecontentitem">
+					We have only visited <%= @county.name %> county <%= @county.trips.length %> times since we started birding.
+				</div>	
+			</div>      
 
-				<%= show_trip_list(@county.trips, true) %>
-			<% end %>   
-			      		
-		</div>
-		<div id='column2of2'>
-		
-			<% if (@county.locations.with_lat_long.size > 0) %>
-				<% @map_module_title = 'County Map' %>                       
-				<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/counties/locations/%s.json' % @county.id }  %>
-			<% end %>
-		
- 		</div>  
-
+			<%= show_trip_list(@county.trips, false) %>
+		<% end %>   
 	</div>
+
+	<div class='span6'>
+		<% if (@county.locations.with_lat_long.size > 0) %>
+			<% @map_module_title = 'County Map' %>                       
+			<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/counties/locations/%s.json' % @county.id }  %>
+		<% end %>
+	</div>  
 </div>
+
+<%= render :partial => 'species/multi_column_list', :object => @county.species %>
+                                 

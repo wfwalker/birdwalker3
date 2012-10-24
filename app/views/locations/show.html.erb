@@ -1,50 +1,44 @@
-<div id="pagebody">
-	<%= render :partial => 'page_header', :object => @location %>
+<%= render :partial => 'page_header', :object => @location %>
 
-	<%= render :partial => 'photos/gallery', :object => @location.photos %>
-		
-	<div id="pagecontent">     
+<%= render :partial => 'photos/gallery', :object => @location.photos %>
+	
+<%= render :partial => 'species/multi_column_list', :object => @location.species %>
 
-		<%= render :partial => 'species/multi_column_list', :object => @location.species %>
-
-		<div id='column1of2'>
-
-			<div class="pagecontentmodule">
-				<div class="moduletitle">Location Notes</div>  
-				  
-				<% if (@location.latitude != 0) %>
-					<div class="pagecontentitem">Daylight today: <%= short_nice_time(@location.sunrise().localtime) %> to <%= short_nice_time(@location.sunset().localtime) %></div>  
-				<% end %>  
-				
-				<% if @location.common? %>
-					<div class="pagecontentitem">
-						We visit <%= @location.name %> at least
-						<%= (@location.trips.length.to_f / (@location.trips.latest.date.year - @location.trips.earliest.date.year)).ceil %> times a year. 
-					</div>	
-				<% else %>
-					<div class="pagecontentitem">
-						We have only visited <%= @location.name %> <%= @location.trips.length %> times. 
-
-						<%= show_trip_list(@location.trips, true) %>					
-					</div>	               
-                <% end %>     
-
-				<% has_notes?(@location) do %>
-					<div class="pagecontentitem"><%= @location.notes %></div>
-				<% end %>
-			</div>                               
-
-		</div>
-		<div id='column2of2'>
-					
+<div class='row'>
+	<div class='span6'>
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Location Notes</div>  
+			  
 			<% if (@location.latitude != 0) %>
-				<% @center_latitude = @location.latitude %>
-				<% @center_longitude = @location.longitude %>
-				<% @locations = [ @location ] %>
-				<% @map_module_title = 'Location Map' %>
-				<%= render :partial => 'locations/google', :object => [ @location ], :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/locations/%s.json' % @location.id } %>
+				<div class="pagecontentitem">Daylight today: <%= short_nice_time(@location.sunrise().localtime) %> to <%= short_nice_time(@location.sunset().localtime) %></div>  
+			<% end %>  
+			
+			<% if @location.common? %>
+				<div class="pagecontentitem">
+					We visit <%= @location.name %> at least
+					<%= (@location.trips.length.to_f / (@location.trips.latest.date.year - @location.trips.earliest.date.year)).ceil %> times a year. 
+				</div>	
+			<% else %>
+				<div class="pagecontentitem">
+					We have only visited <%= @location.name %> <%= @location.trips.length %> times. 
+
+					<%= show_trip_list(@location.trips, false) %>					
+				</div>	               
+	        <% end %>     
+
+			<% has_notes?(@location) do %>
+				<div class="pagecontentitem"><%= @location.notes %></div>
 			<% end %>
-		
-   		</div>
+		</div>                               
+	</div>
+
+	<div class='span6'>
+		<% if (@location.latitude != 0) %>
+			<% @center_latitude = @location.latitude %>
+			<% @center_longitude = @location.longitude %>
+			<% @locations = [ @location ] %>
+			<% @map_module_title = 'Location Map' %>
+			<%= render :partial => 'locations/google', :object => [ @location ], :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/locations/%s.json' % @location.id } %>
+		<% end %>
 	</div>
 </div>
