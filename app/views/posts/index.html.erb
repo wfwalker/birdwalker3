@@ -1,38 +1,31 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<div id="pagetitle">
-			<%= @page_title %>
-			<% editing_is_allowed?() do %>
-				<span style="font-size: 9pt"><%= link_to 'edit', edit_post_url(post) %></span>
-			<% end %>
-		</div>                    
-	</div>
+<div class="lead">
+	<%= @page_title %>
+	<% editing_is_allowed?() do %>
+		<span style="font-size: 9pt"><%= link_to 'edit', edit_post_url(post) %></span>
+	<% end %>
+</div>                    
 
+<div class="moduletitle">Listing posts</div>
 
-	<div id="pagecontent">     
-		<div class="moduletitle">Listing posts</div>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th></th>
+  </tr>
 
-		<table>
-		  <tr>
-		    <th>Title</th>
-		    <th>Date</th>
-		    <th></th>
-		  </tr>
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= link_to post.title, post_url(post) %></td>
+    <td><%=h post.date %></td>
+	<% editing_is_allowed?() do %>
+	    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+	    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td> 
+	<% end %>
+  </tr>
+<% end %>
+</table>
 
-		<% @posts.each do |post| %>
-		  <tr>
-		    <td><%= link_to post.title, post_url(post) %></td>
-		    <td><%=h post.date %></td>
-			<% editing_is_allowed?() do %>
-			    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-			    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td> 
-			<% end %>
-		  </tr>
-		<% end %>
-		</table>
+<br />
 
-		<br />
-
-		<%= link_to 'New post', new_post_path %>   
-	</div>
-</div>
+<%= link_to 'New post', new_post_path %>   

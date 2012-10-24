@@ -1,23 +1,17 @@
-<div id="pagebody">
-	<div id="pageheader">
-		<% editing_is_allowed?() do %>
-			<div><%= link_to 'Add New Location', new_location_url %></div>
-		<% end %>
-	</div>
+<div id="pagetitle">
+	<% editing_is_allowed?() do %>
+		<div><%= link_to 'Add New Location', new_location_url %></div>
+	<% end %>
+</div>
 
-	<div id="pagecontent">
-		<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 930, :map_height => 480, :locations_json_url => '/locations.json' } %>
-	
-		<% location_lists = @locations/(@locations.size / 3 + 3)%>
+<%= render :partial => 'locations/google', :object => Location.with_lat_long(@locations), :locals => { :map_width => 930, :map_height => 480, :locations_json_url => '/locations.json' } %>
 
-		<table width="100%">
-			<tr>
-				<% for location_list in location_lists do %>
-					<td width="33%" valign="top">
-						<%= show_location_list(location_list, false) %>
-					</td>
-				<% end %>
-			</tr>
-		</table>
-	</div>             
+<% location_lists = @locations/(@locations.size / 3 + 3)%>
+
+<div class='row'>
+	<% for location_list in location_lists do %>
+		<div class='span4'>
+			<%= show_location_list(location_list, false) %>
+		</div>
+	<% end %>
 </div>
