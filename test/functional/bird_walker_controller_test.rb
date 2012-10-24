@@ -92,7 +92,6 @@ class BirdWalkerControllerTest < ActionController::TestCase
 
   def test_search_two_trips
     get :search, :terms => 'Trip'
-    assert ! @response.body.include?("Locations")
     xml_document = assert_valid_xml(@response.body)  
     assert_equal 1, xml_document.get_elements("//div[@class='moduletitle'][text()='2 Trips']").size(), "there should a moduletitle for 2 trips"    
     assert_valid_document_title(xml_document, "birdWalker | search results")
