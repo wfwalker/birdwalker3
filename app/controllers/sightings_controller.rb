@@ -24,7 +24,7 @@ class SightingsController < ApplicationController
 
   def new
     @sighting = Sighting.new  
-    @page_title = "new"
+    @page_title = "New Sighting"
 
     if (params[:trip_id] != "")
       @sighting.trip_id = params[:trip_id]
@@ -118,6 +118,7 @@ class SightingsController < ApplicationController
 
   def edit_individual
     @sightings = Sighting.find(params[:sighting_ids])
+    @page_title = 'Edit %d sightings' % @sightings.length
   end
 
   def update_individual
