@@ -2,7 +2,7 @@
 
 <div class="pagecontentmodule">
 	<div class='pagecontentitem'>
-		<%= form_for @species, :url => species_path(@species), :html => { :method => 'put' } do |form| %>
+		<%= form_for @species, :url => species_path(@species), :html => { :class => 'form-horizontal' } do |form| %>
 			<%= render :partial => 'form' %>
 			<%= submit_tag 'Save' %>
 		<% end %>

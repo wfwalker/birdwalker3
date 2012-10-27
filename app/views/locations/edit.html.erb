@@ -1,17 +1,8 @@
 <div class="lead"><%= @page_title %></div>
 
-<div class="pageheaderitem">
-	<%= link_to @location.county.name + " County", county_url(@location.county) %>,
-	<%= link_to @location.county.state.name, state_url(@location.county.state) %>
-</div>
-
-<% has_reference_url?(@location) do %>
-	<div class="pageheaderitem"><a href="<%= @location.reference_url %>">See also...</a></div>
-<% end%>
-
 <div class="pagecontentmodule">
 	<div class="pagecontentitem">
-		<%= form_for @location, :url => location_path(@location), :html => { :method => 'put' } do |form| %>
+		<%= form_for @location, :url => location_path(@location), :html => { :class => 'form-horizontal' } do |form| %>
 		  <%= render :partial => 'form' %>
 		  <%= submit_tag 'Save' %>
 		<% end %>

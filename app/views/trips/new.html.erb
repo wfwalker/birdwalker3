@@ -2,7 +2,7 @@
 
 <div class="pagecontentmodule">
 	<div class="pagecontentitem">
-		<%= form_tag :action => 'create' do %>
+		<%= form_for @trip, :html => { :class => 'form-horizontal' }  do |form| %>
   			<%= render :partial => 'form' %>
   			<%= submit_tag "Create" %>
 		<% end %>
