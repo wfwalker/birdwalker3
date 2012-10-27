@@ -3,7 +3,7 @@ class Sighting < ActiveRecord::Base
   belongs_to :species
   belongs_to :trip  
 
-  attr_accessible :species_id, :location_id, :trip_id
+  attr_accessible :species_id, :location_id, :trip_id, :exclude, :heard_only, :count, :notes
   
   validates_presence_of :species_id, :location_id, :trip_id        
 

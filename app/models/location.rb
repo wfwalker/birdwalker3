@@ -1,7 +1,7 @@
 require 'sun_times'
 
 class Location < ActiveRecord::Base
-  attr_accessible :name, :notes, :county_id
+  attr_accessible :name, :notes, :county_id, :reference_url, :city, :latitude, :longitude, :photo
 
   belongs_to :county
 

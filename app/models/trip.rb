@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :name, :date, :leader, :notes
+  attr_accessible :name, :date, :leader, :notes, :reference_url
 
   has_many :sightings do
       def map_by_location
