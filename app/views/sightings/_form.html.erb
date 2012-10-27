@@ -2,19 +2,44 @@
 
 <!--[form:sighting]-->
 
-<p><label for="sighting_location">Location</label><br/>
-<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name) %>
-</p>
+<div class="control-group">
+	<label class="control-label" for="sighting_location">Location</label>
+	<div class="controls">
+		<%= collection_select("sighting", "location_id", Location.find(:all, :order => 'name'), :id, :name) %>
+	</div>
+</div>
 
-<p><%= check_box 'sighting', 'exclude'  %><label for="sighting_exclude">Exclude</label></p>
+<div class="control-group">
+	<div class="controls">
+		<label class="checkbox" for="sighting_exclude">
+			<%= check_box 'sighting', 'exclude'  %>
+			Exclude
+		</label>
+	</div>
+</div>
 
-<p><%= check_box 'sighting', 'heard_only'  %><label for="sighting_heard_only">Heard only</label></p>
+<div class="control-group">
+	<div class="controls">
+		<label class="checkbox" for="sighting_heard_only">
+			<%= check_box 'sighting', 'heard_only'  %>
+			Heard only
+		</label>
+	</div>
+</div>
 
-<p><label for="count">Count</label><br/>
-<%= text_field 'sighting', 'count'  %></p>
+<div class="control-group">
+	<label class="control-label" for="count">Count</label>
+	<div class="controls">
+		<%= text_field 'sighting', 'count'  %>
+	</div>
+</div>
 
-<p><label for="sighting_notes">Notes</label><br/>
-<%= text_area 'sighting', 'notes'  %></p>
+<div class='control-group'>
+	<label class="control-label" for="sighting_notes">Notes</label>
+	<div class="controls">
+		<%= text_area 'sighting', 'notes'  %>
+	</div>
+</div>
 
 <!--[eoform:sighting]-->
 

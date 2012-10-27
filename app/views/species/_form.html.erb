@@ -1,22 +1,50 @@
 <%= error_messages_for 'species' %>
 
 <!--[form:species]-->
-<p><label for="species_abbreviation">Abbreviation</label><br/>
-<%= text_field 'species', 'abbreviation'  %></p>
 
-<p><label for="species_latin_name">Latinname</label><br/>
-<%= text_field 'species', 'latin_name'  %></p>
+<div class="control-group">
+	<label class="control-label" for="species_abbreviation">Abbreviation</label>
+	<div class="controls">
+		<%= text_field 'species', 'abbreviation'  %>
+	</div>
+</div>
 
-<p><label for="species_common_name">Commonname</label><br/>
-<%= text_field 'species', 'common_name'  %></p>
+<div class="control-group">
+	<label class="control-label" for="species_latin_name">Latin Name</label>
+	<div class="controls">
+		<%= text_field 'species', 'latin_name'  %>
+	</div>
+</div>
 
-<p><label for="species_notes">Notes</label><br/>
-<%= text_area 'species', 'notes'  %></p>
+<div class="control-group">
+	<label class="control-label" for="species_common_name">Common Name</label>
+	<div class="controls">
+		<%= text_field 'species', 'common_name'  %>
+	</div>
+</div>
 
-<p><label for="species_reference_url">Referenceurl</label><br/>
-<%= text_field 'species', 'reference_url'  %></p>
+<div class="control-group">
+	<label class="control-label" for="species_reference_url">Reference URL</label>
+	<div class="controls">
+		<%= text_field 'species', 'reference_url'  %>
+	</div>
+</div>
 
-<p><label for="species_aba_countable">Abacountable</label><br/>
-<%= text_field 'species', 'aba_countable'  %></p>
+<div class="control-group">
+	<div class="controls">
+		<label class="checkbox" for="species_aba_countable">
+			<%= check_box 'species', 'aba_countable'  %>
+			ABA Countable
+		</label>
+	</div>
+</div>
+
+<div class='control-group'>
+	<label class="control-label" for="species_notes">Notes</label>
+	<div class="controls">
+		<%= text_area 'species', 'notes'  %>
+	</div>
+</div>
+
 <!--[eoform:species]-->
 

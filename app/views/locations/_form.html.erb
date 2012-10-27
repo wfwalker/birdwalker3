@@ -1,28 +1,64 @@
 <%= error_messages_for 'location' %>
 
 <!--[form:location]-->
-<p><label for="location_name">Name</label><br/>
-<%= text_field 'location', 'name'  %></p>
 
-<p><label for="location_reference_url">Referenceurl</label><br/>
-<%= text_field 'location', 'reference_url'  %></p>
+<div class="control-group">
+	<label class="control-label" for="location_name">Name</label>
+	<div class="controls">
+		<%= text_field 'location', 'name'  %>
+	</div>
+</div>
 
-<p><label for="location_city">City</label><br/>
-<%= text_field 'location', 'city'  %></p>
+<div class="control-group">
+	<label class="control-label" for="location_reference_url">Reference URL</label>
+	<div class="controls">
+		<%= text_field 'location', 'reference_url'  %>
+	</div>
+</div>
 
-<p><label for="location_county">County</label><br/>
-<%= collection_select("location", "county_id", County.find(:all, :order => 'name'), :id, :name) %></p>
+<div class="control-group">
+	<label class="control-label" for="location_city">City</label>
+	<div class="controls">
+		<%= text_field 'location', 'city'  %>
+	</div>
+</div>
 
-<p><label for="location_notes">Notes</label><br/>
-<%= text_area 'location', 'notes'  %></p>
+<div class="control-group">
+	<label class="control-label" for="location_county">County</label>
+	<div class="controls">
+		<%= collection_select("location", "county_id", County.find(:all, :order => 'name'), :id, :name) %>
+	</div>
+</div>
 
-<p><label for="location_latitude">Latitude</label><br/>
-<%= text_field 'location', 'latitude'  %></p>
+<div class="control-group">
+	<label class="control-label" for="location_latitude">Latitude</label>
+	<div class="controls">
+		<%= text_field 'location', 'latitude'  %>
+	</div>
+</div>
 
-<p><label for="location_longitude">Longitude</label><br/>
-<%= text_field 'location', 'longitude'  %></p>
+<div class="control-group">
+	<label class="control-label" for="location_longitude">Longitude</label>
+	<div class="controls">
+		<%= text_field 'location', 'longitude'  %>
+	</div>
+</div>
 
-<p><label for="location_photo">Photo</label><br/>
-<%= text_field 'location', 'photo'  %></p>
+<div class="control-group">
+	<div class="controls">
+		<label class="checkbox" for="location_photo">
+			<%= check_box 'location', 'photo'  %>
+			Photo
+		</label>
+	</div>
+</div>
+
+<div class='control-group'>
+	<label class="control-label" for="location_notes">Notes</label>
+	<div class="controls">
+		<%= text_area 'location', 'notes'  %>
+	</div>
+</div>
+
 <!--[eoform:location]-->
 

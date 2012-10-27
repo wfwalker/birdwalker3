@@ -1,20 +1,40 @@
 <%= error_messages_for 'trip' %>
 
 <!--[form:trip]-->
-<p><label for="trip_name">Name</label><br/>
-<%= text_field 'trip', 'name', :size => 90 %></p>
+<div class="control-group">
+	<label class="control-label" for="trip_name">Name</label>
+	<div class="controls">
+		<%= text_field 'trip', 'name', :size => 90 %>
+	</div>
+</div>
 
-<p><label for="trip_date">Date</label><br/>
-<%= date_select 'trip', 'date'  %></p>
+<div class="control-group">
+	<label class="control-label" for="trip_date">Date</label>
+	<div class="controls">
+		<%= date_select 'trip', 'date'  %>
+	</div>
+</div>
 
-<p><label for="trip_leader">Leader</label><br/>
-<%= text_field 'trip', 'leader'  %></p>
+<div class="control-group">
+	<label class="control-label" for="trip_leader">Leader</label>
+	<div class="controls">
+		<%= text_field 'trip', 'leader'  %>
+	</div>
+</div>
 
-<p><label for="trip_reference_url">Reference URL</label><br/>
-<%= text_field 'trip', 'reference_url'  %></p>
+<div class="control-group">
+	<label class="control-label" for="trip_reference_url">Reference URL</label>
+	<div class="controls">
+		<%= text_field 'trip', 'reference_url'  %>
+	</div>
+</div>
 
-<p><label for="trip_notes">Notes</label><br/>
-<%= text_area 'trip', 'notes', :cols => 90 %></p>
+<div class='control-group'>
+	<label class="control-label" for="trip_notes">Notes</label>
+	<div class="controls">
+		<%= text_area 'trip', 'notes'  %>
+	</div>
+</div>
 
 <!--[eoform:trip]-->
 
