@@ -75,12 +75,12 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
-    @page_title = "new"
+    @page_title = "New Trip"
   end
 
   def create
     @trip = Trip.new(params[:trip])
-    @page_title = "new"
+    @page_title = "New Trip"
     
     if @trip.save
       flash[:notice] = 'Trip was successfully created.'
