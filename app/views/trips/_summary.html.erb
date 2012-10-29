@@ -21,7 +21,9 @@
 		<div style="padding-top: 9px"><%= link_to trip.name, trip_url(trip) %></div>
 	</div>
 	<div class="pagecontentitem">
-		<div style="font-style: italic"><%= trip.species.size %> species seen, <%= trip.photos.size %> photographed</div>
+		<div style="font-style: italic">
+			<%= trip.species.size %> species <% if (trip.photos.size > 0) %>, <%= trip.photos.size %> photos<% end %>
+		</div>
 
 		<% if (trip.locations.size > 1) then %>
 			<div style="font-style: italic"><%= trip.locations.size %> locations, <%= trip.locations[0].county.state.abbreviation %></div>
