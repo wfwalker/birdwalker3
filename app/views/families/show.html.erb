@@ -37,7 +37,7 @@
 		<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
    	</div>
 
-   	<div class='span6'>
+   	<div class='span6' id='mapContainer'>
 		<% if (Location.with_lat_long(@family.locations).length > 0) %>
 			<% @map_module_title = 'Family Map' %>                       
 			<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations), :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/families/locations/%s.json' % @family.id }  %>

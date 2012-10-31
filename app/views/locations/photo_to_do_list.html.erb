@@ -1,10 +1,14 @@
-<div id="pagetitle">
+<div class="lead">
 	<%= @page_title %>
 </div>		
 
 <% species_lists = @species_seen_not_photographed_nearby/(@species_seen_not_photographed_nearby.size / 3 + 3)%>
 
-<%= render :partial => 'locations/google', :object => [ @location ], :locals => { :map_width => 780, :map_height => 480, :locations_json_url => '/locations/%s.json' % @location.id  } %>
+<div class='row'>
+	<div class='span12' id='mapContainer'>
+		<%= render :partial => 'locations/google', :object => [ @location ], :locals => { :map_width => 780, :map_height => 480, :locations_json_url => '/locations/%s.json' % @location.id  } %>
+	</div>
+</div>
 
 <div class="pagecontentmodule">
 	<div class="moduletitle">Recent nearby sightings from eBird</div>	
