@@ -1,7 +1,3 @@
-<% editing_is_allowed?() do %>
-	<div><%= link_to 'Add New Trip Report', :action => 'new' %></div>
-<% end %>
-
 <div class="lead">Trip Reports</div>
 
 <% trip_lists = @trips/(@trips.size / 3 + 3) %>

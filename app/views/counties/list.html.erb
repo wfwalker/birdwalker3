@@ -1,8 +1,5 @@
 <div class="lead">
 	<%= @page_title %>
-	<% editing_is_allowed?() do %>
-		<span style="font-size: 9pt"><%= link_to 'new', new_county_url %></span>
-	<% end %>
 </div>
 
 <% county_lists = @counties/(@counties.size / 4 + 4) %>
