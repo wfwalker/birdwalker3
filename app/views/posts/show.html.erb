@@ -4,9 +4,6 @@
 		<small><%= @post.date.strftime('%b%y') %></small>
 	</div>
 	<%=h @post.title %>
-	<% editing_is_allowed?() do %>
-		<span style="font-size: 9pt"><%= link_to 'edit', edit_post_url(post) %></span>
-	<% end %>
 </div>                    
 
 <p>

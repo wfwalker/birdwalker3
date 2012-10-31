@@ -1,8 +1,4 @@
 <div class="lead">
-	<% editing_is_allowed?() do %>
-		<span style="font-size: 9pt"><%= link_to '[edit]', edit_trip_url(@trip) %></span>
-	<% end %>
-	
 	<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
 
 	<% has_reference_url?(@trip) do %>

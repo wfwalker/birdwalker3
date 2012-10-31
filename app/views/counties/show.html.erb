@@ -1,8 +1,5 @@
 <div class="lead">
 	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
-		<% editing_is_allowed?() do %>
-		<span style="font-size: 9pt"><%= link_to 'edit', edit_county_url(@county) %></span>
-	<% end %>       
 </div> 
                             
 <% if @county.photos.length > 3 %>
@@ -51,9 +48,6 @@
 		<% else %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle">County Notes</div>	
-				<div class="pagecontentitem">
-					We have only visited <%= @county.name %> county <%= @county.trips.length %> times since we started birding.
-				</div>	
 			</div>      
 
 			<%= show_trip_list(@county.trips, false) %>

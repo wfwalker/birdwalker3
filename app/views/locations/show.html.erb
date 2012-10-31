@@ -1,6 +1,8 @@
 <%= render :partial => 'page_header', :object => @location %>
 
-<%= render :partial => 'photos/gallery', :object => @location.photos %>
+<% if @location.photos.length > 3 %>
+	<%= render :partial => 'photos/gallery', :object => @location.photos %>
+<% end %>
 	
 <%= render :partial => 'species/multi_column_list', :object => @location.species %>
 
@@ -20,8 +22,6 @@
 				</div>	
 			<% else %>
 				<div class="pagecontentitem">
-					We have only visited <%= @location.name %> <%= @location.trips.length %> times. 
-
 					<%= show_trip_list(@location.trips, false) %>					
 				</div>	               
 	        <% end %>     

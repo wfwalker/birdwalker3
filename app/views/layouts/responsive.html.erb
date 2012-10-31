@@ -109,7 +109,15 @@ pageTracker._trackPageview();
 								</ul>
 							</li>	      
 
-							<li class='<%= controller.page_kind == "home" && "class=active" %>'><%= link_to "About", '/bird_walker/about' %></li>
+							<li class='<%= controller.page_kind == "home" && "class=active" %>'>
+								<%= link_to "About", '/bird_walker/about' %>
+							</li>
+
+							<% controller.respond_to?(:edit) && editing_is_allowed?() do %>
+								<li>
+									<%= link_to "Edit", :action => 'edit' %>
+								</li>
+							<% end %>
 						</ul>
 	
 						<form class="navbar-form pull-right" action="/bird_walker/search" method="post">
@@ -136,7 +144,7 @@ pageTracker._trackPageview();
 
 			<footer>
 				<% if (session[:username] != nil) then %>
-					<%= link_to 'Logout', :controller => 'bird_walker', :action => 'logout' %>
+					<%= link_to 'logout', :controller => 'bird_walker', :action => 'logout' %>
 				<% else %>
 				    <a href="#" id="loginlink">login</a>
 				<% end %>      
