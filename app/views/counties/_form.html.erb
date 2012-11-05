@@ -1,11 +1,20 @@
 <%= error_messages_for 'county' %>
 
 <!--[form:county]-->
-<p><label for="county_name">Name</label><br/>
-<%= text_field 'county', 'name'  %></p>
 
-<p><label for="county_state">State</label><br/>
-<%= collection_select("county", "state_id", State.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %></p>
+<div class="control-group">
+	<label class="control-label" for="county_name">Name</label>
+	<div class="controls">
+		<%= text_field 'county', 'name'  %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="county_state">State</label>
+	<div class="controls">
+		<%= collection_select("county", "state_id", State.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %>
+	</div>
+</div>
 
 <!--[eoform:county]-->
 

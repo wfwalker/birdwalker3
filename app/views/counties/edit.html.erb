@@ -5,7 +5,7 @@
 
 <div class="pagecontentmodule">
 	<div class="pagecontentitem">
-		<%= form_for @county, :url => county_path(@county), :html => { :method => 'put' } do |form| %>
+		<%= form_for @county, :url => county_path(@county), :html => { :class => 'form-horizontal' } do |form| %>
 		  <%= render :partial => 'form' %>
 		  <%= submit_tag 'Save' %>
 		<% end %>

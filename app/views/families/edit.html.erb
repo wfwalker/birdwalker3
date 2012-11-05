@@ -2,7 +2,7 @@
 
 <div class="pagecontentmodule">
 	<div class="pagecontentitem">
-		<%= form_for @family, :url => family_path(@family), :html => { :method => 'put' } do |form| %>
+		<%= form_for @family, :url => family_path(@family), :html => { :class => 'form-horizontal' }  do |form| %>
 		  <%= render :partial => 'form' %>
 		  <%= submit_tag 'Save' %>
 		<% end %>

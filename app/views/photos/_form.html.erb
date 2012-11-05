@@ -1,30 +1,66 @@
 <%= error_messages_for 'photo' %>
 
 <!--[form:photo]-->
+
+<%if @photo and @photo.trip %>
+	<div class='control-group'>
+		<label class="control-label" for="photo_photo_url">Photo URL</label>
+		<div class="controls">
+			<%= @photo.photo_URL %>
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class="control-label" for="photo_thumb_url">Thumb URL</label>
+		<div class="controls">
+			<%= @photo.thumb_URL %>
+		</div>
+	</div>
+<% end %>
  
-<p><label for="photo_trip">Trip</label><br/>
-<%= collection_select("photo", "trip_id", Trip.find(:all, :order => 'date DESC'), :id, :date) %>
-</p>
+<div class="control-group">
+	<label class="control-label" for="photo_trip">Trip</label>
+	<div class="controls">
+		<%= collection_select("photo", "trip_id", Trip.find(:all, :order => 'date DESC'), :id, :date) %>
+	</div>
+</div>
 
-<p><label for="photo_location">Location</label><br/>
-<%= collection_select("photo", "location_id", Location.find(:all, :order => 'name'), :id, :name) %>
-</p>
+<div class="control-group">
+	<label class="control-label" for="photo_location">Location</label>
+	<div class="controls">
+		<%= collection_select("photo", "location_id", Location.find(:all, :order => 'name'), :id, :name) %>
+	</div>
+</div>
 
-<p><label for="photo_species">Species</label><br/>
-<%= collection_select("photo", "species_id", Species.seen_by_common_name, :id, :common_name, {:prompt => true}) %>
-</p>
+<div class="control-group">
+	<label class="control-label" for="photo_species">Species</label>
+	<div class="controls">
+		<%= collection_select("photo", "species_id", Species.seen_by_common_name, :id, :common_name, {:prompt => true}) %>
+	</div>
+</div>
 
-<p><label for="original_filename">Original Filename</label><br/>
-<%= text_field 'photo', 'original_filename'  %></p>
+<div class="control-group">
+	<label class="control-label" for="photo_original_filename">Original Filename</label>
+	<div class="controls">
+		<%= text_field 'photo', 'original_filename'  %>
+	</div>
+</div>
 
-<p><label for="photo_rating">Rating</label><br/>
-<select id="photo_rating" name="photo[rating]">
-	<%= options_for_select([1, 2, 3, 4, 5], @photo.rating)%>
-</select> 
-</p>
+<div class="control-group">
+	<label class="control-label" for="photo_rating">Rating</label>
+	<div class="controls">
+		<select id="photo_rating" name="photo[rating]">
+			<%= options_for_select([1, 2, 3, 4, 5], @photo.rating)%>
+		</select> 
+	</div>
+</div>
 
-<p><label for="photo_notes">Notes</label><br/>
-<%= text_area 'photo', 'notes'  %></p>
+<div class='control-group'>
+	<label class="control-label" for="photo_notes">Notes</label>
+	<div class="controls">
+		<%= text_area 'photo', 'notes'  %>
+	</div>
+</div>
 
 <!--[eoform:photo]-->
 

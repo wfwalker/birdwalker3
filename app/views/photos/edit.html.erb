@@ -14,18 +14,11 @@
 
 <div class="pagecontentmodule">
 	<div class="pagecontentitem">
-		<%= @photo.thumb %>
+		<%= @photo.photo %>
 	</div>
+	<hr />
 	<div class="pagecontentitem">     
-		<p><label for="photo_trip">Photo URL</label><br/>
-		<%= @photo.photo_URL %>
-		</p>
-
-		<p><label for="photo_trip">Thumb URL</label><br/>
-		<%= @photo.thumb_URL %>
-		</p>  
-		
-		<%= form_for @photo, :url => photo_path(@photo), :html => { :method => 'put' } do |form|%>
+		<%= form_for @photo, :url => photo_path(@photo), :html => { :class => 'form-horizontal' } do |form|%>
   			<%= render :partial => 'form' %>
   			<%= submit_tag 'Save' %>
 		<% end %>
