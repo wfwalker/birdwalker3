@@ -9,6 +9,14 @@ a       { color: #2D6C91; text-decoration: none; }
 .pagecontentitem p a { text-decoration: underline; }
 a:hover { text-decoration: underline; }
 
+#map img { 
+  max-width: none;
+}
+
+#map label { 
+  width: auto; display:inline; 
+} 
+
 .tablecell
 {
 	width: 30px; padding-right: 5px; text-align: center;
