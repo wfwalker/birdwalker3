@@ -79,12 +79,14 @@ class PhotosControllerTest < ActionController::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
+    post :update, {:id => @first_id, :photo => {:trip_id => 24, :original_filename => 'MyString2'}}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_redirected_to :action => 'show'
 
     # note: we're not testing the response for xml validity, since it's a redirect 
     
+    assert_equal 24, Photo.find(@first_id).trip_id
+    assert_equal "MyString2", Photo.find(@first_id).original_filename
   end
 
   def test_destroy
