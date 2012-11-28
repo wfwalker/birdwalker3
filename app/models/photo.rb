@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :trip_id, :location_id, :species_id
+  attr_accessible :trip_id, :location_id, :species_id, :original_filename, :rating, :notes
 
   belongs_to :location
   belongs_to :species
