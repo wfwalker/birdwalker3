@@ -4,6 +4,12 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
+/public/images/photo/*.jpg
+/public/images/thumb/
+/public/assets/application*.css
+/public/assets/application*.js
+/public/assets/application*.gz
+
 # Ignore bundler config
 /.bundle
 
@@ -13,3 +19,18 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+.DS_Store
+birdwalker_dump.sql
+blog-03-23-2011.xml
+build-db.sh
+build-test-db.sh
+dump-db.sh
+dump-remote-db.sh
+importFromFlickrUp.rb
+locationTextDump.rb
+Gemfile.lock
+upload-db.sh
+upload-photo.sh
+upload-to-amazon.sh
+upload.sh
