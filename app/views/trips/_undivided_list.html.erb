@@ -5,5 +5,5 @@
 		<div class="moduletitle"><%= trip_list.size %> Trip<%= trip_list.size > 1? 's' : '' %></div>
 	<% end %>
 	
-	<%= render :partial => 'trips/onelinelink' , :collection => trip_list, :locals => { :date_format => "%Y %b %d" } %>
+	<%= render :partial => 'trips/onelinelink' , :collection => trip_list, :locals => { :date_format => "%d %b %Y" } %>
 </div>
