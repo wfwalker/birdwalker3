@@ -52,7 +52,7 @@ $(document).ready(function(){
 	
 	$('#installButton').click(function() { 
 		console.log("click start")
-		var pendingInstall = navigator.mozApps.install("/webapp.manifest");
+		var pendingInstall = navigator.mozApps.install("http://<%= request.host %>:<%= request.port %>/webapp.manifest");
 		pendingInstall.onsuccess = function() {
 			var appRecord = this.result;
 			console.log("success!");
