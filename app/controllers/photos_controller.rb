@@ -31,6 +31,36 @@ class PhotosController < ApplicationController
     end
   end
 
+  def show_by_date
+    foundDate = Date.new(params["year"].to_i(10), params["month"].to_i(10), params["day"].to_i(10))
+    foundTrip = Trip.find_by_date(foundDate)
+    raise "missing trip" unless foundTrip
+
+    foundSpecies = Species.find_by_abbreviation(params[:abbreviation])
+    raise "missing species" unless foundSpecies
+
+    foundOriginalFilename = params[:originalfilename]
+    raise "missing original filename" unless foundOriginalFilename
+
+    foundPhotos = Photo.find_all_by_trip_id(foundTrip.id).select { | a_photo |
+      (a_photo.species_id == foundSpecies.id) && (a_photo.original_filename == foundOriginalFilename)
+    }
+
+    @photo = foundPhotos[0]
+
+    if (not @photo) then
+      raise "missing photo for trip " + foundTrip.id.to_s
+    end
+
+    @page_title = @photo.species.common_name
+
+    respond_to do |format|
+      format.html { render :action => 'show' }
+      format.xml  { render :xml => @photo.to_xml() }
+      format.json  { render :json => @photo.to_json() }
+    end
+  end
+
   def recent_gallery
     @location_galleries = Location.find_by_sql("
       SELECT locations.*, count(DISTINCT photos.id) as photo_count

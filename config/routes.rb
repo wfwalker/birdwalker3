@@ -50,6 +50,7 @@ end
   match 'species/year_list/:year' => 'species#year_list'
   match ':controller/service.wsdl' => '#wsdl'
   match 'trips/:year/:month/:day.:format' => 'trips#show_by_date'
+  match 'photos/:year/:month/:day/:abbreviation/:originalfilename.:format' => 'photos#show_by_date'
   match 'species/abbrev/:abbreviation.:format' => 'species#show_by_abbreviation'
   match '/:controller(/:action(/:id))'
   match 'webapp.manifest' => 'bird_walker#webapp_manifest'
