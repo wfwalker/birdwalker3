@@ -1,8 +1,5 @@
 <div class="lead">
 	<%= @page_title %>
-	<% editing_is_allowed?() do %>
-		<span style="font-size: 9pt"><%= link_to 'edit', edit_post_url(post) %></span>
-	<% end %>
 </div>                    
 
 <div class="moduletitle">Listing posts</div>
@@ -18,10 +15,6 @@
   <tr>
     <td><%= link_to post.title, post_url(post) %></td>
     <td><%=h post.date %></td>
-	<% editing_is_allowed?() do %>
-	    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-	    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td> 
-	<% end %>
   </tr>
 <% end %>
 </table>
