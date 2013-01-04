@@ -50,8 +50,7 @@ class BirdWalkerController < ApplicationController
     manifest["installs_allowed_from"] = ["*"]
     manifest["developer"] = {"name" => "Bill Walker", "url" => "http://birdwalker.com"}
     
-    render :json => manifest
-    headers["Content-type"] = "application/x-web-app-manifest+json"
+    render :json => manifest, :content_type => "application/x-web-app-manifest+json"
   end
   
   def webapp_install
