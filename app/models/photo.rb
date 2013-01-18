@@ -6,6 +6,7 @@ class Photo < ActiveRecord::Base
   belongs_to :trip
   
   validates_presence_of :species_id, :location_id, :trip_id
+  validates_uniqueness_of :original_filename, :scope => [:species_id, :location_id, :trip_id]
   
   def Photo.default_gallery_size
       27
