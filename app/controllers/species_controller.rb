@@ -54,7 +54,18 @@ class SpeciesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @species }
-      format.json  { render :json => @species }
+      format.json { render :json => [@species], :include => [:locations, :photos] }
+    end
+  end
+
+  def bird_of_the_week
+    @species = Species.bird_of_the_week();
+    @page_title = @species.common_name
+
+    respond_to do |format|
+      format.html { render :action => "show" }
+      format.xml  { render :xml => @species }
+      format.json { render :json => [@species], :include => :photos  }
     end
   end
 
@@ -65,7 +76,7 @@ class SpeciesController < ApplicationController
     respond_to do |format|
       format.html { render :action => 'show' }
       format.xml  { render :xml => @species }
-      format.json  { render :json => @species }
+      format.json { render :json => @species }
     end
   end
 

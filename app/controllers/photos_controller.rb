@@ -1,8 +1,8 @@
 class PhotosController < ApplicationController
   helper :locations
 
-  before_filter :verify_credentials, :only => [:new, :create, :edit, :update, :update_rating, :destroy]  
-  before_filter :update_activity_timer, :except => [:new, :create, :edit, :update, :update_rating, :destroy]  
+  before_filter :verify_credentials, :only => [:edit, :update, :update_rating, :destroy]  
+  before_filter :update_activity_timer, :except => [:edit, :update, :update_rating, :destroy]  
 
   def page_kind
     "photos"
@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @photo.to_xml(:methods => [ :photo_URL ]) }
-      format.json  { render :json => @photo }
+      format.json  { render :json => [@photo], :methods => :image_filename }
     end
   end
 
