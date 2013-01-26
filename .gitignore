@@ -4,21 +4,23 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-/public/images/photo/*.jpg
-/public/images/thumb/
-/public/assets/application*.css
-/public/assets/application*.js
-/public/assets/application*.gz
+public/images/photo
+public/images/thumb
+public/assets
+public/mobile
+
+mobile/www-built
+mobile/node_modules
 
 # Ignore bundler config
-/.bundle
+.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
+db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+log/*.log
+tmp
 
 .DS_Store
 birdwalker_dump.sql
