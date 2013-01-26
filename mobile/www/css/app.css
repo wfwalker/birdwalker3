@@ -1,0 +1,27 @@
+
+/* Tip: Use "@import" to add styles instead of adding <link>'s in your
+   HTML, and volo will inline it when building for production */
+
+@import "bootstrap.css";
+@import "bootstrap-responsive.css";
+
+/* Styles for the installation button */
+/* @import "install-button.css"; */
+
+/* Your styles here */
+
+#homeContainer {
+	visibility: none;
+}
+
+#speciesDetailContainer {
+	visibility: none;
+}
+
+#locationDetailContainer {
+	visibility: none;
+}
+
+#locationIndexContainer {
+	visibility: none;
+}
