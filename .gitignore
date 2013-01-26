@@ -11,6 +11,7 @@ public/mobile
 
 mobile/www-built
 mobile/node_modules
+mobile/tools
 
 # Ignore bundler config
 .bundle
