@@ -113,7 +113,10 @@ define(function(require) {
             $('#locationDetailContainer').append('<div class=\'hidden-phone\' style=\'padding-top: 60px\'></div>');
             $('#locationDetailContainer').append('<h2>' + location.name + '</h2>');
             $('#locationDetailContainer').append('<div>' + location.notes + '</div>');
-            $('#locationDetailContainer').append('<div>' + location.latitude + ', ' + location.longitude + '</div>');
+            if (location.latitude != 0) {
+              $('#locationDetailContainer').append('<div>' + location.latitude + ', ' + location.longitude + '</div>');
+              $('#locationDetailContainer').append('<img src=\'https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center='+location.latitude+','+location.longitude +'\' />');
+            }
             $('#locationDetailContainer').append('<h3>Species</h3>');
             $('#locationDetailContainer').append('<ul id=\'speciesList\' class=\'nav navlist\'>');
 
