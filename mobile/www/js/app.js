@@ -8,6 +8,9 @@ define(function(require) {
     // http://zeptojs.com/
     var $ = require('zepto');
 
+    // trying out underscore
+    require('underscore-min');
+
     // Need to verify receipts? This library is included by default.
     // https://github.com/mozilla/receiptverifier
     // require('receiptverifier');
@@ -17,7 +20,44 @@ define(function(require) {
     // index.html
     // require('./install-button');
 
+    // simple code for putting underscore templates in files
+    function render(tmpl_name, tmpl_data) {
+        if ( !render.tmpl_cache ) { 
+            render.tmpl_cache = {};
+        }
+
+        if ( ! render.tmpl_cache[tmpl_name] ) {
+            var tmpl_dir = 'static/templates';
+            var tmpl_url = tmpl_dir + '/' + tmpl_name + '.html';
+
+            var tmpl_string;
+            $.ajax({
+                url: tmpl_url,
+                method: 'GET',
+                dataType: 'html',
+                async: false,
+                success: function(data) {
+                    tmpl_string = data;
+                }
+            });
+
+            render.tmpl_cache[tmpl_name] = _.template(tmpl_string);
+        }
+
+        return render.tmpl_cache[tmpl_name](tmpl_data);
+    }
+
     // Write your app here.
+
+    function startSpinning()
+    {
+      $('#spinner').show();
+    }
+
+    function stopSpinning()
+    {
+      $('#spinner').hide();
+    }
 
     function showPhoto(inPhotoURL, inPhotoID)
     {
@@ -27,7 +67,7 @@ define(function(require) {
         dataType: 'json',
         success: function(data){
           var photo = data[0];
-          $('#' + inPhotoID).append('<img src=\'/images/photo/' + photo.image_filename + '\' />');
+          $('#' + inPhotoID).append(render('img-tag', {imageURL: '/images/photo/' + photo.image_filename}));
         },
         error: function(xhr, type, thrownError){
             alert('showPhoto Ajax error! ' + xhr.status + ' ' + thrownError);
@@ -37,7 +77,8 @@ define(function(require) {
 
     function showHome()
     {
-      $('#homeContainer').empty();                
+      $('#homeContainer').empty();    
+      startSpinning();            
       $('#homeContainer').append('<div class=\'hidden-phone\' style=\'padding-top: 60px\'></div>');
       $('#homeContainer').append('<p>Welcome to birdWalker, a website of birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County.</p>');
 
@@ -67,17 +108,20 @@ define(function(require) {
       $('#speciesDetailContainer').hide();
       $('#locationDetailContainer').hide();
       $('#locationIndexContainer').hide();
+      stopSpinning();
       $('#homeContainer').show();
     }
 
     function showLocationIndex(inLocationListURL)
     {
+        startSpinning();          
+
         $.ajax({
           type: 'GET',
           url: inLocationListURL,
           dataType: 'json',
           success: function(data){
-            $('#locationIndexContainer').empty();            
+            $('#locationIndexContainer').empty();
             $('#locationIndexContainer').append('<div class=\'hidden-phone\' style=\'padding-top: 60px\'></div>');
             $('#locationIndexContainer').append('<h3>Locations</h3>');
             $('#locationIndexContainer').append('<ul id=\'locationIndex\' class=\'nav navlist\'>');
@@ -93,10 +137,12 @@ define(function(require) {
             $('#speciesDetailContainer').hide();
             $('#locationDetailContainer').hide();
             $('#homeContainer').hide();
+            stopSpinning();
             $('#locationIndexContainer').show();
           },
           error: function(xhr, type, thrownError){
             alert('showLocationIndex Ajax error! ' + xhr.status + ' ' + thrownError);
+            stopSpinning();
           }
         });
     }
