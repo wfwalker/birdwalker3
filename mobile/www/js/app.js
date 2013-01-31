@@ -79,14 +79,6 @@ define(function(require) {
     {
       $('#homeContainer').empty();    
       startSpinning();            
-      $('#homeContainer').append('<div class=\'hidden-phone\' style=\'padding-top: 60px\'></div>');
-      $('#homeContainer').append('<p>Welcome to birdWalker, a website of birding photos and trip reports by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County.</p>');
-
-      $('#homeContainer').append('<h3>Bird of the Week</h3>');    
-      $('#homeContainer').append('<div id=\'birdOfTheWeekPhoto\'> </div>');    
-      $('#homeContainer').append('<div id=\'birdOfTheWeek\'> </div>');    
-
-      $('#homeContainer').append('<div><a id=\'toLocationIndex\' href=\'#\'>Location List</a>');    
 
       $.ajax({
         type: 'GET',
@@ -95,15 +87,15 @@ define(function(require) {
         success: function(data){
           var species = data[0];
 
-          $('#birdOfTheWeek').append("The bird of the week is the " + species.common_name);
+          $('#homeContainer').append(render('home', { birdOfTheWeek: species }));
           showPhoto('/photos/' + species.photos[0].id + '.json', 'birdOfTheWeekPhoto');
+
+          $('#toLocationIndex').click(function (e) { e.preventDefault(); showLocationIndex('/locations.json'); } );
         },
         error: function(xhr, type, thrownError){
             alert('showHome Ajax error! ' + xhr.status + ' ' + thrownError);
         }
       });
-
-      $('#toLocationIndex').click(function (e) { e.preventDefault(); showLocationIndex('/locations.json'); } );
 
       $('#speciesDetailContainer').hide();
       $('#locationDetailContainer').hide();
@@ -155,25 +147,14 @@ define(function(require) {
           dataType: 'json',
           success: function(data){
             var location = data[0];
-            $('#locationDetailContainer').empty();            
-            $('#locationDetailContainer').append('<div class=\'hidden-phone\' style=\'padding-top: 60px\'></div>');
-            $('#locationDetailContainer').append('<h2>' + location.name + '</h2>');
-            $('#locationDetailContainer').append('<div>' + location.notes + '</div>');
-            if (location.latitude != 0) {
-              $('#locationDetailContainer').append('<div>' + location.latitude + ', ' + location.longitude + '</div>');
-              $('#locationDetailContainer').append('<img src=\'https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center='+location.latitude+','+location.longitude +'\' />');
-            }
-            $('#locationDetailContainer').append('<h3>Species</h3>');
-            $('#locationDetailContainer').append('<ul id=\'speciesList\' class=\'nav navlist\'>');
+            $('#locationDetailContainer').empty(); 
+            $('#locationDetailContainer').append(render('location-detail', {location: location}));
 
-            for (var i = 0; i < location.species.length; i++){
-                var species = location.species[i];
-
-                $('#speciesList').append('<li class=\'active\'><a href=\'#\' id=\'species' + species.id + '\'>' + species.common_name);
-                $('#species' + species.id).click((function(id) {
-                    return function (e) { e.preventDefault(); showSpeciesDetail('/species/' + id + '.json'); }
+            _.each(location.species, function(species) {
+              $('#species' + species.id).click((function(id) {
+                  return function (e) { e.preventDefault(); showSpeciesDetail('/species/' + id + '.json'); }
                 })(species.id));
-            }
+            });
 
             $('#locationIndexContainer').hide();
             $('#speciesDetailContainer').hide();
@@ -194,24 +175,16 @@ define(function(require) {
           dataType: 'json',
           success: function(data){
             var species = data[0];
-            $('#speciesDetailContainer').empty();            
-            $('#speciesDetailContainer').append('<div class=\'hidden-phone\' style=\'padding-top: 60px\'></div>');
-            $('#speciesDetailContainer').append('<h2>' + species.common_name + '</h2>');
-            $('#speciesDetailContainer').append('<div style=\'font-style: italic\'>' + species.latin_name + '</div>');
-            $('#speciesDetailContainer').append('<div>' + species.notes + '</div>');
-            $('#speciesDetailContainer').append('<div id=\'speciesPhoto\'></div>');
-            $('#speciesDetailContainer').append('<h3>Locations</h3>');
-            $('#speciesDetailContainer').append('<ul id=\'locationList\' class=\'nav navlist\'>');
+            $('#speciesDetailContainer').empty();   
+            $('#speciesDetailContainer').append(render('species-detail', { species: species }));
 
             showPhoto('/photos/' + species.photos[0].id + '.json', 'speciesPhoto');
 
-            for (var i = 0; i < species.locations.length; i++){
-                var location = species.locations[i];
-                $('#locationList').append('<li class=\'active\'><a href=\'#\' id=\'location' + location.id + '\'>' + location.name);
+            _.each(species.locations, function(location) {
                 $('#location' + location.id).click((function(id) {
                     return function (e) { e.preventDefault(); showLocationDetail('/locations/' + id + '.json'); }
                 })(location.id));
-            }
+            });
 
             $('#locationDetailContainer').hide();
             $('#locationIndexContainer').hide();

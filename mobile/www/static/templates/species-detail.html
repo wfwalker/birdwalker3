@@ -1,0 +1,17 @@
+<div class='hidden-phone' style='padding-top: 60px'></div>
+
+<h2><%= species.common_name %></h2>
+
+<div style='font-style: italic'><%= species.latin_name %></div>
+
+<div><%= species.notes %></div>
+
+<div id='speciesPhoto'></div>
+
+<h3>Locations</h3>
+
+<ul id='locationList' class='nav navlist'>
+    <% _.each(species.locations, function(location) { %>
+        <li class='active'><a href='#' id='location<%= location.id %>'><%= location.name %></a></li>
+    <% }) %>
+<ul/>
