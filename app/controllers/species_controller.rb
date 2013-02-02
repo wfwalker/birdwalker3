@@ -16,8 +16,13 @@ class SpeciesController < ApplicationController
   end
 
   def index
-    list
-    render :action => 'list'
+    @all_species_seen = Species.seen_not_excluded.countable
+    
+    respond_to do |format|
+      format.html { render :action => 'list' }
+      format.xml  { render :xml => @all_species_seen }
+      format.json { render :json => @all_species_seen }
+    end
   end
 
 # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
