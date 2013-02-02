@@ -3,10 +3,15 @@
 // http://requirejs.org/docs/api.html#define
 
 define(function(require) {
+
     // Zepto provides nice js and DOM methods (very similar to jQuery,
-    // and a lot smaller):
-    // http://zeptojs.com/
-    var $ = require('zepto');
+    // and a lot smaller): http://zeptojs.com/
+
+    // var $ = require('zepto');
+    require('jquery.min');
+
+    // need bootstrap-collapse plugin
+    require('bootstrap.min');
 
     // trying out underscore
     require('underscore-min');
@@ -19,6 +24,7 @@ define(function(require) {
     // installation button. See <button class="install-btn"> in
     // index.html
     // require('./install-button');
+
 
     // simple code for putting underscore templates in files
     function render(tmpl_name, tmpl_data) {
@@ -59,6 +65,18 @@ define(function(require) {
       $('#spinner').hide();
     }
 
+    function showPanel(panelName)
+    {
+      if (panelName != '#locationDetailContainer') $('#locationDetailContainer').hide();
+      if (panelName != '#locationIndexContainer')  $('#locationIndexContainer').hide();
+      if (panelName != '#homeContainer')           $('#homeContainer').hide();
+      if (panelName != '#speciesDetailContainer')  $('#speciesDetailContainer').hide();
+      if (panelName != '#speciesIndexContainer')   $('#speciesIndexContainer').hide();
+
+      stopSpinning();
+      $(panelName).show();
+    }
+
     function showPhoto(inPhotoURL, inPhotoID)
     {
       $.ajax({
@@ -91,17 +109,41 @@ define(function(require) {
           showPhoto('/photos/' + species.photos[0].id + '.json', 'birdOfTheWeekPhoto');
 
           $('#toLocationIndex').click(function (e) { e.preventDefault(); showLocationIndex('/locations.json'); } );
+          $('#toSpeciesIndex').click(function (e) { e.preventDefault(); showSpeciesIndex('/species.json'); } );
         },
         error: function(xhr, type, thrownError){
             alert('showHome Ajax error! ' + xhr.status + ' ' + thrownError);
         }
       });
 
-      $('#speciesDetailContainer').hide();
-      $('#locationDetailContainer').hide();
-      $('#locationIndexContainer').hide();
-      stopSpinning();
-      $('#homeContainer').show();
+      showPanel('#homeContainer');
+    }
+
+    function showSpeciesIndex(inSpeciesListURL)
+    {
+        startSpinning();          
+
+        $.ajax({
+          type: 'GET',
+          url: inSpeciesListURL,
+          dataType: 'json',
+          success: function(data){
+            $('#speciesIndexContainer').empty();
+            $('#speciesIndexContainer').append(render('species-index', {allSpeciesSeen: data}));
+
+            _.each(data, function(species) {
+                $('#species' + species.id).click((function(id) {
+                    return function (e) { e.preventDefault(); showSpeciesDetail('/species/' + id + '.json'); }
+                })(species.id));
+            });
+
+            showPanel('#speciesIndexContainer');
+          },
+          error: function(xhr, type, thrownError){
+            alert('showLSpeciesIndex Ajax error! ' + xhr.status + ' ' + thrownError);
+            stopSpinning();
+          }
+        });
     }
 
     function showLocationIndex(inLocationListURL)
@@ -114,23 +156,15 @@ define(function(require) {
           dataType: 'json',
           success: function(data){
             $('#locationIndexContainer').empty();
-            $('#locationIndexContainer').append('<div class=\'hidden-phone\' style=\'padding-top: 60px\'></div>');
-            $('#locationIndexContainer').append('<h3>Locations</h3>');
-            $('#locationIndexContainer').append('<ul id=\'locationIndex\' class=\'nav navlist\'>');
-            for (var i = 0; i < data.length; i++){
-                var location = data[i];
+            $('#locationIndexContainer').append(render('location-index', {locations: data}));
 
-                $('#locationIndex').append('<li class=\'active\'><a href=\'#\' id=\'location' + location.id + '\'>' + location.name);
-                $('#location' + location.id).click((function(id) {
-                    return function (e) { e.preventDefault(); showLocationDetail('/locations/' + id + '.json'); }
-                })(location.id));
-            }
+            _.each(data, function(location) {
+              $('#location' + location.id).click((function(id) {
+                  return function (e) { e.preventDefault(); showLocationDetail('/locations/' + id + '.json'); }
+              })(location.id));
+            });
 
-            $('#speciesDetailContainer').hide();
-            $('#locationDetailContainer').hide();
-            $('#homeContainer').hide();
-            stopSpinning();
-            $('#locationIndexContainer').show();
+            showPanel('#locationIndexContainer');
           },
           error: function(xhr, type, thrownError){
             alert('showLocationIndex Ajax error! ' + xhr.status + ' ' + thrownError);
@@ -156,10 +190,7 @@ define(function(require) {
                 })(species.id));
             });
 
-            $('#locationIndexContainer').hide();
-            $('#speciesDetailContainer').hide();
-            $('#homeContainer').hide();
-            $('#locationDetailContainer').show();
+            showPanel('#locationDetailContainer');
           },
           error: function(xhr, type, thrownError){
             alert('showLocationDetail Ajax error! ' + xhr.status + ' ' + thrownError);
@@ -178,7 +209,9 @@ define(function(require) {
             $('#speciesDetailContainer').empty();   
             $('#speciesDetailContainer').append(render('species-detail', { species: species }));
 
-            showPhoto('/photos/' + species.photos[0].id + '.json', 'speciesPhoto');
+            if (species.photos[0]) {
+              showPhoto('/photos/' + species.photos[0].id + '.json', 'speciesPhoto');
+            }
 
             _.each(species.locations, function(location) {
                 $('#location' + location.id).click((function(id) {
@@ -186,10 +219,7 @@ define(function(require) {
                 })(location.id));
             });
 
-            $('#locationDetailContainer').hide();
-            $('#locationIndexContainer').hide();
-            $('#homeContainer').hide();
-            $('#speciesDetailContainer').show();
+            showPanel('#speciesDetailContainer');
           },
           error: function(xhr, type, thrownError){
             alert('showSpeciesDetail Ajax error! ' + xhr.status + ' ' + thrownError)
