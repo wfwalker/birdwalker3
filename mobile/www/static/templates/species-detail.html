@@ -12,6 +12,6 @@
 
 <ul id='locationList' class='nav navlist'>
     <% _.each(species.locations, function(location) { %>
-        <li class='active'><a href='#' id='location<%= location.id %>'><%= location.name %></a></li>
+        <li class='active'><a href='#' data-pagekind='location' data-objectid='<%= location.id %>'><%= location.name %></a></li>
     <% }) %>
 <ul/>

@@ -16,6 +16,9 @@ define(function(require) {
     // trying out underscore
     require('underscore-min');
 
+    // need this for decent date formatting
+    require('date');
+
     // Need to verify receipts? This library is included by default.
     // https://github.com/mozilla/receiptverifier
     // require('receiptverifier');
@@ -67,6 +70,8 @@ define(function(require) {
 
     function showPanel(panelName)
     {
+      if (panelName != '#tripDetailContainer')     $('#tripDetailContainer').hide();
+      if (panelName != '#tripIndexContainer')      $('#tripIndexContainer').hide();
       if (panelName != '#locationDetailContainer') $('#locationDetailContainer').hide();
       if (panelName != '#locationIndexContainer')  $('#locationIndexContainer').hide();
       if (panelName != '#homeContainer')           $('#homeContainer').hide();
@@ -85,7 +90,7 @@ define(function(require) {
         dataType: 'json',
         success: function(data){
           var photo = data[0];
-          $('#' + inPhotoID).append(render('img-tag', {imageURL: '/images/photo/' + photo.image_filename}));
+          $('#' + inPhotoID).append(render('img-tag', {photo: photo}));
         },
         error: function(xhr, type, thrownError){
             alert('showPhoto Ajax error! ' + xhr.status + ' ' + thrownError);
@@ -107,9 +112,6 @@ define(function(require) {
 
           $('#homeContainer').append(render('home', { birdOfTheWeek: species }));
           showPhoto('/photos/' + species.photos[0].id + '.json', 'birdOfTheWeekPhoto');
-
-          $('#toLocationIndex').click(function (e) { e.preventDefault(); showLocationIndex('/locations.json'); } );
-          $('#toSpeciesIndex').click(function (e) { e.preventDefault(); showSpeciesIndex('/species.json'); } );
         },
         error: function(xhr, type, thrownError){
             alert('showHome Ajax error! ' + xhr.status + ' ' + thrownError);
@@ -131,16 +133,31 @@ define(function(require) {
             $('#speciesIndexContainer').empty();
             $('#speciesIndexContainer').append(render('species-index', {allSpeciesSeen: data}));
 
-            _.each(data, function(species) {
-                $('#species' + species.id).click((function(id) {
-                    return function (e) { e.preventDefault(); showSpeciesDetail('/species/' + id + '.json'); }
-                })(species.id));
-            });
-
             showPanel('#speciesIndexContainer');
           },
           error: function(xhr, type, thrownError){
             alert('showLSpeciesIndex Ajax error! ' + xhr.status + ' ' + thrownError);
+            stopSpinning();
+          }
+        });
+    }
+
+    function showTripIndex(inTripListURL)
+    {
+        startSpinning();          
+
+        $.ajax({
+          type: 'GET',
+          url: inTripListURL,
+          dataType: 'json',
+          success: function(data){
+            $('#tripIndexContainer').empty();
+            $('#tripIndexContainer').append(render('trip-index', {trips: data}));
+
+            showPanel('#tripIndexContainer');
+          },
+          error: function(xhr, type, thrownError){
+            alert('tripIndexContainer Ajax error! ' + xhr.status + ' ' + thrownError);
             stopSpinning();
           }
         });
@@ -157,12 +174,6 @@ define(function(require) {
           success: function(data){
             $('#locationIndexContainer').empty();
             $('#locationIndexContainer').append(render('location-index', {locations: data}));
-
-            _.each(data, function(location) {
-              $('#location' + location.id).click((function(id) {
-                  return function (e) { e.preventDefault(); showLocationDetail('/locations/' + id + '.json'); }
-              })(location.id));
-            });
 
             showPanel('#locationIndexContainer');
           },
@@ -184,16 +195,29 @@ define(function(require) {
             $('#locationDetailContainer').empty(); 
             $('#locationDetailContainer').append(render('location-detail', {location: location}));
 
-            _.each(location.species, function(species) {
-              $('#species' + species.id).click((function(id) {
-                  return function (e) { e.preventDefault(); showSpeciesDetail('/species/' + id + '.json'); }
-                })(species.id));
-            });
-
             showPanel('#locationDetailContainer');
           },
           error: function(xhr, type, thrownError){
             alert('showLocationDetail Ajax error! ' + xhr.status + ' ' + thrownError);
+          }
+        });
+    }
+
+    function showTripDetail(inTripDetailURL)
+    {
+        $.ajax({
+          type: 'GET',
+          url: inTripDetailURL,
+          dataType: 'json',
+          success: function(data){
+            var trip = data[0];
+            $('#tripDetailContainer').empty(); 
+            $('#tripDetailContainer').append(render('trip-detail', {trip: trip}));
+
+            showPanel('#tripDetailContainer');
+          },
+          error: function(xhr, type, thrownError){
+            alert('tripDetailContainer Ajax error! ' + xhr.status + ' ' + thrownError);
           }
         });
     }
@@ -213,12 +237,6 @@ define(function(require) {
               showPhoto('/photos/' + species.photos[0].id + '.json', 'speciesPhoto');
             }
 
-            _.each(species.locations, function(location) {
-                $('#location' + location.id).click((function(id) {
-                    return function (e) { e.preventDefault(); showLocationDetail('/locations/' + id + '.json'); }
-                })(location.id));
-            });
-
             showPanel('#speciesDetailContainer');
           },
           error: function(xhr, type, thrownError){
@@ -227,7 +245,29 @@ define(function(require) {
         });
     }
 
-    $('#homebutton').click(showHome);
+    $(document).on("click", "a", function(e) {
+      var pagekind = $(this).attr('data-pagekind');
+      var objectid = $(this).attr('data-objectid');
+
+      console.log("click " + pagekind + " " + objectid);
+
+      if (pagekind == 'location') {
+        showLocationDetail('/locations/' + objectid + '.json');
+      } else if (pagekind == 'species') {
+        showSpeciesDetail('/species/' + objectid + '.json');
+      } else if (pagekind == 'trip') {
+        showTripDetail('/trips/' + objectid + '.json');
+      } else if (pagekind == 'locationIndex') {
+        showLocationIndex('/locations.json');
+      } else if (pagekind == 'speciesIndex') {
+        showSpeciesIndex('/species.json');
+      } else if (pagekind == 'tripIndex') {
+        showTripIndex('/trips.json');
+      } else if (pagekind == 'home') {
+        showHome();
+      }
+    });
+
     showHome();
 });
 

@@ -2,14 +2,18 @@
 
 <h2><%= location.name %></h2>
 
+<div style='font-style: italic'><%= location.county.name %> County</div>
+
 <div><%= location.notes %></div>
 
-<img src='https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center=<%= location.latitude %>,<%= location.longitude %>' />
+<% if (location.latitude != 0) { %>
+	<img src='https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center=<%= location.latitude %>,<%= location.longitude %>' />
+<% } %>
 
 <h3>Species</h3>
 
 <ul id='speciesList' class='nav navlist'>
     <% _.each(location.species, function(species) { %>
-        <li><a href='#' id='species<%= species.id %>'><%= species.common_name %></a></li>
+        <li><a href='#' data-pagekind='species' data-objectid='<%= species.id %>'><%= species.common_name %></a></li>
     <% }) %>
 </ul>

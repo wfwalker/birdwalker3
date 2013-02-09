@@ -22,12 +22,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a id="homebutton" class="brand" href="#">BirdWalker</a>
+          <a href="#" class="brand" data-pagekind="home">BirdWalker</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="#" id="toSpeciesIndex">Species</a></li>
-              <li><a href="#" id="toLocationIndex">Locations</a></li>
-              <li><a href="#" id="toTripIndex">Trips</a></li>
+              <li><a href="#" data-pagekind="speciesIndex">Species</a></li>
+              <li><a href="#" data-pagekind="locationIndex">Locations</a></li>
+              <li><a href="#" data-pagekind="tripIndex">Trips</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -47,10 +47,16 @@
     <div class="container" id="speciesDetailContainer">
     </div>
 
+    <div class="container" id="tripDetailContainer">
+    </div>
+
     <div class="container" id="speciesIndexContainer">
     </div>
 
     <div class="container" id="locationIndexContainer">
+    </div>
+
+    <div class="container" id="tripIndexContainer">
     </div>
 
     <!-- Using require.js, a module system for javascript, include the
