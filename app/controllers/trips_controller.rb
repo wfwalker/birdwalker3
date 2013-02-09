@@ -12,10 +12,28 @@ class TripsController < ApplicationController
     "trips"
   end
   
+  def index
+    @page_title = "Trips"
+    @trips = Trip.find(:all, :order => "date DESC")
+    @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
+
+    respond_to do |format|
+      format.html { render :action => 'list' }
+      format.xml  { render :xml => @trips }
+      format.json { render :json => @trips }
+    end
+  end
+
   def list
     @page_title = "Trips"
     @trips = Trip.find(:all, :order => "date DESC")
     @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
+
+    respond_to do |format|
+      format.html # list.html.erb
+      format.xml  { render :xml => @trips }
+      format.json { render :json => @trips }
+    end
   end
 
   def list_biggest
@@ -29,8 +47,8 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       format.html # show.rhtml
-      format.xml  { render :xml => @trip.to_xml(:include => [ :sightings, :photos ]) }
-      format.json  { render :json => @trip.to_json(:include => [ :sightings, :photos ]) }
+      format.xml  { render :xml => [@trip], :include => [ :species, :sightings, :photos ] }
+      format.json  { render :json => [@trip], :include => [ :species, :sightings, :photos ] }
     end
   end
 
@@ -63,11 +81,6 @@ class TripsController < ApplicationController
     render :text => sighting_exports.join("\n"), :content_type => 'text/plain'
   end
   
-  def index
-    list
-    render :action => 'list'
-  end
-
 # WFW -- THIS BREAKS EVERYTHING!!!!
 # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
 # verify :method => :post, :only => [ :destroy, :create, :update ],

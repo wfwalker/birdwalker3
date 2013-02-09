@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @photo.to_xml(:methods => [ :photo_URL ]) }
-      format.json  { render :json => [@photo], :methods => :image_filename }
+      format.json  { render :json => [@photo], :methods => :image_filename, :include => [:trip, :location] }
     end
   end
 

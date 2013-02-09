@@ -80,7 +80,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @location }
-      format.json  { render :json => [@location], :include => :species }
+      format.json  { render :json => [@location], :include => [:species, :county] }
     end
   end          
   
