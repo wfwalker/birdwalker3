@@ -1,0 +1,9 @@
+<div class='hidden-phone' style='padding-top: 60px'></div>
+
+<h2>Trips</h2>
+
+<ul id='tripList' class='nav navlist'>
+    <% _.each(trips, function(trip) { %>
+        <li class='active'><a href='#' data-pagekind='trip' data-objectid='<%= trip.id %>'><%= trip.name %></a></li>
+    <% }) %>
+<ul/>

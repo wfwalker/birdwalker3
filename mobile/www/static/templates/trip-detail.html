@@ -1,0 +1,15 @@
+<div class='hidden-phone' style='padding-top: 60px'></div>
+
+<h2><%= trip.name %></h2>
+
+<div style='font-style: italic'><%= trip.date %></div>
+
+<div><%= trip.notes %></div>
+
+<h3>Species</h3>
+
+<ul id='speciesList' class='nav navlist'>
+    <% _.each(trip.species, function(species) { %>
+        <li><a href='#' data-pagekind='species' data-objectid='<%= species.id %>'><%= species.common_name %></a></li>
+    <% }) %>
+</ul>
