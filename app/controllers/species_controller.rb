@@ -16,10 +16,11 @@ class SpeciesController < ApplicationController
   end
 
   def index
+    @page_title = "Birding Life List"
     @all_species_seen = Species.seen_not_excluded.countable
     
     respond_to do |format|
-      format.html { render :action => 'list' }
+      format.html # index.html.erb
       format.xml  { render :xml => @all_species_seen }
       format.json { render :json => @all_species_seen }
     end
@@ -28,11 +29,6 @@ class SpeciesController < ApplicationController
 # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
 #  verify :method => :post, :only => [ :destroy, :create, :update ],
 #         :redirect_to => { :action => :list }
-
-  def list
-    @page_title = "Birding Life List"
-    @all_species_seen = Species.seen_not_excluded.countable
-  end
   
   def life_list
     @page_title = "Birding Life List"
@@ -48,8 +44,6 @@ class SpeciesController < ApplicationController
   def year_list
     @all_species_seen = Species.seen_not_excluded_during(params[:year]).countable
     @page_title = params[:year].to_s   
-    
-    render :action => 'list'
   end      
   
   def show
@@ -119,7 +113,7 @@ class SpeciesController < ApplicationController
 
     if @species.save
       flash[:notice] = 'Species was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -144,6 +138,6 @@ class SpeciesController < ApplicationController
 
   def destroy
     Species.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

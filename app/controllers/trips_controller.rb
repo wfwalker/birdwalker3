@@ -18,19 +18,7 @@ class TripsController < ApplicationController
     @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
 
     respond_to do |format|
-      format.html { render :action => 'list' }
-      format.xml  { render :xml => @trips }
-      format.json { render :json => @trips }
-    end
-  end
-
-  def list
-    @page_title = "Trips"
-    @trips = Trip.find(:all, :order => "date DESC")
-    @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
-
-    respond_to do |format|
-      format.html # list.html.erb
+      format.html # index.html.erb
       format.xml  { render :xml => @trips }
       format.json { render :json => @trips }
     end
@@ -131,6 +119,6 @@ class TripsController < ApplicationController
   def destroy
     Trip.find(params[:id]).destroy
     expire_action :action => [:index, :list]
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

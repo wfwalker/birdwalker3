@@ -18,19 +18,11 @@ class TripsControllerTest < ActionController::TestCase
 
   def test_index
     get :index
-    assert_response :success
-    xml_document = assert_valid_xml(@response.body)
-    assert_valid_document_title(xml_document, "birdWalker | Trips")
-    assert_template 'list'
-  end
-
-  def test_list
-    get :list
 
     assert_response :success
     xml_document = assert_valid_xml(@response.body)
     assert_valid_document_title(xml_document, "birdWalker | Trips")
-    assert_template 'list'
+    assert_template 'index'
 
     assert_not_nil assigns(:trips)
   end
@@ -171,7 +163,7 @@ class TripsControllerTest < ActionController::TestCase
     post :destroy, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Trip.find(@first_id)

@@ -17,17 +17,10 @@ class SpeciesControllerTest < ActionController::TestCase
 
   def test_index
     get :index
-    assert_response :success
-    assert_valid_xml(@response.body)
-    assert_template 'list'
-  end
-
-  def test_list
-    get :list
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'list'
+    assert_template 'index'
 
     assert_not_nil assigns(:all_species_seen)
   end
@@ -37,7 +30,7 @@ class SpeciesControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_valid_xml(@response.body)
-    assert_template 'list'
+    assert_template 'year_list'
 
     assert_not_nil assigns(:all_species_seen)       
     assert_equal 2, assigns(:all_species_seen).length, "wrong number of species for 2007"
@@ -96,7 +89,7 @@ class SpeciesControllerTest < ActionController::TestCase
     post :create, {:species => {:abbreviation => 'abcdef', :latin_name => 'Latinus', :common_name => 'Common'}}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
     assert_valid_xml(@response.body)
 
     assert_equal num_species + 1, Species.count
@@ -129,7 +122,7 @@ class SpeciesControllerTest < ActionController::TestCase
     post :destroy, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_valid_xml(@response.body)
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Species.find(@first_id)
