@@ -7,7 +7,7 @@ class StatesController < ApplicationController
 
   before_filter :update_activity_timer  
   
-  caches_action :list, :index, :show, :layout => false
+  # caches_action :list, :index, :show, :layout => false
 
   def page_kind
     "locations"
