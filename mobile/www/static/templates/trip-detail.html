@@ -2,7 +2,8 @@
 
 <h2><%= trip.name %></h2>
 
-<div style='font-style: italic'><%= trip.date %></div>
+<% var tmp = new Date(trip.date); %>
+<div style='font-style: italic'><%= tmp.toString("MMM d, yyyy") %></div>
 
 <div><%= trip.notes %></div>
 
