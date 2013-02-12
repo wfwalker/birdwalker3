@@ -246,6 +246,8 @@ define(function(require) {
     }
 
     $(document).on("click", "a", function(e) {
+      e.preventDefault();
+      
       var pagekind = $(this).attr('data-pagekind');
       var objectid = $(this).attr('data-objectid');
 
