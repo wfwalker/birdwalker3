@@ -82,20 +82,9 @@ define(function(require) {
       $(panelName).show();
     }
 
-    function showPhoto(inPhotoURL, inPhotoID)
+    function showPhotos(inPhotoData, inPhotoID)
     {
-      $.ajax({
-        type: 'GET',
-        url: inPhotoURL,
-        dataType: 'json',
-        success: function(data){
-          var photo = data[0];
-          $('#' + inPhotoID).append(render('img-tag', {photo: photo}));
-        },
-        error: function(xhr, type, thrownError){
-            alert('showPhoto Ajax error! ' + xhr.status + ' ' + thrownError);
-        }
-      });
+      $('#' + inPhotoID).append(render('photo-carousel', {photos: inPhotoData}));
     }
 
     function showHome()
@@ -111,7 +100,7 @@ define(function(require) {
           var species = data[0];
 
           $('#homeContainer').append(render('home', { birdOfTheWeek: species }));
-          showPhoto('/photos/' + species.photos[0].id + '.json', 'birdOfTheWeekPhoto');
+          showPhotos(species.photos, 'birdOfTheWeekPhoto');
         },
         error: function(xhr, type, thrownError){
             alert('showHome Ajax error! ' + xhr.status + ' ' + thrownError);
@@ -195,6 +184,8 @@ define(function(require) {
             $('#locationDetailContainer').empty(); 
             $('#locationDetailContainer').append(render('location-detail', {location: location}));
 
+            showPhotos(location.photos, 'locationPhoto');
+
             showPanel('#locationDetailContainer');
           },
           error: function(xhr, type, thrownError){
@@ -213,6 +204,8 @@ define(function(require) {
             var trip = data[0];
             $('#tripDetailContainer').empty(); 
             $('#tripDetailContainer').append(render('trip-detail', {trip: trip}));
+
+            showPhotos(trip.photos, 'tripPhoto');
 
             showPanel('#tripDetailContainer');
           },
@@ -234,7 +227,7 @@ define(function(require) {
             $('#speciesDetailContainer').append(render('species-detail', { species: species }));
 
             if (species.photos[0]) {
-              showPhoto('/photos/' + species.photos[0].id + '.json', 'speciesPhoto');
+              showPhotos(species.photos, 'speciesPhoto');
             }
 
             showPanel('#speciesDetailContainer');
