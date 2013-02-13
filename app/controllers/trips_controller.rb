@@ -35,8 +35,8 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       format.html # show.rhtml
-      format.xml  { render :xml => [@trip], :include => [ :species, :sightings, :photos ] }
-      format.json  { render :json => [@trip], :include => [ :species, :sightings, :photos ] }
+      format.xml  { render :xml => [ @trip ], :include => [ :species, :sightings, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
+      format.json  { render :json => [ @trip ], :include => [ :species, :sightings, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
     end
   end
 

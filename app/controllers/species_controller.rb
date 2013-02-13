@@ -53,7 +53,7 @@ class SpeciesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @species }
-      format.json { render :json => [@species], :include => [:locations, :photos] }
+      format.json { render :json => [@species], :include => [ :locations, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
     end
   end
 
@@ -64,7 +64,7 @@ class SpeciesController < ApplicationController
     respond_to do |format|
       format.html { render :action => "show" }
       format.xml  { render :xml => @species }
-      format.json { render :json => [@species], :include => :photos  }
+      format.json { render :json => [@species], :include => { :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } } }
     end
   end
 
