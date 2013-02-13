@@ -1,11 +1,13 @@
-<h2><%= trip.name %></h2>
-
 <% var tmp = new Date(trip.date); %>
-<div style='font-style: italic'><%= tmp.toString("MMM d, yyyy") %></div>
+
+<h4><%= trip.name %></h4>
+<p><%= tmp.toString("MMM d, yyyy") %></p>
+
+<div id='tripPhoto'></div>
 
 <div><%= trip.notes %></div>
 
-<h3>Species</h3>
+<h4>Species</h4>
 
 <ul id='speciesList' class='nav navlist'>
     <% _.each(trip.species, function(species) { %>

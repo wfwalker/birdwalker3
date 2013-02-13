@@ -1,12 +1,11 @@
-<h2><%= species.common_name %></h2>
-
-<div style='font-style: italic'><%= species.latin_name %></div>
+<h4><%= species.common_name %></h4>
+<p><%= species.latin_name %></p>
 
 <div><%= species.notes %></div>
 
 <div id='speciesPhoto'></div>
 
-<h3>Locations</h3>
+<h4>Locations</h4>
 
 <ul id='locationList' class='nav navlist'>
     <% _.each(species.locations, function(location) { %>

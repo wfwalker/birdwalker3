@@ -1,6 +1,7 @@
-<h2><%= location.name %></h2>
+<h4><%= location.name %></h4>
+<p><%= location.county.name %> County</p>
 
-<div style='font-style: italic'><%= location.county.name %> County</div>
+<div id='locationPhoto'></div>
 
 <div><%= location.notes %></div>
 
@@ -8,7 +9,7 @@
 	<img src='https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center=<%= location.latitude %>,<%= location.longitude %>' />
 <% } %>
 
-<h3>Species</h3>
+<h4>Species</h4>
 
 <ul id='speciesList' class='nav navlist'>
     <% _.each(location.species, function(species) { %>
