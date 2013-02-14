@@ -1,19 +1,12 @@
 <%= render :partial => 'page_header', :object => @species %>
 
-<% if @species.photos.length > 3 %>
+<% has_photos?(@species) do %>
 	<%= render :partial => 'photos/gallery', :object => @species.photos %>
 <% end %>
 
 <div class='row'>
 
 	<div class='span6'>  
-		<% if @species.photos.length > 0 and @species.photos.length <= 3 %>
-			<div class="moduletitle">Species Photos</div>
-			<% for species_photo in @species.photos do %>
-				<p><img width="100%" src="<%= species_photo.photo_URL %>"/></p>
-			<% end %>
-		<% end %>	
-	                     
 		<div class="pagecontentmodule">
 			<% if @species.notes? or @species.common? %>
 				<div class="moduletitle">Species Notes</div>	

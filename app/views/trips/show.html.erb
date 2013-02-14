@@ -6,19 +6,12 @@
 	<% end %>
 </div>
 
-<% if @trip.photos.length > 3 %>
+<% has_photos?(@trip) do %>
 	<%= render :partial => 'photos/gallery', :object => @trip.photos %>
 <% end %>	
 
 <div class='row'>
 	<div class='span6'>
-		<% if @trip.photos.length > 0 and @trip.photos.length <= 3 %>
-			<div class="moduletitle">Trip Photos</div>
-			<% for trip_photo in @trip.photos do %>
-				<p><img width="100%" src="<%= trip_photo.photo_URL %>"/></p>
-			<% end %>
-		<% end %>	
-
 		<% if (@trip.locations.size == 1) %>
 			<% @module_title = @trip.locations[0].full_name %>
 		<% else %>	

@@ -1,6 +1,6 @@
 <%= render :partial => 'page_header', :object => @location %>
 
-<% if @location.photos.length > 3 %>
+<% has_photos?(@location) do %>
 	<%= render :partial => 'photos/gallery', :object => @location.photos %>
 <% end %>
 	

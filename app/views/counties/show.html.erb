@@ -2,17 +2,12 @@
 	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
 </div> 
                             
-<% if @county.photos.length > 3 %>
+<% has_photos?(@county) do %>
 	<%= render :partial => 'photos/gallery', :object => @county.photos %>
 <% end %>
 
 <div class='row'>
 	<div class='span6'>
-		<% if @county.photos.length > 0 and @county.photos.length <= 3 %>
-			<div class="moduletitle">County Photos</div>
-			<img width="100%" src="<%= @county.photos[0].photo_URL %>"/>
-		<% end %>	
-
 		<% if @county.common? %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle">County Notes</div>	

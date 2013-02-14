@@ -3,21 +3,31 @@
 
 <div class='row'>
 	<div class="span12">
-		<div class="pagecontentitem" id="thumbnail_list" style="background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%); background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 100%);"> 
+
+    <div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+
 			<% gallery_photos.each { | a_photo | %>
-				<% tooltip = [a_photo.species.common_name, a_photo.location.name, a_photo.location.county.state.abbreviation, short_nice_date(a_photo.trip.date)].join(", ") %>
-				<% lightbox_caption = [a_photo.species.common_name, a_photo.location.name, a_photo.location.county.state.abbreviation, short_nice_date(a_photo.trip.date), link_to("[permalink]", photo_url(a_photo))].join(", ") %>
-				<span class="photo"><%= link_to a_photo.thumb, a_photo.photo_URL, :id => a_photo.id, :title => tooltip %></span>
+				<% lightbox_caption = [
+					a_photo.species.common_name,
+					a_photo.location.name,
+					a_photo.location.county.state.abbreviation,
+					short_nice_date(a_photo.trip.date)].join(", ") %>
+				<div class="<%= gallery_photos.fetch(0) == a_photo ? 'active': '' %> item" style="background-color: gray">
+					<center><%= a_photo.photo %></center>
+
+	                <div class="carousel-caption">
+	                	<center><p><%= lightbox_caption %></p></center>
+	                </div>
+				</div>
 			<% } %>
-		</div>      
-		<div><i>photos by Bill Walker, click thumbnails to enlarge</i></div>
+
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+
 	</div>
 </div>
-
-<script language="JavaScript">
-
-$(document).ready(function(){   
-	$('#thumbnail_list a').lightBox();
-});
-
-</script>
