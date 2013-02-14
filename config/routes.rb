@@ -1,4 +1,7 @@
 Birdwalker3::Application.routes.draw do
+  resources :countries
+
+
   resources :posts
 
   match '' => 'bird_walker#index'

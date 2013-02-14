@@ -7,6 +7,8 @@ class State < ActiveRecord::Base
     end
   end
 
+  validates_presence_of :country_id
+
   # def to_param
   #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
   # end

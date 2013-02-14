@@ -5,7 +5,7 @@ require 'states_controller'
 class StatesController; def rescue_action(e) raise e end; end
 
 class StatesControllerTest < ActionController::TestCase
-  fixtures :counties, :states
+  fixtures :counties, :states, :countries
 
   def setup
     @controller = StatesController.new

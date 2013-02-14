@@ -3,13 +3,16 @@ state_one:
   id: 1
   name: 'First State'    
   abbreviation: 'FS'
+  country_id: 1
   
 state_two:
   id: 2
   name: 'Second State'
   abbreviation: 'SS'
+  country_id: 1
 
 state_three:
   id: 3
   name: 'Third State'
   abbreviation: 'TS'
+  country_id: 1
