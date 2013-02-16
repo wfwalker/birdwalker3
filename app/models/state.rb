@@ -21,9 +21,9 @@ class State < ActiveRecord::Base
 
   has_many :species, :through => :sightings, :uniq => true, :order => 'species.id'
       
-  has_many :trips, :through => :sightings
+  has_many :trips, :through => :sightings, :uniq => true
   
-  has_many :photos, :through => :locations
+  has_many :photos, :through => :locations, :uniq => true
   
   def common?
     self.trips.length > 20
