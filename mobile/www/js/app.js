@@ -84,7 +84,9 @@ define(function(require) {
 
     function showPhotos(inPhotoData, inPhotoID)
     {
-      $('#' + inPhotoID).append(render('photo-carousel', {photos: inPhotoData}));
+      if (inPhotoData[0]) {
+        $('#' + inPhotoID).append(render('photo-carousel', {photos: inPhotoData}));
+      }
     }
 
     function showHome()
@@ -226,9 +228,7 @@ define(function(require) {
             $('#speciesDetailContainer').empty();   
             $('#speciesDetailContainer').append(render('species-detail', { species: species }));
 
-            if (species.photos[0]) {
-              showPhotos(species.photos, 'speciesPhoto');
-            }
+            showPhotos(species.photos, 'speciesPhoto');
 
             showPanel('#speciesDetailContainer');
           },
