@@ -24,7 +24,6 @@ log/*.log
 tmp
 
 .DS_Store
-birdwalker_dump.sql
 blog-03-23-2011.xml
 build-db.sh
 build-test-db.sh
