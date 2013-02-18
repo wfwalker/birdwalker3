@@ -14,10 +14,10 @@
 					a_photo.location.name,
 					a_photo.location.county.state.abbreviation,
 					short_nice_date(a_photo.trip.date)].join(", ") %>
-				<div class="<%= gallery_photos.fetch(0) == a_photo ? 'active': '' %> item" style="background-color: gray">
+				<div class="<%= gallery_photos.fetch(0) == a_photo ? 'active': '' %> item">
 					<center><%= a_photo.photo %></center>
 
-	                <div class="carousel-caption">
+	                <div >
 	                	<center><p><%= lightbox_caption %></p></center>
 	                </div>
 				</div>
