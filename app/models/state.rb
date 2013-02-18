@@ -1,5 +1,7 @@
 class State < ActiveRecord::Base
   has_many :counties
+
+  belongs_to :country
   
   has_many :locations, :through => :counties do
     def with_lat_long
