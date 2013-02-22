@@ -1,6 +1,8 @@
 <div class="lead"><%= @page_title %> (<i><%= @family.latin_name %></i>)</div>
 
-<%= render :partial => 'photos/gallery', :object => @family.photos %>
+<% has_photos?(@family) do %>
+	<%= render :partial => 'photos/gallery', :object => @family.photos %>
+<% end %>
 
 <div class='row'>
 	<div class='span6'>
