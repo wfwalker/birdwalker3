@@ -62,7 +62,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])    
     
     if params[:dist] then
-      render :json => @location.recent_nearby_ebird_sightings(params[:dist])
+      render :json => @location.recent_nearby_ebird_sightings(params[:dist]) 
     else
       render :json => @location.recent_nearby_ebird_sightings()
     end
@@ -79,7 +79,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       format.html # show.rhtml
-      format.xml  { render :xml => @location }
+      format.xml  { render :xml => [@location], :include => [:species, :county, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
       format.json  { render :json => [@location], :include => [:species, :county, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
     end
   end          

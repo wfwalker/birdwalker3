@@ -196,6 +196,27 @@ define(function(require) {
         });
     }
 
+    function showCountyDetail(inCountyDetailURL)
+    {
+        $.ajax({
+          type: 'GET',
+          url: inCountyDetailURL,
+          dataType: 'json',
+          success: function(data){
+            var county = data[0];
+            $('#countyDetailContainer').empty(); 
+            $('#countyDetailContainer').append(render('county-detail', {county: county}));
+
+            showPhotos(county.photos, 'countyPhoto');
+
+            showPanel('#countyDetailContainer');
+          },
+          error: function(xhr, type, thrownError){
+            alert('showCountyDetail Ajax error! ' + xhr.status + ' ' + thrownError);
+          }
+        });
+    }
+
     function showTripDetail(inTripDetailURL)
     {
         $.ajax({
@@ -248,6 +269,8 @@ define(function(require) {
 
       if (pagekind == 'location') {
         showLocationDetail('/locations/' + objectid + '.json');
+      } else if (pagekind == 'county') {
+        showCountyDetail('/counties/' + objectid + '.json');
       } else if (pagekind == 'species') {
         showSpeciesDetail('/species/' + objectid + '.json');
       } else if (pagekind == 'trip') {
