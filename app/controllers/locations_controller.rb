@@ -79,8 +79,8 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       format.html # show.rhtml
-      format.xml  { render :xml => [@location], :include => [:species, :county, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
-      format.json  { render :json => [@location], :include => [:species, :county, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
+      format.xml  { render :xml => [@location], :include => [:species, :trips, :county, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
+      format.json  { render :json => [@location], :include => [:species, :trips, :county, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
     end
   end          
   
