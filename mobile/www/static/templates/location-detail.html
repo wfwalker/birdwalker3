@@ -1,18 +1,55 @@
 <h4><%= location.name %></h4>
 <p><a href="#" data-pagekind='county' data-objectid='<%= location.county.id %>'><%= location.county.name %> County</a></p>
 
-<div id='locationPhoto'></div>
+<div class='row'>
+	<div class="span4">
+		<div class="moduletitle">Photos by Bill Walker</div>  
+		<div id='locationPhoto'></div>
+	</div>
 
-<div><%= location.notes %></div>
+	<div class="span4">
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Location Notes</div>  
+			  
+			<p><%= location.notes %></p>
 
-<% if (location.latitude != 0) { %>
-	<img src='https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center=<%= location.latitude %>,<%= location.longitude %>' />
-<% } %>
+			<% if (location.trips.length > 10) { %>
+				<% var firstDate = new Date(location.trips[location.trips.length - 1].date); %>
+				<% var lastDate = new Date(location.trips[0].date); %>
+				<% var visitsPerYear = location.trips.length / (firstDate.getFullYear() - lastDate.getFullYear()) %>
 
-<h4>Species</h4>
+				<p>We visited <%= Math.round(visitsPerYear) %> times per year between <%= firstDate.getFullYear() %> and <%= lastDate.getFullYear() %>.</p>
+			<% } else { %>
+				We've only visited <%= location.trips.length %> times:
+				<% _.each(location.trips, function(a_trip) { %>
+					<% var tripDate = new Date(a_trip.date) %>
+					<div>
+						<a href='#' data-pagekind='trip' data-objectid='<%= a_trip.id %>'>
+							<%= tripDate.toString('MMM d, yyyy') %> <%= a_trip.name %>
+						</a>
+					</div>
+				<% }); %>
+			<% } %>
 
-<ul id='speciesList' class='nav navlist'>
-    <% _.each(location.species, function(species) { %>
-        <li><a href='#' data-pagekind='species' data-objectid='<%= species.id %>'><%= species.common_name %></a></li>
-    <% }) %>
-</ul>
+		</div>
+	</div>
+
+	<div class="span4">
+		<div class="moduletitle">Location Map</div>  
+		<% if (location.latitude != 0) { %>
+			<img src='https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center=<%= location.latitude %>,<%= location.longitude %>' />
+		<% } %>
+	</div>
+</div>
+
+<div class='row'>
+	<div class="span12">
+		<h4>Species</h4>
+
+		<ul id='speciesList' class='nav navlist'>
+		    <% _.each(location.species, function(species) { %>
+		        <li><a href='#' data-pagekind='species' data-objectid='<%= species.id %>'><%= species.common_name %></a></li>
+		    <% }) %>
+		</ul>
+	</div>
+</div>
