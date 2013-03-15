@@ -74,6 +74,7 @@ define(function(require) {
       if (panelName != '#tripIndexContainer')      $('#tripIndexContainer').hide();
       if (panelName != '#locationDetailContainer') $('#locationDetailContainer').hide();
       if (panelName != '#locationIndexContainer')  $('#locationIndexContainer').hide();
+      if (panelName != '#countyDetailContainer')   $('#countyDetailContainer').hide();
       if (panelName != '#homeContainer')           $('#homeContainer').hide();
       if (panelName != '#speciesDetailContainer')  $('#speciesDetailContainer').hide();
       if (panelName != '#speciesIndexContainer')   $('#speciesIndexContainer').hide();
