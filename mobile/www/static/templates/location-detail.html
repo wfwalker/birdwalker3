@@ -37,7 +37,7 @@
 	<div class="span4">
 		<div class="moduletitle">Location Map</div>  
 		<% if (location.latitude != 0) { %>
-			<img src='https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center=<%= location.latitude %>,<%= location.longitude %>' />
+			<img src='https://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&sensor=false&center=<%= location.latitude %>,<%= location.longitude %>&markers=color:green%7Clabel:G%7C<%= location.latitude %>,<%= location.longitude %>' />
 		<% } %>
 	</div>
 </div>
