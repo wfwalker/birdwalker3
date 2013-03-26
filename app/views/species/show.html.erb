@@ -1,12 +1,16 @@
 <%= render :partial => 'page_header', :object => @species %>
 
-<% has_photos?(@species) do %>
-	<%= render :partial => 'photos/gallery', :object => @species.photos %>
-<% end %>
-
 <div class='row'>
 
-	<div class='span6'>  
+	<div class='span4'>
+		<div class="pagecontentmodule">
+			<div class="moduletitle">Photos by Bill Walker</div>	
+
+			<%= render :partial => 'photos/gallery', :object => @species.photos %>
+		</div>
+	</div>
+
+	<div class='span4'>  
 		<div class="pagecontentmodule">
 			<% if @species.notes? or @species.common? %>
 				<div class="moduletitle">Species Notes</div>	
@@ -45,7 +49,7 @@
 		<% end %>
 
 	</div>
-	<div class='span6' id='mapContainer'>
+	<div class='span4' id='mapContainer'>
 		<% if (@species.locations.with_lat_long.size > 0) %>  
 			<%= render :partial => 'locations/google', :object => @species.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/species/locations/%s.json' % @species.id }  %>
 		<% end %>

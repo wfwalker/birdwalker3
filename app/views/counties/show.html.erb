@@ -2,12 +2,14 @@
 	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
 </div> 
                             
-<% has_photos?(@county) do %>
-	<%= render :partial => 'photos/gallery', :object => @county.photos %>
-<% end %>
-
 <div class='row'>
-	<div class='span6'>
+	<div class='span4'>
+		<div class="moduletitle">Photos by Bill Walker</div>  
+
+		<%= render :partial => 'photos/gallery', :object => @county.photos %>
+	</div>
+
+	<div class='span4'>
 		<% if @county.common? %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle">County Notes</div>	
@@ -49,7 +51,7 @@
 		<% end %>   
 	</div>
 
-	<div class='span6' id='mapContainer'>
+	<div class='span4' id='mapContainer'>
 		<% if (@county.locations.with_lat_long.size > 0) %>
 			<% @map_module_title = 'County Map' %>                       
 			<%= render :partial => 'locations/google', :object => @county.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/counties/locations/%s.json' % @county.id }  %>

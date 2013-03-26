@@ -1,13 +1,13 @@
 <%= render :partial => 'page_header', :object => @state %>
 
-<% has_photos?(@state) do %>
-	<%= render :partial => 'photos/gallery', :object => @state.photos %>
-<% end %>
-
-<%= render :partial => 'species/multi_column_list', :object => @state.species %>
-
 <div class='row'>
-	<div class='span6'>
+	<div class='span4'>
+		<div class="moduletitle">Photos by Bill Walker</div>  
+
+		<%= render :partial => 'photos/gallery', :object => @state.photos %>
+	</div>
+
+	<div class='span4'>
 		<% if (@state.common?) %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle">When we bird <%= @state.name %></div>	
@@ -20,10 +20,12 @@
 			<%= show_trip_list(@state.trips, true) %>
 		<% end %>
 	</div>
-	<div class='span6' id='mapContainer'>
+	<div class='span4' id='mapContainer'>
 		<% if (@state.locations.with_lat_long.size > 0) %>
 			<% @map_module_title = 'State Map' %>                       
 			<%= render :partial => 'locations/google', :object => @state.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
 		<% end %>
 	</div>
 </div>
+
+<%= render :partial => 'species/multi_column_list', :object => @state.species %>

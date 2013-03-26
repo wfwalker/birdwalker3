@@ -1,11 +1,14 @@
 <div class="lead"><%= @page_title %> (<i><%= @family.latin_name %></i>)</div>
 
-<% has_photos?(@family) do %>
-	<%= render :partial => 'photos/gallery', :object => @family.photos %>
-<% end %>
 
 <div class='row'>
-	<div class='span6'>
+	<div class='span4'>
+		<div class="moduletitle">Photos by Bill Walker</div>  
+
+		<%= render :partial => 'photos/gallery', :object => @family.photos %>
+	</div>
+
+	<div class='span4'>
 		<% if @family.common? %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Family Notes</div>	
@@ -34,15 +37,19 @@
 			</div>
 
 			<%= show_trip_list(@family.trips, true) %>
-        <% end %>
-
-		<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
+        <% end %>       
    	</div>
 
-   	<div class='span6' id='mapContainer'>
+   	<div class='span4' id='mapContainer'>
 		<% if (Location.with_lat_long(@family.locations).length > 0) %>
 			<% @map_module_title = 'Family Map' %>                       
 			<%= render :partial => 'locations/google', :object => Location.with_lat_long(@family.locations), :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/families/locations/%s.json' % @family.id }  %>
 		<% end %>
   	</div>
+</div>
+
+<div class='row'>
+	<div class='span12'>
+		<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
+	</div>
 </div>

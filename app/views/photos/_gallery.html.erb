@@ -1,12 +1,9 @@
 <% gallery_photos = gallery.sort{ |a,b| b.trip.date <=> a.trip.date} %>    
 <% gallery_photos = gallery_photos.first(Photo.default_gallery_size())%>
 
-<div class='row'>
-	<div class="span12">
-
-    <div id="myCarousel" class="carousel slide">
-    <!-- Carousel items -->
-    <div class="carousel-inner">
+<div id="myCarousel" class="carousel slide">
+	<!-- Carousel items -->
+	<div class="carousel-inner">
 
 			<% gallery_photos.each { | a_photo | %>
 				<% lightbox_caption = [
@@ -23,11 +20,12 @@
 				</div>
 			<% } %>
 
-    </div>
-    <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div>
-
 	</div>
+	
+	<% if gallery_photos.count > 1 %>
+		<!-- Carousel nav -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	<% end %>
 </div>
+
