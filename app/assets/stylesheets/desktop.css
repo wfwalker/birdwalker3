@@ -111,6 +111,14 @@ a:hover { text-decoration: underline; }
 	padding-bottom: 5px;  
 }
 
+/* https://groups.google.com/forum/?fromgroups=#!topic/twitter-bootstrap/TaBX0y2htEI */
+.carousel .carousel-control {
+	display: none;
+}
+.carousel:hover .carousel-control {
+	display: inherit;
+}
+
 
 /* ---------- format dates like pages from a daily tearoff calendar ---------- */
 /* courtesy of http://www.mattvarone.com/web-design/daily-calendar-dates-with-css/ */

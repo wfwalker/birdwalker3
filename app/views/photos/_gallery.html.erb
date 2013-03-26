@@ -21,6 +21,10 @@
 			<% } %>
 
 	</div>
+
+	<% if gallery_photos.count == 0 %>
+		<div style="background-color: #efefef; padding: 20px 20px 60px 10px">no photos</div>
+	<% end %>
 	
 	<% if gallery_photos.count > 1 %>
 		<!-- Carousel nav -->
