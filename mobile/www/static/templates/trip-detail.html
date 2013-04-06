@@ -14,3 +14,28 @@
         <li><a href='#' data-pagekind='species' data-objectid='<%= species.id %>'><%= species.common_name %></a></li>
     <% }) %>
 </ul>
+
+<h4>Map</h4>
+
+<% var minLat = 400 %>
+<% var maxLat = -400 %>
+<% var minLong = 400 %>
+<% var maxLong = -400 %>
+<% var count = 0 %>
+<% var markerString = "" %>
+
+<% _.each(trip.locations, function(location) { %>
+	<% if (location.latitude != 0) { %>
+		<% minLat = Math.min(minLat, location.latitude) %>
+		<% maxLat = Math.max(maxLat, location.latitude) %>
+		<% minLong = Math.min(minLong, location.longitude) %>
+		<% maxLong = Math.max(maxLong, location.longitude) %>
+		<% markerString = markerString + "&markers=color:green%7Clabel:G%7C" + location.latitude + ","  + location.longitude %>
+		<% console.log(minLat + " " + maxLat + " " + minLong + " " + maxLong) %>
+	<% } %>
+<% }) %>
+
+<% var centerLat = (minLat + maxLat) / 2.0 %>
+<% var centerLong = (minLong + maxLong) / 2.0 %>
+
+<img src='https://maps.googleapis.com/maps/api/staticmap?zoom=8&size=400x400&sensor=false&center=<%= centerLat %>,<%= centerLong %><%= markerString %>' />
