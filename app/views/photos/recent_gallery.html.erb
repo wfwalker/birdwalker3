@@ -1,18 +1,23 @@
-<div class="lead">
-	Recent Photos by Bill Walker
+<div class='row'>
+	<div class='span6'>
+		<div class="moduletitle">Recent Photos by Bill Walker</div>
+
+		<%= render :partial => 'photos/gallery', :object => @recent_gallery_photos %>
+	</div>
+
+	<div class='span6'>
+		<div class="pagecontentmodule">  
+			<div class="moduletitle">Location Galleries</div>
+			<% for location in @location_galleries %>
+				<div class="pagecontentitem">
+				<%= link_to location.name, :action => 'show', :controller => 'locations', :id => location %>,
+				<%= location.county.state.name%>
+				</div>
+			<% end %>
+		</div>               
+	</div>
 </div>
 
-<%= render :partial => 'photos/gallery', :object => @recent_gallery_photos %>
-
-<div class="pagecontentmodule">  
-	<div class="moduletitle">Location Galleries</div>
-	<% for location in @location_galleries %>
-		<div class="pagecontentitem">
-		<%= link_to location.name, :action => 'show', :controller => 'locations', :id => location %>,
-		<%= location.county.state.name%>
-		</div>
-	<% end %>
-</div>               
 
 <div style="padding-top: 20px; padding-bottom: 50px">
 	All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
