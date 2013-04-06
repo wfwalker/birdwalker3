@@ -17,26 +17,26 @@ end
 
 # -------------------------------
 
-# puts "loading CSV"
-# clements_text = File.read('./clements.csv')
-# clements = CSV.parse(clements_text, :headers => true)
-# clementsDictionary = {}
+puts "loading CSV"
+clements_text = File.read('./clements.csv')
+clements = CSV.parse(clements_text, :headers => true)
+clementsDictionary = {}
 
-# puts "delete all taxons"
-# Taxon.delete_all()
+puts "delete all taxons"
+Taxon.delete_all()
 
-# puts "insert taxons"
-# taxonCount = 0
-# clements.each do |row|
-#   row = row.to_hash.with_indifferent_access
-#   taxon_hash = { 'sort' => row['SORT'], 'category' => row['CATEGORY'], 'latin_name' => row['SCIENTIFIC NAME'], 'common_name' => row['ENGLISH NAME'], 'range' => row['RANGE'], 'order' => row['ORDER'], 'family' => row['FAMILY'] }
-#   Taxon.create!(taxon_hash)
-#   clementsDictionary[row['SCIENTIFIC NAME'].downcase] = row
-#   taxonCount = taxonCount + 1
-#   if (taxonCount % 100 == 0)
-#     puts "%d taxons" % taxonCount
-#   end
-# end
+puts "insert taxons"
+taxonCount = 0
+clements.each do |row|
+  row = row.to_hash.with_indifferent_access
+  taxon_hash = { 'sort' => row['SORT'], 'category' => row['CATEGORY'], 'latin_name' => row['SCIENTIFIC NAME'], 'common_name' => row['ENGLISH NAME'], 'range' => row['RANGE'], 'order' => row['ORDER'], 'family' => row['FAMILY'] }
+  Taxon.create!(taxon_hash)
+  clementsDictionary[row['SCIENTIFIC NAME'].downcase] = row
+  taxonCount = taxonCount + 1
+  if (taxonCount % 1000 == 0)
+    puts "%d taxons" % taxonCount
+  end
+end
 
 # -------------------------------
 
@@ -52,6 +52,8 @@ Species.seen.each do |species|
     if renamedMatch["STATUS"] == "ready" and renamedMatch["OLD COMMON"] == species.common_name and renamedMatch["OLD LATIN"] == species.latin_name and renamedMatch["NEW LATIN"] != ""
       # puts "RENAME GO %s %s == %s %s" % [species.latin_name, species.common_name, renamedMatch["NEW LATIN"], renamedMatch["OLD COMMON"]]
       Sighting.update_all({:taxon_latin_name => renamedMatch["NEW LATIN"]}, {:species_id => species.id})
+      Photo.update_all({:taxon_latin_name => renamedMatch["NEW LATIN"]}, {:species_id => species.id})
+      Taxon.update_all({:abbreviation => species.abbreviation}, {:latin_name => renamedMatch["NEW LATIN"]})
 
       renameGoCount += 1
       renameDictionary[species.latin_name.downcase] = "REMOVED"
@@ -65,6 +67,8 @@ Species.seen.each do |species|
     if taxon.common_name.downcase == species.common_name.downcase and taxon.latin_name.downcase == species.latin_name.downcase then
       # puts "MATCH %s %s == %s %s" % [species.latin_name, species.common_name, clementsMatch["SCIENTIFIC NAME"], clementsMatch["ENGLISH NAME"]]
       Sighting.update_all({:taxon_latin_name => taxon.latin_name}, {:species_id => species.id})
+      Photo.update_all({:taxon_latin_name => taxon.latin_name}, {:species_id => species.id})
+      Taxon.update_all({:abbreviation => species.abbreviation}, {:latin_name => taxon.latin_name})
       matchCount += 1
     else
       # TODO: case-insensitive match!!
