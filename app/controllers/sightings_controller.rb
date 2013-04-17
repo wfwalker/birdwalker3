@@ -75,8 +75,11 @@ class SightingsController < ApplicationController
 
         for an_abbrev in abbreviations do
           @sighting = Sighting.new(params[:sighting])
-          temp = Species.find_by_abbreviation(an_abbrev)
-          @sighting.species_id = temp.id  
+          temp1 = Species.find_by_abbreviation(an_abbrev)
+          @sighting.species_id = temp1.id  
+
+          temp2 = Taxon.find_by_abbreviation(an_abbrev)
+          @sighting.taxon_latin_name = temp2.latin_name
 
           raise "Duplicate %s at %s" % [temp.common_name, @sighting.location.name] unless @sighting.valid?
           @sighting.save
@@ -91,6 +94,7 @@ class SightingsController < ApplicationController
 
     rescue Exception => exc
       flash[:error] = exc.message
+      logger.error(exc.message)
       flash[:abbreviations] = params[:abbreviation_list]    
       flash[:location_id] = @sighting.location_id
       redirect_to :back
