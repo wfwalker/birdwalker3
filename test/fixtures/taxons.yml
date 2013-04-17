@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  sort: 1
+  category: 'species'
+  latin_name: 'Latinus latinae'
+  common_name: 'Ivory-billed Woodpecker'
+  range: ''
+  order: 'order1'
+  family: 'family1'
+  abbreviation: 'ivbwoo'
+
+two: 
+  id: 2
+  sort: 2
+  category: 'species'
+  latin_name: 'Latinus bogusii'
+  common_name: 'Dodo'
+  range: ''
+  order: 'order2'
+  family: 'family2'
+  abbreviation: 'dodo'

@@ -15,6 +15,9 @@ class Trip < ActiveRecord::Base
       Species.map_by_family(proxy_association.target)
     end  
   end
+
+  has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort' do
+  end 
   
   has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do
     def with_lat_long

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214012230) do
+ActiveRecord::Schema.define(:version => 20130324055415) do
 
   create_table "counties", :force => true do |t|
     t.text    "name",     :limit => 255
@@ -62,34 +62,38 @@ ActiveRecord::Schema.define(:version => 20130214012230) do
     t.integer "trip_id",           :limit => 3
     t.integer "rating"
     t.text    "original_filename"
+    t.string  "taxon_latin_name"
   end
 
   add_index "photos", ["location_id"], :name => "LocationIndex"
   add_index "photos", ["rating"], :name => "RatingIndex"
   add_index "photos", ["species_id"], :name => "SpeciesIndex"
+  add_index "photos", ["taxon_latin_name"], :name => "index_photos_on_taxon_latin_name"
   add_index "photos", ["trip_id"], :name => "TripIndex"
 
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.date     "date"
     t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sightings", :force => true do |t|
     t.text    "notes"
-    t.boolean "exclude",                  :default => false, :null => false
-    t.boolean "heard_only",               :default => false, :null => false
-    t.integer "location_id", :limit => 3
-    t.integer "species_id",  :limit => 8
-    t.integer "trip_id",     :limit => 3
-    t.integer "count",       :limit => 3
+    t.boolean "exclude",                       :default => false, :null => false
+    t.boolean "heard_only",                    :default => false, :null => false
+    t.integer "location_id",      :limit => 3
+    t.integer "species_id",       :limit => 8
+    t.integer "trip_id",          :limit => 3
+    t.integer "count",            :limit => 3
+    t.string  "taxon_latin_name"
   end
 
   add_index "sightings", ["exclude"], :name => "ExcludeIndex"
   add_index "sightings", ["location_id"], :name => "LocationIndex"
   add_index "sightings", ["species_id"], :name => "SpeciesIndex"
+  add_index "sightings", ["taxon_latin_name"], :name => "index_sightings_on_taxon_latin_name"
   add_index "sightings", ["trip_id"], :name => "TripIndex"
 
   create_table "species", :force => true do |t|
@@ -125,6 +129,22 @@ ActiveRecord::Schema.define(:version => 20130214012230) do
 
   add_index "taxonomy", ["hierarchy_level"], :name => "hierarchyLevelIndex"
   add_index "taxonomy", ["id"], :name => "idIndex"
+
+  create_table "taxons", :force => true do |t|
+    t.integer  "sort"
+    t.string   "category"
+    t.string   "latin_name"
+    t.string   "common_name"
+    t.string   "abbreviation"
+    t.string   "range"
+    t.string   "order"
+    t.string   "family"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "taxons", ["abbreviation"], :name => "AbbreviationIndex"
+  add_index "taxons", ["latin_name"], :name => "LatinNameIndex"
 
   create_table "trips", :force => true do |t|
     t.text "leader"

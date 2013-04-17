@@ -138,8 +138,7 @@ puts "Clements-Shipman scientific name unification"
 
 health_report();
 renameDictionary = read_renames();
-health_report();
-# populate_taxons_from_clements();
+populate_taxons_from_clements();
 health_report();
 apply_renames(renameDictionary);
 health_report();

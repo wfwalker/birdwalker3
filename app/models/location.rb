@@ -34,6 +34,9 @@ class Location < ActiveRecord::Base
     end  
   end
 
+  has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort' do
+  end   
+
   has_many :photographed_species, :through => :photos, :order => 'species.id', :source => 'species', :uniq => true
   
   has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC" do

@@ -10,6 +10,7 @@ class Country < ActiveRecord::Base
   end
 
   has_many :species, :through => :sightings, :uniq => true, :order => 'species.id'
+  has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort'  
       
   has_many :trips, :through => :sightings, :uniq => true
   

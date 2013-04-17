@@ -5,7 +5,7 @@ require 'sightings_controller'
 class SightingsController; def rescue_action(e) raise e end; end
 
 class SightingsControllerTest < ActionController::TestCase
-  fixtures :trips, :sightings, :locations, :species
+  fixtures :trips, :sightings, :locations, :species, :taxons
 
   def setup
     @controller = SightingsController.new
@@ -44,7 +44,7 @@ class SightingsControllerTest < ActionController::TestCase
   def test_create
     num_sightings = Sighting.count
 
-    post :create, {:sighting => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i} 
+    post :create, {:sighting => {:trip_id => 1, :location_id => 1, :species_id => 1, :taxon_latin_name => 'Latinus latinae'}}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :redirect
     assert_valid_xml(@response.body)

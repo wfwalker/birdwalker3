@@ -1,0 +1,17 @@
+<% taxons_list = divided_list %>
+
+<% taxons_by_family = Taxon.map_by_family(taxons_list) %>
+
+<!-- TODO: not sorted!  -->
+<% sorted_families = taxons_by_family.keys %>
+
+<% if (show_headings) %>
+	<div class="moduletitle"><%= taxons_list.size %> taxons</div>
+<% end %>
+
+<% for family in sorted_families %>
+	<div class="modulesubtitle"><%= family %></div>     
+	<!-- TODO: not sorted!  -->
+	<% sorted_taxons_list = taxons_by_family[family] %>	    
+	<%= render :partial => 'taxons/onelinelink', :collection => sorted_taxons_list %>
+<% end %>

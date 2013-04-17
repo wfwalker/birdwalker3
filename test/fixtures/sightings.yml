@@ -4,6 +4,7 @@ sighting_one:
   trip_id: 1
   location_id: 1
   species_id: 2       
+  taxon_latin_name: "Latinus bogusii"
   count: 2
   notes: "1"          
   exclude: false
@@ -14,6 +15,7 @@ sighting_two:
   trip_id: 1
   location_id: 2
   species_id: 1
+  taxon_latin_name: "Latinus latinae"
   notes: "2"
   exclude: false
   heard_only: false
@@ -23,6 +25,7 @@ sighting_three:
   trip_id: 2
   location_id: 1
   species_id: 2
+  taxon_latin_name: "Latinus bogusii"
   notes: "three"
   exclude: false
   heard_only: false
@@ -32,5 +35,6 @@ sighting_four:
   trip_id: 2
   location_id: 2
   species_id: 1
+  taxon_latin_name: "Latinus latinae"
   exclude: false
   heard_only: false

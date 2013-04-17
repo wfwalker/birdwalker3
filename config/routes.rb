@@ -1,6 +1,7 @@
 Birdwalker3::Application.routes.draw do
-  resources :countries
+  resources :taxons
 
+  resources :countries
 
   resources :posts
 
@@ -56,6 +57,7 @@ end
   match 'trips/:year/:month/:day.:format' => 'trips#show_by_date'
   match 'photos/:year/:month/:day/:abbreviation/:originalfilename.:format' => 'photos#show_by_date'
   match 'species/abbrev/:abbreviation.:format' => 'species#show_by_abbreviation'
+  match 'taxons/latin/:latin_name' => 'taxons#show_by_latin_name'
   match '/:controller(/:action(/:id))'
   match 'webapp.manifest' => 'bird_walker#webapp_manifest'
   match 'webapp.manifest.json' => 'bird_walker#webapp_manifest'

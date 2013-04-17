@@ -2,14 +2,16 @@ class Sighting < ActiveRecord::Base
   belongs_to :location
   belongs_to :species
   belongs_to :trip  
+  has_one :taxon, :class_name => "Taxon", :foreign_key => "latin_name", :primary_key => "taxon_latin_name"
 
-  attr_accessible :species_id, :location_id, :trip_id, :exclude, :heard_only, :count, :notes
+  attr_accessible :species_id, :location_id, :trip_id, :exclude, :heard_only, :count, :notes, :taxon_latin_name
   
-  validates_presence_of :species_id, :location_id, :trip_id        
+  validates_presence_of :species_id, :location_id, :trip_id, :taxon_latin_name
 
   validates_numericality_of :count, :allow_nil => true
 
   validates_uniqueness_of :species_id, :scope => [:location_id, :trip_id]
+  validates_uniqueness_of :taxon_latin_name, :scope => [:location_id, :trip_id]
 
   def full_name
     self.species.common_name

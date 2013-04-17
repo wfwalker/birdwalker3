@@ -1,0 +1,50 @@
+<div class="lead">
+  <%= @page_title %>
+  (<i><%= @taxon.latin_name %></i>) in
+  <i><%= @taxon.family %></i>
+</div>
+
+<div class='row'>
+
+  <div class='span4'>
+    <div class="pagecontentmodule">
+      <div class="moduletitle">Photos by Bill Walker</div>  
+
+      <%= render :partial => 'photos/gallery', :object => @taxon.photos %>
+    </div>
+  </div>
+
+  <div class='span4'>  
+    <div class="pagecontentmodule">
+      <% if @taxon.common? %>
+        <div class="moduletitle">Species Notes</div>  
+
+        <div class="pagecontentitem">
+          From <%= render :partial => 'sightings/full_details', :object => @taxon.sightings.earliest %> to 
+          <%= render :partial => 'sightings/full_details', :object => @taxon.sightings.latest %>,
+          we've seen <%= @taxon.common_name %> roughly
+          <%= @taxon.sightings.size / (@taxon.trips.latest.date.year - @taxon.trips.earliest.date.year) %>
+          times a year
+          at <%= @taxon.locations.size %> different locations.         
+        </div>  
+
+        <div class="modulesubtitle">Sightings by Month</div>  
+
+        <div class="pagecontentitem">
+          <% month_totals = Sighting.map_by_month(@taxon.sightings) %>
+          <%= counts_by_month_image_tag(month_totals) %>
+        </div>
+      <% else %>
+        <div class="moduletitle">Sightings</div>  
+        <%= render :partial => 'sightings/date_and_location_link', :collection => Sighting.sort_chronological(@taxon.sightings) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='span4' id='mapContainer'>
+    <% if (@taxon.locations.with_lat_long.size > 0) %>  
+      <%= render :partial => 'locations/google', :object => @taxon.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/taxons/locations/%s.json' % @taxon.id }  %>
+    <% end %>
+  </div>
+
+</div>
