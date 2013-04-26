@@ -6,7 +6,7 @@
 		<%= link_to '[edit]', :controller => 'sightings', :id => sighting, :action => 'edit' %>
 	<% end %>
 
-	<%= link_to safe_species_common_name(sighting), species_path(sighting.species) %>
+	<%= link_to sighting.taxon.common_name, taxon_latin_name_path(sighting.taxon) %>
 
 	<% if (sighting.heard_only) then %>
 		(h)
@@ -21,7 +21,7 @@
 	<% end %>
 	
 	<% editing_is_allowed?() do %>
-		<%= link_to '[delete]', sighting_url(sighting), :confirm => 'Delete "' + sighting.species.common_name + '", are you sure?', :method => 'delete' %>
+		<%= link_to '[delete]', sighting_url(sighting), :confirm => 'Delete "' + sighting.taxon.common_name + '", are you sure?', :method => 'delete' %>
 	<% end %>
 	
 	<% has_notes?(sighting) do %>
