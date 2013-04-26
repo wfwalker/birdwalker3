@@ -36,3 +36,7 @@ upload-db.sh
 upload-photo.sh
 upload-to-amazon.sh
 upload.sh
+
+LOCAL-birdwalker_dump.sql
+
+production-server-birdwalker_dump.sql
