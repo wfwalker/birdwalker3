@@ -1,0 +1,9 @@
+<% taxon_list = undivided_list %>
+
+<div class="pagecontentmodule">
+	<% if (show_headings) %>
+		<div class="moduletitle"><%= taxon_list.size %> Species</div>
+	<% end %>
+	
+	<%= render :partial => 'taxons/onelinelink' , :collection => taxon_list %>
+</div>

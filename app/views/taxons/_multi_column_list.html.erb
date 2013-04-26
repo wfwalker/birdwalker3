@@ -1,0 +1,21 @@
+<% total_taxon_list = multi_column_list %>
+
+<% total_taxon_count = multi_column_list.length %>
+
+<% taxon_lists = total_taxon_list/((total_taxon_list.length / 3.0).ceil) %>
+
+<div class="moduletitle">
+	<%= total_taxon_list.length %> Species
+</div>    
+
+<div class='row'>
+	<% for taxon_list in taxon_lists do %>
+		<div class='span4'>
+			<% if total_taxon_count > 70 %>
+			<%= render :partial => 'taxons/divided_list', :object => taxon_list, :locals => { :show_headings => false } %>
+			<% else %>
+			<%= render :partial => 'taxons/undivided_list', :object => taxon_list, :locals => { :show_headings => false } %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
