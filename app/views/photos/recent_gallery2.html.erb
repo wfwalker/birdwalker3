@@ -53,7 +53,7 @@
 				<% for photo in @recent_gallery_photos %>   
 				<td class="modulesubtitle" valign="top">
 					<section id="<%= "#photo%d" % photo.id %>">
-						<%= link_to photo.species.common_name, species_path(photo.species) %>
+						<%= link_to photo.taxon.common_name, taxon_latin_name_path(photo.taxon) %>
 					</section>
 				</td>
 				<% end %>  

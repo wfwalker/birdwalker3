@@ -14,7 +14,7 @@
 
 	<div class="modulesubtitle">Species</div>
 	<div class="pagecontentitem">
-	        <%= link_to safe_species_common_name(@sighting), species_path(@sighting.species) %>
+	        <%= link_to @sighting.taxon.common_name, taxon_latin_name_path(@sighting.taxon) %>
 	</div>
 
 	<% has_notes?(@sighting) do %>

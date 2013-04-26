@@ -25,7 +25,7 @@
 					<% counter = counter - 1 %>
 				</td>
 				<td valign="top" style="font-size: 14pt">
-					<%= link_to sighting.species.common_name, species_path(sighting.species) %>
+					<%= link_to sighting.taxon.common_name, taxon_latin_name_path(sighting.taxon) %>
 					<% if (sighting.heard_only) then %>(h)<% end %>
 				</td>
 						

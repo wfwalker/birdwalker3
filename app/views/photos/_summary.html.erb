@@ -14,7 +14,7 @@
 			<%= link_to '%02d' % photo.trip.date.day, trip_url(photo.trip) %>
 			<small><%= link_to photo.trip.date.strftime('%b%y'), trip_url(photo.trip) %></small>
 		</div>            
-		<%= link_to photo.species.common_name, species_path(photo.species) %>,
+		<%= link_to photo.taxon.common_name, taxon_latin_name_path(photo.taxon) %>,
 		<%= link_to "%s, %s" % [photo.location.name, photo.location.county.state.abbreviation], location_url(photo.location) %>
 	</div>             
 	

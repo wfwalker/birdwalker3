@@ -1,7 +1,7 @@
 <% sighting = full_details %>
 
 <% if page_kind == 'trips' %>
-	<%= link_to safe_species_common_name(sighting), species_path(sighting.species) %> at
+	<%= link_to sighting.taxon.common_name, taxon_latin_name_path(sighting.taxon) %> at
 <% end %>
 
 <% if page_kind == 'locations' %>

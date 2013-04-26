@@ -4,5 +4,5 @@
 
 <div id="<%= taxon.common_name.gsub(/[ '\-\(\)\/\.]/, '').downcase %>">
 	<% link_title = "Species report, " + taxon.common_name %>
-	<%= link_to taxon.common_name, taxon_path(taxon), :title => link_title %>
+	<%= link_to taxon.common_name, taxon_latin_name_path(taxon), :title => link_title %>
 </div>

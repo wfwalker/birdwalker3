@@ -1,5 +1,5 @@
 <div id="pagetitle">
-	<%= link_to safe_species_common_name(@photo), species_path(@photo.species) %>,
+	<%= link_to @photo.taxon.common_name, taxon_latin_name_path(@photo.taxon) %>,
 	<%= link_to short_nice_date(@photo.trip.date), trip_path(@photo.trip) %> at
 	<%= link_to @photo.location.full_name, location_path(@photo.location) %>
 	<% editing_is_allowed?() do %>
