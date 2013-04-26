@@ -1,6 +1,4 @@
 Birdwalker3::Application.routes.draw do
-  resources :taxons
-
   resources :countries
 
   resources :posts
@@ -45,8 +43,14 @@ Birdwalker3::Application.routes.draw do
       get :life_list
       get :photo_life_list
       get :photo_to_do_list
+    end
   end
-end
+
+  resources :taxons do
+    collection do
+      get :life_list
+    end
+  end
 
   # # resources
   # map.resources :families
