@@ -11,7 +11,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
                         
      if (@bird_of_the_week != nil)
        photo_of_the_week = @bird_of_the_week.photos.this_week[0]
-       link_to_bird_of_the_week = link_to @bird_of_the_week.common_name, :only_path => false, :controller => 'species', :action => 'show', :id => @bird_of_the_week
+       link_to_bird_of_the_week = link_to @bird_of_the_week.common_name, taxon_latin_name_path(@bird_of_the_week)
        thumb = link_to photo_of_the_week.thumb(@http_host), :only_path => false, :controller => 'photos', :id => photo_of_the_week, :action => 'show'
        photo_date = nice_date(photo_of_the_week.trip.date)
        photo_location = photo_of_the_week.location.name
@@ -19,7 +19,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
        xml.item do
          xml.title       "Bird of the Week (week " + Date.today.cweek.to_s + ")"
          xml.pubDate     Date.today
-         xml.link        taxon_latin_name_path(:only_path => false, :id => @bird_of_the_week)
+         xml.link        taxon_latin_name_path(@bird_of_the_week)
          xml.description "This week's Bird of the Week is the #{ link_to_bird_of_the_week }. " +
                          "<p> #{ thumb } </p>" +
                          "Photographed #{ photo_date } at #{ photo_location }"

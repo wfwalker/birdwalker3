@@ -50,6 +50,14 @@ class Taxon < ActiveRecord::Base
       ORDER BY trips.date DESC LIMIT 1")[0]
   end
 
+  # Returns the list of taxons that have been seen in the given year up to the current week-of-the-year
+  def Taxon.year_to_date(year)  
+    Species.find_by_sql(
+      "SELECT DISTINCT taxons.* FROM taxons, sightings, trips
+         WHERE sightings.taxon_latin_name=taxons.latin_name AND sightings.trip_id=trips.id AND Year(trips.date)='" + year.to_s + "' 
+         AND DayOfYear(trips.date)<='" + Date.today.yday.to_s + "' ORDER BY taxons.sort")
+  end
+
   # Returns true if this species has been seen at least thirty times, false otherwise
   def common?
     self.sightings.size > 30

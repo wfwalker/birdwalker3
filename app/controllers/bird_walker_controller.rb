@@ -30,8 +30,8 @@ class BirdWalkerController < ApplicationController
     @most_visited_locations = Location.most_visited_recently
     @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
     
-    @this_year_species = Species.year_to_date(Date.today.year)
-    @last_year_species = Species.year_to_date(Date.today.year - 1)
+    @this_year_species = Taxon.year_to_date(Date.today.year)
+    @last_year_species = Taxon.year_to_date(Date.today.year - 1)
   end      
   
   def photographer
@@ -57,19 +57,13 @@ class BirdWalkerController < ApplicationController
     @page_title = "Install birdwalker.com Mozilla App"
   end
   
-  def webapp_widget
-    @bird_of_the_week = Species.bird_of_the_week 
-    @recent_gallery_photos = Photo.recent(2 * Photo.default_gallery_size())
-    render :layout => false, :file => 'app/views/bird_walker/webapp_widget.rhtml'
-  end
-
   def index_rss
     @recent_trips = Trip.find(:all, :limit => 10, :order => 'date DESC')     
     
-    @bird_of_the_week = Species.bird_of_the_week 
+    @bird_of_the_week = Taxon.bird_of_the_week 
 
-    @this_year_species = Species.year_to_date(Date.today.year)
-    @last_year_species = Species.year_to_date(Date.today.year - 1)  
+    @this_year_species = Taxon.year_to_date(Date.today.year)
+    @last_year_species = Taxon.year_to_date(Date.today.year - 1)  
     
     @http_host = request.headers['Host']
     
