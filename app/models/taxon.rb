@@ -13,7 +13,12 @@ class Taxon < ActiveRecord::Base
     end
   end
 
-  has_many :photos, :class_name => "Photo", :foreign_key => "taxon_latin_name", :primary_key => "latin_name"
+  has_many :photos, :class_name => "Photo", :foreign_key => "taxon_latin_name", :primary_key => "latin_name" do
+    # Returns photos of this Taxon taken during the current week-of-the-year
+    def this_week
+      Photo.this_week(self)
+    end  
+  end
 
   has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do
     # Returns the list of locations for which we have latitude and longitude
@@ -33,7 +38,17 @@ class Taxon < ActiveRecord::Base
     end
   end
 
+  # different taxon lists
+  scope :not_excluded, :include => [ :sightings ], :conditions => [ 'sightings.taxon_latin_name = taxons.latin_name AND sightings.exclude = false' ], :order => 'taxons.sort'  
   scope :species_seen, :include => [ :sightings ], :conditions => [ 'sightings.taxon_latin_name = taxons.latin_name AND taxons.category = "species"' ], :order => 'taxons.sort'           
+
+  # Find a species for which there was at least one photo from the current week-of-the-year
+  def Taxon.bird_of_the_week
+    Taxon.find_by_sql("SELECT DISTINCT taxons.* FROM taxons, photos, trips
+      WHERE photos.taxon_latin_name=taxons.latin_name AND photos.trip_id=trips.id
+      AND WeekOfYear(trips.date)='" + Date.today.cweek.to_s + "'
+      ORDER BY trips.date DESC LIMIT 1")[0]
+  end
 
   # Returns true if this species has been seen at least thirty times, false otherwise
   def common?

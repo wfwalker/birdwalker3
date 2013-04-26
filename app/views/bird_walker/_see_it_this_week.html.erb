@@ -3,7 +3,7 @@
 	<div class="pagecontentitem">
 		<img width="100%" src="<%= @bird_of_the_week.photos.this_week[0].photo_URL %>"/>
 		<p class="modulesubtitle">
-			<%= link_to @bird_of_the_week.common_name, :controller => 'species', :action => 'show', :id => @bird_of_the_week %>,  
+			<%= link_to @bird_of_the_week.common_name, :controller => 'taxon', :action => 'show', :id => @bird_of_the_week %>,  
 			<%= link_to nice_date(@bird_of_the_week.photos.this_week[0].trip.date), :controller => 'trips', :action => 'show', :id => @bird_of_the_week.photos.this_week[0].trip %> at 
 			<%= link_to @bird_of_the_week.photos.this_week[0].location.name, :controller => 'locations', :action => 'show', :id => @bird_of_the_week.photos.this_week[0].location %>
 		</p>

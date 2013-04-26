@@ -7,7 +7,7 @@ class TaxonsController < ApplicationController
   # GET /taxons
   # GET /taxons.json
   def index
-    @all_taxons_seen = Taxon.species_seen
+    @all_taxons_seen = Taxon.species_seen.not_excluded
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,9 +27,26 @@ class TaxonsController < ApplicationController
     end
   end
 
+  def bird_of_the_week
+    @taxon = Taxon.bird_of_the_week();
+    @page_title = @taxon.common_name
+
+    respond_to do |format|
+      format.html { render :action => "show" }
+      format.xml  { render :xml => @taxon }
+      format.json { render :json => [@taxon], :include => { :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } } }
+    end
+  end
+
+  def life_list
+    @page_title = "Birding Life List"
+    all_species_seen = Taxon.species_seen.not_excluded
+    @life_sightings = all_species_seen.collect {|x| x.sightings.earliest}
+  end
+
   def show_by_latin_name
     puts "find %s" % params[:latin_name]
-    @taxon = Taxon.find_by_latin_name(params[:latin_name])
+    @taxon = Taxon.find_by_latin_name(params[:latin_name].sub('_', ' '))
     @page_title = @taxon.common_name
 
     respond_to do |format|

@@ -19,7 +19,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
        xml.item do
          xml.title       "Bird of the Week (week " + Date.today.cweek.to_s + ")"
          xml.pubDate     Date.today
-         xml.link        species_path(:only_path => false, :id => @bird_of_the_week)
+         xml.link        taxon_latin_name_path(:only_path => false, :id => @bird_of_the_week)
          xml.description "This week's Bird of the Week is the #{ link_to_bird_of_the_week }. " +
                          "<p> #{ thumb } </p>" +
                          "Photographed #{ photo_date } at #{ photo_location }"

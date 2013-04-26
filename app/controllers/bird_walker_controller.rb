@@ -24,7 +24,7 @@ class BirdWalkerController < ApplicationController
   end
   
   def index
-    @bird_of_the_week = Species.bird_of_the_week                  
+    @bird_of_the_week = Taxon.bird_of_the_week
     
     @recent_photos = Photo.recent(15)
     @most_visited_locations = Location.most_visited_recently
