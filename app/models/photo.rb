@@ -4,7 +4,8 @@ class Photo < ActiveRecord::Base
   belongs_to :location
   belongs_to :species
   belongs_to :trip
-  
+  has_one :taxon, :class_name => "Taxon", :foreign_key => "latin_name", :primary_key => "taxon_latin_name"
+
   validates_presence_of :species_id, :location_id, :trip_id
   validates_uniqueness_of :original_filename, :scope => [:species_id, :location_id, :trip_id]
   
