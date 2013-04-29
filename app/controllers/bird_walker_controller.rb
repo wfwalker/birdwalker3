@@ -7,7 +7,7 @@ include REXML
 
 class BirdWalkerController < ApplicationController
   helper :trips
-  helper :species
+  helper :taxons
   helper :locations
   helper :counties
   helper :sightings
@@ -133,7 +133,7 @@ class BirdWalkerController < ApplicationController
   def photo_search
     @page_title = "photo search results"
 
-    base_where_clause = "SELECT photos.* from photos, species, trips, locations, counties WHERE photos.trip_id=trips.id AND photos.location_id=locations.id AND photos.species_id=species.id AND locations.county_id=counties.id "
+    base_where_clause = "SELECT photos.* from photos, taxons, trips, locations, counties WHERE photos.trip_id=trips.id AND photos.location_id=locations.id AND photos.taxon_latin_name=taxon.latin_name AND locations.county_id=counties.id "
     additional_where_clause = " "
     do_search = false
     
@@ -145,8 +145,8 @@ class BirdWalkerController < ApplicationController
       additional_where_clause = additional_where_clause + " AND photos.location_id='" + params[:photo][:location_id].to_s + "'"
       do_search = true
     end
-    if (params[:species] != nil && params[:species][:family_id] != "") then
-      additional_where_clause = additional_where_clause + " AND species.family_id='" + params[:species][:family_id].to_s + "'"
+    if (params[:taxon] != nil && params[:taxon][:family_id] != "") then
+      additional_where_clause = additional_where_clause + " AND taxon.family_id='" + params[:taxon][:family_id].to_s + "'"
       do_search = true
     end
     if (params[:photo] != nil && params[:photo][:county_id] != "") then
@@ -181,7 +181,7 @@ class BirdWalkerController < ApplicationController
     @page_title = "search results"
     if (params[:terms] != nil && params[:terms].length > 0) then
       @found_counties = County.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
-      @found_species = Species.find_by_sql(["SELECT DISTINCT species.* FROM species, sightings WHERE sightings.species_id=species.id AND (species.common_name LIKE ? or species.latin_name LIKE ?) ORDER BY species.id", "%#{params[:terms]}%", "%#{params[:terms]}%"])
+      @found_taxons = Taxon.find_by_sql(["SELECT DISTINCT taxons.* FROM taxons, sightings WHERE sightings.taxon_latin_name=taxons.latin_name AND (taxons.common_name LIKE ? or taxons.latin_name LIKE ?) ORDER BY taxons.sort", "%#{params[:terms]}%", "%#{params[:terms]}%"])
 
       #for trips, look in both the trip names and the notes, removing duplicates
       @found_trips = Trip.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id") | Trip.find(:all, :conditions => ["notes like ?", "%#{params[:terms]}%"], :order => "id")
@@ -189,9 +189,9 @@ class BirdWalkerController < ApplicationController
       @found_locations = Location.find(:all, :conditions => ["name like ?", "%#{params[:terms]}%"], :order => "id")
       @terms = params[:terms]
 
-      if ((@found_species.size + @found_counties.size + @found_trips.size + @found_locations.size) == 1) then    
-  	    if (@found_species.size == 1) then
-            redirect_to :controller => 'species', :action => 'show', :id => @found_species[0]       
+      if ((@found_taxons.size + @found_counties.size + @found_trips.size + @found_locations.size) == 1) then    
+  	    if (@found_taxons.size == 1) then
+            redirect_to :controller => 'taxons', :action => 'show', :id => @found_taxons[0]       
         	elsif (@found_counties.size == 1) then
             redirect_to :controller => 'counties', :action => 'show', :id => @found_counties[0]       
           elsif (@found_trips.size == 1) then

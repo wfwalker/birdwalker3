@@ -4,8 +4,8 @@
 
 <div class="row">
 	<div class="span6">
-		<% if (@found_species != nil && @found_species.size > 0) then %>
-			<%= show_species_list(@found_species, true) %>
+		<% if (@found_taxons != nil && @found_taxons.size > 0) then %>
+			<%= show_taxon_list(@found_taxons, true) %>
 		<% end %>
 		<% if (@found_trips != nil && @found_trips.size > 0) then %>
 			<%= show_trip_list(@found_trips, true) %>

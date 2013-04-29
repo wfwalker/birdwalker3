@@ -69,4 +69,7 @@ class Taxon < ActiveRecord::Base
        map[taxon.family] ? map[taxon.family] << taxon : map[taxon.family] = [taxon] ; map }
   end
 
+  def Taxon.sort_taxonomic(taxon_list)
+    taxon_list.sort_by { |s| s.sort }
+  end
 end
