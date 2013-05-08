@@ -12,7 +12,7 @@
 	        <%= link_to safe_location_name(@sighting), location_url(@sighting.location) %>
 	</div>
 
-	<div class="modulesubtitle">Species</div>
+	<div class="modulesubtitle">Taxon</div>
 	<div class="pagecontentitem">
 	        <%= link_to @sighting.taxon.common_name, taxon_latin_name_path(@sighting.taxon) %>
 	</div>
