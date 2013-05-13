@@ -10,7 +10,7 @@
 
 	                <div>
 	                	<% var tmpDate = new Date(a_photo.trip.date); %>
-	                	<center><p><%= a_photo.species.common_name %>, <%= a_photo.location.name %>, <%= tmpDate.toString("MMM d, yyyy") %></p></center>
+	                	<center><p><%= a_photo.taxon.common_name %>, <%= a_photo.location.name %>, <%= tmpDate.toString("MMM d, yyyy") %></p></center>
 	                </div>
 				</div>
 			<% }); %>

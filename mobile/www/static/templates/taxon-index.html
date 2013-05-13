@@ -1,0 +1,7 @@
+<h4>Species</h4>
+
+<ul id='taxonList' class='nav navlist'>
+    <% _.each(allTaxonsSeen, function(taxon) { %>
+        <li class='active'><a href='#' data-pagekind='taxon' data-objectid='<%= taxon.latin_name %>'><%= taxon.common_name %></a></li>
+    <% }) %>
+<ul/>

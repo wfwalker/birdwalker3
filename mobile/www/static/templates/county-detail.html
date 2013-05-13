@@ -7,8 +7,8 @@
 
 <h4>Species</h4>
 
-<ul id='speciesList' class='nav navlist'>
-    <% _.each(county.species, function(species) { %>
-        <li><a href='#' data-pagekind='species' data-objectid='<%= species.id %>'><%= species.common_name %></a></li>
+<ul id='taxonList' class='nav navlist'>
+    <% _.each(county.taxons, function(taxon) { %>
+        <li><a href='#' data-pagekind='taxon' data-objectid='<%= taxon.latin_name %>'><%= taxon.common_name %></a></li>
     <% }) %>
 </ul>

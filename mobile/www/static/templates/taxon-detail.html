@@ -1,14 +1,14 @@
-<h4><%= species.common_name %></h4>
-<p><%= species.latin_name %></p>
+<h4><%= taxon.common_name %></h4>
+<p><%= taxon.latin_name %></p>
 
-<div><%= species.notes %></div>
+<div><%= taxon.notes %></div>
 
-<div id='speciesPhoto'></div>
+<div id='taxonPhoto'></div>
 
 <h4>Locations</h4>
 
 <ul id='locationList' class='nav navlist'>
-    <% _.each(species.locations, function(location) { %>
+    <% _.each(taxon.locations, function(location) { %>
         <li class='active'><a href='#' data-pagekind='location' data-objectid='<%= location.id %>'><%= location.name %></a></li>
     <% }) %>
 <ul/>

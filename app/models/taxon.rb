@@ -39,8 +39,10 @@ class Taxon < ActiveRecord::Base
   end
 
   # different taxon lists
+  scope :seen, :include => [ :sightings ], :conditions => [ 'sightings.taxon_latin_name = taxons.latin_name' ], :order => 'taxons.sort'           
   scope :not_excluded, :include => [ :sightings ], :conditions => [ 'sightings.taxon_latin_name = taxons.latin_name AND sightings.exclude = false' ], :order => 'taxons.sort'  
   scope :species_seen, :include => [ :sightings ], :conditions => [ 'sightings.taxon_latin_name = taxons.latin_name AND taxons.category = "species"' ], :order => 'taxons.sort'           
+  scope :photographed, :include => [ :photos ], :conditions => [ 'photos.taxon_latin_name = taxons.latin_name' ], :order => 'taxons.sort'
 
   # Find a species for which there was at least one photo from the current week-of-the-year
   def Taxon.bird_of_the_week

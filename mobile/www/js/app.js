@@ -76,8 +76,8 @@ define(function(require) {
       if (panelName != '#locationIndexContainer')  $('#locationIndexContainer').hide();
       if (panelName != '#countyDetailContainer')   $('#countyDetailContainer').hide();
       if (panelName != '#homeContainer')           $('#homeContainer').hide();
-      if (panelName != '#speciesDetailContainer')  $('#speciesDetailContainer').hide();
-      if (panelName != '#speciesIndexContainer')   $('#speciesIndexContainer').hide();
+      if (panelName != '#taxonDetailContainer')    $('#taxonDetailContainer').hide();
+      if (panelName != '#taxonIndexContainer')     $('#taxonIndexContainer').hide();
 
       stopSpinning();
       $(panelName).show();
@@ -97,13 +97,13 @@ define(function(require) {
 
       $.ajax({
         type: 'GET',
-        url: '/species/bird_of_the_week.json',
+        url: '/taxons/bird_of_the_week.json',
         dataType: 'json',
         success: function(data){
-          var species = data[0];
+          var taxon = data[0];
 
-          $('#homeContainer').append(render('home', { birdOfTheWeek: species }));
-          showPhotos(species.photos, 'birdOfTheWeekPhoto');
+          $('#homeContainer').append(render('home', { birdOfTheWeek: taxon }));
+          showPhotos(taxon.photos, 'birdOfTheWeekPhoto');
         },
         error: function(xhr, type, thrownError){
             alert('showHome Ajax error! ' + xhr.status + ' ' + thrownError);
@@ -113,22 +113,22 @@ define(function(require) {
       showPanel('#homeContainer');
     }
 
-    function showSpeciesIndex(inSpeciesListURL)
+    function showTaxonIndex(inTaxonListURL)
     {
         startSpinning();          
 
         $.ajax({
           type: 'GET',
-          url: inSpeciesListURL,
+          url: inTaxonListURL,
           dataType: 'json',
           success: function(data){
-            $('#speciesIndexContainer').empty();
-            $('#speciesIndexContainer').append(render('species-index', {allSpeciesSeen: data}));
+            $('#taxonIndexContainer').empty();
+            $('#taxonIndexContainer').append(render('taxon-index', {allTaxonsSeen: data}));
 
-            showPanel('#speciesIndexContainer');
+            showPanel('#taxonIndexContainer');
           },
           error: function(xhr, type, thrownError){
-            alert('showLSpeciesIndex Ajax error! ' + xhr.status + ' ' + thrownError);
+            alert('showTaxonIndex Ajax error! ' + xhr.status + ' ' + thrownError);
             stopSpinning();
           }
         });
@@ -239,23 +239,25 @@ define(function(require) {
         });
     }
 
-    function showSpeciesDetail(inSpeciesDetailURL)
+    function showTaxonDetail(inTaxonDetailURL)
     {
+      console.log("showTaxonDetail");
+      
         $.ajax({
           type: 'GET',
-          url: inSpeciesDetailURL,
+          url: inTaxonDetailURL,
           dataType: 'json',
           success: function(data){
-            var species = data[0];
-            $('#speciesDetailContainer').empty();   
-            $('#speciesDetailContainer').append(render('species-detail', { species: species }));
+            var taxon = data[0];
+            $('#taxonDetailContainer').empty();   
+            $('#taxonDetailContainer').append(render('taxon-detail', { taxon: taxon }));
 
-            showPhotos(species.photos, 'speciesPhoto');
+            showPhotos(taxon.photos, 'taxonPhoto');
 
-            showPanel('#speciesDetailContainer');
+            showPanel('#taxonDetailContainer');
           },
           error: function(xhr, type, thrownError){
-            alert('showSpeciesDetail Ajax error! ' + xhr.status + ' ' + thrownError)
+            alert('showTaxonDetail Ajax error! ' + xhr.status + ' ' + thrownError)
           }
         });
     }
@@ -272,14 +274,14 @@ define(function(require) {
         showLocationDetail('/locations/' + objectid + '.json');
       } else if (pagekind == 'county') {
         showCountyDetail('/counties/' + objectid + '.json');
-      } else if (pagekind == 'species') {
-        showSpeciesDetail('/species/' + objectid + '.json');
+      } else if (pagekind == 'taxon') {
+        showTaxonDetail('/taxons/latin/' + objectid + '.json');
       } else if (pagekind == 'trip') {
         showTripDetail('/trips/' + objectid + '.json');
       } else if (pagekind == 'locationIndex') {
         showLocationIndex('/locations.json');
-      } else if (pagekind == 'speciesIndex') {
-        showSpeciesIndex('/species.json');
+      } else if (pagekind == 'taxonIndex') {
+        showTaxonIndex('/taxons.json');
       } else if (pagekind == 'tripIndex') {
         showTripIndex('/trips.json');
       } else if (pagekind == 'home') {

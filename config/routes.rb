@@ -48,7 +48,10 @@ Birdwalker3::Application.routes.draw do
 
   resources :taxons do
     collection do
+      get :bird_of_the_week
       get :life_list
+      get :photo_life_list
+      get :photo_to_do_list
     end
   end
 
