@@ -3,7 +3,6 @@ photo_one:
   id: 1
   trip_id: 1
   location_id: 1
-  species_id: 2
   taxon_latin_name: "Latinus bogusii"
   original_filename: aaa
   rating: 5
@@ -12,7 +11,6 @@ photo_two:
   id: 2
   trip_id: 1
   location_id: 2
-  species_id: 1
   taxon_latin_name: "Latinus latinae"
   original_filename: bbb
   rating: 1
