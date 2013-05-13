@@ -9,14 +9,11 @@ class Trip < ActiveRecord::Base
   
   has_many :photos
   
-  has_many :species, :through => :sightings, :uniq => true do
+  has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort' do
     def map_by_family
       load_target
-      Species.map_by_family(proxy_association.target)
+      Taxon.map_by_family(proxy_association.target)
     end  
-  end
-
-  has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort' do
   end 
   
   has_many :locations, :through => :sightings, :uniq => true, :order => "locations.county_id, locations.name" do

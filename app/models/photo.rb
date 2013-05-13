@@ -1,13 +1,12 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :trip_id, :location_id, :species_id, :original_filename, :rating, :notes
+  attr_accessible :trip_id, :location_id, :taxon_latin_name, :original_filename, :rating, :notes
 
   belongs_to :location
-  belongs_to :species
   belongs_to :trip
   has_one :taxon, :class_name => "Taxon", :foreign_key => "latin_name", :primary_key => "taxon_latin_name"
 
-  validates_presence_of :species_id, :location_id, :trip_id
-  validates_uniqueness_of :original_filename, :scope => [:species_id, :location_id, :trip_id]
+  validates_presence_of :taxon_latin_name, :location_id, :trip_id
+  validates_uniqueness_of :original_filename, :scope => [:taxon_latin_name, :location_id, :trip_id]
   
   def Photo.default_gallery_size
       27
@@ -33,9 +32,9 @@ class Photo < ActiveRecord::Base
   
   def image_filename
     if self.original_filename != nil
-      self.trip.date.to_s + "-" + self.species.abbreviation + "-" + self.original_filename + ".jpg"
+      self.trip.date.to_s + "-" + self.taxon.abbreviation + "-" + self.original_filename + ".jpg"
     else                             
-      self.trip.date.to_s + "-" + self.species.abbreviation + ".jpg"
+      self.trip.date.to_s + "-" + self.taxon.abbreviation + ".jpg"
     end
   end
     
@@ -61,20 +60,20 @@ class Photo < ActiveRecord::Base
   end
   
   def Photo.sort_taxonomic(photo_list)
-    photo_list.sort_by { |s| s.species ? s.species.family.taxonomic_sort_id * 100000000000 + s.species_id : 0 }
+    photo_list.sort_by { |s| s.taxon ? s.taxon.sort : 0 }
   end
 
   def Photo.sort_chronological(photo_list)
-    photo_list.sort { |a, b| a.trip.date == b.trip.date ? a.location_id == b.location_id ? a.species_id <=> b.species_id : a.location_id <=> b.location_id : a.trip.date <=> b.trip.date }.reverse
+    photo_list.sort { |a, b| a.trip.date == b.trip.date ? a.location_id == b.location_id ? a.taxon.sort <=> b.taxon.sort : a.location_id <=> b.location_id : a.trip.date <=> b.trip.date }.reverse
   end
   
   def Photo.sort_alphabetic(photo_list)
-    photo_list.sort_by { |s| s.species.common_name }
+    photo_list.sort_by { |s| s.taxon.common_name }
   end
   
   def Photo.map_by_family(photo_list)
     photo_list.inject({}) { | map, photo |
-       map[photo.species.family] ? map[photo.species.family] << Photo : map[photo.species.family] = [Photo] ; map }
+       map[photo.taxon.family] ? map[photo.taxon.family] << Photo : map[photo.taxon.family] = [Photo] ; map }
   end
   
   def Photo.recent(count)

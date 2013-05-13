@@ -15,7 +15,7 @@ class Location < ActiveRecord::Base
     end
 
     def life        
-      Sighting.first_per_species(self)
+      Sighting.first_per_taxon(self)
     end
   end
 
@@ -27,14 +27,11 @@ class Location < ActiveRecord::Base
   
   has_many :gallery_photos, :class_name => 'Photo', :conditions => { :rating => [4,5] }
   
-  has_many :species, :through => :sightings, :uniq => true, :order => 'species.id' do    
+  has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort' do
     def map_by_family
       load_target
-      Species.map_by_family(proxy_association.target)
+      Taxon.map_by_family(proxy_association.target)
     end  
-  end
-
-  has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort' do
   end   
 
   has_many :photographed_species, :through => :photos, :order => 'species.id', :source => 'species', :uniq => true
@@ -109,9 +106,9 @@ class Location < ActiveRecord::Base
     Location.find(:all).select { | a_location | self.distance_in_miles_from(a_location) < miles_radius }
   end
   
-  def species_seen_nearby(miles_radius)  
+  def taxons_seen_nearby(miles_radius)  
     nearby_locations = self.nearby_locations(miles_radius)
-    (nearby_locations.collect { |loc| loc.species.countable }).flatten.uniq
+    (nearby_locations.collect { |loc| loc.taxons }).flatten.uniq
   end
 
   def species_photographed_nearby(miles_radius)  

@@ -5,11 +5,10 @@ class Country < ActiveRecord::Base
 
   has_many :sightings, :through => :states do
       def life        
-        Sighting.first_per_species(self)
+        Sighting.first_per_taxon(self)
       end
   end
 
-  has_many :species, :through => :sightings, :uniq => true, :order => 'species.id'
   has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort'  
       
   has_many :trips, :through => :sightings, :uniq => true

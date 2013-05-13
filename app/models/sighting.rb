@@ -1,20 +1,18 @@
 class Sighting < ActiveRecord::Base
   belongs_to :location
-  belongs_to :species
   belongs_to :trip  
   has_one :taxon, :class_name => "Taxon", :foreign_key => "latin_name", :primary_key => "taxon_latin_name"
 
-  attr_accessible :species_id, :location_id, :trip_id, :exclude, :heard_only, :count, :notes, :taxon_latin_name
+  attr_accessible :location_id, :trip_id, :exclude, :heard_only, :count, :notes, :taxon_latin_name
   
-  validates_presence_of :species_id, :location_id, :trip_id, :taxon_latin_name
+  validates_presence_of :location_id, :trip_id, :taxon_latin_name
 
   validates_numericality_of :count, :allow_nil => true
 
-  validates_uniqueness_of :species_id, :scope => [:location_id, :trip_id]
   validates_uniqueness_of :taxon_latin_name, :scope => [:location_id, :trip_id]
 
   def full_name
-    self.species.common_name
+    self.taxon.common_name
   end
   
   def Sighting.year_range
@@ -29,7 +27,7 @@ class Sighting < ActiveRecord::Base
     # column definitions
     row = []
     # A: Common Name
-    row[0]  = self.species.common_name
+    row[0]  = self.taxon.common_name
     # B: Genus (Latin)
     row[1]  = ''
     # C: Species (Latin)
@@ -79,17 +77,17 @@ class Sighting < ActiveRecord::Base
     sighting_list.sort{|x,y| x.trip.date <=> y.trip.date}.first
   end                                             
   
-  def Sighting.first_per_species(sighting_list)         
-    # create triples of trip.date, species_id, and sighting object
-    triples = sighting_list.collect{ |sighting| [sighting.trip.date, sighting.species_id, sighting] }.sort{ |x,y| x[0] <=> y[0] }  
+  def Sighting.first_per_taxon(sighting_list)         
+    # create triples of trip.date, taxon_latin_name, and sighting object
+    triples = sighting_list.collect{ |sighting| [sighting.trip.date, sighting.taxon_latin_name, sighting] }.sort{ |x,y| x[0] <=> y[0] }  
     
-    # get a list of unique species_ids
-    species_ids = sighting_list.collect{ |sighting| sighting.species_id }.uniq
+    # get a list of unique taxon latin_names
+    taxon_latin_names = sighting_list.collect{ |sighting| sighting.taxon_latin_name }.uniq
 
-    # use rassoc to find the first triple for each species_id
-    firsts = species_ids.collect { |species_id| triples.rassoc(species_id) }
+    # use rassoc to find the first triple for each taxon latin_names
+    firsts = taxon_latin_names.collect { |taxon_latin_name| triples.rassoc(taxon_latin_name) }
 
-    # return the third item from the first triple for each species_id
+    # return the third item from the first triple for each taxon latin_names
     return firsts.collect { |triple| triple[2] }
   end
     
@@ -99,41 +97,41 @@ class Sighting < ActiveRecord::Base
   end
   
   def Sighting.sort_taxonomic(sighting_list)
-    sighting_list.sort_by { |s| s.species ? s.species.family.taxonomic_sort_id * 100000000000 + s.species_id : 0 }
+    sighting_list.sort_by { |s| s.taxon ? s.taxon.sort : 0 }
   end
 
   def Sighting.sort_chronological(sighting_list)
-    sighting_list.sort { |a, b| a.trip.date == b.trip.date ? a.location_id == b.location_id ? a.species_id <=> b.species_id : a.location_id <=> b.location_id : a.trip.date <=> b.trip.date }.reverse
+    sighting_list.sort { |a, b| a.trip.date == b.trip.date ? a.location_id == b.location_id ? a.taxon.sort <=> b.taxon.sort : a.location_id <=> b.location_id : a.trip.date <=> b.trip.date }.reverse
   end
   
   def Sighting.sort_alphabetic(sighting_list)
-    sighting_list.sort_by { |s| s.species.common_name }
+    sighting_list.sort_by { |s| s.taxon.common_name }
   end
   
   def Sighting.map_by_family(sighting_list)
     sighting_list.inject({}) { | map, sighting |
-       map[sighting.species.family] ? map[sighting.species.family] << sighting : map[sighting.species.family] = [sighting] ; map }
+       map[sighting.taxon.family] ? map[sighting.taxon.family] << sighting : map[sighting.taxon.family] = [sighting] ; map }
   end
 
-  def Sighting.map_by_family_and_species(sighting_list)
+  def Sighting.map_by_family_and_taxon(sighting_list)
     map = {}
     
     for sighting in sighting_list do
-      if ! map[sighting.species.family] then
-        map[sighting.species.family] = {}
+      if ! map[sighting.taxon.family] then
+        map[sighting.taxon.family] = {}
       end
       
-      if ! map[sighting.species.family][sighting.species] then
-        map[sighting.species.family][sighting.species] = []
+      if ! map[sighting.taxon.family][sighting.taxon] then
+        map[sighting.taxon.family][sighting.taxon] = []
       end
       
-      map[sighting.species.family][sighting.species] << sighting      
+      map[sighting.taxon.family][sighting.taxon] << sighting      
     end
 
     return map
   end
   
-  def Sighting.map_by_year_and_species(sighting_list)
+  def Sighting.map_by_year_and_taxon(sighting_list)
     map = {}
     totals = []
     for year in year_range do
@@ -141,16 +139,16 @@ class Sighting < ActiveRecord::Base
     end
 	
     for sighting in sighting_list do
-        if (sighting.species) then
-          if (!map[sighting.species]) then
-            map[sighting.species] = year_range.to_a
+        if (sighting.taxon) then
+          if (!map[sighting.taxon]) then
+            map[sighting.taxon] = year_range.to_a
             for year in Sighting.year_range do
-              map[sighting.species][year] = ''
+              map[sighting.taxon][year] = ''
             end            
           end
         
-          if (map[sighting.species][sighting.trip.date.year] != 'X') then
-            map[sighting.species][sighting.trip.date.year] = 'X'
+          if (map[sighting.taxon][sighting.trip.date.year] != 'X') then
+            map[sighting.taxon][sighting.trip.date.year] = 'X'
             totals[sighting.trip.date.year] = totals[sighting.trip.date.year] + 1
           end
         end
@@ -221,7 +219,7 @@ class Sighting < ActiveRecord::Base
     return map, totals
   end
 
-  def Sighting.map_by_month_and_species(sighting_list)
+  def Sighting.map_by_month_and_taxon(sighting_list)
     map = {}
     totals = []
     for month in (1..12) do
@@ -229,16 +227,16 @@ class Sighting < ActiveRecord::Base
     end
 	
     for sighting in sighting_list do
-        if (sighting.species) then
-          if (!map[sighting.species]) then
-            map[sighting.species] = (1..12).to_a
+        if (sighting.taxon) then
+          if (!map[sighting.taxon]) then
+            map[sighting.taxon] = (1..12).to_a
             for month in (1..12) do
-              map[sighting.species][month] = ''
+              map[sighting.taxon][month] = ''
             end
           end
         
-          if (map[sighting.species][sighting.trip.date.month] != 'X') then
-            map[sighting.species][sighting.trip.date.month] = 'X'
+          if (map[sighting.taxon][sighting.trip.date.month] != 'X') then
+            map[sighting.taxon][sighting.trip.date.month] = 'X'
             totals[sighting.trip.date.month] = totals[sighting.trip.date.month] + 1
           end
         end
