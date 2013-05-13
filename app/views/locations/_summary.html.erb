@@ -13,7 +13,7 @@
 	
 	<div class="pagecontentitem">
 		<div style="font-style: italic">
-			<%= location.species.size %> species, <%= location.trips.size %> trips (latest on <%= short_nice_date(location.sightings.latest.trip.date) %>)
+			<%= location.taxons.size %> species, <%= location.trips.size %> trips (latest on <%= short_nice_date(location.sightings.latest.trip.date) %>)
 		</div>
 		
 		<% has_notes?(location) do %>
