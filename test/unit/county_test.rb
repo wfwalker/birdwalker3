@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CountyTest < ActiveSupport::TestCase
-  fixtures :photos, :locations, :species, :trips, :sightings, :counties, :states, :families
+  fixtures :photos, :locations, :taxons, :trips, :sightings, :counties, :states
 
   def setup
     @first_id = counties(:county_one).id
@@ -17,8 +17,8 @@ class CountyTest < ActiveSupport::TestCase
     assert_equal 2, County.find(@first_id).sightings.count, "test fixture has two sightings for this county"
   end
 
-  def test_species
-    assert_equal 1, County.find(@first_id).species.count, "test fixture has one species for this county"
+  def test_taxons
+    assert_equal 1, County.find(@first_id).taxons.count, "test fixture has one taxon for this county"
   end
 
   def test_locations

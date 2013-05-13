@@ -10,4 +10,9 @@ class TaxonTest < ActiveSupport::TestCase
   test "should find by abbreviation" do
   	assert_not_nil Taxon.find_by_abbreviation('ivbwoo')
   end
+
+  test "should find by latin_name" do
+  	assert_not_nil Taxon.find_by_latin_name('Latinus latinae')
+  end
+
 end

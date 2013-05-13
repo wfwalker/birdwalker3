@@ -16,8 +16,8 @@ class StateTest < ActiveSupport::TestCase
     assert_equal 2, State.find(@first_id).sightings.count, "test fixture has two sightings for this State"
   end
 
-  def test_species
-    assert_equal 1, State.find(@first_id).species.count, "test fixture has one species for this State"
+  def test_taxon
+    assert_equal 1, State.find(@first_id).taxons.count, "test fixture has one taxon for this State"
   end
 
   def test_locations

@@ -20,8 +20,8 @@ class LocationTest < ActiveSupport::TestCase
     assert_equal 2, Location.find(@first_id).sightings.length, "test fixture has two sightings for this location"
   end
 
-  def test_species
-    assert_equal 1, Location.find(@first_id).species.length, "test fixture has one species for this location"
+  def test_taxon
+    assert_equal 1, Location.find(@first_id).taxons.length, "test fixture has one taxon for this location"
   end
 
   def test_trips

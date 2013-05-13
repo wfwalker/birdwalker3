@@ -19,8 +19,8 @@ class SightingTest < ActiveSupport::TestCase
     assert_equal 2, Trip.find(1).sightings.length
     assert_equal 2, Trip.find(2).sightings.length
 
-    assert_equal 2, Species.find(1).sightings.length
-    assert_equal 2, Species.find(2).sightings.length
+    assert_equal 2, Taxon.find(1).sightings.length
+    assert_equal 2, Taxon.find(2).sightings.length
 
     assert_equal 1, County.find(1).locations.length
     assert_equal 1, County.find(2).locations.length
@@ -28,18 +28,18 @@ class SightingTest < ActiveSupport::TestCase
   
   def test_secondary_associations
     # species to/from locations
-    assert_equal 1, Location.find(1).species.length
-    assert_equal 1, Location.find(2).species.length
+    assert_equal 1, Location.find(1).taxons.length
+    assert_equal 1, Location.find(2).taxons.length
 
-    assert_equal 1, Species.find(1).locations.length
-    assert_equal 1, Species.find(2).locations.length
+    assert_equal 1, Taxon.find(1).locations.length
+    assert_equal 1, Taxon.find(2).locations.length
 
     # trips to/from species
-    assert_equal 2, Trip.find(1).species.length
-    assert_equal 2, Trip.find(2).species.length
+    assert_equal 2, Trip.find(1).taxons.length
+    assert_equal 2, Trip.find(2).taxons.length
 
-    assert_equal 2, Species.find(1).trips.length
-    assert_equal 2, Species.find(2).trips.length
+    assert_equal 2, Taxon.find(1).trips.length
+    assert_equal 2, Taxon.find(2).trips.length
 
     # trips to/from location
     assert_equal 2, Trip.find(1).locations.length
@@ -53,14 +53,14 @@ class SightingTest < ActiveSupport::TestCase
     assert_equal 2, County.find(1).trips.length
     assert_equal 2, County.find(2).trips.length
 
-    assert_equal 1, County.find(1).species.length
-    assert_equal 1, County.find(2).species.length
+    assert_equal 1, County.find(1).taxons.length
+    assert_equal 1, County.find(2).taxons.length
 
     assert_equal 2, State.find(1).trips.length
     assert_equal 2, State.find(2).trips.length
 
-    assert_equal 1, State.find(1).species.length
-    assert_equal 1, State.find(2).species.length
+    assert_equal 1, State.find(1).taxons.length
+    assert_equal 1, State.find(2).taxons.length
 
     assert_equal 1, State.find(1).locations.length
     assert_equal 1, State.find(2).locations.length

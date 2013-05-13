@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'photo'
 
 class PhotoTest < ActiveSupport::TestCase
-  fixtures :photos, :locations, :species, :trips
+  fixtures :photos, :locations, :trips, :taxons
 
   def setup
     @first_id = photos(:photo_one).id

@@ -11,8 +11,8 @@ class TripTest < ActiveSupport::TestCase
     assert_equal 2, Trip.find(@first_id).sightings.size, "test fixture has two sightings for this trip"
   end
 
-  def test_species
-    assert_equal 2, Trip.find(@first_id).species.size, "test fixture has two species for this trip"
+  def test_taxons
+    assert_equal 2, Trip.find(@first_id).taxons.size, "test fixture has two taxons for this trip"
   end
 
   def test_locations
