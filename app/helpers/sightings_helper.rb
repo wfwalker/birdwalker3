@@ -35,14 +35,6 @@ module SightingsHelper
 	  end
   end
 
-  def safe_species_common_name(sighting)
-	  if (sighting && sighting.species) then
-		  sighting.species.common_name
-	  else
-			"unknown"
-	  end
-  end
-  
   # used only by Species.life_list
 	def show_chronological_sighting_list(sighting_list)
 	  sorted_sighting_list = Sighting.sort_chronological(sighting_list);

@@ -14,4 +14,7 @@ module TaxonsHelper
 	    '/taxons/latin/%s' % taxon.latin_name.sub(' ', '_')
 	end	
 
+	def taxon_anchor_name taxon
+		taxon.latin_name.sub(' ', '_')
+	end
 end

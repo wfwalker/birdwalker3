@@ -24,8 +24,8 @@ module PhotosHelper
   end
 
   def safe_species_common_name(photo)
-	  if (photo && photo.species) then
-		  photo.species.common_name
+	  if (photo && photo.taxon) then
+		  photo.taxon.common_name
 	  else
 			"unknown"
 	  end
