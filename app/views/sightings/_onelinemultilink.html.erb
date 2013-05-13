@@ -1,7 +1,7 @@
 <% sightings_that_share_taxon = onelinemultilink %>
 <% a_sighting = sightings_that_share_taxon[0] %>
 
-<div class="pagecontentitem" id="<%= a_sighting.taxon.common_name.gsub(/[ '\-\(\)\/\.]/, '').downcase %>">
+<div class="pagecontentitem" id="<%= taxon_anchor_name(a_sighting.taxon) %>">
 	<%= link_to a_sighting.taxon.common_name, taxon_latin_name_path(a_sighting.taxon) %>
 
 	<% sightings_that_share_taxon.each do | sighting | %>

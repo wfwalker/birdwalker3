@@ -1,7 +1,7 @@
-<% if (@photo.species != nil) then
-  		@page_title = @photo.species.common_name
+<% if (@photo.taxon != nil) then
+  		@page_title = @photo.taxon.common_name
    	else	
-  		@page_title = "Unknown Species"
+  		@page_title = "Unknown Taxon"
    end 
 %>
 

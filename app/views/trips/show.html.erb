@@ -44,10 +44,10 @@
 		<% end %>
 	
 		<% sorted_sighting_list = Sighting.sort_taxonomic(@trip.sightings) %>
-		<% common_names = sorted_sighting_list.collect {|item|item.species.common_name}.uniq %>
+		<% common_names = sorted_sighting_list.collect {|item|item.taxon.common_name}.uniq %>
 		<% sightings_by_family = Sighting.map_by_family(sorted_sighting_list) %>
-		<% sightings_by_family_and_species = Sighting.map_by_family_and_species(sorted_sighting_list) %>
-		<% sorted_families = Family.sort_taxonomic(sightings_by_family.keys) %>  
+		<% sightings_by_family_and_taxon = Sighting.map_by_family_and_taxon(sorted_sighting_list) %>
+		<% unsorted_families = sightings_by_family.keys %>  
 
 		<div class="pagecontentmodule">
 			<div class="moduletitle">
@@ -59,15 +59,15 @@
 				</div>
 
 				<%= form_tag edit_individual_sightings_path do %>
-					<% for a_family in sorted_families do %>
+					<% for a_family in unsorted_families do %>
 					    <% if sorted_sighting_list.size > 40 %>
-					  		<div class="modulesubtitle"><%= a_family.common_name %></div>
+					  		<div class="modulesubtitle"><%= a_family %></div>
 						<% end %>
-						<% Species.sort_taxonomic(sightings_by_family_and_species[a_family].keys).each do | a_species | %>
-							<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
-								<%= render :partial => 'sightings/onelinelink', :collection => sightings_by_family_and_species[a_family][a_species] %>
+						<% Taxon.sort_taxonomic(sightings_by_family_and_taxon[a_family].keys).each do | a_taxon | %>
+							<% if sightings_by_family_and_taxon[a_family][a_taxon].size > 1 then %>
+								<%= render :partial => 'sightings/onelinelink', :collection => sightings_by_family_and_taxon[a_family][a_taxon] %>
 							<% else %>
-								<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
+								<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_taxon[a_family][a_taxon][0] %>
 							<% end %>
 						<% end %>
 					<% end %>
@@ -81,15 +81,15 @@
 			<% end %>
 
 			<% editing_is_not_allowed?() do %>
-				<% for a_family in sorted_families do %>
+				<% for a_family in unsorted_families do %>
 				    <% if sorted_sighting_list.size > 40 %>
-				  		<div class="modulesubtitle"><%= a_family.common_name %></div>
+				  		<div class="modulesubtitle"><%= a_family %></div>
 					<% end %>
-					<% Species.sort_taxonomic(sightings_by_family_and_species[a_family].keys).each do | a_species | %>
-						<% if sightings_by_family_and_species[a_family][a_species].size > 1 then %>
-							<%= render :partial => 'sightings/onelinemultilink', :object => sightings_by_family_and_species[a_family][a_species] %>
+					<% Taxon.sort_taxonomic(sightings_by_family_and_taxon[a_family].keys).each do | a_taxon | %>
+						<% if sightings_by_family_and_taxon[a_family][a_taxon].size > 1 then %>
+							<%= render :partial => 'sightings/onelinemultilink', :object => sightings_by_family_and_taxon[a_family][a_taxon] %>
 						<% else %>
-							<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_species[a_family][a_species][0] %>
+							<%= render :partial => 'sightings/onelinelink', :object => sightings_by_family_and_taxon[a_family][a_taxon][0] %>
 						<% end %>
 					<% end %>
 				<% end %>

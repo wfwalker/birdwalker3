@@ -20,7 +20,7 @@
 		       <table>                   
 					<% for trip in @trips do %>
 					    <tr>
-			                <td align="right"><%= trip.species.size %></td>
+			                <td align="right"><%= trip.taxons.size %></td>
 					        <td align="right">#<%= i %></td>
 							<td style="nowrap"><%= link_to trip.name, trip_url(trip) %>, <%= short_nice_date(trip.date) %></td>
 					    </tr>

@@ -3,7 +3,7 @@
 </div>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle">Trip Sightings (<%= @trip.species.size %>)</div>             
+	<div class="moduletitle">Trip Sightings (<%= @trip.taxons.size %>)</div>             
 	
 	<div class="pagecontentitem">
 		<%= form_tag :controller => 'sightings', :action => 'create_list' do %>
@@ -21,7 +21,7 @@
 			
 			<%= select("sighting", "location_id", Location.find(:all, :order => 'name').collect { |p| [ p.name, p.id ] }, { :selected => location_id_to_use, :prompt => "Choose Location" })%>
 			<p>
-				<label for="sighting_species">Abbreviations</label><br/>
+				<label for="sighting_taxons">Abbreviations</label><br/>
 				<%= text_area_tag 'abbreviation_list', flash[:abbreviations], :autocapitalize => "off", :autocorrect => "off", :size => "7x25" %><br/>
 		  		<%= submit_tag "Add" %>
 			</p>

@@ -1,6 +1,6 @@
 <% sighting = onelinelink %>
 
-<div class="pagecontentitem" id="<%= sighting.species.common_name.gsub(/[ '\-\(\)\/\.]/, '').downcase %>">
+<div class="pagecontentitem" id="<%= taxon_anchor_name(sighting.taxon) %>">
 	<% editing_is_allowed?() do %>
 		<%= check_box_tag "sighting_ids[]", sighting.id %>
 		<%= link_to '[edit]', :controller => 'sightings', :id => sighting, :action => 'edit' %>

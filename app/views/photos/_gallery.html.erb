@@ -7,7 +7,7 @@
 
 			<% gallery_photos.each { | a_photo | %>
 				<% lightbox_caption = [
-					a_photo.species.common_name,
+					a_photo.taxon.common_name,
 					a_photo.location.name,
 					a_photo.location.county.state.abbreviation,
 					short_nice_date(a_photo.trip.date)].join(", ") %>

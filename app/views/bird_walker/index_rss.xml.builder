@@ -33,10 +33,10 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
           description_text = trip.notes
         elsif (trip.locations.size > 1)
           first_location = trip.locations[0]
-          description_text = "We observed #{ trip.species.size } species at #{ trip.locations.size } different locations in #{ first_location.county.name } County, #{ first_location.county.state.abbreviation }"
+          description_text = "We observed #{ trip.taxons.size } species at #{ trip.locations.size } different locations in #{ first_location.county.name } County, #{ first_location.county.state.abbreviation }"
         else
           location = trip.locations[0]
-          description_text = "We observed #{ trip.species.size } species at #{ location.name } in #{ location.county.name } County, #{ location.county.state.abbreviation }"
+          description_text = "We observed #{ trip.taxons.size } species at #{ location.name } in #{ location.county.name } County, #{ location.county.state.abbreviation }"
         end
         
         description_thumbs = ""

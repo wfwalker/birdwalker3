@@ -11,7 +11,7 @@
 		
 		<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
 		
-		<% for key in Species.sort_taxonomic(@map.keys) %>
+		<% for key in Taxon.sort_taxonomic(@map.keys) %>
 			<tr valign="top">
 				<td><%= key.common_name %></td>
 				<% for year in Sighting.year_range do %>
