@@ -63,7 +63,7 @@ class PhotosControllerTest < ActionController::TestCase
   def test_create
     num_photos = Photo.count
 
-    post :create, {:photo => {:trip_id => 1, :location_id => 1, :species_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i} 
+    post :create, {:photo => {:trip_id => 1, :location_id => 1, :taxon_latin_name => 'Latinus latinae'}}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :redirect
     assert_valid_xml(@response.body)
