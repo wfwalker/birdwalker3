@@ -1,7 +1,7 @@
 class StatesController < ApplicationController
   helper :trips            
   helper :sightings
-  helper :species
+  helper :taxons
   helper :locations
   helper :photos
 
@@ -43,14 +43,14 @@ class StatesController < ApplicationController
     @state = State.find(params["id"])
     @page_title = @state.name
     
-    @map, @totals = Sighting.map_by_year_and_species(@state.sightings)
+    @map, @totals = Sighting.map_by_year_and_taxon(@state.sightings)
   end
 
   def show_species_by_month
     @state = State.find(params["id"])
     @page_title = @state.name
     
-    @map, @totals = Sighting.map_by_month_and_species(@state.sightings)
+    @map, @totals = Sighting.map_by_month_and_taxon(@state.sightings)
   end
   
   def index

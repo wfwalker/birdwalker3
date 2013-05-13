@@ -137,8 +137,8 @@ class BirdWalkerController < ApplicationController
     additional_where_clause = " "
     do_search = false
     
-    if (params[:photo] != nil && params[:photo][:species_id] != "") then
-      additional_where_clause = additional_where_clause + " AND photos.species_id='" + params[:photo][:species_id].to_s + "'"
+    if (params[:photo] != nil && params[:photo][:taxon_latin_name] != "") then
+      additional_where_clause = additional_where_clause + " AND photos.taxon_latin_name='" + params[:photo][:taxon_latin_name].to_s + "'"
       do_search = true
     end
     if (params[:photo] != nil && params[:photo][:location_id] != "") then

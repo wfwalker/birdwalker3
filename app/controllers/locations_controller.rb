@@ -9,7 +9,7 @@ include REXML
 
 class LocationsController < ApplicationController
   helper :trips
-  helper :species
+  helper :taxons
   helper :sightings
   helper :photos
   
@@ -38,7 +38,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     photoDataList = @location.photos.collect { |photo|
       {
-        "imageTitle" => photo.species.common_name, 
+        "imageTitle" => photo.taxon.common_name, 
         "imgUrl" => photo.thumb_URL("birdwalker.com"),
         "launchUrl" => photo_url(photo)
       }
@@ -79,8 +79,8 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       format.html # show.rhtml
-      format.xml  { render :xml => [@location], :include => [:species, :trips, :county, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
-      format.json  { render :json => [@location], :include => [:species, :trips, :county, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
+      format.xml  { render :xml => [@location], :include => [:taxons, :trips, :county, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } ] }
+      format.json  { render :json => [@location], :include => [:taxons, :trips, :county, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } ] }
     end
   end          
   
@@ -94,21 +94,21 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @page_title = @location.name
     
-    @map, @totals = Sighting.map_by_year_and_species(@location.sightings)
+    @map, @totals = Sighting.map_by_year_and_taxon(@location.sightings)
   end
 
   def show_species_by_month
     @location = Location.find(params[:id])
     @page_title = @location.name
     
-    @map, @totals = Sighting.map_by_month_and_species(@location.sightings)
+    @map, @totals = Sighting.map_by_month_and_taxon(@location.sightings)
   end
   
   def photo_to_do_list
     @location = Location.find(params[:id])
     @page_title = "Photo TODO List"
-    @all_species_photographed = Species.photographed.countable
-    @species_seen_nearby = @location.species_seen_nearby(40)
+    @all_species_photographed = Taxon.photographed
+    @species_seen_nearby = @location.taxons_seen_nearby(40)
     @species_seen_not_photographed_nearby = @species_seen_nearby - @all_species_photographed
   end
   

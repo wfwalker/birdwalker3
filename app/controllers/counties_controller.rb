@@ -1,6 +1,6 @@
 class CountiesController < ApplicationController
   helper :trips
-  helper :species
+  helper :taxons
   helper :locations
   helper :sightings
   helper :photos
@@ -17,7 +17,7 @@ class CountiesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @county }
-      format.json  { render :json => [@county], :include => [:species, :state, :photos => { :include => [ :species, :trip, :location ], :methods => [ :image_filename ] } ] }
+      format.json  { render :json => [@county], :include => [:taxons, :state, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } ] }
     end
   end
 
@@ -39,13 +39,13 @@ class CountiesController < ApplicationController
   def show_species_by_year
     @county = County.find(params["id"])
     @page_title = @county.full_name
-    @map, @totals = Sighting.map_by_year_and_species(@county.sightings)
+    @map, @totals = Sighting.map_by_year_and_taxon(@county.sightings)
   end
 
   def show_species_by_month
     @county = County.find(params["id"])
     @page_title = @county.full_name
-    @map, @totals = Sighting.map_by_month_and_species(@county.sightings)
+    @map, @totals = Sighting.map_by_month_and_taxon(@county.sightings)
   end
   
   def page_kind

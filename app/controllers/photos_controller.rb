@@ -22,7 +22,7 @@ class PhotosController < ApplicationController
           
   def show
     @photo = Photo.find(params[:id])
-    @page_title = @photo.species.common_name
+    @page_title = @photo.taxon.common_name
     
     respond_to do |format|
       format.html # show.rhtml
@@ -36,14 +36,14 @@ class PhotosController < ApplicationController
     foundTrip = Trip.find_by_date(foundDate)
     raise "missing trip" unless foundTrip
 
-    foundSpecies = Species.find_by_abbreviation(params[:abbreviation])
-    raise "missing species" unless foundSpecies
+    foundTaxon = Taxon.find_by_abbreviation(params[:abbreviation])
+    raise "missing taxon" unless foundTaxon
 
     foundOriginalFilename = params[:originalfilename]
     raise "missing original filename" unless foundOriginalFilename
 
     foundPhotos = Photo.find_all_by_trip_id(foundTrip.id).select { | a_photo |
-      (a_photo.species_id == foundSpecies.id) && (a_photo.original_filename == foundOriginalFilename)
+      (a_photo.taxon_latin_name == foundTaxon.latin_name) && (a_photo.original_filename == foundOriginalFilename)
     }
 
     @photo = foundPhotos[0]
@@ -52,7 +52,7 @@ class PhotosController < ApplicationController
       raise "missing photo for trip " + foundTrip.id.to_s
     end
 
-    @page_title = @photo.species.common_name
+    @page_title = @photo.taxon.common_name
 
     respond_to do |format|
       format.html { render :action => 'show' }
@@ -89,8 +89,8 @@ class PhotosController < ApplicationController
     if (params[:location_id] != "")
       @photo.location_id = params[:location_id]
     end
-    if (params[:species_id] != "")
-      @photo.species_id = params[:species_id]
+    if (params[:taxon_latin_name] != "")
+      @photo.taxon_latin_name = params[:taxon_latin_name]
     end
     if (params[:original_filename] != "")
       @photo.original_filename = params[:original_filename]
@@ -105,9 +105,9 @@ class PhotosController < ApplicationController
     @page_title = "new"
 
     if (params[:abbreviation])
-      temp = Species.find_by_abbreviation(params[:abbreviation])
+      temp = Taxon.find_by_abbreviation(params[:abbreviation])
       raise "Bogus abbreviation" if temp == nil
-      @photo.species_id = temp.id  
+      @photo.taxon_latin_name = temp.latin_name  
     end
 
     if @photo.save
@@ -131,7 +131,7 @@ class PhotosController < ApplicationController
 
       bogus_abbreviations = []
       for an_abbrev in abbreviations do
-        temp = Species.find_by_abbreviation(an_abbrev)
+        temp = Taxon.find_by_abbreviation(an_abbrev)
         bogus_abbreviations << an_abbrev if ! temp
       end
       
@@ -139,12 +139,12 @@ class PhotosController < ApplicationController
       
       for an_abbrev in abbreviations do
         @photo = Photo.new(params[:photo])
-        temp = Species.find_by_abbreviation(an_abbrev)
-        @photo.species_id = temp.id  
+        temp = Taxon.find_by_abbreviation(an_abbrev)
+        @photo.taxon_latin_name = temp.latin_name  
         @photo.save
       end
 
-      flash[:notice] = 'Added ' + abbreviations.size.to_s + ' species.'
+      flash[:notice] = 'Added ' + abbreviations.size.to_s + ' photos.'
     end
 
     redirect_to edit_trip_url(@photo.trip_id)
@@ -152,12 +152,12 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
-    @page_title = @photo.species.common_name
+    @page_title = @photo.taxon.common_name
   end
 
   def update
     @photo = Photo.find(params[:id])
-    @page_title = @photo.species.common_name
+    @page_title = @photo.taxon.common_name
 
     if @photo.update_attributes(params[:photo])
       flash[:error] = 'Photo was successfully updated.'
@@ -170,7 +170,7 @@ class PhotosController < ApplicationController
 
   def update_rating
     @photo = Photo.find(params[:id])
-    @page_title = @photo.species.common_name
+    @page_title = @photo.taxon.common_name
 
     @photo.rating = params[:rating]
     @photo.save

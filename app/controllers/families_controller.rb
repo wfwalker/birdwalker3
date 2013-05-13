@@ -54,14 +54,14 @@ class FamiliesController < ApplicationController
     @family = Family.find(params[:id])
     @page_title = @family.common_name
     
-    @map, @totals = Sighting.map_by_year_and_species(@family.sightings)
+    @map, @totals = Sighting.map_by_year_and_taxon(@family.sightings)
   end
 
   def show_species_by_month
     @family = Family.find(params[:id])
     @page_title = @family.common_name
     
-    @map, @totals = Sighting.map_by_month_and_species(@family.sightings)
+    @map, @totals = Sighting.map_by_month_and_taxon(@family.sightings)
   end
 
   def new

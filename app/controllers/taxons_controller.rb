@@ -11,7 +11,7 @@ class TaxonsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @taxons }
+      format.json { render json: @all_taxons_seen }
     end
   end
 
@@ -23,7 +23,7 @@ class TaxonsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @taxon }
+      format.json { render json: [@taxon], :include => [ :locations, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } ] }
     end
   end
 
@@ -44,6 +44,11 @@ class TaxonsController < ApplicationController
     @life_sightings = all_species_seen.collect {|x| x.sightings.earliest}
   end
 
+  def photo_life_list
+    @page_title = "Photo Life List"
+    @all_taxons_photographed = Taxon.photographed.not_excluded
+  end                        
+
   def show_by_latin_name
     puts "find %s" % params[:latin_name]
     @taxon = Taxon.find_by_latin_name(params[:latin_name].sub('_', ' '))
@@ -52,7 +57,7 @@ class TaxonsController < ApplicationController
     respond_to do |format|
       format.html { render :action => 'show' }
       format.xml  { render :xml => @taxon }
-      format.json { render :json => @taxon }
+      format.json { render json: [@taxon], :include => [ :locations, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } ] }
     end
   end
 
