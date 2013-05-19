@@ -19,6 +19,8 @@ class CountriesController < ApplicationController
   # GET /countries/1.json
   def show
     @country = Country.find(params[:id])
+    @states = @country.states
+    @page_title = @country.name
 
     respond_to do |format|
       format.html # show.html.erb

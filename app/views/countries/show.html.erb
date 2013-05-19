@@ -1,15 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="lead"><%= @page_title %></div>
+                      
+<% state_lists = @states/(@states.size / 4 + 2)%>
 
-<p>
-  <b>Name:</b>
-  <%= @country.name %>
-</p>
+<% if @country.name == 'United States' then %>
+	<%= render :partial => 'states/imagemap' %>
+<% end %>
 
-<p>
-  <b>Reference url:</b>
-  <%= @country.reference_url %>
-</p>
-
-
-<%= link_to 'Edit', edit_country_path(@country) %> |
-<%= link_to 'Back', countries_path %>
+<div class='row'>
+	<% for state_list in state_lists do %>
+		<div class='span3'>
+			<%= render :partial => 'states/onelinelink', :collection => state_list %>
+		</div>
+	<% end %>
+</div>
