@@ -1,0 +1,7 @@
+<div class="lead"><%= @page_title %></div>
+
+<%= form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create" %>
+<% end %>
+

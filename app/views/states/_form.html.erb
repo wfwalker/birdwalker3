@@ -1,0 +1,20 @@
+<%= error_messages_for 'state' %>
+
+<!--[form:state]-->
+
+<div class="control-group">
+	<label class="control-label" for="state_name">Name</label>
+	<div class="controls">
+		<%= text_field 'state', 'name'  %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="state_country">Country</label>
+	<div class="controls">
+		<%= collection_select("state", "country_id", Country.find(:all, :order => 'name'), :id, :name, {:prompt => true}) %>
+	</div>
+</div>
+
+<!--[eoform:state]-->
+
