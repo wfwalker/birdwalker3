@@ -53,6 +53,45 @@ class StatesController < ApplicationController
     @map, @totals = Sighting.map_by_month_and_taxon(@state.sightings)
   end
   
+  def new
+    @state = State.new
+    @page_title = "new"
+  end
+
+  def create
+    @state = State.new(params[:state])
+    @page_title = "new"
+
+    if @state.save
+      flash[:notice] = 'State was successfully created.'
+      redirect_to state_url(@state)
+    else
+      render :action => 'new'
+    end
+  end        
+  
+  def edit
+    @state = State.find(params[:id])
+    @page_title = @state.name
+  end
+
+  def update
+    @state = State.find(params[:id])
+    @page_title = @state.name
+
+    if @state.update_attributes(params[:location])
+      flash[:notice] = 'State was successfully updated.'
+      redirect_to state_url(@state)
+    else
+      render :action => 'edit'
+    end
+  end    
+
+  def destroy
+    State.find(params[:id]).destroy
+    redirect_to :action => 'list'
+  end
+    
   def index
     list
     @page_title = "States"
