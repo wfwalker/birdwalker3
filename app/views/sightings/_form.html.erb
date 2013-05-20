@@ -10,6 +10,20 @@
 </div>
 
 <div class="control-group">
+	<label class="control-label" for="sighting_trip">Trip</label>
+	<div class="controls">
+		<%= collection_select("sighting", "trip_id", Trip.find(:all, :order => 'date'), :id, :date) %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="sighting_taxon_latin_name">Species</label>
+	<div class="controls">
+		<%= collection_select("sighting", "taxon_latin_name", Taxon.species, :latin_name, :common_name) %>
+	</div>
+</div>
+
+<div class="control-group">
 	<div class="controls">
 		<label class="checkbox" for="sighting_exclude">
 			<%= check_box 'sighting', 'exclude'  %>

@@ -39,6 +39,7 @@ class Taxon < ActiveRecord::Base
   end
 
   # different taxon lists
+  scope :species, :include => [ :sightings ], :conditions => [ 'taxons.category = "species"' ], :order => 'taxons.sort'           
   scope :seen, :include => [ :sightings ], :conditions => [ 'sightings.taxon_latin_name = taxons.latin_name' ], :order => 'taxons.sort'           
   scope :not_excluded, :include => [ :sightings ], :conditions => [ 'sightings.taxon_latin_name = taxons.latin_name AND sightings.exclude = false' ], :order => 'taxons.sort'  
   scope :species_seen, :include => [ :sightings ], :conditions => [ 'sightings.taxon_latin_name = taxons.latin_name AND taxons.category = "species"' ], :order => 'taxons.sort'           
