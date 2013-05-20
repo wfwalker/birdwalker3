@@ -79,7 +79,7 @@ class StatesController < ApplicationController
     @state = State.find(params[:id])
     @page_title = @state.name
 
-    if @state.update_attributes(params[:location])
+    if @state.update_attributes(params[:state])
       flash[:notice] = 'State was successfully updated.'
       redirect_to state_url(@state)
     else

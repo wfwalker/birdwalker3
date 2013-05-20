@@ -78,7 +78,7 @@ class CountiesController < ApplicationController
     @county = County.find(params[:id])
     @page_title = @county.full_name
 
-    if @county.update_attributes(params[:location])
+    if @county.update_attributes(params[:county])
       flash[:notice] = 'County was successfully updated.'
       redirect_to county_url(@county)
     else

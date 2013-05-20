@@ -69,4 +69,64 @@ class StatesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:state)
     assert assigns(:state).valid?
   end
+
+  def test_new
+    get :new, {}, {:username => 'testuser', :login_time => Time.now.to_i}
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'new'
+
+    assert_not_nil assigns(:state)
+  end
+
+  def test_create
+    num_counties = State.count
+
+    post :create, {:state => {:name => 'newname', :country_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i}
+
+    assert_response :redirect
+    assert_valid_xml(@response.body)                              
+    new_state_id = State.find_by_name("newname").id
+    assert_redirected_to :id => new_state_id, :action => 'show'
+
+    assert_equal num_counties + 1, State.count
+  end
+
+  def test_edit
+    get :edit, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
+
+    assert_response :success
+    assert_valid_xml(@response.body)
+    assert_template 'edit'
+
+    assert_not_nil assigns(:state)
+    assert assigns(:state).valid?
+  end
+
+  def test_update
+    post :update, {:id => @first_id, :state => {:name => 'updated', :country_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i}
+    assert_response :redirect
+
+    # note: we're not testing the response for xml validity, since it's a redirect 
+    
+    assert_redirected_to :action => 'show', :id => @first_id
+
+    assert_equal "updated", State.find(@first_id).name
+  end
+
+  def test_destroy
+    assert_nothing_raised {
+      State.find(@first_id)
+    }
+
+    post :destroy, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
+    assert_response :redirect
+    assert_valid_xml(@response.body)
+    assert_redirected_to :action => 'list'
+
+    assert_raise(ActiveRecord::RecordNotFound) {
+      State.find(@first_id)
+    }
+  end
 end

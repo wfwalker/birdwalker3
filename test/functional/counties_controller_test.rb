@@ -105,12 +105,14 @@ class CountiesControllerTest < ActionController::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
+    post :update, {:id => @first_id, :county => {:name => 'updated', :state_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
 
     # note: we're not testing the response for xml validity, since it's a redirect 
     
     assert_redirected_to :action => 'show', :id => @first_id
+
+    assert_equal "updated", County.find(@first_id).name
   end
 
   def test_destroy
