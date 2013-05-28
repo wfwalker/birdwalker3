@@ -15,6 +15,14 @@ class TaxonsController < ApplicationController
     end
   end
 
+  def typeahead
+    results = {}
+    taxons = Taxon.find_by_sql(["select * from taxons where category='Species' AND common_name like ?", "%#{params[:query]}%"])
+    common_names = taxons.collect { |taxon| taxon.common_name }
+    results['options'] = common_names.sort
+    render json: results
+  end
+
   # GET /taxons/1
   # GET /taxons/1.json
   def show

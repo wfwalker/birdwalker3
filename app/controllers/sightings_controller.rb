@@ -106,6 +106,7 @@ class SightingsController < ApplicationController
 
   def update
     @sighting = Sighting.find(params[:id])
+    @sighting.taxon_latin_name = Taxon.find_by_common_name(params[:taxon_common_name]).latin_name
     @page_title = @sighting.full_name
 
     if @sighting.update_attributes(params[:sighting])

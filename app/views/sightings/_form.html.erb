@@ -2,6 +2,8 @@
 
 <!--[form:sighting]-->
 
+
+
 <div class="control-group">
 	<label class="control-label" for="sighting_location">Location</label>
 	<div class="controls">
@@ -19,7 +21,7 @@
 <div class="control-group">
 	<label class="control-label" for="sighting_taxon_latin_name">Species</label>
 	<div class="controls">
-		<%= collection_select("sighting", "taxon_latin_name", Taxon.species, :latin_name, :common_name) %>
+		<%= text_field_tag 'taxon_common_name', @sighting.taxon.common_name, :class => 'ajax-typeahead', :data => { :link => '/taxons/typeahead', :provide => "typeahead", :items => 8 }, :minLength => 4 %>
 	</div>
 </div>
 
