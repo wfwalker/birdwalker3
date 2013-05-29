@@ -44,7 +44,7 @@ class SightingsControllerTest < ActionController::TestCase
   def test_create
     num_sightings = Sighting.count
 
-    post :create, {:sighting => {:trip_id => 1, :location_id => 1, :taxon_latin_name => 'Latinus latinae'}}, {:username => 'testuser', :login_time => Time.now.to_i} 
+    post :create, {:taxon_common_name => 'Dodo', :sighting => {:trip_id => 1, :location_id => 2}}, {:username => 'testuser', :login_time => Time.now.to_i} 
 
     assert_response :redirect
     assert_valid_xml(@response.body)
@@ -77,7 +77,7 @@ class SightingsControllerTest < ActionController::TestCase
   end
 
   def test_update
-    post :update, {:id => @first_id}, {:username => 'testuser', :login_time => Time.now.to_i}
+    post :update, {:id => @first_id, :taxon_common_name => 'Dodo', :sighting => {:trip_id => 1, :location_id => 2}}, {:username => 'testuser', :login_time => Time.now.to_i}
     assert_response :redirect
     assert_redirected_to :controller => 'trips', :id => 1, :action => 'show'
 

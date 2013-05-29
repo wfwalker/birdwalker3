@@ -41,7 +41,11 @@ class SightingsController < ApplicationController
     if (params[:abbreviation])
       temp = Taxon.find_by_abbreviation(params[:abbreviation])
       raise "Bogus abbreviation" if temp == nil
-      @sighting.taxon_latin_name = temp.id  
+      @sighting.taxon_latin_name = temp.latin_name 
+    elsif (params[:taxon_common_name])
+      temp = Taxon.find_by_common_name(params[:taxon_common_name])
+      raise "Bogus common_name" if temp == nil
+      @sighting.taxon_latin_name = temp.latin_name 
     end
 
     if @sighting.save
@@ -106,7 +110,17 @@ class SightingsController < ApplicationController
 
   def update
     @sighting = Sighting.find(params[:id])
-    @sighting.taxon_latin_name = Taxon.find_by_common_name(params[:taxon_common_name]).latin_name
+
+    if (params[:abbreviation])
+      temp = Taxon.find_by_abbreviation(params[:abbreviation])
+      raise "Bogus abbreviation" if temp == nil
+      @sighting.taxon_latin_name = temp.latin_name 
+    elsif (params[:taxon_common_name])
+      temp = Taxon.find_by_common_name(params[:taxon_common_name])
+      raise "Bogus common_name" if temp == nil
+      @sighting.taxon_latin_name = temp.latin_name 
+    end
+
     @page_title = @sighting.full_name
 
     if @sighting.update_attributes(params[:sighting])
