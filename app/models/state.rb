@@ -3,7 +3,7 @@ class State < ActiveRecord::Base
 
   belongs_to :country
 
-  attr_accessible :name, :country_id
+  attr_accessible :name, :country_id, :abbreviation
   
   has_many :locations, :through => :counties do
     def with_lat_long
@@ -11,7 +11,7 @@ class State < ActiveRecord::Base
     end
   end
 
-  validates_presence_of :country_id
+  validates_presence_of :country_id, :abbreviation, :name
 
   # def to_param
   #   "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')}"
