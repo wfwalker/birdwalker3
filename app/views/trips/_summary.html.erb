@@ -26,9 +26,9 @@
 		</div>
 
 		<% if (trip.locations.size > 1) then %>
-			<div style="font-style: italic"><%= trip.locations.size %> locations, <%= trip.locations[0].county.state.abbreviation %></div>
+			<div style="font-style: italic"><%= trip.locations.size %> locations, <%= trip.locations[0].county.state.name %></div>
 		<% elsif (trip.locations.size > 0) %>
-			<div style="font-style: italic"><%= trip.locations[0].name %>, <%= trip.locations[0].county.state.abbreviation %></div>
+			<div style="font-style: italic"><%= trip.locations[0].full_name %></div>
 		<% end %>     
 	</div>
 </div>

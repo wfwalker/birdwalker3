@@ -62,7 +62,11 @@ class Location < ActiveRecord::Base
   end
   
   def full_name
-    self.name + ", " + self.county.state.abbreviation
+    if self.county.state.country.name == "United States"
+      self.name + ", " + self.county.state.abbreviation
+    else
+      self.name + ", " + self.county.state.country.name
+    end
   end
   
   def recent_nearby_ebird_sightings(in_dist = 5)
