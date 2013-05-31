@@ -1,0 +1,17 @@
+<div class="lead">
+	<%= @page_title %>
+</div>
+
+<% species_lists = [] %>
+<% list_length = @all_species_seen.size %>
+<% species_lists = @all_species_seen/(list_length / 3 + 3) %>
+
+<div class="moduletitle"><%= @all_species_seen.size %> Species</div> 
+
+<div class='row'>
+	<% for species_list in species_lists do %>
+		<div class='span4'>
+			<%= render :partial => 'taxons/divided_list', :object => species_list, :locals => { :show_headings => false } %>
+		</div>
+	<% end %>
+</div>

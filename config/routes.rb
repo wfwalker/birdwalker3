@@ -61,6 +61,7 @@ Birdwalker3::Application.routes.draw do
   # map.resources :species, :singular => :species_instance,
 
   match 'species/year_list/:year' => 'species#year_list'
+  match 'taxons/year_list/:year' => 'taxons#year_list'
   match ':controller/service.wsdl' => '#wsdl'
   match 'trips/:year/:month/:day.:format' => 'trips#show_by_date'
   match 'photos/:year/:month/:day/:abbreviation/:originalfilename.:format' => 'photos#show_by_date'

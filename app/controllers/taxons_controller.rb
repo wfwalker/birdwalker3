@@ -23,6 +23,11 @@ class TaxonsController < ApplicationController
     render json: results
   end
 
+  def year_list
+    @all_species_seen = Taxon.species_seen_not_excluded_during(params[:year])
+    @page_title = params[:year].to_s   
+  end      
+  
   # GET /taxons/1
   # GET /taxons/1.json
   def show
