@@ -83,7 +83,7 @@ class StatesControllerTest < ActionController::TestCase
   def test_create
     num_counties = State.count
 
-    post :create, {:state => {:name => 'newname', :country_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i}
+    post :create, {:state => {:name => 'newname', :abbreviation => 'ZZ', :country_id => 1}}, {:username => 'testuser', :login_time => Time.now.to_i}
 
     assert_response :redirect
     assert_valid_xml(@response.body)                              
