@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+taxon_one:
   id: 1
   sort: 1
   category: 'species'
@@ -11,7 +11,7 @@ one:
   family: 'family1'
   abbreviation: 'ivbwoo'
 
-two: 
+taxon_two: 
   id: 2
   sort: 2
   category: 'species'

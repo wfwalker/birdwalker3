@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  reference_url: MyString
+country_one:
+  id: 1
+  name: 'Elbonia'
+  reference_url: 'url1'
 
-two:
-  name: MyString
-  reference_url: MyString
+country_two:
+  id: 2
+  name: 'Canada'
+  reference_url: 'url2'
