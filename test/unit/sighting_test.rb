@@ -1,68 +1,106 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SightingTest < ActiveSupport::TestCase
-  fixtures :sightings, :trips, :locations, :species, :counties, :states, :families
+  fixtures :countries
+  fixtures :states
+  fixtures :counties
+  fixtures :locations
+  fixtures :trips
+  fixtures :taxons
+  fixtures :sightings
 
   def test_properties
     assert_equal 4, Sighting.find(:all).length
     
-    assert_equal true, Sighting.find_by_id(1).heard_only
-    assert_equal false, Sighting.find_by_id(2).heard_only
-    assert_equal false, Sighting.find_by_id(3).heard_only
-    assert_equal false, Sighting.find_by_id(4).heard_only
+    assert_equal true, sightings(:sighting_one).heard_only
+    assert_equal false, sightings(:sighting_two).heard_only
+    assert_equal false, sightings(:sighting_three).heard_only
+    assert_equal false, sightings(:sighting_four).heard_only
   end
 
-  def test_direct_associations
-    assert_equal 2, Location.find(1).sightings.length
-    assert_equal 2, Location.find(2).sightings.length
+  def test_sighting_location
+    assert_equal locations(:location_one).id, sightings(:sighting_one).location_id, "sighting_one was at location_one"
+  end
 
-    assert_equal 2, Trip.find(1).sightings.length
-    assert_equal 2, Trip.find(2).sightings.length
+  def test_sighting_trip
+    assert_equal trips(:trip_one).id, sightings(:sighting_one).trip_id, "sighting_one was on trip_one"
+  end
 
-    assert_equal 2, Taxon.find(1).sightings.length
-    assert_equal 2, Taxon.find(2).sightings.length
+  def test_location_sightings
+    assert_equal 2, locations(:location_one).sightings.length, "location_one has two sightings"
+    assert_equal 2, locations(:location_two).sightings.length, "location_two has two sightings"
+  end
 
-    assert_equal 1, County.find(1).locations.length
-    assert_equal 1, County.find(2).locations.length
+  def test_trip_sightings
+    assert_equal 2, trips(:trip_one).sightings.length
+    assert_equal 2, trips(:trip_two).sightings.length
+  end
+
+  def test_taxon_sightings
+    assert_equal 2, taxons(:taxon_one).sightings.length
+    assert_equal 2, taxons(:taxon_two).sightings.length
+  end
+
+  def test_county_locations
+    assert_equal 1, counties(:county_one).locations.length
+    assert_equal 1, counties(:county_two).locations.length
   end
   
-  def test_secondary_associations
+  def test_location_taxons
     # species to/from locations
-    assert_equal 1, Location.find(1).taxons.length
-    assert_equal 1, Location.find(2).taxons.length
+    assert_equal 1, locations(:location_one).taxons.length
+    assert_equal 1, locations(:location_two).taxons.length
+  end
 
-    assert_equal 1, Taxon.find(1).locations.length
-    assert_equal 1, Taxon.find(2).locations.length
+  def test_taxon_locations
+    assert_equal 1, taxons(:taxon_one).locations.length
+    assert_equal 1, taxons(:taxon_two).locations.length
+  end
 
+  def test_trip_taxons
     # trips to/from species
-    assert_equal 2, Trip.find(1).taxons.length
-    assert_equal 2, Trip.find(2).taxons.length
+    assert_equal 2, trips(:trip_one).taxons.length
+    assert_equal 2, trips(:trip_two).taxons.length
+  end
 
-    assert_equal 2, Taxon.find(1).trips.length
-    assert_equal 2, Taxon.find(2).trips.length
+  def test_taxon_trips
+    assert_equal 2, taxons(:taxon_one).trips.length
+    assert_equal 2, taxons(:taxon_two).trips.length
+  end
 
+  def test_trip_locations
     # trips to/from location
-    assert_equal 2, Trip.find(1).locations.length
-    assert_equal 2, Trip.find(2).locations.length
+    assert_equal 2, trips(:trip_one).locations.length
+    assert_equal 2, trips(:trip_two).locations.length
+  end
 
-    assert_equal 2, Location.find(1).trips.length
-    assert_equal 2, Location.find(2).trips.length
+  def test_location_trips
+    assert_equal 2, locations(:location_one).trips.length
+    assert_equal 2, locations(:location_two).trips.length
   end
   
-  def test_remote_associations
-    assert_equal 2, County.find(1).trips.length
-    assert_equal 2, County.find(2).trips.length
+  def test_country_trips
+    assert_equal 2, counties(:county_one).trips.length
+    assert_equal 2, counties(:county_two).trips.length
+  end
 
-    assert_equal 1, County.find(1).taxons.length
-    assert_equal 1, County.find(2).taxons.length
+  def test_county_taxons
+    assert_equal 1, counties(:county_one).taxons.length
+    assert_equal 1, counties(:county_two).taxons.length
+  end
 
-    assert_equal 2, State.find(1).trips.length
-    assert_equal 2, State.find(2).trips.length
+  def test_state_trips
+    assert_equal 2, states(:state_one).trips.length
+    assert_equal 2, states(:state_two).trips.length
+  end
 
-    assert_equal 1, State.find(1).taxons.length
-    assert_equal 1, State.find(2).taxons.length
+  def test_state_taxons
+    assert_equal 1, states(:state_one).taxons.length
+    assert_equal 1, states(:state_two).taxons.length
+  end
 
-    assert_equal 1, State.find(1).locations.length
-    assert_equal 1, State.find(2).locations.length
+  def test_state_locations
+    assert_equal 1, states(:state_one).locations.length
+    assert_equal 1, states(:state_two).locations.length
   end
 end

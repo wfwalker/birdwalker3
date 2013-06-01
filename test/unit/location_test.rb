@@ -1,43 +1,45 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class LocationTest < ActiveSupport::TestCase
-  fixtures :photos, :locations, :species, :trips, :sightings, :counties, :states
+  fixtures :locations, :species, :trips, :sightings, :counties, :states, :photos
 
   def setup
-    @first_id = locations(:location_one).id
-    @second_id = locations(:location_two).id
+    @first = locations(:location_one)
+    @second = locations(:location_two)
   end
 
-  def test_abbreviation
-    aLocation = Location.find(@first_id)
-    
+  def test_county_association
+    assert_equal counties(:county_one), @first.county, "location_one is in county_one"
+  end
+
+  def test_abbreviation    
     # abbreviation for "First Place" is "FP"
-    assert_equal aLocation.name, "First Place"
-    assert_equal aLocation.abbreviation, "FP"
+    assert_equal @first.name, "First Place"
+    assert_equal @first.abbreviation, "FP"
   end
   
   def test_sightings
-    assert_equal 2, Location.find(@first_id).sightings.length, "test fixture has two sightings for this location"
+    assert_equal 2, @first.sightings.length, "location_one has two sightings"
   end
 
   def test_taxon
-    assert_equal 1, Location.find(@first_id).taxons.length, "test fixture has one taxon for this location"
+    assert_equal 1, @first.taxons.length, "location_one has one taxon"
   end
 
   def test_trips
-    assert_equal 2, Location.find(@first_id).trips.length, "test fixture has two trips for this location"
+    assert_equal 2, @first.trips.length, "location_one has two trips"
   end
 
   def test_photos
-    assert_equal 1, Location.find(@first_id).photos.length, "test fixture has one photos for this location"
+    assert_equal 1, @first.photos.count, "location_one has one photo"
   end   
   
   def test_distance_in_miles_from
-    assert Location.find(@first_id).distance_in_miles_from(Location.find(@second_id)) < 5, "Charleston Slough should be less than five miles from Palo Alto Duck Pond"
+    assert @first.distance_in_miles_from(@second) < 5, "Charleston Slough should be less than five miles from Palo Alto Duck Pond"
   end     
   
   def test_sunrise_sunset
-    Location.find(@first_id).sunrise(Date.today).localtime
-    Location.find(@first_id).sunset(Date.today).localtime
+    @first.sunrise(Date.today).localtime
+    @first.sunset(Date.today).localtime
   end
 end

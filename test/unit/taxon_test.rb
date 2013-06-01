@@ -4,7 +4,7 @@ class TaxonTest < ActiveSupport::TestCase
   fixtures :taxons
 
   test "should find by id" do
-  	assert_not_nil Taxon.find(1)
+  	assert_not_nil taxons(:taxon_one)
   end
 
   test "should find by abbreviation" do
