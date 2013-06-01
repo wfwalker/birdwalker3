@@ -5,7 +5,7 @@ class CountriesControllerTest < ActionController::TestCase
   fixtures :countries
 
   setup do
-    @country = countries(:one)
+    @country = countries(:country_one)
   end
 
   test "should get index" do

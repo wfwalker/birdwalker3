@@ -5,7 +5,7 @@ require 'trips_controller'
 class TripsController; def rescue_action(e) raise e end; end
 
 class TripsControllerTest < ActionController::TestCase
-  fixtures :trips
+  fixtures :trips, :locations, :counties, :states, :countries, :taxons, :sightings
 
   def setup
     @controller = TripsController.new

@@ -4,7 +4,7 @@ class TaxonsControllerTest < ActionController::TestCase
   fixtures :taxons
 
   setup do
-    @taxon = taxons(:one)
+    @taxon = taxons(:taxon_one)
   end
 
   test "should get index" do
