@@ -62,6 +62,10 @@ class Location < ActiveRecord::Base
   end
   
   def full_name
+    raise "missing county" if self.county == nil
+    raise "missing state" if self.county.state == nil
+    raise "missing country" if self.county.state.country == nil
+
     if self.county.state.country.name == "United States"
       self.name + ", " + self.county.state.abbreviation
     else
