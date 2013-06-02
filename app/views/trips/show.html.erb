@@ -58,7 +58,11 @@
 					<%= link_to '[add sightings by abbreviation]', :id => @trip.id, :controller => 'trips', :action => 'add_species' %>
 				</div>
 				<div>
-					<%= link_to '[add sighting]', :controller => 'sightings', :action => 'new', :trip_id => @trip %>
+					<% if @trip.locations.count > 0 %>
+						<%= link_to '[add sighting]', :controller => 'sightings', :action => 'new', :trip_id => @trip, :location_id => @trip.locations[0] %>
+					<% else %>
+						<%= link_to '[add sighting]', :controller => 'sightings', :action => 'new', :trip_id => @trip %>
+					<% end %>
 				</div>
 
 				<%= form_tag edit_individual_sightings_path do %>
