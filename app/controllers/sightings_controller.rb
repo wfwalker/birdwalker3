@@ -52,7 +52,7 @@ class SightingsController < ApplicationController
       flash[:notice] = 'Sighting was successfully created.'
       expire_action :controller => 'trips', :action => 'show', :id => @sighting.trip_id
       expire_action :controller => 'trips', :action => 'edit', :id => @sighting.trip_id
-      redirect_to edit_trip_url(@sighting.trip_id)
+      redirect_to trip_url(@sighting.trip)
     else
       render :action => 'new'
     end
@@ -127,9 +127,9 @@ class SightingsController < ApplicationController
       flash[:notice] = 'Sighting was successfully updated.'
       expire_action :controller => 'trips', :action => 'show', :id => @sighting.trip_id
       expire_action :controller => 'trips', :action => 'edit', :id => @sighting.trip_id
-      redirect_to trip_url(@sighting.trip_id)
+      redirect_to trip_url(@sighting.trip)
     else
-      render :action => 'edit'
+      render edit_sighting_url(@sighting)
     end
   end
 
