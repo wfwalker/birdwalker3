@@ -31,11 +31,19 @@ class Photo < ActiveRecord::Base
   end
   
   def image_filename
-    if self.original_filename != nil
-      self.trip.date.to_s + "-" + self.taxon.abbreviation + "-" + self.original_filename + ".jpg"
-    else                             
-      self.trip.date.to_s + "-" + self.taxon.abbreviation + ".jpg"
+    result = self.trip.date.to_s
+
+    if self.taxon.abbreviation
+      result = result + "-" + self.taxon.abbreviation
+    else
+      result = result + "-" + self.taxon.latin_name.downcase.gsub(' ', '_')
     end
+
+    if self.original_filename != nil
+      result = result + "-" + self.original_filename
+    end
+
+    result = result + ".jpg"
   end
     
   def photo_URL(hostname="")

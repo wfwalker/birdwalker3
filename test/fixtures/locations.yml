@@ -6,6 +6,7 @@ location_one:
   latitude: 37.4347763062
   longitude: -122.0990600586
   notes: "lat and long from Charleston Slough"
+
 location_two:
   id: 2
   name: Second Place

@@ -21,3 +21,16 @@ taxon_two:
   order: 'order2'
   family: 'family2'
   abbreviation: 'dodo'
+
+taxon_three: 
+  id: 3
+  sort: 3
+  category: 'species'
+  latin_name: 'Latinus international'
+  common_name: 'Eurasian Dodo'
+  range: ''
+  order: 'order2'
+  family: 'family2'
+
+  
+

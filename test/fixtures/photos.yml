@@ -12,5 +12,11 @@ photo_two:
   trip_id: 1
   location_id: 2
   taxon_latin_name: "Latinus latinae"
-  original_filename: bbb
+  rating: 1
+
+photo_three:
+  id: 3
+  trip_id: 2
+  location_id: 2
+  taxon_latin_name: "Latinus international"
   rating: 1

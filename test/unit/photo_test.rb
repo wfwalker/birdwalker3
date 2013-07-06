@@ -5,7 +5,15 @@ class PhotoTest < ActiveSupport::TestCase
   fixtures :photos, :locations, :trips, :taxons
 
   def setup
-    @first_id = photos(:photo_one).id
+    @first = photos(:photo_one)
+    @second = photos(:photo_two)
+    @third = photos(:photo_three)
+  end
+
+  def test_image_filename
+    assert_equal "2007-01-01-dodo-aaa.jpg", @first.image_filename, "image filename uses abbreviation and original filename if available"
+    assert_equal "2007-01-01-ivbwoo.jpg", @second.image_filename, "image filename uses abbreviation, omits missing original filename"
+    assert_equal "2007-02-01-latinus_international.jpg", @third.image_filename, "image filename uses abbreviation, omits missing original filename"
   end
 
   def test_find_by_trip_id
@@ -17,10 +25,9 @@ class PhotoTest < ActiveSupport::TestCase
   end
 
   def test_thumb_hostname
-    aPhoto = Photo.find(@first_id)
-    assert_no_match /localhost/, aPhoto.thumb(), "thumb URL with no argument should NOT contain hostname (i. e., localhost)"
-    assert_no_match /http/, aPhoto.thumb(), "thumb URL with no argument should NOT 'http', since it should just be relative"
+    assert_no_match /localhost/, @first.thumb(), "thumb URL with no argument should NOT contain hostname (i. e., localhost)"
+    assert_no_match /http/, @first.thumb(), "thumb URL with no argument should NOT 'http', since it should just be relative"
     
-    assert_match /localhost/, aPhoto.thumb('localhost'), "thumb URL should contain hostname (i. e., localhost)"
+    assert_match /localhost/, @first.thumb('localhost'), "thumb URL should contain hostname (i. e., localhost)"
   end
 end
