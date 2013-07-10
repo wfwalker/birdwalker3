@@ -84,7 +84,7 @@ pageTracker._trackPageview();
 
 								<ul class="dropdown-menu">
 									<li><%= link_to "Index", trips_url %></li>
-									<li><%= link_to "Biggest", :controller => 'trips', :action => 'list_biggest' %></li>
+									<li><%= link_to "Big Days", :controller => 'trips', :action => 'list_biggest' %></li>
 									<% editing_is_allowed?() do %>
 										<li class="divider"></li>
 										<li><%= link_to 'New Trip', new_trip_url(@trip) %></li>
