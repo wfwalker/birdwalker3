@@ -1,0 +1,44 @@
+<div class="lead"><%= @page_title %></div>
+
+<% popular_families = @taxons_by_family.select { |name, species| species.size > 5 } %>
+<% unpopular_families = @taxons_by_family.select { |name, species| species.size <= 5 } %>
+
+<% popular_family_name_lists = popular_families.keys/(popular_families.keys.size / 3 + 1) %>
+
+<div class='row'>
+	<% for popular_family_name_list in popular_family_name_lists %>
+		<div class='span4'>
+			<% for family_name in popular_family_name_list %>
+				<div style="background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%); background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 100%); height: 100px" class="pagecontentmodule">
+					<% family_photos = (@taxons_by_family[family_name].collect { |species| species.photos }).flatten %>
+					<% if (family_photos.size > 0) %>
+						<div style="float: left; padding-right: 10px; display: block">	
+							<div class="photo"><%= family_photos.first.thumb %></div>
+						</div>
+					<% else %>
+						<div style="float: left; padding-right: 10px; display: block">	
+							<img src="/images/spacer.gif" width="100px" height="100px" />
+						</div>					
+					<% end %>
+
+					<div class="modulesubtitle">
+						<%= family_name %>
+					</div>
+					
+					<div class="pagecontentitem">
+						<div style="font-style: italic"><%= @taxons_by_family[family_name].size %> species seen</div>
+						<div style="font-style: italic"><%= family_photos.size %> photographs</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+
+<div class='row'>
+	See also: 
+	<% for name, species in unpopular_families %>
+		<%= name %>, 
+	<% end %>
+
+</div>

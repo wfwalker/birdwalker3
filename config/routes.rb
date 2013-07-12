@@ -53,6 +53,7 @@ Birdwalker3::Application.routes.draw do
       get :typeahead
       get :photo_life_list
       get :photo_to_do_list
+      get :families_index
     end
   end
 

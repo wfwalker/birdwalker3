@@ -15,6 +15,15 @@ class TaxonsController < ApplicationController
     end
   end
 
+  def families_index
+    @all_taxons_seen = Taxon.species_seen.not_excluded
+    @taxons_by_family = Taxon.map_by_family(@all_taxons_seen)
+
+    respond_to do |format|
+      format.html # families_index.html.erb
+    end
+  end
+
   def typeahead
     results = {}
     taxons = Taxon.find_by_sql(["select * from taxons where category='Species' AND common_name like ?", "%#{params[:query]}%"])
