@@ -2,11 +2,11 @@
 	<%= @page_title %>
 </div>		
 
-<% species_lists = @species_seen_not_photographed_nearby/(@species_seen_not_photographed_nearby.size / 3 + 3)%>
+<% taxon_lists = @taxons_seen_not_photographed_nearby/(@taxons_seen_not_photographed_nearby.size / 3 + 3)%>
 
 <div class='row'>
 	<div class='span12' id='mapContainer'>
-		<%= render :partial => 'locations/google', :object => [ @location ], :locals => { :map_width => 780, :map_height => 480, :locations_json_url => '/locations/%s.json' % @location.id  } %>
+		<%= render :partial => 'locations/google', :locals => { :map_width => 780, :map_height => 480, :locations_json_url => '/locations/%s.json' % @location.id  } %>
 	</div>
 </div>
 
@@ -17,12 +17,12 @@
 	</div>
 </div>
 
-<div class="moduletitle"><%= @species_seen_not_photographed_nearby.size %> species seen near <%= @location.name %> but never photographed</div>
+<div class="moduletitle"><%= @taxons_seen_not_photographed_nearby.size %> species seen near <%= @location.name %> but never photographed</div>
 
 <div class='row'>
-	<% for species_list in species_lists do %>
+	<% for taxon_list in taxon_lists do %>
 		<div class='span4'>
-			<%= show_species_list(species_list, false) %>
+			<%= show_taxon_list(taxon_list, false) %>
 		</div>
 	<% end %>
 </div>

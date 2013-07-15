@@ -107,9 +107,9 @@ class LocationsController < ApplicationController
   def photo_to_do_list
     @location = Location.find(params[:id])
     @page_title = "Photo TODO List"
-    @all_species_photographed = Taxon.photographed
-    @species_seen_nearby = @location.taxons_seen_nearby(40)
-    @species_seen_not_photographed_nearby = @species_seen_nearby - @all_species_photographed
+    @all_taxons_photographed = Taxon.photographed
+    @taxons_seen_nearby = @location.taxons_seen_nearby(40)
+    @taxons_seen_not_photographed_nearby = @taxons_seen_nearby - @all_taxons_photographed
   end
   
   def new
