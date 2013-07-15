@@ -17,4 +17,14 @@ module TaxonsHelper
 	def taxon_anchor_name taxon
 		taxon.latin_name.sub(' ', '_')
 	end
+
+	# NOTE: assume all family_name values look like 'Anatidae (Ducks, Geese, and Waterfowl)'
+	def get_family_common_name combined_family_name
+		return combined_family_name.split(/[()]/)[1]
+	end
+
+	# NOTE: assume all family_name values look like 'Anatidae (Ducks, Geese, and Waterfowl)'
+	def get_family_latin_name combined_family_name
+		return combined_family_name.split(/[()]/)[0]
+	end
 end
