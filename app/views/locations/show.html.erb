@@ -43,7 +43,7 @@
 			<% @center_longitude = @location.longitude %>
 			<% @locations = [ @location ] %>
 			<% @map_module_title = 'Location Map' %>
-			<%= render :partial => 'locations/google', :object => [ @location ], :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/locations/%s.json' % @location.id } %>
+			<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/locations/%s.json' % @location.id } %>
 		<% end %>
 	</div>
 

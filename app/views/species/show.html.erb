@@ -51,7 +51,7 @@
 	</div>
 	<div class='span4' id='mapContainer'>
 		<% if (@species.locations.with_lat_long.size > 0) %>  
-			<%= render :partial => 'locations/google', :object => @species.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/species/locations/%s.json' % @species.id }  %>
+			<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/species/locations/%s.json' % @species.id }  %>
 		<% end %>
 	</div>
 
