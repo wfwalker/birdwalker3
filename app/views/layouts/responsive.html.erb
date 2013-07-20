@@ -74,7 +74,7 @@ pageTracker._trackPageview();
 								<ul class="dropdown-menu">
 									<li><%= link_to "Index", taxons_url %></li>
 									<li><%= link_to "By Date", :controller => 'taxons', :action => 'life_list' %></li>
-									<li><%= link_to "By Family", families_url %></li>
+									<li><%= link_to "By Family", :controller => 'taxons', :action => 'families_index' %></li>
 									<li><%= link_to "Photo Life list", :controller => 'taxons', :action => 'photo_life_list' %></li>
 								</ul>
 							</li>	      

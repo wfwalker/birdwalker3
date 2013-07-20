@@ -11,12 +11,16 @@ module TaxonsHelper
 	end
 
 	def taxon_latin_name_path taxon
-	    '/taxons/latin/%s' % taxon.latin_name.sub(' ', '_')
+	    '/taxons/latin/%s' % taxon.latin_name.gsub(' ', '_')
 	end	
 
 	def taxon_anchor_name taxon
-		taxon.latin_name.sub(' ', '_')
+		taxon.latin_name.gsub(' ', '_')
 	end
+
+	def taxon_family_name_path family_name
+	    '/families/%s' % family_name.gsub(' ', '_')
+	end	
 
 	# NOTE: assume all family_name values look like 'Anatidae (Ducks, Geese, and Waterfowl)'
 	def get_family_common_name combined_family_name

@@ -1,7 +1,9 @@
 <div class="lead"><%= @page_title %></div>
 
-<% popular_families = @taxons_by_family.select { |name, species| species.size > 5 } %>
-<% unpopular_families = @taxons_by_family.select { |name, species| species.size <= 5 } %>
+<% popular_families = @taxons_by_family.select { |name, species| species.size > 0 } %>
+<% unpopular_families = @taxons_by_family.select { |name, species| species.size < 0 } %>
+
+<!-- TODO, do unpopularness according to how many photos, not how many species!  -->
 
 <% popular_family_name_lists = popular_families.keys/(popular_families.keys.size / 3 + 1) %>
 
@@ -22,7 +24,7 @@
 					<% end %>
 
 					<div class="modulesubtitle">
-						<%= family_name %>
+						<%= link_to get_family_common_name(family_name), taxon_family_name_path(family_name) %>
 					</div>
 					
 					<div class="pagecontentitem">

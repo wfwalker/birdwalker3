@@ -35,17 +35,6 @@ Birdwalker3::Application.routes.draw do
     end
   end
 
-  resources :families
-
-  resources :species do
-    collection do
-      get :bird_of_the_week
-      get :life_list
-      get :photo_life_list
-      get :photo_to_do_list
-    end
-  end
-
   resources :taxons do
     collection do
       get :bird_of_the_week
@@ -61,14 +50,15 @@ Birdwalker3::Application.routes.draw do
   # map.resources :families
   # map.resources :species, :singular => :species_instance,
 
-  match 'species/year_list/:year' => 'species#year_list'
   match 'taxons/year_list/:year' => 'taxons#year_list'
   match ':controller/service.wsdl' => '#wsdl'
   match 'trips/:year/:month/:day.:format' => 'trips#show_by_date'
   match 'photos/:year/:month/:day/:abbreviation/:originalfilename.:format' => 'photos#show_by_date'
-  match 'species/abbrev/:abbreviation.:format' => 'species#show_by_abbreviation'
+  match 'families/:family_name' => 'taxons#show_family'
+  match 'families/locations/:family_name' => 'taxons#get_family_locations'
   match 'taxons/latin/:latin_name' => 'taxons#show_by_latin_name'
   match '/:controller(/:action(/:id))'
+  
   match 'webapp.manifest' => 'bird_walker#webapp_manifest'
   match 'webapp.manifest.json' => 'bird_walker#webapp_manifest'
   match 'manifest.webapp' => 'bird_walker#webapp_manifest'

@@ -1,7 +1,7 @@
 <div class="lead">
   <%= @page_title %>
   (<i><%= @taxon.latin_name %></i>) in
-  <i><%= @taxon.family %></i>
+  <i><%= link_to @taxon.family, taxon_family_name_path(@taxon.family) %></i>
 </div>
 
 <div class='row'>
@@ -43,7 +43,7 @@
 
   <div class='span4' id='mapContainer'>
     <% if (@taxon.locations.with_lat_long.size > 0) %>  
-      <%= render :partial => 'locations/google', :object => @taxon.locations.with_lat_long, :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/taxons/locations/%s.json' % @taxon.id }  %>
+      <%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/taxons/locations/%s.json' % @taxon.id }  %>
     <% end %>
   </div>
 

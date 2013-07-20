@@ -15,6 +15,29 @@ class TaxonsController < ApplicationController
     end
   end
 
+  def show_family
+    decoded_family_name = params[:family_name].gsub('_', ' ')
+    @page_title = decoded_family_name
+    @family_taxons = Taxon.seen.find_all_by_family(decoded_family_name)
+    @family_photos = (@family_taxons.collect { |species| species.photos }).flatten.uniq
+    @family_locations = (@family_taxons.collect { |species| species.locations }).flatten.uniq
+    @family_trips = (@family_taxons.collect { |species| species.trips }).flatten.uniq
+    @family_sightings = (@family_taxons.collect { |species| species.sightings }).flatten.uniq
+
+    respond_to do |format|
+      format.html # families_index.html.erb
+    end
+  end
+
+  def get_family_locations
+    @family_taxons = Taxon.seen.find_all_by_family(params[:family_name])
+    @family_locations = (@family_taxons.collect { |species| species.locations }).flatten.uniq
+
+    respond_to do |format|
+      format.json { render :json => @family_locations }
+    end
+  end
+
   def families_index
     @all_taxons_seen = Taxon.species_seen.not_excluded
     @taxons_by_family = Taxon.map_by_family(@all_taxons_seen)
