@@ -30,7 +30,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @locations }
-      format.json  { render :json => @locations }
+      format.json  { render :json => @locations, :include => [:county, :trips ] }
     end
   end
 
