@@ -33,6 +33,8 @@ class Photo < ActiveRecord::Base
   def image_filename
     result = self.trip.date.to_s
 
+    raise ("missing taxon %s for photo %d" % [self.taxon_latin_name, self.id]) unless self.taxon
+
     if self.taxon.abbreviation
       result = result + "-" + self.taxon.abbreviation
     else

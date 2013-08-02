@@ -22,6 +22,7 @@ class PhotosController < ApplicationController
           
   def show
     @photo = Photo.find(params[:id])
+    raise ("missing taxon '%s' for photo %d" % [@photo.taxon_latin_name, @photo.id]) unless @photo.taxon   
     @page_title = @photo.taxon.common_name
     
     respond_to do |format|
