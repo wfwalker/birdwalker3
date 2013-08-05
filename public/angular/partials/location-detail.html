@@ -5,15 +5,7 @@
     <div class="row">
 
         <div class='span4'>
-            <div class='moduletitle'>Location Map</div>
-
-            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" />
-        </div>
-
-        <div class='span4'>
-            <div class='moduletitle'>Location Notes</div>
-
-            Some notes here
+            <div class='moduletitle'>Location Photos</div>
 
             <div id="myCarousel" class="carousel slide">
                 <!-- Carousel items -->
@@ -22,7 +14,7 @@
                         <center><img src="{{a_photo.photo_URL}}" /></center>
 
                         <div >
-                            <center><p>caption</p></center>
+                            <center><p>{{a_photo.taxon.common_name}}, {{a_photo.location.name}}, {{a_photo.trip.date}}</p></center>
                         </div>
                     </div>
                 </div>
@@ -34,6 +26,20 @@
         </div>
 
         <div class='span4'>
+            <div class='moduletitle'>Location Notes</div>
+
+            {{location.notes}}
+        </div>        
+
+        <div class='span4'>
+            <div class='moduletitle'>Location Map</div>
+
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" />
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='span12'>
             <div class='moduletitle'>{{location.taxons.length}} Species</div>
 
 <!--
