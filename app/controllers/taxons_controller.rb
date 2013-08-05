@@ -68,7 +68,7 @@ class TaxonsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: [@taxon], :include => [ :locations, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } ] }
+      format.json { render json: [@taxon], :include => [ :locations, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename, :photo_URL ] } ] }
     end
   end
 
