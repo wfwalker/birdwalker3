@@ -4,6 +4,40 @@
 
     <div class="row">
 
+        <div class='span4'>
+            <div class='moduletitle'>Location Photos</div>
+
+            <div id="myCarousel" class="carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div ng-repeat='a_photo in taxon.photos' class="item" ng-class="{active : $first}">
+                        <center><img src="{{a_photo.photo_URL}}" /></center>
+
+                        <div >
+                            <center><p>{{a_photo.location.name}}, {{a_photo.trip.date}}</p></center>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+        </div>
+
+        <div class='span4'>
+            <div class='moduletitle'>Species Notes</div>
+        </div>    
+
+        <div class='span4' >
+            <div class='moduletitle'>Species Map</div>
+
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{getMapCenter().latitude}},{{getMapCenter().longitude}}&zoom=5&size=400x400&sensor=false&markers={{getMapCenter().markerList}}" width='400' height='400' />
+        </div>    
+
+    </div>
+
+    <div class='row'>
         <div class="span10">
             <div class='moduletitle'>{{taxon.locations.length}} Locations</div>
 
