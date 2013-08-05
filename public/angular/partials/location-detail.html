@@ -1,13 +1,13 @@
 
 <div class="container">
-    <div class="lead">{{location.name}}</div>
+    <div class="lead">{{location.name}} in {{location.county.name}} County, {{location.county.state.abbreviation}}</div>
 
     <div class="row">
 
         <div class='span4'>
             <div class='moduletitle'>Location Photos</div>
 
-            <div id="myCarousel" class="carousel slide">
+            <div id="locationCarousel" class="carousel slide">
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     <div ng-repeat='a_photo in location.photos' class="item" ng-class="{active : $first}">
@@ -20,8 +20,8 @@
                 </div>
 
                 <!-- Carousel nav -->
-                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                <a class="carousel-control left" href="#locationCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#locationCarousel" data-slide="next">&rsaquo;</a>
             </div>
         </div>
 
