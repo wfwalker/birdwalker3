@@ -1,0 +1,26 @@
+
+<div class="container">
+    <div class="lead">{{trip.name}}</div>
+
+    <div class="row">
+
+        <div class="span10">
+            <div class='moduletitle'>{{trip.taxons.length}} Species at {{trip.locations.length}} locations</div>
+
+<!--             <div>
+                Search: <input ng-model="query">
+                Sort by:
+                <select ng-model="orderProp">
+                <option value="name">Alphabetical</option>
+                <option value="age">Newest</option>
+                </select>
+         
+            </div>
+ -->
+            <div ng-repeat="taxon in trip.taxons | filter:query | orderBy:date">
+                <a href="#/taxons/{{taxon.id}}">{{taxon.common_name}}</a>
+            </div>
+     
+        </div>
+    </div>
+</div>

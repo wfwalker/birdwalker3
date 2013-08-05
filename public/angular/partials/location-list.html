@@ -1,0 +1,28 @@
+
+<div class="container">
+    <div class="lead">Locations</div>
+
+    <div class="row">
+
+        <div class="span10">
+
+        <div>
+            Search: <input ng-model="query">
+            Sort by:
+            <select ng-model="orderProp">
+            <option value="name">Alphabetical</option>
+            <option value="county">County</option>
+            </select>
+     
+        </div>
+
+            <!--Body content-->
+             
+
+            <div ng-repeat="location in locations | filter:query | orderBy:orderProp">
+                <a href="#/locations/{{location.id}}">{{location.name}}</a>
+            </div>
+     
+        </div>
+    </div>
+</div>

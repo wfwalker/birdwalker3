@@ -1,0 +1,32 @@
+
+<div class="container">
+    <div class="lead">{{location.name}}</div>
+
+    <div class="row">
+
+        <div class="span10">
+
+            <div class='moduletitle'>Location Map</div>
+
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" />
+
+
+            <div class='moduletitle'>{{location.taxons.length}} Species</div>
+
+<!--             <div>
+                Search: <input ng-model="query">
+                Sort by:
+                <select ng-model="orderProp">
+                <option value="name">Alphabetical</option>
+                <option value="age">Newest</option>
+                </select>
+         
+            </div>
+ -->
+            <div ng-repeat="taxon in location.taxons | filter:query | orderBy:date">
+                <a href="#/taxons/{{taxon.id}}">{{taxon.common_name}}</a>
+            </div>
+     
+        </div>
+    </div>
+</div>

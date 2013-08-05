@@ -1,0 +1,26 @@
+
+<div class="container">
+    <div class="lead">Trip Reports</div>
+
+    <div class="row">
+
+        <div class="span10">
+
+        <div>
+            Search: <input ng-model="query">
+            Sort by:
+            <select ng-model="orderProp">
+            <option value="name">Alphabetical</option>
+            <option value="-date">Newest</option>
+            </select>
+        </div>
+
+
+        <!--Body content-->
+
+        <div ng-repeat="trip in trips | filter:query | orderBy:orderProp">
+            <a href="#/trips/{{trip.id}}">{{trip.name}}</a>
+        </div>
+
+    </div>
+</div>

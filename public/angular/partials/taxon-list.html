@@ -1,0 +1,23 @@
+
+<div class="container">
+    <div class="lead">Species</div>
+
+    <div class="row">
+
+        <div class="span10">
+
+            <div>
+                Search: <input ng-model="query">
+                Sort by:
+                <select ng-model="orderProp">
+                <option value="common_name">Alphabetical</option>
+                <option value="sort">Taxonomy</option>
+                </select>
+            </div>
+
+            <div ng-repeat="taxon in taxons | filter:query | orderBy:orderProp">
+                <a href="#/taxons/{{taxon.id}}">{{taxon.common_name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
