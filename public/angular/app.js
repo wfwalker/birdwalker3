@@ -3,6 +3,7 @@ angular.module('birdwalker', [])
     $routeProvider.
 	    when('/trips', {templateUrl: 'partials/trip-list.html', controller: TripListCtrl}).
 	    when('/trips/:tripId', {templateUrl: 'partials/trip-detail.html', controller: TripDetailCtrl}).
+	    when('/trips/:tripId/edit', {templateUrl: 'partials/trip-edit.html', controller: TripDetailCtrl}).
 	    when('/locations', {templateUrl: 'partials/location-list.html', controller: LocationListCtrl}).
 	    when('/locations/:locationId', {templateUrl: 'partials/location-detail.html', controller: LocationDetailCtrl}).
 	    when('/taxons', {templateUrl: 'partials/taxon-list.html', controller: TaxonListCtrl}).

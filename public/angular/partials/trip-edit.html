@@ -1,0 +1,49 @@
+
+<div class="container">
+    <div class="lead">{{trip.name}} on {{trip.date}}, Led by {{trip.leader}}</div>
+
+    <div class="row">
+
+        <div class="span12">
+            <div class='moduletitle'>Trip Details</div>
+            <form class='form-horizontal'>
+                <div class="control-group">
+                    <label class="control-label" for="trip_name">Name</label>
+                    <div class="controls">
+                        <input type='text' ng-model='trip.name' size='90' />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="trip_leader">Leader</label>
+                    <div class="controls">
+                        <input type='text' ng-model='trip.leader' size='90' />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="trip_reference_url">Reference URL</label>
+                    <div class="controls">
+                        <input type='text' ng-model='trip.reference_url' size='90' />
+                    </div>
+                </div>
+
+                <div class='control-group'>
+                    <label class="control-label" for="trip_notes">Notes</label>
+                    <div class="controls">
+                        <textarea type='text' ng-model='trip.notes' rows='20'> </textarea>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="trip_date">Date</label>
+                    <div class="controls">
+                        <input type='text' ng-model='trip.date' size='90' />
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
