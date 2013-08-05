@@ -27,7 +27,11 @@ function TripDetailCtrl($scope, $routeParams, $http) {
 	$http.get('/trips/' + $scope.tripId + '.json').success(function(data) {
 		$scope.trip = data[0];
 		$scope.loading = false;
-	});    
+	});
+
+	$scope.submit = function() {
+		console.log("submitted " + $scope.trip.date);
+	};
 }
 
 function LocationListCtrl($scope, $http) {
