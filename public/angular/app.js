@@ -56,6 +56,7 @@ function TaxonListCtrl($scope, $http) {
 		$scope.loading = false;
 	});    
 }
+
 function TaxonDetailCtrl($scope, $routeParams, $http) {
 	$scope.taxonId = $routeParams.taxonId;
 	$scope.loading = true;

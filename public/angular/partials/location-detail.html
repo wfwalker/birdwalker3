@@ -4,16 +4,40 @@
 
     <div class="row">
 
-        <div class="span10">
-
+        <div class='span4'>
             <div class='moduletitle'>Location Map</div>
 
             <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" />
+        </div>
 
+        <div class='span4'>
+            <div class='moduletitle'>Location Notes</div>
 
+            Some notes here
+
+            <div id="myCarousel" class="carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div ng-repeat='a_photo in location.photos' class="item" ng-class="{active : $first}">
+                        <center><img src="{{a_photo.photo_URL}}" /></center>
+
+                        <div >
+                            <center><p>caption</p></center>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+        </div>
+
+        <div class='span4'>
             <div class='moduletitle'>{{location.taxons.length}} Species</div>
 
-<!--             <div>
+<!--
+             <div>
                 Search: <input ng-model="query">
                 Sort by:
                 <select ng-model="orderProp">
@@ -26,7 +50,6 @@
             <div ng-repeat="taxon in location.taxons | filter:query | orderBy:date">
                 <a href="#/taxons/{{taxon.id}}">{{taxon.common_name}}</a>
             </div>
-     
         </div>
     </div>
 </div>
