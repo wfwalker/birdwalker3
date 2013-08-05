@@ -65,22 +65,24 @@ function TaxonDetailCtrl($scope, $routeParams, $http) {
 		$scope.taxon = data[0];
 		$scope.loading = false;
 
-		$scope.getMapCenter = function() {
-			var centerLat = 0; centerLong = 0; var count = 0;
-			var markerList = "";
+		var centerLat = 0; centerLong = 0; var count = 0;
+		var markerList = "";
 
-			$scope.taxon.locations.forEach(function(location) {
-				if (location.latitude) {
-					centerLat += location.latitude;
-					centerLong += location.longitude;
-					if (count < 50) {
-						markerList += ("|" + location.latitude + "," + location.longitude);
-					}
-					count += 1;
+		$scope.taxon.locations.forEach(function(location) {
+			if (location.latitude) {
+				centerLat += location.latitude;
+				centerLong += location.longitude;
+				if (count < 50) {
+					markerList += ("|" + location.latitude + "," + location.longitude);
 				}
-			});
+				count += 1;
+			}
+		});
 
-			return { latitude: (centerLat / count), longitude: (centerLong / count), markerList: markerList };
+		$scope.mapData = {
+			latitude: (centerLat / count),
+			longitude: (centerLong / count),
+			markerList: markerList
 		};
 	});    
 
