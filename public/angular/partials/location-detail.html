@@ -22,8 +22,8 @@
                 </div>
 
                 <!-- Carousel nav -->
-                <a class="carousel-control left" href="#locationCarousel" data-slide="prev">&lsaquo;</a>
-                <a class="carousel-control right" href="#locationCarousel" data-slide="next">&rsaquo;</a>
+                <a ng-show='location.photos.length > 1' class="carousel-control left" href="#locationCarousel" data-slide="prev">&lsaquo;</a>
+                <a ng-show='location.photos.length > 1' class="carousel-control right" href="#locationCarousel" data-slide="next">&rsaquo;</a>
             </div>
         </div>
 
@@ -38,9 +38,7 @@
 
             <div ng-show='!location.latitude'>No Map</div>
             <img ng-show='location.latitude' src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" />
-
-<!--             <img src='http://maps.googleapis.com/maps/api/streetview?size=400x400&location={{location.latitude}},{{location.longitude}}&fov=90&heading=235&pitch=10&sensor=false' />
- -->        </div>
+        </div>
     </div>
 
     <div class='row'>
