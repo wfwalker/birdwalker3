@@ -70,13 +70,16 @@ function TaxonDetailCtrl($scope, $routeParams, $http) {
 		$scope.taxon = data[0];
 		$scope.loading = false;
 
-		var centerLat = 0; centerLong = 0; var count = 0;
+		var minLat = 360; minLong = 360; maxLat = -360; maxLong = -360; var count = 0;
 		var markerList = "";
 
 		$scope.taxon.locations.forEach(function(location) {
 			if (location.latitude) {
-				centerLat += location.latitude;
-				centerLong += location.longitude;
+				minLat = Math.min(minLat, location.latitude);
+				minLong = Math.min(minLong, location.longitude);
+				maxLat = Math.max(maxLat, location.latitude);
+				maxLong = Math.max(maxLong, location.longitude);
+
 				if (count < 50) {
 					markerList += ("|" + location.latitude + "," + location.longitude);
 				}
@@ -85,8 +88,8 @@ function TaxonDetailCtrl($scope, $routeParams, $http) {
 		});
 
 		$scope.mapData = {
-			latitude: (centerLat / count),
-			longitude: (centerLong / count),
+			latitude: (minLat + maxLat) / 2.0,
+			longitude: (minLong + maxLong) / 2.0,
 			markerList: markerList
 		};
 	});    
