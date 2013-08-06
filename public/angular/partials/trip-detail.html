@@ -1,10 +1,47 @@
 
 <div class="container">
     <div class="lead">{{trip.name}}</div>
+    <div class="row">
+
+        <div class='span4'>
+            <div class='moduletitle'>Trip Photos</div>
+
+            <div ng-show='trip.photos.length==0'>No Photos</div>
+
+            <div ng-show='trip.photos.length>0' id="tripCarousel" class="carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div ng-repeat='a_photo in trip.photos' class="item" ng-class="{active : $first}">
+                        <center><img src="{{a_photo.photo_URL}}" /></center>
+
+                        <div >
+                            <center><p>{{a_photo.taxon.common_name}}, {{a_photo.location.name}}, {{a_photo.trip.date}}</p></center>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel nav -->
+                <a ng-show='trip.photos.length > 1' class="carousel-control left" href="#tripCarousel" data-slide="prev">&lsaquo;</a>
+                <a ng-show='trip.photos.length > 1' class="carousel-control right" href="#tripCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+        </div>
+
+        <div class='span4'>
+            <div class='moduletitle'>Trip Notes</div>
+
+            {{trip.notes}}
+        </div>        
+
+        <div class='span4'>
+            <div class='moduletitle'>Trip Map</div>
+
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{mapData.latitude}},{{mapData.longitude}}&zoom=5&size=400x400&sensor=false&markers={{mapData.markerList}}" width='400' height='400' />
+        </div>
+    </div>
 
     <div class="row">
 
-        <div class="span10">
+        <div class="span12">
             <div class='moduletitle'>{{trip.taxons.length}} Species at {{trip.locations.length}} locations</div>
 
 <!--             <div>

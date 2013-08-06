@@ -27,6 +27,29 @@ function TripDetailCtrl($scope, $routeParams, $http) {
 	$http.get('/trips/' + $scope.tripId + '.json').success(function(data) {
 		$scope.trip = data[0];
 		$scope.loading = false;
+
+		var minLat = 360; minLong = 360; maxLat = -360; maxLong = -360; var count = 0;
+		var markerList = "";
+
+		$scope.trip.locations.forEach(function(location) {
+			if (location.latitude) {
+				minLat = Math.min(minLat, location.latitude);
+				minLong = Math.min(minLong, location.longitude);
+				maxLat = Math.max(maxLat, location.latitude);
+				maxLong = Math.max(maxLong, location.longitude);
+
+				if (count < 50) {
+					markerList += ("|" + location.latitude + "," + location.longitude);
+				}
+				count += 1;
+			}
+		});
+
+		$scope.mapData = {
+			latitude: (minLat + maxLat) / 2.0,
+			longitude: (minLong + maxLong) / 2.0,
+			markerList: markerList
+		};
 	});
 
 	$scope.submit = function() {
