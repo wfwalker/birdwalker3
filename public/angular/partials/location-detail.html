@@ -7,7 +7,9 @@
         <div class='span4'>
             <div class='moduletitle'>Location Photos</div>
 
-            <div id="locationCarousel" class="carousel slide">
+            <div ng-show='location.photos.length==0'>No Photos</div>
+
+            <div ng-show='location.photos.length>0' id="locationCarousel" class="carousel slide">
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     <div ng-repeat='a_photo in location.photos' class="item" ng-class="{active : $first}">
@@ -34,8 +36,11 @@
         <div class='span4'>
             <div class='moduletitle'>Location Map</div>
 
-            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" />
-        </div>
+            <div ng-show='!location.latitude'>No Map</div>
+            <img ng-show='location.latitude' src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" />
+
+<!--             <img src='http://maps.googleapis.com/maps/api/streetview?size=400x400&location={{location.latitude}},{{location.longitude}}&fov=90&heading=235&pitch=10&sensor=false' />
+ -->        </div>
     </div>
 
     <div class='row'>
