@@ -6,6 +6,7 @@ angular.module('birdwalker', [])
 	    when('/trips/:tripId/edit', {templateUrl: 'partials/trip-edit.html', controller: TripDetailCtrl}).
 	    when('/locations', {templateUrl: 'partials/location-list.html', controller: LocationListCtrl}).
 	    when('/locations/:locationId', {templateUrl: 'partials/location-detail.html', controller: LocationDetailCtrl}).
+	    when('/locations/:locationId/edit', {templateUrl: 'partials/location-edit.html', controller: LocationDetailCtrl}).
 	    when('/taxons', {templateUrl: 'partials/taxon-list.html', controller: TaxonListCtrl}).
 	    when('/taxons/:taxonId', {templateUrl: 'partials/taxon-detail.html', controller: TaxonDetailCtrl}).
 	    otherwise({redirectTo: '/trips'});
@@ -23,6 +24,8 @@ function TripListCtrl($scope, $http) {
 function TripDetailCtrl($scope, $routeParams, $http) {
 	$scope.tripId = $routeParams.tripId;
 	$scope.loading = true;
+
+	$('#editlink').attr('href', '#/trips/' + $scope.tripId + '/edit');
 
 	$http.get('/trips/' + $scope.tripId + '.json').success(function(data) {
 		$scope.trip = data[0];
@@ -53,7 +56,11 @@ function TripDetailCtrl($scope, $routeParams, $http) {
 	});
 
 	$scope.submit = function() {
-		console.log("submitted " + $scope.trip.date);
+		$scope.loading = true;
+		$http.put('/trips/' + $scope.tripId).success(function(data) {
+			$scope.loading = false;
+			console.log("POSTED");
+		});			
 	};
 }
 
@@ -69,6 +76,8 @@ function LocationListCtrl($scope, $http) {
 function LocationDetailCtrl($scope, $routeParams, $http) {
 	$scope.locationId = $routeParams.locationId;
 	$scope.loading = true;
+
+	$('#editlink').attr('href', '#/locations/' + $scope.locationId + '/edit');
 
 	$http.get('/locations/' + $scope.locationId + '.json').success(function(data) {
 		$scope.location = data[0];

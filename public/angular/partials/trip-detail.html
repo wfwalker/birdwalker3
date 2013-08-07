@@ -1,8 +1,8 @@
 
 <div class="container">
-    <div class="lead">{{trip.name}}</div>
-    <div class="row">
+    <div class="lead">{{trip.name}} on {{trip.date}}, Led by {{trip.leader}}</div>
 
+    <div class="row">
         <div class='span4'>
             <div class='moduletitle'>Trip Photos</div>
 
@@ -36,6 +36,11 @@
             <div class='moduletitle'>Trip Map</div>
 
             <img src="http://maps.googleapis.com/maps/api/staticmap?center={{mapData.latitude}},{{mapData.longitude}}&zoom=5&size=400x400&sensor=false&markers={{mapData.markerList}}" width='400' height='400' />
+
+            <div ng-repeat="location in trip.locations | orderBy:county">
+                <a href="#/locations/{{location.id}}">{{location.name}}</a>
+            </div>
+     
         </div>
     </div>
 
