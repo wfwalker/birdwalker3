@@ -21,17 +21,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def iphone?
-    ENV['force_iphone'] == 'true' ||
-      (request.class && request.class.to_s.include?("CgiRequest") && request.user_agent && request.user_agent.include?('iPhone'))
-  end
-  
   def choose_layout  
-    if iphone?  
-        "iphone"  
-      else
-        "responsive"
-    end  
+    "responsive"
   end    
   
   def inactivity_timeout
@@ -47,6 +38,12 @@ class ApplicationController < ActionController::Base
   end
     
   def update_activity_timer
+    if (ENV['force_loggedin']) then
+        logger.error("VC: forcing login, setting activity timer")
+        session[:login_time] = Time.now.to_i
+        session[:username] = 'forced'
+    end
+
     if (has_valid_credentials) then
       # username is valid, login_time is valid, do the real checking
       inactivity = Time.now.to_i - session[:login_time]
@@ -69,6 +66,13 @@ class ApplicationController < ActionController::Base
   end
   
   def verify_credentials
+    if (ENV['force_loggedin']) then
+      logger.error("VC: forcing login, setting activity timer")
+      session[:login_time] = Time.now.to_i
+      session[:username] = 'forced'
+      return;
+    end
+      
     if (session[:username] == nil) then
       # username is nil, just clobber login_time
       logger.error("VC: Not logged in, redirecting to index")
