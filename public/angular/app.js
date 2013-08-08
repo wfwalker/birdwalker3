@@ -10,7 +10,7 @@ angular.module('birdwalker', [])
 	    when('/locations/:locationId/edit', {templateUrl: 'partials/location-edit.html', controller: LocationDetailCtrl}).
 	    when('/taxons', {templateUrl: 'partials/taxon-list.html', controller: TaxonListCtrl}).
 	    when('/taxons/:taxonId', {templateUrl: 'partials/taxon-detail.html', controller: TaxonDetailCtrl}).
-	    otherwise({redirectTo: '/trips'});
+	    otherwise({redirectTo: '/home'});
 }]);
 
 function HomeCtrl($scope, $http) {
