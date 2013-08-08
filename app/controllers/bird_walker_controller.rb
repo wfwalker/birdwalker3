@@ -32,6 +32,12 @@ class BirdWalkerController < ApplicationController
     
     @this_year_species = Taxon.year_to_date(Date.today.year)
     @last_year_species = Taxon.year_to_date(Date.today.year - 1)
+
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => { :bird_of_the_week => @bird_of_the_week, :recent_photos => @recent_photos, :recent_trips => @recent_trips, :this_year_species => @this_year_species, :last_year_species => @last_year_species } }
+    end    
   end      
   
   def photographer

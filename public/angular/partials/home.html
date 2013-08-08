@@ -1,0 +1,111 @@
+<div id="spinner" ng-show='loading'>
+    <!-- Loading animation container -->
+    <div class="loading">
+        <!-- We make this div spin -->
+        <div class="spinner">
+            <!-- Mask of the quarter of circle -->
+            <div class="mask">
+                <!-- Inner masked circle -->
+                <div class="maskedCircle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="lead">Bird photos and Field Notes by Bill Walker and Mary Wisnewski</div>
+
+	<div class="row">
+		<div class='span6'>
+			<div class="pagecontentmodule">
+				<div class="pagecontentitem">
+					<p>Welcome to birdWalker,
+						a website of <a href="#">birding photos</a> and <a href="#">trip reports</a>
+						by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County.
+						We've been collecting our trip reports since 1996,
+						we have now recorded NNN trips and NNN species.</p>
+
+					<p>Some of our favorite places to go birding include
+						<a href="#/locations/19">Charleston Slough</a> and  
+						<a href="#/locations/68">the Duck Pond</a> in Palo Alto,    
+						<a href="#/locations/91">Sacramento National Wildlife Refuge</a> and  
+						<a href="#/counties/46">the Rio Grande Valley</a> in Texas.
+					</p>
+				</div>
+			</div>
+			
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Costa Rica 2012 Book</div>
+				<div class="pagecontentitem">       
+					<a href="http://www.blurb.com/my/book/detail/3719961"><img src="/images/costa-rica-book-cover.jpg" align="right"/></a>
+					
+					<p>
+						My book of photos from Costa Rica is available now at 
+						<a href="http://www.blurb.com/my/book/detail/3719961">my Blurb bookstore</a>.
+						This book presents an overview of an intensive birding trip to Costa Rica.  The 100+ photos are a great introduction to Costa Rica's birds and ecological zones, showcasing shorebirds on the western coast, the quetzals of the Talamanca Higlands, tropical diversity at La Selva, and a sampler of hummingbirds in the Central Volcanic mountain range.
+					</p>
+					
+					<br clear="all" />
+				</div>     
+			</div>
+			
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Bird of the Week: {{birdOfTheWeek.common_name}}</div>
+				<div class="pagecontentitem">
+					<img width="100%" src="{{home.bird_of_the_week.photos[0].photo_URL}}"/>
+					<p class="modulesubtitle">
+						{{home.bird_of_the_week.common_name}},  
+						{{home.bird_of_the_week.photos[0].trip_id}} at 
+						{{home.bird_of_the_week.photos[0].location.name}}
+					</p>
+				</div>
+			</div>                
+
+			<div class="pagecontentmodule">
+				<div class="moduletitle">This year so far</div>
+				<div class="pagecontentitem">
+					<p>So far in day NNN of YYYY we have seen <a href="#">{{home.this_year_species.length}} species</a>.
+					Last year at this time we had see {{home.last_year_species.length}}.
+				</div>
+			</div>
+		</div>
+
+		<div class='span6'>
+			<div class="pagecontentmodule">
+				<div class="moduletitle">Recent Trip Reports</div>
+			</div>                                         
+			
+	        <div ng-repeat="trip in home.recent_trips | orderBy:date">
+
+				<div style="background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%); background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 100%); height: 100px" class="pagecontentmodule">
+					<div ng-show="trip.photos.length > 0" style="float: right; padding-left: 10px; display: block">	
+						<div class="photo"><%= link_to trip.photos.first.thumb, trip_url(trip) %></div>
+					</div>
+
+					<div ng-show="trip.photos.length == 0" style="float: right; padding-left: 10px; display: block">	
+						<img src="/images/spacer.gif" width="1px" height="100px" />
+					</div>
+
+					<div class="modulesubtitle">
+						<div class="date">
+							<small>JUN</small>
+							23
+						</div>
+						<div style="padding-top: 9px"><a href="#/trips/{{trip.id}}">{{trip.name}}</a></div>
+					</div>
+					<div class="pagecontentitem">
+						<div style="font-style: italic">
+							{{trip.taxons.length}} species {{trip.photos.size}} photos
+						</div>
+
+						<div ng-show="trip.locations.length > 1" style="font-style: italic">{{trip.locations.length}} locations, STATE</div>
+						<div ng-show="trip.locations.length == 0" style="font-style: italic">{{trip.locations[0].full_name}}</div>
+					</div>
+				</div>
+	        </div>
+		</div>
+	</div>
+</div>
+
+
+
