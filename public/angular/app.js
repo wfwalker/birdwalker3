@@ -76,7 +76,8 @@ function TripDetailCtrl($scope, $routeParams, $http) {
 
 	$scope.submit = function() {
 		$scope.loading = true;
-		$http.put('/trips/' + $scope.tripId).success(function(data) {
+		console.log("SENDING " + $scope.trip)
+		$http.put('/trips/' + $scope.tripId, $scope.trip).success(function(data) {
 			// TODO how to send the rest of the form data
 			$scope.loading = false;
 			console.log("POSTED");
