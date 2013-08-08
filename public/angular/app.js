@@ -14,6 +14,8 @@ angular.module('birdwalker', [])
 }]);
 
 function HomeCtrl($scope, $http) {
+	$scope.loading = true;
+
   	$http.get('/taxons/bird_of_the_week.json').success(function(data) {
 		$scope.birdOfTheWeek = data[0];
 		$scope.loading = false;
