@@ -79,7 +79,7 @@ class TaxonsController < ApplicationController
     respond_to do |format|
       format.html { render :action => "show" }
       format.xml  { render :xml => @taxon }
-      format.json { render :json => [@taxon], :include => { :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } } }
+      format.json { render :json => [@taxon], :include => { :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename, :photo_URL ] } } }
     end
   end
 

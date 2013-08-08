@@ -1,6 +1,7 @@
 angular.module('birdwalker', [])
 	.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
+	    when('/home', {templateUrl: 'partials/home.html', controller: HomeCtrl}).
 	    when('/trips', {templateUrl: 'partials/trip-list.html', controller: TripListCtrl}).
 	    when('/trips/:tripId', {templateUrl: 'partials/trip-detail.html', controller: TripDetailCtrl}).
 	    when('/trips/:tripId/edit', {templateUrl: 'partials/trip-edit.html', controller: TripDetailCtrl}).
@@ -11,6 +12,13 @@ angular.module('birdwalker', [])
 	    when('/taxons/:taxonId', {templateUrl: 'partials/taxon-detail.html', controller: TaxonDetailCtrl}).
 	    otherwise({redirectTo: '/trips'});
 }]);
+
+function HomeCtrl($scope, $http) {
+  	$http.get('/taxons/bird_of_the_week.json').success(function(data) {
+		$scope.birdOfTheWeek = data[0];
+		$scope.loading = false;
+	});    
+}
 
 function TripListCtrl($scope, $http) {
 	$scope.loading = true;
