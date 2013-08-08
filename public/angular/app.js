@@ -31,6 +31,9 @@ function TripListCtrl($scope, $http) {
   	$http.get('/trips.json').success(function(data) {
 		$scope.trips = data;
 		$scope.loading = false;
+	}).error(function(data) {
+		alert("FAIL");
+		$scope.loading = false;
 	});    
 }
 
@@ -66,13 +69,20 @@ function TripDetailCtrl($scope, $routeParams, $http) {
 			longitude: (minLong + maxLong) / 2.0,
 			markerList: markerList
 		};
+	}).error(function(data) {
+		alert("FAIL");
+		$scope.loading = false;
 	});
 
 	$scope.submit = function() {
 		$scope.loading = true;
 		$http.put('/trips/' + $scope.tripId).success(function(data) {
+			// TODO how to send the rest of the form data
 			$scope.loading = false;
 			console.log("POSTED");
+		}).error(function(data) {
+			alert("FAIL");
+			$scope.loading = false;
 		});			
 	};
 }
@@ -82,6 +92,9 @@ function LocationListCtrl($scope, $http) {
 
 	$http.get('/locations.json').success(function(data) {
 		$scope.locations = data;
+		$scope.loading = false;
+	}).error(function(data) {
+		alert("FAIL");
 		$scope.loading = false;
 	});    
 }
@@ -95,6 +108,9 @@ function LocationDetailCtrl($scope, $routeParams, $http) {
 	$http.get('/locations/' + $scope.locationId + '.json').success(function(data) {
 		$scope.location = data[0];
 		$scope.loading = false;
+	}).error(function(data) {
+		alert("FAIL");
+		$scope.loading = false;
 	});    
 }
 
@@ -103,6 +119,9 @@ function TaxonListCtrl($scope, $http) {
 
 	$http.get('/taxons.json').success(function(data) {
 		$scope.taxons = data;
+		$scope.loading = false;
+	}).error(function(data) {
+		alert("FAIL");
 		$scope.loading = false;
 	});    
 }
@@ -137,6 +156,9 @@ function TaxonDetailCtrl($scope, $routeParams, $http) {
 			longitude: (minLong + maxLong) / 2.0,
 			markerList: markerList
 		};
+	}).error(function(data) {
+		alert("FAIL");
+		$scope.loading = false;
 	});    
 
 }
