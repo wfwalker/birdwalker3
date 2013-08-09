@@ -110,6 +110,7 @@ class TripsController < ApplicationController
     if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'
       expire_action :action => [:index, :list, :show]
+      # TODO: don't redirect for JSON posts?
       redirect_to trip_url(@trip)
     else
       render :action => 'edit'
