@@ -88,8 +88,8 @@
 
 					<div class="modulesubtitle">
 						<div class="date">
-							<small>JUN</small>
-							23
+							<small>{{trip.date|date:'MMM'}}</small>
+							{{trip.date|date:'dd'}}
 						</div>
 						<div style="padding-top: 9px"><a href="#/trips/{{trip.id}}">{{trip.name}}</a></div>
 					</div>
