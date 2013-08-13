@@ -24,22 +24,16 @@
 			<div class="control-group">
 				<label class="control-label" for="sighting_location">Location</label>
 				<div class="controls">
-					<select>
-                        <option ng-repeat="location in allLocations">
-                            {{location.name}}
-                        </option>
-					</select>
+					<select ng-model="sighting.location_id" ng-options="location.id as location.name for location in allLocations">
+					</select>				
 				</div>
 			</div>
 
 			<div class="control-group">
 				<label class="control-label" for="sighting_trip">Trip</label>
 				<div class="controls">
-					<select>
-                        <option ng-repeat="trip in allTrips">
-                            {{trip.name}}, {{trip.date|date:'MMM dd, yyyy'}}
-                        </option>
-					</select>
+					<select ng-model="sighting.trip_id" ng-options="trip.id as trip.date for trip in allTrips">
+					</select>				
 				</div>
 			</div>
 
@@ -47,7 +41,6 @@
 				<label class="control-label" for="sighting_taxon_latin_name">Species</label>
 				<div class="controls">
 	                <input id="taxon_common_name" class="ajax-typeahead" type='text' ng-model='sighting.taxon.common_name' size='90'  name="taxon_common_name" minlength="4" data-provide="typeahead" data-link="/taxons/typeahead" data-items="8" autocomplete="off" />
-
 				</div>
 			</div>
 
