@@ -80,7 +80,6 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # show.rhtml
       # TODO: cant include :county => { :include => [ :state ] }
-      format.xml  { render :xml => [@location], :include => [:taxons, :trips, :county, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename, :photo_URL ] } ] }
       format.json  { render :json => [@location], :include => [:taxons, :trips, :county, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename, :photo_URL ] } ] }
     end
   end          
@@ -135,6 +134,13 @@ class LocationsController < ApplicationController
   def edit
     @location = Location.find(params[:id])
     @page_title = @location.name
+
+    @all_counties = County.find(:all, :order => 'name')
+
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.json  { render :json => { :location => @location, :all_counties => @all_counties } }
+    end    
   end
 
   def update

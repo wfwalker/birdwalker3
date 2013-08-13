@@ -58,11 +58,8 @@
                 <div class="control-group">
                     <label class="control-label" for="location_county">County</label>
                     <div class="controls">
-                        <select>
-                        <option ng-repeat="county in counties">
-                            {{county.name}}
-                        </option>
-                        </select>
+                        <select ng-model="location.county_id" ng-options="county.id as county.name for county in allCounties">
+                        </select>               
                     </div>
                 </div>
 

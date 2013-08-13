@@ -7,7 +7,7 @@ angular.module('birdwalker', [])
 	    when('/trips/:tripId/edit', {templateUrl: 'partials/trip-edit.html', controller: TripDetailCtrl}).
 	    when('/locations', {templateUrl: 'partials/location-list.html', controller: LocationListCtrl}).
 	    when('/locations/:locationId', {templateUrl: 'partials/location-detail.html', controller: LocationDetailCtrl}).
-	    when('/locations/:locationId/edit', {templateUrl: 'partials/location-edit.html', controller: LocationDetailCtrl}).
+	    when('/locations/:locationId/edit', {templateUrl: 'partials/location-edit.html', controller: LocationEditCtrl}).
 	    when('/taxons', {templateUrl: 'partials/taxon-list.html', controller: TaxonListCtrl}).
 	    when('/taxons/:taxonId', {templateUrl: 'partials/taxon-detail.html', controller: TaxonDetailCtrl}).
 	    when('/sightings/:sightingId', {templateUrl: 'partials/sighting-detail.html', controller: SightingDetailCtrl}).
@@ -117,6 +117,22 @@ function LocationDetailCtrl($scope, $routeParams, $http) {
 	});    
 }
 
+function LocationEditCtrl($scope, $routeParams, $http) {
+	$scope.locationId = $routeParams.locationId;
+	$scope.loading = true;
+
+	$('#editlink').attr('href', '#/locations/' + $scope.locationId + '/edit');
+
+	$http.get('/locations/' + $scope.locationId + '/edit.json').success(function(data) {
+		$scope.location = data['location'];
+		$scope.allCounties = data['all_counties'];
+		$scope.loading = false;
+	}).error(function(data) {
+		alert("FAIL");
+		$scope.loading = false;
+	});    
+}
+
 function TaxonListCtrl($scope, $http) {
 	$scope.loading = true;
 
@@ -196,5 +212,19 @@ function SightingEditCtrl($scope, $routeParams, $http) {
 	});    
 }
 
-
+// $(document).ready(function(){ 
+// 	$('.ajax-typeahead').typeahead({
+// 	    source: function(query, process) {
+// 	        return $.ajax({
+// 	            url: $(this)[0].$element[0].dataset.link,
+// 	            type: 'get',
+// 	            data: {query: query},
+// 	            dataType: 'json',
+// 	            success: function(json) {
+// 	                return typeof json.options == 'undefined' ? false : process(json.options);
+// 	            }
+// 	        });
+// 	    }
+// 	});
+// });
 
