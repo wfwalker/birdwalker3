@@ -1,0 +1,51 @@
+<div id="spinner" ng-show='loading'>
+    <!-- Loading animation container -->
+    <div class="loading">
+        <!-- We make this div spin -->
+        <div class="spinner">
+            <!-- Mask of the quarter of circle -->
+            <div class="mask">
+                <!-- Inner masked circle -->
+                <div class="maskedCircle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="lead">{{sighting.taxon.common_name}}</div>
+
+    <div class="row">
+        <div class="span12">
+			<div class="pagecontentmodule">
+				<div class="modulesubtitle">Date</div>
+				<div class="pagecontentitem">
+					<a href='#/trips/{{sighting.trip_id}}'>{{sighting.trip.date|date:'MMM dd, yyyy'}}</a>
+				</div>
+
+				<div class="modulesubtitle">Location</div>
+				<div class="pagecontentitem">
+					<a href='#/locations/{{sighting.location_id}}'>{{sighting.location.name}}</a>
+				</div>
+
+				<div class="modulesubtitle">Taxon</div>
+				<div class="pagecontentitem">
+					<a href='#/taxons/{{sighting.taxon.id}}'>{{sighting.taxon.common_name}}</a>
+				</div>
+
+				<div class="modulesubtitle" ng-show='sighting.notes'>Notes</div>  
+				<div class="pagecontentitem" ng-show='sighting.notes'>{{sighting.notes}}</div>
+
+				<div class="modulesubtitle" ng-show='sighting.count'>Count</div>  
+				<div class="pagecontentitem" ng-show='sighting.count'>{{sighting.count}}</div>
+
+				<div class="modulesubtitle">Exclude</div>
+				<div class="pagecontentitem">{{sighting.exclude}}</div>
+
+				<div class="modulesubtitle">Heard only</div>
+				<div class="pagecontentitem">{{sighting.heard_only}}</div>
+			</div>
+
+		</div>
+	</div>
+</div>

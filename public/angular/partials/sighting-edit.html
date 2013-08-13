@@ -1,0 +1,88 @@
+<div id="spinner" ng-show='loading'>
+    <!-- Loading animation container -->
+    <div class="loading">
+        <!-- We make this div spin -->
+        <div class="spinner">
+            <!-- Mask of the quarter of circle -->
+            <div class="mask">
+                <!-- Inner masked circle -->
+                <div class="maskedCircle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="lead">{{sighting.taxon_latin_name}}</div>
+
+    <div class="row">
+
+        <div class="span12">
+            <div class='moduletitle'>Sighting Details</div>
+            <form class='form-horizontal' ng-submit="submit()" ng-controller="SightingEditCtrl">
+
+			<div class="control-group">
+				<label class="control-label" for="sighting_location">Location</label>
+				<div class="controls">
+					<select>
+                        <option ng-repeat="location in allLocations">
+                            {{location.name}}
+                        </option>
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="sighting_trip">Trip</label>
+				<div class="controls">
+					<select>
+                        <option ng-repeat="trip in allTrips">
+                            {{trip.name}}, {{trip.date|date:'MMM dd, yyyy'}}
+                        </option>
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="sighting_taxon_latin_name">Species</label>
+				<div class="controls">
+	                <input id="taxon_common_name" class="ajax-typeahead" type='text' ng-model='sighting.taxon.common_name' size='90'  name="taxon_common_name" minlength="4" data-provide="typeahead" data-link="/taxons/typeahead" data-items="8" autocomplete="off" />
+
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+					<label class="checkbox" for="sighting_exclude">
+	                    <input type='checkbox' ng-model='sighting.exclude' />
+						Exclude
+					</label>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+					<label class="checkbox" for="sighting_heard_only">
+	                    <input type='checkbox' ng-model='sighting.heard_only' />
+						Heard only
+					</label>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="count">Count</label>
+				<div class="controls">
+                    <input type='text' ng-model='sighting.count' size='90' />
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class="control-label" for="sighting_notes">Notes</label>
+				<div class="controls">
+                    <textarea type='text' ng-model='sighting.notes' rows='20'> </textarea>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>

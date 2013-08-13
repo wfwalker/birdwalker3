@@ -10,6 +10,8 @@ angular.module('birdwalker', [])
 	    when('/locations/:locationId/edit', {templateUrl: 'partials/location-edit.html', controller: LocationDetailCtrl}).
 	    when('/taxons', {templateUrl: 'partials/taxon-list.html', controller: TaxonListCtrl}).
 	    when('/taxons/:taxonId', {templateUrl: 'partials/taxon-detail.html', controller: TaxonDetailCtrl}).
+	    when('/sightings/:sightingId', {templateUrl: 'partials/sighting-detail.html', controller: SightingDetailCtrl}).
+	    when('/sightings/:sightingId/edit', {templateUrl: 'partials/sighting-edit.html', controller: SightingEditCtrl}).
 	    otherwise({redirectTo: '/home'});
 }]);
 
@@ -163,4 +165,36 @@ function TaxonDetailCtrl($scope, $routeParams, $http) {
 	});    
 
 }
+
+function SightingDetailCtrl($scope, $routeParams, $http) {
+	$scope.sightingId = $routeParams.sightingId;
+	$scope.loading = true;
+
+	$('#editlink').attr('href', '#/sightings/' + $scope.sightingId + '/edit');	
+
+	$http.get('/sightings/' + $scope.sightingId + '.json').success(function(data) {
+		$scope.sighting = data[0];
+		$scope.loading = false;
+	}).error(function(data) {
+		alert("FAIL");
+		$scope.loading = false;
+	});    
+}
+
+function SightingEditCtrl($scope, $routeParams, $http) {
+	$scope.sightingId = $routeParams.sightingId;
+	$scope.loading = true;
+
+	$http.get('/sightings/' + $scope.sightingId + '/edit.json').success(function(data) {
+		$scope.sighting = data['sighting'];
+		$scope.allTrips = data['all_trips'];
+		$scope.allLocations = data['all_locations'];
+		$scope.loading = false;
+	}).error(function(data) {
+		alert("FAIL");
+		$scope.loading = false;
+	});    
+}
+
+
 

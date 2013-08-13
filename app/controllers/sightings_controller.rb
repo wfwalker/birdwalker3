@@ -17,8 +17,8 @@ class SightingsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @sighting }
-      format.json  { render :json => @sighting }
+      format.xml  { render :xml => [@sighting], :include => [:trip, :location, :taxon] }
+      format.json  { render :json => [@sighting], :include => [:trip, :location, :taxon] }
     end
   end
 
@@ -106,6 +106,13 @@ class SightingsController < ApplicationController
   def edit
     @sighting = Sighting.find(params[:id])
     @page_title = @sighting.full_name
+    @all_trips = Trip.find(:all, :order => 'date')
+    @all_locations = Location.find(:all, :order => 'name')
+
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.json  { render :json => { :sighting => @sighting, :all_trips => @all_trips, :all_locations => @all_locations } }
+    end
   end
 
   def update
