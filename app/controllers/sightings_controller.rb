@@ -111,7 +111,7 @@ class SightingsController < ApplicationController
 
     respond_to do |format|
       format.html # edit.html.erb
-      format.json  { render :json => { :sighting => @sighting, :all_trips => @all_trips, :all_locations => @all_locations } }
+      format.json  { render :json => { :sighting => @sighting.as_json(:include => :taxon), :all_trips => @all_trips, :all_locations => @all_locations } }
     end
   end
 
