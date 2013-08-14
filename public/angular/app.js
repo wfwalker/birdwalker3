@@ -4,7 +4,7 @@ angular.module('birdwalker', [])
 	    when('/home', {templateUrl: 'partials/home.html', controller: HomeCtrl}).
 	    when('/trips', {templateUrl: 'partials/trip-list.html', controller: TripListCtrl}).
 	    when('/trips/:tripId', {templateUrl: 'partials/trip-detail.html', controller: TripDetailCtrl}).
-	    when('/trips/:tripId/edit', {templateUrl: 'partials/trip-edit.html', controller: TripDetailCtrl}).
+	    when('/trips/:tripId/edit', {templateUrl: 'partials/trip-edit.html', controller: TripEditCtrl}).
 	    when('/locations', {templateUrl: 'partials/location-list.html', controller: LocationListCtrl}).
 	    when('/locations/:locationId', {templateUrl: 'partials/location-detail.html', controller: LocationDetailCtrl}).
 	    when('/locations/:locationId/edit', {templateUrl: 'partials/location-edit.html', controller: LocationEditCtrl}).
@@ -75,20 +75,36 @@ function TripDetailCtrl($scope, $routeParams, $http) {
 		alert("FAIL");
 		$scope.loading = false;
 	});
+}
+
+function TripEditCtrl($scope, $routeParams, $http, $location) {
+	$scope.tripId = $routeParams.tripId;
+	$scope.loading = true;
+
+	$('#editlink').attr('href', '#/trips/' + $scope.tripId + '/edit');
+
+	$http.get('/trips/' + $scope.tripId + '/edit.json').success(function(data) {
+		$scope.trip = data[0];
+		$scope.loading = false;
+	}).error(function(data) {
+		alert("FAIL");
+		$scope.loading = false;
+	});
 
 	$scope.submit = function() {
 		$scope.loading = true;
-		console.log("SENDING " + $scope.trip)
+
 		$http.put('/trips/' + $scope.tripId, $scope.trip).success(function(data) {
 			// TODO how to send the rest of the form data
 			$scope.loading = false;
-			console.log("POSTED");
+			$location.path('/trips/' + $scope.tripId)
 		}).error(function(data) {
 			alert("FAIL");
 			$scope.loading = false;
 		});			
 	};
 }
+
 
 function LocationListCtrl($scope, $http) {
 	$scope.loading = true;
