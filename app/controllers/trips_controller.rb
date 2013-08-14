@@ -35,7 +35,6 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       format.html # show.rhtml
-      format.xml  { render :xml => [ @trip ], :include => [ :taxons, :locations, :sightings, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename, :photo_URL ] } ] }
       format.json  { render :json => [ @trip ], :include => [ :taxons, :locations, :sightings, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename, :photo_URL ] } ] }
     end
   end
@@ -95,6 +94,11 @@ class TripsController < ApplicationController
   def edit
     @trip = Trip.find(params[:id])
     @page_title = @trip.name
+
+    respond_to do |format|
+      format.html # show.rhtml
+      format.json  { render :json => [ @trip ], :include => [ :taxons, :locations, :sightings, :photos ] }
+    end
   end
 
   def add_species
@@ -110,8 +114,12 @@ class TripsController < ApplicationController
     if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'
       expire_action :action => [:index, :list, :show]
-      # TODO: don't redirect for JSON posts?
-      redirect_to trip_url(@trip)
+
+      respond_to do |format|
+        format.html  { redirect_to trip_url(@trip) }
+        format.json  { render :json => @trip }
+      end
+
     else
       render :action => 'edit'
     end
