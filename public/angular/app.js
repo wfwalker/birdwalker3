@@ -191,6 +191,12 @@ function TaxonDetailCtrl($scope, $routeParams, $http) {
 			longitude: (minLong + maxLong) / 2.0,
 			markerList: markerList
 		};
+
+		var lastDate = new Date($scope.taxon.sightings[$scope.taxon.sightings.length - 1].trip.date);
+		var firstDate = new Date($scope.taxon.sightings[0].trip.date);
+
+		$scope.sightingYearSpan = lastDate.getYear() - firstDate.getYear();
+		$scope.sightingAnnualRate = Math.round(1.0 * $scope.taxon.sightings.length / $scope.sightingYearSpan);
 	}).error(function(data) {
 		alert("FAIL");
 		$scope.loading = false;
