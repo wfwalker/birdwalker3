@@ -15,8 +15,14 @@ angular.module('birdwalker', [])
 	    otherwise({redirectTo: '/home'});
 }]);
 
+function setPageTitle(inString) {
+	document.title = 'birdWalker | ' + inString;
+}
+
 function HomeCtrl($scope, $http) {
 	$scope.loading = true;
+	setPageTitle('Home');
+
 
   	$http.get('/bird_walker/index.json').success(function(data) {
 		$scope.home = data;
@@ -29,6 +35,7 @@ function HomeCtrl($scope, $http) {
 
 function TripListCtrl($scope, $http) {
 	$scope.loading = true;
+	setPageTitle('Trips');
 
   	$http.get('/trips.json').success(function(data) {
 		$scope.trips = data;
@@ -48,6 +55,7 @@ function TripDetailCtrl($scope, $routeParams, $http) {
 	$http.get('/trips/' + $scope.tripId + '.json').success(function(data) {
 		$scope.trip = data[0];
 		$scope.loading = false;
+		setPageTitle($scope.trip.name);
 
 		var minLat = 360; minLong = 360; maxLat = -360; maxLong = -360; var count = 0;
 		var markerList = "";
@@ -85,6 +93,7 @@ function TripEditCtrl($scope, $routeParams, $http, $location) {
 
 	$http.get('/trips/' + $scope.tripId + '/edit.json').success(function(data) {
 		$scope.trip = data[0];
+		setPageTitle($scope.trip.name);
 		$scope.loading = false;
 	}).error(function(data) {
 		alert("FAIL");
@@ -108,6 +117,7 @@ function TripEditCtrl($scope, $routeParams, $http, $location) {
 
 function LocationListCtrl($scope, $http) {
 	$scope.loading = true;
+	setPageTitle('Birding Map');
 
 	$http.get('/locations.json').success(function(data) {
 		$scope.locations = data;
@@ -126,6 +136,7 @@ function LocationDetailCtrl($scope, $routeParams, $http) {
 
 	$http.get('/locations/' + $scope.locationId + '.json').success(function(data) {
 		$scope.location = data[0];
+		setPageTitle($scope.location.name);
 		$scope.loading = false;
 	}).error(function(data) {
 		alert("FAIL");
@@ -136,6 +147,7 @@ function LocationDetailCtrl($scope, $routeParams, $http) {
 function LocationEditCtrl($scope, $routeParams, $http) {
 	$scope.locationId = $routeParams.locationId;
 	$scope.loading = true;
+	setPageTitle('Birding Map');
 
 	$('#editlink').attr('href', '#/locations/' + $scope.locationId + '/edit');
 
@@ -151,6 +163,7 @@ function LocationEditCtrl($scope, $routeParams, $http) {
 
 function TaxonListCtrl($scope, $http) {
 	$scope.loading = true;
+	setPageTitle('Life List');
 
 	$http.get('/taxons.json').success(function(data) {
 		$scope.taxons = data;
@@ -168,6 +181,8 @@ function TaxonDetailCtrl($scope, $routeParams, $http) {
 	$http.get('/taxons/' + $scope.taxonId + '.json').success(function(data) {
 		$scope.taxon = data[0];
 		$scope.loading = false;
+
+		setPageTitle($scope.taxon.common_name);
 
 		var minLat = 360; minLong = 360; maxLat = -360; maxLong = -360; var count = 0;
 		var markerList = "";
