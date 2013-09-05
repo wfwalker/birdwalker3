@@ -42,7 +42,7 @@
             <div class='moduletitle'>Species Notes</div>
 
 
-            <div class="pagecontentitem">
+            <div class="pagecontentitem" ng-show='taxon.sightings.length > 30'>
               From {{taxon.sightings[0].trip.date|date:'yyyy'}} to {{taxon.sightings[taxon.sightings.length-1].trip.date|date:'yyyy'}},
               we've seen {{taxon.common_name}} roughly
               {{ sightingAnnualRate }} 
@@ -50,9 +50,10 @@
               at {{taxon.locations.length}} different locations.         
             </div>  
 
-            <div class="modulesubtitle">Sightings by Month</div>  
 
-            <div class="pagecontentitem">
+            <div class="pagecontentitem" ng-show='taxon.sightings.length > 30'>
+                <div class="modulesubtitle">Sightings by Month</div>  
+
               <% month_totals = Sighting.map_by_month(@taxon.sightings) %>
               <%= counts_by_month_image_tag(month_totals) %>
             </div>
