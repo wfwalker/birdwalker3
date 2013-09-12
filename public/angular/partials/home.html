@@ -55,7 +55,7 @@
 					<img width="100%" src="{{home.bird_of_the_week.photos[0].photo_URL}}"/>
 					<p class="modulesubtitle">
 						{{home.bird_of_the_week.common_name}},  
-						{{home.bird_of_the_week.photos[0].trip_id}} at 
+						{{home.bird_of_the_week.photos[0].trip.date|date:'MMM dd, yyyy'}} at 
 						{{home.bird_of_the_week.photos[0].location.name}}
 					</p>
 				</div>

@@ -37,7 +37,7 @@ class BirdWalkerController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => {
-          :bird_of_the_week => @bird_of_the_week, 
+          :bird_of_the_week => @bird_of_the_week.as_json(:include => { :photos => { :include => [ :trip, :location ], :methods => [ :photo_URL ] } } ),
           :recent_photos => @recent_photos, 
           :recent_trips => @recent_trips.as_json(:include => { :photos => { :methods => [ :thumb_URL ] } } ), 
           :this_year_species => @this_year_species,
