@@ -41,7 +41,9 @@ class BirdWalkerController < ApplicationController
           :recent_photos => @recent_photos, 
           :recent_trips => @recent_trips.as_json(:include => { :photos => { :methods => [ :thumb_URL ] } } ), 
           :this_year_species => @this_year_species,
-          :last_year_species => @last_year_species 
+          :last_year_species => @last_year_species,
+          :day_of_year => Date.today.yday,
+          :year => Date.today.year
         } 
       }
     end    
