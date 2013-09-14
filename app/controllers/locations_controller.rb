@@ -80,7 +80,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # show.rhtml
       # TODO: cant include :county => { :include => [ :state ] }
-      format.json  { render :json => [@location], :include => [:taxons, :trips, :county, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :photo_URL ] } ] }
+      format.json  { render json: [@location.as_json(:include => { :taxons => {}, :trips => {}, :county => { :include => [ :state ] }, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :photo_URL ] } } ) ] }
     end
   end          
   
