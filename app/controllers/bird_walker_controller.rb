@@ -39,7 +39,7 @@ class BirdWalkerController < ApplicationController
       format.json { render :json => {
           :bird_of_the_week => @bird_of_the_week.as_json(:include => { :photos => { :include => [ :trip, :location ], :methods => [ :photo_URL ] } } ),
           :recent_photos => @recent_photos, 
-          :recent_trips => @recent_trips.as_json(:include => { :photos => { :methods => [ :thumb_URL ] } } ), 
+          :recent_trips => @recent_trips.as_json(:include => { :taxons => {}, :photos => { :methods => [ :thumb_URL ] } } ), 
           :this_year_species => @this_year_species,
           :last_year_species => @last_year_species,
           :day_of_year => Date.today.yday,
