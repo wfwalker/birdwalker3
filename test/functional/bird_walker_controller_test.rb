@@ -6,7 +6,7 @@ require 'application_helper'
 class BirdWalkerController; def rescue_action(e) raise e end; end
 
 class BirdWalkerControllerTest < ActionController::TestCase
-  fixtures :taxons, :families, :photos, :locations, :sightings, :counties, :states, :trips
+  fixtures :taxons, :photos, :locations, :sightings, :counties, :states, :trips
 
   def setup
     @controller = BirdWalkerController.new
@@ -43,7 +43,7 @@ class BirdWalkerControllerTest < ActionController::TestCase
 #    assert_valid_xml(@response.body)
 #  end
 
-  def test_search_redirect_to_species
+  def test_search_redirect_to_taxon
     get(:search, :terms => 'Wood')
     assert_response 302
   end

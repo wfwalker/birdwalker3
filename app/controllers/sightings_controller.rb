@@ -71,7 +71,7 @@ class SightingsController < ApplicationController
 
         bogus_abbreviations = []
         for an_abbrev in abbreviations do
-          temp = Species.find_by_abbreviation(an_abbrev)
+          temp = Taxon.find_by_abbreviation(an_abbrev)
           bogus_abbreviations << an_abbrev if ! temp
         end
 

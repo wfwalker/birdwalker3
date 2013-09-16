@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class StateTest < ActiveSupport::TestCase
-  fixtures :photos, :locations, :species, :trips, :sightings, :counties, :states
+  fixtures :photos, :locations, :taxons, :trips, :sightings, :counties, :states
 
   def setup
     @first_id = states(:state_one).id

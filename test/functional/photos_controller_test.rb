@@ -5,7 +5,7 @@ require 'photos_controller'
 class PhotosController; def rescue_action(e) raise e end; end
 
 class PhotosControllerTest < ActionController::TestCase
-  fixtures :trips, :photos, :locations, :species, :counties, :states
+  fixtures :trips, :photos, :locations, :taxons, :counties, :states, :countries
 
   def setup
     @controller = PhotosController.new

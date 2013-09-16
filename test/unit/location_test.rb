@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class LocationTest < ActiveSupport::TestCase
-  fixtures :locations, :species, :trips, :sightings, :counties, :states, :photos
+  fixtures :locations, :taxons, :trips, :sightings, :counties, :states, :photos
 
   def setup
     @first = locations(:location_one)

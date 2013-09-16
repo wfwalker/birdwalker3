@@ -33,9 +33,9 @@
 </div>
 
 <div class="control-group">
-	<label class="control-label" for="photo_species">Species</label>
+	<label class="control-label" for="photo_taxon">Species</label>
 	<div class="controls">
-		<%= collection_select("photo", "species_id", Species.seen_by_common_name, :id, :common_name, {:prompt => true}) %>
+		<%= collection_select("photo", "species_id", Taxon.seen, :id, :common_name, {:prompt => true}) %>
 	</div>
 </div>
 
