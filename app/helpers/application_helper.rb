@@ -59,7 +59,7 @@ module ApplicationHelper
 	  } 
 	      
     chartString = ("http://chart.googleapis.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&")).html_safe
-    ("<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>").html_safe
+    ("<img src=\"" + chartString + "\" alt=\"Totals By Month\" width=\"100%\"/>").html_safe
   end
 
 	def counts_by_year_image_tag(totals, width=370, height=150) 
@@ -77,7 +77,7 @@ module ApplicationHelper
 	  } 
 	      
     chartString = ("http://chart.googleapis.com/chart" + "?" + stuff.collect { |x| x[0].to_s + "=" + x[1].to_s }.join("&amp;")).html_safe
-    ("<img src=\"" + chartString + "\" alt=\"Totals By Year\" width=\"" + width.to_s + "\" height=\"" + height.to_s + "\"/>").html_safe
+    ("<img src=\"" + chartString + "\" alt=\"Totals By Year\" width=\"100%\"/>").html_safe
   end
   
   def manage_history
