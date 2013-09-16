@@ -16,7 +16,7 @@
     <div class="lead">{{trip.name}} on {{trip.date|date:'MMM dd, yyyy'}}, Led by {{trip.leader}}</div>
 
     <div class="row">
-        <div class='span4'>
+        <div class='col-md-4'>
             <div class='moduletitle'>Trip Photos</div>
 
             <div ng-show='trip.photos.length==0'>No Photos</div>
@@ -25,7 +25,7 @@
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     <div ng-repeat='a_photo in trip.photos' class="item" ng-class="{active : $first}">
-                        <center><img src="{{a_photo.photo_URL}}" /></center>
+                        <center><img src="{{a_photo.photo_URL}}" width='100%' /></center>
 
                         <div >
                             <center><p>{{a_photo.taxon.common_name}}, {{a_photo.location.name}}</p></center>
@@ -39,16 +39,16 @@
             </div>
         </div>
 
-        <div class='span4'>
+        <div class='col-md-4'>
             <div class='moduletitle'>Trip Notes</div>
 
             {{trip.notes}}
         </div>        
 
-        <div class='span4'>
+        <div class='col-md-4'>
             <div class='moduletitle'>Trip Map</div>
 
-            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{mapData.latitude}},{{mapData.longitude}}&zoom=5&size=400x400&sensor=false&markers={{mapData.markerList}}" width='400' height='400' />
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{mapData.latitude}},{{mapData.longitude}}&zoom=5&size=400x400&sensor=false&markers={{mapData.markerList}}" width='100%' />
 
             <div ng-repeat="location in trip.locations | orderBy:county">
                 <a href="#/locations/{{location.id}}">{{location.name}}</a>
@@ -59,7 +59,7 @@
 
     <div class="row">
 
-        <div class="span12">
+        <div class="col-md-12">
             <div class='moduletitle'>{{trip.taxons.length}} Species at {{trip.locations.length}} locations</div>
 
 <!--             <div>

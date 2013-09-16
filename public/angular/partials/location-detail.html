@@ -17,7 +17,7 @@
 
     <div class="row">
 
-        <div class='span4'>
+        <div class='col-md-4'>
             <div class='moduletitle'>Location Photos</div>
 
             <div ng-show='location.photos.length==0'>No Photos</div>
@@ -26,7 +26,7 @@
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     <div ng-repeat='a_photo in location.photos' class="item" ng-class="{active : $first}">
-                        <center><img src="{{a_photo.photo_URL}}" /></center>
+                        <center><img src="{{a_photo.photo_URL}}" width='100%' /></center>
 
                         <div >
                             <center><p>{{a_photo.taxon.common_name}}, {{a_photo.trip.date|date:'MMM dd, yyyy'}}</p></center>
@@ -40,22 +40,22 @@
             </div>
         </div>
 
-        <div class='span4'>
+        <div class='col-md-4'>
             <div class='moduletitle'>Location Notes</div>
 
             {{location.notes}}
         </div>        
 
-        <div class='span4'>
+        <div class='col-md-4'>
             <div class='moduletitle'>Location Map</div>
 
             <div ng-show='!location.latitude'>No Map</div>
-            <img ng-show='location.latitude' src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" />
+            <img ng-show='location.latitude' src="http://maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=13&size=400x400&sensor=false" width='100%' />
         </div>
     </div>
 
     <div class='row'>
-        <div class='span12'>
+        <div class='col-md-12'>
             <div class='moduletitle'>{{location.taxons.length}} Species</div>
 
 <!--

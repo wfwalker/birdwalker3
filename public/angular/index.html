@@ -3,18 +3,24 @@
 <html ng-app='birdwalker'>
 	<head>
  		<script src='https://login.persona.org/include.js'> </script>
-		<script src='/javascripts/jquery.min.js'> </script>
-		<script src='/javascripts/jquery.exif.js'> </script>
+		<script src='http://code.jquery.com/jquery-1.9.1.js'> </script>
 
 		<script src="./lib/angular.min.js"></script>
-		<script src="./lib/bootstrap.min.js"></script>
+		<script src="/javascripts/bootstrap.js"></script>
 		<script src="./app.js"></script>
 
 		<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
 		<link rel="stylesheet" rel="stylesheet" type="text/css" href="./desktop.css" >
 		<link rel="stylesheet" rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css" >
-		<link rel="stylesheet" rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-responsive.css" >
+		<link rel="stylesheet" rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-theme.css" >
+
+	    <style type="text/css">
+	      body {
+	        padding-top: 20px;
+	        padding-bottom: 40px;
+	      }
+	    </style>
 
 		<title>birdWalker | Home</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,76 +28,74 @@
 
 	<body>
 
-	    <div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-
-					<a class="brand" href="#/home">BirdWalker</a>
-
-					<div class="nav-collapse collapse">
-						<ul class="nav">
-							<li class="">
-								<a href="#">Photos</a>
-							</li>
-
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Life List <b class="caret"></b></a>
-	
-								<ul class="dropdown-menu">
-									<li><a href="#/taxons">Index</a></li>
-									<li><a href="#/taxons">By Date</a></li>
-									<li><a href="#/taxons">By Family</a></li>
-									<li><a href="#/taxons">Photo Life List</a></li>
-								</ul>
-							</li>	      
-
-							<li class="dropdown" data-dropdown="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip reports <b class="caret"></b></a>
-
-								<ul class="dropdown-menu">
-									<li><a href="#/trips">Index</a></li>
-									<li><a href="#/trips">Big Days</a></li>
-									<li class="divider"></li>
-									<li><a href="#/trips">New Trip</a></li>
-								</ul>
-							</li>	      
-
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Birding Map <b class="caret"></b></a>
-
-								<ul class="dropdown-menu">
-									<li><a href="#/locations">Locations</a></li>
-									<li><a href="#/locations">United States</a></li>
-									<li class="divider"></li>
-									<li><a href="#/locations">New Location</a></li>
-									<li><a href="#/locations">New County</a></li>
-								</ul>
-							</li>	      
-
-							<li class=''>
-								<a href="#">About</a>
-							</li>
-
-							<li>
-								<a id='editlink' href="#">Edit</a>
-							</li>
-						</ul>
-	
-						<form class="navbar-form pull-right" action="/bird_walker/search" method="post">
-							<input class="span2" name="terms" type="text" placeholder="Search" />
-							<button type="submit" class="btn">Go</button>
-						</form>
-					</div><!--/.nav-collapse -->
-				</div>
+	    <nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#/home">BirdWalker</a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 			</div>
-	    </div>
 
-		<div class="container"><div class="hidden-phone hidden-tablet" style="padding-top: 45px"></div></div>	
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="">
+						<a href="#">Photos</a>
+					</li>
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Life List <b class="caret"></b></a>
+
+						<ul class="dropdown-menu">
+							<li><a href="#/taxons">Index</a></li>
+							<li><a href="#/taxons">By Date</a></li>
+							<li><a href="#/taxons">By Family</a></li>
+							<li><a href="#/taxons">Photo Life List</a></li>
+						</ul>
+					</li>	      
+
+					<li class="dropdown" data-dropdown="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip reports <b class="caret"></b></a>
+
+						<ul class="dropdown-menu">
+							<li><a href="#/trips">Index</a></li>
+							<li><a href="#/trips">Big Days</a></li>
+							<li class="divider"></li>
+							<li><a href="#/trips">New Trip</a></li>
+						</ul>
+					</li>	      
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Birding Map <b class="caret"></b></a>
+
+						<ul class="dropdown-menu">
+							<li><a href="#/locations">Locations</a></li>
+							<li><a href="#/locations">United States</a></li>
+							<li class="divider"></li>
+							<li><a href="#/locations">New Location</a></li>
+							<li><a href="#/locations">New County</a></li>
+						</ul>
+					</li>	      
+
+					<li class=''>
+						<a href="#">About</a>
+					</li>
+
+					<li>
+						<a id='editlink' href="#">Edit</a>
+					</li>
+				</ul>
+
+				<form class="navbar-form navbar-right" action="/bird_walker/search" role='search' method="post">
+					<div class='form-group'>
+						<input class="form-control" name="terms" type="text" placeholder="Search" />
+					</div>
+					<button type="submit" class="btn btn-default">Go</button>
+				</form>
+	    </nav>
+
+		<div class="container"><div class="hidden-sm hidden-md" style="padding-top: 45px"></div></div>	
 				
 		<div ng-view>
 		</div>
@@ -103,18 +107,6 @@
 			    <a href="#" id="loginlink">login</a>
 			</footer>
 	    </div>
-
-
-		<script src='/javascripts/bootstrap-transition.js'> </script>
-		<script src='/javascripts/bootstrap-alert.js'> </script>
-		<script src='/javascripts/bootstrap-modal.js'> </script>
-		<script src='/javascripts/bootstrap-scrollspy.js'> </script>
-		<script src='/javascripts/bootstrap-tab.js'> </script>
-		<script src='/javascripts/bootstrap-tooltip.js'> </script>
-		<script src='/javascripts/bootstrap-popover.js'> </script>
-		<script src='/javascripts/bootstrap-button.js'> </script>
-		<script src='/javascripts/bootstrap-collapse.js'> </script>
-		<script src='/javascripts/bootstrap-typeahead.js'> </script>
 
 	</body>
 </html>
