@@ -16,19 +16,8 @@
     <div class="lead">Species</div>
 
     <div class="row">
-
-        <div class="col-md-10">
-
-            <div>
-                Search: <input ng-model="query">
-                Sort by:
-                <select ng-model="orderProp">
-                <option value="common_name">Alphabetical</option>
-                <option value="sort">Taxonomy</option>
-                </select>
-            </div>
-
-            <div ng-repeat="taxon in taxons | filter:query | orderBy:orderProp">
+        <div class="col-md-12">
+            <div ng-repeat="taxon in taxons">
                 <a href="#/taxons/{{taxon.id}}">{{taxon.common_name}}</a>
             </div>
         </div>
