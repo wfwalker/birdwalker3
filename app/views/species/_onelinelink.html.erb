@@ -1,7 +1,0 @@
-<% species = onelinelink %>
-
-<div id="<%= species.common_name.gsub(/[ '\-\(\)\/\.]/, '').downcase %>">
-	<% link_title = "Species report, " + species.common_name %>
-	<%= link_to species.common_name, species_path(species), :title => link_title %>
-	<% if ! species.aba_countable %><span class="text-error">NOT ABA COUNTABLE</span><% end %>
-</div>
