@@ -19,8 +19,8 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @trips, :include => [ :photos => { :methods => [ :thumb_URL ] } ]  }
-      format.json { render :json => @trips, :include => [ :photos => { :methods => [ :thumb_URL ] } ]  }
+      format.xml  { render :xml => @trips }
+      format.json { render :json => @trips }
     end
   end
 

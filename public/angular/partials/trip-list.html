@@ -17,22 +17,10 @@
 
     <div class="row">
 
-        <div class="col-md-10">
-
-        <div>
-            Search: <input ng-model="query">
-            Sort by:
-            <select ng-model="orderProp">
-            <option value="name">Alphabetical</option>
-            <option value="-date">Newest</option>
-            </select>
-        </div>
-
-
-        <!--Body content-->
+        <div class="col-md-12">
 
         <div ng-repeat="trip in trips | filter:query | orderBy:orderProp">
-            <a href="#/trips/{{trip.id}}">{{trip.name}}</a>
+            {{trip.date|date:'MMM dd'}}, <a href="#/trips/{{trip.id}}">{{trip.name}}</a>
         </div>
 
     </div>
