@@ -21,7 +21,7 @@ class PhotoTest < ActiveSupport::TestCase
     assert_equal 2, two_photos.count, "find_by_trip(:trip_one) should find two photos"
 
     no_photos = Photo.find_all_by_trip_id(trips(:trip_two))
-    assert_equal 0, no_photos.count, "find_by_trip(:trip_one) should find two photos"
+    assert_equal 1, no_photos.count, "find_by_trip(:trip_two) should find two photos"
   end
 
   def test_thumb_hostname

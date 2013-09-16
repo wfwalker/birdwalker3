@@ -62,7 +62,7 @@ class LocationsControllerTest < ActionController::TestCase
     assert_valid_xml(@response.body)
     assert_template 'photo_to_do_list'
 
-    assert_not_nil assigns(:species_seen_not_photographed_nearby)
+    assert_not_nil assigns(:taxons_seen_not_photographed_nearby)
   end
 
   def test_show_species_by_year
