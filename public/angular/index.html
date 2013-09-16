@@ -27,72 +27,74 @@
 	 </head>
 
 	<body>
-
 	    <nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#/home">BirdWalker</a>
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
+		    <div class='container'>
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#/home">BirdWalker</a>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav">
+						<li class="">
+							<a href="#">Photos</a>
+						</li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Life List <b class="caret"></b></a>
+
+							<ul class="dropdown-menu">
+								<li><a href="#/taxons">Index</a></li>
+								<li><a href="#/taxons">By Date</a></li>
+								<li><a href="#/taxons">By Family</a></li>
+								<li><a href="#/taxons">Photo Life List</a></li>
+							</ul>
+						</li>	      
+
+						<li class="dropdown" data-dropdown="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip reports <b class="caret"></b></a>
+
+							<ul class="dropdown-menu">
+								<li><a href="#/trips">Index</a></li>
+								<li><a href="#/trips">Big Days</a></li>
+								<li class="divider"></li>
+								<li><a href="#/trips">New Trip</a></li>
+							</ul>
+						</li>	      
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Birding Map <b class="caret"></b></a>
+
+							<ul class="dropdown-menu">
+								<li><a href="#/locations">Locations</a></li>
+								<li><a href="#/locations">United States</a></li>
+								<li class="divider"></li>
+								<li><a href="#/locations">New Location</a></li>
+								<li><a href="#/locations">New County</a></li>
+							</ul>
+						</li>	      
+
+						<li class=''>
+							<a href="#">About</a>
+						</li>
+
+						<li>
+							<a id='editlink' href="#">Edit</a>
+						</li>
+					</ul>
+
+					<form class="navbar-form navbar-right" action="/bird_walker/search" role='search' method="post">
+						<div class='form-group'>
+							<input class="form-control" name="terms" type="text" placeholder="Search" />
+						</div>
+						<button type="submit" class="btn btn-default">Go</button>
+					</form>
+				</div>
 			</div>
-
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					<li class="">
-						<a href="#">Photos</a>
-					</li>
-
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Life List <b class="caret"></b></a>
-
-						<ul class="dropdown-menu">
-							<li><a href="#/taxons">Index</a></li>
-							<li><a href="#/taxons">By Date</a></li>
-							<li><a href="#/taxons">By Family</a></li>
-							<li><a href="#/taxons">Photo Life List</a></li>
-						</ul>
-					</li>	      
-
-					<li class="dropdown" data-dropdown="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip reports <b class="caret"></b></a>
-
-						<ul class="dropdown-menu">
-							<li><a href="#/trips">Index</a></li>
-							<li><a href="#/trips">Big Days</a></li>
-							<li class="divider"></li>
-							<li><a href="#/trips">New Trip</a></li>
-						</ul>
-					</li>	      
-
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Birding Map <b class="caret"></b></a>
-
-						<ul class="dropdown-menu">
-							<li><a href="#/locations">Locations</a></li>
-							<li><a href="#/locations">United States</a></li>
-							<li class="divider"></li>
-							<li><a href="#/locations">New Location</a></li>
-							<li><a href="#/locations">New County</a></li>
-						</ul>
-					</li>	      
-
-					<li class=''>
-						<a href="#">About</a>
-					</li>
-
-					<li>
-						<a id='editlink' href="#">Edit</a>
-					</li>
-				</ul>
-
-				<form class="navbar-form navbar-right" action="/bird_walker/search" role='search' method="post">
-					<div class='form-group'>
-						<input class="form-control" name="terms" type="text" placeholder="Search" />
-					</div>
-					<button type="submit" class="btn btn-default">Go</button>
-				</form>
 	    </nav>
 
 		<div class="container"><div class="hidden-sm hidden-md" style="padding-top: 45px"></div></div>	
