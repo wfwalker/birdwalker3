@@ -3,7 +3,7 @@
 <div class='row'>
 
 
-	<div class='span4'>
+	<div class='col-md-4'>
 		<% gallery_photos = @location.photos.sort{ |a,b| b.trip.date <=> a.trip.date} %>    
 		<% gallery_photos = @location.photos.first(Photo.default_gallery_size())%>
 
@@ -12,7 +12,7 @@
 		<%= render :partial => 'photos/gallery', :object => @location.photos %>
 	</div>
 
-	<div class='span4'>
+	<div class='col-md-4'>
 		<div class="pagecontentmodule">
 			<div class="moduletitle">Location Notes</div>  
 			  
@@ -37,7 +37,7 @@
 		</div>                               
 	</div>
 
-	<div class='span4' id='mapContainer'>
+	<div class='col-md-4' id='mapContainer'>
 		<% if (@location.latitude != 0) %>
 			<% @center_latitude = @location.latitude %>
 			<% @center_longitude = @location.longitude %>

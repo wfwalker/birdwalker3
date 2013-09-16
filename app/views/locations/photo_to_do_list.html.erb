@@ -5,7 +5,7 @@
 <% taxon_lists = @taxons_seen_not_photographed_nearby/(@taxons_seen_not_photographed_nearby.size / 3 + 3)%>
 
 <div class='row'>
-	<div class='span12' id='mapContainer'>
+	<div class='col-md-12' id='mapContainer'>
 		<%= render :partial => 'locations/google', :locals => { :map_width => 780, :map_height => 480, :locations_json_url => '/locations/%s.json' % @location.id  } %>
 	</div>
 </div>
@@ -21,7 +21,7 @@
 
 <div class='row'>
 	<% for taxon_list in taxon_lists do %>
-		<div class='span4'>
+		<div class='col-md-4'>
 			<%= show_taxon_list(taxon_list, false) %>
 		</div>
 	<% end %>

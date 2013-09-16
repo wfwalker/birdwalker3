@@ -3,7 +3,7 @@
 <div class="moduletitle">Search Results for '<%= @terms %>'</div>
 
 <div class="row">
-	<div class="span6">
+	<div class='col-md-6'>
 		<% if (@found_taxons != nil && @found_taxons.size > 0) then %>
 			<%= show_taxon_list(@found_taxons, true) %>
 		<% end %>
@@ -12,7 +12,7 @@
 		<% end %>
 	</div>
 
-	<div class="span6">
+	<div class='col-md-6'>
 		<% if (@found_locations != nil && @found_locations.size > 0) then %>
 			<%= show_location_list(@found_locations, true) %>
 		<% end %>

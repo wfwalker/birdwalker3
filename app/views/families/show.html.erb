@@ -2,13 +2,13 @@
 
 
 <div class='row'>
-	<div class='span4'>
+	<div class='col-md-4'>
 		<div class="moduletitle">Photos by Bill Walker</div>  
 
 		<%= render :partial => 'photos/gallery', :object => @family.photos %>
 	</div>
 
-	<div class='span4'>
+	<div class='col-md-4'>
 		<% if @family.common? %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle">Family Notes</div>	
@@ -40,7 +40,7 @@
         <% end %>       
    	</div>
 
-   	<div class='span4' id='mapContainer'>
+   	<div class='col-md-4' id='mapContainer'>
 		<% if (Location.with_lat_long(@family.locations).length > 0) %>
 			<% @map_module_title = 'Family Map' %>                       
 			<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/families/locations/%s.json' % @family.id }  %>
@@ -49,7 +49,7 @@
 </div>
 
 <div class='row'>
-	<div class='span12'>
+	<div class='col-md-12'>
 		<%= render :partial => 'species/undivided_list', :object => @family.species_seen, :locals => { :show_headings => true } %>
 	</div>
 </div>

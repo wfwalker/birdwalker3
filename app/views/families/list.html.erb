@@ -4,7 +4,7 @@
 
 <div class='row'>
 	<% for notable_family_list in notable_family_lists %>
-		<div class='span4'>
+		<div class='col-md-4'>
 			<%= render :partial => 'families/summary', :collection => notable_family_list %>
 		</div>
 	<% end %>

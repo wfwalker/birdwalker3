@@ -3,7 +3,7 @@
 </div>
 
 <div class='row'>
-	<div class='span12' id='mapContainer'>
+	<div class='col-md-12' id='mapContainer'>
 		<%= render :partial => 'locations/google', :locals => { :map_width => 930, :map_height => 480, :locations_json_url => '/locations.json' } %>
 	</div>
 </div>
@@ -12,7 +12,7 @@
 
 <div class='row'>
 	<% for location_list in location_lists do %>
-		<div class='span4'>
+		<div class='col-md-4'>
 			<%= show_location_list(location_list, false) %>
 		</div>
 	<% end %>

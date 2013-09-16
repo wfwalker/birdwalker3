@@ -10,7 +10,7 @@
 
 <div class='row'>
 	<% for species_list in species_lists do %>
-		<div class='span4'>
+		<div class='col-md-4'>
 			<%= render :partial => 'species/divided_list', :object => species_list, :locals => { :show_headings => false } %>
 		</div>
 	<% end %>

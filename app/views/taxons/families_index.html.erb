@@ -9,7 +9,7 @@
 
 <div class='row'>
 	<% for popular_family_name_list in popular_family_name_lists %>
-		<div class='span4'>
+		<div class='col-md-4'>
 			<% for family_name in popular_family_name_list %>
 				<div style="background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%); background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 100%); height: 100px" class="pagecontentmodule">
 					<% family_photos = (@taxons_by_family[family_name].collect { |species| species.photos }).flatten %>
