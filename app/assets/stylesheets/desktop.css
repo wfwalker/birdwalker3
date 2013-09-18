@@ -5,10 +5,6 @@ body
 	hyphens: auto;
 }
 
-a       { color: #2D6C91; text-decoration: none; }
-.pagecontentitem p a { text-decoration: underline; }
-a:hover { text-decoration: underline; }
-
 #map img { 
   max-width: none;
 }
@@ -34,7 +30,7 @@ a:hover { text-decoration: underline; }
 
 .moduletitle
 {
-	border-bottom: solid 1px #CCCCCC;
+	border-bottom: solid 1px #555555;
 	margin-top: 10px; margin-bottom: 10px
 }
 
@@ -131,16 +127,16 @@ a:hover { text-decoration: underline; }
     line-height: 8px;
     width:32px;
     height:100px;
-    color: #333333;
     margin-right: 5px;
     padding-top: 0px;
     padding-bottom: 5px;
     text-transform: uppercase;
+    color: white;
 }
 
 .date small {
     line-height:20px;
     padding-top: 0px;
     font-size: 7pt;
-    color: gray;
+    color: white;
 }
