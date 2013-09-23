@@ -17,12 +17,12 @@
 	  		// Create a terrain style map
 	  	    var myOptions = {
 		      mapTypeId: google.maps.MapTypeId.TERRAIN,
-		      draggable: false,
+		      draggable: true,
 		      scrollwheel: false,
 		      zoomControl: true,
 		      streetViewControl: false,
 		      mapTypeControl: false,
-		      panControl: false
+		      panControl: true
 		    };
 
 		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
