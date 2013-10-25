@@ -116,6 +116,52 @@ body
 }
 
 
+/* BILL's PROOF OF CONCEPT D3 BAR GRAPH */
+
+.bargraph-bar {
+	fill: steelblue;
+}
+
+.bargraph-axis-text {
+	fill: #888;
+}
+
+.bargraph-y-axis path,
+.bargraph-y-axis line {
+  fill: none;
+  stroke: #888;
+  shape-rendering: crispEdges;
+}		
+
+.bargraph-x-axis path {
+  fill: none;
+  stroke: none;
+  shape-rendering: crispEdges;
+}
+
+.bargraph-x-axis line {
+  fill: none;
+  stroke: #888;
+  shape-rendering: crispEdges;
+}		
+
+text {
+	fill: #888;
+	font-family: "Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.bargraph-svg-container {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	padding-bottom: 10%;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+
+
+
 /* ---------- format dates like pages from a daily tearoff calendar ---------- */
 /* courtesy of http://www.mattvarone.com/web-design/daily-calendar-dates-with-css/ */
 

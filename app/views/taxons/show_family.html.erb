@@ -10,9 +10,11 @@
 		<div class="moduletitle">Notes</div>
 
 		<% if @family_trips.count > 50 then %>
+	        <div class="modulesubtitle">Sightings by Month</div>  
+
 			<div class="pagecontentitem">
 				<% month_totals = Sighting.map_by_month(@family_sightings) %>
-				<%= counts_by_month_image_tag(month_totals)%>
+				<%= render :partial => 'sightings/species_by_month', :object => month_totals %>
 			</div>
 		<% else %>
 			<div class="pagecontentitem">
