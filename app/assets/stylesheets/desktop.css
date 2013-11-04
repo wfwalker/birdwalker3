@@ -119,7 +119,7 @@ body
 /* BILL's PROOF OF CONCEPT D3 BAR GRAPH */
 
 .bargraph-bar {
-	fill: steelblue;
+	fill: #2a9fd6;
 }
 
 .bargraph-axis-text {

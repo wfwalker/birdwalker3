@@ -331,7 +331,8 @@ a {
 }
 
 a:hover,
-a:focus {
+a:focus,
+a:visited {
   color: #2a9fd6;
   text-decoration: underline;
 }
