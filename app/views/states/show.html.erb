@@ -1,30 +1,31 @@
 <%= render :partial => 'page_header', :object => @state %>
 
 <div class='row'>
-	<div class='col-md-4'>
+	<div class='col-md-6'>
 		<div class="moduletitle">Photos by Bill Walker</div>  
 
 		<%= render :partial => 'photos/gallery', :object => @state.photos %>
 	</div>
 
-	<div class='col-md-4'>
+	<div class='col-md-6'>
 		<% if (@state.common?) %>
 			<div class="pagecontentmodule">
 				<div class="moduletitle">When we bird <%= @state.name %></div>	
 				<div class="pagecontentitem">
-					<% month_totals = Trip.map_by_month(@state.trips) %>
-					<%= counts_by_month_image_tag(month_totals)%>
+					<% month_totals = Sighting.map_by_month(@state.sightings) %>
+					<%= render :partial => 'sightings/species_by_month', :object => month_totals %>
 				</div>
 			</div>
 		<% else %>
 			<%= show_trip_list(@state.trips, true) %>
 		<% end %>
-	</div>
-	<div class='col-md-4' id='mapContainer'>
-		<% if (@state.locations.with_lat_long.size > 0) %>
-			<% @map_module_title = 'State Map' %>                       
-			<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
-		<% end %>
+
+		<div id='mapContainer'>
+			<% if (@state.locations.with_lat_long.size > 0) %>
+				<% @map_module_title = 'State Map' %>                       
+				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
+			<% end %>
+		</div>
 	</div>
 </div>
 

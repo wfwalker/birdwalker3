@@ -1,0 +1,75 @@
+<div class='bargraph-svg-container'>
+<svg id='bargraph-svg-graph' viewbox='0 0 500 300' preserveAspectRatio='xMinYMin meet' class='svg-content'>
+</svg>
+</div>
+
+<script>
+
+var sightingData = [
+	{month: 'Jan', count: <%= species_by_month[1] %> },
+	{month: 'Feb', count: <%= species_by_month[2] %> },
+	{month: 'Mar', count: <%= species_by_month[3] %> },
+	{month: 'Apr', count: <%= species_by_month[4] %> },
+	{month: 'May', count: <%= species_by_month[5] %> },
+	{month: 'Jun', count: <%= species_by_month[6] %> },
+	{month: 'Jul', count: <%= species_by_month[7] %> },
+	{month: 'Aug', count: <%= species_by_month[8] %> },
+	{month: 'Sep', count: <%= species_by_month[9] %> },
+	{month: 'Oct', count: <%= species_by_month[10] %> },
+	{month: 'Nov', count: <%= species_by_month[11] %> },
+	{month: 'Dec', count: <%= species_by_month[12] %> }
+];
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 500 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+
+var yExtent = [0, d3.max(sightingData, function(d) {return d.count})];
+
+var x = d3.scale.ordinal().rangeRoundBands([0, width], .1).domain(sightingData.map(function(d) { return d.month; }));
+var y = d3.scale.linear().range([height, 0]).domain(yExtent);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+
+var svg = d3.select("#bargraph-svg-graph")
+			.append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+  .attr("class", "bargraph-x-axis")
+  .attr("transform", "translate(0," + height + ")")
+  .call(xAxis);
+
+svg.append("g")
+  .attr("class", "bargraph-y-axis")
+  .call(yAxis)
+
+var bars = svg.selectAll("rect").remove().data(sightingData).enter()
+	.append("rect")
+	.attr("x", function(d, i) { return x(d.month); })
+	.attr("y", function(d, i) { return y(d.count);})
+	.attr("height", function(d, i) { return height - y(d.count); })
+	.attr("width", function(d, i) { return x.rangeBand(); })
+	.attr("class", "bargraph-bar")	
+
+svg.selectAll("rect").on("mouseover.tooltip", function(d){
+	d3.select("text#" + d.month).remove();
+	svg
+	.append("text")
+	.text(d.count)
+	.attr("x", x(d.month) + 10)
+	.attr("y", y(d.count) - 10)
+	.attr("id", d.month);
+});
+
+svg.selectAll("rect").on("mouseout.tooltip", function(d){
+	d3.select("text#" + d.month).remove();
+});
+
+</script>

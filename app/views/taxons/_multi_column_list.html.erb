@@ -10,7 +10,7 @@
 
 <div class='row'>
 	<% for taxon_list in taxon_lists do %>
-		<div class='col-md-4'>
+		<div class='col-sm-4'>
 			<% if total_taxon_count > 70 %>
 			<%= render :partial => 'taxons/divided_list', :object => taxon_list, :locals => { :show_headings => false } %>
 			<% else %>

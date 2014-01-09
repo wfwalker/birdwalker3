@@ -6,7 +6,7 @@
 
 <div class='row'>
 
-  <div class='col-md-4'>
+  <div class='col-sm-6'>
     <div class="pagecontentmodule">
       <div class="moduletitle">Photos by Bill Walker</div>  
 
@@ -14,7 +14,14 @@
     </div>
   </div>
 
-  <div class='col-md-4'>  
+  <div class='col-sm-6'>  
+    <div id='mapContainer'>
+      <% if (@taxon.locations.with_lat_long.size > 0) %>
+      <% @map_module_title = 'Species Map' %>                       
+        <%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/taxons/locations/%s.json' % @taxon.id } %>
+      <% end %>
+    </div>
+
     <div class="pagecontentmodule">
       <% if @taxon.common? %>
         <div class="moduletitle">Species Notes</div>  
@@ -39,12 +46,6 @@
         <%= render :partial => 'sightings/date_and_location_link', :collection => Sighting.sort_chronological(@taxon.sightings) %>
       <% end %>
     </div>
-  </div>
-
-  <div class='col-md-4' id='mapContainer'>
-    <% if (@taxon.locations.with_lat_long.size > 0) %>  
-      <%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/taxons/locations/%s.json' % @taxon.id }  %>
-    <% end %>
   </div>
 
 </div>

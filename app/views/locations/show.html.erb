@@ -1,9 +1,7 @@
 <%= render :partial => 'page_header', :object => @location %>
 
 <div class='row'>
-
-
-	<div class='col-md-4'>
+	<div class='col-sm-12 col-md-8 col-lg-7'>
 		<% gallery_photos = @location.photos.sort{ |a,b| b.trip.date <=> a.trip.date} %>    
 		<% gallery_photos = @location.photos.first(Photo.default_gallery_size())%>
 
@@ -12,7 +10,7 @@
 		<%= render :partial => 'photos/gallery', :object => @location.photos %>
 	</div>
 
-	<div class='col-md-4'>
+	<div class='col-sm-6 col-md-4 col-lg-5'>
 		<div class="pagecontentmodule">
 			<div class="moduletitle">Location Notes</div>  
 			  
@@ -34,18 +32,18 @@
 			<% has_notes?(@location) do %>
 				<div class="pagecontentitem"><%= @location.notes %></div>
 			<% end %>
-		</div>                               
+		</div>    
 	</div>
 
-	<div class='col-md-4' id='mapContainer'>
-		<% if (@location.latitude != 0) %>
-			<% @center_latitude = @location.latitude %>
-			<% @center_longitude = @location.longitude %>
-			<% @locations = [ @location ] %>
-			<% @map_module_title = 'Location Map' %>
-			<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/locations/%s.json' % @location.id } %>
-		<% end %>
+	<div class='col-sm-6 col-md-4 col-lg-5'>
+		<div id='mapContainer'>
+			<% if (@location.latitude != 0) %>
+				<% @map_module_title = 'Location Map' %>
+				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/locations/%s.json' % @location.id } %>
+			<% end %>
+		</div>
 	</div>
+
 
 </div>
 

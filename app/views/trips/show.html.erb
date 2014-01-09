@@ -9,11 +9,22 @@
 
 <div class='row'>
 	<div class='col-md-6'>
-	    <div class="pagecontentmodule">
-			<div class="moduletitle">Photos by Bill Walker</div>  
+		<% has_photos?(@trip) do %>
+		    <div class="pagecontentmodule">
+				<div class="moduletitle">Photos by Bill Walker</div>  
+				<%= render :partial => 'photos/gallery', :object => @trip.photos %>
+			</div>
+		<% end %>
 
-			<%= render :partial => 'photos/gallery', :object => @trip.photos %>
-		</div>
+	</div>
+
+	<div class='col-md-6'>
+		<% if (@trip.locations.size == 1) %>
+			<% @module_title = @trip.locations[0].full_name %>
+		<% else %>	
+			<% @module_title = @trip.locations.size.to_s + " Locations" %>
+			<% @show_location_abbreviation = true %>
+		<% end %>
 
 		<div id='mapContainer'>
 			<% has_notes?(@trip) do %>
@@ -33,15 +44,6 @@
 				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/trips/locations/%s.json' % @trip.id } %>
 			<% end %>
 		</div>
-	</div>
-
-	<div class='col-md-6'>
-		<% if (@trip.locations.size == 1) %>
-			<% @module_title = @trip.locations[0].full_name %>
-		<% else %>	
-			<% @module_title = @trip.locations.size.to_s + " Locations" %>
-			<% @show_location_abbreviation = true %>
-		<% end %>
 	
 		<% sorted_sighting_list = Sighting.sort_taxonomic(@trip.sightings) %>
 		<% common_names = sorted_sighting_list.collect {|item|item.taxon.common_name}.uniq %>
