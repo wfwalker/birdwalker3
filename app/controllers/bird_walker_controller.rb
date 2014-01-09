@@ -99,6 +99,17 @@ class BirdWalkerController < ApplicationController
     Rails.cache.clear
     redirect_to :action => 'index'  
   end    
+
+  def login_json
+    aUser = User.find_by_name('walker')  
+
+    logger.error("VC: Logging in as  " + aUser.name)
+    flash[:notice] = 'Welcome back, ' + aUser.name
+    session[:username] = aUser.name  
+    session[:login_time] = Time.now.to_i     
+    Rails.cache.clear
+    render :json => { 'username' => aUser.name }  
+  end    
   
   def verify_browserid
     if (params[:assertion])                     
@@ -231,4 +242,17 @@ class BirdWalkerController < ApplicationController
     
     redirect_to :action => 'index'  
   end
+
+  def logout_json
+    if (session[:username] != nil) then
+      logger.error("VC: Logging out")
+      flash[:notice] = 'Logged out'
+      Rails.cache.clear
+      session[:username] = nil    
+      session[:login_time] = nil
+    end
+    
+    render :json => { 'username' => nil }  
+  end
+
 end

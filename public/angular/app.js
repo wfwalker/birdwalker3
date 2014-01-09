@@ -23,7 +23,6 @@ function HomeCtrl($scope, $http) {
 	$scope.loading = true;
 	setPageTitle('Home');
 
-
   	$http.get('/bird_walker/index.json').success(function(data) {
 		$scope.home = data;
 		$scope.loading = false;
@@ -249,19 +248,79 @@ function SightingEditCtrl($scope, $routeParams, $http) {
 	});    
 }
 
-// $(document).ready(function(){ 
-// 	$('.ajax-typeahead').typeahead({
-// 	    source: function(query, process) {
-// 	        return $.ajax({
-// 	            url: $(this)[0].$element[0].dataset.link,
-// 	            type: 'get',
-// 	            data: {query: query},
-// 	            dataType: 'json',
-// 	            success: function(json) {
-// 	                return typeof json.options == 'undefined' ? false : process(json.options);
-// 	            }
-// 	        });
-// 	    }
-// 	});
-// });
+var currentUser = null;
+
+function getCurrentUser() {
+	return currentUser;
+};
+
+$(document).ready(function(){ 
+
+	navigator.id.watch({
+	  loggedInUser: currentUser,
+	  onlogin: function(assertion) {
+	    // A user has logged in! Here you need to:
+	    // 1. Send the assertion to your backend for verification and to create a session.
+	    // 2. Update your UI.
+	    $.ajax({ /* <-- This example uses jQuery, but you can use whatever you'd like */
+	      type: 'POST',
+	      url: '/bird_walker/login_json', // This is a URL on your website.
+	      data: {assertion: assertion},
+	      success: function(res, status, xhr) {
+	      	  currentUser = res.username;
+	      	  console.log(res);
+		  },
+	      error: function(xhr, status, err) {
+	        alert("Login failure: " + err + ", logging out");
+	        navigator.id.logout();
+	      }
+	    });
+	  },
+	  onlogout: function() {
+	    // A user has logged out! Here you need to:
+	    // Tear down the user's session by redirecting the user or making a call to your backend.
+	    // Also, make sure loggedInUser will get set to null on the next page load.
+	    // (That's a literal JavaScript null. Not false, 0, or undefined. null.)
+	    $.ajax({
+	      type: 'POST',
+	      url: '/bird_walker/logout_json', // This is a URL on your website.
+	      success: function(res, status, xhr) {
+      	    console.log("posted to logout, reloading");
+	      	window.location.reload(); 
+	      	currentUser = null;
+	      },
+	      error: function(xhr, status, err) { 
+	      	console.log("Logout failure: " + err); 
+	      	currentUser = null;
+	      }
+	    });
+	  }
+	});
+
+	$("a#loginlink").click(function(e) {
+		e.preventDefault();
+		console.log("login button handler");
+		navigator.id.request(); 
+	});
+
+	$("a#logoutlink").click(function(e) {
+		e.preventDefault();
+		console.log("logout button handler");
+		navigator.id.logout();
+	});
+
+	// $('.ajax-typeahead').typeahead({
+	//     source: function(query, process) {
+	//         return $.ajax({
+	//             url: $(this)[0].$element[0].dataset.link,
+	//             type: 'get',
+	//             data: {query: query},
+	//             dataType: 'json',
+	//             success: function(json) {
+	//                 return typeof json.options == 'undefined' ? false : process(json.options);
+	//             }
+	//         });
+	//     }
+	// });
+});
 
