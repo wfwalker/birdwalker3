@@ -61,7 +61,7 @@ class Photo < ActiveRecord::Base
   end
 
   def photo(hostname="")     
-    ("<img border=\"0\" src=\"" + photo_URL(hostname) + "\" width=\"100%\" />").html_safe
+    ("<img border=\"0\" src=\"" + photo_URL(hostname) + "\" />").html_safe
   end
 
   def Photo.map_by_location(photo_list)

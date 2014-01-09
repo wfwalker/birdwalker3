@@ -12,7 +12,7 @@
 					a_photo.location.county.state.abbreviation,
 					short_nice_date(a_photo.trip.date)].join(", ") %>
 				<div class="<%= gallery_photos.fetch(0) == a_photo ? 'active': '' %> item">
-					<center><%= a_photo.photo %></center>
+ 					<img style='background-image: url(<%= a_photo.photo_URL %>); background-size: auto 100%; background-repeat: no-repeat; background-position: 50% 50%' width='100%' src='/images/matte.png' />
 
 	                <div >
 	                	<center><p><%= lightbox_caption %></p></center>
