@@ -12,7 +12,7 @@
 					<tr>
 
 					<!--[form:sighting]-->
-					<td><%=h sighting.species.common_name %><br /><%=h sighting.trip.name %></td>
+					<td><%=h sighting.taxon.common_name %><br /><%=h sighting.trip.name %></td>
 
 					<td>
 						<%= f.collection_select :location_id, Location.find(:all, :order => 'name'), :id, :name %>
