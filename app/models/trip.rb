@@ -8,6 +8,10 @@ class Trip < ActiveRecord::Base
   end
   
   has_many :photos
+
+  def same_location_taxon_photos
+    Photo.find_by_sql(["SELECT photos.* FROM photos, sightings WHERE sightings.trip_id=? AND photos.location_id=sightings.location_id AND photos.taxon_latin_name=sightings.taxon_latin_name", self.id])
+  end
   
   has_many :taxons, :through => :sightings, :uniq => true, :order => 'taxons.sort' do
     def map_by_family

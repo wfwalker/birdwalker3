@@ -9,13 +9,10 @@
 
 <div class='row'>
 	<div class='col-md-6'>
-		<% has_photos?(@trip) do %>
-		    <div class="pagecontentmodule">
-				<div class="moduletitle">Photos by Bill Walker</div>  
-				<%= render :partial => 'photos/gallery', :object => @trip.photos %>
-			</div>
-		<% end %>
-
+	    <div class="pagecontentmodule">
+			<div class="moduletitle">Photos by Bill Walker</div>  
+			<%= render :partial => 'photos/gallery', :object => @trip.photos | @trip.same_location_taxon_photos %>
+		</div>
 	</div>
 
 	<div class='col-md-6'>

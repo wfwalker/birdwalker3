@@ -4,11 +4,11 @@ module TripsHelper
   end
 
   def has_photo?(trip, &block)
-    yield if trip.photos.size >= 1
+    yield if trip.photos.size + trip.same_location_taxon_photos.size >= 1
   end
     
   def has_no_photo?(trip, &block)
-    yield if trip.photos.size == 0
+    yield if trip.photos.size + trip.same_location_taxon_photos.size == 0
   end
 
   def show_trip_list(triplist, headings_flag)
