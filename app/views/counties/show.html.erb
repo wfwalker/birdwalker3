@@ -3,13 +3,13 @@
 </div> 
                             
 <div class='row'>
-	<div class='col-sm-6'>
+	<div class='col-sm-12 col-md-8 col-lg-7'>
 		<div class="moduletitle">Photos by Bill Walker</div>  
 
 		<%= render :partial => 'photos/gallery', :object => @county.photos %>
 	</div>
 
-	<div class='col-sm-6'>
+	<div class='col-sm-6 col-md-4 col-lg-5'>
 		<div id='mapContainer'>
 			<% if (@county.locations.with_lat_long.size > 0) %>
 			<% @map_module_title = 'County Map' %>                       
