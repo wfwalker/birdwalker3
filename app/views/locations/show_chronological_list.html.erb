@@ -1,9 +1,4 @@
 <%= render :partial => 'page_header', :object => @location %>
 
-<div class='row'>
-	<div class='col-md-12'>
-		<%= render :partial => 'photos/gallery', :object => @location.photos %>
-	</div>
-</div>	
+<%= show_chronological_sighting_list(@life_sightings) %></div>	
 
-<%= show_chronological_sighting_list(@life_sightings) %>
