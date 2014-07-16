@@ -9,6 +9,8 @@ class Trip < ActiveRecord::Base
   
   has_many :photos
 
+  # find photos from other trips of the taxons seen on this trip at the locations where they
+  # were seen on this trip
   def same_location_taxon_photos
     Photo.find_by_sql(["SELECT photos.* FROM photos, sightings WHERE sightings.trip_id=? AND photos.location_id=sightings.location_id AND photos.taxon_latin_name=sightings.taxon_latin_name", self.id])
   end
