@@ -39,9 +39,9 @@ class Sighting < ActiveRecord::Base
     # F: Location Name
     row[5]  = self.location.name
     # G: Latitude
-    row[6]  = (self.location.latitude ? self.location.latitude.to_s : '')
+    row[6]  = ''
     # H: Longitude
-    row[7]  = (self.location.longitude ? self.location.longitude.to_s : '')
+    row[7]  = ''
     # I: Date
     row[8]  = self.trip.date.strftime("%m/%d/%Y")
     
