@@ -2,49 +2,33 @@
 
 <!--[form:location]-->
 
-<div class="control-group">
-	<label class="control-label" for="location_name">Name</label>
-	<div class="controls">
-		<%= text_field 'location', 'name'  %>
-	</div>
+<div class="input-group">
+	<span class='input-group-addon'>Name</span>
+	<%= text_field 'location', 'name', :class => 'form-control'  %>
 </div>
 
-<div class="control-group">
-	<label class="control-label" for="location_reference_url">Reference URL</label>
-	<div class="controls">
-		<%= text_field 'location', 'reference_url'  %>
-	</div>
+<div class="input-group">
+	<span class='input-group-addon'>URL</span>
+	<%= text_field 'location', 'reference_url', :class => 'form-control'  %>
 </div>
 
-<div class="control-group">
-	<label class="control-label" for="location_city">City</label>
-	<div class="controls">
-		<%= text_field 'location', 'city'  %>
-	</div>
+<div class="input-group">
+	<span class='input-group-addon'>City</span>
+	<%= text_field 'location', 'city', :class => 'form-control'  %>
+
+	<span class='input-group-addon'>County</span>
+	<%= collection_select("location", "county_id", County.find(:all, :order => 'name'), :id, :name) %>
 </div>
 
-<div class="control-group">
-	<label class="control-label" for="location_county">County</label>
-	<div class="controls">
-		<%= collection_select("location", "county_id", County.find(:all, :order => 'name'), :id, :name) %>
-	</div>
+<div class="input-group">
+	<span class='input-group-addon'>Lat</span>
+	<%= text_field 'location', 'latitude', :class => 'form-control'  %>
+	
+	<span class='input-group-addon'>Long</span>
+	<%= text_field 'location', 'longitude', :class => 'form-control'  %>
 </div>
 
-<div class="control-group">
-	<label class="control-label" for="location_latitude">Latitude</label>
-	<div class="controls">
-		<%= text_field 'location', 'latitude'  %>
-	</div>
-</div>
-
-<div class="control-group">
-	<label class="control-label" for="location_longitude">Longitude</label>
-	<div class="controls">
-		<%= text_field 'location', 'longitude'  %>
-	</div>
-</div>
-
-<div class="control-group">
+<div class="input-group">
 	<div class="controls">
 		<label class="checkbox" for="location_photo">
 			<%= check_box 'location', 'photo'  %>
@@ -53,11 +37,9 @@
 	</div>
 </div>
 
-<div class='control-group'>
-	<label class="control-label" for="location_notes">Notes</label>
-	<div class="controls">
-		<%= text_area 'location', 'notes'  %>
-	</div>
+<div class='input-group'>
+	<span class='input-group-addon'>Notes</span>
+	<%= text_area 'location', 'notes', :class => 'form-control'  %>
 </div>
 
 <!--[eoform:location]-->
