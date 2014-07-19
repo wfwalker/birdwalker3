@@ -2,44 +2,41 @@
 
 <!--[form:location]-->
 
-<div class="input-group">
-	<span class='input-group-addon'>Name</span>
-	<%= text_field 'location', 'name', :class => 'form-control'  %>
+<div class='row'>
+	<div class="form-group col-md-6">
+		<%= text_field 'location', 'name', :class => 'form-control', :placeholder => 'Name'  %>
+	</div>
+	<div class="form-group col-md-6">
+		<%= text_field 'location', 'reference_url', :class => 'form-control', :placeholder => 'URL'  %>
+	</div>
 </div>
-
-<div class="input-group">
-	<span class='input-group-addon'>URL</span>
-	<%= text_field 'location', 'reference_url', :class => 'form-control'  %>
+<div class='row'>
+	<div class="form-group col-md-6">
+		<div class='input-group'>
+			<%= text_field 'location', 'latitude', :class => 'form-control', :placeholder => 'Lat'  %>
+			<span class='input-group-addon'>lat</span>			
+		</div>
+	</div>
+	<div class="form-group col-md-6">
+		<%= text_field 'location', 'city', :class => 'form-control', :placeholder => 'City'  %>
+	</div>
 </div>
-
-<div class="input-group">
-	<span class='input-group-addon'>City</span>
-	<%= text_field 'location', 'city', :class => 'form-control'  %>
-
-	<span class='input-group-addon'>County</span>
-	<%= collection_select("location", "county_id", County.find(:all, :order => 'name'), :id, :name) %>
-</div>
-
-<div class="input-group">
-	<span class='input-group-addon'>Lat</span>
-	<%= text_field 'location', 'latitude', :class => 'form-control'  %>
-	
-	<span class='input-group-addon'>Long</span>
-	<%= text_field 'location', 'longitude', :class => 'form-control'  %>
-</div>
-
-<div class="input-group">
-	<div class="controls">
-		<label class="checkbox" for="location_photo">
-			<%= check_box 'location', 'photo'  %>
-			Photo
-		</label>
+<div class='row'>
+	<div class="form-group col-md-6">
+		<div class='input-group'>
+			<%= text_field 'location', 'longitude', :class => 'form-control', :placeholder => 'Long'  %>
+			<span class='input-group-addon'>lon</span>	
+		</div>		
+	</div>
+	<div class="form-group col-md-6">
+		<%= collection_select("location", "county_id", County.find(:all, :order => 'name'), :id, :name, {:prompt => 'County'}, {:class => 'form-control'}) %>
 	</div>
 </div>
 
-<div class='input-group'>
-	<span class='input-group-addon'>Notes</span>
-	<%= text_area 'location', 'notes', :class => 'form-control'  %>
+<div class='row'>
+	<div class='form-group col-md-12'>
+		<%= text_area 'location', 'notes', :class => 'form-control'  %>
+	</div>
 </div>
 
 <!--[eoform:location]-->
