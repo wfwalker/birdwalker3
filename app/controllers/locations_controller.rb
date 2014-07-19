@@ -114,12 +114,12 @@ class LocationsController < ApplicationController
   
   def new
     @location = Location.new
-    @page_title = "new"
+    @page_title = "New Location"
   end
 
   def create
     @location = Location.new(params[:location])
-    @page_title = "new"
+    @page_title = "New Location"
 
     if @location.save
       flash[:notice] = 'Location was successfully created.'
