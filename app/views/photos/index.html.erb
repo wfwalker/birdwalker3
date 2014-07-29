@@ -1,7 +1,7 @@
-<div class="lead"><%= @page_title %></div>
+<h3><%= @page_title %></h3>
 
 <div class="pagecontentmodule">  
-	<div class="moduletitle">Location Galleries</div>
+	<h4>Location Galleries</h4>
 	<% for location in @location_galleries %>
 		<div class="pagecontentitem">
 		<%= link_to location.name, :action => 'show', :controller => 'locations', :id => location %>,
@@ -11,7 +11,7 @@
 </div>               
 
 <div class="pagecontentmodule">  
-	<div class="moduletitle">Other</div>
+	<h4>Other</h4>
 	<div class="pagecontentitem"><%= link_to "Search", :action => 'photo_search', :controller => 'bird_walker' %></div>
 	<div class="pagecontentitem"><%= link_to "Recent", :action => 'recent_gallery', :controller => 'photos' %></div>
 </div>

@@ -1,11 +1,11 @@
-<div class="lead"><%= @page_title %></div>
+<h3><%= @page_title %></h3>
 
 <div class='row'>       
 
 	<div class='col-md-6'>
                
 		<div class="pagecontentmodule">
-			<div class="moduletitle">Trip Summaries</div>
+			<h4>Trip Summaries</h4>
 		</div>
 
 		<%= render :partial => 'trips/summary', :collection => @trips %>
@@ -15,7 +15,7 @@
         <% i = 1 %>
 	    
 	    <div class="pagecontentmodule">   
- 			<div class="moduletitle">Rankings</div>
+ 			<h4>Rankings</h4>
 			<div class="pagecontentitem">
 		       <table>                   
 					<% for trip in @trips do %>

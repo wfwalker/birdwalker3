@@ -1,4 +1,4 @@
-<div class="lead"><%= @page_title %></div>
+<h3><%= @page_title %></h3>
 
 <% popular_families = @taxons_by_family.select { |name, species| species.size > 0 } %>
 <% unpopular_families = @taxons_by_family.select { |name, species| species.size < 0 } %>
@@ -23,9 +23,9 @@
 						</div>					
 					<% end %>
 
-					<div class="modulesubtitle">
+					<h5>
 						<%= link_to get_family_common_name(family_name), taxon_family_name_path(family_name) %>
-					</div>
+					</h5>
 					
 					<div class="pagecontentitem">
 						<div style="font-style: italic"><%= @taxons_by_family[family_name].size %> species seen</div>

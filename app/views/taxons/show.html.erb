@@ -1,14 +1,14 @@
-<div class="lead">
+<h3>
   <%= @page_title %>
   (<i><%= @taxon.latin_name %></i>) in
   <i><%= link_to @taxon.family, taxon_family_name_path(@taxon.family) %></i>
-</div>
+</h3>
 
 <div class='row'>
 
   <div class='col-sm-12 col-md-8 col-lg-7'>
     <div class="pagecontentmodule">
-      <div class="moduletitle">Photos by Bill Walker</div>  
+      <h4>Photos by Bill Walker</h4>  
 
       <%= render :partial => 'photos/gallery', :object => @taxon.photos %>
     </div>
@@ -24,7 +24,7 @@
 
     <div class="pagecontentmodule">
       <% if @taxon.common? %>
-        <div class="moduletitle">Species Notes</div>  
+        <h4>Species Notes</h4>  
 
         <div class="pagecontentitem">
           From <%= render :partial => 'sightings/full_details', :object => @taxon.sightings.earliest %> to 
@@ -35,14 +35,14 @@
           at <%= @taxon.locations.size %> different locations.         
         </div>  
 
-        <div class="modulesubtitle">Sightings by Month</div>  
+        <h5>Sightings by Month</h5>  
         
         <div class="pagecontentitem">
           <% month_totals = Sighting.map_by_month(@taxon.sightings) %>
           <%= render :partial => 'sightings/species_by_month', :object => month_totals %>
         </div>
       <% else %>
-        <div class="moduletitle">Sightings</div>  
+        <h4>Sightings</h4>  
         <%= render :partial => 'sightings/date_and_location_link', :collection => Sighting.sort_chronological(@taxon.sightings) %>
       <% end %>
     </div>
