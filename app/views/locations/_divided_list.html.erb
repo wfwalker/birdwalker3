@@ -6,13 +6,13 @@
 
 <div class="pagecontentmodule">
 	<% if (show_headings) %>
-		<div class="moduletitle">
+		<h4>
 			<%= location_list.size %> Locations in <%= locations_by_state.size %> States
-		</div>
+		</h4>
 	<% end %>
 
 	<% for state in ordered_states %>
-		<div class="modulesubtitle"><%= state.name %></div>
+		<h5><%= state.name %>, <%= state.country.name %></h5>
 		<%= render :partial => 'locations/onelinelink' , :collection => locations_by_state[state], :locals => { :show_extras => show_headings } %>
 	<% end %>
 </div>

@@ -14,13 +14,13 @@
 		</div>
 	<% end %>
 
-	<div class="modulesubtitle">
+	<h5>
 		<div class="date">
 			<small><%= trip.date.strftime("%b") %></small>
 			<%= '%02d' % trip.date.day %>
 		</div>
 		<div style="padding-top: 9px"><%= link_to trip.name, trip_url(trip) %></div>
-	</div>
+	</h5>
 	<div class="pagecontentitem">
 		<div style="font-style: italic">
 			<%= trip.taxons.size %> species <% if (trip.photos.size > 0) %>, <%= trip.photos.size %> photos<% end %>

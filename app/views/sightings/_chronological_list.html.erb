@@ -1,12 +1,12 @@
 <% sighting_list = chronological_list %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle">
+	<h4>
 		<% if (@module_title != nil && @module_title != "") then %>
 			<%= @module_title %>, 
 		<% end %>
 		<%= sighting_list.size %> Species
-	</div>
+	</h4>
 	
 	<div class="pagecontentitem">
 		<table>

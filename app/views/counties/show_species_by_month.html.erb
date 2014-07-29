@@ -1,14 +1,13 @@
-<div class="lead">
+<h3>
 	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
-</div> 
+</h3>
 
 <% has_photos?(@county) do %>
 	<%= render :partial => 'photos/gallery', :object => @county.photos %>
 <% end %>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle"><%= @county.taxons.length %> Species
-	</div>
+	<h4><%= @county.taxons.length %> Species</h4>
 </div>
 
 <%= render :partial => 'sightings/species_by_month_table', :object => @map, :locals => { :totals => @totals }%>

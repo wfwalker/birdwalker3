@@ -1,9 +1,9 @@
-<div class="lead">
+<h3>
 	<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
-</div>
+</h3>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle">Trip Details</div>
+	<h4>Trip Details</h4>
 
 	<div class="pagecontentitem">
 		<%= form_for @trip, :url => trip_path(@trip), :html => { :class => 'form-horizontal' } do |form| %>

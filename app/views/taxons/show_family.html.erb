@@ -1,8 +1,8 @@
-<div class="lead"><%= @page_title %></div>
+<h3><%= @page_title %></h3>
 
 <div class='row'>
 	<div class='col-md-6'>
-		<div class="moduletitle">Photos by Bill Walker</div>  
+		<h4>Photos by Bill Walker</h4>  
 
 		<%= render :partial => 'photos/gallery', :object => @family_photos %>
 	</div>
@@ -15,10 +15,10 @@
 			<% end %>
 	    </div>
 
-		<div class="moduletitle">Notes</div>
+		<h4>Notes</h4>
 
 		<% if @family_trips.count > 50 then %>
-	        <div class="modulesubtitle">Sightings by Month</div>  
+	        <h5>Sightings by Month</h5>  
 
 			<div class="pagecontentitem">
 				<% month_totals = Sighting.map_by_month(@family_sightings) %>

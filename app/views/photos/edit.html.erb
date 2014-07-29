@@ -5,10 +5,10 @@
    end 
 %>
 
-<div class="lead">
+<h3>
 	<%= @page_title %>
 	<span style="font-size: 9pt"><%= link_to 'show', photo_url(@photo) %></span>
-</div>
+</h3>
 
 <div class="pageheaderitem"><%= link_to 'delete', photo_url(@photo), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
 

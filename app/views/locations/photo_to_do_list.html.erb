@@ -1,6 +1,4 @@
-<div class="lead">
-	<%= @page_title %>
-</div>		
+<h3><%= @page_title %></h3>
 
 <% taxon_lists = @taxons_seen_not_photographed_nearby/(@taxons_seen_not_photographed_nearby.size / 3 + 3)%>
 
@@ -11,13 +9,13 @@
 </div>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle">Recent nearby sightings from eBird</div>	
+	<h4>Recent nearby sightings from eBird</h4>	
 	<div class="pagecontentitem">
 		<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @location, :locals => { :dist => 40 } %>
 	</div>
 </div>
 
-<div class="moduletitle"><%= @taxons_seen_not_photographed_nearby.size %> species seen near <%= @location.name %> but never photographed</div>
+<h4><%= @taxons_seen_not_photographed_nearby.size %> species seen near <%= @location.name %> but never photographed</h4>
 
 <div class='row'>
 	<% for taxon_list in taxon_lists do %>

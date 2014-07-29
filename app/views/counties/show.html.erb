@@ -1,10 +1,10 @@
-<div class="lead">
+<h3>
 	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
-</div> 
+</h3> 
                             
 <div class='row'>
 	<div class='col-sm-12 col-md-8 col-lg-7'>
-		<div class="moduletitle">Photos by Bill Walker</div>  
+		<h4>Photos by Bill Walker</h4>  
 
 		<%= render :partial => 'photos/gallery', :object => @county.photos %>
 	</div>
@@ -18,41 +18,31 @@
 		</div>
 
 		<% if @county.common? %>
-			<div class="pagecontentmodule">
-				<div class="moduletitle">County Notes</div>	
-				<div class="pagecontentitem">
-					We visit <%= @county.name %> county at least
-					<%= (@county.trips.length.to_f / @county.year_span.to_f).ceil %> times a year. 
-				</div>	
-			</div>      
+			<h4>County Notes</h4>	
+			<div class="pagecontentitem">
+				We visit <%= @county.name %> county at least
+				<%= (@county.trips.length.to_f / @county.year_span.to_f).ceil %> times a year. 
+			</div>	
 
-			<div class="pagecontentmodule">
-				<div class="moduletitle">Latest trip</div>	
-				<div class="pagecontentitem">         
-					<% latestTrip = @county.trips.latest %>
-		 			<%= link_to latestTrip.name + ",  " + short_nice_date(latestTrip.date), trip_url(latestTrip) %>
-				</div>
+			<h5>Latest trip</h5>	
+			<div class="pagecontentitem">         
+				<% latestTrip = @county.trips.latest %>
+	 			<%= link_to latestTrip.name + ",  " + short_nice_date(latestTrip.date), trip_url(latestTrip) %>
 			</div>
 
-			<div class="pagecontentmodule">
-				<div class="moduletitle">First trip</div>	
-				<div class="pagecontentitem">
-					<% earliestTrip = @county.trips.earliest %>
-			 		<%= link_to earliestTrip.name + ",  " + short_nice_date(earliestTrip.date), trip_url(earliestTrip) %>
-				</div>
+			<h5>First trip</h5>	
+			<div class="pagecontentitem">
+				<% earliestTrip = @county.trips.earliest %>
+		 		<%= link_to earliestTrip.name + ",  " + short_nice_date(earliestTrip.date), trip_url(earliestTrip) %>
 			</div>
 
-			<div class="pagecontentmodule">
-				<div class="moduletitle">When we bird <%= @county.name %> County</div>	
-				<div class="pagecontentitem">                
-					<% month_totals = Sighting.map_by_month(@county.sightings) %>
-					<%= render :partial => 'sightings/species_by_month', :object => month_totals %>
-				</div>
+			<h5>When we bird <%= @county.name %> County</h5>	
+			<div class="pagecontentitem">                
+				<% month_totals = Sighting.map_by_month(@county.sightings) %>
+				<%= render :partial => 'sightings/species_by_month', :object => month_totals %>
 			</div>
 		<% else %>
-			<div class="pagecontentmodule">
-				<div class="moduletitle">County Notes</div>	
-			</div>      
+			<h4>County Notes</h4>
 
 			<%= show_trip_list(@county.trips, false) %>
 		<% end %>   

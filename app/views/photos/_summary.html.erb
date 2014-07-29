@@ -9,14 +9,14 @@
 		<%= render :partial => 'locations/google_static_map', :object => photo.location%>
 	</div>
 
-	<div class="modulesubtitle">
+	<h5>
 		<div class="date">
 			<%= link_to '%02d' % photo.trip.date.day, trip_url(photo.trip) %>
 			<small><%= link_to photo.trip.date.strftime('%b%y'), trip_url(photo.trip) %></small>
 		</div>            
 		<%= link_to photo.taxon.common_name, taxon_latin_name_path(photo.taxon) %>,
 		<%= link_to "%s, %s" % [photo.location.name, photo.location.county.state.abbreviation], location_url(photo.location) %>
-	</div>             
+	</h5>             
 	
 	<% if photo.notes %> 
 		<%= photo.notes %>

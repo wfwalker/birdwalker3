@@ -1,9 +1,9 @@
 <%= render :partial => 'page_header', :object => @location %>
                         
 <div class="pagecontentmodule">                        
-	<div class="moduletitle">
+	<h4>
 		<%= @location.taxons.size %> Species
-	</div>
+	</h4>
 </div>
 
 <%= render :partial => 'sightings/species_by_month_table', :object => @map, :locals => { :totals => @totals }%>

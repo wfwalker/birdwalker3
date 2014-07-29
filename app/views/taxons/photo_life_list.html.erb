@@ -1,10 +1,8 @@
-<div class="lead">
-	<%= @page_title %>
-</div>		
+<h3><%= @page_title %></h3>
 
 <% taxon_lists = @all_taxons_photographed/(@all_taxons_photographed.size / 3 + 3)%>
 
-<div class="moduletitle"><%= @all_taxons_photographed.size %> ABA Species Photographed</div>
+<h4><%= @all_taxons_photographed.size %> ABA Species Photographed</h4>
 
 <div class='row'>
 	<% for taxon_list in taxon_lists do %>

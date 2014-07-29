@@ -2,7 +2,7 @@
 
 <div class='row'>
 	<div class='col-sm-12 col-md-8 col-lg-7'>
-		<div class="moduletitle">Photos by Bill Walker</div>  
+		<h4>Photos by Bill Walker</h4>  
 
 		<%= render :partial => 'photos/gallery', :object => @state.photos %>
 	</div>
@@ -10,7 +10,7 @@
 	<div class='col-sm-6 col-md-4 col-lg-5'>
 		<% if (@state.common?) %>
 			<div class="pagecontentmodule">
-				<div class="moduletitle">When we bird <%= @state.name %></div>	
+				<h4>When we bird <%= @state.name %></h4>	
 				<div class="pagecontentitem">
 					<% month_totals = Sighting.map_by_month(@state.sightings) %>
 					<%= render :partial => 'sightings/species_by_month', :object => month_totals %>

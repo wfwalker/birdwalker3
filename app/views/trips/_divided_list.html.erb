@@ -4,13 +4,13 @@
 
 <div class="pagecontentmodule">
 	<% if (show_headings) %>
-		<div class="moduletitle">
+		<h4>
 			<%= trip_list.size %> Trips from <%= sightings_by_year.keys.sort.first %> to <%= sightings_by_year.keys.sort.last %>
-		</div>
+		</h4>
 	<% end %>
 		
 	<% for year in sightings_by_year.keys.sort.reverse %>
-		<div class='modulesubtitle'><%= year %></div>
+		<h5><%= year %></h5>
 		<%= render :partial => 'trips/onelinelink', :collection => sightings_by_year[year], :locals => { :date_format => "%b %d" }  %>
 	<% end %>
 </div>

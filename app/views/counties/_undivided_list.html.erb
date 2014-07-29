@@ -2,7 +2,7 @@
 
 <div class="pagecontentmodule">
 	<% if (show_headings) %>
-		<div class="moduletitle"><%= county_list.size %> Count<%= county_list.size > 1? 'ies' : 'y' %></div>
+		<h4><%= county_list.size %> Count<%= county_list.size > 1? 'ies' : 'y' %></h4>
 	<% end %>
 	
 	<%= render :partial => 'counties/onelinelink' , :collection => county_list, :locals => { :show_extras => true } %>

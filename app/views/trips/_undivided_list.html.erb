@@ -2,7 +2,7 @@
 
 <div class="pagecontentmodule">
 	<% if (show_headings) %>
-		<div class="moduletitle"><%= trip_list.size %> Trip<%= trip_list.size > 1? 's' : '' %></div>
+		<h4><%= trip_list.size %> Trip<%= trip_list.size > 1? 's' : '' %></h4>
 	<% end %>
 	
 	<%= render :partial => 'trips/onelinelink' , :collection => trip_list, :locals => { :date_format => "%d %b %Y" } %>

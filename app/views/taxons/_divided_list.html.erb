@@ -6,11 +6,11 @@
 <% sorted_families = taxons_by_family.keys %>
 
 <% if (show_headings) %>
-	<div class="moduletitle"><%= taxons_list.size %> taxons</div>
+	<h4><%= taxons_list.size %> taxons</h4>
 <% end %>
 
 <% for family in sorted_families %>
-	<div class="modulesubtitle"><%= family %></div>     
+	<h5><%= family %></h5>     
 	<!-- TODO: not sorted!  -->
 	<% sorted_taxons_list = taxons_by_family[family] %>	    
 	<%= render :partial => 'taxons/onelinelink', :collection => sorted_taxons_list %>

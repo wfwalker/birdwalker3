@@ -1,12 +1,10 @@
-<div class="lead">
-	<%= @page_title %>
-</div>
+<h3><%= @page_title %></h3>
 
 <% species_lists = [] %>
 <% list_length = @all_species_seen.size %>
 <% species_lists = @all_species_seen/(list_length / 3 + 3) %>
 
-<div class="moduletitle"><%= @all_species_seen.size %> Species</div> 
+<h4><%= @all_species_seen.size %> Species</h4> 
 
 <div class='row'>
 	<% for species_list in species_lists do %>

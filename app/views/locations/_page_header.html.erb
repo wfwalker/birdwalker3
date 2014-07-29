@@ -1,6 +1,6 @@
 <% location = page_header %>
 
-<div class="lead">
+<h3>
 	<%= @page_title %>
 
 	in <%= link_to location.county.name + " County", county_url(location.county) %>,
@@ -8,4 +8,4 @@
 	<% has_reference_url?(location) do %>
 		(<a href="<%= location.reference_url %>">location website</a>)
 	<% end %>
-</div>                    
+</h3>                    

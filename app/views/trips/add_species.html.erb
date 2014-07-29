@@ -1,9 +1,9 @@
-<div class="lead">
+<h3>
 	<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
-</div>
+</h3>
 
 <div class="pagecontentmodule">
-	<div class="moduletitle">Trip Sightings (<%= @trip.taxons.size %>)</div>             
+	<h4>Trip Sightings (<%= @trip.taxons.size %>)</h4>             
 	
 	<div class="pagecontentitem">
 		<%= form_tag :controller => 'sightings', :action => 'create_list' do %>

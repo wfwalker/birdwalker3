@@ -83,15 +83,10 @@
 -->
 </script>                   
 
-<div class="pagecontentmodule">
-	<div class="moduletitle">
-		<% if (@map_module_title != nil && @map_module_title != "") then %>
-			<%= @map_module_title %>   
-		<% else %>
-		    Map
-		<% end %>
-	</div>
-	<div class="pagecontentitem">
-		<div id="map" style="width: 400px; height: 300px; background-color: lightgray"></div>
-	</div>
-</div>
+	<% if (@map_module_title != nil && @map_module_title != "") then %>
+		<h4><%= @map_module_title %></h4>
+	<% else %>
+	    <h4>Map</h4>
+	<% end %>
+
+	<div id="map" style="width: 400px; height: 300px; background-color: lightgray"></div>

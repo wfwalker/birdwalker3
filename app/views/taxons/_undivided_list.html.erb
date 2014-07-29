@@ -2,7 +2,7 @@
 
 <div class="pagecontentmodule">
 	<% if (show_headings) %>
-		<div class="moduletitle"><%= taxon_list.size %> Species</div>
+		<h4><%= taxon_list.size %> Species</h4>
 	<% end %>
 	
 	<%= render :partial => 'taxons/onelinelink' , :collection => taxon_list %>

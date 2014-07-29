@@ -2,7 +2,7 @@
 
 <div class="pagecontentmodule">
 	<% if (show_headings) %>
-		<div class="moduletitle"><%= location_list.size %> Location<%= location_list.size > 1? 's' : '' %></div>
+		<h4><%= location_list.size %> Location<%= location_list.size > 1? 's' : '' %></h4>
 	<% end %>
 	
 	<%= render :partial => 'locations/onelinelink' , :collection => location_list, :locals => { :show_extras => show_headings } %>

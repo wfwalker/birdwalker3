@@ -1,9 +1,9 @@
 <% state = onelinelink %>
 
-<div class="modulesubtitle">
+<h5>
 	<% if state.locations.size > 0 %>
 		<%= link_to state.name, state_url(state) %>
 	<% else %>
 		<%= state.name %>
 	<% end %>
-</div>
+</h5>

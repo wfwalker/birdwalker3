@@ -1,5 +1,5 @@
 <div class="pagecontentmodule">
-	<div class="moduletitle">Birding near me</div>
+	<h4>Birding near me</h4>
 	<div class="pagecontentitem"> 
 		<form id="milesForm"> 
 			Find birding sites within <input id="milesField" type="text" name="radius" size="4" value="10"/> miles of this computer
@@ -64,13 +64,13 @@
 		  </script>                   
 
 		<div class="pagecontentmodule" id="mapresults">
-			<div class="moduletitle">
+			<h4>
 				<% if (@map_module_title != nil && @map_module_title != "") then %>
 					<%= @map_module_title %>   
 				<% else %>
 				    Map
 				<% end %>
-			</div>
+			</h4>
 			<div class="pagecontentitem">
 				<div id="map" style="width: <%= column_width %>px; height: <%= column_width %>px; background-color: lightgray"></div>
 			</div>

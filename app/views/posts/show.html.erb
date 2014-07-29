@@ -1,10 +1,10 @@
-<div class="lead">
+<h3>
 	<div class="date">
 		<%= '%02d' % @post.date.day %>
 		<small><%= @post.date.strftime('%b%y') %></small>
 	</div>
 	<%=h @post.title %>
-</div>                    
+</h3>                    
 
 <p>
 	<%= @post.content %>
