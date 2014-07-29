@@ -61,7 +61,7 @@ class BirdWalkerControllerTest < ActionController::TestCase
   def test_search_two_locations
     get(:search, :terms => 'Place')
     xml_document = assert_valid_xml(@response.body)  
-    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle'][text()='2 Locations']").size(), "there should a moduletitle for 2 locations"    
+    assert_equal 1, xml_document.get_elements("//h4[text()='2 Locations']").size(), "there should an h4 for 2 locations"    
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
@@ -69,7 +69,7 @@ class BirdWalkerControllerTest < ActionController::TestCase
   def test_search_apostrophe_should_find_nothing
     get(:search, :terms => 'Clark\'s Grebe')
     xml_document = assert_valid_xml(@response.body)
-    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle']").size(), "there should be only one moduletitle for overall search results"
+    assert_equal 1, xml_document.get_elements("//h4").size(), "there should be only one h4 for overall search results"
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
@@ -77,7 +77,7 @@ class BirdWalkerControllerTest < ActionController::TestCase
   def test_search_empty_terms_should_find_nothing
     get(:search, :terms => '')
     xml_document = assert_valid_xml(@response.body)  
-    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle']").size(), "there should be only one moduletitle for overall search results"
+    assert_equal 1, xml_document.get_elements("//h4").size(), "there should be only one h4 for overall search results"
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
@@ -85,7 +85,7 @@ class BirdWalkerControllerTest < ActionController::TestCase
   def test_search_no_terms
     get :search
     xml_document = assert_valid_xml(@response.body)  
-    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle']").size(), "there should be only one moduletitle for overall search results"
+    assert_equal 1, xml_document.get_elements("//h4").size(), "there should be only one h4 for overall search results"
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end
@@ -93,7 +93,7 @@ class BirdWalkerControllerTest < ActionController::TestCase
   def test_search_two_trips
     get :search, :terms => 'Trip'
     xml_document = assert_valid_xml(@response.body)  
-    assert_equal 1, xml_document.get_elements("//div[@class='moduletitle'][text()='2 Trips']").size(), "there should a moduletitle for 2 trips"    
+    assert_equal 1, xml_document.get_elements("//h4[text()='2 Trips']").size(), "there should an h4 for 2 trips"    
     assert_valid_document_title(xml_document, "birdWalker | search results")
     assert_template 'search'
   end

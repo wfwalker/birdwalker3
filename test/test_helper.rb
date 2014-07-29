@@ -51,7 +51,7 @@ class ActiveSupport::TestCase
        assert_equal expected_title, xml_document.get_elements("html/head/title")[0].text, "title tag should match expected"
 
        assert_equal 1, xml_document.get_elements("html/body/div[@class='container']").size(), "html body should contain container div"
-       assert_equal 1, xml_document.get_elements("html/body/div[@class='container']/div[@class='lead']").size(), "container div should contain lead div"
+       assert_equal 1, xml_document.get_elements("html/body/div[@class='container']/h3").size(), "container div should contain h3"
      end
    end
 
