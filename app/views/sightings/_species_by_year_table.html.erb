@@ -1,45 +1,37 @@
 <% total_columns = (Sighting.year_range.to_a.size) + 1 %>
                                   
-<div class="pagecontentitem">
-   <table spacing="0" cellspacing="0" padding="0" cellpadding="0">
-		<tr>
-			<td></td>
+<table class='table'>
+	<tr>
+		<td></td>
+		<% for year in Sighting.year_range do %>
+			<td align="right"><%= year %></td>
+		<% end %>
+	</tr>      
+		
+	<% for key in Taxon.sort_taxonomic(@map.keys) %>
+		<tr valign="top">
+			<td><%= key.common_name %></td>
 			<% for year in Sighting.year_range do %>
-				<td class="<%= year % 2 == 0 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= year %></td>
+				<td align="right"><%= @map[key][year] %></td>	
 			<% end %>
-		</tr>      
-		
-		<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
-		
-		<% for key in Taxon.sort_taxonomic(@map.keys) %>
-			<tr valign="top">
-				<td><%= key.common_name %></td>
-				<% for year in Sighting.year_range do %>
-					<td class="<%= year % 2 == 0 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= @map[key][year] %></td>	
-				<% end %>
-			</tr>
-		
-			<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
-		<% end %>
-		
-		<% if (@map.keys.size > 20) then %>
-			<tr>
-				<td>Total</td>
-				<% for year in Sighting.year_range do %>
-					<td class="<%= year % 2 == 0 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= @totals[year] %></td>
-				<% end %>
-			</tr>
-		<% end %>
-		
-		<% if (@map.keys.size > 30) then %>
-			<tr><td class="tabledivider" colspan="<%= total_columns %>"> </td></tr>       
-		
-			<tr>
-				<td></td>	
-				<% for year in Sighting.year_range do %>
-					<td class="<%= year % 2 == 0 ? 'coloredtablecell' : 'tablecell' %>" align="right"><%= year %></td>
-				<% end %>
-			</tr>
-		<% end %>
-	</table>
-</div>
+		</tr>
+	<% end %>
+	
+	<% if (@map.keys.size > 20) then %>
+		<tr>
+			<td>Total</td>
+			<% for year in Sighting.year_range do %>
+				<td align="right"><%= @totals[year] %></td>
+			<% end %>
+		</tr>
+	<% end %>
+	
+	<% if (@map.keys.size > 30) then %>
+		<tr>
+			<td></td>	
+			<% for year in Sighting.year_range do %>
+				<td align="right"><%= year %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
