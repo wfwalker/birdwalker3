@@ -106,6 +106,18 @@ class TaxonsController < ApplicationController
     end
   end
 
+  def show_by_common_name
+    puts "find %s" % params[:common_name]
+    @taxon = Taxon.find_by_common_name(params[:common_name].sub('_', ' '))
+    @page_title = @taxon.common_name
+
+    respond_to do |format|
+      format.html { render :action => 'show' }
+      format.xml  { render :xml => @taxon }
+      format.json { render json: [@taxon], :include => [ :locations, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :image_filename ] } ] }
+    end
+  end
+
   def locations
     @taxon = Taxon.find(params[:id])
 

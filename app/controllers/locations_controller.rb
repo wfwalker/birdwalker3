@@ -84,6 +84,18 @@ class LocationsController < ApplicationController
     end
   end          
   
+  def show_by_name
+    puts "find %s" % params[:name]
+    @location = Location.find_by_name(params[:name].sub('_', ' '))
+    @page_title = @location.name
+
+    respond_to do |format|
+      format.html { render :action => 'show' }
+      format.xml  { render :xml => @taxon }
+      format.json  { render json: [@location.as_json(:include => { :taxons => {}, :trips => {}, :county => { :include => [ :state ] }, :photos => { :include => [ :taxon, :trip, :location ], :methods => [ :photo_URL ] } } ) ] }
+    end
+  end
+
   def show_chronological_list
     @location = Location.find(params[:id])
     @page_title = @location.name
@@ -115,6 +127,10 @@ class LocationsController < ApplicationController
   def new
     @location = Location.new
     @page_title = "New Location"
+
+    if (params[:name] != "")
+      @location.name = params[:name]
+    end
   end
 
   def create

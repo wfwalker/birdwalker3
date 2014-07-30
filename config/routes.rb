@@ -57,6 +57,8 @@ Birdwalker3::Application.routes.draw do
   match 'families/:family_name' => 'taxons#show_family'
   match 'families/locations/:family_name' => 'taxons#get_family_locations'
   match 'taxons/latin/:latin_name' => 'taxons#show_by_latin_name'
+  match 'taxons/common/:common_name' => 'taxons#show_by_common_name'
+  match 'locations/name/:name' => 'locations#show_by_name'
   match '/:controller(/:action(/:id))'
   
   match 'webapp.manifest' => 'bird_walker#webapp_manifest'
