@@ -1,6 +1,4 @@
-<h3>
-	<%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %>
-</h3>
+<h3><%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %></h3>
 
 <% has_photos?(@county) do %>
 	<%= render :partial => 'photos/gallery', :object => @county.photos %>
