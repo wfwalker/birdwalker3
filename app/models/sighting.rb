@@ -50,6 +50,7 @@ class Sighting < ActiveRecord::Base
     # K: State/Province
     row[10] = self.location.county.state.abbreviation
     # L: Country Code
+    # TODO: wrong! scotland, orkney, costa rica, spain, trinidad, tobago
     row[11] = (self.location.county.state == "Alberta" ? "CA" : "US")
     # M: Protocol
     row[12] = 'casual'
