@@ -1,41 +1,39 @@
 <%= render :partial => 'page_header', :object => @location %>
 
+<% has_photos?(@location) do %>
 <div class='row'>
-	<div class='col-sm-12 col-md-8 col-lg-7'>
+	<div class='col-md-12'>
 		<% gallery_photos = @location.photos.sort{ |a,b| b.trip.date <=> a.trip.date} %>    
 		<% gallery_photos = @location.photos.first(Photo.default_gallery_size())%>
 
-		<div class="moduletitle">Photos by Bill Walker</div>  
+		<h4>Photos by Bill Walker</h4>  
 
 		<%= render :partial => 'photos/gallery', :object => @location.photos %>
 	</div>
+</div>
+<% end %>
 
-	<div class='col-sm-6 col-md-4 col-lg-5'>
-		<div class="pagecontentmodule">
-			<div class="moduletitle">Location Notes</div>  
-			  
-			<% if (@location.latitude != 0) %>
-				<div class="pagecontentitem">Daylight today: <%= short_nice_time(@location.sunrise().localtime) %> to <%= short_nice_time(@location.sunset().localtime) %></div>  
-			<% end %>  
-			
-			<% if @location.common? %>
-				<div class="pagecontentitem">
-					We visit <%= @location.name %> at least
-					<%= (@location.trips.length.to_f / (@location.trips.latest.date.year - @location.trips.earliest.date.year)).ceil %> times a year. 
-				</div>	
-			<% else %>
-				<div class="pagecontentitem">
-					<%= show_trip_list(@location.trips, false) %>					
-				</div>	               
-	        <% end %>     
+<div class='row'>
+	<div class='col-md-6'>
+		<h4>Location Notes</h4>  
+		  
+		<% if @location.common? %>
+			<div class="pagecontentitem">
+				We visit <%= @location.name %> at least
+				<%= (@location.trips.length.to_f / (@location.trips.latest.date.year - @location.trips.earliest.date.year)).ceil %> times a year. 
+			</div>	
+		<% else %>
+			<div class="pagecontentitem">
+				<%= show_trip_list(@location.trips, false) %>					
+			</div>	               
+        <% end %>     
 
-			<% has_notes?(@location) do %>
-				<div class="pagecontentitem"><%= @location.notes %></div>
-			<% end %>
-		</div>    
+		<% has_notes?(@location) do %>
+			<div class="pagecontentitem"><%= @location.notes %></div>
+		<% end %>
 	</div>
 
-	<div class='col-sm-6 col-md-4 col-lg-5'>
+	<div class='col-md-6'>
 		<div id='mapContainer'>
 			<% if (@location.latitude != 0) %>
 				<% @map_module_title = 'Location Map' %>
@@ -43,9 +41,6 @@
 			<% end %>
 		</div>
 	</div>
-
-
 </div>
-
 
 <%= render :partial => 'taxons/multi_column_list', :object => @location.taxons %>

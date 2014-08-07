@@ -1,35 +1,10 @@
 <% gallery_photos = gallery.sort{ |a,b| b.trip.date <=> a.trip.date} %>    
 <% gallery_photos = gallery_photos.first(Photo.default_gallery_size())%>
 
-<div id="myCarousel" class="carousel slide">
-	<!-- Carousel items -->
-	<div class="carousel-inner">
-
-			<% gallery_photos.each { | a_photo | %>
-				<% lightbox_caption = [
-					a_photo.taxon.common_name,
-					a_photo.location.name,
-					a_photo.location.county.state.abbreviation,
-					short_nice_date(a_photo.trip.date)].join(", ") %>
-				<div class="<%= gallery_photos.fetch(0) == a_photo ? 'active': '' %> item">
- 					<img style='background-image: url(<%= a_photo.photo_URL %>); background-size: auto 100%; background-repeat: no-repeat; background-position: 50% 50%' width='100%' src='/images/matte.png' />
-
-	                <div >
-	                	<center><p><%= lightbox_caption %></p></center>
-	                </div>
-				</div>
-			<% } %>
-
-	</div>
-
-	<% if gallery_photos.count == 0 %>
-		<div style="background-color: #444444; padding: 20px 20px 30px 10px">no photos</div>
-	<% end %>
-	
-	<% if gallery_photos.count > 1 %>
-		<!-- Carousel nav -->
-		<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-		<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-	<% end %>
+<div class='seamless'>
+	<% gallery_photos.each { | a_photo | %>
+		<a href="<%= photo_url a_photo %>" data-toggle='tooltip' title='<%= a_photo.taxon.common_name %>, <%= short_nice_date(a_photo.trip.date) %> at <%= a_photo.location.full_name %>'>
+			<img src='<%= a_photo.photo_URL %>' />
+		</a>
+	<% } %>
 </div>
-

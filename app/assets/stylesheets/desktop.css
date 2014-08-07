@@ -13,35 +13,6 @@ body
   width: auto; display:inline; 
 } 
 
-.tablecell
-{
-	width: 30px; padding-right: 5px; text-align: center;
-}
-
-.coloredtablecell
-{
-	width: 30px; padding-right: 5px; background-color: #DDDDDD; text-align: center;
-}           
-
-.tabledivider
-{
-	border-top: solid 1px #BBBBBB;
-}
-
-.moduletitle
-{
-	border-bottom: solid 1px #555555;
-	margin-top: 10px; margin-bottom: 10px
-}
-
-.modulesubtitle
-{
-	margin-top: 7px; margin-bottom: 7px
-}
-
-.modulesubtitle a { text-decoration: none; }
-.modulesubtitle a:hover { text-decoration: underline; }
-
 #notice
 {
 	position: absolute;
@@ -159,8 +130,67 @@ text {
 	overflow: hidden;
 }
 
+.seamless-text {
+   /* Prevent vertical gaps */
+   
+   -webkit-column-count: 3;
+   -webkit-column-gap:   1px;
+   -moz-column-count:    3;
+   -moz-column-gap:      1px;
+   column-count:         3;
+   column-gap:           1px;
+   
+}
 
+.seamless {
+   /* Prevent vertical gaps */
+   line-height: 0;
+   
+   -webkit-column-count: 4;
+   -webkit-column-gap:   4px;
+   -moz-column-count:    4;
+   -moz-column-gap:      4px;
+   column-count:         4;
+   column-gap:           4px;
+   background-color:     #333;
+   
+}
 
+.seamless img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+  padding-bottom: 4px;
+}
+
+@media (max-width: 1200px) {
+  .seamless {
+  -moz-column-count:    3;
+  -webkit-column-count: 3;
+  column-count:         3;
+  }
+}
+@media (max-width: 1000px) {
+  .seamless {
+  -moz-column-count:    3;
+  -webkit-column-count: 3;
+  column-count:         3;
+  }
+}
+@media (max-width: 800px) {
+  .seamless {
+  -moz-column-count:    2;
+  -webkit-column-count: 2;
+  column-count:         2;
+  }
+}
+@media (max-width: 400px) {
+  .seamless {
+  -moz-column-count:    1;
+  -webkit-column-count: 1;
+  column-count:         1;
+  }
+}
 
 /* ---------- format dates like pages from a daily tearoff calendar ---------- */
 /* courtesy of http://www.mattvarone.com/web-design/daily-calendar-dates-with-css/ */

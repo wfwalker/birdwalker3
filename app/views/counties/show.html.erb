@@ -3,20 +3,16 @@
 </h3> 
                             
 <div class='row'>
-	<div class='col-sm-12 col-md-8 col-lg-7'>
+	<div class='col-md-12'>
 		<h4>Photos by Bill Walker</h4>  
 
 		<%= render :partial => 'photos/gallery', :object => @county.photos %>
 	</div>
+</div>
 
-	<div class='col-sm-6 col-md-4 col-lg-5'>
-		<div id='mapContainer'>
-			<% if (@county.locations.with_lat_long.size > 0) %>
-			<% @map_module_title = 'County Map' %>                       
-				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/counties/locations/%s.json' % @county.id } %>
-			<% end %>
-		</div>
+<div class='row'>
 
+	<div class='col-md-6'>
 		<% if @county.common? %>
 			<h4>County Notes</h4>	
 			<div class="pagecontentitem">
@@ -47,6 +43,16 @@
 			<%= show_trip_list(@county.trips, false) %>
 		<% end %>   
 	</div>  
+
+	<div class='col-md-6'>
+		<div id='mapContainer'>
+			<% if (@county.locations.with_lat_long.size > 0) %>
+			<% @map_module_title = 'County Map' %>                       
+				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/counties/locations/%s.json' % @county.id } %>
+			<% end %>
+		</div>
+	</div>
+
 </div>
 
 <%= render :partial => 'taxons/multi_column_list', :object => @county.taxons.species_seen %>

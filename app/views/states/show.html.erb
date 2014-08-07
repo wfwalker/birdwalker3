@@ -1,13 +1,15 @@
 <%= render :partial => 'page_header', :object => @state %>
 
 <div class='row'>
-	<div class='col-sm-12 col-md-8 col-lg-7'>
+	<div class='col-md-12'>
 		<h4>Photos by Bill Walker</h4>  
 
 		<%= render :partial => 'photos/gallery', :object => @state.photos %>
 	</div>
+</div>
 
-	<div class='col-sm-6 col-md-4 col-lg-5'>
+<div class='row'>
+	<div class='col-md-6'>
 		<% if (@state.common?) %>
 			<div class="pagecontentmodule">
 				<h4>When we bird <%= @state.name %></h4>	
@@ -19,7 +21,9 @@
 		<% else %>
 			<%= show_trip_list(@state.trips, true) %>
 		<% end %>
+	</div>
 
+	<div class='col-md-6'>
 		<div id='mapContainer'>
 			<% if (@state.locations.with_lat_long.size > 0) %>
 				<% @map_module_title = 'State Map' %>                       

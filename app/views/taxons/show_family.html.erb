@@ -1,20 +1,16 @@
 <h3><%= @page_title %></h3>
 
 <div class='row'>
-	<div class='col-md-6'>
+	<div class='col-md-12'>
 		<h4>Photos by Bill Walker</h4>  
 
 		<%= render :partial => 'photos/gallery', :object => @family_photos %>
 	</div>
+</div>
 
-	<div class='col-md-6'>
-	    <div id='mapContainer'>
-			<% if (Location.with_lat_long(@family_locations).length > 0) %>
-				<% @map_module_title = 'Family Map' %>                       
-				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/families/locations/%s.json' % @page_title } %>
-			<% end %>
-	    </div>
+<div class='row'>
 
+    <div class='col-md-6'>
 		<h4>Notes</h4>
 
 		<% if @family_trips.count > 50 then %>
@@ -30,6 +26,15 @@
 			</div>
 		<% end %>
 	</div>
+
+	<div class='col-md-6'>
+	    <div id='mapContainer'>
+			<% if (Location.with_lat_long(@family_locations).length > 0) %>
+				<% @map_module_title = 'Family Map' %>                       
+				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/families/locations/%s.json' % @page_title } %>
+			<% end %>
+	    </div>
+    </div>
 </div>
 
 <%= render :partial => 'taxons/multi_column_list', :object => @family_taxons %>

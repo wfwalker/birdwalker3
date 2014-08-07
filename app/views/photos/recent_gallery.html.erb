@@ -1,13 +1,15 @@
 <div class='row'>
-	<div class='col-md-6'>
-		<div class="moduletitle">Recent Photos by Bill Walker</div>
+	<div class='col-md-12'>
+		<h4>Recent Photos by Bill Walker</h4>
 
 		<%= render :partial => 'photos/gallery', :object => @recent_gallery_photos %>
 	</div>
+</div>
 
+<div class='row'>
 	<div class='col-md-6'>
 		<div class="pagecontentmodule">  
-			<div class="moduletitle">Location Galleries</div>
+			<h4>Location Galleries</h4>
 			<% for location in @location_galleries %>
 				<div class="pagecontentitem">
 				<%= link_to location.name, :action => 'show', :controller => 'locations', :id => location %>,
