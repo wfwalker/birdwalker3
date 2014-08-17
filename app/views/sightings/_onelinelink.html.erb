@@ -1,12 +1,14 @@
 <% sighting = onelinelink %>
 
-<div class="pagecontentitem" id="<%= taxon_anchor_name(sighting.taxon) %>">
+<div id="<%= taxon_anchor_name(sighting.taxon) %>">
 	<% editing_is_allowed?() do %>
 		<%= check_box_tag "sighting_ids[]", sighting.id %>
-		<%= link_to '[edit]', :controller => 'sightings', :id => sighting, :action => 'edit' %>
+		<%= link_to sighting.taxon.common_name, edit_sighting_url(sighting) %>
 	<% end %>
 
-	<%= link_to sighting.taxon.common_name, taxon_latin_name_path(sighting.taxon) %>
+	<% editing_is_not_allowed?() do %>
+		<%= link_to sighting.taxon.common_name, taxon_latin_name_path(sighting.taxon) %>
+	<% end %>
 
 	<% if (sighting.heard_only) then %>
 		(h)
@@ -19,11 +21,7 @@
 	<% if @show_location_abbreviation %>
 		<span class="text-success"><%= sighting.location.abbreviation %></span>
 	<% end %>
-	
-	<% editing_is_allowed?() do %>
-		<%= link_to '[delete]', sighting_url(sighting), :confirm => 'Delete "' + sighting.taxon.common_name + '", are you sure?', :method => 'delete' %>
-	<% end %>
-	
+		
 	<% has_notes?(sighting) do %>
 		<div class="notes"><%= sighting.notes %></div>
 	<% end%>
