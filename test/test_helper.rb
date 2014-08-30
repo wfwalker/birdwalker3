@@ -50,7 +50,7 @@ class ActiveSupport::TestCase
        assert_equal 1, xml_document.get_elements("html/head/title").size(), "html head should have a title"
        assert_equal expected_title, xml_document.get_elements("html/head/title")[0].text, "title tag should match expected"
 
-       assert_equal 1, xml_document.get_elements("html/body/div[@class='container']").size(), "html body should contain container div"
+       assert_equal 3, xml_document.get_elements("//div[@class='container']").size(), "html body should contain at least three container div (nav, body, footer)"
        assert_equal 1, xml_document.get_elements("html/body/div[@class='container']/h3").size(), "container div should contain h3"
      end
    end
