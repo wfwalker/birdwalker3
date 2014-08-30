@@ -1,11 +1,13 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<% county_lists = @counties/(@counties.size / 4 + 4) %>
+	<% county_lists = @counties/(@counties.size / 4 + 4) %>
 
-<div class='row'>
-	<% for county_list in county_lists do %>
-		<div class='col-md-3'>
-			<%= render :partial => 'counties/divided_list', :object => county_list, :locals => { :show_headings => false, :show_extras => false } %>
-		</div>
-	<% end %>
+	<div class='row'>
+		<% for county_list in county_lists do %>
+			<div class='col-md-3'>
+				<%= render :partial => 'counties/divided_list', :object => county_list, :locals => { :show_headings => false, :show_extras => false } %>
+			</div>
+		<% end %>
+	</div>
 </div>

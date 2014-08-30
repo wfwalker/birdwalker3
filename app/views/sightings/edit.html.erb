@@ -1,12 +1,14 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<div class="pageheaderitem"><%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
+	<div class="pageheaderitem"><%= link_to 'delete', sighting_url(@sighting), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
 
-<div class="pagecontentmodule">
-	<div class="pagecontentitem">
-		<%= form_for @sighting, :html => { :class => 'form-horizontal' }, :url => sighting_path(@sighting) do |form|%>
-  			<%= render :partial => 'form' %>
-  			<%= submit_tag 'Save' %>
-		<% end %>
+	<div class="pagecontentmodule">
+		<div class="pagecontentitem">
+			<%= form_for @sighting, :html => { :class => 'form-horizontal' }, :url => sighting_path(@sighting) do |form|%>
+	  			<%= render :partial => 'form' %>
+	  			<%= submit_tag 'Save' %>
+			<% end %>
+		</div>
 	</div>
 </div>

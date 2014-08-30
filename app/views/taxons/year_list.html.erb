@@ -1,15 +1,17 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<% species_lists = [] %>
-<% list_length = @all_species_seen.size %>
-<% species_lists = @all_species_seen/(list_length / 3 + 3) %>
+	<% species_lists = [] %>
+	<% list_length = @all_species_seen.size %>
+	<% species_lists = @all_species_seen/(list_length / 3 + 3) %>
 
-<h4><%= @all_species_seen.size %> Species</h4> 
+	<h4><%= @all_species_seen.size %> Species</h4> 
 
-<div class='row'>
-	<% for species_list in species_lists do %>
-		<div class='col-md-4'>
-			<%= render :partial => 'taxons/divided_list', :object => species_list, :locals => { :show_headings => false } %>
-		</div>
-	<% end %>
+	<div class='row'>
+		<% for species_list in species_lists do %>
+			<div class='col-md-4'>
+				<%= render :partial => 'taxons/divided_list', :object => species_list, :locals => { :show_headings => false } %>
+			</div>
+		<% end %>
+	</div>
 </div>

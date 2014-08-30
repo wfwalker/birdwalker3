@@ -1,27 +1,28 @@
-<% if (@photo.taxon != nil) then
-  		@page_title = @photo.taxon.common_name
-   	else	
-  		@page_title = "Unknown Taxon"
-   end 
-%>
+<div class='container'>
+	<% if (@photo.taxon != nil) then
+	  		@page_title = @photo.taxon.common_name
+	   	else	
+	  		@page_title = "Unknown Taxon"
+	   end 
+	%>
 
-<h3>
-	<%= @page_title %>
-	<span style="font-size: 9pt"><%= link_to 'show', photo_url(@photo) %></span>
-</h3>
+	<h3>
+		<%= @page_title %>
+		<span style="font-size: 9pt"><%= link_to 'show', photo_url(@photo) %></span>
+	</h3>
 
-<div class="pageheaderitem"><%= link_to 'delete', photo_url(@photo), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
+	<div class="pageheaderitem"><%= link_to 'delete', photo_url(@photo), :confirm => 'Delete, Are you sure?', :method => 'delete' %></div>
 
-<div class="pagecontentmodule">
-	<div class="pagecontentitem">
-		<%= @photo.photo %>
-	</div>
-	<hr />
-	<div class="pagecontentitem">     
-		<%= form_for @photo, :url => photo_path(@photo), :html => { :class => 'form-horizontal' } do |form|%>
-  			<%= render :partial => 'form' %>
-  			<%= submit_tag 'Save' %>
-		<% end %>
+	<div class="pagecontentmodule">
+		<div class="pagecontentitem">
+			<%= @photo.photo %>
+		</div>
+		<hr />
+		<div class="pagecontentitem">     
+			<%= form_for @photo, :url => photo_path(@photo), :html => { :class => 'form-horizontal' } do |form|%>
+	  			<%= render :partial => 'form' %>
+	  			<%= submit_tag 'Save' %>
+			<% end %>
+		</div>
 	</div>
 </div>
-

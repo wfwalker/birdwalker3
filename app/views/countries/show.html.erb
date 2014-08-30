@@ -1,15 +1,19 @@
-<h3><%= @page_title %></h3>
-                      
-<% state_lists = @states/(@states.size / 4 + 2)%>
+<div class='container'>
+	<h3>
+		<%= @page_title %>
+	</h3>
+	                      
+	<% state_lists = @states/(@states.size / 4 + 2)%>
 
-<% if @country.name == 'United States' then %>
-	<%= render :partial => 'states/imagemap' %>
-<% end %>
-
-<div class='row'>
-	<% for state_list in state_lists do %>
-		<div class='col-md-3'>
-			<%= render :partial => 'states/onelinelink', :collection => state_list %>
-		</div>
+	<% if @country.name == 'United States' then %>
+		<%= render :partial => 'states/imagemap' %>
 	<% end %>
+
+	<div class='row'>
+		<% for state_list in state_lists do %>
+			<div class='col-md-3'>
+				<%= render :partial => 'states/onelinelink', :collection => state_list %>
+			</div>
+		<% end %>
+	</div>
 </div>

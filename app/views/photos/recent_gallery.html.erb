@@ -1,28 +1,28 @@
-<div class='row'>
-	<div class='col-md-12'>
-		<h4>Recent Photos by Bill Walker</h4>
+<div class='container'>
+	<div class='row'>
+		<div class='col-md-12'>
+			<h3>Recent Photos by Bill Walker</h3>
 
-		<%= render :partial => 'photos/gallery', :object => @recent_gallery_photos %>
+			<%= render :partial => 'photos/gallery', :object => @recent_gallery_photos %>
+		</div>
 	</div>
-</div>
 
-<div class='row'>
-	<div class='col-md-6'>
-		<div class="pagecontentmodule">  
-			<h4>Location Galleries</h4>
-			<% for location in @location_galleries %>
-				<div class="pagecontentitem">
-				<%= link_to location.name, :action => 'show', :controller => 'locations', :id => location %>,
-				<%= location.county.state.name%>
-				</div>
-			<% end %>
-		</div>               
+	<div class='row'>
+		<div class='col-md-6'>
+			<div class="pagecontentmodule">  
+				<h4>Location Galleries</h4>
+				<% for location in @location_galleries %>
+					<div class="pagecontentitem">
+					<%= link_to location.name, :action => 'show', :controller => 'locations', :id => location %>,
+					<%= location.county.state.name%>
+					</div>
+				<% end %>
+			</div>               
+		</div>
 	</div>
+
+
+	<div style="padding-top: 20px; padding-bottom: 50px">
+		All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
+	</div>				
 </div>
-
-
-<div style="padding-top: 20px; padding-bottom: 50px">
-	All photos are copyright William F. Walker<br/>For licensing information please contact wfwalkerphoto@gmail.com
-</div>				
-
-

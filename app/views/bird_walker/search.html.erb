@@ -1,23 +1,25 @@
-<h3>Search Results</h3>
+<div class='container'>
+	<h3>Search Results</h3>
 
-<h4>Search Results for '<%= @terms %>'</h4>
+	<h4>Search Results for '<%= @terms %>'</h4>
 
-<div class="row">
-	<div class='col-md-6'>
-		<% if (@found_taxons != nil && @found_taxons.size > 0) then %>
-			<%= show_taxon_list(@found_taxons, true) %>
-		<% end %>
-		<% if (@found_trips != nil && @found_trips.size > 0) then %>
-			<%= show_trip_list(@found_trips, true) %>
-		<% end %>
-	</div>
+	<div class="row">
+		<div class='col-md-6'>
+			<% if (@found_taxons != nil && @found_taxons.size > 0) then %>
+				<%= show_taxon_list(@found_taxons, true) %>
+			<% end %>
+			<% if (@found_trips != nil && @found_trips.size > 0) then %>
+				<%= show_trip_list(@found_trips, true) %>
+			<% end %>
+		</div>
 
-	<div class='col-md-6'>
-		<% if (@found_locations != nil && @found_locations.size > 0) then %>
-			<%= show_location_list(@found_locations, true) %>
-		<% end %>
-		<% if (@found_counties != nil && @found_counties.size > 0) then %>
-			<%= show_county_list(@found_counties, true) %>
-		<% end %>
+		<div class='col-md-6'>
+			<% if (@found_locations != nil && @found_locations.size > 0) then %>
+				<%= show_location_list(@found_locations, true) %>
+			<% end %>
+			<% if (@found_counties != nil && @found_counties.size > 0) then %>
+				<%= show_county_list(@found_counties, true) %>
+			<% end %>
+		</div>
 	</div>
 </div>

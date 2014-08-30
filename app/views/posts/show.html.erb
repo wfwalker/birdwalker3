@@ -1,12 +1,14 @@
-<h3>
-	<div class="date">
-		<%= '%02d' % @post.date.day %>
-		<small><%= @post.date.strftime('%b%y') %></small>
-	</div>
-	<%=h @post.title %>
-</h3>                    
+<div class='container'>
+	<h3>
+		<div class="date">
+			<%= '%02d' % @post.date.day %>
+			<small><%= @post.date.strftime('%b%y') %></small>
+		</div>
+		<%=h @post.title %>
+	</h3>                    
 
-<p>
-	<%= @post.content %>
-</p>
+	<p>
+		<%= @post.content %>
+	</p>
 
+</div>

@@ -1,22 +1,24 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<h4>Posts</h4>
+	<h4>Posts</h4>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Date</th>
-    <th></th>
-  </tr>
+	<table>
+	  <tr>
+	    <th>Title</th>
+	    <th>Date</th>
+	    <th></th>
+	  </tr>
 
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= link_to post.title, post_url(post) %></td>
-    <td><%=h post.date %></td>
-  </tr>
-<% end %>
-</table>
+	<% @posts.each do |post| %>
+	  <tr>
+	    <td><%= link_to post.title, post_url(post) %></td>
+	    <td><%=h post.date %></td>
+	  </tr>
+	<% end %>
+	</table>
 
-<br />
+	<br />
 
-<%= link_to 'New post', new_post_path %>   
+	<%= link_to 'New post', new_post_path %>   
+</div>

@@ -1,17 +1,19 @@
-<h3>Birding Map</h3>
+<div class='container'>
+	<h3>Birding Map</h3>
 
-<div class='row'>
-	<div class='col-md-12' id='mapWidth'>
-		<%= render :partial => 'locations/google', :locals => { :map_width => 930, :map_height => 480, :locations_json_url => '/locations.json' } %>
-	</div>
-</div>
-
-<% location_lists = @locations/(@locations.size / 3 + 3)%>
-
-<div class='row'>
-	<% for location_list in location_lists do %>
-		<div class='col-md-4'>
-			<%= show_location_list(location_list, false) %>
+	<div class='row'>
+		<div class='col-md-12' id='mapWidth'>
+			<%= render :partial => 'locations/google', :locals => { :map_width => 930, :map_height => 480, :locations_json_url => '/locations.json' } %>
 		</div>
-	<% end %>
+	</div>
+
+	<% location_lists = @locations/(@locations.size / 3 + 3)%>
+
+	<div class='row'>
+		<% for location_list in location_lists do %>
+			<div class='col-md-4'>
+				<%= show_location_list(location_list, false) %>
+			</div>
+		<% end %>
+	</div>
 </div>

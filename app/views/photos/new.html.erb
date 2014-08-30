@@ -1,11 +1,12 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<div class="pagecontentmodule">
-	<div class="pagecontentitem">		
-		<%= form_tag :action => 'create' do %>
-		  <%= render :partial => 'form' %>
-		  <%= submit_tag "Create" %>
-		<% end %>                   
+	<div class="pagecontentmodule">
+		<div class="pagecontentitem">		
+			<%= form_tag :action => 'create' do %>
+			  <%= render :partial => 'form' %>
+			  <%= submit_tag "Create" %>
+			<% end %>                   
+		</div>
 	</div>
 </div>
-

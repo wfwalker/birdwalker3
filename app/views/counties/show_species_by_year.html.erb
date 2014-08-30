@@ -1,6 +1,7 @@
-<h3><%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %></h3>
+<div class='container'>
+	<h3><%= @page_title %> in <%= link_to @county.state.name, state_url(@county.state) %></h3>
 
-<h4><%= @county.taxons.length %> Species</h4>
+	<h4><%= @county.taxons.length %> Species</h4>
 
-<%= render :partial => 'sightings/species_by_year_table', :object => @map, :locals => { :totals => @totals }%>
-
+	<%= render :partial => 'sightings/species_by_year_table', :object => @map, :locals => { :totals => @totals }%>
+</div>

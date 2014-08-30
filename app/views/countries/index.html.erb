@@ -1,25 +1,19 @@
-<h1>Listing countries</h1>
+<div class='container'>
+  <h1>Countries</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Reference url</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Reference url</th>
+      <th></th>
+    </tr>
 
-<% @countries.each do |country| %>
-  <tr>
-    <td><%= country.name %></td>
-    <td><%= country.reference_url %></td>
-    <td><%= link_to 'Show', country %></td>
-    <td><%= link_to 'Edit', edit_country_path(country) %></td>
-    <td><%= link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Country', new_country_path %>
+  <% @countries.each do |country| %>
+    <tr>
+      <td><%= country.name %></td>
+      <td><%= country.reference_url %></td>
+      <td><%= link_to 'Show', country %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>

@@ -1,6 +1,8 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<%= form_for @location, :html => { :role => 'form' }  do |form| %>
-	<%= render :partial => 'form' %>
-	<%= submit_tag "Create", :class => 'btn btn-primary' %>
-<% end %>
+	<%= form_for @location, :html => { :role => 'form' }  do |form| %>
+		<%= render :partial => 'form' %>
+		<%= submit_tag "Create", :class => 'btn btn-primary' %>
+	<% end %>
+</div>

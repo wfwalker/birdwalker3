@@ -1,7 +1,8 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<%= form_tag :action => 'create' do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
-<% end %>
-
+	<%= form_tag :action => 'create' do %>
+	  <%= render :partial => 'form' %>
+	  <%= submit_tag "Create" %>
+	<% end %>
+</div>

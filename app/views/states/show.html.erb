@@ -1,36 +1,38 @@
-<%= render :partial => 'page_header', :object => @state %>
+<div class='container'>
+	<%= render :partial => 'page_header', :object => @state %>
 
-<div class='row'>
-	<div class='col-md-12'>
-		<h4>Photos by Bill Walker</h4>  
+	<div class='row'>
+		<div class='col-md-12'>
+			<h4>Photos by Bill Walker</h4>  
 
-		<%= render :partial => 'photos/gallery', :object => @state.photos %>
-	</div>
-</div>
-
-<div class='row'>
-	<div class='col-md-6'>
-		<% if (@state.common?) %>
-			<div class="pagecontentmodule">
-				<h4>When we bird <%= @state.name %></h4>	
-				<div class="pagecontentitem">
-					<% month_totals = Sighting.map_by_month(@state.sightings) %>
-					<%= render :partial => 'sightings/species_by_month', :object => month_totals %>
-				</div>
-			</div>
-		<% else %>
-			<%= show_trip_list(@state.trips, true) %>
-		<% end %>
-	</div>
-
-	<div class='col-md-6'>
-		<div id='mapWidth'>
-			<% if (@state.locations.with_lat_long.size > 0) %>
-				<% @map_module_title = 'State Map' %>                       
-				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
-			<% end %>
+			<%= render :partial => 'photos/gallery', :object => @state.photos %>
 		</div>
 	</div>
-</div>
 
-<%= render :partial => 'taxons/multi_column_list', :object => @state.taxons.species_seen %>
+	<div class='row'>
+		<div class='col-md-6'>
+			<% if (@state.common?) %>
+				<div class="pagecontentmodule">
+					<h4>When we bird <%= @state.name %></h4>	
+					<div class="pagecontentitem">
+						<% month_totals = Sighting.map_by_month(@state.sightings) %>
+						<%= render :partial => 'sightings/species_by_month', :object => month_totals %>
+					</div>
+				</div>
+			<% else %>
+				<%= show_trip_list(@state.trips, true) %>
+			<% end %>
+		</div>
+
+		<div class='col-md-6'>
+			<div id='mapWidth'>
+				<% if (@state.locations.with_lat_long.size > 0) %>
+					<% @map_module_title = 'State Map' %>                       
+					<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+	<%= render :partial => 'taxons/multi_column_list', :object => @state.taxons.species_seen %>
+</div>

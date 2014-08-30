@@ -1,14 +1,15 @@
-<h3>
-	<%= @page_title %>
-	<span style="font-size: 9pt"><%= link_to 'show', county_url(@county) %></span>
-</h3>
+<div class='container'>
+	<h3>
+		<%= @page_title %>
+		<span style="font-size: 9pt"><%= link_to 'show', county_url(@county) %></span>
+	</h3>
 
-<div class="pagecontentmodule">
-	<div class="pagecontentitem">
-		<%= form_for @county, :url => county_path(@county), :html => { :class => 'form-horizontal' } do |form| %>
-		  <%= render :partial => 'form' %>
-		  <%= submit_tag 'Save' %>
-		<% end %>
+	<div class="pagecontentmodule">
+		<div class="pagecontentitem">
+			<%= form_for @county, :url => county_path(@county), :html => { :class => 'form-horizontal' } do |form| %>
+			  <%= render :partial => 'form' %>
+			  <%= submit_tag 'Save' %>
+			<% end %>
+		</div>
 	</div>
 </div>
-

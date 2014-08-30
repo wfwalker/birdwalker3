@@ -1,26 +1,28 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<% taxon_lists = @taxons_seen_not_photographed_nearby/(@taxons_seen_not_photographed_nearby.size / 3 + 3)%>
+	<% taxon_lists = @taxons_seen_not_photographed_nearby/(@taxons_seen_not_photographed_nearby.size / 3 + 3)%>
 
-<div class='row'>
-	<div class='col-md-12' id='mapWidth'>
-		<%= render :partial => 'locations/google', :locals => { :map_width => 780, :map_height => 480, :locations_json_url => '/locations/%s.json' % @location.id  } %>
-	</div>
-</div>
-
-<div class="pagecontentmodule">
-	<h4>Recent nearby sightings from eBird</h4>	
-	<div class="pagecontentitem">
-		<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @location, :locals => { :dist => 40 } %>
-	</div>
-</div>
-
-<h4><%= @taxons_seen_not_photographed_nearby.size %> species seen near <%= @location.name %> but never photographed</h4>
-
-<div class='row'>
-	<% for taxon_list in taxon_lists do %>
-		<div class='col-md-4'>
-			<%= show_taxon_list(taxon_list, false) %>
+	<div class='row'>
+		<div class='col-md-12' id='mapWidth'>
+			<%= render :partial => 'locations/google', :locals => { :map_width => 780, :map_height => 480, :locations_json_url => '/locations/%s.json' % @location.id  } %>
 		</div>
-	<% end %>
+	</div>
+
+	<div class="pagecontentmodule">
+		<h4>Recent nearby sightings from eBird</h4>	
+		<div class="pagecontentitem">
+			<%= render :partial => 'locations/recent_nearby_ebird_sightings', :object => @location, :locals => { :dist => 40 } %>
+		</div>
+	</div>
+
+	<h4><%= @taxons_seen_not_photographed_nearby.size %> species seen near <%= @location.name %> but never photographed</h4>
+
+	<div class='row'>
+		<% for taxon_list in taxon_lists do %>
+			<div class='col-md-4'>
+				<%= show_taxon_list(taxon_list, false) %>
+			</div>
+		<% end %>
+	</div>
 </div>

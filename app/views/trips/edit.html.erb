@@ -1,15 +1,16 @@
-<h3>
-	<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
-</h3>
+<div class='container'>
+	<h3>
+		<%= @page_title %> on <%= nice_date(@trip.date) %>, Led by <%= @trip.leader %>
+	</h3>
 
-<div class="pagecontentmodule">
-	<h4>Trip Details</h4>
+	<div class="pagecontentmodule">
+		<h4>Trip Details</h4>
 
-	<div class="pagecontentitem">
-		<%= form_for @trip, :url => trip_path(@trip), :html => { :class => 'form-horizontal' } do |form| %>
-		  <%= render :partial => 'form' %>
-		  <%= submit_tag 'Save' %>
-		<% end %>
+		<div class="pagecontentitem">
+			<%= form_for @trip, :url => trip_path(@trip), :html => { :class => 'form-horizontal' } do |form| %>
+			  <%= render :partial => 'form' %>
+			  <%= submit_tag 'Save' %>
+			<% end %>
+		</div>
 	</div>
 </div>
-

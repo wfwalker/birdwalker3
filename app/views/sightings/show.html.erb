@@ -1,34 +1,36 @@
-<h3><%= @page_title %></h3>
+<div class='container'>
+	<h3><%= @page_title %></h3>
 
-<div class="pagecontentmodule">
-	<h5>Date</h5>
-	<div class="pagecontentitem">
-	        <%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip) %>
+	<div class="pagecontentmodule">
+		<h5>Date</h5>
+		<div class="pagecontentitem">
+		        <%= link_to safe_nice_trip_date(@sighting), trip_url(@sighting.trip) %>
+		</div>
+
+		<h5>Location</h5>
+		<div class="pagecontentitem">
+		        <%= link_to safe_location_name(@sighting), location_url(@sighting.location) %>
+		</div>
+
+		<h5>Taxon</h5>
+		<div class="pagecontentitem">
+		        <%= link_to @sighting.taxon.common_name, taxon_latin_name_path(@sighting.taxon) %>
+		</div>
+
+		<% has_notes?(@sighting) do %>
+			<h5>Notes</h5>
+			<div class="pagecontentitem"><%= @sighting.notes %></div>
+		<% end %>
+
+		<% has_count?(@sighting) do %>
+			<h5>Count</h5>
+			<div class="pagecontentitem"><%= @sighting.count %></div>
+		<% end %>
+
+		<h5>Exclude</h5>
+		<div class="pagecontentitem"><%= @sighting.exclude %></div>
+
+		<h5>Heard only</h5>
+		<div class="pagecontentitem"><%= @sighting.heard_only %></div>
 	</div>
-
-	<h5>Location</h5>
-	<div class="pagecontentitem">
-	        <%= link_to safe_location_name(@sighting), location_url(@sighting.location) %>
-	</div>
-
-	<h5>Taxon</h5>
-	<div class="pagecontentitem">
-	        <%= link_to @sighting.taxon.common_name, taxon_latin_name_path(@sighting.taxon) %>
-	</div>
-
-	<% has_notes?(@sighting) do %>
-		<h5>Notes</h5>
-		<div class="pagecontentitem"><%= @sighting.notes %></div>
-	<% end %>
-
-	<% has_count?(@sighting) do %>
-		<h5>Count</h5>
-		<div class="pagecontentitem"><%= @sighting.count %></div>
-	<% end %>
-
-	<h5>Exclude</h5>
-	<div class="pagecontentitem"><%= @sighting.exclude %></div>
-
-	<h5>Heard only</h5>
-	<div class="pagecontentitem"><%= @sighting.heard_only %></div>
 </div>
