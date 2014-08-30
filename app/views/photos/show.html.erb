@@ -1,7 +1,11 @@
 <div id="pagetitle">
-	<%= link_to @photo.taxon.common_name, taxon_latin_name_path(@photo.taxon) %>,
-	<%= link_to short_nice_date(@photo.trip.date), trip_path(@photo.trip) %> at
-	<%= link_to @photo.location.full_name, location_path(@photo.location) %>
+	<h3>
+		<%= link_to @photo.taxon.common_name, taxon_latin_name_path(@photo.taxon) %>
+	</h3>
+	<h4>
+		<%= link_to short_nice_date(@photo.trip.date), trip_path(@photo.trip) %> at
+		<%= link_to @photo.location.full_name, location_path(@photo.location) %>
+	</h4>
 	<% editing_is_allowed?() do %>
 		<span style="font-size: 9pt"><%= link_to '[edit]', edit_photo_url(@photo) %></span>    
 		<span style="font: 9pt Courier">

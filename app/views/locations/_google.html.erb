@@ -7,11 +7,12 @@
 		$(document).ready(function(){   
 
 			function resizeBootstrapMap() {
-			  var mapParentWidth = $('#mapContainer').width();
+			  var mapParentWidth = $('#mapWidth').width();
+			  console.log('resize map' + mapParentWidth);
 			  $('#map').width(mapParentWidth);
 			  $('#map').height(3 * mapParentWidth / 4);
 			  google.maps.event.trigger($('#map'), 'resize');
-			  console.log(mapParentWidth);
+			  map.fitBounds(mapBounds);
 			}
 
 	  		// Create a terrain style map
@@ -26,6 +27,7 @@
 		    };
 
 		    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+			var mapBounds = new google.maps.LatLngBounds();
 
 		    // for overlays now do this:
 			// http://code.google.com/apis/maps/documentation/javascript/overlays.html#InfoWindows
@@ -37,14 +39,14 @@
 				url: '<%= locations_json_url %>',
 				error: function() { console.log("error "); },               
 				success: function(results) {
-					var newBounds = new google.maps.LatLngBounds();
+					console.log('retrieved map info');
 
 					for (var i = 0; i < results.length; i++) {
 						var location = results[i];
 
 						if (location.latitude != 0 && location.longitude != 0) {
 							locationMarker = new google.maps.LatLng(location.latitude, location.longitude);
-							newBounds.extend(locationMarker);
+							mapBounds.extend(locationMarker);
 
 							var contentString = '<div><a href="/locations/' + location.id + '">' + location.name + '</a></div>' +
 								'<div>' + location.notes + '</div>';
@@ -70,7 +72,7 @@
 
 					}
 
-				    map.fitBounds(newBounds);
+				    resizeBootstrapMap();
 				}
 			});
 
@@ -79,6 +81,11 @@
 
 		    // resize the map whenever the window resizes
 			$(window).resize(resizeBootstrapMap);
+
+			$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+				console.log('WOOOOO');
+			    resizeBootstrapMap();
+			});
       })    
 -->
 </script>                   
@@ -89,4 +96,4 @@
 	    <h4>Map</h4>
 	<% end %>
 
-	<div id="map" style="width: 400px; height: 300px; background-color: lightgray"></div>
+	<div id="map" style="background-color: lightgray"></div>

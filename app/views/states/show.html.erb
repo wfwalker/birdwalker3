@@ -24,7 +24,7 @@
 	</div>
 
 	<div class='col-md-6'>
-		<div id='mapContainer'>
+		<div id='mapWidth'>
 			<% if (@state.locations.with_lat_long.size > 0) %>
 				<% @map_module_title = 'State Map' %>                       
 				<%= render :partial => 'locations/google', :locals => { :map_width => column_width, :map_height => column_width, :locations_json_url => '/states/locations/%s.json' % @state.id  } %>
