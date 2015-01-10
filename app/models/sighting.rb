@@ -16,7 +16,7 @@ class Sighting < ActiveRecord::Base
   end
   
   def Sighting.year_range
-    (1996..2013)
+    (1996..2015)
   end   
 
   def Sighting.seen_during(year)
