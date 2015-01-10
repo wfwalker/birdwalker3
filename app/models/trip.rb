@@ -36,7 +36,7 @@ class Trip < ActiveRecord::Base
   # end
   
   def Trip.biggest(tripCount)
-    Trip.find_by_sql(["SELECT trips.*, count(distinct(species.id)) AS thecount FROM trips, sightings, species WHERE trips.id=sightings.trip_id AND species.id=sightings.species_id GROUP BY trips.id ORDER BY thecount DESC LIMIT ?", tripCount])
+    Trip.find_by_sql(["SELECT trips.*, count(distinct(taxons.id)) AS thecount FROM trips, sightings, taxons WHERE trips.id=sightings.trip_id AND taxons.latin_name=sightings.taxon_latin_name GROUP BY trips.id ORDER BY thecount DESC LIMIT ?", tripCount])
   end
 
   def Trip.map_by_year(tripList)
