@@ -34,6 +34,7 @@ class Location < ActiveRecord::Base
     end  
   end   
 
+  # TODO: this is WRONG by still using species table!!
   has_many :photographed_species, :through => :photos, :order => 'species.id', :source => 'species', :uniq => true
   
   has_many :trips, :through => :sightings, :uniq => true, :order => "trips.date DESC" do
