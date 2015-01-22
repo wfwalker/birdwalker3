@@ -49,6 +49,10 @@ class BirdWalkerController < ApplicationController
     end    
   end      
   
+  def quartet
+    redirect_to "http://birdwalker.com:9090/quartet.html"
+  end
+
   def photographer
     @recent_gallery_photos = Photo.recent(2 * Photo.default_gallery_size())
     render :layout => false, :file => 'app/views/bird_walker/photographer.rhtml'

@@ -4,6 +4,7 @@ Birdwalker3::Application.routes.draw do
   resources :posts
 
   match '' => 'bird_walker#index'
+  match 'quartet' => 'bird_walker#quartet'
 
   resources :counties
 
