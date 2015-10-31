@@ -26,13 +26,8 @@ class BirdWalkerController < ApplicationController
   def index
     @bird_of_the_week = Taxon.bird_of_the_week
     
-    @recent_photos = Photo.recent(15)
-    @most_visited_locations = Location.most_visited_recently
-    @recent_trips = Trip.find(:all, :limit => 8, :order => 'date DESC')
-    
-    @this_year_species = Taxon.year_to_date(Date.today.year)
-    @last_year_species = Taxon.year_to_date(Date.today.year - 1)
-
+    @all_taxons_photographed = Taxon.photographed
+    @taxons_by_family = Taxon.map_by_family(@all_taxons_photographed)
     
     respond_to do |format|
       format.html # index.html.erb

@@ -1,25 +1,60 @@
 <div class='container'>
 	<h3>
-		Bird photos and Field Notes by Bill Walker and Mary Wisnewski
+		Bird photos by Bill Walker
 	</h3>
 
 	<div class="row">
-		<div class='col-sm-6'>
+		<div class='col-sm-4'>
 			<% if @bird_of_the_week != nil %>
 				<%= render :partial => 'bird_walker/see_it_this_week' %>   
-	        <% end %>
-
-			<%= render :partial => 'bird_walker/welcome' %>   
-			
-			<%= render :partial => 'bird_walker/costarica' %>   
-			
-			<%= render :partial => 'bird_walker/this_year_so_far' %>
+	        <% end %>			
 		</div>
 
-		<div class='col-sm-6'>
-			<h4>Recent Trip Reports</h4>
-			
-			<%= render :partial => 'trips/summary', :collection => @recent_trips %>    
+		<div class='col-sm-8'>
+			<%= render :partial => 'bird_walker/welcome' %>   
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<h4>Browse photos</h4>
 		</div>
 	</div>
+
+	<div class="row">
+		<% popular_families = @taxons_by_family.select { |name, species| species.size > 0 } %>
+		<% unpopular_families = @taxons_by_family.select { |name, species| species.size < 0 } %>
+		<% popular_family_name_lists = popular_families.keys/(popular_families.keys.size / 3 + 1) %>
+
+		<% for popular_family_name_list in popular_family_name_lists %>
+			<div class='col-md-4'>
+				<% for family_name in popular_family_name_list %>
+					<div style="background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%); background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 100%); height: 100px" class="pagecontentmodule">
+						<% family_photos = (@taxons_by_family[family_name].collect { |species| species.photos }).flatten %>
+						<% if (family_photos.size > 0) %>
+							<div style="float: left; padding-right: 10px; display: block">	
+								<div class="photo"><%= family_photos.first.thumb %></div>
+							</div>
+						<% else %>
+							<div style="float: left; padding-right: 10px; display: block">	
+								<img src="/images/spacer.gif" width="100px" height="100px" />
+							</div>					
+						<% end %>
+
+						<h5>
+							<%= link_to get_family_common_name(family_name), taxon_family_name_path(family_name) %>
+						</h5>
+						
+						<div class="pagecontentitem">
+							<div style="font-style: italic"><%= @taxons_by_family[family_name].size %> species seen</div>
+							<div style="font-style: italic"><%= family_photos.size %> photographs</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+
+
 </div>

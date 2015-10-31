@@ -1,7 +1,7 @@
 <div class="pagecontentmodule">
 	<h4>Welcome!</h4>
 	<div class="pagecontentitem">
-		<p>Welcome to birdWalker,
+		<p class="lead">Welcome to birdWalker,
 			a website of <%= link_to "birding photos", :controller =>'taxons', :action => 'photo_life_list' %> and 
 			<%= link_to "trip reports", trips_url %>
 			by Bill Walker and Mary Wisnewski, California birders based in Santa Clara County.
@@ -9,7 +9,7 @@
 			we have now recorded <%= Trip.all.size %> trips and
 			<%= Taxon.seen.not_excluded.size %> species.</p>
 
-		<p>Some of our favorite places to go birding include
+		<p class="lead">Some of our favorite places to go birding include
 			<%= link_to 'Charleston Slough', location_url(19) %> and  
 			<%= link_to 'the Duck Pond', location_url(68) %> in Palo Alto,    
 			<%= link_to 'Sacramento National Wildlife Refuge', location_url(91) %>, and    
