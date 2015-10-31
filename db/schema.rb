@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324055415) do
+ActiveRecord::Schema.define(:version => 20151031153126) do
 
   create_table "counties", :force => true do |t|
     t.text    "name",     :limit => 255
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20130324055415) do
     t.string   "family"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.boolean  "lifebird"
   end
 
   add_index "taxons", ["abbreviation"], :name => "AbbreviationIndex"
